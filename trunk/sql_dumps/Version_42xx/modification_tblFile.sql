@@ -1,0 +1,1 @@
+ALTER TABLE `tblFile` ADD `Language` VARCHAR( 5 ) NOT NULL ;
