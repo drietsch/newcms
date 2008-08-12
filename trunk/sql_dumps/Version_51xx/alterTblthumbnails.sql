@@ -1,1 +1,0 @@
-ALTER TABLE  `tblthumbnails` ADD  `Quality` TINYINT NOT NULL DEFAULT  '8';

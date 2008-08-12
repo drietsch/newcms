@@ -1,1 +1,0 @@
-ALTER TABLE `tblFile` ADD `listview` TINYINT( 1 ) NOT NULL ;
