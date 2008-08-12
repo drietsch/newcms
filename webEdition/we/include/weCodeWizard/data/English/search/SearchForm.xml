@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic SYSTEM "http://docs.oasis-open.org/dita/v1.0.1/dtd/topic.dtd">
+<topic id="topic_52EC37D9C7A34C07B8A1808A4CD3E552">
+	<title>Search form</title>
+	<shortdesc>Use this source code to create a search form.</shortdesc>
+	<prolog>
+		<author>living-e AG</author>
+	</prolog>
+	<body>
+		<p>
+			<codeblock>
+				<![CDATA[
+<we:form type="search" name="search" id="self" method="get" xml="true">
+  <p>
+    <label for="SearchTerm">Your serach term</label><br />
+    <we:search type="textinput" name="search" id="SearchTerm" xml="true" />
+    <input type="submit" value="Start search" />
+  </p>
+</we:form>
+				]]>
+			</codeblock>
+		</p>
+	</body>
+</topic>

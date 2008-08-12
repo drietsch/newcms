@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic SYSTEM "http://docs.oasis-open.org/dita/v1.0.1/dtd/topic.dtd">
+<topic id="topic_52EC37D9C7A34C07B8A1808A4CD3E552">
+	<title>Suchergebnis</title>
+	<shortdesc>Mit diesem Quelltext können Sie eine Übersicht für Suchergebnisse erstellen.</shortdesc>
+	<prolog>
+		<author>living-e AG</author>
+	</prolog>
+	<body>
+		<p>
+			<codeblock>
+				<![CDATA[
+<we:ifSearch name="Suche" set="true">
+  <we:ifVarEmpty match="we_lv_search_Suche" doc="top" type="request">
+    <p>
+      Sie haben keine Suchbegriff angegeben.<br />
+      Bitte geben Sie einen Suchbegriff ein und versuchen es erneut.
+    </p>
+  </we:ifVarEmpty>
+  <we:ifVarNotEmpty match="we_lv_search_Suche" doc="top" type="request">
+    <we:listview type="search" name="Suche" rows="10" order="Title">
+      <we:ifFound>
+        <p>
+          Zu Ihrer Suchanfrage <em><strong><we:search type="print" name="Suche" xml="true" /></strong></em> wurden folgende Treffer gefunden:
+        </p>
+        <p>
+          Seite: <we:listviewPageNr /> von <we:listviewPages /> |
+          Treffer: <we:listviewStart /> bis <we:listviewEnd />
+          <we:ifBack> | <we:back>zurück</strong></we:back></we:ifBack>
+          <we:ifNext> | <we:next>weiter</we:next></we:ifNext>
+        </p>
+        <hr />
+        <ul>
+          <we:repeat>
+            <li>
+              <we:field name="Title" alt="we_path" hyperlink="true" />
+              <we:ifFieldNotEmpty match="Description">
+                <br />
+                <we:field name="Description" type="text" />
+              </we:ifFieldNotEmpty>
+            </li>
+          </we:repeat>
+        </ul>
+        <hr />
+        <p>
+          Seite: <we:listviewPageNr /> von <we:listviewPages /> |
+          Treffer: <we:listviewStart /> bis <we:listviewEnd />
+          <we:ifBack> | <we:back>zurück</strong></we:back></we:ifBack>
+          <we:ifNext> | <we:next>weiter</we:next></we:ifNext>
+        </p>
+      </we:ifFound>
+      <we:ifNotFound>
+        Zu Ihrer Suchanfrage <em><strong><we:search type="print" name="Suche" xml="true" /></strong></em> konnten leider keine Treffer gefunden werden.
+      </we:ifNotFound>
+    </we:listview>
+  </we:ifVarNotEmpty>
+</we:ifSearch>
+				]]>
+			</codeblock>
+		</p>
+	</body>
+</topic>

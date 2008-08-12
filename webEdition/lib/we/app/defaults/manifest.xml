@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- default manifest for webEdition applications -->
+<manifest>
+	
+	<creator>
+		<company>living-e AG</company>
+		<name>webEdition</name>
+		<address>Amalienstraße 81-87, 76133 Karlsruhe</address>
+        <country>DE</country>
+		<phone>+49 721 20188-10</phone>
+		<fax>+49 721 20188-99</fax>
+		<email>vertrieb@living-e.de</email>
+		<www>http://www.webedition.de</www>
+		<year>2008</year>
+	</creator>
+	
+	<info>
+		<implementation>tool</implementation>
+		<name>exampleApplication</name>
+		<version>1.0</version>
+		<license>GPL2</license>
+		<licenseurl>http://www.gnu.org/licenses/gpl-2.0.html</licenseurl>
+		<encoding>none</encoding>
+		<deactivatable>true</deactivatable>
+		<deinstallable>true</deinstallable>
+		<updatable>false</updatable>
+		<categories>
+			<category>miscellaneous</category>
+		</categories>
+	</info>
+	
+	<requirements>
+      <php-version>5.2</php-version>
+      <php-ext>simplexml</php-ext>
+      <php-ext>gdlib</php-ext>
+	</requirements>
+	
+	<dependencies>
+		<version>5500</version>
+	</dependencies>
+	
+</manifest>

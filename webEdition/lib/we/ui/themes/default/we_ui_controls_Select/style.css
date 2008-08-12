@@ -1,0 +1,15 @@
+.we_ui_controls_Select
+{
+	color: black;
+	font-size: 12px;
+	font-family: verdana, arial, sans-serif;
+	border: #AAAAAA solid 1px;
+}
+
+.we_ui_controls_Select_disabled
+{
+	color: #CCCCCC;
+	font-size: 12px;
+	font-family: verdana, arial, sans-serif;
+	border: #AAAAAA solid 1px;
+}

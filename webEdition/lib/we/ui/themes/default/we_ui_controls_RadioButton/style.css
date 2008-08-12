@@ -1,0 +1,13 @@
+.we_ui_controls_RadioButton
+{
+	color: black;
+	font-size: 12px;
+	font-family: verdana, arial, sans-serif;
+
+}
+.we_ui_controls_RadioButton[disabled] 
+{
+	color: #CCCCCC;
+	font-size: 12px;
+	font-family: verdana, arial, sans-serif;
+}

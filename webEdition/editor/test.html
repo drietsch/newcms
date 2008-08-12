@@ -1,0 +1,48 @@
+<html>
+<head>
+<script type="text/javascript">
+
+function startEditor() {
+	document.ap.setCode(document.we_form.edit.value);
+	fillInput();
+	resize();
+}
+
+function fillInput() {
+	document.we_form.edit.value = document.ap.getCode();
+	setTimeout(fillInput, 100);
+}
+
+function resize() {
+    var w_newWidth,w_newHeight;
+    var w_maxWidth=1600, w_maxHeight=1200;
+    if (navigator.appName.indexOf("Microsoft") != -1)
+    {
+        w_newWidth=document.body.clientWidth;
+        w_newHeight=document.body.clientHeight;
+    }else{
+        var netscapeScrollWidth=15;
+        w_newWidth=window.innerWidth-netscapeScrollWidth;
+        w_newHeight=window.innerHeight-netscapeScrollWidth;
+    }
+    if (w_newWidth>w_maxWidth)
+        w_newWidth=w_maxWidth;
+    if (w_newHeight>w_maxHeight)
+        w_newHeight=w_maxHeight;
+        
+    document.ap.width = w_newWidth;
+	document.ap.height = w_newHeight - 50;
+    document.ap.setSize(w_newWidth,w_newHeight - 50);
+    window.scroll(0,0);
+}
+
+</script>
+</head>
+<body style="margin:0; padding:0;" onload="startEditor();" onresize="resize();">
+<applet name="ap" code="Editor.class" archive="editor.jar" width="1600" height="1200" MAYSCRIPT SCRIPTABLE codebase="http://wetrunk.holeg.intra/webEdition/editor">
+</applet>
+<form name="we_form">
+<textarea name="edit">dfd</textarea>
+</form>
+</body>
+</html>
