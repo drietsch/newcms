@@ -1,0 +1,1 @@
+ALTER TABLE `tblUser` ADD `LoginDenied` TINYINT DEFAULT '0' NOT NULL ;

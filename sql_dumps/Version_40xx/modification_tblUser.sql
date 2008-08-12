@@ -1,0 +1,4 @@
+ALTER TABLE tblUser ADD workSpaceObj VARCHAR( 255 ) NOT NULL AFTER workSpaceTmp;
+ALTER TABLE tblUser ADD ParentWso TINYINT( 4 ) DEFAULT '0' NOT NULL AFTER ParentWst;
+ALTER TABLE tblUser ADD workSpaceNav VARCHAR( 255 ) NOT NULL AFTER workSpaceTmp;
+ALTER TABLE tblUser ADD ParentWsn TINYINT( 4 ) DEFAULT '0' NOT NULL AFTER ParentWst;
