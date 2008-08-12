@@ -1,3 +1,0 @@
-<?php
-	//	marked to delete
-?>
