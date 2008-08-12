@@ -1,0 +1,15 @@
+acronym, abbr { 
+	border: 1px dotted green; 
+}
+
+img, table, caption, thead, tbody, tfoot, tr, td, th { 
+	border: 1px dotted gray; 
+}
+
+a { 
+	border: 1px dotted blue; 
+}
+
+span[lang] {
+	border: 1px dotted red; 
+}

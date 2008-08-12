@@ -1,0 +1,108 @@
+body {
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+div {
+	margin: 0;
+	padding: 0;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+h1 {
+	margin: 0;
+	padding: 0;
+	padding-top: 6px;
+	font-size: 18px;
+	font-weight: bold;
+	color: black;
+}
+
+#divTagName {
+	height: 35px;
+	background: #C7D7EB;
+	background-image: url('/webEdition/images/java_menu/background.gif');
+}
+
+#divContent {
+	overflow: auto;
+	height: 546px;
+	background: white;
+	border-top: 1px solid black;
+}
+
+#divButtons {
+	height: 40px;
+	background-image: url('/webEdition/images/edit/editfooterback.gif');
+	background-color: #C5C5C5;
+}
+
+fieldset {
+	margin: 10px 0 0 0;
+	padding: 0px 0 0px 0;
+	border: 0;
+}
+
+hr {
+	height: 1px;
+    color: black;
+    background-color: black;
+    border: 0;
+}
+
+div.legend {
+	padding: 0;
+	margin: 10px 0 10px 0;
+	font-weight: bold;
+	color: black;
+	border: 0;
+}
+
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+}
+
+
+table.attribute {
+
+}
+table.attribute td {
+	padding: 0;
+	margin: 0;
+
+}
+
+td.attributeName {
+	width: 150px ! important;
+	text-align: right;
+	padding-right: 10px ! important;
+	vertical-align: top;
+}
+
+td.attributeField {
+	width: 160px;
+	vertical-align: top;
+}
+
+td.attributeButton {
+	width: 100px ! important;
+	vertical-align: top;
+}
+/* add some additional stuff to wetextinput */
+.wetextinput {
+	width: 100%;
+}
+
+.selectinput {
+	border: #AAAAAA solid 1px ! important;
+	height: 18px;
+}
+
+label {
+	cursor: pointer;
+}
