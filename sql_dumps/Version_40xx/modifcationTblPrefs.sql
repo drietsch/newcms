@@ -1,1 +1,0 @@
-ALTER TABLE `tblPrefs` ADD `siteImportPrefs` LONGTEXT NOT NULL ;

@@ -1,1 +1,0 @@
-ALTER TABLE tblthumbnails ADD Interlace TINYINT( 1 ) DEFAULT '1' NOT NULL AFTER Maxsize ;
