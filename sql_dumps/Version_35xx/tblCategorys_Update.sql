@@ -1,1 +1,0 @@
-ALTER TABLE tblCategorys ADD Catfields LONGTEXT NOT NULL
