@@ -1,1 +1,0 @@
-ALTER TABLE  tblnavigation ADD  UseDocumentFilter TINYINT NOT NULL DEFAULT  '0';
