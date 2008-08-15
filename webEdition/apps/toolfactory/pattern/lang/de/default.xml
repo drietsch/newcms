@@ -5,22 +5,22 @@
 	</header>
 	<body>
 		<tu tuid="{$TOOLNAME}">
-			<tuv xml:lang="de"><seg>{$TOOLNAME}</seg></tuv>
+			<tuv xml:lang="de"><seg>{$TOOLNAMELANG}</seg></tuv>
 		</tu>
 		<tu tuid="The user is allowed to create new items in {$TOOLNAME}">
-			<tuv xml:lang="de"><seg>Der Benutzer darf neue {$TOOLNAME}-Einträge erstellen</seg></tuv>
+			<tuv xml:lang="de"><seg>Der Benutzer darf neue {$TOOLNAMELANG}-Einträge erstellen</seg></tuv>
 		</tu>
 		<tu tuid="The user is allowed to delete items from {$TOOLNAME}">
-			<tuv xml:lang="de"><seg>Der Benutzer darf {$TOOLNAME}-Einträge löschen</seg></tuv>
+			<tuv xml:lang="de"><seg>Der Benutzer darf {$TOOLNAMELANG}-Einträge löschen</seg></tuv>
 		</tu>
 		<tu tuid="The user is allowed to edit items {$TOOLNAME}">
-			<tuv xml:lang="de"><seg>Der Benutzer darf {$TOOLNAME}-Einträge bearbeiten</seg></tuv>
+			<tuv xml:lang="de"><seg>Der Benutzer darf {$TOOLNAMELANG}-Einträge bearbeiten</seg></tuv>
 		</tu>
 		<tu tuid="Restore {$TOOLNAME} data">
-			<tuv xml:lang="de"><seg>Die Daten des Tools {$TOOLNAME} wiederherstellen</seg></tuv>
+			<tuv xml:lang="de"><seg>Die Daten des Tools {$TOOLNAMELANG} wiederherstellen</seg></tuv>
 		</tu>
 		<tu tuid="Save {$TOOLNAME} data">
-			<tuv xml:lang="de"><seg>Die Daten des Tools {$TOOLNAME} sichern</seg></tuv>
+			<tuv xml:lang="de"><seg>Die Daten des Tools {$TOOLNAMELANG} sichern</seg></tuv>
 		</tu>
 	</body>
 </tmx>
