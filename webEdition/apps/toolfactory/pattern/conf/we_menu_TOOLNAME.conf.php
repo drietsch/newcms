@@ -7,7 +7,7 @@ include_once ('meta.conf.php');
 $controller = Zend_Controller_Front::getInstance();
 $appName = $controller->getParam('appName');
 
-$we_menu_<?php print $TOOLNAME; ?>['000100']['text'] = $translate->_('<?php print $TOOLNAME; ?>');
+$we_menu_<?php print $TOOLNAME; ?>['000100']['text'] = we_util_Strings::shortenPath(htmlspecialchars($translate->_('<?php print $TOOLNAME; ?>')), 30);
 $we_menu_<?php print $TOOLNAME; ?>['000100']['parent'] = '000000';
 $we_menu_<?php print $TOOLNAME; ?>['000100']['perm'] = '';
 $we_menu_<?php print $TOOLNAME; ?>['000100']['enabled'] = '1';
