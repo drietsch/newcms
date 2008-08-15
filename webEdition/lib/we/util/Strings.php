@@ -99,5 +99,13 @@ class we_util_Strings
 			return str_replace("\"", "\\\"", str_replace("\\", "\\\\", $text));
 		}
 	}
+	
+	static function shortenPath($path,$len) 
+	{
+		if(strlen($path) <= $len || strlen($path) < 10)
+		return $path;
+		$l = ($len/2) - 2;
+		return substr($path,0,$l)."....".substr($path,$l*-1);
+	}
 
 }
