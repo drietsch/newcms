@@ -94,6 +94,14 @@ class toolfactory_service_Cmd extends we_app_service_AbstractCmd{
 			}
 		}
 		
+		if($model->filenameNotValid()) {
+			$ex = new we_service_Exception(
+				$translate->_('The name is not valid!',null,$utf8_decode), 
+				we_service_ErrorCodes::kModelTextEmpty);
+			$ex->setType('warning');
+			throw $ex;
+		}
+		
 		if($model->fileclassnameNotValid()) {
 			$ex = new we_service_Exception(
 				$translate->_('The name of the model class is not valid!',null,$utf8_decode), 
@@ -116,7 +124,9 @@ class toolfactory_service_Cmd extends we_app_service_AbstractCmd{
 			$model->realname = htmlentities(utf8_decode($model->Text),ENT_QUOTES);
 		}
 		
+		$model->realname = preg_quote($model->realname, '$');
 	
+		/*
 		if($model->toolExists($model->realname)) {
 			$ex = new we_service_Exception(
 				$translate->_('The application exists!',null,$utf8_decode), 
@@ -124,6 +134,7 @@ class toolfactory_service_Cmd extends we_app_service_AbstractCmd{
 			$ex->setType('warning');
 			throw $ex;
 		}
+		*/
 
 		try {
 			$model->save();
