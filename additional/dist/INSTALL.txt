@@ -14,7 +14,9 @@ If all went well you should be able to start webEdition with this url:
 
   http://YOURDOMAIN/webEdition/index.php
 
-IMPORTANT: Once you have successfully configured your new webEdition installation, please delete this setup script in order to prevent damage by misuse.
+IMPORTANT: 
+Once you have successfully configured your new webEdition installation, 
+delete this setup script in order to prevent damage by misuse.
 
 Please visit our website for more informations about webEdition
 
