@@ -30,7 +30,7 @@ $InfoField->setStyle('position:absolute;bottom:0px;height:40px;background:url(/w
 
 $InfoFieldId = new we_ui_layout_Div();
 $InfoFieldId->setId('infoFieldId');
-$InfoFieldId->setStyle('margin:5px 10px;font-size:13px;');
+$InfoFieldId->setStyle('margin:5px 10px;font-size:11px;');
 
 $js = '
 	var weTree = new we_ui_controls_Tree("' . $tree->getId() . '");
