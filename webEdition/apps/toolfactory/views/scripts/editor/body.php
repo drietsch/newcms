@@ -26,6 +26,7 @@ if(!empty($this->model->ID)) {
 $inputName->setValue($this->model->Text);
 $inputName->setWidth($this->inputWidth);
 $inputName->setOnChange('weEventController.fire("docChanged");setClassField(this.value);');
+$inputName->setOnBlur('setClassField(this.value);');
 $rowGeneral->addElement($labelName);
 $rowGeneral->addElement($inputName);
 
