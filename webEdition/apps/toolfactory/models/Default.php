@@ -70,18 +70,25 @@ class toolfactory_models_Default extends we_app_Model
 	}
 		
 
-	function load($id)
+	function load($loadId)
 	{
 
-		$id = $this->realNameToIntern($id);
+		$id = $this->realNameToIntern($loadId);
 		
 		$_props = weToolLookup::getToolProperties($id);
+		
+		if(empty($_props)) {
+			$_props = weToolLookup::getToolProperties($loadId);
+			$id = $loadId;
+		}
 
 		foreach ($_props as $_key => $_prop) {
 			$this->$_key = $_prop;
 		}
-
-		$this->Text = html_entity_decode($_props['realname'], ENT_QUOTES);
+		
+		$name = isset($_props['realname']) ? html_entity_decode($_props['realname'], ENT_QUOTES) : $_props['name'];
+		
+		$this->Text = $name;
 		
 		$this->ID = $this->Text;
 				
@@ -95,7 +102,7 @@ class toolfactory_models_Default extends we_app_Model
 		
 		$appDir = Zend_Controller_Front::getInstance()->getParam('appDir');
 		
-		$permFile = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['__WE_APP_URL__'] . '/' . $this->Text . '/conf/permission.conf.php';
+		$permFile = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['__WE_APP_URL__'] . '/' . $_props['name'] . '/conf/permission.conf.php';
 
 		if (file_exists($permFile)) {
 			include ($permFile);
@@ -116,6 +123,7 @@ class toolfactory_models_Default extends we_app_Model
 	function save() {
 
 		$TOOLREALNAME = $this->realname;
+		$TOOLNAMELANG = htmlspecialchars($this->Text, ENT_NOQUOTES);
 		$TOOLNAME = $this->classname;
 		$CLASSNAME = $this->classname;
 		$TABLENAME = $this->maintable;
@@ -124,18 +132,18 @@ class toolfactory_models_Default extends we_app_Model
 		$TABLEEXISTS = ($this->makeTable) ? true : false;
 		
 		if($this->makePerms) {
-			$PERMISSIONCONDITION = 'EDIT_APP_' . strtoupper($this->Text);
-			$DELETECONDITION = 'DELETE_APP_' . strtoupper($this->Text);
+			$PERMISSIONCONDITION = 'EDIT_APP_' . strtoupper($this->classname);
+			$DELETECONDITION = 'DELETE_APP_' . strtoupper($this->classname);
 		} else {
 			$PERMISSIONCONDITION = '';
 			$DELETECONDITION = '';
 		}
 		
-		$_prohibit_names = array('navigation','doctype','first_steps_wizard','weSearch','cache','toolfactory');
+		//$_prohibit_names = array('navigation','doctype','first_steps_wizard','weSearch','cache','toolfactory');
 		
-		if(in_array($TOOLNAME,$_prohibit_names)) {
-			die('The name ' . $TOOLNAME . ' is prohibit');
-		}
+		//if(in_array($TOOLREALNAME,$_prohibit_names)) {
+			//die('The name ' . $TOOLREALNAME . ' is prohibit');
+		//}
 	
 		$_templateDir = $_SERVER['DOCUMENT_ROOT'] . '/webEdition/apps/toolfactory/pattern';
 		
@@ -144,7 +152,7 @@ class toolfactory_models_Default extends we_app_Model
 		$_files = array();
 	
 		weToolLookup::getFilesOfDir($_files,$_templateDir);
-	
+
 		foreach ($_files as $_file) {
 
 			$_newname = str_replace($_templateDir,$_SERVER['DOCUMENT_ROOT'].$GLOBALS['__WE_APP_URL__'] . "/". $TOOLNAME,$_file);
@@ -172,6 +180,7 @@ class toolfactory_models_Default extends we_app_Model
 						ob_end_clean();
 						$_content = str_replace('{$TOOLREALNAME}',$TOOLREALNAME,$_content);
 						$_content = str_replace('{$TOOLNAME}',$TOOLNAME,$_content);	
+						$_content = str_replace('{$TOOLNAMELANG}',$TOOLNAMELANG,$_content);	
 					} else {
 						$_content = weFile::load($_file);
 					}
@@ -188,6 +197,7 @@ class toolfactory_models_Default extends we_app_Model
 						
 						$_content = str_replace('{$TOOLREALNAME}',$TOOLREALNAME,$xmlString);
 						$_content = str_replace('{$TOOLNAME}',$TOOLNAME,$_content);	
+						$_content = str_replace('{$TOOLNAMELANG}',$TOOLNAMELANG,$_content);	
 						
 						if($charset!='UTF-8') {
 							$_content = utf8_encode($_content);
@@ -220,7 +230,8 @@ class toolfactory_models_Default extends we_app_Model
 				
 				$_dirSelectorFile = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['__WE_APP_URL__'] . '/' . $TOOLNAME . '/we_' . $TOOLNAME . 'DirSelect.php';
 				$_dirSelectorClass = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['__WE_APP_URL__'] . '/' . $TOOLNAME . '/we_' . $TOOLNAME . 'DirSelector.class.php';
-				if (($_dirSelectorFile===$_newname || $_dirSelectorClass===$_newname) && !$this->makeTable) {
+				$_sqlFile = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['__WE_APP_URL__'] . '/' . $TOOLNAME . '/' . $TOOLNAME . '.sql';
+				if (($_sqlFile===$_newname || $_dirSelectorFile===$_newname || $_dirSelectorClass===$_newname) && !$this->makeTable) {
 				}
 				else {
 					//print "Saving file " . $_newname . "...<br>";
@@ -281,8 +292,16 @@ class toolfactory_models_Default extends we_app_Model
 		
 	}
 	
+	function filenameNotValid() {
+		return eregi(',',$this->Text);
+	}
+	
 	function fileclassnameNotValid() {
-		return eregi('[^a-z0-9\-]',$this->classname);
+		if(eregi('[^a-z0-9\-]',$this->classname) || is_numeric(substr($this->classname, 0 , 1))) {
+			return true;
+		}
+		return false;
+
 	}
 		
 	function maintablenameNotValid() {
@@ -313,7 +332,9 @@ class toolfactory_models_Default extends we_app_Model
 		$_prohibit_names = array($_menuItems);
 		
 		foreach ($_menuItems as $_menuItem) {
-			$_prohibit_names[] = $_menuItem["realname"];		
+			if(isset($_menuItem["realname"])) {
+				$_prohibit_names[] = $_menuItem["realname"];	
+			}	
 		}
 
 		if(in_array($name,$_prohibit_names)) {
