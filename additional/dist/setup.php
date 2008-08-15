@@ -19,6 +19,7 @@
 		<li>show configuration recommendations (webserver and PHP)</li>
 		<li>show configuration form</li>
 		<li>update database settings</li>
+		<li>update language setting</li>
 
 </body>
 </html>
