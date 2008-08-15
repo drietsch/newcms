@@ -78,7 +78,7 @@ class we_app_HomePage extends we_ui_layout_HTMLPage
 		}
 
 
-		$headerDiv->addHTML(htmlspecialchars($this->_title));
+		$headerDiv->addHTML(we_util_Strings::shortenPath(htmlspecialchars($this->_title), 30));
 		
 		$bodyDiv = $this->_getBodyDiv();
 		
