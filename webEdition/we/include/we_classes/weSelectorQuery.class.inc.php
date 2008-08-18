@@ -223,8 +223,9 @@ class weSelectorQuery {
 	 * @param string $table
 	 */
 	function getItemById($id, $table, $fields="",$useExtraSQL=true) {
+		$_votingTable = defined('VOTING_TABLE') ? VOTING_TABLE : "";
 		switch ($table) {
-			case VOTING_TABLE:
+			case $_votingTable:
 				$useCreatorID = false;
 				break;
 			default:
