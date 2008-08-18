@@ -88,7 +88,7 @@ protect();
                     break;
                 } else {
 					if(isset($_REQUEST[$_REQUEST['obj_name'] . '_ParentID']) && !empty($_REQUEST[$_REQUEST['obj_name'] . '_ParentID']) && $_REQUEST[$_REQUEST['obj_name'] . '_ParentID']>0) {
-				    	$weAcResult = $weAcQuery->getItemById($_REQUEST[$_REQUEST['obj_name'] . '_ParentID'],USER_TABLE,array("IsFolder"));
+				    	$weAcResult = $weAcQuery->getItemById($_REQUEST[$_REQUEST['obj_name'] . '_ParentID'],USER_TABLE,array("IsFolder"),false);
 				    	if (!is_array($weAcResult) || $weAcResult[0]['IsFolder']==0) {
 		                    print '<script language="JavaScript" type="text/javascript">' . we_message_reporting::getShowMessageCall($l_alert["no_perms"], WE_MESSAGE_ERROR) . '</script>';
 		                    break;
