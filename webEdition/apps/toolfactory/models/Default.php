@@ -237,7 +237,6 @@ class toolfactory_models_Default extends we_app_Model
 					//print "Saving file " . $_newname . "...<br>";
 					if(eregi('_UTF-8.inc.php',$_newname)) {
 						$_content = utf8_encode($_content);
-						weFile::save($_newname,$_content);
 					}
 					weFile::save($_newname,$_content);
 				}
