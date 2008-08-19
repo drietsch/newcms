@@ -333,11 +333,20 @@ $l_prefs["tab_versions"] = 'Versionierung';
 	$l_prefs["authpass"] = "Kennwort";
 
 	/**
- 	* THUMBNAIL DIR
- 	*/
+ 	 * THUMBNAIL DIR
+ 	 */
 	$l_prefs["thumbnail_dir"]="Verzeichnis für Miniaturansichten";
 
+	/**
+	 * PAGELOGGER DIR
+	 */
 	$l_prefs["pagelogger_dir"] = "pageLogger-Verzeichnis";
+	
+	/**
+	 * ECONDA
+	 */
+	$l_prefs["econda_information"] = "econda ist der Spezialist für erfolgreiches Web Shop Controlling. <br><a href='http://www.econda.de/ssa/shop.php' onclick='window.open(this.href,\"econda\",\"width=800,height=600,resizable=yes,menubar=yes,scrollbars=yes,status=yes,toolbar=yes\"); return false'>Online-Antrag</a>";
+	$l_prefs["econda_enable"] = "Econda aktivieren";
 
 /*****************************************************************************
  * ERROR HANDLING
