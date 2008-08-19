@@ -46,7 +46,9 @@ foreach ($_menuItems as $_menuItem) {
 	}
 	else  {
 		if($text != $l_weSearch["weSearch"] && $text != $l_navigation["navigation"]) {
-			$we_tabs->addTab(new we_tab("#", $text, ( isset($_REQUEST['tool']) && $_REQUEST['tool'] == $_menuItem["name"] ? "TAB_ACTIVE" : "TAB_NORMAL" ) ,"openTool('" . $_menuItem["name"] . "');",array("id" => $_menuItem["name"])));
+			if(we_hasPerm($_menuItem['startpermission'])) {
+				$we_tabs->addTab(new we_tab("#", $text, ( isset($_REQUEST['tool']) && $_REQUEST['tool'] == $_menuItem["name"] ? "TAB_ACTIVE" : "TAB_NORMAL" ) ,"openTool('" . $_menuItem["name"] . "');",array("id" => $_menuItem["name"])));
+			}
 		}
 	}
 }
