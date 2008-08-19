@@ -98,6 +98,11 @@ $global_config[] = array('define("WE_NEW_FOLDER_MOD",', '// File permissions whe
 // pageLogger Dir
 $global_config[] = array('define("WE_TRACKER_DIR",', '// Directory in which pageLogger is installed' . "\n" . 'define("WE_TRACKER_DIR", "");');
 
+// econda dir
+$global_config[] = array('define("WE_ECONDA_STAT",', '// use econda status' . "\n" . 'define("WE_ECONDA_STAT", 0);');
+$global_config[] = array('define("WE_ECONDA_PATH",', '// econda js path' . "\n" . 'define("WE_ECONDA_PATH", "");');
+$global_config[] = array('define("WE_ECONDA_ID",', '// econda js id' . "\n" . 'define("WE_ECONDA_ID", "");');
+
 $global_config[] = array('define("SAFARI_WYSIWYG",', '// Flag if beta wysiwyg for safari should be used' . "\n" . 'define("SAFARI_WYSIWYG", false);');
 
 //formmail stuff
@@ -278,20 +283,8 @@ function get_value($settingvalue) {
 		/*********************************************************************
 		 * TEMPLATE EDITOR
 		 *********************************************************************/
-/*
-		case "editor_use_plugin":
-			return $_SESSION["prefs"]["usePlugin"];
-			break;
 
-		case "editor_autostart_plugin":
-			return $_SESSION["prefs"]["autostartPlugin"];
-			break;
-
-		case "editor_prompt_plugin":
-			return $_SESSION["prefs"]["promptPlugin"];
-			break;
-*/
-        case "editor_font_name":
+		case "editor_font_name":
 			return $_SESSION["prefs"]["editorFontname"];
 			break;
 
@@ -560,7 +553,19 @@ function get_value($settingvalue) {
 			return (defined("WE_TRACKER_DIR")  && WE_TRACKER_DIR) ? WE_TRACKER_DIR : '';
 			break;
 
-		case "use_jupload":
+        case "we_econda_stat":
+            return (defined("WE_ECONDA_STAT")  && WE_ECONDA_STAT) ? WE_ECONDA_STAT : 0;
+            break;
+
+        case "we_econda_path":
+            return (defined("WE_ECONDA_PATH")  && WE_ECONDA_PATH) ? WE_ECONDA_PATH : '';
+            break;
+
+        case "we_econda_id":
+            return (defined("WE_ECONDA_ID")  && WE_ECONDA_ID) ? WE_ECONDA_ID : '';
+            break;
+
+        case "use_jupload":
 			if(isset($_SESSION['prefs']['use_jupload'])) {
 				return $_SESSION["prefs"]['use_jupload'];
 			} else {
@@ -584,7 +589,7 @@ function get_value($settingvalue) {
 			}
 			break;
 
-			/**
+		/**
 		 * formmail stuff
 		 */
 		case "formmail_log":
@@ -720,7 +725,7 @@ function get_value($settingvalue) {
 function remember_value($settingvalue, $settingname) {
 	global $save_javascript, $editor_reloaded, $email_saved, $DB_WE;
 	$_update_prefs = false;
-	if (isset($settingvalue) && ($settingvalue !== null || $settingname=='$_REQUEST["we_tracker_dir"]' || $settingname=='$_REQUEST["ui_sidebar_disable"]' || $settingname=='$_REQUEST["smtp_halo"]' || $settingname=='$_REQUEST["smtp_timeout"]')) {
+	if (isset($settingvalue) && ($settingvalue !== null || $settingname=='$_REQUEST["we_tracker_dir"]' || $settingname=='$_REQUEST["we_econda_stat"]' || $settingname=='$_REQUEST["we_econda_path"]' ||  $settingname=='$_REQUEST["we_econda_id"]' || $settingname=='$_REQUEST["ui_sidebar_disable"]' || $settingname=='$_REQUEST["smtp_halo"]' || $settingname=='$_REQUEST["smtp_timeout"]')) {
 		switch ($settingname) {
 			/*****************************************************************
 			 * WINDOW DIMENSIONS
@@ -907,30 +912,6 @@ function remember_value($settingvalue, $settingname) {
 			 * TEMPLATE EDITOR
 			 *****************************************************************/
 
-		/*	case '$_REQUEST["usePlugin"]':
-				if (($BROWSER == "IE" || $_SESSION["MozillaActiveX"]) && $SYSTEM == "WIN") {
-					$_SESSION["prefs"]["usePlugin"] = $settingvalue;
-				}
-
-				$_update_prefs = true;
-				break;
-
-			case '$_REQUEST["autostartPlugin"]':
-				if (($BROWSER == "IE" || $_SESSION["MozillaActiveX"]) && $SYSTEM == "WIN") {
-					$_SESSION["prefs"]["autostartPlugin"] = $settingvalue;
-				}
-
-				$_update_prefs = true;
-				break;
-
-			case '$_REQUEST["promptPlugin"]':
-				if (($BROWSER == "IE" || $_SESSION["MozillaActiveX"]) && $SYSTEM == "WIN") {
-					$_SESSION["prefs"]["promptPlugin"] = $settingvalue;
-				}
-
-				$_update_prefs = true;
-				break;
-*/
 			case '$_REQUEST["editorFont"]':
 				if ($settingvalue == 0) {
 					$_SESSION["prefs"]["editorFontname"] = "none";
@@ -1583,26 +1564,50 @@ $_we_active_integrated_modules = array();
 
 				$_update_prefs = false;
 				break;
-			/*****************************************************************
-			 * WESTAT
-			 *****************************************************************/
+            /*****************************************************************
+             * WESTAT
+             *****************************************************************/
 
-			case '$_REQUEST["we_tracker_dir"]':
+            case '$_REQUEST["we_tracker_dir"]':
 
-				$save_javascript .= "
+                $save_javascript .= "
 
-						if (parent.opener.top.header) {
-							parent.opener.top.header.location.reload();
-						}
-						";
+                        if (parent.opener.top.header) {
+                            parent.opener.top.header.location.reload();
+                        }
+                        ";
 
-				$_file = &$GLOBALS['config_files']['conf_global']['content'];
-				$_file = weConfParser::changeSourceCode("define", $_file, "WE_TRACKER_DIR", $settingvalue);
+                $_file = &$GLOBALS['config_files']['conf_global']['content'];
+                $_file = weConfParser::changeSourceCode("define", $_file, "WE_TRACKER_DIR", $settingvalue);
 
-				$_update_prefs = false;
-				break;
+                $_update_prefs = false;
+                break;
+            /*****************************************************************
+             * ECONDA
+             *****************************************************************/
 
-			/*****************************************************************
+            case '$_REQUEST["we_econda_stat"]':
+                $_update_prefs = false;
+                if(weConfParser::setGlobalPrefInContent($GLOBALS['config_files']['conf_global']['content'], "WE_ECONDA_STAT", $settingvalue,'status for econda')) {
+                    $_update_prefs = true;
+                }
+                break;
+                
+            case '$_REQUEST["we_econda_path"]':
+                $_update_prefs = false;
+                if(weConfParser::setGlobalPrefInContent($GLOBALS['config_files']['conf_global']['content'], "WE_ECONDA_PATH", $settingvalue,'econda js path')) {
+                    $_update_prefs = true;
+                }
+                break;
+                
+            case '$_REQUEST["we_econda_id"]':
+                $_update_prefs = false;
+                if(weConfParser::setGlobalPrefInContent($GLOBALS['config_files']['conf_global']['content'], "WE_ECONDA_ID", $settingvalue,'econda js id')) {
+                    $_update_prefs = true;
+                }
+                break;
+                
+            /*****************************************************************
 			 * TREE
 			 *****************************************************************/
 
@@ -2253,8 +2258,10 @@ function save_all_values() {
 		$_update_prefs = remember_value(isset($_REQUEST["we_php_default"]) ? $_REQUEST["we_php_default"] : null, '$_REQUEST["we_php_default"]') || $_update_prefs;
 		$_update_prefs = remember_value(isset($_REQUEST["db_connect"]) ? $_REQUEST["db_connect"] : null, '$_REQUEST["db_connect"]') || $_update_prefs;
 		$_update_prefs = remember_value(isset($_REQUEST["thumbnail_dir"]) ? $_REQUEST["thumbnail_dir"] : null, '$_REQUEST["thumbnail_dir"]') || $_update_prefs;
-		$_update_prefs = remember_value(isset($_REQUEST["we_tracker_dir"]) ? $_REQUEST["we_tracker_dir"] : null, '$_REQUEST["we_tracker_dir"]') || $_update_prefs;
-
+        $_update_prefs = remember_value(isset($_REQUEST["we_tracker_dir"]) ? $_REQUEST["we_tracker_dir"] : null, '$_REQUEST["we_tracker_dir"]') || $_update_prefs;
+        $_update_prefs = remember_value(isset($_REQUEST["we_econda_stat"]) ? $_REQUEST["we_econda_stat"] : null, '$_REQUEST["we_econda_stat"]') || $_update_prefs;
+        $_update_prefs = remember_value(isset($_REQUEST["we_econda_path"]) ? $_REQUEST["we_econda_path"] : null, '$_REQUEST["we_econda_path"]') || $_update_prefs;
+        $_update_prefs = remember_value(isset($_REQUEST["we_econda_id"]) ? $_REQUEST["we_econda_id"] : null, '$_REQUEST["we_econda_id"]') || $_update_prefs;
 
 		$_update_prefs = remember_value(isset($_REQUEST["inlineedit_default"]) ? $_REQUEST["inlineedit_default"] : null, '$_REQUEST["inlineedit_default"]') || $_update_prefs;
 		$_update_prefs = remember_value(isset($_REQUEST["safari_wysiwyg"]) ? $_REQUEST["safari_wysiwyg"] : null, '$_REQUEST["safari_wysiwyg"]') || $_update_prefs;
@@ -2641,24 +2648,25 @@ function build_dialog($selected_setting = "ui") {
 					// Generate needed JS
 					$_needed_JavaScript .= "
 							<script language=\"JavaScript\" type=\"text/javascript\"><!--
-								function selectSidebarDoc() {
-									myWind = false;
+                                function selectSidebarDoc() {
+                                    myWind = false;
 
-									for (k = parent.opener.top.jsWindow_count; k > -1; k--) {
-										eval(\"if (parent.opener.top.jsWindow\" + k + \"Object) {\" +
-											 \"	if (parent.opener.top.jsWindow\" + k + \"Object.ref == 'preferences') {\" +
-											 \"		myWind = parent.opener.top.jsWindow\" + k + \"Object.wind;\" +
-											 \"		myWindStr = 'top.jsWindow\" + k + \"Object.wind';\" +
-											 \"	}\" +
-											 \"}\");
+                                    for (k = parent.opener.top.jsWindow_count; k > -1; k--) {
+                                        eval(\"if (parent.opener.top.jsWindow\" + k + \"Object) {\" +
+                                             \" if (parent.opener.top.jsWindow\" + k + \"Object.ref == 'preferences') {\" +
+                                             \"     myWind = parent.opener.top.jsWindow\" + k + \"Object.wind;\" +
+                                             \"     myWindStr = 'top.jsWindow\" + k + \"Object.wind';\" +
+                                             \" }\" +
+                                             \"}\");
 
-					 					if (myWind) {
-											break;
-										}
-									}
-									parent.opener.top.we_cmd('openDocselector', myWind.frames['we_preferences'].document.forms[0].elements['ui_sidebar_file'].value, '" . FILE_TABLE . "', myWindStr + '.frames[\'we_preferences\'].document.forms[0].elements[\'ui_sidebar_file\'].value', myWindStr + '.frames[\'we_preferences\'].document.forms[0].elements[\'ui_sidebar_file_name\'].value', '', '" . session_id() . "', '', 'text/webedition',".(we_hasPerm("CAN_SELECT_OTHER_USERS_FILES") ? 0 : 1).");
-								}
-								function select_seem_start() {
+                                        if (myWind) {
+                                            break;
+                                        }
+                                    }
+                                    parent.opener.top.we_cmd('openDocselector', myWind.frames['we_preferences'].document.forms[0].elements['ui_sidebar_file'].value, '" . FILE_TABLE . "', myWindStr + '.frames[\'we_preferences\'].document.forms[0].elements[\'ui_sidebar_file\'].value', myWindStr + '.frames[\'we_preferences\'].document.forms[0].elements[\'ui_sidebar_file_name\'].value', '', '" . session_id() . "', '', 'text/webedition',".(we_hasPerm("CAN_SELECT_OTHER_USERS_FILES") ? 0 : 1).");
+                                }
+                                
+                                function select_seem_start() {
 									myWind = false;
 
 									for (k = parent.opener.top.jsWindow_count; k > -1; k--) {
@@ -3204,7 +3212,7 @@ function build_dialog($selected_setting = "ui") {
 				if(defined("SPELLCHECKER")) {
 					$preJs .= "
 
-			// Wörterbuch hinzufügen
+			// Wï¿½rterbuch hinzufï¿½gen
 			if(confirm('{$GLOBALS['l_prefs']["add_dictionary_question"]}')) {
 				top.opener.top.we_cmd('edit_spellchecker_ifthere');
 			}
@@ -4459,11 +4467,70 @@ function setColorChooserDisabled(id, disabled) {
 
 			    array_push($_settings, array("headline" => $l_prefs["thumbnail_dir"], "html" => $_thumbnail_dir, "space" => 200));
 
+			    /**
+			     * set pageLogger dir
+			     */ 
 			    $_but     = we_hasPerm("CAN_SELECT_EXTERNAL_FILES") ? $we_button->create_button("select", "javascript:we_cmd('browse_server', 'document.forms[0].elements[\\'we_tracker_dir\\'].value', 'folder', document.forms[0].elements['we_tracker_dir'].value, '')") : "";
 				$_inp = htmlTextInput("we_tracker_dir", 12, get_value("we_tracker_dir"), "", "", "text", 125);
                 $_we_tracker_dir = $we_button->create_button_table(array($_inp,$_but));
 			    array_push($_settings, array("headline" => $l_prefs["pagelogger_dir"], "html" => $_we_tracker_dir, "space" => 200));
+			    
+			    /**
+			     * econda settings
+			     */
+                // Generate needed JS
+                $_needed_JavaScript .= "
+                        <script language=\"JavaScript\" type=\"text/javascript\"><!--
+                            function set_state_econda() {
+                                if (document.getElementsByName('useEcondaEnabler')[0].checked == true) {
+                                    document.getElementsByName('we_econda_stat')[0].value = 1;
+                                    document.getElementsByName('we_econda_path')[0].disabled = false;
+                                } else {
+                                    document.getElementsByName('we_econda_stat')[0].value = 0;
+                                    document.getElementsByName('we_econda_path')[0].disabled = true;
+                                    document.getElementsByName('we_econda_path')[0].value = '';
+                                    document.getElementsByName('we_econda_id')[0].value = 0;
+			                     }
+ 			                }
+                             
+			                function selectEcondaJsFile() {
+                                myWind = false;
 
+                                for (k = parent.opener.top.jsWindow_count; k > -1; k--) {
+                                    eval(\"if (parent.opener.top.jsWindow\" + k + \"Object) {\" +
+                                         \" if (parent.opener.top.jsWindow\" + k + \"Object.ref == 'preferences') {\" +
+                                         \"     myWind = parent.opener.top.jsWindow\" + k + \"Object.wind;\" +
+                                         \"     myWindStr = 'top.jsWindow\" + k + \"Object.wind';\" +
+                                         \" }\" +
+                                         \"}\");
+                                    if (myWind) {
+                                       break;
+                                    }
+                                }
+                                parent.opener.top.we_cmd('openDocselector', myWind.frames['we_preferences'].document.forms[0].elements['we_econda_id'].value, '" . FILE_TABLE . "', myWindStr + '.frames[\'we_preferences\'].document.forms[0].elements[\'we_econda_id\'].value', myWindStr + '.frames[\'we_preferences\'].document.forms[0].elements[\'we_econda_path\'].value', '', '" . session_id() . "', '', 'text/js',".(we_hasPerm("CAN_SELECT_OTHER_USERS_FILES") ? 0 : 1).");
+                           }
+                                
+                           //-->
+                        </script>";
+                $econdaHtml = htmlAlertAttentionBox($l_prefs["econda_information"], 2, 240, false)."<br>";
+
+                $econdaHtml .= hidden('we_econda_stat', get_value("we_econda_stat"));
+                $econdaHtml .= we_forms::checkbox(1, get_value("we_econda_stat"), "useEcondaEnabler", $l_prefs["econda_enable"], false, "defaultfont", "set_state_econda()");
+
+                $yuiSuggest->setAcId("Econda");
+                $yuiSuggest->setContentType("folder,text/js");
+                $yuiSuggest->setInput("we_econda_path", get_value("we_econda_path"));
+                $yuiSuggest->setMaxResults(20);
+                $yuiSuggest->setMayBeEmpty(true);
+                $yuiSuggest->setResult("we_econda_id", get_value("we_econda_id"));
+                $yuiSuggest->setSelector("Docselector");
+                $yuiSuggest->setWidth(125);
+                $yuiSuggest->setSelectButton($we_button->create_button("select", "javascript:selectEcondaJsFile()", true, 100, 22, "", "", "", false),10);
+                $yuiSuggest->setContainerWidth(234);
+                        
+                $econdaHtml .= $yuiSuggest->getHTML();
+                array_push($_settings, array("headline" => "econda", "html" => $econdaHtml, "space" => 200));
+			    
 				// Build dialog element if user has permission
 				$_dialog = create_dialog("", $l_prefs["tab_system"], $_settings, -1, "", "", null, $_needed_JavaScript);
 			}
