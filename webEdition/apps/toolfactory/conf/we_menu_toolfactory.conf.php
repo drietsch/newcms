@@ -17,7 +17,7 @@ $we_menu_toolfactory['000100']['enabled'] = '1';
 $we_menu_toolfactory['000200']['text'] = $translate->_('New Entry');
 $we_menu_toolfactory['000200']['parent'] = '000100';
 $we_menu_toolfactory['000200']['cmd'] = 'app_' . $appName . '_new';
-$we_menu_toolfactory['000200']['perm'] = 'EDIT_NAVIGATION || ADMINISTRATOR';
+$we_menu_toolfactory['000200']['perm'] = 'NEW_APP_TOOLFACTORY || ADMINISTRATOR';
 $we_menu_toolfactory['000200']['enabled'] = '1';
 
 $we_menu_toolfactory['000800']['parent'] = '000100'; // separator
