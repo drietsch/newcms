@@ -290,9 +290,14 @@
 			$_tools = weToolLookup::getAllTools();
 			foreach($_tools as $_tool){
 				if(file_exists($_SERVER['DOCUMENT_ROOT'] . '/webEdition/apps/' . $_tool['name'] . '/conf/backup.conf.php')){
-					$_inc[] = $_tool['name'];
+					if($_tool['maintable']!='') {
+						$_inc[] = $_tool['name'];
+					}
 				}
 			}
+			$_inc[] = 'weSearch';
+
+			
 			return $_inc;
 		}
 		
