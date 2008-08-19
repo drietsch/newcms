@@ -43,10 +43,6 @@
 				weBackupUtil::addLog('Parsing data');
 			}
 			
-			if($charset=='UTF-8') {
-				$data = utf8_encode($data);
-			}
-
 			$parser = new weXMLParser();
 			$parser->parse($data);
 
