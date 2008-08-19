@@ -43,11 +43,12 @@ class toolfactory_app_HomePage extends we_app_HomePage
 			'position'=>'absolute',
 			'class' => self::kClassBoxBody
 		));
-		
+		$perm = 'NEW_APP_'.strtoupper($appName);
 		$newItemButton = new we_ui_controls_Button(array(
 			'text'=>$translate->_('New Entry'), 
 			'onClick'=>'weCmdController.fire({cmdName: "app_'.$appName.'_new"})', 
 			'type'=>'onClick', 
+			'disabled' => we_core_Permissions::hasPerm($perm) ? false : true,
 			'width'=>200
 		));
 		$bodyDiv->addElement($newItemButton);
