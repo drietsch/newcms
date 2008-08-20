@@ -1444,7 +1444,6 @@ function we_userCanEditModule($modName) {
 function makeOwnersSql($useCreatorID=true) {
 	if(defined("BIG_USER_MODULE") && in_array("busers",$GLOBALS["_pro_modules"]) && (!$_SESSION["perms"]["ADMINISTRATOR"])) {
 		$aliases = array($_SESSION["user"]["ID"]);
-		error_log2($aliases);
 		we_getAliases($_SESSION["user"]["ID"],$aliases,$GLOBALS["DB_WE"]);
 		$q = $useCreatorID ? "CreatorID IN ('".implode("','",$aliases)."') OR " : "";
 		foreach($aliases as $id)
@@ -2479,7 +2478,7 @@ function we_check_email($email){
 	$parts[0] = preg_replace('/"(.)*"/',"x",$parts[0]);
 	$parts[0] = preg_replace('/\\\\(.)/',"y",$parts[0]);
 	$parts[1] = str_replace("#####:::::at:::::#####", "\@", $parts[1]);
-	return !preg_match('/[ ,;\\\\\[\]()\<\>°]/',implode("",$parts));
+	return !preg_match('/[ ,;\\\\\[\]()\<\>ï¿½]/',implode("",$parts));
 }
 
 function getRequestVar($name,$default,$yescode="",$nocode=""){
