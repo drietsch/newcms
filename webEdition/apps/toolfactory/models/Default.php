@@ -86,7 +86,13 @@ class toolfactory_models_Default extends we_app_Model
 			$this->$_key = $_prop;
 		}
 		
-		$name = isset($_props['realname']) ? html_entity_decode($_props['realname'], ENT_QUOTES) : $_props['name'];
+		$name = isset($_props['text']) ? $_props['text'] : $_props['name'];
+		
+		$charset = we_core_Local::getComputedUICharset();
+
+		if($charset=='UTF-8') {
+			$name = utf8_encode($name);
+		}
 		
 		$this->Text = $name;
 		
@@ -122,7 +128,7 @@ class toolfactory_models_Default extends we_app_Model
 	
 	function save() {
 
-		$TOOLREALNAME = $this->realname;
+		$TOOLREALNAME = $this->realname;error_log($this->realname);
 		$TOOLNAMELANG = htmlspecialchars($this->Text, ENT_NOQUOTES);
 		$TOOLNAME = $this->classname;
 		$CLASSNAME = $this->classname;
