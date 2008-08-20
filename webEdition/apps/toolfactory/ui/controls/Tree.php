@@ -72,8 +72,8 @@ class toolfactory_ui_controls_Tree extends we_ui_controls_Tree
 
 		foreach($_tools as $_k=>$_tool) {		
 			if(!weToolLookup::isInIgnoreList($_tool['name'])) {
-				if(isset($_tool['realname'])) {
-					$name = html_entity_decode($_tool['realname'],ENT_QUOTES);
+				if(isset($_tool['text'])) {
+					$name = $_tool['text'];
 				}
 				else {
 					$name = $_tool['name'];
