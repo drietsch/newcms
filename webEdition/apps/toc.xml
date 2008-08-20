@@ -1,40 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <toc>
   <application active="true">
-    <name>Suche</name>
-    <installer>local</installer>
-    <implementation>tool</implementation>
-    <date>1212403540</date>
-    <deactivatable>false</deactivatable>
-    <deinstallable>false</deinstallable>
-    <updatable>false</updatable>
-    <title>
-      <de>webEdition Suche</de>
-      <en>webEdition search</en>
-    </title>
-    <description>
-      <de>webEdition Suche</de>
-      <en>webEdition search tool</en>
-    </description>
-  </application>
-  <application active="true">
-    <name>navigation</name>
-    <installer>local</installer>
-    <implementation>tool</implementation>
-    <date>1212403540</date>
-    <deactivatable>false</deactivatable>
-    <deinstallable>false</deinstallable>
-    <updatable>false</updatable>
-    <title>
-      <de>Navigationstool</de>
-      <en>navigation tool</en>
-    </title>
-    <description>
-      <de>webEdition Navigationstool</de>
-      <en>webEdition navigation tool</en>
-    </description>
-  </application>
-  <application active="true">
     <name>toolfactory</name>
     <installer>local</installer>
     <implementation>tool</implementation>
@@ -48,7 +14,7 @@
     </title>
     <description>
       <de>webEdition Tool Factory zum Erzeugen neuer webEdition Anwendungen</de>
-      <en>webEdition Tool Factory zum Erzeugen neuer webEdition Anwendungen</en>
+      <en>webEdition Tool Factory for creating webEdition Applications</en>
     </description>
   </application>
 </toc>
