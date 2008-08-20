@@ -4477,8 +4477,13 @@ function setColorChooserDisabled(id, disabled) {
 			    
 			    /**
 			     * econda settings
+			     * 
+			     * @todo move the language vars to lang.../prefs.inc.php
 			     */
-                // Generate needed JS
+                //$l_prefs["econda_information"] = "econda ist der Spezialist für erfolgreiches Web Shop Controlling. <br><a href='http://www.econda.de/ssa/shop.php' onclick='window.open(this.href,\"econda\",\"width=800,height=600,resizable=yes,menubar=yes,scrollbars=yes,status=yes,toolbar=yes\"); return false'>Online-Antrag</a>";
+			    $l_prefs["econda_information"] = "Info text for ECONDA is following.";
+				$l_prefs["econda_enable"] = "activate ECONDA";
+                 // Generate needed JS
                 $_needed_JavaScript .= "
                         <script language=\"JavaScript\" type=\"text/javascript\"><!--
                             function set_state_econda() {
@@ -4515,6 +4520,7 @@ function setColorChooserDisabled(id, disabled) {
                 $econdaHtml = htmlAlertAttentionBox($l_prefs["econda_information"], 2, 240, false)."<br>";
 
                 $econdaHtml .= hidden('we_econda_stat', get_value("we_econda_stat"));
+               
                 $econdaHtml .= we_forms::checkbox(1, get_value("we_econda_stat"), "useEcondaEnabler", $l_prefs["econda_enable"], false, "defaultfont", "set_state_econda()");
 
                 $yuiSuggest->setAcId("Econda");
