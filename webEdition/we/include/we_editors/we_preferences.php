@@ -2463,6 +2463,7 @@ function check_global_config($values) {
 		while ($counter < 1000) {
 			if (copy($_temp_file_name, $_file_name)) {
 				$counter = 1000;
+				@unlink($_temp_file_name);
 			}
 			$counter++;
 		}
