@@ -1,11 +1,11 @@
 <?php
 
 $l_toolfactory['save_group_ok'] = $l_tools['save_group_ok'];
-$l_toolfactory['save_ok'] = 'The tool has been succesfully created. Please restart webEdition.';
+$l_toolfactory['save_ok'] = 'The application has been succesfully created. Please restart webEdition.';
 $l_toolfactory['save_group_failed'] = $l_tools['save_group_failed'];
-$l_toolfactory['save_failed'] = 'the tool could not be created!';
+$l_toolfactory['save_failed'] = 'the application could not be created!';
 
-$l_toolfactory['toolfactory'] = 'Tool management'; // TRANSLATE
+$l_toolfactory['toolfactory'] = 'Application management'; // TRANSLATE
 $l_toolfactory['perm_group_title'] = $l_toolfactory['toolfactory'];
 
 $l_toolfactory["permission_titles"]["NEW_APP_TOOLFACTORY"] = "Käyttäjä on oikeutettu luomaan uusia työkaluja työkaluhallinnassa";
@@ -29,6 +29,6 @@ $l_toolfactory['makeBackup'] = 'Luo tuki webEdition-Backupsystem:lle';
 
 $l_toolfactory['required_field'] = '[required field]'; // TRANSLATE
 
-$l_tools['item_deleted'] = 'The tool has been deleted.'; // TRANSLATE
+$l_tools['item_deleted'] = 'The application has been deleted.'; // TRANSLATE
 
 ?>

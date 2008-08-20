@@ -1,20 +1,20 @@
 <?php
 $l_toolfactory['save_group_ok'] = $l_tools['save_group_ok'];
-$l_toolfactory['save_ok'] = 'Das Tool wurde erfolgreich erstellt. Starten Sie bitte jetzt webEdition neu.';
+$l_toolfactory['save_ok'] = 'Die Applikation wurde erfolgreich erstellt. Starten Sie bitte jetzt webEdition neu.';
 $l_toolfactory['save_group_failed'] = $l_tools['save_group_failed'];
-$l_toolfactory['save_failed'] = 'Das Tool könnte nicht erstellt werden!';
+$l_toolfactory['save_failed'] = 'Die Applikation könnte nicht erstellt werden!';
 
-$l_toolfactory['toolfactory'] = 'Toolverwaltung';
+$l_toolfactory['toolfactory'] = 'Applikationsverwaltung';
 $l_toolfactory['perm_group_title'] = $l_toolfactory['toolfactory'];
 
 
-$l_toolfactory["permission_titles"]["NEW_APP_TOOLFACTORY"] = "Der Benutzer darf neue Tools erstellen";
-$l_toolfactory["permission_titles"]["DELETE_APP_TOOLFACTORY"] = "Der Benutzer darf Tool löschen";
-$l_toolfactory["permission_titles"]["EDIT_APP_TOOLFACTORY"] = "Der Benutzer darf Tools bearbeiten";
+$l_toolfactory["permission_titles"]["NEW_APP_TOOLFACTORY"] = "Der Benutzer darf neue Applikationen erstellen";
+$l_toolfactory["permission_titles"]["DELETE_APP_TOOLFACTORY"] = "Der Benutzer darf Applikationen löschen";
+$l_toolfactory["permission_titles"]["EDIT_APP_TOOLFACTORY"] = "Der Benutzer darf Applikationen bearbeiten";
 
 
-$l_toolfactory["import_tool_toolfactory_data"] = "Die Daten des Tools " . $l_toolfactory['toolfactory'] . " wiederherstellen";
-$l_toolfactory["export_tool_toolfactory_data"] = "Die Daten des Tools " . $l_toolfactory['toolfactory'] . " sichern";
+$l_toolfactory["import_tool_toolfactory_data"] = "Die Daten der Applikation " . $l_toolfactory['toolfactory'] . " wiederherstellen";
+$l_toolfactory["export_tool_toolfactory_data"] = "Die Daten der Applikation " . $l_toolfactory['toolfactory'] . " sichern";
 
 $l_toolfactory['name_prop'] = 'Name';
 $l_toolfactory['modelclassname'] = 'Name der Model-Klasse';
