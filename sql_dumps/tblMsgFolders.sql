@@ -12,10 +12,14 @@ CREATE TABLE tblMsgFolders (
   tag tinyint(4) default NULL,
   PRIMARY KEY  (ID)
 ) TYPE=MyISAM;
-
+/* query separator */
 INSERT INTO tblMsgFolders VALUES (1,0,1,-1,1,3,'Messages',NULL,NULL,1,NULL);
+/* query separator */
 INSERT INTO tblMsgFolders VALUES (2,1,1,-1,1,5,'Sent',NULL,NULL,1,NULL);
+/* query separator */
 INSERT INTO tblMsgFolders VALUES (3,0,1,-1,2,3,'Task',NULL,NULL,1,NULL);
+/* query separator */
 INSERT INTO tblMsgFolders VALUES (4,3,1,-1,2,13,'Done',NULL,NULL,1,NULL);
+/* query separator */
 INSERT INTO tblMsgFolders VALUES (5,3,1,-1,2,11,'rejected',NULL,NULL,1,NULL);
 

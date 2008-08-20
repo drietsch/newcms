@@ -4,8 +4,9 @@ CREATE TABLE tblAnzeigePrefs (
   strFelder text NOT NULL,
   PRIMARY KEY  (ID)
 ) TYPE=MyISAM;
-
+/* query separator */
 INSERT INTO tblAnzeigePrefs VALUES (1,'edit_shop_properties','a:2:{s:14:"customerFields";a:0:{}s:19:"orderCustomerFields";a:0:{}}');
+/* query separator */
 INSERT INTO tblAnzeigePrefs VALUES (2,'shop_pref','?|19|german');
 CREATE TABLE tblCategorys (
   ID int(11) NOT NULL auto_increment,
@@ -165,8 +166,7 @@ CREATE TABLE `tblMetadata` (
   `type` varchar(255) NOT NULL,
   `importFrom` varchar(255) NOT NULL,
   PRIMARY KEY  (`id`)
-)  TYPE=MyISAM;
-CREATE TABLE tblMsgAccounts (
+)  TYPE=MyISAM;CREATE TABLE tblMsgAccounts (
   ID int(11) NOT NULL auto_increment,
   UserID int(11) default NULL,
   name varchar(255) NOT NULL default '',
@@ -203,11 +203,15 @@ CREATE TABLE tblMsgFolders (
   tag tinyint(4) default NULL,
   PRIMARY KEY  (ID)
 ) TYPE=MyISAM;
-
+/* query separator */
 INSERT INTO tblMsgFolders VALUES (1,0,1,-1,1,3,'Messages',NULL,NULL,1,NULL);
+/* query separator */
 INSERT INTO tblMsgFolders VALUES (2,1,1,-1,1,5,'Sent',NULL,NULL,1,NULL);
+/* query separator */
 INSERT INTO tblMsgFolders VALUES (3,0,1,-1,2,3,'Task',NULL,NULL,1,NULL);
+/* query separator */
 INSERT INTO tblMsgFolders VALUES (4,3,1,-1,2,13,'Done',NULL,NULL,1,NULL);
+/* query separator */
 INSERT INTO tblMsgFolders VALUES (5,3,1,-1,2,11,'rejected',NULL,NULL,1,NULL);
 
 CREATE TABLE tblMsgSettings (
@@ -279,28 +283,46 @@ CREATE TABLE tblNewsletterPrefs (
   pref_name varchar(255) NOT NULL default '',
   pref_value longtext NOT NULL
 ) TYPE=MyISAM;
-
+/* query separator */
 INSERT INTO tblNewsletterPrefs VALUES ('black_list','');
+/* query separator */
 INSERT INTO tblNewsletterPrefs VALUES ('customer_email_field','Kontakt_Email');
+/* query separator */
 INSERT INTO tblNewsletterPrefs VALUES ('customer_firstname_field','Forename');
+/* query separator */
 INSERT INTO tblNewsletterPrefs VALUES ('customer_html_field','htmlMailYesNo');
+/* query separator */
 INSERT INTO tblNewsletterPrefs VALUES ('customer_lastname_field','Surname');
+/* query separator */
 INSERT INTO tblNewsletterPrefs VALUES ('customer_salutation_field','Anrede_Salutation');
+/* query separator */
 INSERT INTO tblNewsletterPrefs VALUES ('customer_title_field','Anrede_Title');
+/* query separator */
 INSERT INTO tblNewsletterPrefs VALUES ('default_htmlmail','0');
+/* query separator */
 INSERT INTO tblNewsletterPrefs VALUES ('default_reply','reply@meineDomain.de');
+/* query separator */
 INSERT INTO tblNewsletterPrefs VALUES ('default_sender','mailer@meineDomain.de');
+/* query separator */
 INSERT INTO tblNewsletterPrefs VALUES ('female_salutation','Frau');
+/* query separator */
 INSERT INTO tblNewsletterPrefs VALUES ('global_mailing_list','');
+/* query separator */
 INSERT INTO tblNewsletterPrefs VALUES ('log_sending','1');
+/* query separator */
 INSERT INTO tblNewsletterPrefs VALUES ('male_salutation','Herr');
+/* query separator */
 INSERT INTO tblNewsletterPrefs VALUES ('reject_malformed','1');
+/* query separator */
 INSERT INTO tblNewsletterPrefs VALUES ('reject_not_verified','1');
+/* query separator */
 INSERT INTO tblNewsletterPrefs VALUES ('send_step','20');
+/* query separator */
 INSERT INTO tblNewsletterPrefs VALUES ('send_wait','0');
+/* query separator */
 INSERT INTO tblNewsletterPrefs VALUES ('test_account','test@meineDomain.de');
-INSERT INTO tblNewsletterPrefs VALUES ('title_or_salutation','0');
-CREATE TABLE tblObject (
+/* query separator */
+INSERT INTO tblNewsletterPrefs VALUES ('title_or_salutation','0');CREATE TABLE tblObject (
   ID int(11) NOT NULL auto_increment,
   ParentID int(11) NOT NULL default '0',
   strOrder text NOT NULL,
@@ -388,7 +410,7 @@ CREATE TABLE tblPasswd (
   passwd varchar(32) NOT NULL default '',
   username varchar(128) NOT NULL default ''
 ) TYPE=MyISAM;
-
+/* query separator */
 INSERT INTO tblPasswd VALUES ('21232f297a57a5a743894a0e4a801fc3','admin');
 
 CREATE TABLE tblPrefs (
@@ -445,7 +467,7 @@ CREATE TABLE tblPrefs (
   use_jeditor tinyint(1) NOT NULL default '1',
   specify_jeditor_colors tinyint(1) NOT NULL
 ) TYPE=MyISAM;
-
+/* query separator */
 INSERT INTO tblPrefs (userID, FileFilter, openFolders_tblFile, openFolders_tblTemplates, DefaultTemplateID, DefaultStaticExt, DefaultDynamicExt, DefaultHTMLExt, sizeOpt, weWidth, weHeight, usePlugin, autostartPlugin, promptPlugin, Language, openFolders_tblObject, openFolders_tblObjectFiles, phpOnOff, seem_start_file, seem_start_type, editorSizeOpt, editorWidth, editorHeight, debug_normal, debug_seem, editorFontname, editorFontsize, editorFont, default_tree_count, xhtml_show_wrong, xhtml_show_wrong_text, xhtml_show_wrong_js, xhtml_show_wrong_error_log, import_from, siteImportPrefs, cockpit_amount_last_documents, cockpit_rss_feed_url, use_jupload, cockpit_dat, cockpit_amount_columns, message_reporting, force_glossary_check, force_glossary_action, editorFontcolor, editorWeTagFontcolor, editorWeAttributeFontcolor, editorHTMLTagFontcolor, editorHTMLAttributeFontcolor, editorPiTagFontcolor, editorCommentFontcolor, use_jeditor, specify_jeditor_colors) VALUES (1, 0, ',1', '1,10', 0, '.html', '.php', '.html', 0, 0, 0, 0, 0, 0, 'English_UTF-8', '', '', 0, 0, 'cockpit', 1, 900, 700, 0, 0, 'none', -1, 0, 0, 0, 0, 0, 0, '', '', 5, 'http://www.living-e.de/de/pressezentrum/pr-mitteilungen/rss2.xml', 1, 'a:3:{i:0;a:2:{i:0;a:4:{i:0;s:3:"pad";i:1;s:4:"blue";i:2;i:1;i:3;s:18:"U29uc3RpZ2Vz,30020";}i:1;a:4:{i:0;s:3:"mfd";i:1;s:5:"green";i:2;i:1;i:3;s:12:"1111;0;5;00;";}}i:1;a:2:{i:0;a:4:{i:0;s:3:"rss";i:1;s:6:"yellow";i:2;i:1;i:3;s:106:"aHR0cDovL3d3dy5saXZpbmctZS5kZS9kZS9wcmVzc2V6ZW50cnVtL3ByLW1pdHRlaWx1bmdlbi9yc3MyLnhtbA==,111000,0,110000,1";}i:1;a:4:{i:0;s:3:"sct";i:1;s:3:"red";i:2;i:1;i:3;s:124:"open_document,new_document,new_template,new_directory,unpublished_pages;unpublished_objects,new_object,new_class,preferences";}}i:2;a:20:{i:0;a:2:{i:0;s:16:"bGl2aW5nLWUgQUc=";i:1;s:88:"aHR0cDovL3d3dy5saXZpbmctZS5kZS9kZS9wcmVzc2V6ZW50cnVtL3ByLW1pdHRlaWx1bmdlbi9yc3MyLnhtbA==";}i:1;a:2:{i:0;s:16:"Rk9DVVMtT25saW5l";i:1;s:60:"aHR0cDovL2ZvY3VzLm1zbi5kZS9mb2wvWE1ML3Jzc19mb2xuZXdzLnhtbA==";}i:2;a:2:{i:0;s:12:"U2xhc2hkb3Q=";i:1;s:56:"aHR0cDovL3Jzcy5zbGFzaGRvdC5vcmcvU2xhc2hkb3Qvc2xhc2hkb3Q=";}i:3;a:2:{i:0;s:24:"aGVpc2Ugb25saW5lIE5ld3M=";i:1;s:56:"aHR0cDovL3d3dy5oZWlzZS5kZS9uZXdzdGlja2VyL2hlaXNlLnJkZg==";}i:4;a:2:{i:0;s:20:"dGFnZXNzY2hhdS5kZQ==";i:1;s:68:"aHR0cDovL3d3dy50YWdlc3NjaGF1LmRlL3htbC90YWdlc3NjaGF1LW1lbGR1bmdlbi8=";}i:5;a:2:{i:0;s:12:"U0FUVklTSU9O";i:1;s:52:"aHR0cDovL3d3dy5zYXR2aXNpb24ub3JnL25ld3MvcnNzLnhtbA==";}i:6;a:2:{i:0;s:20:"QmFzZWwtSUkuaW5mbw==";i:1;s:52:"aHR0cDovL3d3dy5iYXNlbC1paS5pbmZvL0Jhc2VsLUlJLnBocA==";}i:7;a:2:{i:0;s:52:"LrAuTGlxdWlkIE1vdGlvbiBXZWItICYgR3JhZmlrZGVzaWdusC6w";i:1;s:52:"aHR0cDovL3d3dy5saXF1aWQtbW90aW9uLmRlL3Jzcy9yc3MueG1s";}i:8;a:2:{i:0;s:12:"RkFaLk5FVA==";i:1;s:64:"aHR0cDovL3d3dy5mYXoubmV0L3MvUnViL1RwbH5FcGFydG5lcn5TUnNzXy54bWw=";}i:9;a:2:{i:0;s:20:"RmlsbXN0YXJ0cy5kZQ==";i:1;s:60:"aHR0cDovL3d3dy5maWxtc3RhcnRzLmRlL3htbC9maWxtc3RhcnRzLnhtbA==";}i:10;a:2:{i:0;s:20:"TkVUWkVJVFVORy5ERQ==";i:1;s:76:"aHR0cDovL3d3dy5uZXR6ZWl0dW5nLmRlL2V4cG9ydC9uZXdzL3Jzcy90aXRlbHNlaXRlLnhtbA==";}i:11;a:2:{i:0;s:28:"aHR0cDovL3d3dy5zcGllZ2VsLmRl";i:1;s:52:"aHR0cDovL3d3dy5zcGllZ2VsLmRlL3NjaGxhZ3plaWxlbi9yc3Mv";}i:12;a:2:{i:0;s:8:"R0VPLmRl";i:1;s:48:"aHR0cDovL3d3dy5nZW8uZGUvcnNzL0dFTy9pbmRleC54bWw=";}i:13;a:2:{i:0;s:44:"MTAwMGUgU3By/GNoZSAoU3BydWNoIGRlcyBUYWdlcyk=";i:1;s:96:"aHR0cDovL3d3dy5ob21lcGFnZXNlcnZpY2Uudm9zc3dlYi5pbmZvL2F1c3dhaGwvc3BydWNoL3Jzcy9oZXV0ZS9yc3MueG1s";}i:14;a:2:{i:0;s:32:"QnVuZGVzcmVnaWVydW5nIEFrdHVlbGw=";i:1;s:56:"aHR0cDovL3d3dy5idW5kZXNyZWdpZXJ1bmcuZGUvYWt0dWVsbC5yc3M=";}i:15;a:2:{i:0;s:20:"QW53YWx0cy1UaXBwcw==";i:1;s:60:"aHR0cDovL3d3dy5hbndhbHRzc3VjaGRpZW5zdC5kZS9yc3MvcnNzLnhtbA==";}i:16;a:2:{i:0;s:56:"UHJvbW9NYXN0ZXJzIEludGVybmV0IE1hcmtldGluZyBSU1MgQmxvZw==";i:1;s:56:"aHR0cDovL3d3dy5wcm9tb21hc3RlcnMuYXQvcnNzL2luZGV4LnhtbA==";}i:17;a:2:{i:0;s:20:"U1dSMyBSREYtRmVlZA==";i:1;s:40:"aHR0cDovL3d3dy5zd3IzLmRlL3JkZi1mZWVkLw==";}i:18;a:2:{i:0;s:12:"Q0hJUC5ERQ==";i:1;s:44:"aHR0cDovL3d3dy5jaGlwLmRlL3Jzc19uZXdzLnhtbA==";}i:19;a:2:{i:0;s:12:"U3Rlcm4uZGU=";i:1;s:64:"aHR0cDovL3d3dy5zdGVybi5kZS9zdGFuZGFyZC9yc3MucGhwP2NoYW5uZWw9YWxs";}}}', 2, 7, 0, 0, '', '', '', '', '', '', '', 1, 0);
 CREATE TABLE tblRecipients (
   ID bigint(20) NOT NULL auto_increment,
@@ -591,16 +613,16 @@ CREATE TABLE tblUser (
   LoginDenied tinyint(4) NOT NULL default '0',
   PRIMARY KEY  (ID)
 ) TYPE=MyISAM;
-
-INSERT INTO tblUser VALUES (1,0,'admin','/admin','user.gif',0,0,'webEdition','','','','',0,'','','','','','','','','','admin','21232f297a57a5a743894a0e4a801fc3','a:55:{s:13:\"ADMINISTRATOR\";s:1:\"1\";s:18:\"NEW_WEBEDITIONSITE\";s:1:\"1\";s:10:\"NEW_GRAFIK\";s:1:\"1\";s:8:\"NEW_HTML\";s:1:\"1\";s:9:\"NEW_FLASH\";s:1:\"1\";s:6:\"NEW_JS\";s:1:\"1\";s:7:\"NEW_CSS\";s:1:\"1\";s:12:\"NEW_SONSTIGE\";s:1:\"1\";s:12:\"NEW_TEMPLATE\";s:1:\"1\";s:14:\"NEW_DOC_FOLDER\";s:1:\"1\";s:22:\"CHANGE_DOC_FOLDER_PATH\";s:1:\"0\";s:15:\"NEW_TEMP_FOLDER\";s:1:\"1\";s:17:\"CAN_SEE_DOCUMENTS\";s:1:\"1\";s:17:\"CAN_SEE_TEMPLATES\";s:1:\"1\";s:22:\"SAVE_DOCUMENT_TEMPLATE\";s:1:\"1\";s:17:\"DELETE_DOC_FOLDER\";s:1:\"1\";s:18:\"DELETE_TEMP_FOLDER\";s:1:\"1\";s:15:\"DELETE_DOCUMENT\";s:1:\"1\";s:15:\"DELETE_TEMPLATE\";s:1:\"1\";s:13:\"BROWSE_SERVER\";s:1:\"1\";s:12:\"EDIT_DOCTYPE\";s:1:\"1\";s:14:\"EDIT_KATEGORIE\";s:1:\"1\";s:7:\"REBUILD\";s:1:\"1\";s:6:\"EXPORT\";s:1:\"1\";s:6:\"IMPORT\";s:1:\"1\";s:9:\"NEW_GROUP\";s:1:\"1\";s:8:\"NEW_USER\";s:1:\"1\";s:10:\"SAVE_GROUP\";s:1:\"1\";s:9:\"SAVE_USER\";s:1:\"1\";s:12:\"DELETE_GROUP\";s:1:\"1\";s:11:\"DELETE_USER\";s:1:\"1\";s:7:\"PUBLISH\";s:1:\"1\";s:21:\"EDIT_SETTINGS_DEF_EXT\";s:1:\"1\";s:13:\"EDIT_SETTINGS\";s:1:\"1\";s:11:\"EDIT_PASSWD\";s:1:\"1\";s:12:\"NEW_CUSTOMER\";s:1:\"0\";s:15:\"DELETE_CUSTOMER\";s:1:\"0\";s:13:\"EDIT_CUSTOMER\";s:1:\"0\";s:19:\"SHOW_CUSTOMER_ADMIN\";s:1:\"0\";s:16:\"NEW_SHOP_ARTICLE\";s:1:\"0\";s:19:\"DELETE_SHOP_ARTICLE\";s:1:\"0\";s:15:\"EDIT_SHOP_ORDER\";s:1:\"0\";s:17:\"DELETE_SHOP_ORDER\";s:1:\"0\";s:15:\"EDIT_SHOP_PREFS\";s:1:\"0\";s:19:\"CAN_SEE_OBJECTFILES\";s:1:\"1\";s:14:\"NEW_OBJECTFILE\";s:1:\"1\";s:21:\"NEW_OBJECTFILE_FOLDER\";s:1:\"1\";s:17:\"DELETE_OBJECTFILE\";s:1:\"1\";s:15:\"CAN_SEE_OBJECTS\";s:1:\"0\";s:10:\"NEW_OBJECT\";s:1:\"0\";s:13:\"DELETE_OBJECT\";s:1:\"0\";s:12:\"NEW_WORKFLOW\";s:1:\"0\";s:15:\"DELETE_WORKFLOW\";s:1:\"0\";s:13:\"EDIT_WORKFLOW\";s:1:\"0\";s:9:\"EMPTY_LOG\";s:1:\"0\";}',0,0,0,0,0,0,1146233940,'','','','','','','',0,0,0,0,0,'',0);
-
-CREATE TABLE tblWebAdmin (
+/* query separator */
+INSERT INTO tblUser VALUES (1,0,'admin','/admin','user.gif',0,0,'webEdition','','','','',0,'','','','','','','','','','admin','21232f297a57a5a743894a0e4a801fc3','a:55:{s:13:\"ADMINISTRATOR\";s:1:\"1\";s:18:\"NEW_WEBEDITIONSITE\";s:1:\"1\";s:10:\"NEW_GRAFIK\";s:1:\"1\";s:8:\"NEW_HTML\";s:1:\"1\";s:9:\"NEW_FLASH\";s:1:\"1\";s:6:\"NEW_JS\";s:1:\"1\";s:7:\"NEW_CSS\";s:1:\"1\";s:12:\"NEW_SONSTIGE\";s:1:\"1\";s:12:\"NEW_TEMPLATE\";s:1:\"1\";s:14:\"NEW_DOC_FOLDER\";s:1:\"1\";s:22:\"CHANGE_DOC_FOLDER_PATH\";s:1:\"0\";s:15:\"NEW_TEMP_FOLDER\";s:1:\"1\";s:17:\"CAN_SEE_DOCUMENTS\";s:1:\"1\";s:17:\"CAN_SEE_TEMPLATES\";s:1:\"1\";s:22:\"SAVE_DOCUMENT_TEMPLATE\";s:1:\"1\";s:17:\"DELETE_DOC_FOLDER\";s:1:\"1\";s:18:\"DELETE_TEMP_FOLDER\";s:1:\"1\";s:15:\"DELETE_DOCUMENT\";s:1:\"1\";s:15:\"DELETE_TEMPLATE\";s:1:\"1\";s:13:\"BROWSE_SERVER\";s:1:\"1\";s:12:\"EDIT_DOCTYPE\";s:1:\"1\";s:14:\"EDIT_KATEGORIE\";s:1:\"1\";s:7:\"REBUILD\";s:1:\"1\";s:6:\"EXPORT\";s:1:\"1\";s:6:\"IMPORT\";s:1:\"1\";s:9:\"NEW_GROUP\";s:1:\"1\";s:8:\"NEW_USER\";s:1:\"1\";s:10:\"SAVE_GROUP\";s:1:\"1\";s:9:\"SAVE_USER\";s:1:\"1\";s:12:\"DELETE_GROUP\";s:1:\"1\";s:11:\"DELETE_USER\";s:1:\"1\";s:7:\"PUBLISH\";s:1:\"1\";s:21:\"EDIT_SETTINGS_DEF_EXT\";s:1:\"1\";s:13:\"EDIT_SETTINGS\";s:1:\"1\";s:11:\"EDIT_PASSWD\";s:1:\"1\";s:12:\"NEW_CUSTOMER\";s:1:\"0\";s:15:\"DELETE_CUSTOMER\";s:1:\"0\";s:13:\"EDIT_CUSTOMER\";s:1:\"0\";s:19:\"SHOW_CUSTOMER_ADMIN\";s:1:\"0\";s:16:\"NEW_SHOP_ARTICLE\";s:1:\"0\";s:19:\"DELETE_SHOP_ARTICLE\";s:1:\"0\";s:15:\"EDIT_SHOP_ORDER\";s:1:\"0\";s:17:\"DELETE_SHOP_ORDER\";s:1:\"0\";s:15:\"EDIT_SHOP_PREFS\";s:1:\"0\";s:19:\"CAN_SEE_OBJECTFILES\";s:1:\"1\";s:14:\"NEW_OBJECTFILE\";s:1:\"1\";s:21:\"NEW_OBJECTFILE_FOLDER\";s:1:\"1\";s:17:\"DELETE_OBJECTFILE\";s:1:\"1\";s:15:\"CAN_SEE_OBJECTS\";s:1:\"0\";s:10:\"NEW_OBJECT\";s:1:\"0\";s:13:\"DELETE_OBJECT\";s:1:\"0\";s:12:\"NEW_WORKFLOW\";s:1:\"0\";s:15:\"DELETE_WORKFLOW\";s:1:\"0\";s:13:\"EDIT_WORKFLOW\";s:1:\"0\";s:9:\"EMPTY_LOG\";s:1:\"0\";}',0,0,0,0,0,0,1146233940,'','','','','','','',0,0,0,0,0,'',0);CREATE TABLE tblWebAdmin (
   Name varchar(255) NOT NULL default '',
   `Value` text NOT NULL
 ) TYPE=MyISAM;
-
+/* query separator */
 INSERT INTO tblWebAdmin VALUES ('FieldAdds','a:9:{s:13:\"Newsletter_Ok\";a:1:{s:7:\"default\";s:3:\",ja\";}s:25:\"Newsletter_HTMLNewsletter\";a:1:{s:7:\"default\";s:3:\",ja\";}s:17:\"Kontakt_Addresse1\";a:1:{s:7:\"default\";s:0:\"\";}s:17:\"Kontakt_Addresse2\";a:1:{s:7:\"default\";s:0:\"\";}s:18:\"Kontakt_Bundesland\";a:1:{s:7:\"default\";s:214:\"Baden-Württemberg,Bayern,Berlin,Brandenburg,Bremen,Hamburg,Hessen,Mecklenburg-Vorpommern,Niedersachsen,Nordrhein-Westfalen,Rheinland-PfalzRheinland-Pfalz,Saarland,Sachsen,Sachsen-Anhalt,Schleswig-Holstein,Thüringen\";}s:12:\"Kontakt_Land\";a:1:{s:7:\"default\";s:0:\"\";}s:13:\"Anrede_Anrede\";a:1:{s:7:\"default\";s:10:\",Herr,Frau\";}s:12:\"Anrede_Titel\";a:1:{s:7:\"default\";s:11:\",Dr., Prof.\";}s:6:\"Gruppe\";a:1:{s:7:\"default\";s:22:\"Administratoren,Kunden\";}}');
+/* query separator */
 INSERT INTO tblWebAdmin VALUES ('Prefs','a:2:{s:10:\"start_year\";s:4:\"1900\";s:17:\"default_sort_view\";s:6:\"Gruppe\";}');
+/* query separator */
 INSERT INTO tblWebAdmin VALUES ('SortView','a:1:{s:6:\"Gruppe\";a:1:{i:0;a:4:{s:6:\"branch\";s:8:\"Sonstige\";s:5:\"field\";s:6:\"Gruppe\";s:8:\"function\";s:0:\"\";s:5:\"order\";s:3:\"ASC\";}}}');
 
 CREATE TABLE tblWebUser (
@@ -634,10 +656,10 @@ CREATE TABLE tblWebUser (
   Gruppe varchar(200) NOT NULL default '',
   PRIMARY KEY  (ID)
 ) TYPE=MyISAM;
-
+/* query separator */
 INSERT INTO tblWebUser VALUES (1,'admin','admin','','','living-e','AG','Amalienstrasse 81-87','76133 Karlsruhe','Baden-Württemberg','Deutschland','','','','','',0,'1144395493','1144397956','1144397956',0,'/admin',0,'customer.gif','admin','','','Administratoren');
-INSERT INTO tblWebUser VALUES (2,'customer','customer','','','web','user','webland','universe','Saarland','','','','','','',0,'0','0','0',0,'/customer',0,'customer.gif','customer','','','Kunden');
-CREATE TABLE tblWorkflowDef (
+/* query separator */
+INSERT INTO tblWebUser VALUES (2,'customer','customer','','','web','user','webland','universe','Saarland','','','','','','',0,'0','0','0',0,'/customer',0,'customer.gif','customer','','','Kunden');CREATE TABLE tblWorkflowDef (
   ID int(11) NOT NULL auto_increment,
   `Text` varchar(255) NOT NULL default '',
   `Type` bigint(20) NOT NULL default '0',
@@ -942,7 +964,7 @@ CREATE TABLE `tblsearchtool` (
   `activTab` tinyint(1) NOT NULL default '1',
   PRIMARY KEY  (`ID`)
 ) TYPE=MyISAM ;
-
+/* query separator */
 INSERT INTO `tblsearchtool` (`ID`, `ParentID`, `IsFolder`, `Icon`, `Path`, `Text`, `predefined`, `folderIDDoc`, `folderIDTmpl`, `searchDocSearch`, `searchTmplSearch`, `searchForTextDocSearch`, `searchForTitleDocSearch`, `searchForContentDocSearch`, `searchForTextTmplSearch`, `searchForContentTmplSearch`, `anzahlDocSearch`, `anzahlTmplSearch`, `anzahlAdvSearch`, `setViewDocSearch`, `setViewTmplSearch`, `setViewAdvSearch`, `OrderDocSearch`, `OrderTmplSearch`, `OrderAdvSearch`, `searchAdvSearch`, `locationAdvSearch`, `searchFieldsAdvSearch`, `search_tables_advSearch`, `activTab`) VALUES
 (1, 0, 1, 'folder.gif', '/Vordefinierte Suchanfragen', 'Vordefinierte Suchanfragen', 1, 0, 0, '', '', '', 0, '', '', '', 0, 0, 0, 0, 0, 0, '', '', '', '', '', '', '',4),
 (2, 1, 1, 'folder.gif', '/Vordefinierte Suchanfragen/Dokumente', 'Dokumente', 1, 0, 0, '', '', '', 0, '', '', '', 0, 0, 0, 0, 0, 0, '', '', '', '', '', '', '',4),
@@ -952,20 +974,19 @@ INSERT INTO `tblsearchtool` (`ID`, `ParentID`, `IsFolder`, `Icon`, `Path`, `Text
 (6, 2, 0, 'Suche.gif', '/Vordefinierte Suchanfragen/Dokumente/Dynamische Dokumente', 'Dynamische Dokumente', 1, 0, 0, 'a:1:{i:0;s:0:"";}', 'a:1:{i:0;s:0:"";}', '1', 1, '1', '1', '1', 25, 25, 25, 0, 0, 0, 'Text', 'Text', 'Text', 'a:1:{i:0;s:9:"dynamisch";}', 's:32:"s:24:"a:1:{i:0;s:7:"CONTAIN";}";";', 'a:1:{i:0;s:11:"Speicherart";}', 'a:4:{s:7:"tblFile";s:1:"1";s:14:"tblObjectFiles";s:1:"0";s:12:"tblTemplates";s:1:"0";s:9:"tblObject";s:1:"0";}',3),
 (7, 3, 0, 'Suche.gif', '/Vordefinierte Suchanfragen/Objekte/Unveröffentlichte Objekte', 'Unveröffentlichte Objekte', 1, 0, 0, 'a:1:{i:0;s:0:"";}', 'a:1:{i:0;s:0:"";}', '1', 1, '1', '1', '1', 25, 25, 25, 0, 0, 0, 'Text', 'Text', 'Text', 'a:1:{i:0;s:17:"geparkt_geaendert";}', 'a:1:{i:0;s:7:"CONTAIN";}', 'a:1:{i:0;s:6:"Status";}', 'a:4:{s:7:"tblFile";s:1:"0";s:14:"tblObjectFiles";s:1:"1";s:12:"tblTemplates";s:1:"0";s:9:"tblObject";s:1:"0";}',3),
 (8, 0, 1, 'folder.gif', '/Eigene Suchanfragen', 'Eigene Suchanfragen', 1, 0, 0, 'a:1:{i:0;s:0:"";}', 'a:1:{i:0;s:0:"";}', '0', 0, '0', '0', '0', 10, 10, 10, 0, 0, 0, '', '', '', 'a:1:{i:0;s:0:"";}', 'a:1:{i:0;s:7:"CONTAIN";}', 'a:1:{i:0;s:2:"ID";}', 'a:4:{s:7:"tblFile";s:1:"1";s:14:"tblobjectFiles";s:1:"1";s:12:"tblTemplates";s:1:"0";s:9:"tblobject";s:1:"0";}', 4);
-
+/* query separator */
 INSERT INTO `tblsearchtool` (`ID`, `ParentID`, `IsFolder`, `Icon`, `Path`, `Text`, `predefined`, `folderIDDoc`, `folderIDTmpl`, `searchDocSearch`, `searchTmplSearch`, `searchForTextDocSearch`, `searchForTitleDocSearch`, `searchForContentDocSearch`, `searchForTextTmplSearch`, `searchForContentTmplSearch`, `anzahlDocSearch`, `anzahlTmplSearch`, `anzahlAdvSearch`, `setViewDocSearch`, `setViewTmplSearch`, `setViewAdvSearch`, `OrderDocSearch`, `OrderTmplSearch`, `OrderAdvSearch`, `searchAdvSearch`, `locationAdvSearch`, `searchFieldsAdvSearch`, `search_tables_advSearch`, `activTab`) VALUES
 ('', 0, 1, 'folder.gif', '/Versionen', 'Versionen', 1, 0, 0, 'a:1:{i:0;s:0:"";}', 'a:1:{i:0;s:0:"";}', '0', 0, '0', '0', '0', 10, 10, 10, 0, 0, 0, '', '', '', 'a:1:{i:0;s:0:"";}', 'a:1:{i:0;s:7:"CONTAIN";}', 'a:1:{i:0;s:2:"ID";}', 'a:4:{s:7:"tblFile";s:1:"1";s:14:"tblobjectFiles";s:1:"1";s:12:"tblTemplates";s:1:"0";s:9:"tblobject";s:1:"0";}',4);
-
+/* query separator */
 INSERT INTO `tblsearchtool` (`ID`, `ParentID`, `IsFolder`, `Icon`, `Path`, `Text`, `predefined`, `folderIDDoc`, `folderIDTmpl`, `searchDocSearch`, `searchTmplSearch`, `searchForTextDocSearch`, `searchForTitleDocSearch`, `searchForContentDocSearch`, `searchForTextTmplSearch`, `searchForContentTmplSearch`, `anzahlDocSearch`, `anzahlTmplSearch`, `anzahlAdvSearch`, `setViewDocSearch`, `setViewTmplSearch`, `setViewAdvSearch`, `OrderDocSearch`, `OrderTmplSearch`, `OrderAdvSearch`, `searchAdvSearch`, `locationAdvSearch`, `searchFieldsAdvSearch`, `search_tables_advSearch`, `activTab`) VALUES
 ('', (LAST_INSERT_ID()), 1, 'folder.gif', '/Versionen/Dokumente', 'Dokumente', 1, 0, 0, '', '', '', 0, '', '', '', 0, 0, 0, 0, 0, 0, '', '', '', '', '', '', '',4),
 ('', (LAST_INSERT_ID()), 1, 'folder.gif', '/Versionen/Objekte', 'Objekte', 1, 0, 0, '', '', '', 0, '', '', '', 0, 0, 0, 0, 0, 0, '', '', '', '', '', '', '',4);
-
+/* query separator */
 INSERT INTO `tblsearchtool` (`ID`, `ParentID`, `IsFolder`, `Icon`, `Path`, `Text`, `predefined`, `folderIDDoc`, `folderIDTmpl`, `searchDocSearch`, `searchTmplSearch`, `searchForTextDocSearch`, `searchForTitleDocSearch`, `searchForContentDocSearch`, `searchForTextTmplSearch`, `searchForContentTmplSearch`, `anzahlDocSearch`, `anzahlTmplSearch`, `anzahlAdvSearch`, `setViewDocSearch`, `setViewTmplSearch`, `setViewAdvSearch`, `OrderDocSearch`, `OrderTmplSearch`, `OrderAdvSearch`, `searchAdvSearch`, `locationAdvSearch`, `searchFieldsAdvSearch`, `search_tables_advSearch`, `activTab`) VALUES
 ('', (LAST_INSERT_ID()), 0, 'Suche.gif', '/Versionen/Dokumente/gelöschte Dokumente', 'gelöschte Dokumente', 1, 0, 0, 'a:1:{i:0;s:0:"";}', 'a:1:{i:0;s:0:"";}', '1', 1, '1', '1', '1', 10, 10, 10, 0, 0, 0, 'Text', 'Text', 'Text', 'a:1:{i:0;s:7:"deleted";}', 'a:1:{i:0;s:7:"CONTAIN";}', 'a:1:{i:0;s:6:"Status";}', 'a:5:{s:7:"tblFile";s:1:"1";s:14:"tblObjectFiles";s:1:"0";s:11:"tblversions";s:1:"1";s:12:"tblTemplates";s:1:"0";s:9:"tblObject";s:1:"0";}',3);
-
+/* query separator */
 INSERT INTO `tblsearchtool` (`ID`, `ParentID`, `IsFolder`, `Icon`, `Path`, `Text`, `predefined`, `folderIDDoc`, `folderIDTmpl`, `searchDocSearch`, `searchTmplSearch`, `searchForTextDocSearch`, `searchForTitleDocSearch`, `searchForContentDocSearch`, `searchForTextTmplSearch`, `searchForContentTmplSearch`, `anzahlDocSearch`, `anzahlTmplSearch`, `anzahlAdvSearch`, `setViewDocSearch`, `setViewTmplSearch`, `setViewAdvSearch`, `OrderDocSearch`, `OrderTmplSearch`, `OrderAdvSearch`, `searchAdvSearch`, `locationAdvSearch`, `searchFieldsAdvSearch`, `search_tables_advSearch`, `activTab`) VALUES
-('', (LAST_INSERT_ID()-1), 0, 'Suche.gif', '/Versionen/Objekte/gelöschte Objekte', 'gelöschte Objekte', 1, 0, 0, 'a:1:{i:0;s:0:"";}', 'a:1:{i:0;s:0:"";}', '1', 1, '1', '1', '1', 10, 10, 10, 0, 0, 0, 'Text', 'Text', 'Text', 'a:1:{i:0;s:7:"deleted";}', 'a:1:{i:0;s:7:"CONTAIN";}', 'a:1:{i:0;s:6:"Status";}', 'a:5:{s:7:"tblFile";s:1:"0";s:14:"tblObjectFiles";s:1:"1";s:11:"tblversions";s:1:"1";s:12:"tblTemplates";s:1:"0";s:9:"tblObject";s:1:"0";}',3);
-CREATE TABLE tblshopvats (
+('', (LAST_INSERT_ID()-1), 0, 'Suche.gif', '/Versionen/Objekte/gelöschte Objekte', 'gelöschte Objekte', 1, 0, 0, 'a:1:{i:0;s:0:"";}', 'a:1:{i:0;s:0:"";}', '1', 1, '1', '1', '1', 10, 10, 10, 0, 0, 0, 'Text', 'Text', 'Text', 'a:1:{i:0;s:7:"deleted";}', 'a:1:{i:0;s:7:"CONTAIN";}', 'a:1:{i:0;s:6:"Status";}', 'a:5:{s:7:"tblFile";s:1:"0";s:14:"tblObjectFiles";s:1:"1";s:11:"tblversions";s:1:"1";s:12:"tblTemplates";s:1:"0";s:9:"tblObject";s:1:"0";}',3);CREATE TABLE tblshopvats (
   id int(11) NOT NULL auto_increment,
   `text` varchar(255) NOT NULL default '',
   vat varchar(16) NOT NULL default '',
@@ -1112,5 +1133,5 @@ CREATE TABLE `tblwidgetnotepad` (
   `ValidUntil` date NOT NULL default '0000-00-00',
   PRIMARY KEY  (`ID`)
 ) TYPE=MyISAM;
-
-INSERT INTO `tblwidgetnotepad` VALUES (1, 'Sonstiges', 1, '2007-05-24', 'Willkommen bei webEdition 5', 'Das Cockpit ist eine der Neuerungen in Version 5. Sie können im Cockpit-Menü verschiedene Widgets auswählen. Jedes Widget ist über die obere Leiste "Eigenschaften" konfigurierbar und kann frei positioniert werden.', 'low', 'always', '2007-06-04', '2007-06-04');
+/* query separator */
+INSERT INTO `tblwidgetnotepad` VALUES (1, 'webEdition', 1, '2008-08-20', 'Welcome to webEdition!', '', 'low', 'always', '2008-08-20', '2008-08-20');
