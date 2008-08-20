@@ -48,7 +48,14 @@
 					include($_metaFile);
 					if(isset($metaInfo)) {
 						include($_bd . '/' . $metaInfo['name'] . '/language/language_' . $lang . '.inc.php');
-						$metaInfo['text'] = ${'l_' . $metaInfo['name']}[$metaInfo['name']];
+						$langStr = ${'l_' . $metaInfo['name']}[$metaInfo['name']];
+						if(eregi('_UTF-8',$lang)) {
+							$metaInfo['text'] = utf8_decode(stripslashes($langStr));
+						}
+						else {
+							$metaInfo['text'] = stripslashes($langStr);
+						}
+
 						$_tools[] = $metaInfo;
 						unset($metaInfo);
 					}
@@ -86,6 +93,8 @@
 			$_custom = array();
 			foreach ($_tools as $_tool) {
 				if(!in_array($_tool['name'],$_builtin)){
+					$_tool['text'] = htmlentities($_tool['text'],ENT_QUOTES);
+				
 					$_custom[] = $_tool;
 				}
 			}
