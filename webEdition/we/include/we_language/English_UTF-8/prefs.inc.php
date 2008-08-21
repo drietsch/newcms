@@ -513,5 +513,8 @@ $l_prefs["tab_versions"] = 'Versioning';
 	$l_prefs["versioning_create"] = "Create Version";
 	$l_prefs["versions_create_publishing"] = "only when publishing";
 	$l_prefs["versions_create_always"] = "always";
+	
+	$l_prefs["juplod_not_installed"] = 'JUpload is not installed!';
+	
 
 ?>
