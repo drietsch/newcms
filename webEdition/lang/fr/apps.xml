@@ -1,191 +1,191 @@
-﻿<?xml version="1.0" ?>
+<?xml version="1.0" ?>
 <!DOCTYPE tmx SYSTEM "tmx14.dtd">
 <tmx version="1.4">
 	<header creationtoolversion="1.0" datatype="plaintext" segtype="sentence" adminlang="en-us" srclang="en-us" o-tmf="Undefined" creationtool="text edit" >
 	</header>
 	<body>
 		<tu tuid="Applications">
-			<tuv xml:lang="de"><seg>Anwendungen</seg></tuv>
+			<tuv xml:lang="fr"><seg>Applications</seg></tuv>
 		</tu>
 		<tu tuid="You do not have the permission to create new entries or folders!">
-			<tuv xml:lang="de"><seg>You do not have the permission to create new entries or folders!</seg></tuv>
+			<tuv xml:lang="fr"><seg>You do not have the permission to create new entries or folders!</seg></tuv>
 		</tu>
 		<tu tuid="The tablename is missing.">
-			<tuv xml:lang="de"><seg>Sie haben keinen Tabellennamen angegeben.</seg></tuv>
+			<tuv xml:lang="fr"><seg>Please specify a table name.</seg></tuv>
 		</tu>
 		<tu tuid="Delete Entry/Group.">
-			<tuv xml:lang="de"><seg>Aktuelle Eintrag/Ordner löschen.</seg></tuv>
+			<tuv xml:lang="fr"><seg>Delete current entry/folder.</seg></tuv>
 		</tu>
 		<tu tuid="Are you sure?">
-			<tuv xml:lang="de"><seg>Sind Sie sich sicher?</seg></tuv>
+			<tuv xml:lang="fr"><seg>Are you sure?</seg></tuv>
 		</tu>
 		<tu tuid="It is not possible to delete the entry!">
-			<tuv xml:lang="de"><seg>Der Eintrag kann nicht gelöscht werden!</seg></tuv>
+			<tuv xml:lang="fr"><seg>This entry cannot be deleted!</seg></tuv>
 		</tu>
 		<tu tuid="It is not possible to save the entry!">
-			<tuv xml:lang="de"><seg>Der Eintrag kann nicht gespeichert werden!</seg></tuv>
+			<tuv xml:lang="fr"><seg>This entry cannot be saved!</seg></tuv>
 		</tu>
 		<tu tuid="Please select the entry/group that should be deleted.">
-			<tuv xml:lang="de"><seg>Bitte wählen Sie den Eintrag/Ordner aus, der gelöscht werden soll.</seg></tuv>
+			<tuv xml:lang="fr"><seg>Please chose the entry/folder you want to be deleted.</seg></tuv>
 		</tu>
 		<tu tuid="Invalid filename!">
-			<tuv xml:lang="de"><seg>Der Dateiname ist nicht korrekt!</seg></tuv>
+			<tuv xml:lang="fr"><seg>The filename is not valid!</seg></tuv>
 		</tu>
 		<tu tuid="New">
-			<tuv xml:lang="de"><seg>Neu</seg></tuv>
+			<tuv xml:lang="fr"><seg>New</seg></tuv>
 		</tu>
 		<tu tuid="Save">
-			<tuv xml:lang="de"><seg>Speichern</seg></tuv>
+			<tuv xml:lang="fr"><seg>Save</seg></tuv>
 		</tu>
 		<tu tuid="Delete">
-			<tuv xml:lang="de"><seg>Löschen</seg></tuv>
+			<tuv xml:lang="fr"><seg>Delete</seg></tuv>
 		</tu>
 		<tu tuid="Close">
-			<tuv xml:lang="de"><seg>Schließen</seg></tuv>
+			<tuv xml:lang="fr"><seg>Close</seg></tuv>
 		</tu>
 		<tu tuid="Info">
-			<tuv xml:lang="de"><seg>Info</seg></tuv>
+			<tuv xml:lang="fr"><seg>Informations</seg></tuv>
 		</tu>
 		<tu tuid="Help">
-			<tuv xml:lang="de"><seg>Hilfe</seg></tuv>
+			<tuv xml:lang="fr"><seg>Help</seg></tuv>
 		</tu>
 		<tu tuid="Export">
-			<tuv xml:lang="de"><seg>Export</seg></tuv>
+			<tuv xml:lang="fr"><seg>Export</seg></tuv>
 		</tu>
 		<tu tuid="Import">
-			<tuv xml:lang="de"><seg>Import</seg></tuv>
+			<tuv xml:lang="fr"><seg>Import</seg></tuv>
 		</tu>
 		<tu tuid="New Entry">
-			<tuv xml:lang="de"><seg>Neuer Eintrag</seg></tuv>
+			<tuv xml:lang="fr"><seg>New Entry</seg></tuv>
 		</tu>
 		<tu tuid="New Folder">
-			<tuv xml:lang="de"><seg>Neuer Ordner</seg></tuv>
+			<tuv xml:lang="fr"><seg>New Folder</seg></tuv>
 		</tu>
 		<tu tuid="New Tab">
-			<tuv xml:lang="de"><seg>New Tab</seg></tuv>
+			<tuv xml:lang="fr"><seg>New Tab</seg></tuv>
 		</tu>
 		<tu tuid="This is a custom tab. You can either edit it or remove it.">
-			<tuv xml:lang="de"><seg>This is a custom tab. You can either edit it or remove it.</seg></tuv>
+			<tuv xml:lang="fr"><seg>This is a custom tab. You can either edit it or remove it.</seg></tuv>
 		</tu>
 		<tu tuid="Properties">
-			<tuv xml:lang="de"><seg>Eigenschaften</seg></tuv>
+			<tuv xml:lang="fr"><seg>Preferences</seg></tuv>
 		</tu>
 		<tu tuid="Folder">
-			<tuv xml:lang="de"><seg>Ordner</seg></tuv>
+			<tuv xml:lang="fr"><seg>Folder</seg></tuv>
 		</tu>
 		<tu tuid="Entry">
-			<tuv xml:lang="de"><seg>Eintrag</seg></tuv>
+			<tuv xml:lang="fr"><seg>Entry</seg></tuv>
 		</tu>
 		<tu tuid="Name">
-			<tuv xml:lang="de"><seg>Name</seg></tuv>
+			<tuv xml:lang="fr"><seg>Name</seg></tuv>
 		</tu>
 		<tu tuid="General">
-			<tuv xml:lang="de"><seg>Allgemeine</seg></tuv>
+			<tuv xml:lang="fr"><seg>General</seg></tuv>
 		</tu>
 		<tu tuid="The folder '%s' has been succesfully saved.">
-			<tuv xml:lang="de"><seg>Der Ordner '%s' wurde erfolgreich gespeichert.</seg></tuv>
+			<tuv xml:lang="fr"><seg>The Folder '%s' has been saved.</seg></tuv>
 		</tu>
 		<tu tuid="The entry '%s' has been succesfully saved.">
-			<tuv xml:lang="de"><seg>Die Eintrag '%s' wurde erfolgreich gespeichert.</seg></tuv>
+			<tuv xml:lang="fr"><seg>The entry '%s' has been saved.</seg></tuv>
 		</tu>
 		<tu tuid="The folder could not be saved.">
-			<tuv xml:lang="de"><seg>Der Ordner kann nicht gespeichert werden.</seg></tuv>
+			<tuv xml:lang="fr"><seg>This folder cannot be saved.</seg></tuv>
 		</tu>
 		<tu tuid="The entry could not be saved.">
-			<tuv xml:lang="de"><seg>Die Eintrag kann nicht gespeichert werden.</seg></tuv>
+			<tuv xml:lang="fr"><seg>This entry cannot be saved.</seg></tuv>
 		</tu>
 		<tu tuid="The path is not correct!">
-			<tuv xml:lang="de"><seg>Der Pfad ist nicht korrekt!</seg></tuv>
+			<tuv xml:lang="fr"><seg>The specified path is invalid!</seg></tuv>
 		</tu>
 		<tu tuid="The name must not be empty!">
-			<tuv xml:lang="de"><seg>Der Name darf nicht leer sein!</seg></tuv>
+			<tuv xml:lang="fr"><seg>The name must not be empty!</seg></tuv>
 		</tu>
 		<tu tuid="The required fields must not be empty!">
-			<tuv xml:lang="de"><seg>Die Pflichtfelder dürfen nicht leer sein!</seg></tuv>
+			<tuv xml:lang="fr"><seg>The mandatory fields must not be empty!</seg></tuv>
 		</tu>
 		<tu tuid="The name already exists! Please choose another name or folder.">
-			<tuv xml:lang="de"><seg>Der Name existiert bereits! Bitte wählen Sie einen anderen Namen oder Ordner.</seg></tuv>
+			<tuv xml:lang="fr"><seg>This name already exists! Please chose another name or folder.</seg></tuv>
 		</tu>
 		<tu tuid="The name is not valid!">
-			<tuv xml:lang="de"><seg>Der Name ist nicht gültig!</seg></tuv>
+			<tuv xml:lang="fr"><seg>The specified name is invalid!</seg></tuv>
 		</tu>
 		<tu tuid="The name of the model class is not valid!">
-			<tuv xml:lang="de"><seg>Der Name der Modelklasse ist nicht gültig!</seg></tuv>
+			<tuv xml:lang="fr"><seg>The name of the model class is invalid!</seg></tuv>
 		</tu>
 		<tu tuid="The name of the maintable is not valid!">
-			<tuv xml:lang="de"><seg>Der Name der Haupttabelle ist nicht gültig!</seg></tuv>
+			<tuv xml:lang="fr"><seg>The name of the main table is ivalid!</seg></tuv>
 		</tu>
 		<tu tuid="The model class exists!">
-			<tuv xml:lang="de"><seg>Die Modellasse existiert bereits!</seg></tuv>
+			<tuv xml:lang="fr"><seg>This model class already exists!</seg></tuv>
 		</tu>
 		<tu tuid="The maintable exists!">
-			<tuv xml:lang="de"><seg>Die Tabelle existiert bereits!</seg></tuv>
+			<tuv xml:lang="fr"><seg>This table already exists!</seg></tuv>
 		</tu>
 		<tu tuid="The application exists!">
-			<tuv xml:lang="de"><seg>The application exists!</seg></tuv>
+			<tuv xml:lang="fr"><seg>The application exists!</seg></tuv>
 		</tu>
 		<tu tuid="The entry '%s' has been succesfully deleted.">
-			<tuv xml:lang="de"><seg>Der Eintrag '%s' wurde erfolgreich gelöscht.</seg></tuv>
+			<tuv xml:lang="fr"><seg>The entry '%s' has been deleted.</seg></tuv>
 		</tu>
 		<tu tuid="The folder '%s' has been succesfully deleted.">
-			<tuv xml:lang="de"><seg>Der Ordner '%s' wurde erfolgreich gelöscht.</seg></tuv>
+			<tuv xml:lang="fr"><seg>The folder '%s' has been deleted.</seg></tuv>
 		</tu>
 		<tu tuid="The document has been changed.">
-			<tuv xml:lang="de"><seg>Das Dokument wurde verändert.</seg></tuv>
+			<tuv xml:lang="fr"><seg>This document has been altered.</seg></tuv>
 		</tu>
 		<tu tuid="Would you like to save your changes?">
-			<tuv xml:lang="de"><seg>Möchten Sie Ihre Änderungen speichern?</seg></tuv>
+			<tuv xml:lang="fr"><seg>Do you want to save your changes?</seg></tuv>
 		</tu>
 		<tu tuid="Permissions">
-			<tuv xml:lang="de"><seg>Rechte</seg></tuv>
+			<tuv xml:lang="fr"><seg>Permissions</seg></tuv>
 		</tu>
 		<tu tuid="Tags">
-			<tuv xml:lang="de"><seg>Tags</seg></tuv>
+			<tuv xml:lang="fr"><seg>Tags</seg></tuv>
 		</tu>
 		<tu tuid="Backup Table">
-			<tuv xml:lang="de"><seg>Backup-Tabelle</seg></tuv>
+			<tuv xml:lang="fr"><seg>Backup table</seg></tuv>
 		</tu>
 		<tu tuid="Services">
-			<tuv xml:lang="de"><seg>Dienste</seg></tuv>
+			<tuv xml:lang="fr"><seg>Services</seg></tuv>
 		</tu>
 		<tu tuid="Language">
-			<tuv xml:lang="de"><seg>Sprache</seg></tuv>
+			<tuv xml:lang="fr"><seg>Language</seg></tuv>
 		</tu>
 		<tu tuid="Default">
-			<tuv xml:lang="de"><seg>Standard</seg></tuv>
+			<tuv xml:lang="fr"><seg>Default</seg></tuv>
 		</tu>
 		<tu tuid="The entry has been deleted.">
-			<tuv xml:lang="de"><seg>Der Eintrag wurde gelöscht</seg></tuv>
+			<tuv xml:lang="fr"><seg>The entry has been deleted.</seg></tuv>
 		</tu>
 		<tu tuid="Select">
-			<tuv xml:lang="de"><seg>Auswählen</seg></tuv>
+			<tuv xml:lang="fr"><seg>Select</seg></tuv>
 		</tu>
 		<tu tuid="Yes">
-			<tuv xml:lang="de"><seg>Ja</seg></tuv>
+			<tuv xml:lang="fr"><seg>Yes</seg></tuv>
 		</tu>
 		<tu tuid="No">
-			<tuv xml:lang="de"><seg>Nein</seg></tuv>
+			<tuv xml:lang="fr"><seg>No</seg></tuv>
 		</tu>
 		<tu tuid="Cancel">
-			<tuv xml:lang="de"><seg>Abbrechen</seg></tuv>
+			<tuv xml:lang="fr"><seg>Cancel</seg></tuv>
 		</tu>
 		<tu tuid="OK">
-			<tuv xml:lang="de"><seg>OK</seg></tuv>
+			<tuv xml:lang="fr"><seg>OK</seg></tuv>
 		</tu>
 		<tu tuid="There is nothing to save!">
-			<tuv xml:lang="de"><seg>Es gibt nichts zu speichern!</seg></tuv>
+			<tuv xml:lang="fr"><seg>There is nothing to save!</seg></tuv>
 		</tu>
 		<tu tuid="There is nothing to delete!">
-			<tuv xml:lang="de"><seg>Es gibt nichts zu löschen!</seg></tuv>
+			<tuv xml:lang="fr"><seg>There is nothing to delete!</seg></tuv>
 		</tu>
 		<tu tuid="The folder cannot be saved in the chosen folder!">
-			<tuv xml:lang="de"><seg>Der Ordner darf im ausgewählten Verzeichnis nicht gespeichert werden!</seg></tuv>
+			<tuv xml:lang="fr"><seg>The folder cannot be saved in the chosen folder!</seg></tuv>
 		</tu>
 		<tu tuid="Required fields are empty!">
-			<tuv xml:lang="de"><seg>Required fields are empty!</seg></tuv>
+			<tuv xml:lang="fr"><seg>Required fields are empty!</seg></tuv>
 		</tu>
 		<tu tuid="default">
-			<tuv xml:lang="de"><seg>Default</seg></tuv>
+			<tuv xml:lang="fr"><seg>Default</seg></tuv>
 		</tu>
 	</body>
 </tmx>

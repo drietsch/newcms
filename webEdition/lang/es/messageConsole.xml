@@ -5,16 +5,16 @@
 	</header>
 	<body>
 		<tu tuid="New notice">
-			<tuv xml:lang="de"><seg>Neuer Hinweis</seg></tuv>
+			<tuv xml:lang="es"><seg>New notice</seg></tuv>
 		</tu>
 		<tu tuid="New warning">
-			<tuv xml:lang="de"><seg>Neue Warnung</seg></tuv>
+			<tuv xml:lang="es"><seg>New warning</seg></tuv>
 		</tu>
 		<tu tuid="New error">
-			<tuv xml:lang="de"><seg>Neuer Fehler</seg></tuv>
+			<tuv xml:lang="es"><seg>New error</seg></tuv>
 		</tu>
 		<tu tuid="Message window">
-			<tuv xml:lang="de"><seg>Nachrichten Fenster</seg></tuv>
+			<tuv xml:lang="es"><seg>Message window</seg></tuv>
 		</tu>
 	</body>
 </tmx>

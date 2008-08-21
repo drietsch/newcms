@@ -5,7 +5,7 @@
 	</header>
 	<body>
 		<tu tuid="You are not permitted to perform this action! Please login again.">
-			<tuv xml:lang="de"><seg>You are not permitted to perform this action! Please login again.</seg></tuv>
+			<tuv xml:lang="fr"><seg>You are not permitted to perform this action! Please login again.</seg></tuv>
 		</tu>
 	</body>
 </tmx>
