@@ -135,8 +135,8 @@ class we_objectFile extends we_document
 	function formLanguage() {
 
 		we_loadLanguageConfig();
-
-		$value = (isset($this->elements["Language"]["dat"]) ? $this->elements["Language"]["dat"] : $GLOBALS['weDefaultFrontendLanguage']);
+		
+		$value = (isset($this->Language) ? $this->Language : $GLOBALS['weDefaultFrontendLanguage']);
 
 		$inputName = "we_".$this->Name."_Language";
 
