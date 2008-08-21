@@ -530,5 +530,7 @@ $l_prefs["tab_versions"] = 'Versionierung';
 	$l_prefs["editor_comment_font_color"] = 'Kommentare';
 	$l_prefs["jeditor"] = 'Java Quelltext Editor';
 	
+	$l_prefs["juplod_not_installed"] = 'JUpload ist nicht installiert!';
+	
 
 ?>
