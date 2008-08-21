@@ -354,4 +354,61 @@ $l_prefs["tab_modules"] = 'Модули';
 
 	$l_prefs['use_jupload'] = 'Use java upload'; // TRANSLATE
 
+/*****************************************************************************
+ * message_reporting
+ *****************************************************************************/
+	$l_prefs["message_reporting"]["information"] = "You can decide on the respective check boxes whether you like to receive a notice for webEdition operations as for example saving, publishing or deleting."; // TRANSLATE
+	
+	$l_prefs["message_reporting"]["headline"] = "Notifications"; // TRANSLATE
+	$l_prefs["message_reporting"]["show_notices"] = "Show Notices"; // TRANSLATE
+	$l_prefs["message_reporting"]["show_warnings"] = "Show Warnings"; // TRANSLATE
+	$l_prefs["message_reporting"]["show_errors"] = "Show Errors"; // TRANSLATE
+
+
+/*****************************************************************************
+ * Module Activation
+ *****************************************************************************/
+	$l_prefs["module_activation"]["information"] = "Here you can activate or deactivate your modules if you do not need them.<br /><br />Deactivated modules improve the overall performance of webEdition."; // TRANSLATE
+	
+	$l_prefs["module_activation"]["headline"] = "Module activation"; // TRANSLATE
+
+/*****************************************************************************
+ * Email settings
+ *****************************************************************************/
+	
+	$l_prefs["mailer_information"] = "Adjust whether webEditionin should dispatch emails via the integrated PHP function or a seperate SMTP server should be used.<br /><br />When using a SMTP mail server, the risk that messages are classified by the receiver as a \"Spam\" is lowered."; // TRANSLATE
+	
+	$l_prefs["mailer_type"] = "Mailer type"; // TRANSLATE
+	$l_prefs["mailer_php"] = "Use php mail() function"; // TRANSLATE
+	$l_prefs["mailer_smtp"] = "Use SMTP server"; // TRANSLATE
+	$l_prefs["email"] = "E-Mail"; // TRANSLATE
+	$l_prefs["tab_email"] = "E-Mail"; // TRANSLATE
+	$l_prefs["smtp_auth"] = "Authentication"; // TRANSLATE
+	$l_prefs["smtp_server"] = "SMTP server"; // TRANSLATE
+	$l_prefs["smtp_port"] = "SMTP port"; // TRANSLATE
+	$l_prefs["smtp_username"] = "User name"; // TRANSLATE
+	$l_prefs["smtp_password"] = "Password"; // TRANSLATE
+	$l_prefs["smtp_halo"] = "SMTP halo"; // TRANSLATE
+	$l_prefs["smtp_timeout"] = "SMTP timeout"; // TRANSLATE
+
+/*****************************************************************************
+ * Versions settings
+ *****************************************************************************/
+
+	$l_prefs["versioning"] = "Versioning"; //TRANSLATE
+	$l_prefs["version_all"] = "all"; //TRANSLATE
+	$l_prefs["versioning_activate_text"] = "Activate versioning for some or all content types."; //TRANSLATE
+	$l_prefs["versioning_time_text"] = "If you specify a time period, only versions are saved which are created in this time until today. Older versions will be deleted."; //TRANSLATE
+	$l_prefs["versioning_time"] = "Time period"; //TRANSLATE
+	$l_prefs["versioning_anzahl_text"] = "Number of versions which will be created for each document or object."; //TRANSLATE
+	$l_prefs["versioning_anzahl"] = "Number"; //TRANSLATE
+	$l_prefs["versioning_wizard_text"] = "Open the Version-Wizard to delete or reset versions."; //TRANSLATE
+	$l_prefs["versioning_wizard"] = "Open Versions-Wizard"; //TRANSLATE
+	$l_prefs["ContentType"] = "Content Type"; //TRANSLATE
+	$l_prefs["versioning_create_text"] = "Determine which actions provoke new versions. Either if you publish or if you save, unpublish, delete or import files, too."; //TRANSLATE
+	$l_prefs["versioning_create"] = "Create Version"; //TRANSLATE
+	$l_prefs["versions_create_publishing"] = "only when publishing"; //TRANSLATE
+	$l_prefs["versions_create_always"] = "always"; //TRANSLATE
+
+	$l_prefs["juplod_not_installed"] = 'JUpload is not installed!'; //TRANSLATE
 ?>
