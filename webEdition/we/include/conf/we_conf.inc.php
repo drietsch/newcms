@@ -90,9 +90,6 @@ define("DB_CHARSET","");
 // Collation of tables in database for this webEdition.
 define("DB_COLLATION","");
 
-// Database wrapper class of webEdition
-include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/"."db_mysql.inc.php");
-
 
 
 /*****************************************************************************
