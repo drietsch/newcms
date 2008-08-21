@@ -494,19 +494,20 @@ $l_prefs["tab_versions"] = 'Versioning';
  * Versions settings
  *****************************************************************************/
 
-	$l_prefs["versioning"] = "Versioning";
-	$l_prefs["version_all"] = "all";
-	$l_prefs["versioning_activate_text"] = "Activate versioning for some or all content types.";
-	$l_prefs["versioning_time_text"] = "If you specify a time period, only versions are saved which are created in this time until today. Older versions will be deleted.";
-	$l_prefs["versioning_time"] = "Time period";
-	$l_prefs["versioning_anzahl_text"] = "Number of versions which will be created for each document or object.";
-	$l_prefs["versioning_anzahl"] = "Number";
-	$l_prefs["versioning_wizard_text"] = "Open the Version-Wizard to delete or reset versions.";
-	$l_prefs["versioning_wizard"] = "Open Versions-Wizard";
-	$l_prefs["ContentType"] = "Content Type";
-	$l_prefs["versioning_create_text"] = "Determine which actions provoke new versions. Either if you publish or if you save, unpublish, delete or import files, too.";
-	$l_prefs["versioning_create"] = "Create Version";
-	$l_prefs["versions_create_publishing"] = "only when publishing";
-	$l_prefs["versions_create_always"] = "always";
+	$l_prefs["versioning"] = "Versioning"; //TRANSLATE
+	$l_prefs["version_all"] = "all"; //TRANSLATE
+	$l_prefs["versioning_activate_text"] = "Activate versioning for some or all content types."; //TRANSLATE
+	$l_prefs["versioning_time_text"] = "If you specify a time period, only versions are saved which are created in this time until today. Older versions will be deleted."; //TRANSLATE
+	$l_prefs["versioning_time"] = "Time period"; //TRANSLATE
+	$l_prefs["versioning_anzahl_text"] = "Number of versions which will be created for each document or object."; //TRANSLATE
+	$l_prefs["versioning_anzahl"] = "Number"; //TRANSLATE
+	$l_prefs["versioning_wizard_text"] = "Open the Version-Wizard to delete or reset versions."; //TRANSLATE
+	$l_prefs["versioning_wizard"] = "Open Versions-Wizard"; //TRANSLATE
+	$l_prefs["ContentType"] = "Content Type"; //TRANSLATE
+	$l_prefs["versioning_create_text"] = "Determine which actions provoke new versions. Either if you publish or if you save, unpublish, delete or import files, too."; //TRANSLATE
+	$l_prefs["versioning_create"] = "Create Version"; //TRANSLATE
+	$l_prefs["versions_create_publishing"] = "only when publishing"; //TRANSLATE
+	$l_prefs["versions_create_always"] = "always"; //TRANSLATE
 
+	$l_prefs["juplod_not_installed"] = 'JUpload is not installed!'; //TRANSLATE
 ?>
