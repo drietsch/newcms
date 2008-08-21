@@ -1,26 +1,26 @@
-﻿<?xml version="1.0" ?>
+<?xml version="1.0" ?>
 <!DOCTYPE tmx SYSTEM "tmx14.dtd">
 <tmx version="1.4">
 	<header creationtoolversion="1.0" datatype="plaintext" segtype="sentence" adminlang="en-us" srclang="en-us" o-tmf="Undefined" creationtool="text edit" >
 	</header>
 	<body>
 		<tu tuid="toolfactory">
-			<tuv xml:lang="de"><seg>Applicationfactory</seg></tuv>
+			<tuv xml:lang="en"><seg>Applicationfactory</seg></tuv>
 		</tu>
 		<tu tuid="The user is allowed to create new items in toolfactory">
-			<tuv xml:lang="de"><seg>The user is allowed to create new items in Applicationfactory</seg></tuv>
+			<tuv xml:lang="en"><seg>The user is allowed to create new items in Applicationfactory</seg></tuv>
 		</tu>
 		<tu tuid="The user is allowed to delete items from toolfactory">
-			<tuv xml:lang="de"><seg>The user is allowed to delete items from Applicationfactory</seg></tuv>
+			<tuv xml:lang="en"><seg>The user is allowed to delete items from Applicationfactory</seg></tuv>
 		</tu>
 		<tu tuid="The user is allowed to edit items toolfactory">
-			<tuv xml:lang="de"><seg>The user is allowed to edit items Applicationfactory</seg></tuv>
+			<tuv xml:lang="en"><seg>The user is allowed to edit items Applicationfactory</seg></tuv>
 		</tu>
 		<tu tuid="Restore toolfactory data">
-			<tuv xml:lang="de"><seg>Restore Applicationfactory data</seg></tuv>
+			<tuv xml:lang="en"><seg>Restore Applicationfactory data</seg></tuv>
 		</tu>
 		<tu tuid="Save toolfactory data">
-			<tuv xml:lang="de"><seg>Save Applicationfactory data</seg></tuv>
+			<tuv xml:lang="en"><seg>Save Applicationfactory data</seg></tuv>
 		</tu>
 	</body>
 </tmx>
