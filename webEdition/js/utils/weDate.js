@@ -1,5 +1,5 @@
 /* 
- * JavaScript-Klasse für Datum-Hendling
+ * JavaScript-Klasse für Datum-Handling
  *
  * Die Formatangabe ist MySQL-Konform.
  *
