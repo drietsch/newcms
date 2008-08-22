@@ -7,8 +7,8 @@ webEdition SDK is distributed under the LGPL 3 license, which can be found in th
 webEdition/licenses/webEditionSDK/License.txt file.
 
 The license covers all source files in the webEdition SDK distribution, with the
-exception of the following third party software parts, 
-which remain licensed under their respective licenses.
+exception of the following third party software parts, which remain licensed under 
+their respective licenses.
 
 Third party software
 --------------------
