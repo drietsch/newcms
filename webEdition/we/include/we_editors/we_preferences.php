@@ -566,6 +566,9 @@ function get_value($settingvalue) {
             break;
 
         case "use_jupload":
+        	if (!file_exists($_SERVER['DOCUMENT_ROOT'] . '/webEdition/jupload/jupload.jar')) {
+        		return 0;
+        	}
 			if(isset($_SESSION['prefs']['use_jupload'])) {
 				return $_SESSION["prefs"]['use_jupload'];
 			} else {
@@ -4404,7 +4407,10 @@ function setColorChooserDisabled(id, disabled) {
 				}
 				array_push($_settings, array("headline" => $l_prefs["db_connect"], "html" => $_db_connect->getHtmlCode(), "space" => 200));
 
-				array_push($_settings, array('headline' => $l_prefs['use_jupload'], 'html' => htmlSelect('use_jupload',array($l_prefs["no"],$l_prefs["yes"]),1,get_value('use_jupload')), "space" => 200));
+				$jUploadDisabled = !file_exists($_SERVER['DOCUMENT_ROOT'] . '/webEdition/jupload/jupload.jar');
+				
+				
+				array_push($_settings, array('headline' => $l_prefs['use_jupload'], 'html' => htmlSelect('use_jupload',array($l_prefs["no"],$l_prefs["yes"]),1,get_value('use_jupload'),false,$jUploadDisabled ? "disabled=\"disabled\"" : "") . ($jUploadDisabled ? '<span class="small" style="margin-left:30px;">('.$l_prefs['juplod_not_installed'].')</span>' : ""), "space" => 200));
 
 				// Generate needed JS
 				$_needed_JavaScript .= "
