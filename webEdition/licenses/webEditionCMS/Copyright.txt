@@ -4,7 +4,7 @@ webEdition CMS Copyright and Licensing
 webEdition CMS is copyright (c) 2000-2008 by Living-e AG, Karlsruhe, Germany.
 
 webEdition CMS is distributed under the GPL 3 license, which can be found in the
-webEdition/licenses/webEditionCMS/license.txt file.
+webEdition/licenses/webEditionCMS/License.txt file.
 
 The license covers all source files in the webEdition CMS distribution, with the
 exception of the webEdition SDK and the following third party software parts, 
@@ -30,7 +30,7 @@ The DHTML Calendar Widget (http://dynarch.com/mishoo/calendar.epl)
 is Copyright (c) 2002-2004 Mihai Bazon and made available under the 
 Lesser General Public License (LGPL). 
 
-webEdition CMS uses the md5 Javascript function which isCopyright 
+webEdition CMS uses the md5 Javascript function which is Copyright 
 (c) 1999 - 2000by Paul Johnston. See http://pajhome.org.uk/site/legal.html
 for details.
 
