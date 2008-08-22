@@ -5,7 +5,13 @@
 *
 * Copyright (c) 1998,1999 SH Online Dienst GmbH
 *                    Boris Erdmann, Kristian Koehntopp
-*
+* License
+* PHPLIB consists of the files in this directory and all its subdirectories. 
+* It is made available as free software under the Lesser GNU General Public license, 
+* as spelled out in the http://www.gnu.org website. 
+* Also, it is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; 
+* without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+* See the license for more details.
 */
 
 class DB_Sql {
