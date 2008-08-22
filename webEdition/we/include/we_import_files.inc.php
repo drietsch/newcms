@@ -443,7 +443,7 @@ class we_import_files{
 
 		// JUpload part0
 
-		if(getPref('use_jupload')) {
+		if(getPref('use_jupload') && file_exists($_SERVER['DOCUMENT_ROOT'] . '/webEdition/jupload/jupload.jar')) {
 
 			include_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/jupload/weJUpload.class.php');
 
