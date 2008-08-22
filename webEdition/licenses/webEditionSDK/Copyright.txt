@@ -1,0 +1,29 @@
+webEdition SDK Copyright and Licensing
+--------------------------------------
+
+webEdition SDK is copyright (c) 2008 by Living-e AG, Karlsruhe, Germany.
+
+webEdition SDK is distributed under the LGPL 3 license, which can be found in the
+webEdition/licenses/webEditionSDK/License.txt file.
+
+The license covers all source files in the webEdition SDK distribution, with the
+exception of the following third party software parts, 
+which remain licensed under their respective licenses.
+
+Third party software
+--------------------
+
+webEdition SDK uses PHPUnit (http://www.phpunit.de) for unit testing. PHPUnit
+is Copyright (c)2002-2008 by Sebastian Bergmann and made available under a
+BSD-Style License. 
+
+webEdition SDK uses parts of the Yahoo! User Interface Library (YUI) by Yahoo! Inc. 
+YUI is Copyright (c) 2008 by Yahoo! Inc. and made available under the BSD  License.
+The full version including examples and documentation can be downloaded from its homepage.
+
+webEdition SDK uses parts of the Zend Framework (http://framework.zend.com).
+Zend Framework is Copyright (c) 2006, Zend Technologies USA, Inc. The
+Zend Framework License can be found in the webEdition/licenses/ZendFramework directory.
+The full version of Zend Framework, including full documentation can be found 
+on its homepage.
+
