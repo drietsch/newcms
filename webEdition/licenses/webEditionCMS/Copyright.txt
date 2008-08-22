@@ -1,0 +1,68 @@
+webEdition CMS Copyright and Licensing
+--------------------------------------
+
+webEdition CMS is copyright (c) 2000-2008 by Living-e AG, Karlsruhe, Germany.
+
+webEdition CMS is distributed under the GPL 3 license, which can be found in the
+webEdition/licenses/webEditionCMS/license.txt file.
+
+The license covers all source files in the webEdition CMS distribution, with the
+exception of the webEdition SDK and the following third party software parts, 
+which remain licensed under their respective licenses.
+
+webEdition SDK
+--------------
+
+All content which is stored in the directory webEdition/lib is copyright (c) 2008 by
+Living-e AG, Karlsruhe, Germany and is licensed under the LGPL 3. See the contents
+of the webEdition/licenses/webEditionSDK directory for more information.
+
+Third party software
+--------------------
+
+webEdition CMS uses the DejaVuSans font which is Copyright (c) by 
+Bitstream Vera Fonts Copyright and Arev Fonts Copyright and made available
+under a free License. See http://dejavu.sourceforge.net/wiki/index.php/License
+for details.
+
+webEdition CMS uses the DHTML Calendar Widget by Mihai Bazon. 
+The DHTML Calendar Widget (http://dynarch.com/mishoo/calendar.epl) 
+is Copyright (c) 2002-2004 Mihai Bazon and made available under the 
+Lesser General Public License (LGPL). 
+
+webEdition CMS uses the md5 Javascript function which isCopyright 
+(c) 1999 - 2000by Paul Johnston. See http://pajhome.org.uk/site/legal.html
+for details.
+
+webEdition CMS uses parts of PEAR, the PHP Extension and Application Repository
+(http://pear.php.net/). The used PEAR classes are available either under the 
+BSD License or the PHP License. See the notes at the top of the source 
+files for more information. The full version including examples
+and documentation can be downloaded from its homepage.
+
+webEdition CMS uses modified versions of PHPLIB's database abstraction classes for
+database access. PHPLIB (http://phplib.netuse.de) is Copyright (c) 1998,1999 
+SH Online Dienst GmbH and made available under the Lesser General Public 
+License (LGPL). 
+
+webEdition CMS uses PHPUnit (http://www.phpunit.de) for unit testing. PHPUnit
+is Copyright (c)2002-2008 by Sebastian Bergmann and made available under a
+BSD-Style License. 
+
+webEdition CMS uses the SMTP PHP class by Chris Ryan which is available under
+the Lesser General Public License (LGPL)
+
+webEdition CMS uses the webEdition SDK by Living-e (http://www.living-e.de). 
+The webEdition SDK is Copyright (c) 2008 by Living-e AG, Karlsruhe, Germany 
+and made available under the Lesser General Public License (LGPL)
+
+webEdition CMS uses parts of the Yahoo! User Interface Library (YUI) by Yahoo! Inc. 
+YUI is Copyright (c) 2008 by Yahoo! Inc. and made available under the BSD  License.
+The full version including examples and documentation can be downloaded from its homepage.
+
+webEdition CMS uses parts of the Zend Framework (http://framework.zend.com).
+Zend Framework is Copyright (c) 2006, Zend Technologies USA, Inc. The
+Zend Framework License can be found in the webEdition/licenses/ZendFramework directory.
+The full version of Zend Framework, including full documentation can be found 
+on its homepage.
+
