@@ -20,7 +20,7 @@ class we_ui_layout_TableTest extends PHPUnit_Framework_TestCase
 	 */
 	protected function setUp()
 	{
-		$this->we_ui_layout_Table = new we_ui_layout_Table(array('id'=>'tableId', 'border'=>1, 'cellPadding'=>2, 'cellSpacing'=>3));
+		$this->we_ui_layout_Table = new we_ui_layout_Table(array('id' => 'tableId', 'border' => 1, 'cellPadding' => 2, 'cellSpacing' => 3));
 		$this->we_ui_layout_Table->addHTML("1.1");
 		$this->we_ui_layout_Table->nextColumn();
 		$this->we_ui_layout_Table->addHTML("1.2");
@@ -32,10 +32,8 @@ class we_ui_layout_TableTest extends PHPUnit_Framework_TestCase
 		$this->we_ui_layout_Table->addHTML("2.2");
 		$this->we_ui_layout_Table->nextColumn();
 		$this->we_ui_layout_Table->addHTML("2.3");
-		
+	
 	}
-
-
 
 	/**
 	 * Tests we_ui_layout_Table->getBorder()
@@ -82,9 +80,8 @@ class we_ui_layout_TableTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testGetHTML()
 	{
-		print $this->we_ui_layout_Table->getHTML();
 		$this->assertEquals($this->we_ui_layout_Table->getHTML(), '<table border="1" cellpadding="2" cellspacing="3" id="tableId"><tr><td valign="top">1.1</td><td valign="top">1.2</td><td valign="top">1.3</td></tr><tr><td valign="top">2.1</td><td valign="top">2.2</td><td valign="top">2.3</td></tr></table>');
 	}
-	
+
 }
 
