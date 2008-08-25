@@ -2,12 +2,12 @@
 /**
  * webEdition configuration script
  * 
- * - check system requirements
- * - show configuration recommendations (webserver and PHP)
- * - show configuration form
- * - update database settings
- * - update language setting * 
- * 
+ * optional URL parameters:
+ * - debug		turn on debug messages
+ * - debugoff	turn off debug messages
+ * - phpinfo	show phpinfo() instead of the setup screen
+ * example:		http://yourdomain/setup.php?debug
+ * 				http://yourdomain/setup.php?phpinfo
  * (c) 2008 by Living-E AG
  * @author Alexander Lindenstruth
  * @version 0.1
@@ -530,13 +530,13 @@ function step_installation() {
 	global $errors;
 	$output = "<b>Installation of database tables:</b><br /><br />";
 	// read and parse database dump:
-	if(!is_readable("./dump.sql") && !is_readable("./sql_dumps/dump/complete.sql")) {
+	if(!is_readable("./database.sql") && !is_readable("./sql_dumps/dump/complete.sql")) {
 		$output .= tpl_error("Could not read database dump file.");
 		$errors = true;
 		return $output;
 	}
-	if(is_readable("./dump.sql")) {
-		$dbdata = file_get_contents("./dump.sql");
+	if(is_readable("./database.sql")) {
+		$dbdata = file_get_contents("./database.sql");
 	} else {
 		$dbdata = file_get_contents("./sql_dumps/dump/complete.sql");
 	}

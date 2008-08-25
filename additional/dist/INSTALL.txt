@@ -1,9 +1,11 @@
 INSTALLATION
 
-1. unzip the archive webEdition_{VERSION}.zip and upload it 
-   to your web server
+1. unzip the archive webEdition_{VERSION}.zip and upload its 
+   contents to your web server directly into the DOCUMENT_ROOT
 2. check all file permissions. The webserver has to have write 
-   access to the DOCUMENT ROOT and the webEdition directory
+   access to the DOCUMENT ROOT and the webEdition directory.
+   IMPORTANT: do not use a 0777 file mask on a shared hosting 
+   environment!!!
 3. start your favourite web browser (please check our browser 
    compatibility list on the website) and open the following url:
    http://YOURDOMAIN/setup.php
