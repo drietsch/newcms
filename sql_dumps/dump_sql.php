@@ -87,7 +87,7 @@ if(file_exists($outfile) && $_REQUEST["verified"] == "yes") {
 echo '<div class="list">';
 foreach($files as $entry) {
 	$tmpcontent = file_get_contents(BASEPATH."/".$entry);
-	if(!file_put_contents($outfile,$tmpcontent,FILE_APPEND)) {
+	if(!file_put_contents($outfile,$tmpcontent."\n/* query separator */\n",FILE_APPEND)) {
 		echo('<font class="error">'.$entry.'</font> FAILED.<br />');
 	} else {
 		echo(''.$entry.' written.<br />');
