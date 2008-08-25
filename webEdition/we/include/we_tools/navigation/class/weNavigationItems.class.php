@@ -640,7 +640,7 @@ if (defined('CUSTOMER_TABLE')) {
 
 		function initById($parentid=0, $depth=false, $showRoot=true) {
 			$this->items = array();
-			$this->rootItem = $parentid;
+			$this->rootItem = abs($parentid);
 
 			$_navigation = new weNavigation();
 
