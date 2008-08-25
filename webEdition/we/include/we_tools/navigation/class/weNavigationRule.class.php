@@ -34,7 +34,7 @@ extends weModelBase {
 	
 	function initByID($ruleId) {
 		
-		parent::load($ruleId);
+		parent::load(abs($ruleId));
 	}
 	
 	function getWeNavigationRule($navigationName, $navigationId, $selectionType, $folderId, $doctype, $classId, $categories, $workspaceId, $href='', $selfCurrent=true) {
