@@ -1,6 +1,6 @@
 <?php
 
-include_once('webEdition/lib/we/core/autoload.php');
+include_once ('webEdition/lib/we/core/autoload.php');
 
 require_once 'PHPUnit/Framework/TestCase.php';
 
@@ -37,7 +37,7 @@ class we_ui_controls_CheckboxTest extends PHPUnit_Framework_TestCase
 	 */
 	protected function tearDown()
 	{
-
+		
 		$this->we_ui_controls_Checkbox = null;
 		parent::tearDown();
 	}
@@ -47,14 +47,6 @@ class we_ui_controls_CheckboxTest extends PHPUnit_Framework_TestCase
 	 */
 	public function __construct()
 	{
-	}
-	
-	/**
-	 * Tests we_ui_controls_Checkbox->getHTML()
-	 */
-	public function testGetHTML()
-	{
-		$this->assertEquals($this->we_ui_controls_Checkbox->getHTML(),'<table id="table_id1" ><tr><td><input id="id1" name="check1" value="1" type="checkbox" title="This is the title!" checked="checked"/></td><td style="padding-top:2px;"><label class="we_ui_controls_Label" id="label_id1" for="id1" title="This is the title!">Label</label></td></tr></table>');
 	}
 
 	/**
