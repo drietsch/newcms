@@ -106,12 +106,20 @@ This webEdition setup script will guide you through the initial configuration st
 <b>Important:</b> Please remember to delete this script afterwards in order to prevent system damage by misuse!
 <br /><br />
 	';
+	// session and cookie test:
+	$sessionid = session_id();
+	if(!$sessionid) { 
+		$_SESSION["we_test"] = @session_id();
+		$_COOKIE["we_test"] = @session_id();
+	} else {
+		$_SESSION["we_test"] = "";
+		$_COOKIE["we_test"] = "";
+	}
 	return $output;
 }
 
 function step_requirements() {
 	global $errors;
-	echo "TO DO:<li>session test</li><li>cookie test</li>";
 	$output = "Checking if all system requirements are met. Some additional tests are performed as they are needed for webEdition to be fully functional but are not essential to run webEdition.<br /><br /><b>Basic Requirements:</b><ul style=\"list-style-position:outside;\">";
 	$errors = false;
 	if(PHP_VERSION < "5.1") {
@@ -154,6 +162,18 @@ function step_requirements() {
 	$output .= "</ul>";
 	if($errors === true) {
 		$output .= tpl_errorbox("Some of the essential system requirements are not met. Please check the informations given above and update yor system!<br /><a href=\"?phpinfo\" target=\"_blank\">Click here</a> to check your system's PHP configuration.");
+	}
+	// session and cookie test:
+	$output .= "</ul><b>Session / cookie test:</b><ul style=\"list-style-position:outside;\">";
+	if(isset($_SESSION["we_test"]) && $_SESSION["we_test"] == @session_id()) {
+		$output.=tpl_error("Session test failed. Maybe restarting your browser may help.");
+	} else {
+		$output.=tpl_ok("Session test");
+	}
+	if(isset($_COOKIE["we_test"]) && $_COOKIE["we_test"] == @session_id()) {
+		$output.=tpl_error("Cookie test failed. Maybe cookies are disabled in your browser.");
+	} else {
+		$output.=tpl_ok("Cookie test");
 	}
 	return $output;
 }
@@ -592,8 +612,7 @@ function step_installation() {
 	} else {
 		$we_config = file_get_contents('./webEdition/we/include/conf/we_conf.inc.php');
 		//$we_config = str_replace('define("WE_LANGUAGE","English_UTF-8");','define("WE_LANGUAGE","'.$_SESSION["we_language"].'");',$we_config);
-		//$we_config = preg_replace('/(define\("WE_LANGUAGE",")(\w*)("\);)/i','$1'.$_SESSION["we_language"].'$3',$we_config);
-		//$output .= tpl_ok("Changed the system's default language to ".$_SESSION["we_language"]);
+		//$we_config = preg_replace('/(define\("WE_LANGUAGE",")(\s*)+("\);)/i','$1'.$_SESSION["we_language"].'$3',$we_config);
 		str_replace('define("TBL_PREFIX","");','define("TBL_PREFIX","'.$_SESSION["db_tableprefix"].'"',$we_config);
 		if(strstr($_SESSION["we_language"],"UTF-8")) {
 			$we_config = preg_replace('/(define\("DB_CHARSET",")(\w*)("\);)/i','$1UTF-8$3',$we_config);
@@ -603,6 +622,8 @@ function step_installation() {
 		$we_config = preg_replace('/(define\("DB_USER",")(\w*)("\);)/i','$1'.$_SESSION["db_username"].'$3',$we_config);
 		$we_config = preg_replace('/(define\("DB_PASSWORD",")(\w*)("\);)/i','$1'.$_SESSION["db_password"].'$3',$we_config);
 		$we_config = preg_replace('/(define\("TBL_PREFIX",")(\w*)("\);)/i','$1'.$_SESSION["db_tableprefix"].'$3',$we_config);
+		$we_config = preg_replace('/(define\("WE_LANGUAGE",")(\w*)(\055?)(\w*)("\);)/i','$1'.$_SESSION["we_language"].'$5',$we_config);
+		$output .= tpl_ok("Changed the system's default language to ".$_SESSION["we_language"]);
 		$output .= tpl_ok("Saved database configuration.");
 		if(!file_put_contents('./webEdition/we/include/conf/we_conf.inc.php',$we_config)) {
 			$output .= tpl_error("Could not write webEdition configuration file.");
@@ -618,6 +639,7 @@ function step_installation() {
 		define("DB_PASSWORD","root");
 		define("TBL_PREFIX","");
 		define("DB_CHARSET","");
+		define("WE_LANGUAGE","English_UTF-8");
 		*/ 
 	}
 	
