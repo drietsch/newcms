@@ -1,6 +1,6 @@
 <?php
 
-include_once('webEdition/lib/we/core/autoload.php');
+include_once ('webEdition/lib/we/core/autoload.php');
 
 require_once 'PHPUnit/Framework/TestCase.php';
 
@@ -23,7 +23,14 @@ class we_ui_controls_ACFileSelectorTest extends PHPUnit_Framework_TestCase
 		parent::setUp();
 		$this->we_ui_controls_ACFileSelector = new we_ui_controls_ACFileSelector();
 		$this->we_ui_controls_ACFileSelector->setId('test_id');
-	
+		$this->we_ui_controls_ACFileSelector->setContentType('image/*');
+		$this->we_ui_controls_ACFileSelector->setFolderIdName('idname');
+		$this->we_ui_controls_ACFileSelector->setFolderIdValue('idvalue');
+		$this->we_ui_controls_ACFileSelector->setFolderPathName('pathname');
+		$this->we_ui_controls_ACFileSelector->setFolderPathValue('pathvalue');
+		$this->we_ui_controls_ACFileSelector->setTable('tblfile');
+		$this->we_ui_controls_ACFileSelector->setSelector('docSelector');
+		
 	}
 
 	/**
@@ -43,26 +50,11 @@ class we_ui_controls_ACFileSelectorTest extends PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * Tests we_ui_controls_ACFileSelector->getButton()
-	 */
-	public function testGetButton()
-	{
-		// TODO Auto-generated we_ui_controls_ACFileSelectorTest->testGetButton()
-		$this->markTestIncomplete("getButton test not implemented");
-		
-		$this->we_ui_controls_ACFileSelector->getButton(/* parameters */);
-	
-	}
-
-	/**
 	 * Tests we_ui_controls_ACFileSelector->getContentType()
 	 */
 	public function testGetContentType()
 	{
-		// TODO Auto-generated we_ui_controls_ACFileSelectorTest->testGetContentType()
-		$this->markTestIncomplete("getContentType test not implemented");
-		
-		$this->we_ui_controls_ACFileSelector->getContentType(/* parameters */);
+		$this->assertEquals($this->we_ui_controls_ACFileSelector->getContentType(), 'image/*');
 	
 	}
 
@@ -71,10 +63,7 @@ class we_ui_controls_ACFileSelectorTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testGetFolderIdName()
 	{
-		// TODO Auto-generated we_ui_controls_ACFileSelectorTest->testGetFolderIdName()
-		$this->markTestIncomplete("getFolderIdName test not implemented");
-		
-		$this->we_ui_controls_ACFileSelector->getFolderIdName(/* parameters */);
+		$this->assertEquals($this->we_ui_controls_ACFileSelector->getFolderIdName(), 'idname');
 	
 	}
 
@@ -83,10 +72,7 @@ class we_ui_controls_ACFileSelectorTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testGetFolderIdValue()
 	{
-		// TODO Auto-generated we_ui_controls_ACFileSelectorTest->testGetFolderIdValue()
-		$this->markTestIncomplete("getFolderIdValue test not implemented");
-		
-		$this->we_ui_controls_ACFileSelector->getFolderIdValue(/* parameters */);
+		$this->assertEquals($this->we_ui_controls_ACFileSelector->getFolderIdValue(), 'idvalue');
 	
 	}
 
@@ -95,10 +81,7 @@ class we_ui_controls_ACFileSelectorTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testGetFolderPathName()
 	{
-		// TODO Auto-generated we_ui_controls_ACFileSelectorTest->testGetFolderPathName()
-		$this->markTestIncomplete("getFolderPathName test not implemented");
-		
-		$this->we_ui_controls_ACFileSelector->getFolderPathName(/* parameters */);
+		$this->assertEquals($this->we_ui_controls_ACFileSelector->getFolderPathName(), 'pathname');
 	
 	}
 
@@ -107,22 +90,7 @@ class we_ui_controls_ACFileSelectorTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testGetFolderPathValue()
 	{
-		// TODO Auto-generated we_ui_controls_ACFileSelectorTest->testGetFolderPathValue()
-		$this->markTestIncomplete("getFolderPathValue test not implemented");
-		
-		$this->we_ui_controls_ACFileSelector->getFolderPathValue(/* parameters */);
-	
-	}
-
-	/**
-	 * Tests we_ui_controls_ACFileSelector->getInputField()
-	 */
-	public function testGetInputField()
-	{
-		// TODO Auto-generated we_ui_controls_ACFileSelectorTest->testGetInputField()
-		$this->markTestIncomplete("getInputField test not implemented");
-		
-		$this->we_ui_controls_ACFileSelector->getInputField(/* parameters */);
+		$this->assertEquals($this->we_ui_controls_ACFileSelector->getFolderPathValue(), 'pathvalue');
 	
 	}
 
@@ -131,10 +99,7 @@ class we_ui_controls_ACFileSelectorTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testGetSelector()
 	{
-		// TODO Auto-generated we_ui_controls_ACFileSelectorTest->testGetSelector()
-		$this->markTestIncomplete("getSelector test not implemented");
-		
-		$this->we_ui_controls_ACFileSelector->getSelector(/* parameters */);
+		$this->assertEquals($this->we_ui_controls_ACFileSelector->getSelector(), 'docSelector');
 	
 	}
 
@@ -143,22 +108,7 @@ class we_ui_controls_ACFileSelectorTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testGetTable()
 	{
-		// TODO Auto-generated we_ui_controls_ACFileSelectorTest->testGetTable()
-		$this->markTestIncomplete("getTable test not implemented");
-		
-		$this->we_ui_controls_ACFileSelector->getTable(/* parameters */);
-	
-	}
-
-	/**
-	 * Tests we_ui_controls_ACFileSelector->_renderHTML()
-	 */
-	public function test_renderHTML()
-	{
-		// TODO Auto-generated we_ui_controls_ACFileSelectorTest->test_renderHTML()
-		$this->markTestIncomplete("_renderHTML test not implemented");
-		
-		$this->we_ui_controls_ACFileSelector->_renderHTML(/* parameters */);
+		$this->assertEquals($this->we_ui_controls_ACFileSelector->getTable(), 'tblfile');
 	
 	}
 
