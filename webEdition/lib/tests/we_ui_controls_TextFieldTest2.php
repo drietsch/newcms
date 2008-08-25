@@ -54,7 +54,7 @@ class we_ui_controls_TextFieldTest2 extends PHPUnit_Framework_TestCase
 	 */
 	public function testGetHTML()
 	{
-		$this->assertEquals($this->we_ui_controls_TextField->getHTML(), '<input id="testID" name="testName" value="testValue" maxlength="30" type="text" style="width:96px;height:17px;" class="we_ui_controls_TextInput" onFocus="this.className=&quot;we_ui_controls_TextInput_Selected&quot;;" onBlur="this.className=&quot;we_ui_controls_TextInput&quot;;"/>');
+		$this->assertEquals($this->we_ui_controls_TextField->getHTML(), '<input id="testID" name="testName" value="testValue" maxlength="30" type="text" style="width:96px;height:17px;" class="we_ui_controls_TextInput" onFocus="YAHOO.util.Dom.addClass(this, &quot;we_ui_controls_TextInput_Selected&quot;);" onBlur="YAHOO.util.Dom.removeClass(this, &quot;we_ui_controls_TextInput_Selected&quot;);"/>');
 	}
 
 	/**
