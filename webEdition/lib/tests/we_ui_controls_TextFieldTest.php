@@ -65,7 +65,7 @@ class we_ui_controls_TextFieldTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testGetHTML()
 	{
-		$this->assertEquals($this->we_ui_controls_TextField->getHTML(), '<input id="testID" name="testName" value="testValue" maxlength="30" size="45" type="testType" onChange="testOnChange" disabled="disabled" readonly="readonly" style="width:96px;height:15px;testStyle;" class="we_ui_controls_TextInput testClass" onFocus="this.className=&quot;we_ui_controls_TextInput_Selected testClass&quot;;testOnFocus" onBlur="this.className=&quot;we_ui_controls_TextInput testClass&quot;;testOnBlur"/>');
+		$this->assertEquals($this->we_ui_controls_TextField->getHTML(), '<input id="testID" name="testName" value="testValue" maxlength="30" size="45" type="testType" onChange="testOnChange" disabled="disabled" readonly="readonly" style="width:96px;height:15px;testStyle;" class="we_ui_controls_TextInput testClass" onFocus="YAHOO.util.Dom.addClass(this, &quot;we_ui_controls_TextInput_Selected&quot;);testOnFocus" onBlur="YAHOO.util.Dom.removeClass(this, &quot;we_ui_controls_TextInput_Selected&quot;);testOnBlur"/>');
 	}
 
 	/**
