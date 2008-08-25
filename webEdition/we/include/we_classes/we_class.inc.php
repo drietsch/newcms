@@ -390,7 +390,7 @@ class we_class
 	    if ($Table == "") {
 	        $Table = FILE_TABLE;
 	    }
-		$this->ID=$ID;
+		$this->ID=abs($ID);
 		$this->Table=$Table;
 		$this->we_load($from);
 		$GLOBALS["we_ID"] = $ID;  // look if we need this !!
@@ -468,7 +468,7 @@ class we_class
 	}
 
 	function i_getPersistentSlotsFromDB($felder="*"){
-		$this->DB_WE->query("SELECT ".$felder." FROM ".$this->Table." WHERE ID='".$this->ID."'");
+		$this->DB_WE->query("SELECT ".$felder." FROM ".$this->Table." WHERE ID='".abs($this->ID)."'");
 		if($this->DB_WE->next_record()){
 			foreach($this->DB_WE->Record as $k=>$v){
 				if($k && in_array($k,$this->persistent_slots)){
