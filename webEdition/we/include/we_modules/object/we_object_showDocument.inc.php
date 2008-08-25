@@ -123,7 +123,7 @@ if(  ($_userID != 0 && $_userID != $_SESSION["user"]["ID"]) || (isset($_REQUEST[
 	$tid = isset($_REQUEST["we_cmd"][2]) ? $_REQUEST["we_cmd"][2] : (isset($we_objectTID) ? $we_objectTID : "");
 
 	$GLOBALS["we_obj"] = new we_objectFile();
-	$GLOBALS["we_obj"]->initByID($_REQUEST["we_objectID"],OBJECT_FILES_TABLE);
+	$GLOBALS["we_obj"]->initByID(abs($_REQUEST["we_objectID"]),OBJECT_FILES_TABLE);
 
 	if(!$GLOBALS["we_obj"]->Published){
 
