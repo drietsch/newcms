@@ -5,6 +5,8 @@
  */
 include_once (dirname(dirname(__FILE__)) . '/../../we/core/autoload.php');
 
+we_core_Permissions::protect();
+
 /**
  * get json output
  */
