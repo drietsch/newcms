@@ -129,7 +129,7 @@ class we_ui_controls_ACSuggest
 	 *
 	 * @var string
 	 */
-	function &getInstance()
+	public function &getInstance()
 	{
 		if (!isset($GLOBALS['__weSuggest__'])) {
 			$GLOBALS['__weSuggest__'] = new we_ui_controls_ACSuggest();
@@ -1027,6 +1027,7 @@ function doDebugResizeH(){
 		
 		$table = new we_ui_layout_Table();
 		$table->addHTML($resultField . $autoSuggest, 0, 0);
+		$table->setId('table_'.$inputId);
 		$table->nextColumn();
 		$table->addHTML(we_ui_layout_Image::getPixel($selectButtonSpace, 4), 1, 0);
 		$table->nextColumn();
