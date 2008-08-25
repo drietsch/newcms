@@ -89,7 +89,7 @@ class we_ui_controls_SelectTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testGetHTML()
 	{
-		$this->assertEquals($this->we_ui_controls_Select->getHTML(),'<select class="we_ui_controls_Select" id="id1" size="5" name="check1" onChange="alert(&quot;hello world&quot;);" multiple="multiple"><option val="1" selected="selected">Option 1</option><option val="2" >Option 2</option><option val="3" >Option 3</option><option val="4" >Option 4</option><option val="5" >Option 5</option><option val="6" >Option 6</option><optgroup label=""></optgroup></select>');
+		$this->assertEquals($this->we_ui_controls_Select->getHTML(),'<select class="we_ui_controls_Select" id="id1" size="5" name="check1" onChange="alert(&quot;hello world&quot;);" multiple="multiple"><option value="1" selected="selected">Option 1</option><option value="2" >Option 2</option><option value="3" >Option 3</option><option value="4" >Option 4</option><option value="5" >Option 5</option><option value="6" >Option 6</option><optgroup label=""></optgroup></select>');
 	}
 
 	/**
@@ -168,7 +168,7 @@ class we_ui_controls_SelectTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testGetOptionsHTML()
 	{
-		$this->assertEquals($this->we_ui_controls_Select->getOptionsHTML(), '<option val="1" selected="selected">Option 1</option><option val="2" >Option 2</option><option val="3" >Option 3</option><option val="4" >Option 4</option><option val="5" >Option 5</option><option val="6" >Option 6</option><optgroup label=""></optgroup>');
+		$this->assertEquals($this->we_ui_controls_Select->getOptionsHTML(), '<option value="1" selected="selected">Option 1</option><option value="2" >Option 2</option><option value="3" >Option 3</option><option value="4" >Option 4</option><option value="5" >Option 5</option><option value="6" >Option 6</option><optgroup label=""></optgroup>');
 	}
 
 	/**
