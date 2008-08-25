@@ -54,41 +54,11 @@ class we_ui_layout_HTMLPageTest extends PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * Tests we_ui_layout_HTMLPage->getHTML()
-	 */
-	public function testGetHTML()
-	{
-		$this->assertEquals($this->we_ui_layout_HTMLPage->getHTML(), '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="de">
-<head>
-	<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
-	<title>My Title</title>
-	<link rel="stylesheet" type="text/css" href="/webEdition/lib/we/ui/themes/we_ui_layout_HTMLPage/style.css" media="all" />
-	<link rel="stylesheet" type="text/css" href="/webEdition/lib/we/ui/themes/we_ui_controls_TextField/style.css" media="all" />
-	<style>
-a {border: 1px solid black;}
-	</style>
-	<script type="text/javascript" language="JavaScript" src="/webEdition/lib/we/ui/controls/TextField.js"></script>
-	<script type="text/javascript" language="JavaScript">
-var a=0;
-	</script>
-</head>
-<body onload="var b=999;" onunload="var b=998;">
-<input id="testid" name="test" type="text" class="we_ui_controls_TextInput" onFocus="this.className=&quot;we_ui_controls_TextInput_Selected&quot;;" onBlur="this.className=&quot;we_ui_controls_TextInput&quot;;"/><pre>TEST</pre>
-</body>
-</html>
-');
-	}
-
-	/**
 	 * Tests we_ui_layout_HTMLPage->getBodyAttributes()
 	 */
 	public function testGetBodyAttributes()
 	{
-		// TODO Auto-generated we_ui_layout_HTMLPageTest->testGetBodyAttributes()
-		$this->markTestIncomplete("getBodyAttributes test not implemented");
-		
-		$this->we_ui_layout_HTMLPage->getBodyAttributes(/* parameters */);
+		$this->assertEquals($this->we_ui_layout_HTMLPage->getBodyAttributes(), array('onload' => 'var b=999;', 'onunload' => 'var b=998;'));
 	
 	}
 
@@ -97,10 +67,7 @@ var a=0;
 	 */
 	public function testGetBodyHTML()
 	{
-		// TODO Auto-generated we_ui_layout_HTMLPageTest->testGetBodyHTML()
-		$this->markTestIncomplete("getBodyHTML test not implemented");
-		
-		$this->we_ui_layout_HTMLPage->getBodyHTML(/* parameters */);
+		$this->assertEquals($this->we_ui_layout_HTMLPage->getBodyHTML(), '<input id="testid" name="test" type="text" style="height:17px;" class="we_ui_controls_TextInput" onFocus="YAHOO.util.Dom.addClass(this, &quot;we_ui_controls_TextInput_Selected&quot;);" onBlur="YAHOO.util.Dom.removeClass(this, &quot;we_ui_controls_TextInput_Selected&quot;);"/><pre>TEST</pre><input id="testid" name="test" type="text" style="height:17px;" class="we_ui_controls_TextInput" onFocus="YAHOO.util.Dom.addClass(this, &quot;we_ui_controls_TextInput_Selected&quot;);" onBlur="YAHOO.util.Dom.removeClass(this, &quot;we_ui_controls_TextInput_Selected&quot;);"/><pre>TEST</pre>');
 	
 	}
 
@@ -109,10 +76,7 @@ var a=0;
 	 */
 	public function testGetCharset()
 	{
-		// TODO Auto-generated we_ui_layout_HTMLPageTest->testGetCharset()
-		$this->markTestIncomplete("getCharset test not implemented");
-		
-		$this->we_ui_layout_HTMLPage->getCharset(/* parameters */);
+		$this->assertEquals($this->we_ui_layout_HTMLPage->getCharset(), 'ISO-8859-1');
 	
 	}
 
@@ -121,12 +85,8 @@ var a=0;
 	 */
 	public function testGetDoctype()
 	{
-		// TODO Auto-generated we_ui_layout_HTMLPageTest->testGetDoctype()
-		$this->markTestIncomplete("getDoctype test not implemented");
-		
-		$this->we_ui_layout_HTMLPage->getDoctype(/* parameters */);
+		$this->assertEquals($this->we_ui_layout_HTMLPage->getDoctype(), '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">');
 	
 	}
 
 }
-
