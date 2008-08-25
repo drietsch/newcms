@@ -57,7 +57,7 @@ class we_ui_layout_FormTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testHidden()
 	{
-		$this->assertEquals(we_ui_layout_Form::hidden('test<Name', 'testValue'), '<input type="hidden" name="test&lt;Name" value="testValue" />');	
+		$this->assertEquals(we_ui_layout_Form::hidden('test<Name', 'testValue'), '<input type="hidden" name="test&lt;Name" value="testValue"  />');	
 	}
 
 	/**
@@ -65,7 +65,7 @@ class we_ui_layout_FormTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testGetHTML()
 	{
-		$this->assertEquals($this->we_ui_layout_Form->getHTML(), '<form id="testID" method="post" onSubmit="var a=1;" action="testAction"><input id="textFieldId" name="test" value="default" type="text" style="width:100px;" class="we_ui_controls_TextInput" onFocus="this.className=&quot;we_ui_controls_TextInput_Selected&quot;;" onBlur="this.className=&quot;we_ui_controls_TextInput&quot;;"/></form>');
+		$this->assertEquals($this->we_ui_layout_Form->getHTML(), '<form id="testID" method="post" onSubmit="var a=1;" action="testAction"><input id="textFieldId" name="test" value="default" type="text" style="width:96px;height:17px;" class="we_ui_controls_TextInput" onFocus="YAHOO.util.Dom.addClass(this, &quot;we_ui_controls_TextInput_Selected&quot;);" onBlur="YAHOO.util.Dom.removeClass(this, &quot;we_ui_controls_TextInput_Selected&quot;);"/></form>');
 	}
 }
 
