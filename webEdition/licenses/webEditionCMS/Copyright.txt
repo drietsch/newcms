@@ -27,11 +27,11 @@ for details.
 
 webEdition CMS uses the DHTML Calendar Widget by Mihai Bazon. 
 The DHTML Calendar Widget (http://dynarch.com/mishoo/calendar.epl) 
-is Copyright (c) 2002-2004 Mihai Bazon and made available under the 
+is Copyright (c) 2002-2004 by Mihai Bazon and made available under the 
 Lesser General Public License (LGPL). 
 
 webEdition CMS uses the md5 Javascript function which is Copyright 
-(c) 1999 - 2000by Paul Johnston. See http://pajhome.org.uk/site/legal.html
+(c) 1999 - 2000 by Paul Johnston. See http://pajhome.org.uk/site/legal.html
 for details.
 
 webEdition CMS uses parts of PEAR, the PHP Extension and Application Repository
@@ -41,12 +41,12 @@ files for more information. The full version including examples
 and documentation can be downloaded from its homepage.
 
 webEdition CMS uses modified versions of PHPLIB's database abstraction classes for
-database access. PHPLIB (http://phplib.netuse.de) is Copyright (c) 1998,1999 
+database access. PHPLIB (http://phplib.netuse.de) is Copyright (c) 1998,1999 by
 SH Online Dienst GmbH and made available under the Lesser General Public 
 License (LGPL). 
 
 webEdition CMS uses PHPUnit (http://www.phpunit.de) for unit testing. PHPUnit
-is Copyright (c)2002-2008 by Sebastian Bergmann and made available under a
+is Copyright (c) 2002-2008 by Sebastian Bergmann and made available under a
 BSD-Style License. 
 
 webEdition CMS uses the SMTP PHP class by Chris Ryan which is available under
@@ -61,7 +61,7 @@ YUI is Copyright (c) 2008 by Yahoo! Inc. and made available under the BSD  Licen
 The full version including examples and documentation can be downloaded from its homepage.
 
 webEdition CMS uses parts of the Zend Framework (http://framework.zend.com).
-Zend Framework is Copyright (c) 2006, Zend Technologies USA, Inc. The
+Zend Framework is Copyright (c) 2006 by Zend Technologies USA, Inc. The
 Zend Framework License can be found in the webEdition/licenses/ZendFramework directory.
 The full version of Zend Framework, including full documentation can be found 
 on its homepage.
