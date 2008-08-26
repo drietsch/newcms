@@ -1529,6 +1529,8 @@ class weVersions {
 		eval('global '.$glob.';');
 
 		//$GLOBALS["we_doc"] = $we_doc;
+		
+		$isdyn = !isset($GLOBALS["WE_IS_DYN"]) ? 'notSet' : $GLOBALS["WE_IS_DYN"];
 
 		if($includepath!='' && file_exists($includepath)) {
 			ob_start();
@@ -1552,6 +1554,15 @@ class weVersions {
 
 		$GLOBALS["we_doc"] = $docBackup;
 		$_REQUEST = $requestBackup;
+		
+		if($isdyn=='notSet') {
+			if(isset($GLOBALS["WE_IS_DYN"])) {
+				unset($GLOBALS["WE_IS_DYN"]);
+			}
+		}
+		else {
+			$GLOBALS["WE_IS_DYN"] = $isdyn;
+		}
 
 		return $contents;
 	}
