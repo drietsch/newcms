@@ -1007,7 +1007,8 @@ class weVersions {
 		
 		if($prefTime!=0) {
 			$deletetime = time() - $prefTime;
-			$where = " timestamp < ".$deletetime;
+			//initial version always stays
+			$where = " timestamp < ".$deletetime." AND CreationDate!=timestamp ";
 			$this->deleteVersion("", $where);
 		}
 		
