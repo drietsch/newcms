@@ -1199,24 +1199,44 @@ class we_root extends we_class
 		}
 	}
 
+	/**
+	 * Gets the navigation folders for the current document
+	 *
+	 * @return Array
+	 */
 	function getNavigationFoldersForDoc() {
 		if($this->Table==FILE_TABLE) {
 			if(isset($this->DocType)) {
-				return array_merge(
-					getHash('SELECT ParentID FROM '.NAVIGATION_TABLE.' WHERE ((Selection="dynamic") AND (DocTypeID="'.$this->DocType.'" OR FolderID="'.$this->ParentID.'"));',$this->DB_WE),
-					getHash('SELECT ParentID FROM '.NAVIGATION_TABLE.' WHERE ((Selection="static" AND SelectionType="docLink") OR (IsFolder=1 AND FolderSelection="docLink")) AND LinkID="'.$this->ID.'";',$this->DB_WE)
-				);
+				$where = '((Selection="dynamic") AND (DocTypeID="'.$this->DocType.'" OR FolderID="'.$this->ParentID.'")) OR ';
+				$where .= '(((Selection="static" AND SelectionType="docLink") OR (IsFolder=1 AND FolderSelection="docLink")) AND LinkID="'.$this->ID.'");';
+				$query = 'SELECT ParentID FROM '.NAVIGATION_TABLE.' WHERE '.$where;
+				$this->DB_WE->query($query);
+				$return = array();
+				while ($this->DB_WE->next_record()) {
+					array_push($return,$this->DB_WE->f('ParentID'));
+				}			
+				return $return;
 			} else {
-				return getHash('SELECT ParentID FROM '.NAVIGATION_TABLE.' WHERE ((Selection="static" AND SelectionType="docLink") OR (IsFolder=1 AND FolderSelection="docLink")) AND LinkID="'.$this->ID.'";',$this->DB_WE);
+				$query('SELECT ParentID FROM '.NAVIGATION_TABLE.' WHERE ((Selection="static" AND SelectionType="docLink") OR (IsFolder=1 AND FolderSelection="docLink")) AND LinkID="'.$this->ID.'";',$this->DB_WE);
+				$this->DB_WE->query($query);
+				$return = array();
+				while ($this->DB_WE->next_record()) {
+					array_push($return,$this->DB_WE->f('ParentID'));
+				}			
+				return $return;
 			}
 		}
 		return array();
 	}
-
+	
 	function insertAtIndex(){
 
 	}
 
+	/**
+	 * Rewrites the navigation cache files
+	 *
+	 */
 	function rewriteNavigation() {
 		// rewrite filter
 		if (defined('CUSTOMER_TABLE') && isset($this->documentCustomerFilter) && $this->documentCustomerFilter != false) {
@@ -1225,10 +1245,8 @@ class we_root extends we_class
 		}
 
 		include_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_tools/navigation/class/weNavigationCache.class.php');
-		$_folders = array();
 		$_folders = $this->getNavigationFoldersForDoc();
-		$_folders = array_values(array_unique($_folders));
-
+		$_folders = array_unique($_folders);
 		foreach ($_folders as $_f) {
 			weNavigationCache::cacheNavigationTree($_f);
 		}
