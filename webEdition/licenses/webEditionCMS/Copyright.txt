@@ -25,6 +25,10 @@ Bitstream Vera Fonts Copyright and Arev Fonts Copyright and made available
 under a free License. See http://dejavu.sourceforge.net/wiki/index.php/License
 for details.
 
+webEdition CMS uses parts of the DynAPI Javascript library by Dan Steinman. 
+The DynAPI Javascript library is Copyright (c) 1999 by Dan Steinman and made 
+available under the Lesser General Public License (LGPL). 
+
 webEdition CMS uses the DHTML Calendar Widget by Mihai Bazon. 
 The DHTML Calendar Widget (http://dynarch.com/mishoo/calendar.epl) 
 is Copyright (c) 2002-2004 by Mihai Bazon and made available under the 
