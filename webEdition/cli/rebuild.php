@@ -1,11 +1,20 @@
 <?php
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   we
+ * @package    we_cli
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
+
 /*
-* The script makes a rebuild like in the rebuild dialog of webEdition
-* webEdition must be installed
-*
-* @autor Holger Meyer
-* @version 1.0
-*/
+ * The script makes a rebuild like in the rebuild dialog of webEdition
+ * webEdition must be installed
+ */
 
 include_once("cliConfig.php");
 

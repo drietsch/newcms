@@ -1,11 +1,20 @@
 <?php
-/*
-* The script exports webEdition backup file to the given file
-* webEdition must be installed
-*
-* @autor Slavko Tomcic, Holger Meyer
-* @version 1.2
-*/
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   we
+ * @package    we_cli
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
+
+/**
+ * The script exports webEdition backup file to the given file
+ * webEdition must be installed
+ */
 
 
 include_once("cliConfig.php");
@@ -116,7 +125,7 @@ $_REQUEST['handle_export'] = true;
 $_REQUEST['handle_voting'] = true;
 
 /**
- * export extern fiöes
+ * export extern fiï¿½es
  */
 $_REQUEST['handle_extern'] = false;
 
