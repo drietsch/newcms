@@ -1,4 +1,16 @@
 <?php
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   we
+ * @package    we_rpc
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
+
 class rpcCopyNavigationFolderCmd extends rpcCmd {
 	
 	function execute() {
@@ -12,7 +24,7 @@ class rpcCopyNavigationFolderCmd extends rpcCmd {
 			include_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_tools/navigation/class/weNavigation.class.php');
 			
 			$db = new DB_WE();
-			$query = "SELECT * FROM " . NAVIGATION_TABLE . " WHERE Path LIKE '".$_REQUEST['we_cmd'][2]."/%' ORDER BY Path";
+			$query = "SELECT * FROM " . NAVIGATION_TABLE . " WHERE Path LIKE '".addslashes($_REQUEST['we_cmd'][2])."/%' ORDER BY Path";
 			$db->query($query);
 			$result = $db->getAll();
 			$querySet = "";

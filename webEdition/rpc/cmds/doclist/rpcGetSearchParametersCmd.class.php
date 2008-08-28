@@ -1,19 +1,17 @@
 <?php
 
-// +---------------------------------------------------------+
-// | webEdition
-// +---------------------------------------------------------+
-// | PHP version 4.1 or greater
-// +---------------------------------------------------------+
-// | Copyright (c) 2000 - 2008 living-e AG  
-// +---------------------------------------------------------+
-
 /**
- * @abstract generate paging fields for doclist 
- * @author Thomas Kneip
- * @copyright Copyright (c) 2000 - 2007, living-e AG
- * @since 5.1.0.0 - 14.10.2007
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   we
+ * @package    we_rpc
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
  */
+
 
 class rpcGetSearchParametersCmd extends rpcCmd {
 	
