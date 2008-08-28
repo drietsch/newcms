@@ -1,17 +1,15 @@
 <?php
-
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or higher                                        |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2005 living-e AG                   |
-// +----------------------------------------------------------------------+
-// +----------------------------------------------------------------------+
-// | shopModule by Jan Gorba                   |
-// +----------------------------------------------------------------------+
-//
-// $Id: module_menu_shop.inc.php,v 1.18 2007/05/25 09:16:49 holger.meyer Exp $
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   we
+ * @package    we_javamenu
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
 
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/" . $GLOBALS["WE_LANGUAGE"] . "/modules/javaMenu/javaMenu_shop.inc.php");
