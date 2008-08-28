@@ -1,21 +1,33 @@
 <?php
 
-	header("Content-type: text/css");
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   we
+ * @package    we_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
+	
+header("Content-type: text/css");
 
 
-	if(eregi("X11",$_SERVER["HTTP_USER_AGENT"])) {
+if(eregi("X11",$_SERVER["HTTP_USER_AGENT"])) {
 
-		$System = "X11";
-	} else if(eregi("Win",$_SERVER["HTTP_USER_AGENT"])) {
-		$System = "WIN";
+	$System = "X11";
+} else if(eregi("Win",$_SERVER["HTTP_USER_AGENT"])) {
+	$System = "WIN";
 
-	} else if(eregi("Mac",$_SERVER["HTTP_USER_AGENT"])) {
-		$System = "MAC";
+} else if(eregi("Mac",$_SERVER["HTTP_USER_AGENT"])) {
+	$System = "MAC";
 
-	} else {
-		$System = "UNKNOWN";
+} else {
+	$System = "UNKNOWN";
 
-	}
+}
 
 ?>
 body {
