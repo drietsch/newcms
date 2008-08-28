@@ -1,12 +1,15 @@
 <?php
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2007 living-e AG                                |
-// +----------------------------------------------------------------------+
-//
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   we
+ * @package    we_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
 if(!isset($_REQUEST["we_cmd"])){
 	exit();
@@ -138,10 +141,10 @@ if(!$INCLUDE){
         case "open_url_in_editor": // Beim ungewollten Verlassen (Klick auf Link im Bearbeitenmodus) des Editors wird die Location auf diese Seite weitergeleitet. Hier wird dann ein Kommando gebildet
         	$INCLUDE = "/we_classes/SEEM/open_url_in_editor.php";
         	break;
-		case "open_form_in_editor": // Formular wird an dieses Skript umgeleitet, hier wird ein Kommando daraus gebaut, um das Dokument korrekt zu öffnen
+		case "open_form_in_editor": // Formular wird an dieses Skript umgeleitet, hier wird ein Kommando daraus gebaut, um das Dokument korrekt zu ï¿½ffnen
         	$INCLUDE = "/we_classes/SEEM/open_form_in_editor.php";
         	break;
-        case "open_extern_document"; // wird benötigt um ein externes Dokument aufzurufen
+        case "open_extern_document"; // wird benï¿½tigt um ein externes Dokument aufzurufen
 		    $INCLUDE = "/we_classes/SEEM/we_SEEM_openExtDoc_frameset.php";
 		    break;
         case "edit_document_with_parameters":
