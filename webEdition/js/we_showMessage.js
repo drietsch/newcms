@@ -1,3 +1,15 @@
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   we
+ * @package    we_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
+
 // this function is universal function for all messages in webEdition
 /* 
 if you make changes here, make also in: 
