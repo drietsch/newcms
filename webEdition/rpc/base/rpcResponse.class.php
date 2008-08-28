@@ -1,17 +1,17 @@
 <?php
 
-// +---------------------------------------------------------+
-// | PHP version 5
-// +---------------------------------------------------------+
-// | Copyright (c) living-e AG
-// +---------------------------------------------------------+
-
 /**
- * 
- * @package RPC
- * @author Slavko Tomcic
- * 
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   we
+ * @package    we_rpc
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
  */
+
 class rpcResponse {
 	
 	var $Success = true;
