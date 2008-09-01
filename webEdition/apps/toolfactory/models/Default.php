@@ -3,45 +3,142 @@
 include_once ($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_classes/tools/weToolLookup.class.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_classes/base/weFile.class.php');
 
+/**
+ * Base class for app models
+ * 
+ * @category   app
+ * @package    app_models
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/license     LICENSE_TYPE  TODO insert license type and url
+ */
 class toolfactory_models_Default extends we_app_Model
 {
 
+	/**
+	 * id attribute
+	 *
+	 * @var integer
+	 */
 	public $ContentType = "toolfactory/item";
 
+	/**
+	 * _appName attribute
+	 *
+	 * @var string
+	 */
 	protected $_appName = 'toolfactory';
 
+	/**
+	 * _requiredFields attribute
+	 *
+	 * @var array
+	 */
 	public $_requiredFields = array('Text','classname');
 	
+	/**
+	 * realname attribute
+	 *
+	 * @var string
+	 */
 	public $realname = '';
 
+	/**
+	 * classname attribute
+	 *
+	 * @var string
+	 */
 	public $classname = '';
 
+	/**
+	 * maintable attribute
+	 *
+	 * @var string
+	 */
 	public $maintable = '';
 
+	/**
+	 * datasource attribute
+	 *
+	 * @var string
+	 */
 	public $datasource = 'custom:';
 	
-	public $Text = '';
-	
-	public $makeTable = 0;
+	/**
+	 * makeTable attribute
+	 *
+	 * @var boolean
+	 */
+	public $makeTable = false;
 
-	public $makeTags = 1;
+	/**
+	 * makeTags attribute
+	 *
+	 * @var boolean
+	 */
+	public $makeTags = true;
 
-	public $makeServices = 1;
+	/**
+	 * makeServices attribute
+	 *
+	 * @var boolean
+	 */
+	public $makeServices = true;
 
-	public $makePerms = 1;
+	/**
+	 * makePerms attribute
+	 *
+	 * @var boolean
+	 */
+	public $makePerms = true;
 
-	public $makeBackup = 1;
+	/**
+	 * makeBackup attribute
+	 *
+	 * @var boolean
+	 */
+	public $makeBackup = true;
 
+	/**
+	 * tags attribute
+	 *
+	 * @var array
+	 */
 	public $tags = array();
 
+	/**
+	 * services attribute
+	 *
+	 * @var array
+	 */
 	public $services = array();
 
+	/**
+	 * languages attribute
+	 *
+	 * @var array
+	 */
 	public $languages = array();
 
+	/**
+	 * permissions attribute
+	 *
+	 * @var array
+	 */
 	public $permissions = array();
 
+	/**
+	 * backupTables attribute
+	 *
+	 * @var array
+	 */
 	public $backupTables = array();
 
+	/**
+	 * Constructor
+	 * 
+	 * @param string $toolfactoryID
+	 * @return void
+	 */
 	function __construct($toolfactoryID = 0)
 	{
 		parent::__construct('');
@@ -53,15 +150,22 @@ class toolfactory_models_Default extends we_app_Model
 		$this->setPersistentSlots(array('ID', 'Text', 'classname', 'maintable', 'datasource', 'makeTable', 'makeTags', 'makeServices', 'makePerms', 'makeBackup'));
 	}
 	
+	/**
+	 * set Fields
+	 * 
+	 * @param array $fields
+	 * @return void
+	 */
 	public function setFields($fields) {
 		parent::setFields($fields);
 	}
-	
-	public function setTextOutput($textOutput) {
 		
-		$this->TextOutput= $textOutput;
-	}
-	
+	/**
+	 * converts real appname to intern appname
+	 * 
+	 * @param string $realname
+	 * @return string
+	 */
 	function realNameToIntern($realname) {
 		
 		$name = preg_replace('/[^a-z0-9]/','',strtolower($realname));
@@ -69,7 +173,11 @@ class toolfactory_models_Default extends we_app_Model
 		return $name;
 	}
 		
-
+	/**
+	 * Load entry from database
+	 * 
+	 * @param integer $loadId 
+	 */
 	function load($loadId)
 	{
 
@@ -117,6 +225,13 @@ class toolfactory_models_Default extends we_app_Model
 	
 	}
 	
+	/**
+	 * replace TOOLNAME and CLASSNAME in created files
+	 * @param string $name
+	 * @param string $TOOLNAME
+	 * @param string $CLASSNAME
+	 * @return string
+	 */
 	function getNewFileName($name,$TOOLNAME,$CLASSNAME) {
 		
 		$_newname = str_replace("TOOLNAME",$TOOLNAME,$name);	
@@ -125,10 +240,14 @@ class toolfactory_models_Default extends we_app_Model
 		return $_newname;
 	}
 	
-	
+	/**
+	 * save entry in database and create application files
+	 * 
+	 * @return boolean
+	 */
 	function save() {
 
-		$TOOLREALNAME = $this->realname;error_log($this->realname);
+		$TOOLREALNAME = $this->realname;
 		$TOOLNAMELANG = htmlspecialchars($this->Text, ENT_NOQUOTES);
 		$TOOLNAME = $this->classname;
 		$CLASSNAME = $this->classname;
@@ -265,6 +384,11 @@ class toolfactory_models_Default extends we_app_Model
 			
 	}
 	
+	/**
+	 * checks the file include for the application
+	 * 
+	 * @return boolean
+	 */
 	function shouldInclude($file) {
 		
 		$_dn = dirname($file);
@@ -301,10 +425,20 @@ class toolfactory_models_Default extends we_app_Model
 		
 	}
 	
+	/**
+	 * checks Text for file name
+	 * 
+	 * @return boolean
+	 */
 	function filenameNotValid() {
 		return eregi(',',$this->Text);
 	}
 	
+	/**
+	 * checks classname
+	 * 
+	 * @return boolean
+	 */
 	function fileclassnameNotValid() {
 		if(eregi('[^a-z0-9\-]',$this->classname) || is_numeric(substr($this->classname, 0 , 1))) {
 			return true;
@@ -313,10 +447,21 @@ class toolfactory_models_Default extends we_app_Model
 
 	}
 		
+	/**
+	 * checks maintable
+	 * 
+	 * @return boolean
+	 */
 	function maintablenameNotValid() {
 		return eregi('[^a-z0-9_\-]',$this->maintable);
 	}
 	
+	/**
+	 * checks if model class exists
+	 * 
+	 * @param string $classname
+	 * @return boolean
+	 */
 	function modelclassExists($classname) {
 		
 		$_menuItems = weToolLookup::getAllTools(true);
@@ -334,6 +479,12 @@ class toolfactory_models_Default extends we_app_Model
 		
 	}
 	
+	/**
+	 * checks if tool exists
+	 * 
+	 * @param string $name
+	 * @return boolean
+	 */
 	function toolExists($name){
 		
 		$_menuItems = weToolLookup::getAllTools(true);
