@@ -140,9 +140,13 @@ class searchtoolFrames extends weToolFrames {
 		
 		$setActiveTabJS = 'document.getElementById("tab_"+' . $this->topFrame . '.activ_tab).className="tabActive";';	
 			  
-		$this->Model->Text = $this->Model->getLangText($this->Model->Path, $this->Model->Text); 
-		
-		$body = we_htmlElement::htmlBody ( array ("bgcolor" => "white", "background" => IMAGE_DIR . "backgrounds/header_with_black_line.gif", "marginwidth" => "0", "marginheight" => "0", "leftmargin" => "0", "topmargin" => "0", "onload" => "setFrameSize()", "onresize" => "setFrameSize()" ), '<div id="main" >' . getPixel ( 100, 3 ) . '<div style="margin:0px;" id="headrow">&nbsp;' . we_htmlElement::htmlB ( ($this->Model->IsFolder ? $l_weSearch ['topDir'] : $l_weSearch ['topSuche']) . ':&nbsp;' . htmlentities ( $this->Model->Text ) . '<div id="mark" style="display: none;">*</div>' ) . '</div>' . getPixel ( 100, 3 ) . $we_tabs->getHTML () . '</div>' . we_htmlElement::jsElement ( $setActiveTabJS ) );
+		$Text = $this->Model->getLangText($this->Model->Path, $this->Model->Text); 
+	 	
+		if(eregi('_UTF-8',$GLOBALS['WE_LANGUAGE'])) {
+      		$Text = utf8_decode($Text);
+      	}
+      	
+		$body = we_htmlElement::htmlBody ( array ("bgcolor" => "white", "background" => IMAGE_DIR . "backgrounds/header_with_black_line.gif", "marginwidth" => "0", "marginheight" => "0", "leftmargin" => "0", "topmargin" => "0", "onload" => "setFrameSize()", "onresize" => "setFrameSize()" ), '<div id="main" >' . getPixel ( 100, 3 ) . '<div style="margin:0px;" id="headrow">&nbsp;' . we_htmlElement::htmlB ( ($this->Model->IsFolder ? $l_weSearch ['topDir'] : $l_weSearch ['topSuche']) . ':&nbsp;' . htmlentities ( $Text ) . '<div id="mark" style="display: none;">*</div>' ) . '</div>' . getPixel ( 100, 3 ) . $we_tabs->getHTML () . '</div>' . we_htmlElement::jsElement ( $setActiveTabJS ) );
 		
 		return $this->getHTMLDocument ( $body, $tabsHead );
 	}
