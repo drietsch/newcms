@@ -11,7 +11,6 @@
  * @package    we_xml
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: Tags.php,v 1.1 2008/05/15 12:07:15 holger.meyer Exp $
  */
 
 /**
