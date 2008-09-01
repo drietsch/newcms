@@ -30,7 +30,7 @@ include(weToolLookup::getLanguageInclude('navigation'));
 foreach ($_menuItems as $_menuItem) {
 	$text = $_menuItem["text"];
 	if($_menuItem["name"]=="toolfactory") {
-		$text = $l_toolfactory["toolfactory"];
+		$text = $_menuItem["text"];
 	}
 	else if ($_menuItem["name"]=="weSearch") {
 		$text = $l_weSearch["weSearch"];
