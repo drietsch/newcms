@@ -1,4 +1,4 @@
-
+// include autoload function
 include_once('../../lib/we/core/autoload.php');
 
 // include configuration
