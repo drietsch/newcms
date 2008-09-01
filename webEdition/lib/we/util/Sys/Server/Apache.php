@@ -11,10 +11,9 @@
  * @subpackage we_util_Sys
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    
  */
 
-include_once('webEdition/lib/we/core/autoload.php');
+
 Zend_Loader::loadClass('we_util_Sys_Server');
 
 /**
@@ -23,7 +22,6 @@ Zend_Loader::loadClass('we_util_Sys_Server');
  * @category   we
  * @package    we_util
  * @subpackage we_util_Sys
- * @author     Alexander Lindenstruth
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/license     LICENSE_TYPE  TODO insert license type and url
  */
