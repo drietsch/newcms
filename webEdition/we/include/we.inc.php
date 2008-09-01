@@ -90,7 +90,7 @@ if(!isset($GLOBALS["WE_IS_DYN"])){
 	include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_perms.inc.php");
 	include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_available_modules.inc.php");
 	//	At last we set the charset, as determined from the choosen language
-	include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GLOBALS["WE_LANGUAGE"]."/charset/charset.inc.php");
+	include($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GLOBALS["WE_LANGUAGE"]."/charset/charset.inc.php");
 	define("WE_DEFAULT_TITLE",'webEdition (c) living-e AG');
 	define("WE_DEFAULT_HEAD",'
 		<title>'.WE_DEFAULT_TITLE.'</title>
