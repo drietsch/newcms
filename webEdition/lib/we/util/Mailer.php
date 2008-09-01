@@ -29,7 +29,18 @@ class we_util_Mailer extends PHPMailer
 	protected $isEmbedImages = false;
 
 	protected $basedir = '';
+	
+	protected $messageBuilt = false;
 
+	/**
+	 * Enter description here...
+	 *
+	 * @param String || Array $to use Array for a list of users
+	 * @param String $subject
+	 * @param String $sender
+	 * @param String $reply
+	 * @param Bool $isEmbedImages
+	 */
 	public function __construct($to = "", $subject="", $sender = "", $reply="",$isEmbedImages=0)
 	{
 		if (defined("WE_MAILER")) {
@@ -55,11 +66,22 @@ class we_util_Mailer extends PHPMailer
 			;
 		}
 		
-		$_to     = $this->parseEmailUser($to);
+		if (is_array($to) && count($to)>0) {
+			foreach ($to as $_to){
+				$_to = $this->parseEmailUser($_to);
+				$this->AddAddress($_to['email'], $to['name']);
+			}
+		} else {
+			$_to = $this->parseEmailUser($to);
+			$this->AddAddress($_to['email'], $to['name']);
+		}
+		
+		
 		$_sender = $this->parseEmailUser($sender);
 		$_reply  = $this->parseEmailUser($reply);
 		
-		$this->AddAddress($_to['email'], $to['name']);
+		
+		
 
 		$this->setClassVars(array(
 			'Subject'       => $subject,
@@ -127,6 +149,14 @@ class we_util_Mailer extends PHPMailer
 		} else if (!isset($this->Body) || $this->Body == "") {
 			$this->Body = $this->AltBody;
 		}			
+	}
+	
+	public function Send()
+	{
+		if (!$this->messageBuilt) {
+			$this->buildMessage();
+		}
+		parent::Send();			
 	}
 
 	/********************************************
