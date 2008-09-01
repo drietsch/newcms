@@ -682,7 +682,13 @@ $we_menu["4000000"]["enabled"] = "1";
 	// Extras > Tools
 	
 	include(weToolLookup::getLanguageInclude('toolfactory'));
-	$we_menu["4044000"]["text"] = $l_toolfactory["toolfactory"] . "...";
+	if(isset($metaInfo['realname'])) {
+		$toolfactoryName = $metaInfo['realname'];
+	}
+	else {
+		$toolfactoryName = $metaInfo['name'];
+	}
+	$we_menu["4044000"]["text"] = $toolfactoryName . "...";
 	$we_menu["4044000"]["parent"] = "4000000";
 	$we_menu["4044000"]["cmd"] = "tool_toolfactory_edit";
 	$we_menu["4044000"]["perm"] = "EDIT_APP_TOOLFACTORY || ADMINISTRATOR";
