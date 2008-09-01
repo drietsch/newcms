@@ -24,6 +24,13 @@ class <?php print $TOOLNAME;?>_ui_controls_Tree extends we_ui_controls_Tree
 		$this->addCSSFile(we_ui_layout_Themes::computeCSSURL(__CLASS__));		
 	}
 	
+	/**
+	 * Retrieve class of tree icon
+	 * 
+	 * @param string $contentType
+	 * @param string $extension
+	 * @return string
+	 */
 	public static function getTreeIconClass($contentType, $extension='')  
 	{
 		switch($contentType) {
