@@ -1,8 +1,21 @@
 <?php
 
-
-class toolfactory_service_Cmd extends we_app_service_AbstractCmd{
-	
+/**
+ * class for Services
+ * 
+ * @category   app
+ * @package    app_service
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/license     LICENSE_TYPE  TODO insert license type and url
+ */
+class toolfactory_service_Cmd extends we_app_service_AbstractCmd
+{
+	/**
+	 * check arguments and save the model
+	 * @param array $args
+	 * 
+	 * @return void
+	 */
 	public function save($args)
 	{
 		
@@ -160,6 +173,12 @@ class toolfactory_service_Cmd extends we_app_service_AbstractCmd{
 		);
 	}
 
+	/**
+	 * check arguments and delete the model
+	 * @param array $args
+	 * 
+	 * @return array
+	 */
 	public function delete($args)
 	{
 		if (!isset($args[0])) {
