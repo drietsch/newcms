@@ -1,5 +1,6 @@
 <?php
 
+
 	define('TOOL_REGISTRY_NAME','weToolsRegistry');
 	
 	class weToolLookup {
@@ -47,8 +48,15 @@
 				if(file_exists($_metaFile)) {
 					include($_metaFile);
 					if(isset($metaInfo)) {
-						include($_bd . '/' . $metaInfo['name'] . '/language/language_' . $lang . '.inc.php');
-						$langStr = ${'l_' . $metaInfo['name']}[$metaInfo['name']];
+						//$langFile = $_bd . '/' . $metaInfo['name'] . '/language/language_' . $lang . '.inc.php';
+						//$langStr = '';
+						if(isset($metaInfo['realname'])) {
+							$langStr = $metaInfo['realname'];
+						}
+						else {
+							$langStr = $metaInfo['name'];
+						}
+						
 						if(eregi('_UTF-8',$lang)) {
 							$metaInfo['text'] = utf8_decode(stripslashes($langStr));
 						}
@@ -220,10 +228,27 @@
 			
 		}
 		
-		function getAllToolLanguages($toolname) {
-
-			return weToolLookup::getFileRegister($toolname,'/language',"^language_",'language_','.inc.php');
+		function getAllToolLanguages($toolname, $subdir='/lang') {
 			
+			$_founds = array();
+			if(!defined('WE_TOOLS_DIR')) {
+				$toolFolder = $_SERVER["DOCUMENT_ROOT"].$GLOBALS['__WE_APP_URL__'].'/';
+			}
+			else {
+				$toolFolder = WE_TOOLS_DIR;
+			}
+			$_tooldir = $toolFolder . $toolname . $subdir;
+			if(weToolLookup::isTool($toolname) && is_dir($_tooldir)) {
+				$_d = opendir($_tooldir);
+				while( $_entry = readdir($_d) ){
+					if(is_dir($_tooldir . '/' . $_entry) && stristr($_entry, '.') === FALSE) {
+						$_tagname = we_core_Local::localeToWeLang($_entry);
+						$_founds[$_tagname] = $_tooldir . '/' . $_entry. '/default.xml';
+					}
+				}
+				closedir($_d);
+			}
+			return $_founds;
 		}
 		
 		function getFileRegister($toolname,$subdir,$filematch,$rem_before='',$rem_after='') {
@@ -282,6 +307,7 @@
 		function getLanguageInclude($name) {
 			if($name=='weSearch' || $name=='navigation') {
 				$toolFolder = $_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_tools/';
+				return $toolFolder . $name . '/language/language_' . $GLOBALS['WE_LANGUAGE'] . '.inc.php';
 			}
 			else {
 				if(!defined('WE_TOOLS_DIR')) {
@@ -290,8 +316,9 @@
 				else {
 					$toolFolder = WE_TOOLS_DIR;
 				}
+				return $toolFolder . $name . '/conf/meta.conf.php';
 			}
-			return $toolFolder . $name . '/language/language_' . $GLOBALS['WE_LANGUAGE'] . '.inc.php';
+
 		}
 		
 		function getToolsForBackup() {
