@@ -1,4 +1,6 @@
 <?php
+include($_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we_language/'.$GLOBALS['WE_LANGUAGE'].'/tools.inc.php');
+
 $GLOBALS['l_weSearch']['save_group_ok'] = $l_tools['save_group_ok'];
 $GLOBALS['l_weSearch']['save_ok'] = $l_tools['save_ok'];
 $GLOBALS['l_weSearch']['save_group_failed'] = $l_tools['save_group_failed'];
