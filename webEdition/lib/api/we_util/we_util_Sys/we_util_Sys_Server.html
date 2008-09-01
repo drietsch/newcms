@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class we_util_Sys_Server</title>
+			<link rel="stylesheet" href="../../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class we_util_Sys_Server</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+							<a href="#sec-descendents">Descendents</a>
+			|													<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">utility class for various web servers</p>
+	<ul class="tags">
+				<li><span class="field">copyright:</span> Copyright (c) 2008 living-e AG (http://www.living-e.com)</li>
+				<li><span class="field">license:</span> <a href="http://www.living-e.de/license">LICENSE_TYPE  TODO insert license type and url</a></li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_util---Sys---Server.php.html">/util/Sys/Server.php</a> (line <span class="field">35</span>)
+		</p>
+		
+				
+		<pre><a href="../../we_util/we_util_Sys.html">we_util_Sys</a>
+   |
+   --we_util_Sys_Server</pre>
+	
+			</div>
+</div>
+
+	<a name="sec-descendents"></a>
+	<div class="info-box">
+		<div class="info-box-title">Direct descendents</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+			<span class="disabled">Descendents</span>
+			|															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<table cellpadding="2" cellspacing="0" class="class-table">
+				<tr>
+					<th class="class-table-header">Class</th>
+					<th class="class-table-header">Description</th>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../../we_util/we_util_Sys/we_util_Sys_Server_Apache.html">we_util_Sys_Server_Apache</a></td>
+					<td>
+											utility class for apache web server
+										</td>
+				</tr>
+							</table>
+		</div>
+	</div>
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+												<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+												<div class="method-definition">
+					static 						<span class="method-result">string</span>
+										<a href="#getDocroot" title="details" class="method-name">getDocroot</a>
+										()
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">string</span>
+										<a href="#getHost" title="details" class="method-name">getHost</a>
+										()
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">string</span>
+										<a href="#getHostUri" title="details" class="method-name">getHostUri</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$url</span> = <span class="var-default">''</span>])
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">integer</span>
+										<a href="#getPort" title="details" class="method-name">getPort</a>
+										()
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">string</span>
+										<a href="#getProtocol" title="details" class="method-name">getProtocol</a>
+										()
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">bool</span>
+										<a href="#isApache" title="details" class="method-name">isApache</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$version</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">bool</span>
+										<a href="#isIIS" title="details" class="method-name">isIIS</a>
+										()
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">string</span>
+										<a href="#product" title="details" class="method-name">product</a>
+										()
+									</div>
+								
+																																																																				</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+																<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodgetDocroot" id="getDocroot"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method getDocroot</span> (line <span class="line-number">167</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">identify docroot, either via $_SERVER[&quot;DOCUMENT_ROOT&quot;] or path reproduction</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> complete path of the servers docroot without a trailing slash</li>
+				<li><span class="field">author:</span> Alexander Lindenstruth</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getDocroot
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetHost" id="getHost"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method getHost</span> (line <span class="line-number">112</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve Hostname for current request</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getHost
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetHostUri" id="getHostUri"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method getHostUri</span> (line <span class="line-number">145</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve complete URI for host and appends an url if set</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getHostUri
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$url</span> = <span class="var-default">''</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$url</span><span class="var-description">: url to append. If empty a uri only with hostname is returned</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetPort" id="getPort"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method getPort</span> (line <span class="line-number">134</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve Port for current request</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">integer</span>
+		<span class="method-name">
+			getPort
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetProtocol" id="getProtocol"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method getProtocol</span> (line <span class="line-number">124</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve Protocol for current request</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getProtocol
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodisApache" id="isApache"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method isApache</span> (line <span class="line-number">72</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">checks if this is an apache web server</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true/false</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			isApache
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$version</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$version</span><span class="var-description">: optional parameter to check for a specific apache version.  this method checks the part of the version string that comes after &quot;Apache/&quot;  i.e. &quot;Apache/1.3&quot; in &quot;Apache/1.3.29 (Unix) PHP/4.3.4&quot;  This depends on settings in httpd.conf ServerTokens, possible return values are:  ServerTokens Full - Apache/1.3.29 (Unix) PHP/4.3.4  ServerTokens Full - Apache/2.0.55 (Win32) DAV/2  ServerTokens OS - Apache/2.0.55 (Win32)  ServerTokens Minor - Apache/2.0  ServerTokens Minimal - Apache/2.0.55  ServerTokens Major - Apache/2  ServerTokens Prod - Apache</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodisIIS" id="isIIS"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method isIIS</span> (line <span class="line-number">97</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">checks if this is a Microsoft IIS</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true/false</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			isIIS
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodproduct" id="product"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method product</span> (line <span class="line-number">44</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">tries to identify the web server and return its product name.</p>
+<p class="description"><p>The product name return to the caller is the name used for these classes.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> product name or false, if the server product is unknown.</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">string</span>
+		<span class="method-name">
+			product
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../../we_util/we_util_Sys.html">we_util_Sys</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../../we_util/we_util_Sys.html#method_versionCompare">we_util_Sys::_versionCompare()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Mon, 01 Sep 2008 11:35:43 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
+	</p>
+	</div></body>
+</html>
