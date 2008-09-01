@@ -71,7 +71,7 @@ class we_util_Mailer extends PHPMailer
 				$_to = $this->parseEmailUser($_to);
 				$this->AddAddress($_to['email'], $to['name']);
 			}
-		} else {
+		} else if($_to!=""){
 			$_to = $this->parseEmailUser($to);
 			$this->AddAddress($_to['email'], $to['name']);
 		}
@@ -93,7 +93,7 @@ class we_util_Mailer extends PHPMailer
 		));
 	}
 	
-	protected function parseEmailUser($user)
+	public function parseEmailUser($user)
 	{
 		if (preg_match("/<(.)*>/",$user,$_user)){
 			$email = substr($_user[0], 1, strpos($_user[0],">")-1);
@@ -114,9 +114,19 @@ class we_util_Mailer extends PHPMailer
 
 	public function addTextPart($val)
 	{
-		$this->AltBody = $val;
+		$this->AltBody .= $val;
 	}
 
+	public function addAddressList($list)
+	{
+		if (is_array($list) && count($list)>0) {
+			foreach ($list as $_to){
+				$_to = $this->parseEmailUser($_to);
+				$this->AddAddress($_to['email'], $to['name']);
+			}
+		}		
+	}
+	
 	public function buildMessage()
 	{
 		if ($this->isEmbedImages && isset($images[2])) {
@@ -149,6 +159,10 @@ class we_util_Mailer extends PHPMailer
 		} else if (!isset($this->Body) || $this->Body == "") {
 			$this->Body = $this->AltBody;
 		}			
+	}
+	
+	public function parseHtml2TextPart($html){
+		$this->AltBody .= trim(strip_tags(preg_replace('/<(head|title|style|script)[^>]*>.*?<\/\\1>/s', '', $html)));
 	}
 	
 	public function Send()
