@@ -1,20 +1,7 @@
 <?php
-/**
- * webEdition SDK
- *
- * LICENSE_TEXT
- *
- * TODO insert license text
- *
- * @category   toolfactory
- * @package    toolfactory_app
- * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
- * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: HomePage.php,v 1.9 2008/07/02 14:49:05 thomas.kneip Exp $
- */
 
 /**
- * @see we_ui_abstract_AbstractElement
+ * @see we_app_HomePage
  */
 Zend_Loader::loadClass('we_app_HomePage');
 
@@ -28,7 +15,11 @@ Zend_Loader::loadClass('we_app_HomePage');
  */
 class toolfactory_app_HomePage extends we_app_HomePage
 {
-	
+	/**
+	 * Returns string with HTML of the body div
+	 *
+	 * @return string
+	 */
 	protected function _getBodyDiv() {
 		
 		$translate = we_core_Local::addTranslation('apps.xml');
