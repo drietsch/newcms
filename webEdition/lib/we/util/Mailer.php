@@ -124,8 +124,9 @@ class we_util_Mailer extends PHPMailer
 		}
 		if (!isset($this->AltBody) || $this->AltBody == "") {
 			$this->AltBody = trim(strip_tags(preg_replace('/<(head|title|style|script)[^>]*>.*?<\/\\1>/s', '', $this->Body)));
-		}
-	
+		} else if (!isset($this->Body) || $this->Body == "") {
+			$this->Body = $this->AltBody;
+		}			
 	}
 
 	/********************************************
