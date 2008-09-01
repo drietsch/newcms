@@ -1,39 +1,117 @@
 <?php
+/**
+ * webEdition SDK
+ *
+ * LICENSE_TEXT
+ *
+ * TODO insert license text
+ *
+ * @category   we
+ * @package    we_ui
+ * @subpackage we_ui_layout
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
+ */
 
-class we_ui_layout_Frameset extends we_ui_abstract_AbstractElement 
+/**
+ * @see we_ui_abstract_AbstractElement
+ */
+Zend_Loader::loadClass('we_ui_abstract_AbstractElement');
+
+/**
+ * Class to display a frameset
+ * 
+ * @category   we
+ * @package    we_ui
+ * @subpackage we_ui_layout
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/license     LICENSE_TYPE  TODO insert license type and url
+ */
+class we_ui_layout_Frameset extends we_ui_abstract_AbstractElement
 {
 
+	/**
+	 * _framespacing attribute
+	 *
+	 * @var integer
+	 */
+	protected $_framespacing = 0;
 
-	protected $_framespacing=0;
-	protected $_border=0;
-	protected $_frameborder='no';
+	/**
+	 * _border attribute
+	 *
+	 * @var integer
+	 */
+	protected $_border = 0;
+
+	/**
+	 * _frameborder attribute
+	 *
+	 * @var string
+	 */
+	protected $_frameborder = 'no';
+
+	/**
+	 * _rows attribute
+	 *
+	 * @var integer
+	 */
 	protected $_rows;
-	protected $_cols;
-	protected $_onLoad;
-	
-	
-	protected $_frames=array();
 
-	public function addFrame($attributes) {
+	/**
+	 * _cols attribute
+	 *
+	 * @var integer
+	 */
+	protected $_cols;
+
+	/**
+	 * _onLoad attribute
+	 *
+	 * @var string
+	 */
+	protected $_onLoad;
+
+	/**
+	 * _frames attribute
+	 *
+	 * @var array
+	 */
+	protected $_frames = array();
+
+	/**
+	 * add frame
+	 *
+	 */
+	public function addFrame($attributes)
+	{
 		$this->_frames[] = $attributes;
 	}
-	
-	protected function _renderHTML() {
+
+	/**
+	 * Renders and returns HTML of frameset
+	 *
+	 * @return string
+	 */
+	protected function _renderHTML()
+	{
 		
-		$html = '<frameset' .$this->_getNonBooleanAttribs('id,framespacing,border,frameborder,rows,cols,onLoad') . ">\n";
+		$html = '<frameset' . $this->_getNonBooleanAttribs('id,framespacing,border,frameborder,rows,cols,onLoad') . ">\n";
 		foreach ($this->_frames as $frame) {
-			if ($frame instanceof we_ui_layout_Frameset ) {
+			if ($frame instanceof we_ui_layout_Frameset) {
 				$html .= $frame->getHTML() . "\n";
 			} else {
-				$html .= we_xml_Tags::createStartTag('frame',$frame,NULL,true) . "\n";
+				$html .= we_xml_Tags::createStartTag('frame', $frame, NULL, true) . "\n";
 			}
 		}
 		$html .= '</frameset>' . "\n";
 		return $html;
 	}
-	
+
 	/**
-	 * @return unknown
+	 * retrieve border
+	 * 
+	 * @return integer
 	 */
 	public function getBorder()
 	{
@@ -41,7 +119,9 @@ class we_ui_layout_Frameset extends we_ui_abstract_AbstractElement
 	}
 
 	/**
-	 * @return unknown
+	 * retrieve frameborder
+	 * 
+	 * @return integer
 	 */
 	public function getFrameborder()
 	{
@@ -49,7 +129,9 @@ class we_ui_layout_Frameset extends we_ui_abstract_AbstractElement
 	}
 
 	/**
-	 * @return unknown
+	 * retrieve framespacing
+	 * 
+	 * @return integer
 	 */
 	public function getFramespacing()
 	{
@@ -57,7 +139,9 @@ class we_ui_layout_Frameset extends we_ui_abstract_AbstractElement
 	}
 
 	/**
-	 * @param unknown_type $border
+	 * set border
+	 * 
+	 * @param integer $border
 	 */
 	public function setBorder($border)
 	{
@@ -65,7 +149,9 @@ class we_ui_layout_Frameset extends we_ui_abstract_AbstractElement
 	}
 
 	/**
-	 * @param unknown_type $frameborder
+	 * set frameborder
+	 * 
+	 * @param integer $frameborder
 	 */
 	public function setFrameborder($frameborder)
 	{
@@ -73,7 +159,9 @@ class we_ui_layout_Frameset extends we_ui_abstract_AbstractElement
 	}
 
 	/**
-	 * @param unknown_type $framespacing
+	 * set framespacing
+	 * 
+	 * @param integer $framespacing
 	 */
 	public function setFramespacing($framespacing)
 	{
@@ -81,7 +169,9 @@ class we_ui_layout_Frameset extends we_ui_abstract_AbstractElement
 	}
 
 	/**
-	 * @return unknown
+	 * retrieve cols
+	 * 
+	 * @return integer
 	 */
 	public function getCols()
 	{
@@ -89,7 +179,9 @@ class we_ui_layout_Frameset extends we_ui_abstract_AbstractElement
 	}
 
 	/**
-	 * @return unknown
+	 * retrieve onLoad
+	 * 
+	 * @return string
 	 */
 	public function getOnLoad()
 	{
@@ -97,7 +189,9 @@ class we_ui_layout_Frameset extends we_ui_abstract_AbstractElement
 	}
 
 	/**
-	 * @return unknown
+	 * retrieve rows
+	 * 
+	 * @return integer
 	 */
 	public function getRows()
 	{
@@ -105,7 +199,9 @@ class we_ui_layout_Frameset extends we_ui_abstract_AbstractElement
 	}
 
 	/**
-	 * @param unknown_type $cols
+	 * set cols
+	 * 
+	 * @param integer $cols
 	 */
 	public function setCols($cols)
 	{
@@ -113,7 +209,9 @@ class we_ui_layout_Frameset extends we_ui_abstract_AbstractElement
 	}
 
 	/**
-	 * @param unknown_type $onLoad
+	 * set onLoad
+	 * 
+	 * @param string $onLoad
 	 */
 	public function setOnLoad($onLoad)
 	{
@@ -121,13 +219,14 @@ class we_ui_layout_Frameset extends we_ui_abstract_AbstractElement
 	}
 
 	/**
-	 * @param unknown_type $rows
+	 * set rows
+	 * 
+	 * @param integer $rows
 	 */
 	public function setRows($rows)
 	{
 		$this->_rows = $rows;
 	}
-
 
 }
 

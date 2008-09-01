@@ -11,7 +11,6 @@
  * @subpackage we_ui_controls
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: Button.php,v 1.1 2008/05/14 13:41:29 thomas.kneip Exp $
  */
 
 /**
@@ -437,14 +436,14 @@ class we_ui_controls_Button extends we_ui_abstract_AbstractFormElement
 	 * @var string
 	 */
 	protected $_text = '';
-	
+
 	/**
 	 * width attribute
 	 *
 	 * @var string
 	 */
 	protected $_width = '150';
-	
+
 	/**
 	 * type of button
 	 *
@@ -523,11 +522,11 @@ class we_ui_controls_Button extends we_ui_abstract_AbstractFormElement
 	 * @var string
 	 */
 	protected $_onClick = '';
-	
+
 	/**
 	 * Constructor
 	 * 
-	 * Sets object propeties if set in $properties array
+	 * Sets object properties if set in $properties array
 	 * 
 	 * @param array $properties associative array containing named object properties
 	 * @return void
@@ -542,7 +541,6 @@ class we_ui_controls_Button extends we_ui_abstract_AbstractFormElement
 		// add needed JS Files
 		$this->addJSFile(we_ui_abstract_AbstractElement::computeJSURL(__CLASS__));
 	}
-	
 
 	/**
 	 * Retrieve text of button
@@ -831,7 +829,7 @@ class we_ui_controls_Button extends we_ui_abstract_AbstractFormElement
 			$tblClass = self::kButtonClassInnerTable;
 		}
 		if ($this->getImagePath() === "") {
-			$buttonHTML .= '<div' . $this->_getComputedClassAttrib($classLeft) . ' style="height:'.$this->_height.'px"></div>' . '<div style="width:' . $this->getWidth() . 'px;height:' . $this->getHeight() . 'px;"' . $this->_getComputedClassAttrib($classMiddle) . ' unselectable="on">';
+			$buttonHTML .= '<div' . $this->_getComputedClassAttrib($classLeft) . ' style="height:' . $this->_height . 'px"></div>' . '<div style="width:' . $this->getWidth() . 'px;height:' . $this->getHeight() . 'px;"' . $this->_getComputedClassAttrib($classMiddle) . ' unselectable="on">';
 		}
 		$buttonHTML .= '<table border="0" id="table_' . $this->getId() . '" cellpadding="0" cellspacing="0" class="' . $tblClass . '"><tr>';
 		
@@ -865,7 +863,7 @@ class we_ui_controls_Button extends we_ui_abstract_AbstractFormElement
 		}
 		$buttonHTML .= '</tr></table>';
 		if ($this->getImagePath() === "") {
-			$buttonHTML .= '</div><div' . $this->_getComputedClassAttrib($classRight) . ' style="height:'.$this->_height.'px"></div>';
+			$buttonHTML .= '</div><div' . $this->_getComputedClassAttrib($classRight) . ' style="height:' . $this->_height . 'px"></div>';
 		}
 		
 		return $buttonHTML;

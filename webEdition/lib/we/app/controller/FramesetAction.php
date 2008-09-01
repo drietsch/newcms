@@ -10,7 +10,6 @@
  * @subpackage we_app_controller
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: FramesetAction.php,v 1.1 2008/07/15 15:03:28 thomas.kneip Exp $
  */
 
 /*
@@ -19,7 +18,7 @@
 Zend_Loader::loadClass('Zend_Controller_Action');
 
 /**
- * Base Action Controller
+ * Base FramesetAction Controller
  * 
  * @category   we
  * @package    we_app
@@ -32,6 +31,7 @@ class we_app_controller_FramesetAction extends Zend_Controller_Action
 
 	/**
 	 * The default action - show the home page
+	 * @return void
 	 */
 	public function indexAction()
 	{
@@ -44,17 +44,25 @@ class we_app_controller_FramesetAction extends Zend_Controller_Action
 		$this->view->setScriptPath('views/scripts');
 		echo $this->view->render('frameset/index.php');
 	}
-	
+
+	/**
+	 * The resize action - show the resize frame
+	 * @return void
+	 */
 	public function resizeAction()
 	{
-		$this->view = new Zend_View();		
+		$this->view = new Zend_View();
 		$this->view->modelId = $this->getRequest()->getParam('modelId', 0);
 		$this->view->tab = $this->getRequest()->getParam('tab', 0);
 		$this->view->sid = $this->getRequest()->getParam('sid', 0);
 		$this->view->setScriptPath('views/scripts');
 		echo $this->view->render('frameset/resize.php');
 	}
-	
+
+	/**
+	 * The left action - show the left frame
+	 * @return void
+	 */
 	public function leftAction()
 	{
 		$this->view = new Zend_View();
@@ -62,7 +70,11 @@ class we_app_controller_FramesetAction extends Zend_Controller_Action
 		$this->view->setScriptPath('views/scripts');
 		echo $this->view->render('frameset/left.php');
 	}
-	
+
+	/**
+	 * The right action - show the right frame
+	 * @return void
+	 */
 	public function rightAction()
 	{
 		$this->view = new Zend_View();
@@ -72,5 +84,5 @@ class we_app_controller_FramesetAction extends Zend_Controller_Action
 		$this->view->setScriptPath('views/scripts');
 		echo $this->view->render('frameset/right.php');
 	}
-	
+
 }

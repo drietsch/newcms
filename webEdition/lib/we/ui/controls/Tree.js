@@ -7,10 +7,9 @@
  *
  * @category   we
  * @package    we_ui
- * @subpackage we_ui_layout
+ * @subpackage we_ui_controls
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: Tree.js,v 1.1 2008/05/14 13:41:29 thomas.kneip Exp $
  */
 
 

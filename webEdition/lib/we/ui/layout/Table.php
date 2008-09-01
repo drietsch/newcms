@@ -11,7 +11,6 @@
  * @subpackage we_ui_layout
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: Table.php,v 1.3 2008/06/13 16:59:17 holger.meyer Exp $
  */
 
 /**
@@ -94,7 +93,7 @@ class we_ui_layout_Table extends we_ui_abstract_AbstractElement
 	public function addElement($elem, $column = -1, $row = -1)
 	{
 		$this->addCSSFiles($elem->getCSSFiles());
-		$this->addJSFiles($elem->getJSFiles());		
+		$this->addJSFiles($elem->getJSFiles());
 		
 		if ($column == -1) {
 			$column = $this->_column;
@@ -114,7 +113,7 @@ class we_ui_layout_Table extends we_ui_abstract_AbstractElement
 		} else {
 			$this->_cellHTML[$row][$column] .= $elem->getHTML();
 		}
-		
+	
 	}
 
 	/**

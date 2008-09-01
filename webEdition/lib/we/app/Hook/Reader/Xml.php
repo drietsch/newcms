@@ -12,14 +12,12 @@
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
  */
 
-include_once (dirname(dirname(__FILE__)) . '/../../../we/core/autoload.php');
-
 /**
- * @see we_app_Installer
+ * @see we_app_Hook_Reader_Abstract
  */
 Zend_Loader::loadClass('we_app_Hook_Reader_Abstract');
 
-include_once('Zend/Log.php');
+include_once ('Zend/Log.php');
 
 /**
  * class for reading hook code from xml file
@@ -31,15 +29,15 @@ include_once('Zend/Log.php');
  */
 class we_app_Hook_Reader_Xml extends we_app_Hook_Reader_Abstract
 {
-	
+
 	protected function _validate($source)
 	{
-		
-	}
 	
+	}
+
 	protected function _read()
 	{
-		
-	}
 	
+	}
+
 }

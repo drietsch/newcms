@@ -11,7 +11,6 @@
  * @subpackage we_ui_controls
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: TextField.php,v 1.8 2008/07/25 14:36:25 thomas.kneip Exp $
  */
 
 /**

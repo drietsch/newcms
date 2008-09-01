@@ -12,7 +12,6 @@
  * @subpackage we_ui_controls
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: Tree.php,v 1.20 2008/07/25 14:36:25 thomas.kneip Exp $
  */
 
 /**
@@ -31,41 +30,83 @@ Zend_Loader::loadClass('we_ui_abstract_AbstractElement');
  */
 class we_ui_controls_Tree extends we_ui_abstract_AbstractElement
 {
-	
+	/**
+	 * _nodes attribute
+	 *
+	 * @var array
+	 */
 	protected $_nodes = array();
 	
+	/**
+	 * _openNodes attribute
+	 *
+	 * @var array
+	 */
 	protected $_openNodes = array();
 	
+	/**
+	 * _sessionName attribute
+	 *
+	 * @var array
+	 */
 	protected $_sessionName = '';
-		
+	
+	/**
+	 * _table attribute
+	 *
+	 * @var string
+	 */
+	protected $_table = '';
+
+	/**
+	 * Retrieve open Nodes
+	 * 
+	 * @return array
+	 */
 	public function getOpenNodes() 
 	{
 		return $this->_openNodes;	
 	}
 	
+	/**
+	 * set open Nodes
+	 */
 	public function setOpenNodes($_openNodes)
 	{
 		$this->_openNodes = $_openNodes;
 	}
-	
+
+	/**
+	 * Retrieve Nodes
+	 * 
+	 * @return array
+	 */
 	public function getNodes() 
 	{
 		return $this->_nodes;	
 	}
-	
+
+	/**
+	 * Retrieve Nodes
+	 */
 	public function setNodes($_nodes)
 	{
 		$this->_nodes = $_nodes;
 	}
 		
-	protected $_table = '';
-	
-	
+	/**
+	 * Retrieve Table
+	 * 
+	 * @return string
+	 */
 	public function getTable() 
 	{
 		return $this->_table;	
 	}
-	
+
+	/**
+	 * set Table
+	 */
 	public function setTable($_table)
 	{
 		$this->_table = $_table;
@@ -74,7 +115,7 @@ class we_ui_controls_Tree extends we_ui_abstract_AbstractElement
 	/**
 	 * Constructor
 	 * 
-	 * Sets object propeties if set in $properties array
+	 * Sets object properties if set in $properties array
 	 * 
 	 * @param array $properties associative array containing named object properties
 	 * @return void
@@ -99,6 +140,15 @@ class we_ui_controls_Tree extends we_ui_abstract_AbstractElement
 
 	}
 	
+	/**
+	 * Retrieve array of nodes from database
+	 *
+	 * @param string $_table
+	 * @param integer $parentID
+	 * @param integer $start
+	 * @param integer $anzahl
+	 * @return array
+	 */
 	public static function doSelect($_table, $parentID = 0, $start = 0, $anzahl = 0)
 	{
 		$db = we_io_DB::sharedAdapter();
@@ -111,6 +161,13 @@ class we_ui_controls_Tree extends we_ui_abstract_AbstractElement
 		return $nodes;
 	}
 	
+	/**
+	 * Retrieve array of nodes from datasource SESSION
+	 * 
+	 * overwrite if the application datasource is custom
+	 *
+	 * @return array
+	 */
 	public static function doCustom()
 	{
 		$controller = Zend_Controller_Front::getInstance();
@@ -143,14 +200,26 @@ class we_ui_controls_Tree extends we_ui_abstract_AbstractElement
 		return $_SESSION['apps']['customData'];
         
 	}
-		
+
+	/**
+	 * Retrieve class of tree icon
+	 * 
+	 * @param string $contentType
+	 * @param string $extension
+	 * @return string
+	 */
 	public static function getTreeIconClass($contentType, $extension='')  
 	{
-
 		return we_ui_layout_Image::getIconClass($contentType, $extension='');
-		
 	}
 	
+	/**
+	 * Retrieve string of node object
+	 * 
+	 * @param integer $id
+	 * @param string $text
+	 * @return string
+	 */
 	public function getNodeObject($id, $text) 
 	{
 		//$doOnClick = "alert(&quot;".$id."&quot;);";
@@ -169,7 +238,12 @@ class we_ui_controls_Tree extends we_ui_abstract_AbstractElement
 		
 		return $out;
 	}
-	
+
+	/**
+	 * Retrieve javascript code of nodes
+	 * 
+	 * @return string
+	 */
 	protected function getNodesJS()  
 	{
 		
@@ -194,7 +268,11 @@ class we_ui_controls_Tree extends we_ui_abstract_AbstractElement
 		return $out;
 	}
 	
-	
+	/**
+	 * Retrieve datasource
+	 * 
+	 * @return string
+	 */
 	protected function getDatasource() 
 	{
 		$controller = Zend_Controller_Front::getInstance();
@@ -211,7 +289,9 @@ class we_ui_controls_Tree extends we_ui_abstract_AbstractElement
 		
 	}
 	
-	
+	/**
+	 * Prepare sessionName and set nodes
+	 */
 	protected function setUpData() 
 	{
 		$this->_sessionName = 'openNodes_'.$this->_id;
@@ -223,7 +303,12 @@ class we_ui_controls_Tree extends we_ui_abstract_AbstractElement
 		}
 		$this->setNodes($nodes);
 	}
-	
+
+	/**
+	 * Renders and returns HTML of tree
+	 *
+	 * @return string
+	 */
 	protected function _renderHTML() 
 	{
 		

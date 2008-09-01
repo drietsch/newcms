@@ -11,7 +11,6 @@
  * @subpackage we_ui_layout
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: HTMLPage.php,v 1.24 2008/07/25 14:36:25 thomas.kneip Exp $
  */
 
 /**
@@ -30,11 +29,12 @@ Zend_Loader::loadClass('we_ui_abstract_AbstractElement');
  */
 class we_ui_layout_HTMLPage extends we_ui_abstract_AbstractElement
 {
+
 	/*
 	 * Static variable to hold singleton instance
 	 */
 	private static $__instance = NULL;
-	
+
 	/**
 	 * title tag
 	 *
@@ -92,7 +92,7 @@ class we_ui_layout_HTMLPage extends we_ui_abstract_AbstractElement
 	protected $_bodyAttributes = array();
 
 	protected $_isTopFrame = false;
-	
+
 	/**
 	 * adds HTML Code to innerHTML of body tag
 	 *
@@ -107,7 +107,6 @@ class we_ui_layout_HTMLPage extends we_ui_abstract_AbstractElement
 	/**
 	 * Constructor
 	 *
-	 * @param array $properties
 	 * @return void
 	 */
 	public function __construct()
@@ -124,7 +123,7 @@ class we_ui_layout_HTMLPage extends we_ui_abstract_AbstractElement
 		parent::__construct();
 		$this->addCSSFile(we_ui_layout_Themes::computeCSSUrl(__CLASS__));
 	}
-	
+
 	/*
 	 * gets a singleton instance.
 	 * 
@@ -134,7 +133,7 @@ class we_ui_layout_HTMLPage extends we_ui_abstract_AbstractElement
 	{
 		
 		if (self::$__instance === NULL) {
-			self::$__instance = new self;
+			self::$__instance = new self();
 		}
 		return self::$__instance;
 	}
@@ -156,10 +155,10 @@ class we_ui_layout_HTMLPage extends we_ui_abstract_AbstractElement
 	public function addElement($elem)
 	{
 		$this->addCSSFiles($elem->getCSSFiles());
-		$this->addJSFiles($elem->getJSFiles());		
+		$this->addJSFiles($elem->getJSFiles());
 		$this->_bodyHTML .= $elem->getHTML();
 	}
-	
+
 	/**
 	 * adds CSS code to the page 
 	 * Will be inserted into the header section of the page
@@ -201,7 +200,6 @@ class we_ui_layout_HTMLPage extends we_ui_abstract_AbstractElement
 	{
 		$this->_bodyAttributes[$name] = $value;
 	}
-
 
 	/**
 	 * renders and returns the HTML code of the page
@@ -257,7 +255,7 @@ var weCmdController = weCC();
 var weEventController = weEC();
 
 EOS;
-			
+		
 		} else {
 			$this->addJSFile('/webEdition/lib/we/core/CmdController.js');
 			$this->addJSFile('/webEdition/lib/we/core/EventController.js');
@@ -267,7 +265,7 @@ EOS;
 var weCmdController = we_core_CmdController.getInstance();
 var weEventController = new we_core_EventController();
 EOS;
-			
+		
 		}
 		$html = '';
 		
@@ -317,13 +315,12 @@ EOS;
 		}
 		
 		$html .= "\t<script type=\"text/javascript\" language=\"JavaScript\">\n";
-		$html .= $js ."\n";
+		$html .= $js . "\n";
 		// add inline JavaScript
 		foreach ($this->_inlineJS as $code) {
 			$html .= $code . "\n";
 		}
 		$html .= "\t</script>\n";
-				
 		
 		// add head end tag
 		$html .= "</head>\n";

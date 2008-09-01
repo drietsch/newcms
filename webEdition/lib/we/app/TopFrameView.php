@@ -1,16 +1,56 @@
 <?php
+/**
+ * webEdition SDK
+ *
+ * LICENSE_TEXT
+ *
+ * TODO insert license text
+ *
+ * @category   we
+ * @package    we_app
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
+ */
 
 include_once ('Zend/View.php');
 
+/**
+ * Base class for TopFrameView 
+ * 
+ * @category   we
+ * @package    we_app
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/license     LICENSE_TYPE  TODO insert license type and url
+ */
 class we_app_TopFrameView extends Zend_View
 {
 
+	/**
+	 * editor frameset
+	 * 
+	 * @var string
+	 */
 	const kEditorFrameset = 'self.resize.right.editor';
 
+	/**
+	 * appName attribute
+	 *
+	 * @var string
+	 */
 	public $appName;
 
+	/**
+	 * appDir attribute
+	 *
+	 * @var string
+	 */
 	public $appDir;
 
+	/**
+	 * return the javascript code of the top frame
+	 * 
+	 * @return string
+	 */
 	public function getJSTop()
 	{
 		
@@ -22,52 +62,27 @@ class we_app_TopFrameView extends Zend_View
 		$fs = self::kEditorFrameset;
 		
 		// predefined message for JS output
-		
+
 		$saveMessage = we_util_Strings::quoteForJSString($translate->_('The entry \'%s\' has been succesfully saved.'), false);
 		
-		$saveEntryMessageCall = we_core_MessageReporting::getShowMessageCall(
-				'msg', 
-				we_core_MessageReporting::kMessageNotice,
-				true);
-				
-				
+		$saveEntryMessageCall = we_core_MessageReporting::getShowMessageCall('msg', we_core_MessageReporting::kMessageNotice, true);
+		
 		$nothingToSaveMessage = we_util_Strings::quoteForJSString($translate->_('There is nothing to save!'), false);
 		
-		$nothingToSaveMessageCall = we_core_MessageReporting::getShowMessageCall(
-				$nothingToSaveMessage, 
-				we_core_MessageReporting::kMessageNotice
-		);
-				
+		$nothingToSaveMessageCall = we_core_MessageReporting::getShowMessageCall($nothingToSaveMessage, we_core_MessageReporting::kMessageNotice);
 		
 		$nothingToDeleteMessage = we_util_Strings::quoteForJSString($translate->_('There is nothing to delete!'), false);
 		
-		$nothingToDeleteMessageCall = we_core_MessageReporting::getShowMessageCall(
-				$nothingToDeleteMessage, 
-				we_core_MessageReporting::kMessageNotice
-		);
-				
+		$nothingToDeleteMessageCall = we_core_MessageReporting::getShowMessageCall($nothingToDeleteMessage, we_core_MessageReporting::kMessageNotice);
+		
 		$deleteMessage = we_util_Strings::quoteForJSString($translate->_('The entry \'%s\' has been succesfully deleted.'), false);
 		
-		$deleteMessageCall = we_core_MessageReporting::getShowMessageCall(
-				'msg', 
-				we_core_MessageReporting::kMessageNotice,
-				true);
+		$deleteMessageCall = we_core_MessageReporting::getShowMessageCall('msg', we_core_MessageReporting::kMessageNotice, true);
 		
+		$errorMessageCall = we_core_MessageReporting::getShowMessageCall('err', we_core_MessageReporting::kMessageError, true);
+		$noticeMessageCall = we_core_MessageReporting::getShowMessageCall('err', we_core_MessageReporting::kMessageNotice, true);
+		$warningMessageCall = we_core_MessageReporting::getShowMessageCall('err', we_core_MessageReporting::kMessageWarning, true);
 		
-		$errorMessageCall = we_core_MessageReporting::getShowMessageCall(
-				'err', 
-				we_core_MessageReporting::kMessageError,
-				true);
-		$noticeMessageCall = we_core_MessageReporting::getShowMessageCall(
-				'err', 
-				we_core_MessageReporting::kMessageNotice,
-				true);
-		$warningMessageCall = we_core_MessageReporting::getShowMessageCall(
-				'err', 
-				we_core_MessageReporting::kMessageWarning,
-				true);
-				
-				
 		$js = <<<EOS
 
 

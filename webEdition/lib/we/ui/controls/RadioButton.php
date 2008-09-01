@@ -11,7 +11,6 @@
  * @subpackage we_ui_controls
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: RadioButton.php,v 1.1 2008/05/14 13:41:29 thomas.kneip Exp $
  */
 
 /**
@@ -37,14 +36,13 @@ class we_ui_controls_RadioButton extends we_ui_abstract_AbstractInputElement
 	 * @var boolean
 	 */
 	protected $_checked = false;
-	
+
 	/**
 	 * label text
 	 *
 	 * @var string
 	 */
 	protected $_label = '';
-	
 
 	/**
 	 * type attribute => overwritten
@@ -54,11 +52,10 @@ class we_ui_controls_RadioButton extends we_ui_abstract_AbstractInputElement
 	 */
 	protected $_type = 'radio';
 
-	
 	/**
 	 * Constructor
 	 * 
-	 * Sets object propeties if set in $properties array
+	 * Sets object properties if set in $properties array
 	 * 
 	 * @param array $properties associative array containing named object properties
 	 * @return void
@@ -74,10 +71,9 @@ class we_ui_controls_RadioButton extends we_ui_abstract_AbstractInputElement
 		// add needed JS Files
 		$this->addJSFile(we_ui_abstract_AbstractElement::computeJSURL(__CLASS__));
 		$this->addJSFile(we_ui_abstract_AbstractElement::computeJSURL('we_ui_controls_Label'));
-		
+	
 	}
 
-	
 	/**
 	 * Retrieve label text
 	 * 
@@ -87,7 +83,7 @@ class we_ui_controls_RadioButton extends we_ui_abstract_AbstractInputElement
 	{
 		return $this->_label;
 	}
-	
+
 	/**
 	 * Set label text
 	 * 
@@ -119,32 +115,24 @@ class we_ui_controls_RadioButton extends we_ui_abstract_AbstractInputElement
 	}
 
 	/**
-	 * Renders and returns HTML of button
+	 * Renders and returns HTML of Radiobutton
 	 *
 	 * @return string
 	 */
 	protected function _renderHTML()
 	{
 		$labelHTML = '';
-		if($this->getLabel()!=="") {
-			$label = new we_ui_controls_Label(
-				array(
-					'text'=>''.$this->getLabel().'',
-					'for'=>''.$this->getId().'', 
-					'id' => 'label_'.$this->getId().'',
-					'disabled'=>$this->getDisabled(),
-					'title'=>$this->getTitle()
-				)
-			);
+		if ($this->getLabel() !== "") {
+			$label = new we_ui_controls_Label(array('text' => '' . $this->getLabel() . '', 'for' => '' . $this->getId() . '', 'id' => 'label_' . $this->getId() . '', 'disabled' => $this->getDisabled(), 'title' => $this->getTitle()));
 			$labelHTML = $label->getHTML();
 		}
 		
 		if ($this->getHidden()) {
 			$this->_style .= "display:none;";
 		}
-		$tableId = 'table_'.$this->getId();
+		$tableId = 'table_' . $this->getId();
 		
-		return '<table id="'.$tableId.'" '.$this->_getComputedStyleAttrib() .'><tr><td><input' . $this->_getNonBooleanAttribs('id,name,value,type,title') . $this->_getBooleanAttribs('disabled,checked') . '/></td><td style="padding-top:4px;">'.$labelHTML.'</td></tr></table>';
+		return '<table id="' . $tableId . '" ' . $this->_getComputedStyleAttrib() . '><tr><td><input' . $this->_getNonBooleanAttribs('id,name,value,type,title') . $this->_getBooleanAttribs('disabled,checked') . '/></td><td style="padding-top:4px;">' . $labelHTML . '</td></tr></table>';
 	}
 
 }

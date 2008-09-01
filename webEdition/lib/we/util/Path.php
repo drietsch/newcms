@@ -1,4 +1,5 @@
 <?php
+
 /**
  * webEdition SDK
  *
@@ -10,7 +11,6 @@
  * @package    we_util
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: Path.php,v 1.4 2008/06/13 16:59:39 holger.meyer Exp $
  */
 
 /**
@@ -23,6 +23,7 @@
  */
 class we_util_Path
 {
+
 	/**
 	 * Converts a given id to a path
 	 *
@@ -31,13 +32,14 @@ class we_util_Path
 	 * @param Zend_Db_Adapter $db  Zend db adapter object
 	 * @return string
 	 */
-	static function id2Path($id, $dbTable, $db=NULL) {
+	static function id2Path($id, $dbTable, $db = NULL)
+	{
 		if (is_null($db)) {
 			$db = we_io_DB::sharedAdapter();
 		}
 		return $db->fetchOne('SELECT Path FROM ' . addslashes($dbTable) . ' WHERE ID = ?', $id);
 	}
-	
+
 	/**
 	 * Converts a given path to an id
 	 *
@@ -46,13 +48,14 @@ class we_util_Path
 	 * @param Zend_Db_Adapter $db  Zend db adapter object
 	 * @return integer
 	 */
-	static function path2Id($path, $dbTable, $db=NULL) {
+	static function path2Id($path, $dbTable, $db = NULL)
+	{
 		if (is_null($db)) {
 			$db = we_io_DB::getAdapter();
 		}
 		return abs($db->fetchOne('SELECT ID FROM ' . addslashes($dbTable) . ' WHERE Path = ?', $path));
 	}
-	
+
 	/**
 	 * Checks if a given path exists
 	 *
@@ -61,7 +64,8 @@ class we_util_Path
 	 * @param Zend_Db_Adapter $db  Zend db adapter object
 	 * @return boolean
 	 */
-	static function pathExists($path, $dbTable, $db=NULL) {
+	static function pathExists($path, $dbTable, $db = NULL)
+	{
 		$id = we_util_Path::path2Id($path, $dbTable, $db);
 		return $id != 0;
 	}

@@ -11,7 +11,6 @@
  * @subpackage we_ui_dialog
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: YesNoCancelDialog.php,v 1.3 2008/07/01 14:49:05 holger.meyer Exp $
  */
 
 /**
@@ -31,50 +30,64 @@ Zend_Loader::loadClass('we_ui_layout_Dialog');
  */
 class we_ui_dialog_YesNoCancelDialog extends we_ui_layout_Dialog
 {
-	
-	protected $_yesAction='';
-	protected $_noAction='';
-	protected $_cancelAction='';
-	protected $_message='';
-	protected $_encodeMessage=true;
-	
-	protected function _renderHTML() {
+
+	/**
+	 * yesAction attribute
+	 *
+	 * @var string
+	 */
+	protected $_yesAction = '';
+
+	/**
+	 * noAction attribute
+	 *
+	 * @var string
+	 */
+	protected $_noAction = '';
+
+	/**
+	 * cancelAction attribute
+	 *
+	 * @var string
+	 */
+	protected $_cancelAction = '';
+
+	/**
+	 * message attribute
+	 *
+	 * @var string
+	 */
+	protected $_message = '';
+
+	/**
+	 * encodeMessage attribute
+	 *
+	 * @var boolean
+	 */
+	protected $_encodeMessage = true;
+
+	/**
+	 * Renders and returns HTML of YesNoCancelDialog
+	 *
+	 * @return string
+	 */
+	protected function _renderHTML()
+	{
 		
 		$translate = we_core_Local::addTranslation('apps.xml');
 		
-		$table = new we_ui_layout_Table(array('cellPadding'=>10));
+		$table = new we_ui_layout_Table(array('cellPadding' => 10));
 		$table->addHTML('<img src="/webEdition/images/alert.gif" alt="" />');
 		$table->nextColumn();
 		$table->addHTML('<div>' . nl2br($this->_encodeMessage ? htmlspecialchars($this->_message) : $this->_message) . '</div>');
 		$this->addElement($table);
 		
 		// TODO localize buttons
-		$buttonYes = new we_ui_controls_Button(
-			array(
-				'text'=>$translate->_('Yes'), 
-				'onClick'=>$this->_yesAction . ';top.close()', 
-				'type'=>'onClick', 
-				'width'=>100
-			)
-		);
+		$buttonYes = new we_ui_controls_Button(array('text' => $translate->_('Yes'), 'onClick' => $this->_yesAction . ';top.close()', 'type' => 'onClick', 'width' => 100));
 		
-		$buttonNo = new we_ui_controls_Button(
-			array(
-				'text'=>$translate->_('No'), 
-				'onClick'=>$this->_noAction . ';top.close()', 
-				'type'=>'onClick', 
-				'width'=>100
-			)
-		);
+		$buttonNo = new we_ui_controls_Button(array('text' => $translate->_('No'), 'onClick' => $this->_noAction . ';top.close()', 'type' => 'onClick', 'width' => 100));
 		
-		$buttonCancel = new we_ui_controls_Button(
-			array(
-				'text'=>$translate->_('Cancel'), 
-				'onClick'=>'top.close()', 
-				'type'=>'onClick', 
-				'width'=>100
-			)
-		);
+		$buttonCancel = new we_ui_controls_Button(array('text' => $translate->_('Cancel'), 'onClick' => 'top.close()', 'type' => 'onClick', 'width' => 100));
 		
 		$buttonTable = new we_ui_layout_ButtonTableYesNo();
 		$buttonTable->setYesOkButton($buttonYes);
@@ -84,15 +97,16 @@ class we_ui_dialog_YesNoCancelDialog extends we_ui_layout_Dialog
 		
 		$buttonsHTML = '<div style="left:0;height:40px;background-image: url(/webEdition/images/edit/editfooterback.gif);position:absolute;bottom:0;width:100%">' . $buttonTable->getHTML() . '</div>';
 		$this->addCSSFiles($buttonTable->getCSSFiles());
-		$this->addJSFiles($buttonTable->getJSFiles());		
+		$this->addJSFiles($buttonTable->getJSFiles());
 		$this->addHTML($buttonsHTML);
-				
+		
 		return parent::_renderHTML();
 	}
-	
-	
+
 	/**
-	 * @return unknown
+	 * retrieve cancelAction
+	 * 
+	 * @return string
 	 */
 	public function getCancelAction()
 	{
@@ -100,7 +114,9 @@ class we_ui_dialog_YesNoCancelDialog extends we_ui_layout_Dialog
 	}
 
 	/**
-	 * @return unknown
+	 * retrieve message
+	 * 
+	 * @return string
 	 */
 	public function getMessage()
 	{
@@ -108,7 +124,9 @@ class we_ui_dialog_YesNoCancelDialog extends we_ui_layout_Dialog
 	}
 
 	/**
-	 * @return unknown
+	 * retrieve noAction
+	 * 
+	 * @return string
 	 */
 	public function getNoAction()
 	{
@@ -116,7 +134,9 @@ class we_ui_dialog_YesNoCancelDialog extends we_ui_layout_Dialog
 	}
 
 	/**
-	 * @return unknown
+	 * retrieve yesAction
+	 * 
+	 * @return string
 	 */
 	public function getYesAction()
 	{
@@ -124,7 +144,9 @@ class we_ui_dialog_YesNoCancelDialog extends we_ui_layout_Dialog
 	}
 
 	/**
-	 * @param unknown_type $cancelAction
+	 * set cancelAction
+	 * 
+	 * @param string $cancelAction
 	 */
 	public function setCancelAction($cancelAction)
 	{
@@ -132,7 +154,9 @@ class we_ui_dialog_YesNoCancelDialog extends we_ui_layout_Dialog
 	}
 
 	/**
-	 * @param unknown_type $message
+	 * set message
+	 * 
+	 * @param string $message
 	 */
 	public function setMessage($message)
 	{
@@ -140,7 +164,9 @@ class we_ui_dialog_YesNoCancelDialog extends we_ui_layout_Dialog
 	}
 
 	/**
-	 * @param unknown_type $noAction
+	 * set noAction
+	 * 
+	 * @param string $noAction
 	 */
 	public function setNoAction($noAction)
 	{
@@ -148,7 +174,9 @@ class we_ui_dialog_YesNoCancelDialog extends we_ui_layout_Dialog
 	}
 
 	/**
-	 * @param unknown_type $yesAction
+	 * set yesAction
+	 * 
+	 * @param string $yesAction
 	 */
 	public function setYesAction($yesAction)
 	{
@@ -156,7 +184,9 @@ class we_ui_dialog_YesNoCancelDialog extends we_ui_layout_Dialog
 	}
 
 	/**
-	 * @return unknown
+	 * retrieve encodeMessage
+	 * 
+	 * @return string
 	 */
 	public function getEncodeMessage()
 	{
@@ -164,13 +194,14 @@ class we_ui_dialog_YesNoCancelDialog extends we_ui_layout_Dialog
 	}
 
 	/**
-	 * @param unknown_type $encodeMessage
+	 * set encodeMessage
+	 * 
+	 * @param string $encodeMessage
 	 */
 	public function setEncodeMessage($encodeMessage)
 	{
 		$this->_encodeMessage = $encodeMessage;
 	}
-
 
 }
 

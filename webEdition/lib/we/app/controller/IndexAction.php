@@ -10,7 +10,6 @@
  * @subpackage we_app_controller
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: IndexAction.php,v 1.1 2008/07/15 15:03:28 thomas.kneip Exp $
  */
 
 /*
@@ -19,7 +18,7 @@
 Zend_Loader::loadClass('Zend_Controller_Action');
 
 /**
- * Base Action Controller
+ * Base IndexAction Controller
  * 
  * @category   we
  * @package    we_app
@@ -29,7 +28,11 @@ Zend_Loader::loadClass('Zend_Controller_Action');
  */
 class we_app_controller_IndexAction extends Zend_Controller_Action
 {
-	
+
+	/**
+	 * The default action - show the home page
+	 * @return void
+	 */
 	public function indexAction()
 	{
 		if (strpos($this->getFrontController()->getBaseUrl(), 'index.php') === false) {
@@ -37,6 +40,6 @@ class we_app_controller_IndexAction extends Zend_Controller_Action
 		} else {
 			$this->_redirect('frameset/index');
 		}
-		
+	
 	}
 }

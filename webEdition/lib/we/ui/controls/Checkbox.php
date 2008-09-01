@@ -11,7 +11,6 @@
  * @subpackage we_ui_controls
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: Checkbox.php,v 1.1 2008/05/14 13:41:29 thomas.kneip Exp $
  */
 
 /**
@@ -37,14 +36,14 @@ class we_ui_controls_Checkbox extends we_ui_abstract_AbstractInputElement
 	 * @var boolean
 	 */
 	protected $_checked = false;
-	
+
 	/**
 	 * label text
 	 *
 	 * @var string
 	 */
 	protected $_label = '';
-	
+
 	/**
 	 * onClick attribute
 	 *
@@ -59,12 +58,11 @@ class we_ui_controls_Checkbox extends we_ui_abstract_AbstractInputElement
 	 * @var string
 	 */
 	protected $_type = 'checkbox';
-	
 
 	/**
 	 * Constructor
 	 * 
-	 * Sets object propeties if set in $properties array
+	 * Sets object properties if set in $properties array
 	 * 
 	 * @param array $properties associative array containing named object properties
 	 * @return void
@@ -80,7 +78,7 @@ class we_ui_controls_Checkbox extends we_ui_abstract_AbstractInputElement
 		// add needed JS Files
 		$this->addJSFile(we_ui_abstract_AbstractElement::computeJSURL(__CLASS__));
 		$this->addJSFile(we_ui_abstract_AbstractElement::computeJSURL('we_ui_controls_Label'));
-		
+	
 	}
 
 	/**
@@ -92,7 +90,7 @@ class we_ui_controls_Checkbox extends we_ui_abstract_AbstractInputElement
 	{
 		return $this->_label;
 	}
-	
+
 	/**
 	 * Set label text
 	 * 
@@ -102,7 +100,7 @@ class we_ui_controls_Checkbox extends we_ui_abstract_AbstractInputElement
 	{
 		$this->_label = $_label;
 	}
-	
+
 	/**
 	 * Retrieve onClick attribute
 	 * 
@@ -144,27 +142,19 @@ class we_ui_controls_Checkbox extends we_ui_abstract_AbstractInputElement
 	}
 
 	/**
-	 * Renders and returns HTML of button
+	 * Renders and returns HTML of Checkbox
 	 *
 	 * @return string
 	 */
 	protected function _renderHTML()
 	{
 		$labelHTML = '';
-		$tableId = 'table_'.$this->getId();
-		$checkBoxName = "_".$this->getName();
-		$checkBoxId = "_".$this->getId();
+		$tableId = 'table_' . $this->getId();
+		$checkBoxName = "_" . $this->getName();
+		$checkBoxId = "_" . $this->getId();
 		
-		if($this->getLabel()!=='') {
-			$label = new we_ui_controls_Label(
-				array(
-					'text'=>''.$this->getLabel().'',
-					'for'=>''.$checkBoxId.'', 
-					'id'=>'label_'.$this->getId().'', 
-					'disabled'=>$this->getDisabled(),
-					'title'=>$this->getTitle()
-				)
-			);
+		if ($this->getLabel() !== '') {
+			$label = new we_ui_controls_Label(array('text' => '' . $this->getLabel() . '', 'for' => '' . $checkBoxId . '', 'id' => 'label_' . $this->getId() . '', 'disabled' => $this->getDisabled(), 'title' => $this->getTitle()));
 			$labelHTML = $label->getHTML();
 		}
 		
@@ -172,9 +162,9 @@ class we_ui_controls_Checkbox extends we_ui_abstract_AbstractInputElement
 			$this->_style .= 'display:none;';
 		}
 		
-		$this->_onClick .= ';this.form.elements[\''.$this->getName().'\'].value=this.checked ? 1 : 0;';
+		$this->_onClick .= ';this.form.elements[\'' . $this->getName() . '\'].value=this.checked ? 1 : 0;';
 		
-		return '<table id="'.$tableId.'" '.$this->_getComputedStyleAttrib() .'><tr><td><input type="hidden" id="'.$this->getId().'" name="'.$this->getName().'" value="'.$this->getValue().'" /><input id="'.$checkBoxId.'" name="'.$checkBoxName.'" ' . $this->_getNonBooleanAttribs('type,title,onClick') . $this->_getBooleanAttribs('disabled,checked') . '/></td><td style="padding-top:2px;">' . $labelHTML . '</td></tr></table>';
+		return '<table id="' . $tableId . '" ' . $this->_getComputedStyleAttrib() . '><tr><td><input type="hidden" id="' . $this->getId() . '" name="' . $this->getName() . '" value="' . $this->getValue() . '" /><input id="' . $checkBoxId . '" name="' . $checkBoxName . '" ' . $this->_getNonBooleanAttribs('type,title,onClick') . $this->_getBooleanAttribs('disabled,checked') . '/></td><td style="padding-top:2px;">' . $labelHTML . '</td></tr></table>';
 	}
 
 }

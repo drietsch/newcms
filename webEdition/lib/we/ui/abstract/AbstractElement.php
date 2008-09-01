@@ -11,7 +11,6 @@
  * @subpackage we_ui_abstract
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: AbstractElement.php,v 1.15 2008/06/16 13:15:36 holger.meyer Exp $
  */
 
 /**
@@ -30,6 +29,7 @@ Zend_Loader::loadClass('we_core_AbstractObject');
  */
 abstract class we_ui_abstract_AbstractElement extends we_core_AbstractObject
 {
+
 	/**
 	 * id attribute
 	 *
@@ -52,7 +52,7 @@ abstract class we_ui_abstract_AbstractElement extends we_core_AbstractObject
 	 * @var integer|string
 	 */
 	protected $_height = '';
-	
+
 	/**
 	 * left position of element. Will be inserted into style attribute
 	 * @see we_ui_abstractElement::_getStyleAttrib()
@@ -60,7 +60,7 @@ abstract class we_ui_abstract_AbstractElement extends we_core_AbstractObject
 	 * @var integer|string
 	 */
 	protected $_left = '';
-	
+
 	/**
 	 * top position of element. Will be inserted into style attribute
 	 * @see we_ui_abstractElement::_getStyleAttrib()
@@ -68,7 +68,7 @@ abstract class we_ui_abstract_AbstractElement extends we_core_AbstractObject
 	 * @var integer|string
 	 */
 	protected $_top = '';
-	
+
 	/**
 	 * type of position of element. Will be inserted into style attribute
 	 * @see we_ui_abstractElement::_getStyleAttrib()
@@ -83,7 +83,7 @@ abstract class we_ui_abstract_AbstractElement extends we_core_AbstractObject
 	 * @var string
 	 */
 	protected $_overflow = '';
-	
+
 	/**
 	 * style attribute
 	 *
@@ -104,12 +104,12 @@ abstract class we_ui_abstract_AbstractElement extends we_core_AbstractObject
 	 * @var boolean
 	 */
 	protected $_disabled = false;
-	
+
 	/**
-     * hidden attribute
-     *
-     * @var boolean
-     */
+	 * hidden attribute
+	 *
+	 * @var boolean
+	 */
 	protected $_hidden = false;
 
 	/**
@@ -126,29 +126,28 @@ abstract class we_ui_abstract_AbstractElement extends we_core_AbstractObject
 	 */
 	protected $_lang = '';
 
-	
 	/**
 	 * array to hold all needed JS files
 	 *
 	 * @var array
 	 */
 	protected $_JSFiles = array();
-	
+
 	/**
 	 * array to hold all needed CSS files 
 	 *
 	 * @var array
 	 */
 	protected $_CSSFiles = array();
-	
-	
+
 	/**
 	 * Computes the default JavaScript URL for the given Class Name
 	 *
 	 * @param string $classname
 	 * @return string
 	 */
-	public static function computeJSURL($classname) {
+	public static function computeJSURL($classname)
+	{
 		if (substr($classname, 0, 3) == 'we_') {
 			return $GLOBALS['__WE_LIB_URL__'] . '/' . join('/', explode('_', $classname)) . '.js';
 		} else {
@@ -156,7 +155,7 @@ abstract class we_ui_abstract_AbstractElement extends we_core_AbstractObject
 		}
 		return '';
 	}
-	
+
 	/**
 	 * Retrieve HTML of ui element
 	 *
@@ -176,10 +175,12 @@ abstract class we_ui_abstract_AbstractElement extends we_core_AbstractObject
 	 *
 	 * @return string
 	 */
-	public function getJSHTML() {
+	public function getJSHTML()
+	{
 		$html = $this->getHTML();
 		return str_replace('\'', '\\\'', str_replace('\\', '\\\\', $html));
 	}
+
 	/**
 	 * Renders and returns HTML of ui element
 	 *
@@ -195,21 +196,23 @@ abstract class we_ui_abstract_AbstractElement extends we_core_AbstractObject
 	 * @param integer $heightOffset value to add to height, can also be negative. Used for box model problems
 	 * @return string
 	 */
-	protected function _getComputedStyleAttrib($additionalStyles=array(), $widthOffset=0, $heightOffset=0, $leftOffset=0, $topOffset=0)
+	protected function _getComputedStyleAttrib($additionalStyles = array(), $widthOffset = 0, $heightOffset = 0, $leftOffset = 0, $topOffset = 0)
 	{
 		$style = '';
 		$w = abs($this->_width) + $widthOffset;
-		$wUnit = (strpos($this->_width,"%") === false) ? 'px' : '%';
+		$wUnit = (strpos($this->_width, "%") === false) ? 'px' : '%';
 		
 		$h = abs($this->_height) + $heightOffset;
-		$hUnit = (strpos($this->_height,"%") === false) ? 'px' : '%';
-				
-		$top = abs($this->_top) + $topOffset;;
-		$topUnit = (strpos($this->_top,"%") === false) ? 'px' : '%';
+		$hUnit = (strpos($this->_height, "%") === false) ? 'px' : '%';
 		
-		$left = abs($this->_left) + $leftOffset;;
-		$leftUnit = (strpos($this->_left,"%") === false) ? 'px' : '%';
-				
+		$top = abs($this->_top) + $topOffset;
+		;
+		$topUnit = (strpos($this->_top, "%") === false) ? 'px' : '%';
+		
+		$left = abs($this->_left) + $leftOffset;
+		;
+		$leftUnit = (strpos($this->_left, "%") === false) ? 'px' : '%';
+		
 		if ($w > 0) {
 			$style .= "width:{$w}$wUnit;";
 		}
@@ -234,7 +237,7 @@ abstract class we_ui_abstract_AbstractElement extends we_core_AbstractObject
 			$style .= "position:$this->_position;";
 		}
 		
-		foreach ($additionalStyles as $n=>$k) {
+		foreach ($additionalStyles as $n => $k) {
 			$style .= "$n:$k;";
 		}
 		
@@ -326,7 +329,6 @@ abstract class we_ui_abstract_AbstractElement extends we_core_AbstractObject
 		// overwrite
 	}
 
-		
 	/**
 	 * Adds an  array with CSS file to the page. 
 	 * Will be inserted into the header section of the page
@@ -335,12 +337,13 @@ abstract class we_ui_abstract_AbstractElement extends we_core_AbstractObject
 	 * @param string $path path to file relative to DOCUMENT_ROOT, starting with a slash or class name of element
 	 * @return void
 	 */
-	public function addCSSFiles($files) {
+	public function addCSSFiles($files)
+	{
 		foreach ($files as $file) {
 			$this->addCSSFile($file['path'], $file['media']);
 		}
 	}
-	
+
 	/**
 	 * Adds a CSS file to the page. 
 	 * Will be inserted into the header section of the page
@@ -373,7 +376,7 @@ abstract class we_ui_abstract_AbstractElement extends we_core_AbstractObject
 			$this->_JSFiles[] = $path;
 		}
 	}
-	
+
 	/**
 	 * Adds an array with JS files to the page. 
 	 * Will be inserted into the header section of the document
@@ -382,30 +385,33 @@ abstract class we_ui_abstract_AbstractElement extends we_core_AbstractObject
 	 * @param string $path path to file relative to DOCUMENT_ROOT, starting with a slash or class name of element
 	 * @return void
 	 */
-	public function addJSFiles($files) {
+	public function addJSFiles($files)
+	{
 		$this->_JSFiles = array_unique(array_merge($this->_JSFiles, $files));
 	}
-	
+
 	/**
 	 * Retrieves all needed JS files for the element
 	 *
 	 * @return array
 	 */
-	public function getJSFiles() {
+	public function getJSFiles()
+	{
 		
 		return $this->_JSFiles;
 	}
-	
+
 	/**
 	 * Retrieves all needed CSS files for the element
 	 *
 	 * @return array
 	 */
-	public function getCSSFiles() {
+	public function getCSSFiles()
+	{
 		
 		return $this->_CSSFiles;
 	}
-	
+
 	/**
 	 * Retrieve class attribute
 	 * 
@@ -425,24 +431,24 @@ abstract class we_ui_abstract_AbstractElement extends we_core_AbstractObject
 	{
 		return $this->_disabled;
 	}
-	
+
 	/**
 	 * Retrieve hidden attribute
 	 * 
 	 * @return boolean
 	 */
-	public function getHidden() 
+	public function getHidden()
 	{
 		return $this->_hidden;
 	}
-	
+
 	/**
 	 * Set hidden attribute
 	 * 
 	 * @param boolean $hidden
 	 * @return void
 	 */
-	public function setHidden($hidden) 
+	public function setHidden($hidden)
 	{
 		$this->_hidden = $hidden;
 	}
@@ -623,7 +629,7 @@ abstract class we_ui_abstract_AbstractElement extends we_core_AbstractObject
 	{
 		$this->_overflow = $overflow;
 	}
-	
+
 	/**
 	 * Set position attribute
 	 * 
@@ -634,7 +640,7 @@ abstract class we_ui_abstract_AbstractElement extends we_core_AbstractObject
 	{
 		$this->_position = $position;
 	}
-	
+
 	/**
 	 * Set style attribute
 	 * 
@@ -668,7 +674,6 @@ abstract class we_ui_abstract_AbstractElement extends we_core_AbstractObject
 		$this->_top = $top;
 	}
 
-	
 	/**
 	 * Set width attribute
 	 * 
@@ -679,5 +684,5 @@ abstract class we_ui_abstract_AbstractElement extends we_core_AbstractObject
 	{
 		$this->_width = $width;
 	}
-	
+
 }

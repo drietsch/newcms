@@ -12,7 +12,6 @@
  * @subpackage we_ui_controls
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: ACSuggest.php,v 1.1 2008/05/14 13:41:29 thomas.kneip Exp $
  */
 
 /**
@@ -27,90 +26,305 @@
 class we_ui_controls_ACSuggest
 {
 
+	/**
+	 * inputfields attribute
+	 *
+	 * @var array
+	 */
 	protected $inputfields = array();
 
+	/**
+	 * containerfields attribute
+	 *
+	 * @var array
+	 */
 	protected $containerfields = array();
 
+	/**
+	 * containerwidth attribute
+	 *
+	 * @var array
+	 */
 	protected $containerwidth = array();
 
+	/**
+	 * tables attribute
+	 *
+	 * @var array
+	 */
 	protected $tables = array();
 
+	/**
+	 * contentTypes attribute
+	 *
+	 * @var array
+	 */
 	protected $contentTypes = array();
 
+	/**
+	 * weMaxResults attribute
+	 *
+	 * @var array
+	 */
 	protected $weMaxResults = array();
 
+	/**
+	 * queryDelay attribute
+	 *
+	 * @var array
+	 */
 	protected $queryDelay = array();
 
+	/**
+	 * layer attribute
+	 *
+	 * @var array
+	 */
 	protected $layer = array();
 
+	/**
+	 * setOnSelectFields attribute
+	 *
+	 * @var array
+	 */
 	protected $setOnSelectFields = array();
 
+	/**
+	 * inputfields attribute
+	 *
+	 * @var array
+	 */
 	protected $checkFieldsValues = array();
 
+	/**
+	 * selectors attribute
+	 *
+	 * @var array
+	 */
 	protected $selectors = array();
 
+	/**
+	 * ct attribute
+	 *
+	 * @var array
+	 */
 	protected $ct = array();
 
+	/**
+	 * inputMayBeEmpty attribute
+	 *
+	 * @var array
+	 */
 	protected $inputMayBeEmpty = array();
 
+	/**
+	 * _doOnItemSelect attribute
+	 *
+	 * @var array
+	 */
 	protected $_doOnItemSelect = array();
 
+	/**
+	 * _doOnTextfieldBlur attribute
+	 *
+	 * @var array
+	 */
 	protected $_doOnTextfieldBlur = array();
 
+	/**
+	 * preCheck attribute
+	 *
+	 * @var string
+	 */
 	protected $preCheck = "";
 
+	/**
+	 * acId attribute
+	 *
+	 * @var string
+	 */
 	protected $acId = "";
 
+	/**
+	 * checkFieldValue attribute
+	 *
+	 * @var boolean
+	 */
 	protected $checkFieldValue = true;
 
+	/**
+	 * containerWidth attribute
+	 *
+	 * @var string
+	 */
 	protected $containerWidth = "";
 
+	/**
+	 * containerWidthForAll attribute
+	 *
+	 * @var integer
+	 */
 	protected $containerWidthForAll = 0;
 
+	/**
+	 * contentType attribute
+	 *
+	 * @var string
+	 */
 	protected $contentType = "folder";
 
+	/**
+	 * inputAttribs attribute
+	 *
+	 * @var integer
+	 */
 	protected $inputAttribs = 0;
 
+	/**
+	 * inputDisabled attribute
+	 *
+	 * @var iunteger
+	 */
 	protected $inputDisabled = 0;
 
+	/**
+	 * inputId attribute
+	 *
+	 * @var string
+	 */
 	protected $inputId = "";
 
+	/**
+	 * inputName attribute
+	 *
+	 * @var string
+	 */
 	protected $inputName = "";
 
+	/**
+	 * inputValue attribute
+	 *
+	 * @var string
+	 */
 	protected $inputValue = "";
 
+	/**
+	 * label attribute
+	 *
+	 * @var string
+	 */
 	protected $label = "";
 
+	/**
+	 * maxResults attribute
+	 *
+	 * @var integer
+	 */
 	protected $maxResults = 20;
 
+	/**
+	 * mayBeEmpty attribute
+	 *
+	 * @var integer
+	 */
 	protected $mayBeEmpty = 1;
 
+	/**
+	 * resultName attribute
+	 *
+	 * @var string
+	 */
 	protected $resultName = "";
 
+	/**
+	 * resultValue attribute
+	 *
+	 * @var string
+	 */
 	protected $resultValue = "";
 
+	/**
+	 * resultId attribute
+	 *
+	 * @var string
+	 */
 	protected $resultId = "";
 
+	/**
+	 * rootDir attribute
+	 *
+	 * @var string
+	 */
 	protected $rootDir = "";
 
+	/**
+	 * selectButton attribute
+	 *
+	 * @var string
+	 */
 	protected $selectButton = "";
 
+	/**
+	 * selectButtonSpace attribute
+	 *
+	 * @var string
+	 */
 	protected $selectButtonSpace = "";
 
+	/**
+	 * selector attribute
+	 *
+	 * @var string
+	 */
 	protected $selector = "Dir";
 
+	/**
+	 * trashButton attribute
+	 *
+	 * @var string
+	 */
 	protected $trashButton = "";
 
+	/**
+	 * trashButtonSpace attribute
+	 *
+	 * @var string
+	 */
 	protected $trashButtonSpace = "";
 
+	/**
+	 * table attribute
+	 *
+	 * @var string
+	 */
 	protected $table = '';
 
+	/**
+	 * width attribute
+	 *
+	 * @var integer
+	 */
 	protected $width = 280;
 
+	/**
+	 * addJS attribute
+	 *
+	 * @var string
+	 */
 	protected $addJS = "";
 
+	/**
+	 * doOnItemSelect attribute
+	 *
+	 * @var string
+	 */
 	protected $doOnItemSelect = "";
 
+	/**
+	 * doOnTextfieldBlur attribute
+	 *
+	 * @var string
+	 */
 	protected $doOnTextfieldBlur = "";
 
 	/**
@@ -120,6 +334,10 @@ class we_ui_controls_ACSuggest
 	 */
 	protected $_onChange = '';
 
+	/**
+	 * Constructor
+	 *
+	 */
 	public function __construct()
 	{
 	}
@@ -998,6 +1216,11 @@ function doDebugResizeH(){
 	
 	}
 
+	/**
+	 * get HTML of autocompleter
+	 * 
+	 * @return string
+	 */
 	function getHTML()
 	{
 		
@@ -1027,7 +1250,7 @@ function doDebugResizeH(){
 		
 		$table = new we_ui_layout_Table();
 		$table->addHTML($resultField . $autoSuggest, 0, 0);
-		$table->setId('table_'.$inputId);
+		$table->setId('table_' . $inputId);
 		$table->nextColumn();
 		$table->addHTML(we_ui_layout_Image::getPixel($selectButtonSpace, 4), 1, 0);
 		$table->nextColumn();
@@ -1056,6 +1279,11 @@ function doDebugResizeH(){
 		return $table->getHTML();
 	}
 
+	/**
+	 * get inputId
+	 * 
+	 * @return integer
+	 */
 	function getInputId()
 	{
 		return $this->inputId;
@@ -1064,6 +1292,12 @@ function doDebugResizeH(){
 	/****************************************************************/
 	/*                             setter                           */
 	/****************************************************************/
+	/**
+	 * set AcId and rootDir
+	 * 
+	 * @param integer $val
+	 * @param string $rootDir
+	 */
 	function setAcId($val, $rootDir = "")
 	{
 		$this->acId = $val;
@@ -1101,16 +1335,31 @@ function doDebugResizeH(){
 		$this->contentType = $val;
 	}
 
+	/**
+	 * Set DoOnItemSelect
+	 *
+	 * @param unknown_type $val
+	 */
 	function setDoOnItemSelect($val)
 	{
 		$this->doOnItemSelect = $val;
 	}
 
+	/**
+	 * Set DoOnTextfieldBlur
+	 *
+	 * @param unknown_type $val
+	 */
 	function setDoOnTextfieldBlur($val)
 	{
 		$this->doOnTextfieldBlur = $val;
 	}
 
+	/**
+	 * Set InputId
+	 *
+	 * @param unknown_type $val
+	 */
 	function setInputId($val = '')
 	{
 		if ($val == '') {
@@ -1120,16 +1369,31 @@ function doDebugResizeH(){
 		}
 	}
 
+	/**
+	 * Set InputName
+	 *
+	 * @param unknown_type $val
+	 */
 	function setInputName($val)
 	{
 		$this->inputName = $val;
 	}
 
+	/**
+	 * Set InputValue
+	 *
+	 * @param unknown_type $val
+	 */
 	function setInputValue($val)
 	{
 		$this->inputValue = $val;
 	}
 
+	/**
+	 * Set MaxResults
+	 *
+	 * @param unknown_type $val
+	 */
 	function setMaxResults($val)
 	{
 		$this->maxResults = $val;
@@ -1145,6 +1409,11 @@ function doDebugResizeH(){
 		$this->mayBeEmpty = $val;
 	}
 
+	/**
+	 * Set Label
+	 *
+	 * @param unknown_type $val
+	 */
 	function setLabel($val)
 	{
 		$this->label = $val;
@@ -1163,21 +1432,42 @@ function doDebugResizeH(){
 		$this->resultValue = $resultValue;
 	}
 
+	/**
+	 * Set ResultId
+	 *
+	 * @param unknown_type $val
+	 */
 	function setResultId($val)
 	{
 		$this->resultId = $val;
 	}
 
+	/**
+	 * Set ResultName
+	 *
+	 * @param unknown_type $val
+	 */
 	function setResultName($val)
 	{
 		$this->resultValue = $val;
 	}
 
+	/**
+	 * Set ResultValue
+	 *
+	 * @param unknown_type $val
+	 */
 	function setResultValue($val)
 	{
 		$this->resultValue = $val;
 	}
 
+	/**
+	 * Set SelectButton
+	 *
+	 * @param unknown_type $val
+	 * @param integer $space
+	 */
 	function setSelectButton($val, $space = 20)
 	{
 		$this->selectButton = $val;
@@ -1204,12 +1494,23 @@ function doDebugResizeH(){
 		$this->table = $val;
 	}
 
+	/**
+	 * Set TrashButton
+	 *
+	 * @param unknown_type $val
+	 * @param integer $space
+	 */
 	function setTrashButton($val, $space = 10)
 	{
 		$this->trashButton = $val;
 		$this->trashButtonSpace = $space;
 	}
 
+	/**
+	 * Set Width
+	 *
+	 * @param unknown_type $var
+	 */
 	function setWidth($var)
 	{
 		$this->width = $var;

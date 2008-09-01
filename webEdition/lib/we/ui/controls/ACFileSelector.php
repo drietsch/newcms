@@ -12,14 +12,16 @@
  * @subpackage we_ui_controls
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: ACFileSelector.php,v 1.1 2008/05/14 13:41:29 thomas.kneip Exp $
  */
 
 /**
  * @see we_ui_abstract_AbstractElement
  */
-
 Zend_Loader::loadClass('we_ui_abstract_AbstractFormElement');
+
+/**
+ * @see we_ui_controls_ACSuggest
+ */
 Zend_Loader::loadClass('we_ui_controls_ACSuggest');
 
 /**
@@ -142,7 +144,7 @@ class we_ui_controls_ACFileSelector extends we_ui_abstract_AbstractFormElement
 	/**
 	 * Constructor
 	 * 
-	 * Sets object propeties if set in $properties array
+	 * Sets object properties if set in $properties array
 	 * 
 	 * @param array $properties associative array containing named object properties
 	 * @return void
@@ -436,14 +438,13 @@ class we_ui_controls_ACFileSelector extends we_ui_abstract_AbstractFormElement
 	 */
 	public function getButtonOnClick()
 	{
-
+		
 		$idFieldNameInteger = 'document.getElementById("yuiAcResult_' . $this->getId() . '").value';
 		$idFieldNameString = '"document.getElementById(\\\'yuiAcResult_' . $this->getId() . '\\\').value"';
 		$pathFieldName = '"document.getElementById(\\\'yuiAcInput_' . $this->getId() . '\\\').value"';
 		//TODO
 		$onChange = '"opener.weEventController.fire(\'docChanged\')"';
 		$onChange = '""';
-	
 		
 		$contentTypes = array();
 		$contentTypesString = $this->getContentType();
@@ -467,7 +468,7 @@ class we_ui_controls_ACFileSelector extends we_ui_abstract_AbstractFormElement
 		$table = '"' . $this->getTable() . '"';
 		$onClick = 'we_ui_controls_ACFileSelector.openSelector(' . $selector . ',' . $idFieldNameInteger . ',' . $table . ',' . $idFieldNameString . ',' . $pathFieldName . ', ' . $onChange . ',"","","' . $contentTypesString . '");';
 		
-		return $onClick;	
+		return $onClick;
 	}
 
 	/**
@@ -534,7 +535,7 @@ class we_ui_controls_ACFileSelector extends we_ui_abstract_AbstractFormElement
 	}
 
 	/**
-	 * Renders and returns HTML of button
+	 * Renders and returns HTML of ACFileSelector
 	 *
 	 * @return string
 	 */

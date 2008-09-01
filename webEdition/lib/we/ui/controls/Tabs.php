@@ -11,7 +11,6 @@
  * @subpackage we_ui_controls
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: Tabs.php,v 1.1 2008/05/14 13:41:29 thomas.kneip Exp $
  */
 
 /**
@@ -70,7 +69,7 @@ class we_ui_controls_Tabs extends we_ui_abstract_AbstractElement
 	 * path of mouseOver close icon
 	 */
 	const kTabCloseIconMouseOverPath = '/webEdition/images/multiTabs/closeOver.gif';
-	
+
 	/**
 	 * id attribute
 	 *
@@ -84,7 +83,7 @@ class we_ui_controls_Tabs extends we_ui_abstract_AbstractElement
 	 * @var array
 	 */
 	protected $_tabs = array();
-	
+
 	/**
 	 * name of the frame where the content is displayed
 	 *
@@ -95,7 +94,7 @@ class we_ui_controls_Tabs extends we_ui_abstract_AbstractElement
 	/**
 	 * Constructor
 	 * 
-	 * Sets object propeties if set in $properties array
+	 * Sets object properties if set in $properties array
 	 * 
 	 * @param array $properties associative array containing named object properties
 	 * @return void
@@ -109,9 +108,9 @@ class we_ui_controls_Tabs extends we_ui_abstract_AbstractElement
 		
 		// add needed JS Files
 		$this->addJSFile(we_ui_abstract_AbstractElement::computeJSURL(__CLASS__));
-		
-	}
 	
+	}
+
 	/**
 	 * Retrieve tabs
 	 * 
@@ -131,7 +130,7 @@ class we_ui_controls_Tabs extends we_ui_abstract_AbstractElement
 	{
 		$this->_tabs = $_tabs;
 	}
-	
+
 	/**
 	 * Retrieve content frame
 	 * 
@@ -230,8 +229,7 @@ class we_ui_controls_Tabs extends we_ui_abstract_AbstractElement
 			case "reload" :
 				if (isset($_tabArray["reload"])) {
 					return $_tabArray["reload"];
-				}
-				else {
+				} else {
 					return false;
 				}
 				break;
@@ -270,10 +268,10 @@ class we_ui_controls_Tabs extends we_ui_abstract_AbstractElement
 					$onClick .= htmlentities($this->getTabAttribute($v, 'onClick'));
 				}
 				$submit = '';
-				if($this->getTabAttribute($v, 'reload')){
-					$submit = $this->getContentFrame().'submitForm();';
+				if ($this->getTabAttribute($v, 'reload')) {
+					$submit = $this->getContentFrame() . 'submitForm();';
 				}
-				$onClick .= 'if ( we_ui_controls_Tabs.allowed_change_edit_page() ){ we_ui_controls_Tabs.setTabClass(\'' . $this->getId() . '\',this); we_ui_controls_Tabs.setTab(\'' . $this->getId() . '\',\'' . $id . '\',\'' . $this->getContentFrame() . '\');'.$submit.'}';
+				$onClick .= 'if ( we_ui_controls_Tabs.allowed_change_edit_page() ){ we_ui_controls_Tabs.setTabClass(\'' . $this->getId() . '\',this); we_ui_controls_Tabs.setTab(\'' . $this->getId() . '\',\'' . $id . '\',\'' . $this->getContentFrame() . '\');' . $submit . '}';
 				if ($this->getTabAttribute($v, 'active')) {
 					$class = self::kTabActive_Class;
 					if ($this->getTabAttribute($v, 'bottomline')) {

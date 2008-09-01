@@ -11,7 +11,6 @@
  * @subpackage we_ui_controls
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: Label.php,v 1.1 2008/05/14 13:41:29 thomas.kneip Exp $
  */
 
 /**
@@ -58,7 +57,7 @@ class we_ui_controls_Label extends we_ui_abstract_AbstractFormElement
 	/**
 	 * Constructor
 	 * 
-	 * Sets object propeties if set in $properties array
+	 * Sets object properties if set in $properties array
 	 * 
 	 * @param array $properties associative array containing named object properties
 	 * @return void
@@ -72,9 +71,9 @@ class we_ui_controls_Label extends we_ui_abstract_AbstractFormElement
 		
 		// add needed JS Files
 		$this->addJSFile(we_ui_abstract_AbstractElement::computeJSURL(__CLASS__));
-		
-	}
 	
+	}
+
 	/**
 	 * Retrieve for attribute
 	 * 

@@ -11,7 +11,6 @@
  * @package    we_util
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: Strings.php,v 1.6 2008/06/30 10:31:27 thomas.kneip Exp $
  */
 
 /**
@@ -35,7 +34,7 @@ class we_util_Strings
 	{
 		return substr(md5(uniqid(time())), 0, $length);
 	}
-	
+
 	/**
 	 * Returns cvs of array values
 	 *
@@ -44,68 +43,85 @@ class we_util_Strings
 	 * @param string $sep
 	 * @return string
 	 */
-	static function makeCSVFromArray($arr,$prePostKomma=false,$sep=",") {
-		if(!sizeof($arr))
+	static function makeCSVFromArray($arr, $prePostKomma = false, $sep = ",")
+	{
+		if (!sizeof($arr))
 			return "";
-
-		$replaceKomma = (count($arr)>1) || ($prePostKomma==true);
 		
-		if ($replaceKomma){
-			for($i=0;$i<sizeof($arr);$i++) {
-				$arr[$i] = str_replace($sep,"###komma###",$arr[$i]);
+		$replaceKomma = (count($arr) > 1) || ($prePostKomma == true);
+		
+		if ($replaceKomma) {
+			for ($i = 0; $i < sizeof($arr); $i++) {
+				$arr[$i] = str_replace($sep, "###komma###", $arr[$i]);
 			}
 		}
-		$out = implode($sep,$arr);
-		if($prePostKomma) {
-			$out = $sep.$out.$sep;
+		$out = implode($sep, $arr);
+		if ($prePostKomma) {
+			$out = $sep . $out . $sep;
 		}
-		if ($replaceKomma){
-			$out = str_replace("###komma###","\\$sep",$out);
+		if ($replaceKomma) {
+			$out = str_replace("###komma###", "\\$sep", $out);
 		}
 		return $out;
 	}
-	
+
 	/**
 	 * Returns an array of cvs values
 	 *
 	 * @param string $csv
 	 * @return array
 	 */
-	static function makeArrayFromCSV($csv) {
-	
-		$csv = str_replace("\\,","###komma###",$csv);
-	
-		if(substr($csv,0,1) == ","){
-		    $csv = substr($csv,1);
+	static function makeArrayFromCSV($csv)
+	{
+		
+		$csv = str_replace("\\,", "###komma###", $csv);
+		
+		if (substr($csv, 0, 1) == ",") {
+			$csv = substr($csv, 1);
 		}
-		if(substr($csv,-1) == ","){
-		    $csv = substr($csv,0,strlen($csv)-1);
+		if (substr($csv, -1) == ",") {
+			$csv = substr($csv, 0, strlen($csv) - 1);
 		}
-		if($csv == "" && $csv != "0"){
-		    $foo = array();
+		if ($csv == "" && $csv != "0") {
+			$foo = array();
 		} else {
-			$foo = explode(",",$csv);
-			for($i=0;$i<sizeof($foo);$i++){
-			    $foo[$i] = str_replace("###komma###",",",$foo[$i]);
+			$foo = explode(",", $csv);
+			for ($i = 0; $i < sizeof($foo); $i++) {
+				$foo[$i] = str_replace("###komma###", ",", $foo[$i]);
 			}
 		}
 		return $foo;
 	}
-	
-	static function quoteForJSString($text, $quoteForSingle=true) {
+
+	/**
+	 * Returns a quoted string
+	 *
+	 * @param string $text
+	 * @param boolean $quoteForSingle
+	 * @return string
+	 */
+	static function quoteForJSString($text, $quoteForSingle = true)
+	{
 		if ($quoteForSingle) {
 			return str_replace('\'', '\\\'', str_replace('\\', '\\\\', $text));
 		} else {
 			return str_replace("\"", "\\\"", str_replace("\\", "\\\\", $text));
 		}
 	}
-	
-	static function shortenPath($path,$len) 
+
+	/**
+	 * Returns a shortened string
+	 *
+	 * @param string $path
+	 * @param integer $len
+	 * @return string
+	 */
+	static function shortenPath($path, $len)
 	{
-		if(strlen($path) <= $len || strlen($path) < 10)
-		return $path;
-		$l = ($len/2) - 2;
-		return substr($path,0,$l)."....".substr($path,$l*-1);
+		if (strlen($path) <= $len || strlen($path) < 10)
+			return $path;
+		$l = ($len / 2) - 2;
+		return substr($path, 0, $l) . "...." . substr($path, $l * -1);
 	}
 
 }

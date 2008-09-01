@@ -1,5 +1,26 @@
+/**
+ * webEdition SDK
+ *
+ * LICENSE_TEXT
+ *
+ * TODO insert license text
+ *
+ * @category   we
+ * @package    we_ui
+ * @subpackage we_ui_layout
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
+ */
 
-
+/**
+ * Class for handling we_ui_layout_Dialog Element
+ * 
+ * @category   we
+ * @package    we_ui
+ * @subpackage we_ui_layout
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/license     LICENSE_TYPE  TODO insert license type and url
+ */
 function we_ui_layout_Dialog(url, w, h, args) {
 	
 	var foo_w = w;

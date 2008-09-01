@@ -10,7 +10,6 @@
  * @subpackage we_app_controller
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: EditorAction.php,v 1.2 2008/07/25 14:36:25 thomas.kneip Exp $
  */
 
 /*
@@ -19,7 +18,7 @@
 Zend_Loader::loadClass('Zend_Controller_Action');
 
 /**
- * Base Action Controller
+ * Base EditorAction Controller
  * 
  * @category   we
  * @package    we_app
@@ -29,11 +28,23 @@ Zend_Loader::loadClass('Zend_Controller_Action');
  */
 class we_app_controller_EditorAction extends Zend_Controller_Action
 {
+
+	/**
+	 * view
+	 */
 	public $view;
+
+	/**
+	 * model
+	 */
 	protected $_model;
-	
+
+	/**
+	 * The default action - show the home page
+	 * @return void
+	 */
 	public function indexAction()
-	{		
+	{
 		$this->_setupModel(true);
 		if ($this->getRequest()->getParam('folder') == 1) {
 			$this->_model->IsFolder = 1;
@@ -42,25 +53,40 @@ class we_app_controller_EditorAction extends Zend_Controller_Action
 		$this->_renderDefaultView('editor/index.php');
 	}
 
+	/**
+	 * The body action - show the body
+	 * @return void
+	 */
 	public function bodyAction()
 	{
 		$this->_setupModel();
 		$this->_processPostVars();
 		$this->_renderDefaultView('editor/body.php');
 	}
-	
+
+	/**
+	 * The header action - show the header
+	 */
 	public function headerAction()
 	{
 		$this->_setupModel();
 		$this->_renderDefaultView('editor/header.php');
 	}
-	
+
+	/**
+	 * The footer action - show the footer
+	 * @return void
+	 */
 	public function footerAction()
 	{
 		$this->_setupModel();
 		$this->_renderDefaultView('editor/footer.php');
 	}
-	
+
+	/**
+	 * The exit doc question action - show the exit doc question
+	 * @return void
+	 */
 	public function exitdocquestionAction()
 	{
 		$this->view = new Zend_View();
@@ -68,41 +94,60 @@ class we_app_controller_EditorAction extends Zend_Controller_Action
 		$this->view->cmdstack = $this->getRequest()->getParam('cmdstack');
 		echo $this->view->render('editor/exitDocQuestion.php');
 	}
-	
-	protected function _renderDefaultView($viewscript) {
+
+	/**
+	 * Render Default View - show the default view
+	 * @return void
+	 */
+	protected function _renderDefaultView($viewscript)
+	{
 		$this->view = new Zend_View();
 		$this->_setupParameter();
 		$this->_setupParamString();
 		$this->view->setScriptPath('views/scripts');
 		echo $this->view->render($viewscript);
 	}
+
+	/**
+	 * setup the parameter string
+	 * @return void
+	 */
+	protected function _setupParamString()
+	{
+		$this->view->paramString = ((isset($this->view->tab) && $this->view->tab) ? '/tab/' . $this->view->tab : '') . ((isset($this->view->modelId) && $this->view->modelId) ? '/modelId/' . $this->view->modelId : '');
 	
-	protected function _setupParamString() {
-		$this->view->paramString = ( (isset($this->view->tab) && $this->view->tab) ?
-				'/tab/' . $this->view->tab :
-				'') .
-			( (isset($this->view->modelId) && $this->view->modelId) ?
-				'/modelId/' . $this->view->modelId :
-				'');
-		
 	}
-	
-	protected function _setupParameter() {
+
+	/**
+	 * setup parameter
+	 * @return void
+	 */
+	protected function _setupParameter()
+	{
 		$this->view->tab = $this->getRequest()->getParam('tab', 0);
 		$this->view->sid = $this->getRequest()->getParam('sid', '');
 		$this->view->modelId = $this->getRequest()->getParam('modelId', 0);
 		$this->view->model = $this->_model;
 	}
-	
-	protected function _processPostVars() 
+
+	/**
+	 * process POST variables
+	 * @return void
+	 */
+	protected function _processPostVars()
 	{
 		$this->_model->setFields($_POST);
 	}
 
-	protected function _setupModel($forceNew=false) {
+	/**
+	 * setup the model
+	 * @return void
+	 */
+	protected function _setupModel($forceNew = false)
+	{
 		$appName = $this->getFrontController()->getParam('appName');
 		$session = new Zend_Session_Namespace($appName);
-
+		
 		if ($forceNew === false && isset($session->model)) {
 			$this->_model = $session->model;
 		} else {

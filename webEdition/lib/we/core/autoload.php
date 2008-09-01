@@ -10,7 +10,6 @@
  * @package    we_core
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: autoload.php,v 1.9 2008/07/25 14:36:25 thomas.kneip Exp $
  */
 
 /*
@@ -43,8 +42,14 @@ ini_set('include_path', ini_get('include_path') . PATH_SEPARATOR . $GLOBALS['__W
 // include Zend_Loader, which is needed by the autoload function
 require 'Zend/Loader.php';
 
-include_once ($GLOBALS['__WE_BASE_PATH__'] . DIRECTORY_SEPARATOR . 'we' . DIRECTORY_SEPARATOR . 'include' . DIRECTORY_SEPARATOR . 'conf'. DIRECTORY_SEPARATOR . 'we_conf.inc.php');
+// include configuration file of webEdition
+include_once ($GLOBALS['__WE_BASE_PATH__'] . DIRECTORY_SEPARATOR . 'we' . DIRECTORY_SEPARATOR . 'include' . DIRECTORY_SEPARATOR . 'conf' . DIRECTORY_SEPARATOR . 'we_conf.inc.php');
 
+/**
+ * class autoload function
+ * 
+ * @return void
+ */
 function __autoload($class_name)
 {
 	Zend_Loader::loadClass($class_name);

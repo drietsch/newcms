@@ -7,10 +7,9 @@
  *
  * @category   we
  * @package    we_ui
- * @subpackage we_ui_layout
+ * @subpackage we_ui_controls
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: Textarea.js,v 1.2 2008/05/16 12:07:15 thomas.kneip Exp $
  */
 
 
@@ -19,7 +18,7 @@
  * 
  * @category   we
  * @package    we_ui
- * @subpackage we_ui_layout
+ * @subpackage we_ui_controls
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/license     LICENSE_TYPE  TODO insert license type and url
  */

@@ -10,7 +10,6 @@
  * @package    we_util
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: Check.php,v 1.1 2008/05/13 13:41:32 alexander.lindenstruth Exp $
  */
 
 /**
@@ -18,7 +17,6 @@
  * 
  * @category   we
  * @package    we_util
- * @subpackage we_util_sys
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/license     LICENSE_TYPE  TODO insert license type and url
  */

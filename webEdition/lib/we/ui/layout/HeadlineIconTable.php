@@ -11,7 +11,6 @@
  * @subpackage we_ui_layout
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: HeadlineIconTable.php,v 1.5 2008/06/13 16:59:17 holger.meyer Exp $
  */
 
 /**
@@ -23,7 +22,6 @@ Zend_Loader::loadClass('we_ui_abstract_AbstractElement');
  * Class which creates a table to display several rows with ui elements separated by a rule
  * For each row an icon can be provided together with a headline (title) 
  * 
- * @todo insert button table and fold button
  * @category   we
  * @package    we_ui
  * @subpackage we_ui_layout
@@ -105,7 +103,7 @@ class we_ui_layout_HeadlineIconTable extends we_ui_abstract_AbstractElement
 	/**
 	 * Constructor
 	 * 
-	 * Sets object propeties if set in $properties array
+	 * Sets object properties if set in $properties array
 	 * 
 	 * @param array $properties associative array containing named object properties
 	 * @return void
@@ -119,9 +117,9 @@ class we_ui_layout_HeadlineIconTable extends we_ui_abstract_AbstractElement
 		
 		// add needed JS Files
 		$this->addJSFile(we_ui_abstract_AbstractElement::computeJSURL(__CLASS__));
-		
-	}
 	
+	}
+
 	/**
 	 * Retrieve ButtonTable
 	 * 
@@ -242,7 +240,7 @@ class we_ui_layout_HeadlineIconTable extends we_ui_abstract_AbstractElement
 		$this->_rows = $rows;
 		foreach ($this->_rows as $elem) {
 			$this->addCSSFiles($elem->getCSSFiles());
-			$this->addJSFiles($elem->getJSFiles());		
+			$this->addJSFiles($elem->getJSFiles());
 		}
 	
 	}

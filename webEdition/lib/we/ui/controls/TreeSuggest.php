@@ -1,6 +1,21 @@
 <?php
 
 /**
+ * webEdition SDK
+ *
+ * LICENSE_TEXT
+ *
+ * TODO insert license text
+ *
+ * file for generating json output for tree nodes
+ * @category   we
+ * @package    we_ui
+ * @subpackage we_ui_controls
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
+ */
+
+/**
  * Includes autoload function
  */
 include_once (dirname(dirname(__FILE__)) . '/../../we/core/autoload.php');

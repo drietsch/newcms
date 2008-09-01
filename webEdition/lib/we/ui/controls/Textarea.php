@@ -11,7 +11,6 @@
  * @subpackage we_ui_controls
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: Textarea.php,v 1.2 2008/05/16 12:07:15 thomas.kneip Exp $
  */
 
 /**
@@ -86,7 +85,7 @@ class we_ui_controls_Textarea extends we_ui_abstract_AbstractInputElement
 	/**
 	 * Constructor
 	 * 
-	 * Sets object propeties if set in $properties array
+	 * Sets object properties if set in $properties array
 	 * 
 	 * @param array $properties associative array containing named object properties
 	 * @return void

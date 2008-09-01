@@ -11,7 +11,6 @@
  * @subpackage we_ui_layout
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: Dialog.php,v 1.1 2008/06/27 08:42:00 holger.meyer Exp $
  */
 
 /**
@@ -30,6 +29,7 @@ Zend_Loader::loadClass('we_ui_layout_HTMLPage');
  */
 class we_ui_layout_Dialog extends we_ui_layout_HTMLPage
 {
+
 	/**
 	 * Constructor
 	 * 
@@ -42,9 +42,8 @@ class we_ui_layout_Dialog extends we_ui_layout_HTMLPage
 	{
 		$this->addInlineJS('
 self.dialog = eval("opener." + self.name + "_Object");		
-'	
-		);
+');
 		parent::__construct($properties);
 	}
-	
+
 }

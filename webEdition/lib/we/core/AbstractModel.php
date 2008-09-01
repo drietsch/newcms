@@ -10,7 +10,6 @@
  * @package    we_core
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: AbstractModel.php,v 1.7 2008/07/25 14:36:25 thomas.kneip Exp $
  */
 
 /**
@@ -29,22 +28,55 @@ Zend_Loader::loadClass('we_core_AbstractObject');
 class we_core_AbstractModel extends we_core_AbstractObject
 {
 
+	/**
+	 * primaryKey attribute
+	 *
+	 * @var string
+	 */
 	protected $_primaryKey = "ID";
 
+	/**
+	 * table attribute
+	 *
+	 * @var string
+	 */
 	protected $_table = "";
 
+	/**
+	 * persistentSlots attribute
+	 *
+	 * @var array
+	 */
 	public $_persistentSlots = array();
 
+	/**
+	 * metadata attribute
+	 *
+	 * @var array
+	 */
 	protected $_metadata = array();
 
+	/**
+	 * Constructor
+	 * 
+	 * Set table and load persistents
+	 * 
+	 * @param string $table
+	 * @return void
+	 */
 	function __construct($table)
 	{
-		if($table!=='') {
+		if ($table !== '') {
 			$this->_table = $table;
 			$this->loadPersistents();
 		}
 	}
 
+	/**
+	 * load persistents
+	 * 
+	 * @return void
+	 */
 	protected function loadPersistents()
 	{
 		$db = we_io_DB::sharedAdapter();
@@ -83,6 +115,11 @@ class we_core_AbstractModel extends we_core_AbstractObject
 		return false;
 	}
 
+	/**
+	 * returns primary key condition
+	 * 
+	 * @return string
+	 */
 	protected function _getPKCondition()
 	{
 		return $this->_primaryKey . ' = ' . abs($this->{$this->_primaryKey});
@@ -90,26 +127,20 @@ class we_core_AbstractModel extends we_core_AbstractObject
 
 	/**
 	 * save entry in database
+	 * 
+	 * @return void
 	 */
 	public function save()
 	{
-		
 		$db = we_io_DB::sharedAdapter();
 		
 		// check if there is another entry with the same path
 		
-
-		$stm = $db->query(
-				'SELECT ID FROM ' . $this->_table . ' WHERE Text = ? AND ParentID = ? AND ID != ?', 
-				array(
-					$this->Text, abs($this->ParentID), abs($this->ID)
-				));
-				
+		$stm = $db->query('SELECT ID FROM ' . $this->_table . ' WHERE Text = ? AND ParentID = ? AND ID != ?', array($this->Text, abs($this->ParentID), abs($this->ID)));
+		
 		$row = $stm->fetch();
 		if ($row) {
-			throw new we_core_ModelException(
-					'Error saving model. Path already exists!', 
-					we_service_ErrorCodes::kPathExists);
+			throw new we_core_ModelException('Error saving model. Path already exists!', we_service_ErrorCodes::kPathExists);
 		}
 		$updateArray = array();
 		foreach ($this->_persistentSlots as $key) {
@@ -123,18 +154,14 @@ class we_core_AbstractModel extends we_core_AbstractObject
 				$db->delete($this->_table, $this->_getPKCondition());
 				$db->insert($this->_table, $updateArray);
 			} catch (Exception $e) {
-				throw new we_core_ModelException(
-						'Error inserting model to database with db exception: ' . $e->getMessage(), 
-						we_service_ErrorCodes::kDBError);
+				throw new we_core_ModelException('Error inserting model to database with db exception: ' . $e->getMessage(), we_service_ErrorCodes::kDBError);
 			}
 			$this->{$this->_primaryKey} = $db->lastInsertId();
 		} else {
 			try {
 				$db->update($this->_table, $updateArray, $this->_getPKCondition());
 			} catch (Exception $e) {
-				throw new we_core_ModelException(
-						'Error updating model in database with db exception: ' . $e->getMessage(), 
-						we_service_ErrorCodes::kDBError);
+				throw new we_core_ModelException('Error updating model in database with db exception: ' . $e->getMessage(), we_service_ErrorCodes::kDBError);
 			}
 		}
 	
@@ -142,6 +169,8 @@ class we_core_AbstractModel extends we_core_AbstractObject
 
 	/**
 	 * delete entry from database
+	 * 
+	 * @return void
 	 */
 	public function delete()
 	{
@@ -149,19 +178,24 @@ class we_core_AbstractModel extends we_core_AbstractObject
 		try {
 			$db->delete($this->_table, $this->_getPKCondition());
 		} catch (Exception $e) {
-			throw new we_core_ModelException(
-					'Error updating model in database with db exception: ' . $e->getMessage(), 
-					we_service_ErrorCodes::kDBError);
+			throw new we_core_ModelException('Error updating model in database with db exception: ' . $e->getMessage(), we_service_ErrorCodes::kDBError);
 		}
 	}
 
+	/**
+	 * retrieve table
+	 * 
+	 * @return string
+	 */
 	public function getTable()
 	{
 		return $this->_table;
 	}
 
 	/**
-	 * @return unknown
+	 * load persistent slots
+	 * 
+	 * @return array
 	 */
 	public function getPersistentSlots()
 	{
@@ -169,7 +203,10 @@ class we_core_AbstractModel extends we_core_AbstractObject
 	}
 
 	/**
-	 * @param unknown_type $persistentSlots
+	 * set persistent slots
+	 * 
+	 * @param array $persistentSlots
+	 * @return void
 	 */
 	public function setPersistentSlots($persistentSlots)
 	{
@@ -183,7 +220,7 @@ class we_core_AbstractModel extends we_core_AbstractObject
 	 * @return void
 	 */
 	public function setFields($fields)
-	{	
+	{
 		$slots = $this->_persistentSlots;
 		foreach ($slots as $slot) {
 			if (isset($fields[$slot]) && isset($this->$slot)) {

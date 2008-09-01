@@ -1,19 +1,29 @@
 <?php
 /**
- * class for common http functions
- * 
+ * webEdition SDK
+ *
+ * LICENSE_TEXT
+ *
+ * TODO insert license text
+ *
  * @category   we
  * @package    we_net
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
- * @license    http://www.living-e.de/license     LICENSE_TYPE  TODO insert license type and url
- * @author Alexander Lindenstruth
+ * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
  */
 
-include_once (dirname(dirname(__FILE__)) . '/../we/core/autoload.php');
+/**
+ * @see we_net_Exception
+ */
 Zend_Loader::loadClass('we_net_Exception');
+
+/**
+ * @see we_util_Log
+ */
 Zend_Loader::loadClass('we_util_Log');
-include_once('Zend/Uri/Http.php');
-include_once('Zend/Http/Client.php');
+
+include_once ('Zend/Uri/Http.php');
+include_once ('Zend/Http/Client.php');
 
 /**
  * class for local installation of webEdition applications (formerly known as "tools")
@@ -55,67 +65,82 @@ include_once('Zend/Http/Client.php');
  * 		$http = new we_net_Http("http://www.example.org/");
  * 		$resp1 = $http->get(array("parameter1" => "value1", "parameter2" => "value2"));
  * 		$resp2 = $http->get(array("parameter3" => "value3", "parameter4" => "value4"));
+ * 
+ * 
+ * @category   we
+ * @package    we_net
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/license     LICENSE_TYPE  TODO insert license type and url
  */
 class we_net_Http
 {
-	
+
 	/**
 	 * @var Zend_Uri_Http object Uri for this request, with (GET) or without parameters
 	 */
 	private $_uriObj = null;
-	
+
 	/**
 	 * @see Zend_Uri
 	 */
 	private $_uri = "";
+
 	private $_scheme = ""; // can be either "http" or "https"
+
 	
 	/**
 	 * @see Zend_Uri_Http
 	 */
 	private $_fragment = "";
+
 	private $_host = "";
+
 	private $_password = "";
+
 	private $_path = "";
-	private $_port= "";
-	private $_query= "";
+
+	private $_port = "";
+
+	private $_query = "";
+
 	private $_username = "";
-	
+
 	/**
 	 * @var connection parameters for proxy usage
 	 */
 	private $_proxy = array();
-	
+
 	/**
 	 * @var shall we use a proxy?
 	 */
 	private $_proxyUsage = false;
-	
+
 	/**
 	 * @var Zend_Http_Client object
 	 */
 	private $_client = null;
-	
+
 	/**
 	 * @see Zend_Http_Response
 	 */
 	private $_response = "";
-	
+
 	/**
 	 * @var stores the HTTP status code of the preivously performed request
 	 * 		http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Status_Codes
 	 * 		http://en.wikipedia.org/wiki/List_of_HTTP_status_codes
 	 */
 	private $_status = "";
+
 	private $_statustext = "";
-	
+
 	public function __construct($uri = "")
 	{
-		if(!empty($uri)) {
+		if (!empty($uri)) {
 			$this->setUri($uri);
 		}
 	}
-	
+
 	/**
 	 * @return int response of the current request
 	 */
@@ -123,57 +148,57 @@ class we_net_Http
 	{
 		return $this->getRequest();
 	}
-	
+
 	/**
 	 * getter method
 	 * @return mixed returns a class variable
 	 */
 	public function __get($attribute)
 	{
-		if(empty($attribute)) {
+		if (empty($attribute)) {
 			return false;
 		}
-		$attribute = "_".$attribute;
-		if(isset($this->$attribute)) {
+		$attribute = "_" . $attribute;
+		if (isset($this->$attribute)) {
 			return $this->$attribute;
 		} else {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * public setter method for all request parameters
 	 */
-	public function __set($attribute, $value="")
+	public function __set($attribute, $value = "")
 	{
-		switch($attribute) {
-			case "uri":
+		switch ($attribute) {
+			case "uri" :
 				$this->setUri($value);
 				break;
-			case "protocol":
-				if($value == "1.0" || $value == "1.1") {
+			case "protocol" :
+				if ($value == "1.0" || $value == "1.1") {
 					$this->_protocol = $value;
-				}				
+				}
 				break;
-			default:
+			default :
 				break;
 		}
 	}
-	
+
 	/**
 	 * specify the uri for the next request, can also be done via __set()
 	 * @param string $uri complete uri with scheme, host, port, path, parameters etc.
 	 */
 	public function setUri($uri)
 	{
-		if(empty($uri) || !Zend_Uri_Http::check($uri)) {
+		if (empty($uri) || !Zend_Uri_Http::check($uri)) {
 			return false;
 		} else {
 			$this->_uriObj = Zend_Uri_Http::factory($uri);
-			if($this->_uriObj->getScheme() == "http" || $this->_uriObj->getScheme() == "https") {
+			if ($this->_uriObj->getScheme() == "http" || $this->_uriObj->getScheme() == "https") {
 				$this->_fragment = $this->_uriObj->getFragment();
 				$this->_host = $this->_uriObj->getHost();
-				$this->_password= $this->_uriObj->getPassword();
+				$this->_password = $this->_uriObj->getPassword();
 				$this->_path = $this->_uriObj->getPath();
 				$this->_port = $this->_uriObj->getPort();
 				$this->_query = $this->_uriObj->getQuery();
@@ -189,7 +214,7 @@ class we_net_Http
 			return true;
 		}
 	}
-	
+
 	/**
 	 * specify proxy connection parameters to use for http connections:
 	 * automatically enables usage of this proxy
@@ -198,16 +223,10 @@ class we_net_Http
 	 */
 	public function setProxy($params = array())
 	{
-		$this->_proxy = array(
-		    'adapter'    => 'Zend_Http_Client_Adapter_Proxy',
-		    'proxy_host' => (!empty($params["proxy_host"]) ? $params["proxy_host"] : "127.0.0.1"),
-		    'proxy_port' => (!empty($params["proxy_port"]) ? $params["proxy_port"] : "8000"),
-		    'proxy_user' => (!empty($params["proxy_user"]) ? $params["proxy_user"] : ""),
-		    'proxy_pass' => (!empty($params["proxy_pass"]) ? $params["proxy_pass"] : ""),
-		);
+		$this->_proxy = array('adapter' => 'Zend_Http_Client_Adapter_Proxy', 'proxy_host' => (!empty($params["proxy_host"]) ? $params["proxy_host"] : "127.0.0.1"), 'proxy_port' => (!empty($params["proxy_port"]) ? $params["proxy_port"] : "8000"), 'proxy_user' => (!empty($params["proxy_user"]) ? $params["proxy_user"] : ""), 'proxy_pass' => (!empty($params["proxy_pass"]) ? $params["proxy_pass"] : ""));
 		$this->enableProxy();
 	}
-	
+
 	/**
 	 * enable usage of proxy, but you neet to specify the connection parameters
 	 * first using $this->setProxy()
@@ -216,7 +235,7 @@ class we_net_Http
 	{
 		$this->_proxyUsage = true;
 	}
-	
+
 	/**
 	 * disable usage of proxy for the forthcoming connections
 	 * the proxy parameters won't be lost
@@ -225,7 +244,7 @@ class we_net_Http
 	{
 		$this->_proxyUsage = false;
 	}
-	
+
 	/**
 	 * send a http request of method "HEAD"
 	 * 
@@ -238,13 +257,13 @@ class we_net_Http
 	 */
 	public function head($param = array())
 	{
-		if(!$this->_doRequest("HEAD", $param)) {
+		if (!$this->_doRequest("HEAD", $param)) {
 			return false;
 		} else {
 			return $this->_response;
 		}
 	}
-	
+
 	/**
 	 * send a http request of method "GET"
 	 * 
@@ -253,13 +272,13 @@ class we_net_Http
 	 */
 	public function get($param = array())
 	{
-		if(!$this->_doRequest("GET", $param)) {
+		if (!$this->_doRequest("GET", $param)) {
 			throw new we_net_Exception();
 		} else {
 			return $this->_response;
 		}
 	}
-	
+
 	/**
 	 * send a http request of method "POST"
 	 * 
@@ -268,13 +287,13 @@ class we_net_Http
 	 */
 	public function post($param = array())
 	{
-		if(!$this->_doRequest("POST", $param)) {
+		if (!$this->_doRequest("POST", $param)) {
 			return false;
 		} else {
 			return $this->_response;
 		}
 	}
-	
+
 	/**
 	 * send a http request of method "PUT"
 	 * 
@@ -292,7 +311,7 @@ class we_net_Http
 		}
 		*/
 	}
-	
+
 	/**
 	 * performs a request, by default with method "GET"
 	 * 
@@ -301,43 +320,43 @@ class we_net_Http
 	 */
 	private function _doRequest($method = "GET", $param = array())
 	{
-		if(is_null($this->_uriObj)) {
+		if (is_null($this->_uriObj)) {
 			return false;
 		}
 		
-		if(is_null($this->_client) || $this->_client->getUri() != $this->_uri) {
+		if (is_null($this->_client) || $this->_client->getUri() != $this->_uri) {
 			$this->_response = null;
 			$this->_status = "";
 			$this->_statustext = "";
 			$this->_client = new Zend_Http_Client($this->_uri);
-		} else if(!is_null($this->_client)){
+		} else if (!is_null($this->_client)) {
 			$this->_client->resetParameters();
 		}
 		
-		if(is_array($param) && !empty($param)) {
-			switch($method) {
-				case "GET":
-				case "HEAD":
+		if (is_array($param) && !empty($param)) {
+			switch ($method) {
+				case "GET" :
+				case "HEAD" :
 					$this->_client->setParameterGet($param);
 					break;
-				case "POST":
+				case "POST" :
 					$this->_client->setParameterPost($param);
 					break;
-				default:
+				default :
 					break;
 			}
 		}
 		
-		try{
+		try {
 			$this->_response = $this->_client->request($method);
 			$this->_status = $this->_response->getStatus();
 			$this->_statustext = $this->_response->responseCodeAsText($this->_status);
 		} catch (Exception $e) {
 			//we_util_Log::errorLog(get_class($this).": could send request to ".$this->_uri);
-			throw new we_net_Exception(get_class($this).": could send request to ".$this->_uri);
+			throw new we_net_Exception(get_class($this) . ": could send request to " . $this->_uri);
 			return false;
 		}
 		return true;
 	}
-		
+
 }

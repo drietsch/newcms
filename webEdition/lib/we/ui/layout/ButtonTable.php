@@ -11,7 +11,6 @@
  * @subpackage we_ui_controls
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: ButtonTable.php,v 1.1 2008/05/14 13:41:29 thomas.kneip Exp $
  */
 
 /**
@@ -30,19 +29,19 @@ Zend_Loader::loadClass('we_ui_layout_Table');
  */
 class we_ui_layout_ButtonTable extends we_ui_layout_Table
 {
-	
+
 	/**
 	 * Default class name for button
 	 */
 	const kButtonTableClassNormal = 'we_ui_layout_ButtonTable';
-		
+
 	/**
 	 * horizontal padding between the button
 	 *
 	 * @var integer
 	 */
 	protected $_horizontalPadding = 10;
-		
+
 	/**
 	 * Retrieve the horizontal padding
 	 *
@@ -52,7 +51,7 @@ class we_ui_layout_ButtonTable extends we_ui_layout_Table
 	{
 		return $this->_horizontalPadding;
 	}
-	
+
 	/**
 	 * Sets the horizontalPadding
 	 *
@@ -63,7 +62,7 @@ class we_ui_layout_ButtonTable extends we_ui_layout_Table
 	{
 		$this->_horizontalPadding = $horizontalPadding;
 	}
-	
+
 	/**
 	 * called before _renderHTML() is called
 	 * for HTMLDocuments we don't need to do anything here, 
@@ -72,18 +71,18 @@ class we_ui_layout_ButtonTable extends we_ui_layout_Table
 	 * @return void
 	 */
 	protected function _willRenderHTML()
-	{	
-		if($this->getHorizontalPadding()) {
+	{
+		if ($this->getHorizontalPadding()) {
 			foreach ($this->_cellHTML as $rowIndex => $cols) {
 				foreach (array_keys($cols) as $colIndex) {
-					$columns = count($cols)-1;
-					if($columns!==$colIndex) {
-						$this->setCellAttributes(array('style'=>'padding-right:' . $this->getHorizontalPadding() . 'px'),$colIndex, $rowIndex );
+					$columns = count($cols) - 1;
+					if ($columns !== $colIndex) {
+						$this->setCellAttributes(array('style' => 'padding-right:' . $this->getHorizontalPadding() . 'px'), $colIndex, $rowIndex);
 					}
 				}
 			}
 		}
-
+		
 		parent::_willRenderHTML();
 	}
 }

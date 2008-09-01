@@ -1,8 +1,4 @@
 <?php
-//echo ini_get("include_path")."<br />";
-ini_set("include_path",ini_get("include_path").":".$_SERVER['DOCUMENT_ROOT']);
-//echo ini_get("include_path");
-
 /**
  * webEdition SDK
  *
@@ -11,14 +7,17 @@ ini_set("include_path",ini_get("include_path").":".$_SERVER['DOCUMENT_ROOT']);
  * TODO insert license text
  *
  * @category   we
- * @package    we_ui
- * @subpackage we_ui_layout
+ * @package    we_util
+ * @subpackage we_util_Sys
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: Check.php,v 1.1 2008/05/13 13:41:32 alexander.lindenstruth Exp $
  */
 
-include_once 'webEdition/lib/we/core/autoload.php';
+
+//echo ini_get("include_path")."<br />";
+ini_set("include_path",ini_get("include_path").":".$_SERVER['DOCUMENT_ROOT']);
+//echo ini_get("include_path");
+
 include_once 'webEdition/lib/we/util/Sys.php';
 
 /**

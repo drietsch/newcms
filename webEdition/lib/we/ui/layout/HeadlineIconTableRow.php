@@ -11,7 +11,6 @@
  * @subpackage we_ui_layout
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: HeadlineIconTableRow.php,v 1.3 2008/06/13 16:59:17 holger.meyer Exp $
  */
 
 /**
@@ -25,7 +24,6 @@ Zend_Loader::loadClass('we_ui_abstract_AbstractElement');
  * @category   we
  * @package    we_ui
  * @subpackage we_ui_layout
- * @see we_ui_layout_HeadlineIconTable
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/license     LICENSE_TYPE  TODO insert license type and url
  */
@@ -193,7 +191,7 @@ class we_ui_layout_HeadlineIconTableRow extends we_ui_abstract_AbstractElement
 	public function addElement($elem)
 	{
 		$this->addCSSFiles($elem->getCSSFiles());
-		$this->addJSFiles($elem->getJSFiles());		
+		$this->addJSFiles($elem->getJSFiles());
 		$this->_contentHTML .= $elem->getHTML();
 	}
 

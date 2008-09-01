@@ -1,15 +1,17 @@
 <?php
 /**
- * class for installing and uninstalling webEdition applications (formerly known as "tools")
- * 
+ * webEdition SDK
+ *
+ * LICENSE_TEXT
+ *
+ * TODO insert license text
+ *
  * @category   we
  * @package    we_app
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
- * @license    http://www.living-e.de/license     LICENSE_TYPE  TODO insert license type and url
- * @author Alexander Lindenstruth
+ * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
  */
 
-include_once (dirname(dirname(__FILE__)) . '/../we/core/autoload.php');
 
 /**
  * @see we_app_Application
@@ -41,7 +43,16 @@ Zend_Loader::loadClass('we_app_Hook_Reader_Xml');
  */
 Zend_Loader::loadClass('we_util_File');
 
-class we_app_Installer
+
+/**
+ * class for installing and uninstalling webEdition applications (formerly known as "tools")
+ * 
+ * @category   we
+ * @package    we_app
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/license     LICENSE_TYPE  TODO insert license type and url
+ */
+ class we_app_Installer
 {
 	
 	/**

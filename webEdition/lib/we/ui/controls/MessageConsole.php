@@ -11,7 +11,6 @@
  * @subpackage we_ui_controls
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: MessageConsole.php,v 1.3 2008/06/25 13:24:13 holger.meyer Exp $
  */
 
 /**
@@ -31,10 +30,21 @@ Zend_Loader::loadClass('we_ui_abstract_AbstractElement');
 class we_ui_controls_MessageConsole extends we_ui_abstract_AbstractElement
 {
 
-	const kHeaderFontClass ='we_ui_controls_MessageConsoleHeaderText';
+	/**
+	 * class for HeaderFont
+	 */
+	const kHeaderFontClass = 'we_ui_controls_MessageConsoleHeaderText';
+
+	/**
+	 * class for HeaderIconNormalClass
+	 */
 	const kHeaderIconNormalClass = 'we_ui_controls_MessageConsoleHeaderIconNormal';
+
+	/**
+	 * class for HeaderIconOverClass
+	 */
 	const kHeaderIconOverClass = 'we_ui_controls_MessageConsoleHeaderIconOver';
-	
+
 	/*
 	 * Name of Console
 	 * 
@@ -60,9 +70,14 @@ class we_ui_controls_MessageConsole extends we_ui_abstract_AbstractElement
 		
 		// add needed CSS Files
 		$this->addCSSFile(we_ui_layout_Themes::computeCSSURL(__CLASS__));
-			
+	
 	}
 
+	/**
+	 * Renders and returns HTML of MessageConsole
+	 *
+	 * @return string
+	 */
 	protected function _renderHTML()
 	{
 		$translate = we_core_Local::addTranslation('messageConsole.xml');

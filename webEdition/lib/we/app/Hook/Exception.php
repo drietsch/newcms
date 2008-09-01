@@ -24,4 +24,5 @@ require_once 'Zend/Exception.php';
  * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
  */
 class we_app_Hook_Exception extends Zend_Exception
-{}
+{
+}

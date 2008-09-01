@@ -1,13 +1,61 @@
 <?php
+/**
+ * webEdition SDK
+ *
+ * LICENSE_TEXT
+ *
+ * TODO insert license text
+ *
+ * @category   we
+ * @package    we_ui
+ * @subpackage we_ui_controls
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
+ */
 
+/**
+ * @see we_ui_abstract_AbstractElement
+ */
+Zend_Loader::loadClass('we_ui_abstract_AbstractElement');
+
+/**
+ * Class to display a JavaMenu
+ * 
+ * @category   we
+ * @package    we_ui
+ * @subpackage we_ui_controls
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/license     LICENSE_TYPE  TODO insert license type and url
+ */
 class we_ui_controls_JavaMenu extends we_ui_abstract_AbstractElement
 {
 
+	/**
+	 * _entries attribute
+	 *
+	 * @var array
+	 */
 	protected $_entries;
 
-	protected $_cmdURL='';
-	protected $_cmdTarget='';
-	
+	/**
+	 * _cmdURL attribute
+	 *
+	 * @var string
+	 */
+	protected $_cmdURL = '';
+
+	/**
+	 * _cmdTarget attribute
+	 *
+	 * @var string
+	 */
+	protected $_cmdTarget = '';
+
+	/**
+	 * Renders and returns HTML of JavaMenu
+	 *
+	 * @return string
+	 */
 	protected function _renderHTML()
 	{
 		$lang = we_core_Local::getComputedUILang();
@@ -23,10 +71,10 @@ class we_ui_controls_JavaMenu extends we_ui_abstract_AbstractElement
 					<param name="cabbase" value="menuapplet.cab">
 					<param name="phpext" value=".php">';
 			if ($this->_cmdTarget !== '') {
-				$out .= "\n" . '				<param name="cmdTarget" value="'.htmlspecialchars($this->_cmdTarget).'">';
+				$out .= "\n" . '				<param name="cmdTarget" value="' . htmlspecialchars($this->_cmdTarget) . '">';
 			}
 			if ($this->_cmdURL !== '') {
-				$out .= "\n" . '				<param name="cmdURL" value="'.htmlspecialchars($this->_cmdURL).'">';
+				$out .= "\n" . '				<param name="cmdURL" value="' . htmlspecialchars($this->_cmdURL) . '">';
 			}
 			$i = 0;
 			foreach ($this->_entries as $id => $m) {
@@ -97,7 +145,7 @@ class we_ui_controls_JavaMenu extends we_ui_abstract_AbstractElement
 			$foo = $menus[$i]["code"];
 			self::_computeOption($this->_entries, $foo, $menus[$i]["id"], "");
 			$foo .= "</select>\n";
-			$out .= '<td>'  . $foo . '</td>' . (($i < (sizeof($menus) - 1)) ? '<td>&nbsp;&nbsp;</td>' : '');
+			$out .= '<td>' . $foo . '</td>' . (($i < (sizeof($menus) - 1)) ? '<td>&nbsp;&nbsp;</td>' : '');
 		}
 		$out .= '
 					</tr>
@@ -124,6 +172,14 @@ class we_ui_controls_JavaMenu extends we_ui_abstract_AbstractElement
 	
 	}
 
+	/**
+	 * 
+	 *
+	 * @param $men
+	 * @param $opt
+	 * @param $p
+	 * @param $zweig
+	 */
 	protected static function _computeOption($men, &$opt, $p, $zweig)
 	{
 		$lang = we_core_Local::getComputedUILang();
@@ -170,6 +226,12 @@ class we_ui_controls_JavaMenu extends we_ui_abstract_AbstractElement
 		}
 	}
 
+	/**
+	 * 
+	 *
+	 * @param $men
+	 * @param $p
+	 */
 	protected static function _search($men, $p)
 	{
 		$container = array();
@@ -228,5 +290,5 @@ class we_ui_controls_JavaMenu extends we_ui_abstract_AbstractElement
 	{
 		$this->_cmdURL = $cmdURL;
 	}
-	
+
 }
