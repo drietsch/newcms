@@ -34,7 +34,7 @@ class toolfactory_ui_controls_Tree extends we_ui_controls_Tree
 	/**
 	 * Constructor
 	 * 
-	 * Sets object propeties if set in $properties array
+	 * Sets object properties if set in $properties array
 	 * 
 	 * @param array $properties associative array containing named object properties
 	 * @return void
@@ -47,6 +47,13 @@ class toolfactory_ui_controls_Tree extends we_ui_controls_Tree
 		$this->addCSSFile(we_ui_layout_Themes::computeCSSURL(__CLASS__));		
 	}
 	
+	/**
+	 * Retrieve string of node object
+	 * 
+	 * @param integer $id
+	 * @param string $text
+	 * @return string
+	 */
 	public function getNodeObject($id, $text) 
 	{
 
@@ -63,7 +70,11 @@ class toolfactory_ui_controls_Tree extends we_ui_controls_Tree
 		return $out;
 	}
 		
-	
+	/**
+	 * Retrieve array of nodes from datasource
+	 *
+	 * @return array
+	 */
 	public static function doCustom()
 	{
 		$items=array();
@@ -92,6 +103,13 @@ class toolfactory_ui_controls_Tree extends we_ui_controls_Tree
 		return $items;
 	}
 	
+	/**
+	 * Retrieve class of tree icon
+	 * 
+	 * @param string $contentType
+	 * @param string $extension
+	 * @return string
+	 */
 	public static function getTreeIconClass($contentType, $extension='')  
 	{
 		switch($contentType) {
@@ -103,7 +121,11 @@ class toolfactory_ui_controls_Tree extends we_ui_controls_Tree
 		}
 	}
 	
-	
+	/**
+	 * Renders and returns HTML of tree
+	 *
+	 * @return string
+	 */
 	protected function _renderHTML() 
 	{
 		
