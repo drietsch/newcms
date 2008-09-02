@@ -45,7 +45,6 @@ if (defined('CUSTOMER_TABLE')) {
 	    var $Storage = array();
 
 	    function weNavigationItem($id, $docid, $table, $text, $display, $href, $type, $icon, $attributes, $limitaccess, $customers = "") {
-
 	        $this->id = $id;
 	        $this->parentid = 0;
 	        $this->name = $text;
@@ -471,6 +470,7 @@ if (defined('CUSTOMER_TABLE')) {
 															$_navigation->LinkID,
 															($_navigation->IsFolder ? ($_navigation->FolderSelection == "objLink" ? OBJECT_FILES_TABLE : FILE_TABLE) : (($_navigation->SelectionType=='classname' || $_navigation->SelectionType=='objLink') ? OBJECT_FILES_TABLE : FILE_TABLE)),
 															$_navigation->Text,
+															$_navigation->Display,
 															$_navigation->getHref($_navigation->SelectionType,$_navigation->LinkID,$_navigation->Url,$_navigation->Parameter,$_navigation->WorkspaceID),
 															$showRoot ? 'folder' : 'root',
 															$this->id2path($_navigation->IconID),
@@ -506,7 +506,7 @@ if (defined('CUSTOMER_TABLE')) {
 			$_all = count($_items) - count($_depended) + count($_new_items);
 			$_items = array_splice($_items,0,$_all);
 			foreach($_items as $_item) {
-				$this->items['id'.$_item['id']] = new weNavigationItem($_item['id'],$_item['docid'],$_item['table'],$_item['text'],$_item['href'],$_item['type'],$_item['icon'],$_item['attributes'],$_item['limitaccess'],$_item['customers']);
+				$this->items['id'.$_item['id']] = new weNavigationItem($_item['id'],$_item['docid'],$_item['table'],$_item['text'],$_item['display'],$_item['href'],$_item['type'],$_item['icon'],$_item['attributes'],$_item['limitaccess'],$_item['customers']);
 				if(isset($this->items['id'.$_item['parentid']])) {
 					$this->items['id'.$_item['parentid']]->addItem($this->items['id'.$_item['id']]);
 				}
@@ -662,6 +662,7 @@ if (defined('CUSTOMER_TABLE')) {
 				$_navigation->LinkID,
 				($_navigation->IsFolder ? ($_navigation->FolderSelection == "objLink" ? OBJECT_FILES_TABLE : FILE_TABLE) : (($_navigation->SelectionType=='classname' || $_navigation->SelectionType=='objLink') ? OBJECT_FILES_TABLE : FILE_TABLE)),
 				$_navigation->Text,
+				$_navigation->Display,
 				$_navigation->getHref($this->Storage['ids']),
 				$showRoot ? ($_navigation->ID==0 ? 'root' : ($_navigation->IsFolder ? 'folder' : 'item')) : 'root',
 				$this->id2path($_navigation->IconID),
