@@ -1,5 +1,17 @@
 <?php
-    /**********************************************************************
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
+
+	/**********************************************************************
     /*  ATTENTION: This is the xhtml 1.0 Transitional Doctype!!!
     /*  It is generated automatically from the dtd 
     /*  http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd
