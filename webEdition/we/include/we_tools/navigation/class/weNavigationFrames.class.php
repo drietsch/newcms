@@ -208,6 +208,7 @@ class weNavigationFrames extends weToolFrames {
 				'headline'=> $l_navigation['general'],
 				'html'=>	we_htmlElement::htmlHidden(array('name'=>'newone','value'=>($this->Model->ID==0 ? 1 : 0))) .
 							htmlFormElementTable(htmlTextInput('Text','',strtr($this->Model->Text, array_flip(get_html_translation_table(HTML_SPECIALCHARS))),'','style="width: '.$this->_width_size.'" onChange="'.$this->topFrame.'.mark();"'), $l_navigation['name']) .
+							htmlFormElementTable(htmlTextInput('Display','',$this->Model->Display,'','style="width: '.$this->_width_size.'" onChange="'.$this->topFrame.'.mark();"'), $l_navigation['display']) .
 							$this->getHTMLChooser($l_navigation['group'],NAVIGATION_TABLE,0,'ParentID',$_parentid,'ParentPath','opener.'.$this->topFrame.'.mark()','folder',($this->Model->IsFolder==0 && $this->Model->Depended==1)),
 				'space'=>$this->_space_size,
 				'noline'=>1
