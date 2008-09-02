@@ -15,8 +15,7 @@ define('WE_NEWSLETTER_STATUS_EMAIL_EXISTS',1);
 define('WE_NEWSLETTER_STATUS_EMAIL_INVALID',2);
 define('WE_NEWSLETTER_STATUS_CONFIR_FAILED',3);
 
-include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/we_mailer_class.inc.php");
-
+include_once $_SERVER['DOCUMENT_ROOT'].'/webEdition/lib/we/core/autoload.php';
 
 function we_tag_addDelNewsletterEmail($attribs, $content) {
 	$useListsArray = isset($_REQUEST["we_use_lists__"]);
@@ -49,6 +48,7 @@ function we_tag_addDelNewsletterEmail($attribs, $content) {
 			'customer_salutation_field' => 'Anrede_Salutation',
 			'customer_title_field' => 'Anrede_Title',
 			'default_htmlmail' => '0',
+			'isEmbedImages' => '0',
 			'default_reply' => 'reply@'.$_domainName,
 			'default_sender' => 'mailer@'.$_domainName,
 			'female_salutation' => $l_newsletter["default"]["female"],
@@ -150,7 +150,6 @@ function we_tag_addDelNewsletterEmail($attribs, $content) {
 				$__query = "SELECT * FROM " . CUSTOMER_TABLE . " WHERE " . $_customerFieldPrefs['customer_email_field'] . "='" . $f["subscribe_mail"] . "'";
 				$db = new DB_WE();
 				$db->query($__query);
-				//$customerAbos
 				if(!$db->next_record()) {
 					$emailExistsInAllOfTheLists = false;
 				}
@@ -285,12 +284,16 @@ function we_tag_addDelNewsletterEmail($attribs, $content) {
 				
 				
 				
+				$phpmail = new we_util_Mailer($f["subscribe_mail"],$subject,$from,$from);
+				$phpmail->setClassVars(array("CharSet"=>$charset,"basedir"=>$basehref));
+				
 				if($f["subscribe_html"]){
-					$mail= new we_mailer($f["subscribe_mail"],$subject,$mailtextHTML,$from,"",2,$charset,$basehref,$mailtext);
+					$phpmail->addHTMLPart($mailtextHTML);
 				}else{
-					$mail= new we_mailer($f["subscribe_mail"],$subject,$mailtext,$from,"",0,$charset,$basehref);
+					$phpmail->addTextPart($mailtext);
 				}
-				$mail->send();
+				$phpmail->buildMessage();
+				$phpmail->Send();
 				$GLOBALS["WE_DOUBLEOPTIN"]=1;
 
 				if(isset($mywedoc)) $GLOBALS["we_doc"]=$mywedoc;
@@ -435,7 +438,6 @@ function we_tag_addDelNewsletterEmail($attribs, $content) {
 	/**********************************************************************************/
 	if($isUnsubscribe){
 		$GLOBALS["WE_REMOVENEWSLETTER_STATUS"] = WE_NEWSLETTER_STATUS_SUCCESS;
-
 		$unsubscribe_mail=trim($_REQUEST["we_unsubscribe_email__"]);
 		$unsubscribe_mail = ereg_replace("[\r\n,]","",$unsubscribe_mail);
 		$GLOBALS["WE_NEWSLETTER_EMAIL"] = $unsubscribe_mail;
