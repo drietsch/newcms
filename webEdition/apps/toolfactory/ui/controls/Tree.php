@@ -1,18 +1,14 @@
 <?php
-
-
-/* webEdition SDK
+/**
+ * webEdition CMS
  *
- * LICENSE_TEXT
+ * LICENSETEXT_CMS
  *
- * TODO insert license text
  *
- * @category   toolfactory
- * @package    toolfactory_ui
- * @subpackage toolfactory_ui_controls
+ * @category   webEdition
+ * @package    webEdition_toolfactory
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
- * @license    http://www.living-e.de/licence     LICENCE_TYPE  TODO insert license type and url
- * @version    $Id: Tree.php,v 1.3 2008/07/14 06:49:09 thomas.kneip Exp $
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
  */
 
 /**
