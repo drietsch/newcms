@@ -1,4 +1,15 @@
 <?php
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_language
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
 $l_banner["save_changed_banner"] = "Das Banner wurde geändert.\\nMöchten Sie Ihre Änderungen speichern?";
 $l_banner["wrongtext"] = "Der eingegebene Name ist ungültig! Folgende Zeichen dürfen nicht im Namen enthalten sein: /  \\  % ' \"";

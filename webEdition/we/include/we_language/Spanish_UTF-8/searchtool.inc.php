@@ -1,4 +1,16 @@
 <?php
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_language
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
+
 $GLOBALS['l_weSearch']['save_group_ok'] = $l_tools['save_group_ok'];
 $GLOBALS['l_weSearch']['save_ok'] = $l_tools['save_ok'];
 $GLOBALS['l_weSearch']['save_group_failed'] = $l_tools['save_group_failed'];

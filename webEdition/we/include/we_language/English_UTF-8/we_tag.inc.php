@@ -1,4 +1,16 @@
 <?php
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_language
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
+
 $l_we_tag['a']['description'] = "The we:a tag creates an HTML link tag that references an internal webEdition document that has the ID listed below. The tag links any content found between the start tag and the end tag.";
 $l_we_tag['a']['defaultvalue'] = "";
 $l_we_tag['addDelNewsletterEmail']['description'] = "This tag is used to add or remove an E-mail address from a newsletter address list. In attribute \"path\" the complete path to the newsletter list must be given. If the path begins without \"/\" the path will be emanated from DOCUMENT_ROOT. If you use several lists, you can enter several paths, separated by a comma.";

@@ -1,13 +1,16 @@
 <?php
 
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2005 living-e AG                   |
-// +----------------------------------------------------------------------+
-//
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_language
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
 $l_backup["save_not_checked"] = " U heeft geen download locatie gekozen voor het backup bestand!";
 $l_backup["wizard_title"] = "Herstel Backup Hulp";

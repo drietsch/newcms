@@ -1,4 +1,16 @@
 <?php
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_language
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
+
 $l_we_tag['a']['description'] = "Das we:a-Tag erzeugt ein HTML-Link-Tag, das auf ein webEdition-internes Dokument mit der unten angegebenen ID verweist. Der gesamte Inhalt zwischen Start- und Endtag wird verlinkt.";
 $l_we_tag['a']['defaultvalue'] = "";
 $l_we_tag['addDelNewsletterEmail']['description'] = "Dieses Tag erzeugt, schreibt oder entfernt eine Email aus der Newsletter-Empf&auml;nger-Liste. Die Empf&auml;nger-Listen werden als CSV-Datei gespeichert und k&ouml;nnen dann beim Versand im Newslettermodul verwendet werden.";
