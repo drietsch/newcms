@@ -44,6 +44,7 @@ $l_navigation['preview_code'] = 'Vorschau - Quellcode';
 $l_navigation['navigation'] = 'Navigation';
 $l_navigation['group'] = 'Ordner';
 $l_navigation['name'] = 'Name';
+$l_navigation['display'] = 'Darstellung';
 $l_navigation['newFolder'] = 'Neuer Ordner';
 $l_navigation['save_group_ok'] = 'Der Ordner wurde gespeichert.';
 $l_navigation['save_ok'] = 'Die Navigation wurde gespeichert.';
