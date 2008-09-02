@@ -1,14 +1,15 @@
 <?php
-
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2003 living-e AG                   |
-// +----------------------------------------------------------------------+
-//
-// $Id: we_conf.inc.php,v 1.51 2008/06/23 10:02:34 alexander.lindenstruth Exp $
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
 /**
  * Configuration file for webEdition
@@ -59,7 +60,7 @@ define("SERVER_NAME", $SERVER_NAME);
 define("DB_HOST","localhost");
 
 // Name of database being used by webEdition
-define("DB_DATABASE","webedition");
+define("DB_DATABASE","we6trunk");
 
 // Username to access the database
 define("DB_USER","root");
@@ -89,6 +90,9 @@ define("DB_CHARSET","");
 
 // Collation of tables in database for this webEdition.
 define("DB_COLLATION","");
+
+// Database wrapper class of webEdition
+include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/"."db_mysql.inc.php");
 
 
 
