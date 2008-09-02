@@ -1,13 +1,15 @@
 <?php
-
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2007 living-e AG                                |
-// +----------------------------------------------------------------------+
-//
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
 
 
@@ -176,13 +178,13 @@ class importFunctions{
 	*/
 	function correctFilename($filename){
 		$filename = str_replace(" ","-",$filename);
-		$filename = str_replace("ä","ae",$filename);
-		$filename = str_replace("ö","oe",$filename);
-		$filename = str_replace("ü","ue",$filename);
-		$filename = str_replace("Ä","Ae",$filename);
-		$filename = str_replace("Ö","Oe",$filename);
-		$filename = str_replace("Ü","Ue",$filename);
-		$filename = str_replace("ß","ss",$filename);
+		$filename = str_replace("ï¿½","ae",$filename);
+		$filename = str_replace("ï¿½","oe",$filename);
+		$filename = str_replace("ï¿½","ue",$filename);
+		$filename = str_replace("ï¿½","Ae",$filename);
+		$filename = str_replace("ï¿½","Oe",$filename);
+		$filename = str_replace("ï¿½","Ue",$filename);
+		$filename = str_replace("ï¿½","ss",$filename);
 		$filename = eregi_replace('[^a-z0-9\._\-]','',$filename);
 		if(strlen($filename) > 100){
 			$filename  = substr($filename,0,100);	
