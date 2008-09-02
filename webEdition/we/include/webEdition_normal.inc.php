@@ -1,37 +1,33 @@
 <?php
-/**
- * webEdition CMS
- *
- * LICENSETEXT_CMS
- *
- *
- * @category   webEdition
- * @package    webEdition_base
- * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
- * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
- */
 
-include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_language/" . $GLOBALS["WE_LANGUAGE"] . "/cache.inc.php");
+// +----------------------------------------------------------------------+
+// | webEdition                                                           |
+// +----------------------------------------------------------------------+
+// | PHP version 4.1.0 or greater                                         |
+// +----------------------------------------------------------------------+
+// | Copyright (c) 2000 - 2007 living-e AG                                |
+// +----------------------------------------------------------------------+
+//
 
-/**
- * @return void
- * @desc prints the functions needed for the tree.
- */
-function pWebEdition_Tree()
-{
-	
-	include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_classes/" . "weMainTree.inc.php");
-	$Tree = new weMainTree("webEdition.php", "top", "self.Tree", "top.load");
-	print $Tree->getJSTreeCode();
-}
+include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GLOBALS["WE_LANGUAGE"]."/cache.inc.php");
 
-/**
- * @return void
- * @desc prints JavaScript functions only needed in normal mode
- */
-function pWebEdition_JSFunctions()
-{
-	?>
+   /**
+	* @return void
+	* @desc prints the functions needed for the tree.
+	*/
+	function pWebEdition_Tree(){
+
+		include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/"."weMainTree.inc.php");
+		$Tree = new weMainTree("webEdition.php","top","self.Tree","top.load");
+		print $Tree->getJSTreeCode();
+	}
+
+   /**
+	* @return void
+	* @desc prints JavaScript functions only needed in normal mode
+	*/
+	function pWebEdition_JSFunctions(){
+		?>
 function toggleBusy(w) {
 	if(w == busy || firstLoad==false)
 		return;
@@ -64,9 +60,7 @@ function doUnload(whichWindow) {
 
 	if (docIds) {
 
-		top.we_cmd('unlock',docIds,'<?php
-	print $_SESSION["user"]["ID"];
-	?>',docTables);
+		top.we_cmd('unlock',docIds,'<?php print $_SESSION["user"]["ID"]; ?>',docTables);
 		if(top.opener){
 			top.opener.focus();
 
@@ -75,9 +69,7 @@ function doUnload(whichWindow) {
 
 	try{
         if(jsWindow_count) {
-            for(i=0;i
-<jsWindow_count
-	;i++){
+            for(i=0;i<jsWindow_count;i++){
         	   eval("jsWindow"+i+"Object.close()");
         	}
         }
@@ -87,38 +79,31 @@ function doUnload(whichWindow) {
     } catch(e){
 
     }
-    //  only
-	when no SEEM-edit-include window is closed if(whichWindow !="include"
-	){
+    //  only when no SEEM-edit-include window is closed
+    if(whichWindow != "include"){
         if(opener) {
-            opener.location.replace('<?php
-	print WEBEDITION_DIR;
-	?>
-	we_loggingOut.php');
+            opener.location.replace('<?php print WEBEDITION_DIR; ?>we_loggingOut.php');
         }
     }
 }
 
-var widthBeforeDeleteMode=0;
-	var widthBeforeDeleteModeSidebar=0;
-	<?php
-}
+var widthBeforeDeleteMode = 0;
+var widthBeforeDeleteModeSidebar = 0;
 
-/**
- * @return void
- * @desc prints the different cases for the function we_cmd
- */
-function pWebEdition_JSwe_cmds()
-{
-	?>
-	case "new":
-	treeData.unselectnode();
-			if(typeof(arguments[5])!="undefined"
-	) {
+	<?php
+	}
+
+   /**
+	* @return void
+	* @desc prints the different cases for the function we_cmd
+	*/
+	function pWebEdition_JSwe_cmds(){
+		?>
+		case "new":
+			treeData.unselectnode();
+			if(typeof(arguments[5])!="undefined") {
 				top.weEditorFrameController.openDocument(arguments[1],arguments[2],arguments[3],"",arguments[4],"",arguments[5]);
-			} else
-	if(typeof(arguments[4])!="undefined" && arguments[5]==
-	"undefined") {
+			} else if(typeof(arguments[4])!="undefined" && arguments[5]=="undefined") {
 				top.weEditorFrameController.openDocument(arguments[1],arguments[2],arguments[3],"","","",arguments[5]);
 			} else {
 				top.weEditorFrameController.openDocument(arguments[1],arguments[2],arguments[3],"",arguments[4]);
@@ -126,7 +111,7 @@ function pWebEdition_JSwe_cmds()
 			break;
 
 		case "load":
-	if(self.Tree)
+			if(self.Tree)
 				if(self.Tree.setScrollY)
 					self.Tree.setScrollY();
 			we_cmd("setTab",arguments[1]);
@@ -134,40 +119,37 @@ function pWebEdition_JSwe_cmds()
 			we_repl(self.load,url,arguments[0]);
 			break;
 		case "clear_cache":
-	if(confirm("<?php
-	echo $GLOBALS['l_we_cache']["delete_cache"];
-	?>")) {
+			if(confirm("<?php echo $GLOBALS['l_we_cache']["delete_cache"]; ?>")) {
 				we_repl(top.load,url,arguments[0]);
 			}
 			break;
 		case "exit_delete":
-	case "exit_move": deleteMode=false;
-	treeData.setstate(treeData.tree_states["edit"]);
+		case "exit_move":
+			deleteMode = false;
+			treeData.setstate(treeData.tree_states["edit"]);
 			drawTree();
 
-			self.rframe.bframe.document.getElementById("treeHeadFrame").rows="1,*,40"
-	;
-			var frameobj=self.rframe.document.getElementById(
-	"resizeframeid");
-			if (frameobj !=null)
-	{
-				frameobj.cols=widthBeforeDeleteMode
-	+ ",*, "+ widthBeforeDeleteModeSidebar;
+			self.rframe.bframe.document.getElementById("treeHeadFrame").rows = "1,*,40";
+			var frameobj = self.rframe.document.getElementById("resizeframeid");
+			if (frameobj != null) {
+				frameobj.cols = widthBeforeDeleteMode + ",*, "+ widthBeforeDeleteModeSidebar;
 			}
 			break;
 		case "delete":
-	if(top.deleteMode !=arguments[1]){ top.deleteMode=arguments[1];
-	}
-			if(!top.deleteMode &&  treeData.state==treeData.tree_states[
-	"select"]){
+			if(top.deleteMode != arguments[1]){
+				top.deleteMode=arguments[1];
+			}
+			if(!top.deleteMode &&  treeData.state==treeData.tree_states["select"]){
 				treeData.setstate(treeData.tree_states["edit"]);
 				drawTree();
 			}
-			self.rframe.bframe.document.getElementById("treeHeadFrame").rows="150,*,40"
-	;
+			self.rframe.bframe.document.getElementById("treeHeadFrame").rows = "150,*,40";
 
-			var width=top.getTreeWidth(); widthBeforeDeleteMode=width;
-	if (width< 420) {
+			var width = top.getTreeWidth();
+
+			widthBeforeDeleteMode = width;
+
+			if (width < 420) {
 				top.setTreeWidth(420);
 				top.storeTreeWidth(420);
 			}
@@ -207,42 +189,26 @@ function pWebEdition_JSwe_cmds()
 			break;
 
 		<?php
-}
+	}
 
-/**
- * @return void
- * @desc the frameset for the SeeMode
- */
-function pWebEdition_Frameset()
-{
-	?>
-<frameset
-	rows="32,*,<?php
-	print ((isset($_SESSION["prefs"]["debug_normal"]) && $_SESSION["prefs"]["debug_normal"] != 0)) ? 100 : 0;
-	?>"
-	framespacing="0" border="0" frameborder="no" onUnload="doUnload()">
+
+   /**
+	* @return void
+	* @desc the frameset for the SeeMode
+	*/
+	function pWebEdition_Frameset(){
+		?>
+<frameset rows="32,*,<?php print ( (isset($_SESSION["prefs"]["debug_normal"]) && $_SESSION["prefs"]["debug_normal"] != 0)) ? 100 : 0; ?>" framespacing="0" border="0" frameborder="no" onUnload="doUnload()">
 	<frame src="header.php" name="header" scrolling="no" noresize>
 	<frame src="resizeframe.php" name="rframe" scrolling="no" noresize>
-	<frameset cols="25%,25%,10%,10%,*" framespacing="0" border="0"
-		frameborder="no">
-		<frame src="<?php
-	print HTML_DIR?>white.html" name="load"
-			scrolling="no" noresize>
-		<frame src="<?php
-	print HTML_DIR?>white.html" name="load2"
-			scrolling="no" noresize>
-		<frame src="<?php
-	print WE_USERS_MODULE_PATH;
-	?>we_users_ping.php"
-			name="ping" scrolling="no" noresize>
-		<frame src="<?php
-	print HTML_DIR?>white.html" name="postframe"
-			scrolling="no" noresize>
-		<frame src="<?php
-	print HTML_DIR?>white.html" name="plugin"
-			scrolling="no" noresize>
+	<frameset cols="25%,25%,10%,10%,*" framespacing="0" border="0" frameborder="no">
+		<frame src="<?php print HTML_DIR ?>white.html" name="load" scrolling="no" noresize>
+		<frame src="<?php print HTML_DIR ?>white.html" name="load2" scrolling="no" noresize>
+		<frame src="<?php print WE_USERS_MODULE_PATH; ?>we_users_ping.php" name="ping" scrolling="no" noresize>
+        <frame src="<?php print HTML_DIR ?>white.html" name="postframe" scrolling="no" noresize>
+        <frame src="<?php print HTML_DIR ?>white.html" name="plugin" scrolling="no" noresize>
 	</frameset>
 </frameset>
-<?php
-}
+	<?php
+	}
 ?>

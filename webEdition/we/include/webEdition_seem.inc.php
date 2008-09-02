@@ -67,9 +67,7 @@ function doUnload(whichWindow) {
 	
 	if (docIds) {
 		
-		top.we_cmd('unlock',docIds,'<?php
-	print $_SESSION["user"]["ID"];
-	?>',docTables);
+		top.we_cmd('unlock',docIds,'<?php print $_SESSION["user"]["ID"]; ?>',docTables);
 		
 		if(top.opener){
 			top.opener.focus();
@@ -82,9 +80,7 @@ function doUnload(whichWindow) {
     }
     try{
         if(jsWindow_count) {
-            for(i=0;i
-<jsWindow_count
-	;i++){
+            for(i=0; i<jsWindow_count; i++){
         	   eval("jsWindow"+i+"Object.close()");
         	}
         }
@@ -95,8 +91,7 @@ function doUnload(whichWindow) {
 
     }
 
-    //  only
-	when no SEEM-edit-include window is closed if(whichWindow !="include"
+    //  only when no SEEM-edit-include window is closed if(whichWindow !="include"
 	){
         if(opener) {
             opener.location.replace('<?php
