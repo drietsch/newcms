@@ -1,13 +1,15 @@
 <?php
-
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2007 living-e AG                                |
-// +----------------------------------------------------------------------+
-//
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
 
 include_once(WE_MESSAGING_MODULE_DIR . "we_msg_proto.inc.php");
@@ -47,7 +49,7 @@ class we_msg_email extends we_msg_proto {
     }
 
     function rfc2047_encode($header) {
-	if (!ereg('[äöüß]', $header)) 
+	if (!ereg('[ï¿½ï¿½ï¿½ï¿½]', $header)) 
 	    return $header;
 
 	/* Quoted-Printable encoding (see RFC 2045) should be okay for iso-8859-1 */

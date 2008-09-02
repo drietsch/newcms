@@ -1,13 +1,15 @@
 <?php
-
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2007 living-e AG                                |
-// +----------------------------------------------------------------------+
-//
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
 
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/"."we_document.inc.php");
@@ -148,7 +150,7 @@ class we_object extends we_document
 			$q .= " OF_IsSearchable tinyint(1) NOT NULL default '1',";
 			$q .= " OF_Charset VARCHAR(64) NOT NULL,";
 			$q .= " OF_WebUserID BIGINT NOT NULL,";
-			// Letzter Eintrag darf nicht mit einem Leerzeichen enden, letztes Zeichen muß ein , sein!!!
+			// Letzter Eintrag darf nicht mit einem Leerzeichen enden, letztes Zeichen muï¿½ ein , sein!!!
 
 			$indexe = "";
 			$indexe .= ', KEY OF_WebUserID (OF_WebUserID)';

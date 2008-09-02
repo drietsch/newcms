@@ -1,13 +1,15 @@
 <?php
-
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2007 living-e AG                                |
-// +----------------------------------------------------------------------+
-//
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
 
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/"."we_document.inc.php");
@@ -1492,7 +1494,7 @@ class we_objectFile extends we_document
 			//$foo = pushChildsFromArr($foo,FILE_TABLE,1);
 			//return makeCSVFromArray($foo);
 		}else{
-			// alle UserWs, welche sich in einem der ClassWs befinden zurückgeben
+			// alle UserWs, welche sich in einem der ClassWs befinden zurï¿½ckgeben
 			$userWsArr = makeArrayFromCSV($userWs);
 			$out = array();
 			foreach($userWsArr as $ws){
@@ -1666,7 +1668,7 @@ class we_objectFile extends we_document
 
 		include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_tools/MultiDirAndTemplateChooser.inc.php");
 
-		// values bekommen aller workspaces, welche hinzugefügt werden dürfen.
+		// values bekommen aller workspaces, welche hinzugefï¿½gt werden dï¿½rfen.
 		$values = getHashArrayFromCSV($this->getPossibleWorkspaces($ws,true),"",$this->DB_WE);
 		foreach($values as $id=>$val){
 			if(!weFileExists($id)) unset($values[$id]);
