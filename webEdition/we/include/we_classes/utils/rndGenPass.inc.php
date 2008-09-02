@@ -1,16 +1,15 @@
 <?php
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or higher                                          |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2005 living-e AG                   |
-// +----------------------------------------------------------------------+
-// +----------------------------------------------------------------------+
-// | passwort randomise and generating with attribs by Jan Gorba          |
-// +----------------------------------------------------------------------+
-//
-// $Id: rndGenPass.inc.php,v 1.3 2007/05/22 08:06:40 andreas.frey Exp $
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
 // Class Declaration Starts:
 class rndConditionPass{

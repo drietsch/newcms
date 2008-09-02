@@ -1,13 +1,15 @@
 <?php
-
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2007 living-e AG                                |
-// +----------------------------------------------------------------------+
-//
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
 
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/we_codeConvertor.inc.php");
@@ -176,7 +178,7 @@ class we_rtf2html{
      $this->rtf_cons[95]=array("pard",      "property",    "","");
      $this->rtf_cons[96]=array("<",			  "spec_char",    '&lt;');
      $this->rtf_cons[97]=array(">",         "spec_char",    '&gt;');
-     $this->rtf_cons[98]=array("'c",        "special",    "Ä","");
+     $this->rtf_cons[98]=array("'c",        "special",    "ï¿½","");
      $this->rtf_cons[99]=array("'d",        "special",    "","");
      $this->rtf_cons[100]=array("'e",       "special",    "","");
      $this->rtf_cons[101]=array("'f",       "special",    "","");
@@ -624,18 +626,18 @@ class we_rtf2html{
 	
 	$go=true;    
 	switch($key){
-		case 98: if($para=="4") $this->pasteChars("Ä"); # AE
+		case 98: if($para=="4") $this->pasteChars("ï¿½"); # AE
 				 $go=false;
 		break;
-		case 99: if($para=="6") $this->pasteChars("Ö"); 
-				 if($para=="c") $this->pasteChars("Ü"); 
-				 if($para=="f") $this->pasteChars("ß"); # OE and UE
+		case 99: if($para=="6") $this->pasteChars("ï¿½"); 
+				 if($para=="c") $this->pasteChars("ï¿½"); 
+				 if($para=="f") $this->pasteChars("ï¿½"); # OE and UE
 				 $go=false;
       break;
-		case 100: if($para=="4") $this->pasteChars("ä"); # ae
+		case 100: if($para=="4") $this->pasteChars("ï¿½"); # ae
 				  $go=false;
 		break;
-		case 101: if($para=="6") $this->pasteChars("ö"); if($para=="c") $this->pasteChars("ü"); #  oe and ue
+		case 101: if($para=="6") $this->pasteChars("ï¿½"); if($para=="c") $this->pasteChars("ï¿½"); #  oe and ue
 			$go=false;
 		break;
 		case 104:

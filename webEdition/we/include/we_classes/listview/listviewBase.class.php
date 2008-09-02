@@ -1,13 +1,15 @@
 <?php
-
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2007 living-e AG                                |
-// +----------------------------------------------------------------------+
-//
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_listview
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
 
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/"."we_db.inc.php");
@@ -79,7 +81,7 @@ class listviewBase{
 			trigger_schedule();
 		}
 		$this->name = $name;
-		$this->search = ((!isset($_REQUEST["we_lv_search_".$this->name])) && (isset($_REQUEST["we_from_search_".$this->name]))) ?  "šŸŠšŸŠšŸŠ" : isset($_REQUEST["we_lv_search_".$this->name]) ? $_REQUEST["we_lv_search_".$this->name] : "";
+		$this->search = ((!isset($_REQUEST["we_lv_search_".$this->name])) && (isset($_REQUEST["we_from_search_".$this->name]))) ?  "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" : isset($_REQUEST["we_lv_search_".$this->name]) ? $_REQUEST["we_lv_search_".$this->name] : "";
 		$this->search = str_replace("\"","",str_replace("\\\"","",trim($this->search)));
 		$this->DB_WE = new DB_WE;
 		$this->rows = $cols ? ($rows * $cols) : $rows;

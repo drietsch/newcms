@@ -1,14 +1,15 @@
 <?php
-
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2007 living-e AG                                |
-// | Copyright (c) 2000 - 2007 living-e AG                                |
-// +----------------------------------------------------------------------+
-//
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
 
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/we_dirSelector.inc.php");
@@ -429,7 +430,7 @@ function addEntry(ID,icon,text,isFolder,path,modDate,contentType,published,title
 			$title = str_replace("\n\r", ' ', $title);
 			$title = str_replace("\n", ' ', $title);
 			$title = str_replace("\\", "\\\\", $title);
-			$title = str_replace("°", "&deg;", $title);
+			$title = str_replace("ï¿½", "&deg;", $title);
 			$title = strip_tags($title);
 			print 'top.addEntry('.$this->f("ID").',"'.$this->f("Icon").'","'.$this->f("Text").'",'.$this->f("IsFolder").',"'.$this->f("Path").'","'.date($GLOBALS["l_global"]["date_format"],$this->f("ModDate")).'","'.$this->f("ContentType").'","'.$published.'","'.$title.'");'."\n";
 		}

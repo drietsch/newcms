@@ -1,4 +1,16 @@
 <?php
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
+
 include_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_browserDetect.inc.php');
 include_once($_SERVER["DOCUMENT_ROOT"] . '/webEdition/we/include/we_html_tools.inc.php');
 include_once($_SERVER["DOCUMENT_ROOT"] . '/webEdition/we/include/we_classes/html/we_button.inc.php');
@@ -6,7 +18,7 @@ include_once($_SERVER["DOCUMENT_ROOT"] . '/webEdition/we/include/we_classes/weSe
 
 
 /**
- * Klasse für Autocomleter
+ * Klasse fï¿½r Autocomleter
  *
  * $yuiSuggest =& weSuggest::getInstance();																											// Die Kalsse instanzieren.
  * echo $yuiSuggest->getYuiFiles																										// Die notwendigen YUI-JS-Dateien werden an einer passenden Stelle eingebunden
@@ -15,15 +27,15 @@ include_once($_SERVER["DOCUMENT_ROOT"] . '/webEdition/we/include/we_classes/weSe
  *			$we_button->create_button("select", "javascript:select_seem_start()", true, 100, 22, "", "", false, false),					// Auswahl-Button
  *			htmlTextInput("seem_start_document_name", 11, $_document_path, "", " id='yuiAcInputDoc'", "text", 190, 0, "", false),		// Input-Feld
  *			'yuiAcInputDoc',																											// Input-Feld-Id. Die Id besteht aus 'yuiAcInput' und AC-Id
- *			we_htmlElement::htmlHidden(array("name" => "seem_start_document", "value" => $_document_id, "id"=>"yuiAcResultDoc")),		// Result-Field (hidden) für die Document-, Folder-, Object-,...ID
+ *			we_htmlElement::htmlHidden(array("name" => "seem_start_document", "value" => $_document_id, "id"=>"yuiAcResultDoc")),		// Result-Field (hidden) fï¿½r die Document-, Folder-, Object-,...ID
  *			'yuiAcResultDoc', 																											// Result-Feld-Id. Die Id besteht aus 'yuiAcResult' und AC-Id
- *			'',																															// Label: steht über dem Inputfeld
- *			FILE_TABLE, 																												// Name der Tabele in für die Query
- *			"folder,text/webedition,image/*,text/js,text/css,text/html,application/*,video/quicktime", 													// ContentTypen für die Query: sie entsprechende Tabele
+ *			'',																															// Label: steht ï¿½ber dem Inputfeld
+ *			FILE_TABLE, 																												// Name der Tabele in fï¿½r die Query
+ *			"folder,text/webedition,image/*,text/js,text/css,text/html,application/*,video/quicktime", 													// ContentTypen fï¿½r die Query: sie entsprechende Tabele
  *			"docSelector", 																												// docSelector | dirSelector : ob nach folder oder doc gesucht wird
- *			20, 																														// Anzahl der Vorschläge
- * 			0, 																															// Verzögerung für das ausläsen des AutoCompletion
- * 			true, 																														// Soll eine Ergäbisüberprüfung stattfinden
+ *			20, 																														// Anzahl der Vorschlï¿½ge
+ * 			0, 																															// Verzï¿½gerung fï¿½r das auslï¿½sen des AutoCompletion
+ * 			true, 																														// Soll eine Ergï¿½bisï¿½berprï¿½fung stattfinden
  * 			"190", 																														// Container-Breite
  * 			"true",																														// Feld darf leer bleiben
  * 			10																															// Abstand zwischen Input-Feld und Button

@@ -1,11 +1,15 @@
 <?php
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2007 living-e AG                                |
-// +----------------------------------------------------------------------+
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
 /**
  * @name we_selectorQuery
@@ -41,7 +45,7 @@ class weSelectorQuery {
 	
 	/**
 	 * query
-	 * Die Funktion 'query' führt die Abfrage für den übergebenen Selektor-Typ durch.
+	 * Die Funktion 'query' fï¿½hrt die Abfrage fï¿½r den ï¿½bergebenen Selektor-Typ durch.
 	 * Mit dem Parameter 'limit' kann man die Anzahl der Suchergebnisse begrenzen.
 	 * 
 	 * @param search
@@ -107,7 +111,7 @@ class weSelectorQuery {
 	
 	/**
 	 * search
-	 * Die Funktion 'search' führt die Suche nach den Anfangszeichen für den übergebenen Selektor-Typ durch.
+	 * Die Funktion 'search' fï¿½hrt die Suche nach den Anfangszeichen fï¿½r den ï¿½bergebenen Selektor-Typ durch.
 	 * Mit dem Parameter 'limit' kann man die Anzahl der Suchergebnisse begrenzen.
 	 * 
 	 * @param search
@@ -278,7 +282,7 @@ class weSelectorQuery {
 	
 	/**
 	 * getResult
-	 * Liefert das komplette Ergäbnis der Abfrage als Hash mit den Feldnamen als Spalten.
+	 * Liefert das komplette Ergï¿½bnis der Abfrage als Hash mit den Feldnamen als Spalten.
 	 * @return Array
 	 */
 	function getResult() {
@@ -295,7 +299,7 @@ class weSelectorQuery {
 	
 	/**
 	 * addQueryField
-	 * Fügt den übergebenen String zur Liste der gesuchten Felder hinzu.
+	 * Fï¿½gt den ï¿½bergebenen String zur Liste der gesuchten Felder hinzu.
 	 * @param field 
 	 * @return void
 	 */
@@ -305,7 +309,7 @@ class weSelectorQuery {
 	
 	/**
 	 * delQueryField
-	 * Entfernt den übergebenen String von der Liste der gesuchten Felder.
+	 * Entfernt den ï¿½bergebenen String von der Liste der gesuchten Felder.
 	 * @param field 
 	 * @return void
 	 */
@@ -317,7 +321,7 @@ class weSelectorQuery {
 		
 	/**
 	 * addCondition
-	 * Fügt die übergeben Abfragebedingung hinzu.
+	 * Fï¿½gt die ï¿½bergeben Abfragebedingung hinzu.
 	 * @param array $condition
 	 */
 	function addCondition($condition) {
