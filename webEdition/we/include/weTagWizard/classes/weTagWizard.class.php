@@ -1,11 +1,24 @@
 <?php
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/weTagWizard/data/module_tags.inc.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/weTagWizard/data/we_tag_groups.inc.php');
+require_once ($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/weTagWizard/data/module_tags.inc.php');
+require_once ($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/weTagWizard/data/we_tag_groups.inc.php');
 
-class weTagWizard {
-	
-	function getExistingWeTags() {
+class weTagWizard
+{
+
+	function getExistingWeTags()
+	{
 		
 		$retTags = array();
 		
@@ -22,8 +35,9 @@ class weTagWizard {
 		natcasesort($retTags);
 		return array_values($retTags);
 	}
-	
-	function getWeTagGroups($allTags=array()) {
+
+	function getWeTagGroups($allTags = array())
+	{
 		
 		$taggroups = array();
 		
@@ -46,7 +60,7 @@ class weTagWizard {
 		}
 		foreach ($GLOBALS['tag_groups'] as $key => $tags) {
 			
-			for ($i=0;$i<sizeof($tags);$i++) {
+			for ($i = 0; $i < sizeof($tags); $i++) {
 				if (in_array($tags[$i], $allTags)) {
 					$taggroups[$key][] = $tags[$i];
 				}
@@ -63,21 +77,23 @@ class weTagWizard {
 		natcasesort($taggroups['alltags']);
 		return $taggroups;
 	}
-	
-	function getCustomTags() {
+
+	function getCustomTags()
+	{
 		
 		if (!isset($GLOBALS['weTagWizard_customTags'])) {
 			
 			$GLOBALS['weTagWizard_customTags'] = array();
 			
-			if (is_dir($_SERVER['DOCUMENT_ROOT'] .'/webEdition/we/include/weTagWizard/we_tags/custom_tags')) {
-			
+			if (is_dir($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/weTagWizard/we_tags/custom_tags')) {
+				
 				// get the custom tag-descriptions
-				$handle = dir($_SERVER['DOCUMENT_ROOT'] .'/webEdition/we/include/weTagWizard/we_tags/custom_tags');
+				$handle = dir(
+						$_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/weTagWizard/we_tags/custom_tags');
 				
 				while (false !== ($entry = $handle->read())) {
 					
-					if(preg_match("/we_tag_(.*).inc.php/", $entry, $match)) {
+					if (preg_match("/we_tag_(.*).inc.php/", $entry, $match)) {
 						$GLOBALS['weTagWizard_customTags'][] = $match[1];
 					}
 				}

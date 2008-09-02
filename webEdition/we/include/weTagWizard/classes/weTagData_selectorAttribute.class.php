@@ -1,37 +1,51 @@
 <?php
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/weTagWizard/classes/weTagDataAttribute.class.php');
+require_once ($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/weTagWizard/classes/weTagDataAttribute.class.php');
 
-class weTagData_selectorAttribute
-extends weTagDataAttribute {
-	
+class weTagData_selectorAttribute extends weTagDataAttribute
+{
+
 	/**
 	 * @var string
 	 */
 	var $Table;
+
 	/**
 	 * @var string
 	 */
 	var $Selectable;
-	
+
 	/**
 	 * @param string $name
 	 * @param string $table
 	 * @param string $selectable
 	 * @param boolean $required
 	 */
-	function weTagData_selectorAttribute($id, $name, $table, $selectable, $required=false, $module='') {
+	function weTagData_selectorAttribute($id, $name, $table, $selectable, $required = false, $module = '')
+	{
 		
 		$this->Table = $table;
 		$this->Selectable = $selectable;
 		
 		parent::weTagDataAttribute($id, $name, $required, $module);
 	}
-	
+
 	/**
 	 * @return string
 	 */
-	function getCodeForTagWizard() {
+	function getCodeForTagWizard()
+	{
 		
 		global $we_button;
 		
@@ -50,8 +64,17 @@ extends weTagDataAttribute {
 			$weCmd = 'openSelector';
 		}
 		
-		$input = we_htmlElement::htmlInput(array('name' => $this->Name, 'value' => $this->Value, 'id' => $this->getIdName(), 'class' => 'wetextinput'));
-		$button = $we_button->create_button("select", "javascript:we_cmd('" . $weCmd . "', document.getElementById('" . $this->getIdName() . "').value, '".$this->Table."', 'document.getElementById(\\'" . $this->getIdName() . "\\').value', '', '', '" . session_id() . "', '', '" . $this->Selectable . "')");
+		$input = we_htmlElement::htmlInput(
+				array(
+					
+						'name' => $this->Name, 
+						'value' => $this->Value, 
+						'id' => $this->getIdName(), 
+						'class' => 'wetextinput'
+				));
+		$button = $we_button->create_button(
+				"select", 
+				"javascript:we_cmd('" . $weCmd . "', document.getElementById('" . $this->getIdName() . "').value, '" . $this->Table . "', 'document.getElementById(\\'" . $this->getIdName() . "\\').value', '', '', '" . session_id() . "', '', '" . $this->Selectable . "')");
 		
 		return '
 					<table class="attribute">

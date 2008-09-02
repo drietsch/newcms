@@ -1,31 +1,44 @@
 <?php
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/weTagWizard/classes/weTagDataAttribute.class.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/weTagWizard/classes/weTagDataOption.class.php');
+require_once ($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/weTagWizard/classes/weTagDataAttribute.class.php');
+require_once ($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/weTagWizard/classes/weTagDataOption.class.php');
 
-class weTagData_selectAttribute
-extends weTagDataAttribute {
-	
+class weTagData_selectAttribute extends weTagDataAttribute
+{
+
 	/**
 	 * @var array
 	 */
-	var $Options; 
-	
+	var $Options;
+
 	/**
 	 * @param string $name
 	 * @param array $options
 	 * @param boolean $required
 	 */
-	function weTagData_selectAttribute($id, $name, $options=array(), $required=false, $module='') {
+	function weTagData_selectAttribute($id, $name, $options = array(), $required = false, $module = '')
+	{
 		
 		$this->weTagDataAttribute($id, $name, $required, $module);
 		$this->Options = $this->getUseOptions($options);
 	}
-	
+
 	/**
 	 * @return string
 	 */
-	function getCodeForTagWizard() {
+	function getCodeForTagWizard()
+	{
 		
 		$keys = array();
 		$values = array();
@@ -41,7 +54,10 @@ extends weTagDataAttribute {
 			$values[] = $option->getName();
 		}
 		
-		$select = new we_htmlSelect(array('name' => $this->Name, 'id' => $this->getIdName(), 'class' => 'defaultfont selectinput'));
+		$select = new we_htmlSelect(
+				array(
+					'name' => $this->Name, 'id' => $this->getIdName(), 'class' => 'defaultfont selectinput'
+				));
 		$select->addOptions(sizeof($values), $keys, $values);
 		
 		$select->selectOption($this->Value);
