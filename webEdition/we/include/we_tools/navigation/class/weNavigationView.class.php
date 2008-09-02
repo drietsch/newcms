@@ -1,13 +1,15 @@
 <?php
-
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2007 living-e AG                                |
-// +----------------------------------------------------------------------+
-//
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
 
 /* the parent class of storagable webEdition classes */
@@ -224,7 +226,7 @@ class weNavigationView {
 					break;
 					
 					case "tool_navigation_reset_customer_filter":
-						if(confirm("Möchten Sie wirklich alle Kundenfilter zurücksetzen?")) {
+						if(confirm("Mï¿½chten Sie wirklich alle Kundenfilter zurï¿½cksetzen?")) {
 							we_cmd("tool_navigation_do_reset_customer_filter");
 						}
 					break;
