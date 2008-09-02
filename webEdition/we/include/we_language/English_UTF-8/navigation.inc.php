@@ -44,6 +44,7 @@ $l_navigation['navigation'] = 'Navigation';
 $l_navigation['group'] = 'Folder';
 $l_navigation['name'] = 'Name';
 $l_navigation['newFolder'] = 'New folder';
+$l_navigation['display'] = 'Display';
 $l_navigation['save_group_ok'] = 'The folder was saved.';
 $l_navigation['save_ok'] = 'The navigation was saved.';
 
