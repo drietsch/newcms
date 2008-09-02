@@ -1,14 +1,15 @@
 <?php
-
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) living-e AG                   |
-// +----------------------------------------------------------------------+
-//
-
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/"."we.inc.php");
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_modules/shop/we_conf_shop.inc.php");
@@ -78,7 +79,7 @@ function we_tag_saferpay($attribs) {
 			if( isset($feldnamen[0])){  // determine the currency 
 				if($feldnamen[0]=="$" || $feldnamen[0]=="USD"){
 		   			$currency = "USD";
-	    		}elseif ($feldnamen[0]=="£" || $feldnamen[0]=="GBP"){
+	    		}elseif ($feldnamen[0]=="ï¿½" || $feldnamen[0]=="GBP"){
 		   			$currency = "GBP";
 				}elseif ($feldnamen[0]=="AUD"){
 		   			$currency = "AUD";
@@ -247,12 +248,12 @@ function we_tag_saferpay($attribs) {
 		     	   $processError = 'A major problem occured. Please try again later.';
 		     	  break;
 		     	case "fr" :
-		     	   $processOK = 'Soyez patient, cela prendra quelques secondes.<br>Si aucune  fenÍtre s affiche, cliquez <a href="' . $payinit_url . '" onclick="OpenSaferpayTerminal(\'' . $payinit_url . '\', this, \'LINK\');">ici</a>';
-		     	   $processError = 'Une erreur Une erreur s est produite. S il vous plaÓt, essayez de nouveau ultÈrieurement..';
+		     	   $processOK = 'Soyez patient, cela prendra quelques secondes.<br>Si aucune  fenï¿½tre s affiche, cliquez <a href="' . $payinit_url . '" onclick="OpenSaferpayTerminal(\'' . $payinit_url . '\', this, \'LINK\');">ici</a>';
+		     	   $processError = 'Une erreur Une erreur s est produite. S il vous plaï¿½t, essayez de nouveau ultï¿½rieurement..';
 		     	  break; 
 		     	case "it" :
 		     	   $processOK = 'Sia prego paziente.<br>Se nessuna finestra apre, clicca <a href="' . $payinit_url . '" onclick="OpenSaferpayTerminal(\'' . $payinit_url . '\', this, \'LINK\');">prego qui</a>';
-		     	   $processError = 'Un errore grave Ë occorso. Prego prova ancora successivamente..';
+		     	   $processError = 'Un errore grave ï¿½ occorso. Prego prova ancora successivamente..';
 		     	  break;
 		     	default:
                    $processOK = 'Bitte haben Sie einen Moment Geduld.<br>Falls sich kein Fenster &ouml;ffnet klicken Sie bitte <a href="' . $payinit_url . '" onclick="OpenSaferpayTerminal(\'' . $payinit_url . '\', this, \'LINK\');">hier</a>'; 

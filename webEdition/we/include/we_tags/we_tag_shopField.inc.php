@@ -1,12 +1,15 @@
 <?php
-
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) living-e AG                   |
-// +----------------------------------------------------------------------+
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
 
 function we_tag_shopField($attribs,$content) {
