@@ -6,8 +6,8 @@
  * LICENSETEXT_CMS
  *
  *
- * @category   we
- * @package    we_rpc
+ * @category   webEdition
+ * @package    webEdition_rpc
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
  */
