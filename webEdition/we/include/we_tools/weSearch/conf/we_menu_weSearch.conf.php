@@ -1,8 +1,18 @@
 <?php
-					
-include_once($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_tools/weSearch/conf/meta.conf.php");
-include_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_tools/weSearch/language/language_' . $GLOBALS['WE_LANGUAGE'] . '.inc.php');
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
+include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_tools/weSearch/conf/meta.conf.php");
+include_once ($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_tools/weSearch/language/language_' . $GLOBALS['WE_LANGUAGE'] . '.inc.php');
 
 $we_menu_weSearch['000100']['text'] = $GLOBALS['l_weSearch']['menu_suche'];
 $we_menu_weSearch['000100']['parent'] = '000000';
@@ -28,7 +38,7 @@ if ($_SESSION["we_mode"] != "seem" && we_hasPerm('CAN_SEE_TEMPLATES')) {
 	$we_menu_weSearch['000400']['perm'] = 'EDIT_NAVIGATION || ADMINISTRATOR';
 	$we_menu_weSearch['000400']['enabled'] = '1';
 }
-if(defined('OBJECT_FILES_TABLE') && defined('OBJECT_TABLE') && we_hasPerm('CAN_SEE_OBJECTFILES')) {
+if (defined('OBJECT_FILES_TABLE') && defined('OBJECT_TABLE') && we_hasPerm('CAN_SEE_OBJECTFILES')) {
 	$we_menu_weSearch['000500']['text'] = $GLOBALS['l_weSearch']['forObjects'];
 	$we_menu_weSearch['000500']['parent'] = '000200';
 	$we_menu_weSearch['000500']['cmd'] = 'tool_' . $metaInfo['name'] . '_new_forObjects';
@@ -47,6 +57,7 @@ $we_menu_weSearch['000600']['enabled'] = '1';
 //$we_menu_weSearch['000700']['perm'] = 'ADMINISTRATOR';
 //$we_menu_weSearch['000700']['enabled'] = '1';
 
+
 $we_menu_weSearch['000800']['text'] = $GLOBALS['l_weSearch']['menu_save'];
 $we_menu_weSearch['000800']['parent'] = '000100';
 $we_menu_weSearch['000800']['cmd'] = 'tool_' . $metaInfo['name'] . '_save';
@@ -61,9 +72,10 @@ $we_menu_weSearch['000900']['enabled'] = '1';
 
 $we_menu_weSearch['000950']['parent'] = '000100'; // separator
 
+
 $we_menu_weSearch['001000']['text'] = $GLOBALS['l_weSearch']['menu_exit'];
 $we_menu_weSearch['001000']['parent'] = '000100';
-$we_menu_weSearch['001000']['cmd'] = 'tool_' . $metaInfo['name'] .  '_exit';
+$we_menu_weSearch['001000']['cmd'] = 'tool_' . $metaInfo['name'] . '_exit';
 $we_menu_weSearch['001000']['perm'] = '';
 $we_menu_weSearch['001000']['enabled'] = '1';
 
@@ -72,16 +84,16 @@ $we_menu_weSearch['003000']['parent'] = '000000';
 $we_menu_weSearch['003000']['perm'] = '';
 $we_menu_weSearch['003000']['enabled'] = '1';
 
-$we_menu_weSearch['003100']['text'] = $GLOBALS['l_weSearch']['menu_help'].'...';
+$we_menu_weSearch['003100']['text'] = $GLOBALS['l_weSearch']['menu_help'] . '...';
 $we_menu_weSearch['003100']['parent'] = '003000';
 $we_menu_weSearch['003100']['cmd'] = 'help';
 $we_menu_weSearch['003100']['perm'] = '';
 $we_menu_weSearch['003100']['enabled'] = '1';
 
-$we_menu_weSearch['003200']['text'] = $GLOBALS['l_weSearch']['menu_info'].'...';
+$we_menu_weSearch['003200']['text'] = $GLOBALS['l_weSearch']['menu_info'] . '...';
 $we_menu_weSearch['003200']['parent'] = '003000';
 $we_menu_weSearch['003200']['cmd'] = 'info';
 $we_menu_weSearch['003200']['perm'] = '';
 $we_menu_weSearch['003200']['enabled'] = '1';
-		
+
 ?>
