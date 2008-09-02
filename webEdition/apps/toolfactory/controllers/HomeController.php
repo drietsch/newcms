@@ -17,8 +17,8 @@ require_once 'Zend/Controller/Action.php';
 /**
  * Base Home Controller
  * 
- * @category   app
- * @package    app_controller
+ * @category   webEdition
+ * @package    webEdition_toolfactory
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.living-e.de/license     LICENSE_TYPE  TODO insert license type and url
  */
