@@ -13,7 +13,7 @@
 
 
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we.inc.php");
-include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/we_mailer_class.inc.php");
+include_once $_SERVER['DOCUMENT_ROOT'].'/webEdition/lib/we/core/autoload.php';
 
 define("WE_DEFAULT_EMAIL","mailserver@".SERVER_NAME);
 define("WE_DEFAULT_SUBJECT","webEdition mailform");
@@ -229,19 +229,6 @@ if(isset($_REQUEST["email"]) && $_REQUEST["email"]){
 }
 
 $output = array();
-//if (defined('WE_USE_CAPTCHA') && WE_USE_CAPTCHA) {
-/*
-if (($_REQUEST['captchaname'] && !empty($_REQUEST['captchaname'])) || (defined('FORMMAIL_CAPTCHA') && FORMMAIL_CAPTCHA)) {
-	if (!check_captcha()) {
-		if($_REQUEST["captcha_error_page"]){
-			$errorpage = (get_magic_quotes_gpc() == 1) ? stripslashes($_REQUEST["captcha_error_page"]) : $_REQUEST["captcha_error_page"];
-			redirect($errorpage);
-		}else{
-			print_error($GLOBALS["l_global"]["captcha_invalid"]);
-		}
-	}
-}
-*/
 
 $we_reserved=array("from","we_remove","captchaname","we_mode","charset","required","order","ok_page","error_page","captcha_error_page","mail_error_page","recipient","subject","mimetype","confirm_mail","pre_confirm","post_confirm","MAX_FILE_SIZE",session_name(),"cookie","recipient_error_page","forcefrom");
 
@@ -383,6 +370,12 @@ if($recipient){
 	}
 
 	$recipients = makeArrayFromCSV($recipient);
+	
+	$phpmail = new we_util_Mailer("",$subject,$fromMail);
+	$phpmail->setCharSet($charset);
+	
+	$recipientsList = array();
+	
 	foreach($recipients as $recipientID){
 		
 		if (is_numeric($recipientID)) {
@@ -401,55 +394,52 @@ if($recipient){
   		$recipient = preg_replace("/(%0A|%0D|\\n+|\\r+)/i","",$recipient);
 
 		if(we_check_email($recipient) && check_recipient($recipient)){
-			if($mimetype == "text/html"){
-				$m = new we_mailer($recipient, $subject, $we_html, $fromMail, "", WE_MAIL_TEXT_AND_HTML, $charset);
-				if(sizeof($_FILES)){
-					foreach($_FILES as $name => $file){
-						if(isset($file["tmp_name"]) && $file["tmp_name"]){
-							$tempName = TMP_DIR."/".$file["name"];
-							move_uploaded_file($file["tmp_name"],$tempName);
-							$m->attachFile($tempName);
-						}
-					}
-				}
-				$m->send();
-				$wasSent = true;
-			}else{
-				$m = new we_mailer($recipient, $subject, $we_txt, $fromMail, "", WE_MAIL_TEXT_ONLY, $charset);
-				if(sizeof($_FILES)){
-					foreach($_FILES as $name => $file){
-						if(isset($file["tmp_name"]) && $file["tmp_name"]){
-							$tempName = TMP_DIR."/".$file["name"];
-							move_uploaded_file($file["tmp_name"],$tempName);
-							$m->attachFile($tempName);
-						}
-					}
-				}
-				$m->send();
-				$wasSent = true;
-			}
-
+			$recipientsList[] = $recipient;
 		}else{
 			print_error($GLOBALS["l_global"]["email_recipient_invalid"]);
 		}
 	}
+	
+	if (count($recipientsList)>0) {
+		if(sizeof($_FILES)){
+			foreach($_FILES as $name => $file){
+				if(isset($file["tmp_name"]) && $file["tmp_name"]){
+					$tempName = TMP_DIR."/".$file["name"];
+					move_uploaded_file($file["tmp_name"],$tempName);
+					$phpmail->AddAttachment($tempName);
+				}
+			}
+		}
+		$phpmail->addAddressList($recipientsList);
+		if($mimetype == "text/html"){
+			$phpmail->addHTMLPart($we_html);
+		} else {
+			$phpmail->addTextPart($we_txt);
+		}
+		$phpmail->buildMessage();
+		if ($phpmail->Send()) {
+			$wasSent = true;
+		}	
+		
+	}
+	
+	
+	
 	if (!defined("FORMMAIL_CONFIRM") || FORMMAIL_CONFIRM) {
 		if($wasSent){
 			// validation
 			if (!is_valid_email($email)) {
 				print_error($GLOBALS["l_global"]["email_invalid"]);
 			}
+			$phpmail = new we_util_Mailer($email,$subject,$from);
+			$phpmail->setCharSet($charset);
 			if($mimetype == "text/html"){
-				if($we_html_confirm){
-					$m = new we_mailer($email, $subject, $we_html_confirm, $from, "", WE_MAIL_TEXT_AND_HTML, $charset);
-					$m->send();
-				}
-			}else{
-				if($we_txt_confirm){
-					$m = new we_mailer($email, $subject, $we_txt_confirm, $from, "", WE_MAIL_TEXT_ONLY, $charset);
-					$m->send();
-				}
+				$phpmail->addHTMLPart($we_html_confirm);
+			} else {
+				$phpmail->addTextPart($we_txt_confirm);
 			}
+			$phpmail->buildMessage();
+			$phpmail->Send();
 		}
 	}
 
