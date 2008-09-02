@@ -1,21 +1,22 @@
 <?php
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2007 living-e AG                                |
-// +----------------------------------------------------------------------+
-//
-
-
-include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we.inc.php");
-include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/html/we_button.inc.php");
-include_once($_SERVER['DOCUMENT_ROOT']."/webEdition/we/include/we_classes/html/we_multibox.inc.php");
-include_once($_SERVER['DOCUMENT_ROOT']."/webEdition/we/include/we_classes/html/we_htmlSelect.inc.php");
-include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GLOBALS["WE_LANGUAGE"]."/cockpit.inc.php");
-include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_widgets/dlg/prefs.inc.php");
+include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we.inc.php");
+include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_classes/html/we_button.inc.php");
+include_once ($_SERVER['DOCUMENT_ROOT'] . "/webEdition/we/include/we_classes/html/we_multibox.inc.php");
+include_once ($_SERVER['DOCUMENT_ROOT'] . "/webEdition/we/include/we_classes/html/we_htmlSelect.inc.php");
+include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_language/" . $GLOBALS["WE_LANGUAGE"] . "/cockpit.inc.php");
+include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_widgets/dlg/prefs.inc.php");
 
 $jsCode = "
 var _sPlgInc='plg/plg';
@@ -79,7 +80,9 @@ function save(){
 	updateView();
 	_oCsv_.value=cs();
 	savePrefs();
-	" . we_message_reporting::getShowMessageCall($l_cockpit['prefs_saved_successfully'], WE_MESSAGE_NOTICE) . "
+	" . we_message_reporting::getShowMessageCall(
+		$l_cockpit['prefs_saved_successfully'], 
+		WE_MESSAGE_NOTICE) . "
 	self.close();
 }
 function preview(){
@@ -93,95 +96,230 @@ function exit_close(){
 }";
 
 $_userName = $_SESSION['user']['Username'];
-$_md5passwd = f("SELECT passwd FROM ".USER_TABLE." WHERE ID='".$_SESSION['user']['ID']."'", "passwd",$GLOBALS['DB_WE']);
-@require($_SERVER["DOCUMENT_ROOT"].WE_TRACKER_DIR."/includes/showme.inc.php");
+$_md5passwd = f(
+		"SELECT passwd FROM " . USER_TABLE . " WHERE ID='" . $_SESSION['user']['ID'] . "'", 
+		"passwd", 
+		$GLOBALS['DB_WE']);
+@require ($_SERVER["DOCUMENT_ROOT"] . WE_TRACKER_DIR . "/includes/showme.inc.php");
 //$_dns = getDomainList($_userName,$_md5passwd);
 //if (defined('WE_TRACKER_DIR')) {
-	include_once($_SERVER["DOCUMENT_ROOT"].WE_TRACKER_DIR."/includes/global.inc.php");
-	include_once($_SERVER["DOCUMENT_ROOT"].WE_TRACKER_DIR."/includes/db.inc.php");
-	$pl_db     = new stat_db;
-	$pl_conn   = $pl_db->connect();
-	$pl_tables = new stat_tables;
-	$pl_tables->build_tables();
-	@$result = mysql_query("SELECT websites FROM $pl_tables->accounttable WHERE account_username = '".$_userName."' AND account_password = '".$_md5passwd."'");
-	$pl_object = mysql_fetch_object($result);
-	$websites = $pl_object->websites;
-	$websites = str_replace("\r","",$websites);
-	$_dns = explode("\n",$websites);
+include_once ($_SERVER["DOCUMENT_ROOT"] . WE_TRACKER_DIR . "/includes/global.inc.php");
+include_once ($_SERVER["DOCUMENT_ROOT"] . WE_TRACKER_DIR . "/includes/db.inc.php");
+$pl_db = new stat_db();
+$pl_conn = $pl_db->connect();
+$pl_tables = new stat_tables();
+$pl_tables->build_tables();
+@$result = mysql_query(
+		"SELECT websites FROM $pl_tables->accounttable WHERE account_username = '" . $_userName . "' AND account_password = '" . $_md5passwd . "'");
+$pl_object = mysql_fetch_object($result);
+$websites = $pl_object->websites;
+$websites = str_replace("\r", "", $websites);
+$_dns = explode("\n", $websites);
 //} else {
-	
+
+
 //}
 
-$sctDns = htmlFormElementTable(htmlSelect("sct_dns",$_dns,1,0,false,'onChange="" style="width:300px;"','value'),$l_cockpit["domain"]);
 
-$chbxChart[0] = we_forms::checkbox($value=0,$checked=0,$name="chbx_chart",$text=$l_cockpit['visitors_data_today'],$uniqid=true,
-	$class="defaultfont",$onClick="",$disabled=false,$description="",$type=0,$width=0);
-$chbxChart[1] = we_forms::checkbox($value=0,$checked=0,$name="chbx_chart",$text=$l_cockpit['visitors_data_yesterday'],$uniqid=true,
-	$class="defaultfont",$onClick="",$disabled=false,$description="",$type=0,$width=0);
-$chbxChart[2] = we_forms::checkbox($value=0,$checked=0,$name="chbx_chart",$text=$l_cockpit['visitors_data_this_month'],$uniqid=true,
-	$class="defaultfont",$onClick="",$disabled=false,$description="",$type=0,$width=0);
-$chbxChart[3] = we_forms::checkbox($value=0,$checked=0,$name="chbx_chart",$text=$l_cockpit['visitors_behaviour_today'],$uniqid=true,
-	$class="defaultfont",$onClick="",$disabled=false,$description="",$type=0,$width=0);
-$chbxChart[4] = we_forms::checkbox($value=0,$checked=0,$name="chbx_chart",$text=$l_cockpit['Snapshot'],$uniqid=true,
-	$class="defaultfont",$onClick="",$disabled=false,$description="",$type=0,$width=0);
-$chbxChart[5] = we_forms::checkbox($value=0,$checked=0,$name="chbx_chart",$text=$l_cockpit['top_visiting_periods'],$uniqid=true,
-	$class="defaultfont",$onClick="",$disabled=false,$description="",$type=0,$width=0);
-$chbxChart[6] = we_forms::checkbox($value=0,$checked=0,$name="chbx_chart",$text=$l_cockpit['visitors_forecast'],$uniqid=true,
-	$class="defaultfont",$onClick="",$disabled=false,$description="",$type=0,$width=0);
-$chbxChart[7] = we_forms::checkbox($value=0,$checked=0,$name="chbx_chart",$text=$l_cockpit['avg_amount_visitors'],$uniqid=true,
-	$class="defaultfont",$onClick="",$disabled=false,$description="",$type=0,$width=0);
-$chbxChart[8] = we_forms::checkbox($value=0,$checked=0,$name="chbx_chart",$text=$l_cockpit['promo_value_tai'],$uniqid=true,
-	$class="defaultfont",$onClick="",$disabled=false,$description="",$type=0,$width=0);
-$chbxChart[9] = we_forms::checkbox($value=0,$checked=0,$name="chbx_chart",$text=$l_cockpit['graph_visitors_today'],$uniqid=true,
-	$class="defaultfont",$onClick="",$disabled=false,$description="",$type=0,$width=0);
-$chbxChart[10] = we_forms::checkbox($value=0,$checked=0,$name="chbx_chart",$text=$l_cockpit['graph_impressions_today'],$uniqid=true,
-	$class="defaultfont",$onClick="",$disabled=false,$description="",$type=0,$width=0);
+$sctDns = htmlFormElementTable(
+		htmlSelect("sct_dns", $_dns, 1, 0, false, 'onChange="" style="width:300px;"', 'value'), 
+		$l_cockpit["domain"]);
 
-$chart = new we_htmlTable(array("cellpadding"=>"0","cellspacing"=>"0","border"=>"0"),13,1);
-$chart->setCol(0,0,null,$sctDns);
-$chart->setCol(1,0,null,getPixel(1,8));
-$chart->setCol(2,0,null,$chbxChart[0]);
-$chart->setCol(3,0,null,$chbxChart[1]);
-$chart->setCol(4,0,null,$chbxChart[2]);
-$chart->setCol(5,0,null,$chbxChart[3]);
-$chart->setCol(6,0,null,$chbxChart[4]);
-$chart->setCol(7,0,null,$chbxChart[5]);
-$chart->setCol(8,0,null,$chbxChart[6]);
-$chart->setCol(9,0,null,$chbxChart[7]);
-$chart->setCol(10,0,null,$chbxChart[8]);
-$chart->setCol(11,0,null,$chbxChart[9]);
-$chart->setCol(12,0,null,$chbxChart[10]);
+$chbxChart[0] = we_forms::checkbox(
+		$value = 0, 
+		$checked = 0, 
+		$name = "chbx_chart", 
+		$text = $l_cockpit['visitors_data_today'], 
+		$uniqid = true, 
+		$class = "defaultfont", 
+		$onClick = "", 
+		$disabled = false, 
+		$description = "", 
+		$type = 0, 
+		$width = 0);
+$chbxChart[1] = we_forms::checkbox(
+		$value = 0, 
+		$checked = 0, 
+		$name = "chbx_chart", 
+		$text = $l_cockpit['visitors_data_yesterday'], 
+		$uniqid = true, 
+		$class = "defaultfont", 
+		$onClick = "", 
+		$disabled = false, 
+		$description = "", 
+		$type = 0, 
+		$width = 0);
+$chbxChart[2] = we_forms::checkbox(
+		$value = 0, 
+		$checked = 0, 
+		$name = "chbx_chart", 
+		$text = $l_cockpit['visitors_data_this_month'], 
+		$uniqid = true, 
+		$class = "defaultfont", 
+		$onClick = "", 
+		$disabled = false, 
+		$description = "", 
+		$type = 0, 
+		$width = 0);
+$chbxChart[3] = we_forms::checkbox(
+		$value = 0, 
+		$checked = 0, 
+		$name = "chbx_chart", 
+		$text = $l_cockpit['visitors_behaviour_today'], 
+		$uniqid = true, 
+		$class = "defaultfont", 
+		$onClick = "", 
+		$disabled = false, 
+		$description = "", 
+		$type = 0, 
+		$width = 0);
+$chbxChart[4] = we_forms::checkbox(
+		$value = 0, 
+		$checked = 0, 
+		$name = "chbx_chart", 
+		$text = $l_cockpit['Snapshot'], 
+		$uniqid = true, 
+		$class = "defaultfont", 
+		$onClick = "", 
+		$disabled = false, 
+		$description = "", 
+		$type = 0, 
+		$width = 0);
+$chbxChart[5] = we_forms::checkbox(
+		$value = 0, 
+		$checked = 0, 
+		$name = "chbx_chart", 
+		$text = $l_cockpit['top_visiting_periods'], 
+		$uniqid = true, 
+		$class = "defaultfont", 
+		$onClick = "", 
+		$disabled = false, 
+		$description = "", 
+		$type = 0, 
+		$width = 0);
+$chbxChart[6] = we_forms::checkbox(
+		$value = 0, 
+		$checked = 0, 
+		$name = "chbx_chart", 
+		$text = $l_cockpit['visitors_forecast'], 
+		$uniqid = true, 
+		$class = "defaultfont", 
+		$onClick = "", 
+		$disabled = false, 
+		$description = "", 
+		$type = 0, 
+		$width = 0);
+$chbxChart[7] = we_forms::checkbox(
+		$value = 0, 
+		$checked = 0, 
+		$name = "chbx_chart", 
+		$text = $l_cockpit['avg_amount_visitors'], 
+		$uniqid = true, 
+		$class = "defaultfont", 
+		$onClick = "", 
+		$disabled = false, 
+		$description = "", 
+		$type = 0, 
+		$width = 0);
+$chbxChart[8] = we_forms::checkbox(
+		$value = 0, 
+		$checked = 0, 
+		$name = "chbx_chart", 
+		$text = $l_cockpit['promo_value_tai'], 
+		$uniqid = true, 
+		$class = "defaultfont", 
+		$onClick = "", 
+		$disabled = false, 
+		$description = "", 
+		$type = 0, 
+		$width = 0);
+$chbxChart[9] = we_forms::checkbox(
+		$value = 0, 
+		$checked = 0, 
+		$name = "chbx_chart", 
+		$text = $l_cockpit['graph_visitors_today'], 
+		$uniqid = true, 
+		$class = "defaultfont", 
+		$onClick = "", 
+		$disabled = false, 
+		$description = "", 
+		$type = 0, 
+		$width = 0);
+$chbxChart[10] = we_forms::checkbox(
+		$value = 0, 
+		$checked = 0, 
+		$name = "chbx_chart", 
+		$text = $l_cockpit['graph_impressions_today'], 
+		$uniqid = true, 
+		$class = "defaultfont", 
+		$onClick = "", 
+		$disabled = false, 
+		$description = "", 
+		$type = 0, 
+		$width = 0);
+
+$chart = new we_htmlTable(array(
+	"cellpadding" => "0", "cellspacing" => "0", "border" => "0"
+), 13, 1);
+$chart->setCol(0, 0, null, $sctDns);
+$chart->setCol(1, 0, null, getPixel(1, 8));
+$chart->setCol(2, 0, null, $chbxChart[0]);
+$chart->setCol(3, 0, null, $chbxChart[1]);
+$chart->setCol(4, 0, null, $chbxChart[2]);
+$chart->setCol(5, 0, null, $chbxChart[3]);
+$chart->setCol(6, 0, null, $chbxChart[4]);
+$chart->setCol(7, 0, null, $chbxChart[5]);
+$chart->setCol(8, 0, null, $chbxChart[6]);
+$chart->setCol(9, 0, null, $chbxChart[7]);
+$chart->setCol(10, 0, null, $chbxChart[8]);
+$chart->setCol(11, 0, null, $chbxChart[9]);
+$chart->setCol(12, 0, null, $chbxChart[10]);
 
 $_pLog = $chart->getHTMLCode();
 
 $we_button = new we_button();
 $parts = array();
-array_push($parts,array("headline"=>$l_cockpit['display'],"html"=>$_pLog,"space"=>80));
-array_push($parts,array("headline"=>"","html"=>$oSelCls->getHTMLCode(),"space"=>0));
+array_push($parts, array(
+	"headline" => $l_cockpit['display'], "html" => $_pLog, "space" => 80
+));
+array_push($parts, array(
+	"headline" => "", "html" => $oSelCls->getHTMLCode(), "space" => 0
+));
 
-$save_button = $we_button->create_button("save","javascript:save();",false,-1,-1);
-$preview_button = $we_button->create_button("preview","javascript:preview();",false,-1,-1);
-$cancel_button = $we_button->create_button("close","javascript:exit_close();");
-$buttons = $we_button->position_yes_no_cancel($save_button,$preview_button,$cancel_button);
-$sMultibox = we_multiIconBox::getJS().we_multiIconBox::getHTML("plgProps","100%",$parts,30,$buttons,-1,"","","",$l_cockpit['pagelogger']);
+$save_button = $we_button->create_button("save", "javascript:save();", false, -1, -1);
+$preview_button = $we_button->create_button("preview", "javascript:preview();", false, -1, -1);
+$cancel_button = $we_button->create_button("close", "javascript:exit_close();");
+$buttons = $we_button->position_yes_no_cancel($save_button, $preview_button, $cancel_button);
+$sMultibox = we_multiIconBox::getJS() . we_multiIconBox::getHTML(
+		"plgProps", 
+		"100%", 
+		$parts, 
+		30, 
+		$buttons, 
+		-1, 
+		"", 
+		"", 
+		"", 
+		$l_cockpit['pagelogger']);
 
-$_pLogProps = new we_htmlTable(array("border"=>"0","cellpadding" =>"0","cellspacing"=>"0"),2,1);
-$_pLogProps->setCol(0,0,null,$sMultibox);
-$_pLogProps->setCol(1,0,null,getPixel(1,10));
+$_pLogProps = new we_htmlTable(array(
+	"border" => "0", "cellpadding" => "0", "cellspacing" => "0"
+), 2, 1);
+$_pLogProps->setCol(0, 0, null, $sMultibox);
+$_pLogProps->setCol(1, 0, null, getPixel(1, 10));
 
-print we_htmlElement::htmlHtml(
-	we_htmlElement::htmlHead(
-		we_htmlElement::htmlTitle($l_cockpit['pagelogger']).
-		STYLESHEET.
-		we_htmlElement::cssElement("select{border:#AAAAAA solid 1px}").
-		we_htmlElement::jsElement("",array("src"=>JS_DIR."we_showMessage.js")).
-		we_htmlElement::jsElement($jsPrefs.$jsCode)
-	).
-	we_htmlElement::htmlBody(array(
-		"class"=>"weDialogBody",
-		"onload"=>"init();"
-		),we_htmlElement::htmlForm("",$_pLogProps->getHTMLCode())
-	)
-);
+print 
+		we_htmlElement::htmlHtml(
+				we_htmlElement::htmlHead(
+						we_htmlElement::htmlTitle($l_cockpit['pagelogger']) . STYLESHEET . we_htmlElement::cssElement(
+								"select{border:#AAAAAA solid 1px}") . we_htmlElement::jsElement(
+								"", 
+								array(
+									"src" => JS_DIR . "we_showMessage.js"
+								)) . we_htmlElement::jsElement($jsPrefs . $jsCode)) . we_htmlElement::htmlBody(
+						array(
+							"class" => "weDialogBody", "onload" => "init();"
+						), 
+						we_htmlElement::htmlForm("", $_pLogProps->getHTMLCode())));
 
 ?>

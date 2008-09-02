@@ -1,28 +1,29 @@
 <?php
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2007 living-e AG                                |
-// +----------------------------------------------------------------------+
-//
+include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we.inc.php");
 
-
-include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we.inc.php");
-
-switch($_REQUEST["we_cmd"][0]){
-	case "save":
-		setUserPref("cockpit_dat",$_REQUEST["we_cmd"][1]);
+switch ($_REQUEST["we_cmd"][0]) {
+	case "save" :
+		setUserPref("cockpit_dat", $_REQUEST["we_cmd"][1]);
 		break;
-	case "add":
-		include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we.inc.php");
-		include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_html_tools.inc.php");
-		include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/html/we_htmlTable.inc.php");
-		include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GLOBALS["WE_LANGUAGE"]."/cockpit.inc.php");
-		include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_widgets/cfg.inc.php");
-
+	case "add" :
+		include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we.inc.php");
+		include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_html_tools.inc.php");
+		include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_classes/html/we_htmlTable.inc.php");
+		include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_language/" . $GLOBALS["WE_LANGUAGE"] . "/cockpit.inc.php");
+		include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_widgets/cfg.inc.php");
+		
 		$aProps = array();
 		$aProps[0] = $_REQUEST["we_cmd"][1];
 		$aProps[1] = $aPrefs[$aProps[0]]["cls"];
@@ -30,37 +31,47 @@ switch($_REQUEST["we_cmd"][0]){
 		$aProps[3] = $aPrefs[$aProps[0]]["csv"];
 		foreach ($aCfgProps as $a) {
 			foreach ($a as $arr) {
-				if ($arr[0]==$aProps[0]) {
+				if ($arr[0] == $aProps[0]) {
 					$aProps[3] = $arr[3];
 					break 2;
 				}
 			}
 		}
-		$iCurrId = str_replace('m_','',$_REQUEST["we_cmd"][2]);
+		$iCurrId = str_replace('m_', '', $_REQUEST["we_cmd"][2]);
 		$iWidth = $aPrefs[$aProps[0]]['width'];
-		if ($aProps[0]!='rss' && $aProps[0]!='pad') {
-			if ($aProps[0]=="msg") $_transact = md5(uniqid(rand()));
-			include_once($_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we_widgets/mod/'.$aProps[0].'.inc.php');
+		if ($aProps[0] != 'rss' && $aProps[0] != 'pad') {
+			if ($aProps[0] == "msg")
+				$_transact = md5(uniqid(rand()));
+			include_once ($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_widgets/mod/' . $aProps[0] . '.inc.php');
 		}
-		include_once($_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we_widgets/inc/'.$aProps[0].'.inc.php');
-
-
-	$js = "
+		include_once ($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_widgets/inc/' . $aProps[0] . '.inc.php');
+		
+		$js = "
 function gel(id_){
 	return document.getElementById?document.getElementById(id_):null;
 }
 function transmit(){
 	if(top.weEditorFrameController.getActiveDocumentReference() && top.weEditorFrameController.getActiveDocumentReference().quickstart){
-		top.weEditorFrameController.getActiveDocumentReference().pushContent('".$aProps[0]."','m_".$iCurrId."',gel('content').innerHTML,gel('prefix').innerHTML,gel('postfix').innerHTML,gel('csv').innerHTML);
+		top.weEditorFrameController.getActiveDocumentReference().pushContent('" . $aProps[0] . "','m_" . $iCurrId . "',gel('content').innerHTML,gel('prefix').innerHTML,gel('postfix').innerHTML,gel('csv').innerHTML);
 	}
 }
 ";
-	print we_htmlElement::htmlHtml(we_htmlElement::htmlHead(we_htmlElement::cssElement("div,span{display:none;}").we_htmlElement::jsElement($js)).
-		we_htmlElement::htmlBody(array("onload"=>"transmit();"),
-		we_htmlElement::htmlDiv(array("id"=>"content"),$oTblCont->getHtmlCode()).
-		we_htmlElement::htmlSpan(array("id"=>"prefix"),$aLang[0]).
-		we_htmlElement::htmlSpan(array("id"=>"postfix"),$aLang[1]).
-		we_htmlElement::htmlSpan(array("id"=>"csv"),(isset($aProps[3])? $aProps[3] : "")))
-	);
+		print 
+				we_htmlElement::htmlHtml(
+						we_htmlElement::htmlHead(
+								we_htmlElement::cssElement("div,span{display:none;}") . we_htmlElement::jsElement(
+										$js)) . we_htmlElement::htmlBody(
+								array(
+									"onload" => "transmit();"
+								), 
+								we_htmlElement::htmlDiv(array(
+									"id" => "content"
+								), $oTblCont->getHtmlCode()) . we_htmlElement::htmlSpan(array(
+									"id" => "prefix"
+								), $aLang[0]) . we_htmlElement::htmlSpan(array(
+									"id" => "postfix"
+								), $aLang[1]) . we_htmlElement::htmlSpan(array(
+									"id" => "csv"
+								), (isset($aProps[3]) ? $aProps[3] : ""))));
 }
 ?>

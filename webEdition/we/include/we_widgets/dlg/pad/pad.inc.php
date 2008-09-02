@@ -1,18 +1,19 @@
 <?php
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2007 living-e AG                                |
-// +----------------------------------------------------------------------+
-//
-
-
-include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we.inc.php");
-include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/html/we_button.inc.php");
-include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GLOBALS["WE_LANGUAGE"]."/cockpit.inc.php");
+include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we.inc.php");
+include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_classes/html/we_button.inc.php");
+include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_language/" . $GLOBALS["WE_LANGUAGE"] . "/cockpit.inc.php");
 
 protect();
 
@@ -26,9 +27,9 @@ $bValid = $_binary{4};
 $_title = $_REQUEST["we_cmd"][4];
 
 $js = "
-var _sObjId='".$_REQUEST["we_cmd"][5]."';
+var _sObjId='" . $_REQUEST["we_cmd"][5] . "';
 var _sType='pad';
-var _sTb='".$_title."';
+var _sTb='" . $_title . "';
 
 function init(){
 	parent.rpcHandleResponse(_sType,_sObjId,document.getElementById(_sType),_sTb);
@@ -42,29 +43,29 @@ $out_bSort = 'ERROR bSort';
 $q_sort = '';
 
 switch ($bSort) {
-	case 0:
+	case 0 :
 		// nach Erstelldatum
 		$out_bSort = 'nach Erstelldatum';
 		$q_sort = 'CreationDate,Title';
 		break;
-	case 1:
-		// nach Priorität
-		$out_bSort = 'nach Priorität';
+	case 1 :
+		// nach Prioritï¿½t
+		$out_bSort = 'nach Prioritï¿½t';
 		$q_sort = 'Priority, Title';
 		break;
-	case 2:
-		// nach gültig ab
-		$out_bSort = 'nach gültig ab';
+	case 2 :
+		// nach gï¿½ltig ab
+		$out_bSort = 'nach gï¿½ltig ab';
 		$q_sort = 'ValidFrom, Title';
 		break;
-	case 3:
+	case 3 :
 		// alphabetisch
 		$out_bSort = 'alphabetisch';
 		$q_sort = 'Title';
 		break;
-	case 4:
-		// nach gültig bis
-		$out_bSort = 'nach gültig bis';
+	case 4 :
+		// nach gï¿½ltig bis
+		$out_bSort = 'nach gï¿½ltig bis';
 		$q_sort = 'ValidUntil, Title';
 		break;
 }
@@ -74,63 +75,64 @@ switch ($bSort) {
 ///////////////////////////////////////////////////////////////////
 if ($bDisplay == 0) {
 	// alle Notizen
-	$out_bDisplay	= 'alle Notizen';
+	$out_bDisplay = 'alle Notizen';
 	$q_display = '';
-} else if ($bDisplay == 1) {
-	// nur gültige
-	$out_bDisplay = 'nur gültige';
-	$q_display = '';
-}
+} else 
+	if ($bDisplay == 1) {
+		// nur gï¿½ltige
+		$out_bDisplay = 'nur gï¿½ltige';
+		$q_display = '';
+	}
 
 ///////////////////////////////////////////////////////////////////
 // ANZEIGE DATUM                                                 //
 ///////////////////////////////////////////////////////////////////
 switch ($bDate) {
-	case 0:
+	case 0 :
 		// nach Erstelldatum
 		$out_bDate = 'nach Erstelldatum';
 		break;
-	case 1:
-		// nach gültig ab
-		$out_bDate = 'nach gültig ab';
+	case 1 :
+		// nach gï¿½ltig ab
+		$out_bDate = 'nach gï¿½ltig ab';
 		break;
-	case 2:
-		// nach gültig bis
-		$out_bDate = 'nach gültig bis';
+	case 2 :
+		// nach gï¿½ltig bis
+		$out_bDate = 'nach gï¿½ltig bis';
 		break;
 }
 
 ///////////////////////////////////////////////////////////////////
-// DEFAULT-PRIORITÄT                                             //
+// DEFAULT-PRIORITï¿½T                                             //
 ///////////////////////////////////////////////////////////////////
 switch ($bPrio) {
-	case 0:
+	case 0 :
 		// hoch
 		$out_bPrio = 'high';
 		break;
-	case 1:
+	case 1 :
 		// mittel
 		$out_bPrio = 'medium';
 		break;
-	case 2:
+	case 2 :
 		// niedrig
 		$out_bPrio = 'low';
 		break;
 }
 
 ///////////////////////////////////////////////////////////////////
-// DEFAULT-GÜLTIGKEIT                                            //
+// DEFAULT-Gï¿½LTIGKEIT                                            //
 ///////////////////////////////////////////////////////////////////
 switch ($bValid) {
-	case 0:
+	case 0 :
 		// immer
 		$out_bValid = 'always';
 		break;
-	case 1:
+	case 1 :
 		// ab Zeitpunkt
 		$out_bValid = 'date';
 		break;
-	case 2:
+	case 2 :
 		// Zeitraum
 		$out_bValid = 'period';
 		break;
@@ -154,10 +156,11 @@ $_get_valid_until = '2006-12-28';
 $_get_prio = 'high';
 ////////////////////////////////////////////////////////
 
-$_table = TBL_PREFIX.'tblwidgetnotepad';
+
+$_table = TBL_PREFIX . 'tblwidgetnotepad';
 
 $_sql = "INSERT INTO
-	".$_table." 
+	" . $_table . " 
 (
 	WidgetName,
 	UserID,
@@ -169,29 +172,30 @@ $_sql = "INSERT INTO
 	ValidFrom,
 	ValidUntil
 ) VALUES (
-	'".$_title."',
-	".$_SESSION['user']['ID'].",
+	'" . $_title . "',
+	" . $_SESSION['user']['ID'] . ",
 	DATE_FORMAT(NOW(), \"%Y-%m-%d\"),
-	'".$_get_title."',
-	'".$_get_text."',
-	'".$_get_prio."',
-	'".$_get_valid."',
-	'".$_get_valid_from."',
-	'".$_get_valid_until."'
+	'" . $_get_title . "',
+	'" . $_get_text . "',
+	'" . $_get_prio . "',
+	'" . $_get_valid . "',
+	'" . $_get_valid_from . "',
+	'" . $_get_valid_until . "'
 )
 ";
 $DB_WE = new DB_WE();
 //$DB_WE->query($_sql);
 
+
 if ($bDisplay) {
-$_sql = "SELECT * FROM ".$_table." WHERE 
-	WidgetName = '".$_title."' AND 
-	UserID = ".$_SESSION['user']['ID']." 
-	ORDER BY ".$q_sort;
+	$_sql = "SELECT * FROM " . $_table . " WHERE 
+	WidgetName = '" . $_title . "' AND 
+	UserID = " . $_SESSION['user']['ID'] . " 
+	ORDER BY " . $q_sort;
 } else {
-$_sql = "SELECT * FROM ".$_table." WHERE 
-	WidgetName = '".$_title."' AND 
-	UserID = ".$_SESSION['user']['ID']." AND
+	$_sql = "SELECT * FROM " . $_table . " WHERE 
+	WidgetName = '" . $_title . "' AND 
+	UserID = " . $_SESSION['user']['ID'] . " AND
 	(
 		Valid = 'always' OR
 		(
@@ -204,23 +208,26 @@ $_sql = "SELECT * FROM ".$_table." WHERE
 			ValidUntil <= DATE_FORMAT(NOW(), \"%Y-%m-%d\")
 		)
 	)
-	ORDER BY ".$q_sort;
+	ORDER BY " . $q_sort;
 }
 $DB_WE->query($_sql);
 $pad .= '<table cellspacing="0" cellpadding="0" border="0">';
-while($DB_WE->next_record()) {
+while ($DB_WE->next_record()) {
 	$pad .= '<tr>';
-	$pad .= '<td width="20" height="20" valign="middle" nowrap>'.
-		we_htmlElement::htmlImg(array("src"=>IMAGE_DIR."pd/prio_".$DB_WE->f("Priority").".gif","width"=>13,"height"=>14)).'</td>';
-	$pad .= '<td valign="middle" class="middlefont">'.
-		we_htmlElement::htmlA(array("href"=>"javascript:void(0)","title"=>"","style"=>"color:#000000;text-decoration:none;"),$DB_WE->f("Title")).'</td>';
+	$pad .= '<td width="20" height="20" valign="middle" nowrap>' . we_htmlElement::htmlImg(
+			array(
+				"src" => IMAGE_DIR . "pd/prio_" . $DB_WE->f("Priority") . ".gif", "width" => 13, "height" => 14
+			)) . '</td>';
+	$pad .= '<td valign="middle" class="middlefont">' . we_htmlElement::htmlA(
+			array(
+				"href" => "javascript:void(0)", "title" => "", "style" => "color:#000000;text-decoration:none;"
+			), 
+			$DB_WE->f("Title")) . '</td>';
 	$pad .= '</tr>';
-// $DB_WE->f("Text")
+	// $DB_WE->f("Text")
 }
 
 $pad .= '</table>';
-
-
 
 /*$we_button = new we_button();
 $pad .= '<div style="background-color:#CFCFCF;">';
@@ -269,25 +276,26 @@ Calendar.setup({
 */
 print "hello";
 //$ifr = "<iframe allowtransparency=\"true\" src=\"".WEBEDITION_DIR."we/include/we_widgets/mod/pad1.inc.php\"\" id=\"\" style=\"width:430px;height:100px\" scrolling=\"auto\" marginheight=\"0\" marginwidth=\"0\" frameborder=\"0\"></iframe>\n";
-print we_htmlElement::htmlHtml(
-	we_htmlElement::htmlHead(
-		we_htmlElement::htmlTitle($l_cockpit['notepad']).
-		STYLESHEET.
-		//'<link rel="stylesheet" type="text/css" media="all" href="'.JS_DIR.'jscalendar/calendar-win2k-cold-1.css" title="win2k-cold-1" />'.
-		//we_htmlElement::jsElement("",array("src"=>JS_DIR."jscalendar/test.js")).
-		//we_htmlElement::jsElement("",array("src"=>JS_DIR."jscalendar/calendar.js")).
-		//we_htmlElement::jsElement("",array("src"=>JS_DIR."jscalendar/lang/calendar-de.js")).
-		//we_htmlElement::jsElement("",array("src"=>JS_DIR."jscalendar/calendar-setup.js")).
-		we_htmlElement::jsElement($js)
-	).
-	we_htmlElement::htmlBody(array(
-		"marginwidth" => "15",
-		"marginheight" => "10",
-		"leftmargin" => "15",
-		"topmargin" => "10",
-		"onload" => "if(parent!=self)init();"
-		),we_htmlElement::htmlDiv(array("id"=>"pad"),$pad)
-	)
-);
+print 
+		we_htmlElement::htmlHtml(
+				we_htmlElement::htmlHead(
+						we_htmlElement::htmlTitle($l_cockpit['notepad']) . STYLESHEET . //'<link rel="stylesheet" type="text/css" media="all" href="'.JS_DIR.'jscalendar/calendar-win2k-cold-1.css" title="win2k-cold-1" />'.
+						//we_htmlElement::jsElement("",array("src"=>JS_DIR."jscalendar/test.js")).
+						//we_htmlElement::jsElement("",array("src"=>JS_DIR."jscalendar/calendar.js")).
+						//we_htmlElement::jsElement("",array("src"=>JS_DIR."jscalendar/lang/calendar-de.js")).
+						//we_htmlElement::jsElement("",array("src"=>JS_DIR."jscalendar/calendar-setup.js")).
+						we_htmlElement::jsElement(
+								$js)) . we_htmlElement::htmlBody(
+						array(
+							
+								"marginwidth" => "15", 
+								"marginheight" => "10", 
+								"leftmargin" => "15", 
+								"topmargin" => "10", 
+								"onload" => "if(parent!=self)init();"
+						), 
+						we_htmlElement::htmlDiv(array(
+							"id" => "pad"
+						), $pad)));
 
 ?>
