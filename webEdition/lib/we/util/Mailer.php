@@ -69,11 +69,11 @@ class we_util_Mailer extends PHPMailer
 		if (is_array($to) && count($to)>0) {
 			foreach ($to as $_to){
 				$_to = $this->parseEmailUser($_to);
-				$this->AddAddress($_to['email'], $to['name']);
+				$this->AddAddress($_to['email'], $_to['name']);
 			}
-		} else if($_to!=""){
+		} else if($to!=""){
 			$_to = $this->parseEmailUser($to);
-			$this->AddAddress($_to['email'], $to['name']);
+			$this->AddAddress($_to['email'], $_to['name']);
 		}
 		
 		
