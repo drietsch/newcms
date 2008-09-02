@@ -1,15 +1,17 @@
 <?php
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2007 living-e AG                                |
-// +----------------------------------------------------------------------+
-
-include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/xml_parser.inc.php");
-
+include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_classes/xml_parser.inc.php");
 
 /**
  * Code Snipptes are used in templates inside webEdition
@@ -18,182 +20,183 @@ include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/xml_pa
  * @see dtd:http://docs.oasis-open.org/dita/v1.0.1/dtd/topic.dtd
  * 
  */
-class weCodeWizardSnippet {
-	
+class weCodeWizardSnippet
+{
+
 	/**
 	 * Name of the Snippet
 	 *
 	 * @var string
 	 */
 	var $Name = "";
-	
+
 	/**
 	 * Description of the snippet
 	 *
 	 * @var string
 	 */
 	var $Description = "";
-	
+
 	/**
 	 * Author of the snippet
 	 *
 	 * @var string
 	 */
 	var $Author = "";
-	
+
 	/**
 	 * Snippet code
 	 *
 	 * @var string
 	 */
 	var $Code = "";
-	
-	
+
 	/**
 	 * PHP 5 constructor
 	 *
 	 */
-	function __construct() {
-		
+	function __construct()
+	{
+	
 	}
-	
-	
+
 	/**
 	 * PHP 4 constructor
 	 *
 	 * @return weCodeWizardSnippet
 	 */
-	function weCodeWizardSnippet() {
+	function weCodeWizardSnippet()
+	{
 		$this->__construct();
 	}
-	
-	
+
 	/**
 	 * initialize the snippet from an xml file
 	 *
 	 * @param string $file
 	 */
-	function initByXmlFile($file) {
+	function initByXmlFile($file)
+	{
 		
 		$Snippet = new weCodeWizardSnippet();
 		$Parser = new XML_Parser($file);
 		
 		// set the title
-		if($Parser->execMethod_count("/topic[1]", "title") > 0) {
+		if ($Parser->execMethod_count("/topic[1]", "title") > 0) {
 			$Snippet->Name = $Parser->getData("/topic[1]/title[1]");
-			if(isset($GLOBALS['we_doc']->elements["Charset"]['dat']) && $GLOBALS['we_doc']->elements["Charset"]['dat'] != "UTF-8") {
+			if (isset($GLOBALS['we_doc']->elements["Charset"]['dat']) && $GLOBALS['we_doc']->elements["Charset"]['dat'] != "UTF-8") {
 				$Snippet->Name = $Snippet->Name;
-				
-			}
 			
+			}
+		
 		}
 		
 		// set the short description
-		if($Parser->execMethod_count("/topic[1]", "shortdesc") > 0) {
+		if ($Parser->execMethod_count("/topic[1]", "shortdesc") > 0) {
 			$Snippet->Description = $Parser->getData("/topic[1]/shortdesc[1]");
-			if(isset($GLOBALS['we_doc']->elements["Charset"]['dat']) && $GLOBALS['we_doc']->elements["Charset"]['dat'] != "UTF-8") {
+			if (isset($GLOBALS['we_doc']->elements["Charset"]['dat']) && $GLOBALS['we_doc']->elements["Charset"]['dat'] != "UTF-8") {
 				$Snippet->Description = $Snippet->Description;
-				
-			}
 			
+			}
+		
 		}
 		
 		// set the author
-		if($Parser->execMethod_count("/topic[1]/prolog[1]", "author") > 0) {
+		if ($Parser->execMethod_count("/topic[1]/prolog[1]", "author") > 0) {
 			$Snippet->Author = $Parser->getData("/topic[1]/prolog[1]/author[1]");
-			if(isset($GLOBALS['we_doc']->elements["Charset"]['dat']) && $GLOBALS['we_doc']->elements["Charset"]['dat'] != "UTF-8") {
+			if (isset($GLOBALS['we_doc']->elements["Charset"]['dat']) && $GLOBALS['we_doc']->elements["Charset"]['dat'] != "UTF-8") {
 				$Snippet->Author = $Snippet->Author;
-				
-			}
 			
+			}
+		
 		}
 		
 		// set the code
-		if($Parser->execMethod_count("/topic[1]/body[1]/p[1]", "codeblock") > 0) {
+		if ($Parser->execMethod_count("/topic[1]/body[1]/p[1]", "codeblock") > 0) {
 			$Snippet->Code = $Parser->getData("/topic[1]/body[1]/p[1]/codeblock[1]");
-			if(isset($GLOBALS['we_doc']->elements["Charset"]['dat']) && $GLOBALS['we_doc']->elements["Charset"]['dat'] != "UTF-8") {
+			if (isset($GLOBALS['we_doc']->elements["Charset"]['dat']) && $GLOBALS['we_doc']->elements["Charset"]['dat'] != "UTF-8") {
 				$Snippet->Code = $Snippet->Code;
-				
-			}
 			
+			}
+		
 		}
 		
 		return $Snippet;
-		
+	
 	}
-	
-	
-	function changeCharset($string, $charset = "") {
+
+	function changeCharset($string, $charset = "")
+	{
 		
-		if($charset == "") {
+		if ($charset == "") {
 			$charset = $GLOBALS['we_doc']->getElement('Charset');
-			if($charset == "") {
-				include($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/" . $GLOBALS["WE_LANGUAGE"] . "/charset/charset.inc.php");
+			if ($charset == "") {
+				include ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_language/" . $GLOBALS["WE_LANGUAGE"] . "/charset/charset.inc.php");
 				$charset = $_language["charset"];
-				
+			
 			}
 		}
 		
-		if($charset != "UTF-8" && $charset != "") {
+		if ($charset != "UTF-8" && $charset != "") {
 			
-			if( function_exists("iconv")) {
+			if (function_exists("iconv")) {
 				$string = iconv("UTF-8", $charset, $string);
-				
+			
 			} elseif ($charset == "ISO-8859-1") {
 				$string = utf8_decode($string);
-				
-			}
 			
+			}
+		
 		}
 		
 		return $string;
-		
+	
 	}
-	
-	
+
 	/**
 	 * get the snippet name
 	 *
 	 * @return string
 	 */
-	function getName($charset = "") {
+	function getName($charset = "")
+	{
 		return weCodeWizardSnippet::changeCharset($this->Name, $charset);
-		
+	
 	}
-	
-	
+
 	/**
 	 * get the snippet description
 	 *
 	 * @return string
 	 */
-	function getDescription($charset = "") {
+	function getDescription($charset = "")
+	{
 		return weCodeWizardSnippet::changeCharset($this->Description, $charset);
-		
+	
 	}
-	
-	
+
 	/**
 	 * get the snippet author
 	 *
 	 * @return string
 	 */
-	function getAuthor($charset = "") {
+	function getAuthor($charset = "")
+	{
 		return weCodeWizardSnippet::changeCharset($this->Author, $charset);
-		
+	
 	}
-	
-	
+
 	/**
 	 * get the snippet code
 	 *
 	 * @return string
 	 */
-	function getCode($charset = "") {
+	function getCode($charset = "")
+	{
 		return weCodeWizardSnippet::changeCharset($this->Code, $charset);
-		
-	}
 	
+	}
+
 }
 
 /**
@@ -204,5 +207,5 @@ class weCodeWizardSnippet {
  * echo $Snippet->getName();
  * 
  */
-		
+
 ?>
