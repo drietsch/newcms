@@ -176,23 +176,18 @@ class we_util_Mailer extends PHPMailer
 	/********************************************
 	 *                  SETTER                  *
 	 ********************************************/
-	
-	/**
-	 * General class variable setter
-	 *
-	 * @param String $var
-	 * @param mixed var $val
-	 */
-	public function setClassVar($var, $val)
-	{
-		$this->$var = $val;
-	}
 
+	/**
+	 * Setter for more class vars at once
+	 * The array keys represents the names of the class vars
+	 *
+	 * @param Array $vars
+	 */
 	public function setClassVars($vars)
 	{
 		if (is_array($vars) && count($vars)>0) {
 			foreach ($vars as $var=>$val){
-				$this->$var = $val;
+				set($var,$val);
 			}
 		}		
 	}
