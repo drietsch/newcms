@@ -27,6 +27,8 @@ include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_tools/cache
 include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_tools/cache/weTagCache.class.php");
 include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_tools/cache/weTagBlockCache.class.php");
 
+include_once $_SERVER['DOCUMENT_ROOT'].'/webEdition/lib/we/core/autoload.php';
+
 include_once (WE_USERS_MODULE_DIR . "we_users_util.php");
 
 function we_tag($name, $attribs, $content = "")
@@ -2064,9 +2066,11 @@ function we_tag_delete($attribs, $content)
 				$mailtext = sprintf($GLOBALS["l_global"]["std_mailtext_delDoc"], $doc->Path) . "\n";
 				$subject = $GLOBALS["l_global"]["std_subject_delDoc"];
 			}
-			include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_classes/we_mailer_class.inc.php");
-			$m = new we_mailer($mail, $subject, $mailtext, $mailfrom, "", WE_MAIL_TEXT_ONLY, $charset);
-			$m->send();
+			$phpmail = new we_util_Mailer($mail, $subject, $mailfrom);
+			$phpmail->setCharSet($charset);
+			$phpmail->addTextPart($mailtext);				
+			$phpmail->buildMessage();
+			$phpmail->Send();
 		}
 	} else {
 		$GLOBALS["we_" . $type . "_delete_ok"] = false;
@@ -5737,55 +5741,41 @@ function we_tag_sendMail($attribs, $content)
 	if (!$GLOBALS["we_doc"]->InWebEdition) {
 		
 		$DB_WE = !isset($DB_WE) ? new DB_WE() : $DB_WE;
-		$id = we_getTagAttribute("id", $attribs, (isset($_REQUEST["ID"]) ? $_REQUEST["ID"] : ""));
-		$from = we_getTagAttribute("from", $attribs);
-		$reply = we_getTagAttribute("reply", $attribs);
-		$recipient = we_getTagAttribute("recipient", $attribs);
-		$mimetype = we_getTagAttribute("mimetype", $attribs);
-		$subject = we_getTagAttribute("subject", $attribs);
-		$charset = we_getTagAttribute("charset", $attribs, "iso-8859-1");
-		
+		$id = we_getTagAttribute("id",$attribs, ( isset($_REQUEST["ID"])? $_REQUEST["ID"] : "" ) );
+		$from = we_getTagAttribute("from",$attribs);
+		$reply = we_getTagAttribute("reply",$attribs);
+		$recipient = we_getTagAttribute("recipient",$attribs);
+		$mimetype = we_getTagAttribute("mimetype",$attribs);
+		$subject = we_getTagAttribute("subject",$attribs);
+		$charset = we_getTagAttribute("charset",$attribs,"UTF-8");
+
 		if (!empty($id)) {
 			
 			$codes = we_getDocumentByID($id);
-			$to = explode(",", $recipient);
-			
-			include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_classes/we_mailer_class.inc.php");
-			
+		    $to = explode(",",$recipient);
+
+		    $we_recipient = array();
+			for ($l=0;$l < sizeof($to);$l++) {
+
+		    	if (!eregi("@",$to[$l])) {
+		    		if (isset($_SESSION["webuser"]["registered"]) && $_SESSION["webuser"]["registered"] && eregi("@",$_SESSION["webuser"][$to[$l]])) { //wenn man registireten Usern was senden m�chte
+		    			$we_recipient[] = $_SESSION["webuser"][$to[$l]];
+		    		} else if(isset($_REQUEST[$to[$l]]) && eregi("@",$_REQUEST[$to[$l]])) {	//email to friend test
+		    			$we_recipient[] = $_REQUEST[$to[$l]];
+		    		}
+		    	} else {
+					$we_recipient[] = $to[$l];
+		    	}
+			}
+		    $phpmail = new we_util_Mailer($we_recipient,$subject,$from,$from,$reply);
+		    $phpmail->setCharSet($charset);
 			if ($mimetype != "text/html") {
-				$we_mailcontent = strip_tags(
-						str_replace("&nbsp;", " ", str_replace("<br />", "\n", str_replace("<br>", "\n", $codes))));
+				$phpmail->addTextPart(strip_tags(str_replace("&nbsp;"," ",str_replace("<br />","\n",str_replace("<br>","\n",$codes)))));
 			} else {
-				$we_mailcontent = $codes;
+				$phpmail->addHTMLPart($codes);
 			}
-			
-			for ($l = 0; $l < sizeof($to); $l++) {
-				$we_recipient = "";
-				
-				if (!eregi("@", $to[$l])) {
-					if (isset($_SESSION["webuser"]["registered"]) && $_SESSION["webuser"]["registered"] && eregi(
-							"@", 
-							$_SESSION["webuser"][$to[$l]])) { //wenn man registireten Usern was senden m�chte
-						$we_recipient = $_SESSION["webuser"][$to[$l]];
-					} else 
-						if (isset($_REQUEST[$to[$l]]) && eregi("@", $_REQUEST[$to[$l]])) { //email to friend test
-							$we_recipient = $_REQUEST[$to[$l]];
-						}
-				} else {
-					$we_recipient = $to[$l];
-				}
-				if ($we_recipient) {
-					$m = new we_mailer(
-							$we_recipient, 
-							$subject, 
-							$we_mailcontent, 
-							$from, 
-							$reply, 
-							($mimetype == "text/html"), 
-							$charset);
-					$m->send();
-				}
-			}
+		    $phpmail->buildMessage();
+		    $phpmail->Send();
 		}
 	}
 	return;
@@ -6922,9 +6912,11 @@ function we_tag_write($attribs, $content)
 						$mailtext = sprintf($GLOBALS["l_global"]["std_mailtext_newDoc"], $path) . "\n" . $GLOBALS["we_$type"][$name]->getHttpPath();
 						$subject = $GLOBALS["l_global"]["std_subject_newDoc"];
 					}
-					include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_classes/we_mailer_class.inc.php");
-					$m = new we_mailer($mail, $subject, $mailtext, $mailfrom, "", WE_MAIL_TEXT_ONLY, $charset);
-					$m->send();
+					$phpmail = new we_util_Mailer($mail, $subject, $mailfrom);
+					$phpmail->setCharSet($charset);
+					$phpmail->addTextPart($mailtext);
+					$phpmail->buildMessage();
+					$phpmail->Send();
 				}
 			} else {
 				$GLOBALS["we_object_write_ok"] = false;
