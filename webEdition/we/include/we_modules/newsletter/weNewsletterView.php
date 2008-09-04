@@ -44,6 +44,7 @@ class weNewsletterView {
 	var $topFrame;
 	var $treeFrame;
 	var $cmdFrame;
+	
 
 	function weNewsletterView() {
 		global $l_newsletter;
@@ -73,6 +74,7 @@ class weNewsletterView {
 		$this->newsletter->Sender = $this->settings["default_sender"];
 		$this->newsletter->Reply = $this->settings["default_reply"];
 		$this->newsletter->Test = $this->settings["test_account"];
+		$this->newsletter->isEmbedImages = $this->settings["isEmbedImages"];
 	}
 
  	function setFrames($topFrame,$treeFrame,$cmdFrame){
@@ -144,6 +146,7 @@ class weNewsletterView {
 			$out.=$this->htmlHidden("Reply",$this->newsletter->Reply);
 			$out.=$this->htmlHidden("Test",$this->newsletter->Test);
 			$out.=$this->htmlHidden("Charset",$this->newsletter->Charset);
+			$out.=$this->htmlHidden("isEmbedImages",$this->newsletter->isEmbedImages);
 
 			return $out;
 	}
@@ -1311,6 +1314,7 @@ class weNewsletterView {
 					$this->newsletter->Sender = $this->settings["default_sender"];
 					$this->newsletter->Reply = $this->settings["default_reply"];
 					$this->newsletter->Test = $this->settings["test_account"];
+					$this->newsletter->isEmbedImages = $this->settings['isEmbedImages'];
 
 					print we_htmlElement::jsElement('
 							top.content.resize.right.editor.edheader.location="'.$this->frameset.'?pnt=edheader'.(isset($_REQUEST["page"]) ? ("&page=".$_REQUEST["page"]) : ("")).'";
@@ -1517,7 +1521,10 @@ class weNewsletterView {
 						if ($this->newsletter->Test=="") {
 							$this->newsletter->Test=$this->settings["test_account"];
 						}
-
+						if ($this->newsletter->isEmbedImages=="") {
+							$this->newsletter->isEmbedImages=$this->settings["isEmbedImages"];
+						}
+						
 						$exist=false;
 						$double = 0;
 
@@ -2418,6 +2425,8 @@ class weNewsletterView {
 	}
 
 	function sendTestMail($group, $hm) {
+		include_once $_SERVER['DOCUMENT_ROOT'].'/webEdition/lib/we/core/autoload.php';
+	
 		include_once(WE_NEWSLETTER_MODULE_DIR . "weNewsletterMailer.php");
 
 		$plain="";
@@ -2462,14 +2471,17 @@ class weNewsletterView {
 						((isset($this->settings['additional_clp']) && $this->settings['additional_clp'] && !empty($_clean)) ? ('-f' .$_clean) : '')
 		);
 
-		if($hm) foreach($inlines as $name=>$ins){
-			$cont=weFile::load($ins);
-			$mail->embed($cont,$name);
-		}
+		
+		$phpmail = new we_util_Mailer($this->newsletter->Test,$this->newsletter->Subject,$this->newsletter->Sender,$this->newsletter->Reply,$this->newsletter->isEmbedImages);
+		$phpmail->setCharSet($this->newsletter->Charset!="" ? $this->newsletter->Charset : $GLOBALS["_language"]["charset"]);
+		$phpmail->addHTMLPart($content);
+		$phpmail->addTextPart($plain);
 		foreach ($atts as $att) {
-			$mail->attachFile($att);
+			$phpmail->AddAttachment($att);
 		}
-		$mail->send();
+		$phpmail->buildMessage();
+		$phpmail->Send();
+		
 		$cc=0;
 		while(true){
 			if(file_exists(WE_NEWSLETTER_CACHE_DIR . $ret["blockcache"]."_p_".$cc)) weFile::delete(WE_NEWSLETTER_CACHE_DIR . $ret["blockcache"]."_p_".$cc);
@@ -2643,6 +2655,7 @@ class weNewsletterView {
 			'customer_salutation_field' => 'Anrede_Salutation',
 			'customer_title_field' => 'Anrede_Title',
 			'default_htmlmail' => '0',
+			'isEmbedImages' => '0',
 			'default_reply' => 'replay@'.$_domainName,
 			'default_sender' => 'mailer@'.$_domainName,
 			'female_salutation' => $l_newsletter["default"]["female"],
