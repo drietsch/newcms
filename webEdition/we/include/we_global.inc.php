@@ -2420,11 +2420,12 @@ function we_mail($recipient, $subject, $txt, $from = "")
 			$header = str_replace("\n", "\r\n", $header);
 	}
 	
-	//@mail($recipient,$subject,$txt,$header);
-	include_once ($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_classes/we_mailer_class.inc.php');
-	$_mailer = new we_mailer($recipient, $subject, $txt, $from);
-	$_mailer->send();
 
+	include_once $_SERVER['DOCUMENT_ROOT'].'/webEdition/lib/we/core/autoload.php';
+	$phpmail = new we_util_Mailer($recipient,$subject,$from);
+	$phpmail->addTextPart($txt);
+	$phpmail->buildMessage();
+	$phpmail->Send();
 }
 
 function runAtWin()
