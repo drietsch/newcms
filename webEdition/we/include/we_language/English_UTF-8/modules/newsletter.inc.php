@@ -120,6 +120,7 @@ $l_newsletter["log_sending"] = "Create a logbook entry when sending E-mail.";
 $l_newsletter["default_sender"] = "Default sender";
 $l_newsletter["default_reply"] = "Default reply";
 $l_newsletter["default_htmlmail"] = "The default E-mail format is HTML.";
+$l_newsletter["isEmbedImages"] = "Embed images";
 $l_newsletter["ask_to_preserve"] = "The previous newsletter campaign was not successfully completed!<br>If you save the newsletter now, you will not be able to continue the campaign!<br>Do you want to proceed?";
 $l_newsletter["log_save_newsletter"] = "The newsletter has been saved.";
 $l_newsletter["log_start_send"] = "Start the newsletter campaign.";
