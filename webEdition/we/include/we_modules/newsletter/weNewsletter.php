@@ -42,7 +42,8 @@ class weNewsletter extends weNewsletterBase{
 	var $log=array();
 	var $blocks=array();
 	var $groups=array();
-
+	
+	var $isEmbedImages;
 	/**
 	 * Default Constructor
 	 * Can load or create new Newsletter depends of parameter
@@ -71,7 +72,8 @@ class weNewsletter extends weNewsletterBase{
 		$this->persistents[]="Offset";
 		$this->persistents[]="IsFolder";
 		$this->persistents[]="Charset";
-
+		$this->persistents[]="isEmbedImages";
+		
 		$this->ID = 0;
 		$this->ParentID = 0;
 		$this->IsFolder = 0;
@@ -85,6 +87,7 @@ class weNewsletter extends weNewsletterBase{
 		$this->Customers="";
 		$this->Emails="";
 		$this->Test="";
+		$this->isEmbedImages="";
 		$this->Step=0;
 		$this->Offset=0;
 		$this->Charset=$GLOBALS["_language"]["charset"];
