@@ -29,8 +29,8 @@ class we_util_Mailer extends PHPMailer
 	protected $isEmbedImages = false;
 
 	protected $basedir = '';
-	
-	protected $messageBuilt = false;
+
+ 	protected $embedImages = array('gif', 'jpg', 'jpeg', 'jpe', 'bmp', 'png', 'tif', 'tiff', 'swf');
 
 	/**
 	 * Enter description here...
@@ -41,70 +41,74 @@ class we_util_Mailer extends PHPMailer
 	 * @param String $reply
 	 * @param Bool $isEmbedImages
 	 */
-	public function __construct($to = "", $subject="", $sender = "", $reply="",$isEmbedImages=0)
+	public function __construct($to = "", $subject = "", $sender = "", $reply = "", $isEmbedImages = 0)
 	{
 		if (defined("WE_MAILER")) {
 			switch (WE_MAILER) {
-				case 'php':
+				case 'php' :
 					$this->IsMail();
 					break;
-
-				case 'smtp':
+				
+				case 'smtp' :
 					$this->IsSMTP();
-					if(defined('SMTP_SERVER')) $this->Host = SMTP_SERVER;
-					if(defined('SMTP_PORT')) $this->Port = SMTP_PORT;
-					if(defined('SMTP_AUTH')) $this->SMTPAuth = SMTP_AUTH;
-					if(defined('SMTP_USERNAME')) $this->Username = SMTP_USERNAME;
-					if(defined('SMTP_PASSWORD')) $this->Password = SMTP_PASSWORD;
-					if(defined('SMTP_TIMEOUT') && SMTP_TIMEOUT!='') $this->Timeout = SMTP_TIMEOUT;
-					if(defined('SMTP_HALO')) $this->Halo = SMTP_HALO;
-					
-				default:
+					if (defined('SMTP_SERVER'))
+						$this->Host = SMTP_SERVER;
+					if (defined('SMTP_PORT'))
+						$this->Port = SMTP_PORT;
+					if (defined('SMTP_AUTH'))
+						$this->SMTPAuth = SMTP_AUTH;
+					if (defined('SMTP_USERNAME'))
+						$this->Username = SMTP_USERNAME;
+					if (defined('SMTP_PASSWORD'))
+						$this->Password = SMTP_PASSWORD;
+					if (defined('SMTP_TIMEOUT') && SMTP_TIMEOUT != '')
+						$this->Timeout = SMTP_TIMEOUT;
+					if (defined('SMTP_HALO'))
+						$this->Halo = SMTP_HALO;
+				
+				default :
 					$this->IsMail();
 					break;
 			}
 			;
 		}
 		
-		if (is_array($to) && count($to)>0) {
-			foreach ($to as $_to){
+		if (is_array($to) && count($to) > 0) {
+			foreach ($to as $_to) {
 				$_to = $this->parseEmailUser($_to);
 				$this->AddAddress($_to['email'], $_to['name']);
 			}
-		} else if($to!=""){
+		} else if ($to != "") {
 			$_to = $this->parseEmailUser($to);
 			$this->AddAddress($_to['email'], $_to['name']);
 		}
 		
+		if (is_array($reply) && count($reply) > 0) {
+			foreach ($reply as $_reply) {
+				$_reply = $this->parseEmailUser($_reply);
+				$this->AddReplyTo($_reply['email'], $_reply['name']);
+			}
+		} else if ($reply != "") {
+			$_reply = $this->parseEmailUser($reply);
+			$this->AddReplyTo($_reply['email'], $_reply['name']);
+		}
 		
 		$_sender = $this->parseEmailUser($sender);
-		$_reply  = $this->parseEmailUser($reply);
 		
-		
-		
-
-		$this->setClassVars(array(
-			'Subject'       => $subject,
-			'Sender'        => $_sender['email'],
-			'From'          => $_reply['email'], 
-			'FromName'      => $_reply['name'],
-			'isEmbedImages' => $isEmbedImages,
-			'CharSet'		=> "UTF-8"
-		));
+		$this->setClassVars(array('Subject' => $subject, 'Sender' => $_sender['email'], 'From' => $_sender['email'], 'FromName' => $_sender['name'], 'isEmbedImages' => $isEmbedImages, 'CharSet' => "UTF-8"));
 	}
-	
+
 	public function parseEmailUser($user)
 	{
-		if (preg_match("/<(.)*>/",$user,$_user)){
-			$email = substr($_user[0], 1, strpos($_user[0],">")-1);
-			$name  = substr($user, 0, strpos($user,"<"));
+		if (preg_match("/<(.)*>/", $user, $_user)) {
+			$email = substr($_user[0], 1, strpos($_user[0], ">") - 1);
+			$name = substr($user, 0, strpos($user, "<"));
 		} else {
 			$email = $user;
-			$name  = "";
+			$name = "";
 		}
-		return array("email"=>trim($email),"name"=>trim($name));
+		return array("email" => trim($email), "name" => trim($name));
 	}
-
 
 	public function addHTMLPart($val)
 	{
@@ -119,17 +123,17 @@ class we_util_Mailer extends PHPMailer
 
 	public function addAddressList($list)
 	{
-		if (is_array($list) && count($list)>0) {
-			foreach ($list as $_to){
+		if (is_array($list) && count($list) > 0) {
+			foreach ($list as $_to) {
 				$_to = $this->parseEmailUser($_to);
 				$this->AddAddress($_to['email'], $_to['name']);
 			}
-		}		
+		}
 	}
-	
+
 	public function buildMessage()
 	{
-		if ($this->isEmbedImages && isset($images[2])) {
+		if ($this->isEmbedImages) {
 			preg_match_all("/(src|background)=\"(.*)\"/Ui", $this->Body, $images);
 			foreach ($images[2] as $i => $url) {
 				// only images that from the own server will be embeded
@@ -137,19 +141,28 @@ class we_util_Mailer extends PHPMailer
 					$filename = basename($url);
 					$directory = dirname($url);
 					($directory == '.') ? $directory = '' : '';
+					$directory = str_replace("..", "", "$directory");
+					if ($pos = stripos($directory, $_SERVER['HTTP_HOST'])) {
+						$directory = substr($directory, (strlen($_SERVER['HTTP_HOST']) + $pos), strlen($directory));
+					}
+					
 					$cid = 'cid:' . md5($filename);
 					$fileParts = split("\.", $filename);
 					$ext = $fileParts[1];
 					$mimeType = $this->_mime_types($ext);
-					if (strlen($basedir) > 1 && substr($this->basedir, -1) != '/') {
+					if ($this->basedir == "") {
+						$this->basedir = $_SERVER['DOCUMENT_ROOT'];
+					}
+					if (strlen($this->basedir) > 1 && substr($this->basedir, -1) != '/') {
 						$this->basedir .= '/';
 					}
-					if (strlen($directory) > 1 && substr($basedir, -1) != '/') {
+					if (strlen($directory) > 1 && substr($directory, -1) != '/') {
 						$directory .= '/';
 					}
-					$this->AddEmbeddedImage($this->basedir . $directory . $filename, md5($filename), $filename, 'base64', $mimeType);
-					if ($this->AddEmbeddedImage($this->basedir . $directory . $filename, md5($filename), $filename, 'base64', $mimeType)) {
-						$this->Body = preg_replace("/" . $images[1][$i] . "=\"" . preg_quote($url, '/') . "\"/Ui", $images[1][$i] . "=\"" . $cid . "\"", $this->Body);
+					if (in_array($ext, $this->embedImages)) {
+						if ($this->AddEmbeddedImage($this->basedir . $directory . $filename, md5($filename), $filename, 'base64', $mimeType)) {
+							$this->Body = preg_replace("/" . $images[1][$i] . "=\"" . preg_quote($url, '/') . "\"/Ui", $images[1][$i] . "=\"" . $cid . "\"", $this->Body);
+						}
 					}
 				}
 			}
@@ -158,26 +171,19 @@ class we_util_Mailer extends PHPMailer
 			$this->AltBody = trim(strip_tags(preg_replace('/<(head|title|style|script)[^>]*>.*?<\/\\1>/s', '', $this->Body)));
 		} else if (!isset($this->Body) || $this->Body == "") {
 			$this->Body = $this->AltBody;
-		}	
+		}
 		$this->messageBuilt = true;
 	}
-	
-	public function parseHtml2TextPart($html){
-		$this->AltBody .= trim(strip_tags(preg_replace('/<(head|title|style|script)[^>]*>.*?<\/\\1>/s', '', $html)));
-	}
-	
-	public function Send()
+
+	public function parseHtml2TextPart($html)
 	{
-		if (!$this->messageBuilt) {
-			$this->buildMessage();
-		}
-		parent::Send();			
+		$this->AltBody .= trim(strip_tags(preg_replace('/<(head|title|style|script)[^>]*>.*?<\/\\1>/s', '', $html)));
 	}
 
 	/********************************************
 	 *                  SETTER                  *
 	 ********************************************/
-
+	
 	/**
 	 * Setter for more class vars at once
 	 * The array keys represents the names of the class vars
@@ -186,11 +192,11 @@ class we_util_Mailer extends PHPMailer
 	 */
 	public function setClassVars($vars)
 	{
-		if (is_array($vars) && count($vars)>0) {
-			foreach ($vars as $var=>$val){
-				set($var,$val);
+		if (is_array($vars) && count($vars) > 0) {
+			foreach ($vars as $var => $val) {
+				$this->set($var, $val);
 			}
-		}		
+		}
 	}
 
 	public function setCharSet($val = 'UTF-8')
@@ -237,10 +243,11 @@ class we_util_Mailer extends PHPMailer
 	{
 		$this->isEmbedImages = $val;
 	}
-	
-	public function setBody($val) {
-		$this->setBody= $val;
+
+	public function setBody($val)
+	{
+		$this->setBody = $val;
 	}
-	
+
 }
 ?>
