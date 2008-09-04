@@ -570,9 +570,9 @@ class weNewsletterFrames extends weModuleFrames {
 		').$this->View->getJSProperty();
 
 		$texts=array('send_step','send_wait','test_account','default_sender','default_reply','female_salutation','male_salutation');
-		$radios=array('reject_malformed','reject_not_verified','reject_save_malformed','log_sending','default_htmlmail','title_or_salutation','additional_clp','use_https_refer','use_port');
+		$radios=array('reject_malformed','reject_not_verified','reject_save_malformed','log_sending','default_htmlmail','isEmbedImages','title_or_salutation','additional_clp','use_https_refer','use_port');
 		$extra_radio_text=array('use_port');
-		$defaults=array('reject_save_malformed'=>'1','use_https_refer'=>'0','send_wait'=>'0','use_port'=>'0','use_port_check'=>'80','additional_clp'=>'0');
+		$defaults=array('reject_save_malformed'=>'1','use_https_refer'=>'0','send_wait'=>'0','use_port'=>'0','use_port_check'=>'80','additional_clp'=>'0','isEmbedImages'=>'0');
 
 		$table=new we_htmlTable(array('border'=>'0','cellpadding'=>'0','cellspacing'=>'0'),1,3);
 		$c=0;
@@ -1156,11 +1156,6 @@ class weNewsletterFrames extends weModuleFrames {
 				$content.=htmlFormElementTable(htmlTextInput("block".$counter."_Field",49,(is_numeric($block->Field) ? "" : $block->Field),"","style='width:440'","text","0","0","top.content"),$l_newsletter["block_url"]);
 			}
 
-
-			if ($block->Type == WENBLOCK_URL || $block->Type == WENBLOCK_DOCUMENT || $block->Type == WENBLOCK_OBJECT) {
-				$content.=htmlFormElementTable(we_forms::checkbox((($block->Pack) ? "1" : "0"),(($block->Pack) ? true : false),"block".$counter."_send_images",$l_newsletter["send_images"],false,"defaultfont","top.content.hot=1;if(document.we_form.block".$counter."_send_images.checked){ document.we_form.block".$counter."_Pack.value=1; }else{ document.we_form.block".$counter."_Pack.value=0; }"),"&nbsp;&nbsp;&nbsp;");
-			}
-
 			$we_button = new we_button();
 			$buttons=getPixel(440,1);
 
@@ -1238,7 +1233,7 @@ class weNewsletterFrames extends weModuleFrames {
 		array_push($parts,array("headline"=>$l_newsletter["path"],"html"=>$table->getHtmlCode(),"space"=>140));
 
 		if(!$this->View->newsletter->IsFolder){
-			$table=new we_htmlTable(array("border"=>"0","cellpadding"=>"0","cellspacing"=>"0"),7,1);
+			$table=new we_htmlTable(array("border"=>"0","cellpadding"=>"0","cellspacing"=>"0"),9,1);
 			$table->setCol(0,0,array(),htmlFormElementTable(htmlTextInput("Subject",37,stripslashes($this->View->newsletter->Subject),"","onKeyUp='top.content.hot=1;'",'text',$this->def_width),$l_newsletter["subject"]));
 			$table->setCol(1,0,array(),getPixel(10,10));
 			$table->setCol(2,0,array(),htmlFormElementTable(htmlTextInput("Sender",37,$this->View->newsletter->Sender,"","onKeyUp='top.content.hot=1;'",'text',$this->def_width),$l_newsletter["sender"]));
@@ -1251,11 +1246,24 @@ class weNewsletterFrames extends weModuleFrames {
 				$chk=we_htmlElement::htmlInput(array("type"=>"checkbox","value"=>"0","name"=>"reply_same","onClick"=>$this->topFrame.".hot=1;if(document.we_form.reply_same.checked) document.we_form.Reply.value=document.we_form.Sender.value"));
 
 			$table->setCol(4,0,array(),htmlFormElementTable(htmlTextInput("Reply",37,$this->View->newsletter->Reply,"","onKeyUp='top.content.hot=1;'")."&nbsp;&nbsp;".$chk."&nbsp;".we_htmlElement::htmlLabel(array("class"=>"defaultfont","onClick"=>$this->topFrame.".hot=1;if(document.we_form.reply_same.checked){document.we_form.reply_same.checked=false;}else{document.we_form.Reply.value=document.we_form.Sender.value;document.we_form.reply_same.checked=true;}",'text',$this->def_width),$l_newsletter["reply_same"]),$l_newsletter["reply"]));
+
 			$table->setCol(5,0,array(),getPixel(10,10));
 
 			$table->setCol(6,0,array(),htmlFormElementTable(htmlTextInput("Test",37,$this->View->newsletter->Test,"","onKeyUp='top.content.hot=1;'"),$l_newsletter["test_email"]));
 
-
+			$table->setCol(7,0,array(),getPixel(10,10));
+			
+			if ($this->View->newsletter->isEmbedImages) {
+				$_embedImagesChk = we_htmlElement::htmlInput(array("type"=>"checkbox", "value"=>"1", "name"=>"isEmbedImagesChk" ,"onClick"=>$this->topFrame.".hot=1;if(document.we_form.isEmbedImagesChk.checked){document.we_form.isEmbedImages.value=1;}else{document.we_form.isEmbedImages.value=0;}","checked"=>null),$l_newsletter["isEmbedImages"]);
+			} else {
+				$_embedImagesChk = we_htmlElement::htmlInput(array("type"=>"checkbox", "value"=>"1", "name"=>"isEmbedImagesChk" ,"onClick"=>$this->topFrame.".hot=1;if(document.we_form.isEmbedImagesChk.checked){document.we_form.isEmbedImages.value=1;}else{document.we_form.isEmbedImages.value=0;}"),$l_newsletter["isEmbedImages"]);
+			}
+			$_embedImagesHid = we_htmlElement::htmlHidden(array("name"=>"isEmbedImages", "value"=>$this->View->newsletter->isEmbedImages));
+			//$_embedImagesChk = we_htmlElement::htmlInput(array("type"=>"checkbox", "value"=>"1", "name"=>"_isEmbedImages" ,"onClick"=>$this->topFrame.".hot=1;","checked"=>($this->View->newsletter->isEmbedImages?"true":"false")),$l_newsletter["isEmbedImages"]);
+			$_embedImagesLab = we_htmlElement::htmlLabel(array("class"=>"defaultfont","onClick"=>$this->topFrame.".hot=1;if(document.we_form.isEmbedImagesChk.checked){ document.we_form.isEmbedImagesChk.checked=false; document.we_form.isEmbedImages.value=0; }else{document.we_form.isEmbedImagesChk.checked=true;document.we_form.isEmbedImages.value=1;}",'text',$this->def_width),$l_newsletter["isEmbedImages"]);
+			
+			$table->setCol(8,0,array(),htmlFormElementTable($_embedImagesHid.$_embedImagesChk."&nbsp;".$_embedImagesLab,""));
+			
 			array_push($parts,array("headline"=>$l_newsletter["newsletter"],"html"=>$table->getHtmlCode(),"space"=>140));
 
 			array_push($parts,array("headline"=>$l_newsletter["charset"],"html"=>$this->getHTMLCharsetTable(),"space"=>140));
@@ -2743,24 +2751,29 @@ class weNewsletterFrames extends weModuleFrames {
 			$this->replacePlaceholder($content, $content_plain, $emails[$j]);
 			
             $_clean = $this->View->getCleanMail($this->View->newsletter->Reply);
-			$mail= new weNewsletterMailer(
-				$email,
-				$this->View->newsletter->Subject,
-				($htmlmail ? $content : $content_plain),
-				$this->View->newsletter->Sender,
-				$this->View->newsletter->Reply,
-				$htmlmail ? WE_MAIL_TEXT_AND_HTML : WE_MAIL_TEXT_ONLY,
-				($this->View->newsletter->Charset!="" ? $this->View->newsletter->Charset : $GLOBALS["_language"]["charset"]),
-				"",
-				$content_plain,
-				(($this->View->settings['additional_clp'] && !empty($_clean)) ? ('-f' .$_clean) : '')
-			);
-
-			if($htmlmail) foreach($inlines as $name=>$ins){
-				$cont=weFile::load($ins);
-				$mail->embed($cont,$name);
+            
+            include_once $_SERVER['DOCUMENT_ROOT'].'/webEdition/lib/we/core/autoload.php';
+            
+            $phpmail = new we_util_Mailer(
+            	$email,
+            	$this->View->newsletter->Subject,
+            	$this->View->newsletter->Sender,
+            	$this->View->newsletter->Reply,
+            	$this->View->newsletter->isEmbedImages
+            );
+			$phpmail->setCharSet($this->View->newsletter->Charset!="" ? $this->View->newsletter->Charset : $GLOBALS["_language"]["charset"]);
+			
+			if ($htmlmail) {
+				$phpmail->addHTMLPart($content);
+				$phpmail->addTextPart($content_plain);
+			} else {
+				$phpmail->setBody($content_plain);
 			}
-			foreach($atts as $att){ $mail->attachFile($att); }
+
+			foreach($atts as $att){ 
+				$phpmail->AddAttachment($att);
+			}
+			$phpmail->buildMessage();
 
 			$not_malformed=true;
 			$verified=true;
@@ -2771,8 +2784,8 @@ class weNewsletterFrames extends weModuleFrames {
 			$not_black=!$this->View->isBlack($email);
             if($verified && $not_malformed && $not_black){
 							if(!$test){
-                        		if($mail->send()){
-									if($this->View->settings["log_sending"]) $this->View->newsletter->addLog("mail_sent",$email);
+                        		if($phpmail->Send()){
+                        			if($this->View->settings["log_sending"]) $this->View->newsletter->addLog("mail_sent",$email);
 								}
 								else{
 									if($this->View->settings["log_sending"]) $this->View->newsletter->addLog("mail_failed",$email);
