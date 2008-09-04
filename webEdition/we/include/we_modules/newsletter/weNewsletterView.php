@@ -2427,8 +2427,6 @@ class weNewsletterView {
 	function sendTestMail($group, $hm) {
 		include_once $_SERVER['DOCUMENT_ROOT'].'/webEdition/lib/we/core/autoload.php';
 	
-		include_once(WE_NEWSLETTER_MODULE_DIR . "weNewsletterMailer.php");
-
 		$plain="";
 		$content="";
 		$inlines=array();
@@ -2457,20 +2455,6 @@ class weNewsletterView {
 		$protocol=getServerProtocol(true);
 		$basehref=$protocol.SERVER_NAME.":".$port;
 		$_clean = $this->getCleanMail($this->newsletter->Reply);
-
-		$mail= new weNewsletterMailer(
-						$this->newsletter->Test,
-						$this->newsletter->Subject,
-						$content,
-						$this->newsletter->Sender,
-						$this->newsletter->Reply,
-						$hm ? WE_MAIL_TEXT_AND_HTML : WE_MAIL_TEXT_ONLY,
-						($this->newsletter->Charset!="" ? $this->newsletter->Charset : $GLOBALS["_language"]["charset"]),
-						$basehref,
-						$plain,
-						((isset($this->settings['additional_clp']) && $this->settings['additional_clp'] && !empty($_clean)) ? ('-f' .$_clean) : '')
-		);
-
 		
 		$phpmail = new we_util_Mailer($this->newsletter->Test,$this->newsletter->Subject,$this->newsletter->Sender,$this->newsletter->Reply,$this->newsletter->isEmbedImages);
 		$phpmail->setCharSet($this->newsletter->Charset!="" ? $this->newsletter->Charset : $GLOBALS["_language"]["charset"]);
@@ -2669,8 +2653,7 @@ class weNewsletterView {
 			'test_account' => 'test@'.$_domainName,
 			'title_or_salutation' => '0',
 			'use_port' => '0',
-			'use_https_refer' => '0',
-			'additional_clp' => '0'
+			'use_https_refer' => '0'
 		);
 
 		$db->query("SELECT * FROM ".NEWSLETTER_PREFS_TABLE);
