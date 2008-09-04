@@ -21,9 +21,6 @@ if(!isset($GLOBALS["WE_IS_DYN"])){
 }
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/we_template.inc.php");
 
-include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/navigationHistory.class.php");
-
-
 /**
  * showContent()
  * @desc     Generates and prints a default template to see the attribs of an object.
