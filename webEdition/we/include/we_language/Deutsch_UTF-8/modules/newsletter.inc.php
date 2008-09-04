@@ -120,6 +120,7 @@ $l_newsletter["log_sending"] = "Logbucheinträge erstellen, wenn E-Mails gesende
 $l_newsletter["default_sender"] = "Standard-Absender";
 $l_newsletter["default_reply"] = "Standard-Antwortadresse";
 $l_newsletter["default_htmlmail"] = "Das Standard-E-Mail-Format ist HTML";
+$l_newsletter["isEmbedImages"] = "Bilder in HTML-E-Mails einbetten.";
 $l_newsletter["ask_to_preserve"] = "Die letzte Newsletter-Kampagne wurde noch nicht vollständig abgearbeitet!<br>Wenn Sie den Newsletter jetzt speichern, können Sie die letzte Kampagne nicht mehr fortsetzten!<br>Wollen Sie fortfahren?";
 $l_newsletter["log_save_newsletter"] = "Der Newsletter wurde gespeichert.";
 $l_newsletter["log_start_send"] = "Starte die Newsletter-Kampagne.";
