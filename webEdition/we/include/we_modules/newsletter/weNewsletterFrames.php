@@ -570,9 +570,9 @@ class weNewsletterFrames extends weModuleFrames {
 		').$this->View->getJSProperty();
 
 		$texts=array('send_step','send_wait','test_account','default_sender','default_reply','female_salutation','male_salutation');
-		$radios=array('reject_malformed','reject_not_verified','reject_save_malformed','log_sending','default_htmlmail','isEmbedImages','title_or_salutation','additional_clp','use_https_refer','use_port');
+		$radios=array('reject_malformed','reject_not_verified','reject_save_malformed','log_sending','default_htmlmail','isEmbedImages','title_or_salutation','use_https_refer','use_port');
 		$extra_radio_text=array('use_port');
-		$defaults=array('reject_save_malformed'=>'1','use_https_refer'=>'0','send_wait'=>'0','use_port'=>'0','use_port_check'=>'80','additional_clp'=>'0','isEmbedImages'=>'0');
+		$defaults=array('reject_save_malformed'=>'1','use_https_refer'=>'0','send_wait'=>'0','use_port'=>'0','use_port_check'=>'80','isEmbedImages'=>'0');
 
 		$table=new we_htmlTable(array('border'=>'0','cellpadding'=>'0','cellspacing'=>'0'),1,3);
 		$c=0;
