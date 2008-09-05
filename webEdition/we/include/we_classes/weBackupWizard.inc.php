@@ -604,7 +604,17 @@ class weBackupWizard{
 		array_push($parts,array("headline"=>"","html"=>htmlAlertAttentionBox($l_backup["tools_import_desc"], 2, 600, false),"space"=>70,"noline"=>1));
 		foreach ($_tools as $_tool) {
 			include(weToolLookup::getLanguageInclude($_tool));
-			array_push($parts,array("headline"=>"","html"=>we_forms::checkbox(1, true, 'handle_tool_' . $_tool, ${'l_' . $_tool}["import_tool_" . $_tool . "_data"], false, "defaultfont", "doClick($k);"),"space"=>70,"noline"=>1));
+			if(isset(${'l_' . $_tool}["export_tool_" . $_tool . "_data"])) {
+				$text = ${'l_' . $_tool}["export_tool_" . $_tool . "_data"];
+			}
+			else {
+				include_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/lib/we/core/autoload.php');
+				Zend_Loader::loadClass('we_core_Local');
+				$translate = we_core_Local::addTranslation('apps.xml');
+				we_core_Local::addTranslation('default.xml', $_tool);
+				$text = $translate->_('Restore '. $_tool .' data');
+			}
+			array_push($parts,array("headline"=>"","html"=>we_forms::checkbox(1, true, 'handle_tool_' . $_tool, $text, false, "defaultfont", "doClick($k);"),"space"=>70,"noline"=>1));
 		}
 		
 		
@@ -890,7 +900,17 @@ class weBackupWizard{
 		$k = 700;
 		foreach ($_tools as $_tool) {
 			include(weToolLookup::getLanguageInclude($_tool));
-			array_push($parts,array("headline"=>"","html"=>we_forms::checkbox(1, true, 'handle_tool_' . $_tool, ${'l_' . $_tool}["export_tool_" . $_tool . "_data"], false, "defaultfont", "doClick($k);"),"space"=>70,"noline"=>1));
+			if(isset(${'l_' . $_tool}["export_tool_" . $_tool . "_data"])) {
+				$text = ${'l_' . $_tool}["export_tool_" . $_tool . "_data"];
+			}
+			else {
+				include_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/lib/we/core/autoload.php');
+				Zend_Loader::loadClass('we_core_Local');
+				$translate = we_core_Local::addTranslation('apps.xml');
+				we_core_Local::addTranslation('default.xml', $_tool);
+				$text = $translate->_('Save '. $_tool .' data');
+			}
+			array_push($parts,array("headline"=>"","html"=>we_forms::checkbox(1, true, 'handle_tool_' . $_tool, $text, false, "defaultfont", "doClick($k);"),"space"=>70,"noline"=>1));
 			$k++;
 		}
 		
