@@ -187,8 +187,8 @@
 		<tu tuid="default">
 			<tuv xml:lang="nl"><seg>Default</seg></tuv>
 		</tu>
-		<tu tuid="No Primary Key set.">
-			<tuv xml:lang="de"><seg>No Primary Key set. Can't delete the model!</seg></tuv>
+		<tu tuid="This entry cannot be deleted. Probably there is no appropriate data record in the data base or the data base does not exist. In this case you must implement the data retention.">
+			<tuv xml:lang="de"><seg>This entry cannot be deleted. Probably there is no appropriate data record in the data base or the data base does not exist. In this case you must implement the data retention.</seg></tuv>
 		</tu>
 	</body>
 </tmx>
