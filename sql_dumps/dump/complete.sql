@@ -272,6 +272,7 @@ CREATE TABLE tblNewsletter (
   Step int(11) NOT NULL default '0',
   `Offset` int(11) NOT NULL default '0',
   `Charset` varchar(255) NOT NULL default '',
+  isEmbedImages tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (ID)
 ) TYPE=MyISAM;
 
