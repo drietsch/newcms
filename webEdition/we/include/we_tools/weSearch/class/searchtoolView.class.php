@@ -2357,6 +2357,9 @@ class searchtoolView extends weToolView
 						}
 						if (isset($searchString) && $searchString != "") {
 							
+							$searchString = str_replace("_", "\_", $searchString);
+							$searchString = str_replace("%", "\%", $searchString);
+							
 							if (($searchFields[$i] == "Text" || ($whichSearch == "AdvSearch" && $searchFields[$i] != "Content" && $searchFields[$i] != "Status" && $searchFields[$i] != "Speicherart" && $searchFields[$i] != "CreatorName" && $searchFields[$i] != "WebUserName" && $searchFields[$i] != "temp_category"))) {
 								if (isset($searchFields[$i]) && isset($location[$i])) {
 									$where .= $thisObj->searchclass->searchfor(
