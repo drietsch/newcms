@@ -517,6 +517,18 @@ $l_prefs["tab_versions"] = 'Versioning';
 	$l_prefs["versions_create_publishing"] = "only when publishing";
 	$l_prefs["versions_create_always"] = "always";
 	
+	$l_prefs['use_jeditor'] = "Use";
+	$l_prefs["editor_font_colors"] = 'Specify font colors';
+	$l_prefs["editor_normal_font_color"] = 'Default';
+	$l_prefs["editor_we_tag_font_color"] = 'webEdition tags';
+	$l_prefs["editor_we_attribute_font_color"] = 'webEdition attributes';
+	$l_prefs["editor_html_tag_font_color"] = 'HTML tags';
+	$l_prefs["editor_html_attribute_font_color"] = 'HTML attributes';
+	$l_prefs["editor_pi_tag_font_color"] = 'PHP code';
+	$l_prefs["editor_comment_font_color"] = 'Comments';
+	$l_prefs["jeditor"] = 'Java source editor';
+	
+	
 	$l_prefs["juplod_not_installed"] = 'JUpload is not installed!';
 	
 
