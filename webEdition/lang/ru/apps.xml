@@ -187,5 +187,8 @@
 		<tu tuid="default">
 			<tuv xml:lang="ru"><seg>Default</seg></tuv>
 		</tu>
+		<tu tuid="No Primary Key set.">
+			<tuv xml:lang="de"><seg>No Primary Key set. Can't delete the model!</seg></tuv>
+		</tu>
 	</body>
 </tmx>
