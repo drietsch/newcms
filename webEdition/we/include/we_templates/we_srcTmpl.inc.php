@@ -134,9 +134,16 @@ if($we_editmode) {
 			var editorWidth = w - 37;
 			var h = window.innerHeight ? window.innerHeight : document.body.offsetHeight;
 			var wizardOpen = weGetCookieVariable("but_weTMPLDocEdit") == "down";
-			var editorHeight = h- (wizardOpen ? 110 : 285);
-			document.weEditorApplet.height = editorHeight;
-    		document.weEditorApplet.setSize(editorWidth,editorHeight);
+			if (document.weEditorApplet) {
+				var editorHeight = h- (wizardOpen ? 110 : 285);
+				document.weEditorApplet.height = editorHeight;
+    			document.weEditorApplet.setSize(editorWidth,editorHeight);
+			} else {
+
+				var editarea = document.getElementById("editarea");
+				editarea.style.height=h- (wizardOpen ? 110 : 285);
+			}
+
 		}
 		
 		// ################ Java Editor specific Functions
