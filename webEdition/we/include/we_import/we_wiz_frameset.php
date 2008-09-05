@@ -25,7 +25,6 @@ include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/html/w
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/base/weFile.class.php");
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_import/we_wizard.inc.php");
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_import/we_wiz_import.inc.php");
-include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_import/we_wizard_seem.inc.php");
 
 $wizard = new we_wizard_import();
 
