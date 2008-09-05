@@ -79,6 +79,7 @@ class weNavigationRuleFrames
 			
 			$_rules["$_navigationRule->ID"] = $_navigationRule->NavigationName;
 		}
+		asort($_rules);
 		$yuiSuggest = & weSuggest::getInstance();
 		array_push(
 				$parts, 
