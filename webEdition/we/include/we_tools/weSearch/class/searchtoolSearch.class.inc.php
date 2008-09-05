@@ -303,6 +303,8 @@ class searchtoolsearch extends we_search
 		while ($_db2->next_record()) {
 			$tempDoc = unserialize($_db2->f('DocumentObject'));
 			if (isset($tempDoc[0]['elements']['Title']) && $tempDoc[0]['elements']['Title']['dat'] != "") {
+				$keyword = str_replace("\_", "_", $keyword);
+				$keyword = str_replace("\%", "%", $keyword);
 				if (stristr($tempDoc[0]['elements']['Title']['dat'], $keyword)) {
 					$titles[] = $_db2->f('DocumentID');
 				}
