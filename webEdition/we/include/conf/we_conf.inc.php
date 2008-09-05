@@ -60,7 +60,7 @@ define("SERVER_NAME", $SERVER_NAME);
 define("DB_HOST","localhost");
 
 // Name of database being used by webEdition
-define("DB_DATABASE","we6trunk");
+define("DB_DATABASE","webedition");
 
 // Username to access the database
 define("DB_USER","root");
@@ -90,11 +90,6 @@ define("DB_CHARSET","");
 
 // Collation of tables in database for this webEdition.
 define("DB_COLLATION","");
-
-// Database wrapper class of webEdition
-include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/"."db_mysql.inc.php");
-
-
 
 /*****************************************************************************
  * GLOBAL WEBEDITION SETTINGS
