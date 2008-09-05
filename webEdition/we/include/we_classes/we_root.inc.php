@@ -1219,7 +1219,7 @@ class we_root extends we_class
 				}			
 				return $return;
 			} else {
-				$query('SELECT ParentID FROM '.NAVIGATION_TABLE.' WHERE ((Selection="static" AND SelectionType="docLink") OR (IsFolder=1 AND FolderSelection="docLink")) AND LinkID="'.$this->ID.'";',$this->DB_WE);
+				$query = 'SELECT ParentID FROM '.NAVIGATION_TABLE.' WHERE ((Selection="static" AND SelectionType="docLink") OR (IsFolder=1 AND FolderSelection="docLink")) AND LinkID="'.$this->ID.'";';
 				$this->DB_WE->query($query);
 				$return = array();
 				while ($this->DB_WE->next_record()) {
