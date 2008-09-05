@@ -280,9 +280,12 @@ class we_app_Model extends we_core_AbstractModel
 	 */
 	public function delete()
 	{
-		
+		$translate = we_core_Local::addTranslation('apps.xml');
+		$message = $translate->_('No Primary Key set.');
+
+		we_util_Log::errorLog($message);
 		if (!$this->{$this->_primaryKey}) {
-			throw new we_core_ModelException('No Primary Key set. Can\'t delete the model!', we_service_ErrorCodes::kModelNoPrimaryKeySet);
+			throw new we_core_ModelException($message, we_service_ErrorCodes::kModelNoPrimaryKeySet);
 		}
 		
 		if ($this->IsFolder) {
