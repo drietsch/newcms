@@ -509,6 +509,17 @@ $l_prefs["tab_modules"] = 'Moduły';
 	$l_prefs["versions_create_publishing"] = "only when publishing"; //TRANSLATE
 	$l_prefs["versions_create_always"] = "always"; //TRANSLATE
 
+	$l_prefs['use_jeditor'] = "Use"; //TRANSLATE
+	$l_prefs["editor_font_colors"] = 'Specify font colors'; //TRANSLATE
+	$l_prefs["editor_normal_font_color"] = 'Default'; //TRANSLATE
+	$l_prefs["editor_we_tag_font_color"] = 'webEdition tags'; //TRANSLATE
+	$l_prefs["editor_we_attribute_font_color"] = 'webEdition attributes'; //TRANSLATE
+	$l_prefs["editor_html_tag_font_color"] = 'HTML tags'; //TRANSLATE
+	$l_prefs["editor_html_attribute_font_color"] = 'HTML attributes'; //TRANSLATE
+	$l_prefs["editor_pi_tag_font_color"] = 'PHP code'; //TRANSLATE
+	$l_prefs["editor_comment_font_color"] = 'Comments'; //TRANSLATE
+	$l_prefs["jeditor"] = 'Java source editor'; //TRANSLATE
+	
 	$l_prefs["juplod_not_installed"] = 'JUpload is not installed!'; //TRANSLATE
 	
 ?>
