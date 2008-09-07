@@ -283,7 +283,6 @@ class we_app_Model extends we_core_AbstractModel
 		$translate = we_core_Local::addTranslation('apps.xml');
 		$message = $translate->_('This entry cannot be deleted. Probably there is no appropriate data record in the data base or the data base does not exist. In this case you must implement the data retention.');
 
-		we_util_Log::errorLog($message);
 		if (!$this->{$this->_primaryKey}) {
 			throw new we_core_ModelException($message, we_service_ErrorCodes::kModelNoPrimaryKeySet);
 		}
