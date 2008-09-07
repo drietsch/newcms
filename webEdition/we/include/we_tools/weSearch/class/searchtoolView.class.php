@@ -2769,6 +2769,10 @@ class searchtoolView extends weToolView
 						false, 
 						"middlefont", 
 						"") : getPixel(20, 10);
+						
+				if (eregi('_UTF-8', $GLOBALS['WE_LANGUAGE'])) {
+					$_result[$f]["SiteTitle"] = utf8_encode($_result[$f]["SiteTitle"]);
+				}
 				
 				$content[$f][0]["dat"] = $publishCheckbox;
 				$content[$f][1]["dat"] = '<img src="' . ICON_DIR . $Icon . '" border="0" width="16" height="18" />';
