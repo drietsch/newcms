@@ -715,7 +715,7 @@ class searchtoolView extends weToolView
      args += "&we_cmd["+escape(newString)+"]="+escape(' . $this->editorBodyFrame . '.document.we_form.elements[i].value);
     }
     ' . $this->editorBodyFrame . '.document.getElementById("scrollContent_' . $whichSearch . '").innerHTML = "<table border=\'0\' width=\'100%\' height=\'100%\'><tr><td align=\'center\'><img src=' . IMAGE_DIR . 'logo-busy.gif /><div id=\'scrollActive\'></div></td></tr></table>"; 
-    YAHOO.util.Connect.asyncRequest("POST", ajaxURL, ajaxCallbackResultList, "protocol=json&cns=tools/weSearch&tab=' . $tab . '&cmd=GetSearchResult&whichsearch=' . $whichSearch . '&classname=' . $this->Model->ModelClassName . '&id=' . $this->Model->ID . '&we_transaction=' . $GLOBALS['we_transaction'] . '"+args+"");
+    YAHOO.util.Connect.asyncRequest("POST", ajaxURL, ajaxCallbackResultList, "protocol=json&cns=tools/weSearch&tab=' . $tab . '&cmd=GetSearchResult&whichsearch=' . $whichSearch . '&classname=' . $this->Model->ModelClassName . '&id=' . $this->Model->ID . '&language=' . $GLOBALS['WE_LANGUAGE'] . '&we_transaction=' . $GLOBALS['we_transaction'] . '"+args+"");
    }
  
    function makeAjaxRequestParametersTop() {
@@ -725,7 +725,7 @@ class searchtoolView extends weToolView
      newString = ' . $this->editorBodyFrame . '.document.we_form.elements[i].name;
      args += "&we_cmd["+escape(newString)+"]="+escape(' . $this->editorBodyFrame . '.document.we_form.elements[i].value);
     }
-     YAHOO.util.Connect.asyncRequest("POST", ajaxURL, ajaxCallbackParametersTop, "protocol=json&cns=tools/weSearch&tab=' . $tab . '&cmd=GetSearchParameters&position=top&whichsearch=' . $whichSearch . '&classname' . $this->Model->ModelClassName . '=&id=' . $this->Model->ID . '&we_transaction=' . $GLOBALS['we_transaction'] . '"+args+"");
+     YAHOO.util.Connect.asyncRequest("POST", ajaxURL, ajaxCallbackParametersTop, "protocol=json&cns=tools/weSearch&tab=' . $tab . '&cmd=GetSearchParameters&position=top&whichsearch=' . $whichSearch . '&classname' . $this->Model->ModelClassName . '=&id=' . $this->Model->ID . '&language=' . $GLOBALS['WE_LANGUAGE'] . '&we_transaction=' . $GLOBALS['we_transaction'] . '"+args+"");
    }
    
    function makeAjaxRequestParametersBottom() {
@@ -735,7 +735,7 @@ class searchtoolView extends weToolView
      newString = ' . $this->editorBodyFrame . '.document.we_form.elements[i].name;
      args += "&we_cmd["+escape(newString)+"]="+escape(' . $this->editorBodyFrame . '.document.we_form.elements[i].value);
     }
-     YAHOO.util.Connect.asyncRequest("POST", ajaxURL, ajaxCallbackParametersBottom, "protocol=json&cns=tools/weSearch&tab=' . $tab . '&cmd=GetSearchParameters&position=bottom&whichsearch=' . $whichSearch . '&classname=' . $this->Model->ModelClassName . '&id=' . $this->Model->ID . '&we_transaction=' . $GLOBALS['we_transaction'] . '"+args+"");
+     YAHOO.util.Connect.asyncRequest("POST", ajaxURL, ajaxCallbackParametersBottom, "protocol=json&cns=tools/weSearch&tab=' . $tab . '&cmd=GetSearchParameters&position=bottom&whichsearch=' . $whichSearch . '&classname=' . $this->Model->ModelClassName . '&id=' . $this->Model->ID . '&language=' . $GLOBALS['WE_LANGUAGE'] . '&we_transaction=' . $GLOBALS['we_transaction'] . '"+args+"");
    }
    
    function getMouseOverDivs() {
@@ -745,7 +745,7 @@ class searchtoolView extends weToolView
      newString = ' . $this->editorBodyFrame . '.document.we_form.elements[i].name;
      args += "&we_cmd["+escape(newString)+"]="+escape(' . $this->editorBodyFrame . '.document.we_form.elements[i].value);
     } 
-    YAHOO.util.Connect.asyncRequest("POST", ajaxURL, ajaxCallbackgetMouseOverDivs, "protocol=json&cns=tools/weSearch&tab=' . $tab . '&cmd=GetMouseOverDivs&whichsearch=' . $whichSearch . '&classname=' . $this->Model->ModelClassName . '&id=' . $this->Model->ID . '&we_transaction=' . $GLOBALS['we_transaction'] . '"+args+"");
+    YAHOO.util.Connect.asyncRequest("POST", ajaxURL, ajaxCallbackgetMouseOverDivs, "protocol=json&cns=tools/weSearch&tab=' . $tab . '&cmd=GetMouseOverDivs&whichsearch=' . $whichSearch . '&classname=' . $this->Model->ModelClassName . '&id=' . $this->Model->ID . '&language=' . $GLOBALS['WE_LANGUAGE'] . '&we_transaction=' . $GLOBALS['we_transaction'] . '"+args+"");
    }
    
    function setView(value){
@@ -2285,6 +2285,13 @@ class searchtoolView extends weToolView
 					
 					break;
 			}
+			for ($i = 0; $i < count($searchText); $i++) {
+				if (isset($searchText[$i])) {
+					if (eregi('_UTF-8', $GLOBALS['WE_LANGUAGE'])) {
+										$searchText[$i] = utf8_decode($searchText[$i]);
+					}
+				}
+			}
 		}
 		
 		for ($i = 0; $i < count($searchText); $i++) {
@@ -2356,6 +2363,8 @@ class searchtoolView extends weToolView
 							}
 						}
 						if (isset($searchString) && $searchString != "") {
+							
+							
 							
 							$searchString = str_replace("_", "\_", $searchString);
 							$searchString = str_replace("%", "\%", $searchString);
@@ -2909,9 +2918,10 @@ class searchtoolView extends weToolView
 	}
 
 	function getSearchParameterTop($foundItems, $whichSearch)
-	{
-		$we_button = new we_button();
+	{		
 		
+		$we_button = new we_button();
+
 		if (isset($_REQUEST["we_cmd"]['obj'])) {
 			$thisObj = new searchtoolView();
 			
