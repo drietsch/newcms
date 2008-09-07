@@ -203,7 +203,7 @@ class searchtoolFrames extends weToolFrames
 		$Text = $this->Model->getLangText($this->Model->Path, $this->Model->Text);
 		
 		if (eregi('_UTF-8', $GLOBALS['WE_LANGUAGE'])) {
-			$Text = utf8_decode($Text);
+			//$Text = utf8_encode($Text);
 		}
 		
 		$body = we_htmlElement::htmlBody(
