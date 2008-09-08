@@ -2414,10 +2414,7 @@ function getMysqlVer($nodots = true)
 function we_mail($recipient, $subject, $txt, $from = "")
 {
 	if (runAtWin()) {
-		if ($txt)
-			$txt = str_replace("\n", "\r\n", $txt);
-		if ($header)
-			$header = str_replace("\n", "\r\n", $header);
+		if ($txt) $txt = str_replace("\n", "\r\n", $txt);
 	}
 	
 
