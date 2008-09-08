@@ -220,5 +220,5 @@ $l_import['weThumbnail'] = 'Thumbnail';
 $l_import['import_thumbnails'] = 'Import thumbnails';
 $l_import['rebuild'] = 'Rebuild';
 $l_import['rebuild_txt'] = 'Automatic rebuild';
-$l_import['finished_success'] = 'The import of the data was finished successful.';
+$l_import['finished_success'] = 'The import of the data was successful.';
 ?>

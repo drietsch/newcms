@@ -36,7 +36,7 @@ $GLOBALS["l_siteimport"]["depth"] = "Depth";
 $GLOBALS["l_siteimport"]["maxSize"] = "Maximum file size in MB";
 $GLOBALS["l_siteimport"]["nolimit"] = "No limit";
 $GLOBALS["l_siteimport"]["importingFile"] = "Importing file";
-$GLOBALS["l_siteimport"]["importFinished"] = "Web site import was finished successful!";
+$GLOBALS["l_siteimport"]["importFinished"] = "Web site import was successful!";
 $GLOBALS["l_siteimport"]["dirs_headline"] = "Directories";
 $GLOBALS["l_siteimport"]["limits"] = "Limits";
 
