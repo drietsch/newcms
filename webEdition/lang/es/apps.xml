@@ -83,10 +83,13 @@
 			<tuv xml:lang="es"><seg>General</seg></tuv>
 		</tu>
 		<tu tuid="The folder '%s' has been succesfully saved.">
-			<tuv xml:lang="es"><seg>The Folder '%s' has been saved.</seg></tuv>
+			<tuv xml:lang="es"><seg>The Folder '%s' has been succesfully saved.</seg></tuv>
 		</tu>
 		<tu tuid="The entry '%s' has been succesfully saved.">
-			<tuv xml:lang="es"><seg>The entry '%s' has been saved.</seg></tuv>
+			<tuv xml:lang="es"><seg>The entry '%s' has been succesfully saved.</seg></tuv>
+		</tu>
+		<tu tuid="The entry/folder '%s' has been succesfully saved.">
+			<tuv xml:lang="de"><seg>The entry/folder '%s' has been succesfully saved.</seg></tuv>
 		</tu>
 		<tu tuid="The folder could not be saved.">
 			<tuv xml:lang="es"><seg>This folder cannot be saved.</seg></tuv>
@@ -125,10 +128,13 @@
 			<tuv xml:lang="es"><seg>The application exists!</seg></tuv>
 		</tu>
 		<tu tuid="The entry '%s' has been succesfully deleted.">
-			<tuv xml:lang="es"><seg>The entry '%s' has been deleted.</seg></tuv>
+			<tuv xml:lang="en"><seg>The entry '%s' has been succesfully deleted.</seg></tuv>
 		</tu>
 		<tu tuid="The folder '%s' has been succesfully deleted.">
-			<tuv xml:lang="es"><seg>The folder '%s' has been deleted.</seg></tuv>
+			<tuv xml:lang="en"><seg>The folder '%s' has been succesfully deleted.</seg></tuv>
+		</tu>
+		<tu tuid="The entry/folder '%s' has been succesfully deleted.">
+			<tuv xml:lang="de"><seg>The entry/folder '%s' has been succesfully deleted.</seg></tuv>
 		</tu>
 		<tu tuid="The document has been changed.">
 			<tuv xml:lang="es"><seg>This document has been altered.</seg></tuv>

@@ -41,8 +41,8 @@ $l_glossary['hint_exception'] = "The following entries will be excluded during t
 $l_glossary['show_extended_linkoptions'] = "show advanced link options";
 $l_glossary['hide_extended_linkoptions'] = "hide advanced link options";
 
-$l_glossary['check_successful'] = "The glossary check has finished succesfully.";
-$l_glossary['check_successful_and_publish'] = "The glossary check has finished succesfully.<br />The document could now be published.";
+$l_glossary['check_successful'] = "The glossary check was finished succesful.";
+$l_glossary['check_successful_and_publish'] = "The glossary check was finished succesful.<br />The document could now be published.";
 $l_glossary['glossary_check'] = "Glossary check";
 $l_glossary['checking'] = "processing the glossary check...";
 $l_glossary['download'] = "Loading dictionaries...";

@@ -63,7 +63,7 @@ class we_app_TopFrameView extends Zend_View
 		
 		// predefined message for JS output
 
-		$saveMessage = we_util_Strings::quoteForJSString($translate->_('The entry \'%s\' has been succesfully saved.'), false);
+		$saveMessage = we_util_Strings::quoteForJSString($translate->_('The entry/folder \'%s\' has been succesfully saved.'), false);
 		
 		$saveEntryMessageCall = we_core_MessageReporting::getShowMessageCall('msg', we_core_MessageReporting::kMessageNotice, true);
 		
@@ -75,7 +75,7 @@ class we_app_TopFrameView extends Zend_View
 		
 		$nothingToDeleteMessageCall = we_core_MessageReporting::getShowMessageCall($nothingToDeleteMessage, we_core_MessageReporting::kMessageNotice);
 		
-		$deleteMessage = we_util_Strings::quoteForJSString($translate->_('The entry \'%s\' has been succesfully deleted.'), false);
+		$deleteMessage = we_util_Strings::quoteForJSString($translate->_('The entry/folder \'%s\' has been succesfully deleted.'), false);
 		
 		$deleteMessageCall = we_core_MessageReporting::getShowMessageCall('msg', we_core_MessageReporting::kMessageNotice, true);
 		
