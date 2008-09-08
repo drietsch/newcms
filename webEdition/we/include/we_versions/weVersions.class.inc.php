@@ -878,43 +878,45 @@ class weVersions {
 	* 3. if document / object is saved, published or unpublished
 	*/
 	function save($docObj, $status = "saved") {
-
-		$_SESSION["Versions"]['fromImport'] = 0;
 		
-		//import
-		if(isset($_REQUEST["jupl"]) && $_REQUEST["jupl"]){
-			$_SESSION["Versions"]['fromImport'] = 1;
-			$this->saveVersion($docObj);
-		}
-		elseif(isset($_REQUEST["pnt"]) && $_REQUEST["pnt"]=="wizcmd"){
-			if($_REQUEST["v"]["type"] == "CSVImport" || $_REQUEST["v"]["type"] == "GXMLImport") {
+		if(isset($_SESSION["user"]["ID"])) {
+			$_SESSION["Versions"]['fromImport'] = 0;
+			
+			//import
+			if(isset($_REQUEST["jupl"]) && $_REQUEST["jupl"]){
 				$_SESSION["Versions"]['fromImport'] = 1;
 				$this->saveVersion($docObj);
 			}
-			elseif(isset($_SESSION["ExImRefTable"])){
-				foreach($_SESSION["ExImRefTable"] as $k => $v) {
-					if($v["ID"]==$docObj->ID) {
-						$_SESSION["Versions"]['fromImport'] = 1;
-						$this->saveVersion($docObj);
+			elseif(isset($_REQUEST["pnt"]) && $_REQUEST["pnt"]=="wizcmd"){
+				if($_REQUEST["v"]["type"] == "CSVImport" || $_REQUEST["v"]["type"] == "GXMLImport") {
+					$_SESSION["Versions"]['fromImport'] = 1;
+					$this->saveVersion($docObj);
+				}
+				elseif(isset($_SESSION["ExImRefTable"])){
+					foreach($_SESSION["ExImRefTable"] as $k => $v) {
+						if($v["ID"]==$docObj->ID) {
+							$_SESSION["Versions"]['fromImport'] = 1;
+							$this->saveVersion($docObj);
+						}
 					}
 				}
 			}
-		}
-		elseif(isset($_REQUEST["we_cmd"][0]) && ($_REQUEST["we_cmd"][0]=="siteImport" || $_REQUEST["we_cmd"][0]=="import_files")){
-			$_SESSION["Versions"]['fromImport'] = 1;
-			$this->saveVersion($docObj);
-		}
-		else {
-			if((isset($_REQUEST["we_cmd"][0]) && ($_REQUEST["we_cmd"][0]=="save_document" || $_REQUEST["we_cmd"][0]=="unpublish" || $_REQUEST["we_cmd"][0]=="revert_published")) 
-				|| (isset($_REQUEST["cmd"]) && ($_REQUEST["cmd"]=="ResetVersion" || $_REQUEST["cmd"]=="PublishDocs" || $_REQUEST["cmd"]=="ResetVersionsWizard")) 
-				|| (isset($_REQUEST["type"]) && $_REQUEST["type"]=="reset_versions")
-				|| $_SESSION['versions']['initialVersions']){
-					if(isset($_SESSION['versions']['initialVersions'])) {
-						unset($_SESSION['versions']['initialVersions']);
-					}
-					$this->saveVersion($docObj, $status);
+			elseif(isset($_REQUEST["we_cmd"][0]) && ($_REQUEST["we_cmd"][0]=="siteImport" || $_REQUEST["we_cmd"][0]=="import_files")){
+				$_SESSION["Versions"]['fromImport'] = 1;
+				$this->saveVersion($docObj);
 			}
-			
+			else {
+				if((isset($_REQUEST["we_cmd"][0]) && ($_REQUEST["we_cmd"][0]=="save_document" || $_REQUEST["we_cmd"][0]=="unpublish" || $_REQUEST["we_cmd"][0]=="revert_published")) 
+					|| (isset($_REQUEST["cmd"]) && ($_REQUEST["cmd"]=="ResetVersion" || $_REQUEST["cmd"]=="PublishDocs" || $_REQUEST["cmd"]=="ResetVersionsWizard")) 
+					|| (isset($_REQUEST["type"]) && $_REQUEST["type"]=="reset_versions")
+					|| $_SESSION['versions']['initialVersions']){
+						if(isset($_SESSION['versions']['initialVersions'])) {
+							unset($_SESSION['versions']['initialVersions']);
+						}
+						$this->saveVersion($docObj, $status);
+				}
+				
+			}
 		}
 
 	}
@@ -1572,57 +1574,59 @@ class weVersions {
 	*/
 	function setVersionOnDelete($docID, $docTable) {
 		
-		$lastEntry = $this->getLastEntry($docID, $docTable);
-		
-		$lastEntry['timestamp'] = time();
-		$lastEntry['status'] = "deleted";
-		$lastEntry['version'] = (isset($lastEntry['version'])) ? $lastEntry['version'] + 1 : 1;
-		$lastEntry['modifications'] = 1;
-		$lastEntry['modifierID'] = $_SESSION["user"]["ID"];
-		$lastEntry['IP'] = $_SERVER['REMOTE_ADDR'];
-		$lastEntry['Browser'] = $_SERVER['HTTP_USER_AGENT'];
-		$lastEntry['active'] = 1;
-		$lastEntry['fromScheduler'] = $this->IsScheduler();	
-
+		if(isset($_SESSION["user"]["ID"])) {
+			$lastEntry = $this->getLastEntry($docID, $docTable);
 			
-		
-		$keys = array();
-		$vals = array();
+			$lastEntry['timestamp'] = time();
+			$lastEntry['status'] = "deleted";
+			$lastEntry['version'] = (isset($lastEntry['version'])) ? $lastEntry['version'] + 1 : 1;
+			$lastEntry['modifications'] = 1;
+			$lastEntry['modifierID'] = $_SESSION["user"]["ID"];
+			$lastEntry['IP'] = $_SERVER['REMOTE_ADDR'];
+			$lastEntry['Browser'] = $_SERVER['HTTP_USER_AGENT'];
+			$lastEntry['active'] = 1;
+			$lastEntry['fromScheduler'] = $this->IsScheduler();	
+	
 				
-		foreach($lastEntry as $k => $v){
-			if($k!="ID") {
-				$keys[] = $k;
-				$vals[] = "'".$v."'";	
+			
+			$keys = array();
+			$vals = array();
+					
+			foreach($lastEntry as $k => $v){
+				if($k!="ID") {
+					$keys[] = $k;
+					$vals[] = "'".$v."'";	
+				}
 			}
-		}
-		
-		$doDelete = true;
-		//preferences
-		if(!$this->CheckPreferencesCtypes($lastEntry['ContentType'])) {
-			$doDelete = false;
-		}
-		
-
-		if(defined("VERSIONS_CREATE") && VERSIONS_CREATE) {
-			$doDelete = false;
-		}
-		
-
-		if(!empty($keys) && !empty($vals) && $doDelete){
-						
-			$theKeys = "(". makeCSVFromArray($keys) .")";
-			$theValues = "VALUES(". makeCSVFromArray($vals) .")";
 			
-			$q = "INSERT INTO ".VERSIONS_TABLE." ".$theKeys ." ". $theValues."";
-			$db = new DB_WE();
-			$db->query($q);
+			$doDelete = true;
+			//preferences
+			if(!$this->CheckPreferencesCtypes($lastEntry['ContentType'])) {
+				$doDelete = false;
+			}
 			
-			$q2 = "UPDATE ".VERSIONS_TABLE." SET active = '0' WHERE documentID = '".$docID."' AND documentTable = '".$docTable."' AND version != '".$lastEntry['version']."'";
+	
+			if(defined("VERSIONS_CREATE") && VERSIONS_CREATE) {
+				$doDelete = false;
+			}
+			
+	
+			if(!empty($keys) && !empty($vals) && $doDelete){
+							
+				$theKeys = "(". makeCSVFromArray($keys) .")";
+				$theValues = "VALUES(". makeCSVFromArray($vals) .")";
 				
-			$db->query($q2);
+				$q = "INSERT INTO ".VERSIONS_TABLE." ".$theKeys ." ". $theValues."";
+				$db = new DB_WE();
+				$db->query($q);
+				
+				$q2 = "UPDATE ".VERSIONS_TABLE." SET active = '0' WHERE documentID = '".$docID."' AND documentTable = '".$docTable."' AND version != '".$lastEntry['version']."'";
+					
+				$db->query($q2);
+			}
+			
+			$this->CheckPreferencesTime($docID, $docTable);
 		}
-		
-		$this->CheckPreferencesTime($docID, $docTable);
 	}
 	
 	
