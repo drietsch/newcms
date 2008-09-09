@@ -30,7 +30,7 @@ class we_util_Mailer extends PHPMailer
 
 	protected $basedir = '';
 
- 	protected $embedImages = array('gif', 'jpg', 'jpeg', 'jpe', 'bmp', 'png', 'tif', 'tiff', 'swf');
+	protected $embedImages = array('gif', 'jpg', 'jpeg', 'jpe', 'bmp', 'png', 'tif', 'tiff', 'swf');
 
 	/**
 	 * Enter description here...
@@ -167,17 +167,22 @@ class we_util_Mailer extends PHPMailer
 				}
 			}
 		}
-		if (!isset($this->AltBody) || $this->AltBody == "") {
-			$this->AltBody = trim(strip_tags(preg_replace('/<(head|title|style|script)[^>]*>.*?<\/\\1>/s', '', $this->Body)));
+		if ((!isset($this->AltBody) || $this->AltBody == "") && $this->ContentType == 'text/html') {
+			$this->parseHtml2TextPart($this->Body);
 		} else if (!isset($this->Body) || $this->Body == "") {
 			$this->Body = $this->AltBody;
+			$this->AltBody="";
 		}
 		$this->messageBuilt = true;
 	}
 
 	public function parseHtml2TextPart($html)
 	{
-		$this->AltBody .= trim(strip_tags(preg_replace('/<(head|title|style|script)[^>]*>.*?<\/\\1>/s', '', $html)));
+		$lineBreacks = array("\n" => "", "\r" => "", "</h1>" => "</h1>\n\n", "</h2>" => "</h2>\n\n", "</h3>" => "</h3>\n\n", "</h4>" => "</h4>\n\n", "</h5>" => "</h5>\n\n", "</h6>" => "</h6>\n\n", "</p>" => "</p>\n\n", "</div>" => "</div>\n", "</li>" => "</li>\n");
+		
+		$textpart = strtr($html, $lineBreacks);
+		$textpart = preg_replace('/<br[^>]*>/s', "\n", $textpart);
+		$this->AltBody = trim(strip_tags(preg_replace('/<(head|title|style|script)[^>]*>.*?<\/\\1>/s', '', $textpart)));
 	}
 
 	/********************************************
