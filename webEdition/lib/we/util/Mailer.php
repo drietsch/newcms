@@ -167,6 +167,11 @@ class we_util_Mailer extends PHPMailer
 				}
 			}
 		}
+		
+		if ($this->ContentType == 'text/html' && !strpos($this->Body,"<base")) {
+			$this->Body = str_replace("</head>","<base href='".$_SERVER['HTTP_HOST']."' />\n</head>",$this->Body);
+		}
+		
 		if ((!isset($this->AltBody) || $this->AltBody == "") && $this->ContentType == 'text/html') {
 			$this->parseHtml2TextPart($this->Body);
 		} else if (!isset($this->Body) || $this->Body == "") {
