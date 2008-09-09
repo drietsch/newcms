@@ -178,6 +178,8 @@ class we_util_Mailer extends PHPMailer
 			$this->Body = $this->AltBody;
 			$this->AltBody="";
 		}
+		$this->AltBody = trim($this->AltBody);
+		$this->Body    = trim($this->Body);
 		$this->messageBuilt = true;
 	}
 
