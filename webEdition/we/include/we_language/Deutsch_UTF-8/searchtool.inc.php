@@ -11,12 +11,10 @@
  * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
  */
 
-include($_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we_language/'.$GLOBALS['WE_LANGUAGE'].'/tools.inc.php');
-
-$GLOBALS['l_weSearch']['save_group_ok'] = $l_tools['save_group_ok'];
-$GLOBALS['l_weSearch']['save_ok'] = $l_tools['save_ok'];
-$GLOBALS['l_weSearch']['save_group_failed'] = $l_tools['save_group_failed'];
-$GLOBALS['l_weSearch']['save_failed'] = $l_tools['save_failed'];
+$GLOBALS['l_weSearch']['save_group_ok'] = 'Der Ordner wurde gespeichert.';
+$GLOBALS['l_weSearch']['save_ok'] = 'Die Eintrag wurde gespeichert.';
+$GLOBALS['l_weSearch']['save_group_failed'] = 'Der Ordner kann nicht gespeichert werden.';
+$GLOBALS['l_weSearch']['save_failed'] = 'Die Eintrag kann nicht gespeichert werden.';
 $l_weSearch['weSearch'] = 'Suche';
 $GLOBALS['l_weSearch']['weSearch'] = 'Suche';
 $GLOBALS['l_weSearch']['perm_group_title'] = $GLOBALS['l_weSearch']['weSearch'];
