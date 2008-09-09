@@ -352,13 +352,12 @@ if($recipient){
     } else {
         $fromMail = $email;
     }
-
     $subject = preg_replace("/(%0A|%0D|\\n+|\\r+)/i","",$subject);
 	$charset = preg_replace("/(%0A|%0D|\\n+|\\r+)/i","",$charset);
 	$fromMail = preg_replace("/(%0A|%0D|\\n+|\\r+)/i","",$fromMail);
 	$email = preg_replace("/(%0A|%0D|\\n+|\\r+)/i","",$email);
 	$from = preg_replace("/(%0A|%0D|\\n+|\\r+)/i","",$from);
-
+	
 	contains_bad_str($email);
 	contains_bad_str($from);
 	contains_bad_str($fromMail);
@@ -370,8 +369,15 @@ if($recipient){
 	}
 
 	$recipients = makeArrayFromCSV($recipient);
-	
-	$phpmail = new we_util_Mailer("",$subject,$fromMail);
+	$senderForename = isset($_REQUEST['forename']) && $_REQUEST['forename'] !="" ? $_REQUEST['forename'] : "";
+	$senderSurname  = isset($_REQUEST['surname'])  && $_REQUEST['surname']  !="" ? $_REQUEST['surname']  : "";
+	if ($senderForename !="" || $senderSurname!="") {
+		$sender = "$senderForename $senderSurname<$fromMail>";
+	} else{
+		$sender = $fromMail;
+	}
+	 
+	$phpmail = new we_util_Mailer("",$subject,$sender);
 	$phpmail->setCharSet($charset);
 	
 	$recipientsList = array();
