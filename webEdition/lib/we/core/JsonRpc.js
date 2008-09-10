@@ -40,7 +40,7 @@ function we_core_JsonRpc(url, callback) {
 			var len = this.form.elements.length;
 			for (var key in this.form.elements) {
 				var elem = this.form.elements[key];
-				if (typeof(elem.nodeName) !== "undefined" && elem.name !== "") {
+				if (elem!=null && typeof(elem.nodeName) !== "undefined" && elem.name !== "") {
 					var tag = elem.nodeName.toLowerCase();
 					switch (tag) {
 						case "textarea":
