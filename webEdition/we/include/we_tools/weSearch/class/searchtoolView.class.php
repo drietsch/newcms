@@ -142,7 +142,7 @@ class searchtoolView extends weToolView
 				
 				case 'tool_weSearch_edit' :
 					$this->Model = new searchtool($_REQUEST['cmdid']);
-					
+
 					if (!$this->Model->isAllowedForUser()) {
 						print 
 								we_htmlElement::jsElement(
@@ -198,7 +198,7 @@ class searchtoolView extends weToolView
 					}
 					
 					$this->Model->activTab = isset($_REQUEST['tabnr']) ? $_REQUEST['tabnr'] : 1;
-					
+									
 					if (trim($this->Model->Text) == '') {
 						print 
 								we_htmlElement::jsElement(
@@ -243,9 +243,19 @@ class searchtoolView extends weToolView
 						$this->Model->searchFieldsAdvSearch = "";
 					}
 					$this->Model->search_tables_advSearch = serialize($this->Model->search_tables_advSearch);
-					
+
+					if (eregi('_UTF-8', $GLOBALS['WE_LANGUAGE'])) {
+						$this->Model->Text = utf8_decode($this->Model->Text);
+						$this->Model->Path = utf8_decode($this->Model->Path);
+					}
+
 					if ($this->Model->save()) {
 						$this->Model->updateChildPaths($oldpath);
+				
+						if (eregi('_UTF-8', $GLOBALS['WE_LANGUAGE'])) {
+							$this->Model->Text = utf8_encode($this->Model->Text);
+							$this->Model->Path = utf8_encode($this->Model->Path);
+						}
 						
 						if ($newone) {
 							$js = '
@@ -285,6 +295,12 @@ class searchtoolView extends weToolView
        ' . $this->topFrame . '.hot=0;
       ');
 					}
+					
+					if (eregi('_UTF-8', $GLOBALS['WE_LANGUAGE'])) {
+						$this->Model->Text = utf8_decode($this->Model->Text);
+						$this->Model->Path = utf8_decode($this->Model->Path);
+					}
+					
 					print $js;
 					$this->Model->searchDocSearch = unserialize($this->Model->searchDocSearch);
 					$this->Model->searchTmplSearch = unserialize($this->Model->searchTmplSearch);
@@ -2674,12 +2690,14 @@ class searchtoolView extends weToolView
 			$fontColor = "black";
 			if (isset($_result[$f]["Published"]) && isset($_result[$f]["VersionID"]) && !$_result[$f]["VersionID"]) {
 				$published = ((($_result[$f]["Published"] != 0) && ($_result[$f]["Published"] < $_result[$f]["ModDate"]) && ($_result[$f]["ContentType"] == "text/html" || $_result[$f]["ContentType"] == "text/webedition" || $_result[$f]["ContentType"] == "objectFile")) ? -1 : $_result[$f]["Published"]);
-				
+				$showPubCheckbox = true;
 				if ($_result[$f]["ContentType"] == "text/html" || $_result[$f]["ContentType"] == "objectFile" || $_result[$f]["ContentType"] == "text/webedition") {
 					if ($published == 0) {
 						$fontColor = "red";
+						$showPubCheckbox = false;
 					} elseif ($published == -1) {
 						$fontColor = "#3366CC";
+						$showPubCheckbox = false;
 					}
 				}
 			}
@@ -2769,7 +2787,7 @@ class searchtoolView extends weToolView
 						"ID", 
 						$DB_WE);
 				
-				$publishCheckbox = (($_result[$f]["ContentType"] == "text/webedition" || $_result[$f]["ContentType"] == "text/html" || $_result[$f]["ContentType"] == "objectFile") && we_hasPerm(
+				$publishCheckbox = (!$showPubCheckbox) ? (($_result[$f]["ContentType"] == "text/webedition" || $_result[$f]["ContentType"] == "text/html" || $_result[$f]["ContentType"] == "objectFile") && we_hasPerm(
 						'PUBLISH') && $docExists != "") ? we_forms::checkbox(
 						$_result[$f]["docID"] . "_" . $_result[$f]["docTable"], 
 						0, 
@@ -2777,7 +2795,7 @@ class searchtoolView extends weToolView
 						"", 
 						false, 
 						"middlefont", 
-						"") : getPixel(20, 10);
+						"") : getPixel(20, 10) : '';
 						
 				if (eregi('_UTF-8', $GLOBALS['WE_LANGUAGE'])) {
 					$_result[$f]["SiteTitle"] = utf8_encode($_result[$f]["SiteTitle"]);
