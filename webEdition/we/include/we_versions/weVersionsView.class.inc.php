@@ -1201,16 +1201,21 @@ class weVersionsView
 			if (!we_hasPerm("ADMINISTRATOR") && !we_hasPerm("RESET_VERSIONS")) {
 				$disabledReset = true;
 			}
-			$fromScheduler = ($_versions[$f]["fromScheduler"]) ? $GLOBALS['l_versions']['fromScheduler'] . "<br/><br/>" : "";
-			$fromImport = ($_versions[$f]["fromImport"]) ? $GLOBALS['l_versions']['fromImport'] . "<br/><br/>" : "";
-			$resetFromVersion = ($_versions[$f]["resetFromVersion"]) ? "--" . $GLOBALS['l_versions']['resetFromVersion'] . "" . $_versions[$f]["resetFromVersion"] . "--<br/><br/>" : "";
+			$fromScheduler = ($_versions[$f]["fromScheduler"]) ? $GLOBALS['l_versions']['fromScheduler'] . "" : "";
+			$fromImport = ($_versions[$f]["fromImport"]) ? $GLOBALS['l_versions']['fromImport'] . "" : "";
+			$resetFromVersion = ($_versions[$f]["resetFromVersion"]) ? "--" . $GLOBALS['l_versions']['resetFromVersion'] . "" . $_versions[$f]["resetFromVersion"] . "--" : "";
 			
 			$content[$f][0]["dat"] = '<nobr>' . $vers . '</nobr>';
 			$content[$f][1]["dat"] = '<nobr>' . shortenPath($user, 15) . '</nobr>';
 			$content[$f][2]["dat"] = '<nobr>' . ($_versions[$f]["timestamp"] ? date(
 					"d.m.y - H:i:s", 
 					$_versions[$f]["timestamp"]) : "-") . ' </nobr>';
-			$content[$f][3]["dat"] = $fromScheduler . $fromImport . $resetFromVersion . $modificationText;
+			$content[$f][3]["dat"] = ($modificationText!='') ? $modificationText : '';
+
+			$content[$f][3]["dat"] .= ($fromScheduler!='') ? $fromScheduler : '';
+			$content[$f][3]["dat"] .= ($fromImport!='') ? $fromImport : '';
+			$content[$f][3]["dat"] .= ($resetFromVersion!='') ? $resetFromVersion : '';
+			
 			$content[$f][4]["dat"] = (we_hasPerm("ADMINISTRATOR")) ? we_forms::checkbox(
 					$_versions[$f]["ID"], 
 					0, 
@@ -1219,8 +1224,7 @@ class weVersionsView
 					false, 
 					"defaultfont", 
 					"") : "";
-			$content[$f][5]["dat"] = getPixel(1, 1);
-			$content[$f][6]["dat"] = "<span class='printShow'>" . $we_button->create_button(
+			$content[$f][5]["dat"] = "<span class='printShow'>" . $we_button->create_button(
 					"reset", 
 					"javascript:resetVersion('" . $_versions[$f]["ID"] . "','" . $_versions[$f]["documentID"] . "','" . $_versions[$f]["version"] . "','" . $_versions[$f]["documentTable"] . "');", 
 					true, 
@@ -1229,10 +1233,10 @@ class weVersionsView
 					"", 
 					"", 
 					$disabledReset) . "</span>";
-			$content[$f][7]["dat"] = "<span class='printShow'>" . $we_button->create_button(
+			$content[$f][6]["dat"] = "<span class='printShow'>" . $we_button->create_button(
 					"preview", 
 					"javascript:previewVersion('" . $_versions[$f]["ID"] . "');") . "</span>";
-			$content[$f][8]["dat"] = ($_versions[$f]["ContentType"] == "text/webedition" || $_versions[$f]["ContentType"] == "text/html" || $_versions[$f]["ContentType"] == "objectFile") ? we_forms::checkbox(
+			$content[$f][7]["dat"] = ($_versions[$f]["ContentType"] == "text/webedition" || $_versions[$f]["ContentType"] == "text/html" || $_versions[$f]["ContentType"] == "objectFile") ? we_forms::checkbox(
 					$_versions[$f]["ID"], 
 					0, 
 					"publishVersion_" . $_versions[$f]["ID"], 
@@ -1265,16 +1269,20 @@ class weVersionsView
 		$headline[2]["dat"] = '<a href="javascript:setOrder(\'timestamp\');">' . $GLOBALS['l_versions']['modTime'] . '</a> <span id="timestamp" >' . $this->getSortImage(
 				'timestamp') . '</span>';
 		$headline[3]["dat"] = $GLOBALS['l_versions']['modifications'];
-		$headline[4]["dat"] = (we_hasPerm("ADMINISTRATOR")) ? '<div style="margin:0px 0px 10px 3px;" id="deleteButton">' . $we_button->create_button(
+		$headline[4]["dat"] = (we_hasPerm("ADMINISTRATOR")) ? '<div style="margin:0px 0px 5px 0px;" id="deleteButton">' . $we_button->create_button(
 				"image:btn_function_trash", 
-				"javascript:deleteVers();") . '</div>' . we_forms::checkbox(
+				"javascript:deleteVers();") . '</div>' : '';
+		
+		$headline[4]["dat"] .= we_forms::checkbox(
 				"1", 
 				0, 
 				"deleteAllVersions", 
 				$markText, 
 				false, 
 				"middlefont", 
-				"checkAll();") : getPixel(1, 1);
+				"checkAll();");
+		
+				
 		$headline[5]["dat"] = getPixel(1, 1);
 		$headline[6]["dat"] = getPixel(1, 1);
 		$headline[7]["dat"] = getPixel(1, 1);
@@ -1308,22 +1316,22 @@ class weVersionsView
 		
 		$statusTxt = "";
 		if ($status == "published") {
-			$statusTxt .= "<br/><div style='color:#ff0000;'>" . $GLOBALS['l_versions'][$status] . "</div>";
+			$statusTxt .= "<div style='color:#ff0000;'>" . $GLOBALS['l_versions'][$status] . "</div>";
 		}
 		
 		if ($modString == "")
-			return "<br/>&nbsp;<br/>" . $statusTxt . "<br/>";
+			return $statusTxt;
 		
 		$modTextArr = array();
 		
-		$out = '<div style="line-height:16px;margin:8px 0px 8px 0px;">';
+		$out = '<div>';
 		
 		$modifications = makeArrayFromCSV($modString);
 		$m = 0;
 		foreach ($modifications as $k => $v) {
 			foreach ($this->version->modFields as $key => $val) {
 				if ($v == $val) {
-					$out .= "<strong>" . $GLOBALS['l_versions'][$key] . "</strong>";
+					$out .= "<strong>- " . $GLOBALS['l_versions'][$key] . "</strong>";
 					$out .= "<br/>";
 				}
 			}
@@ -1369,18 +1377,14 @@ class weVersionsView
 	{
 		
 		$anz = count($headline) - 1;
-		$out = '<table border="0" style="background-color:#fff;" cellpadding="0" cellspacing="0" width="100%">';
+		$out = '<table border="0" style="background-color:#fff;" width="100%" cellpadding="5" cellspacing="0">';
 		$out .= '<tr>';
-		$out .= '<td style="width:15px;border-bottom:1px solid #AFB0AF;">' . getPixel(15, 1) . '</td>';
-		
-		$widths = array(
-			70, 80, 130, 210, 90, 90, 110, 110
-		);
-		for ($f = 0; $f < $anz; $f++) {
-			$out .= '<td valign="top" style="width: ' . $widths[$f] . 'px;padding:10px 0px 10px 0px;border-bottom:1px solid #AFB0AF;" class="middlefont">' . $headline[$f]["dat"] . '</td>';
-		}
-		
-		$out .= '<td style="width:15px;border-bottom:1px solid #AFB0AF;">' . getPixel(15, 1) . '</td>';
+		$out .= '<td valign="top" style="width:15px;border-bottom:1px solid #AFB0AF;">' . getPixel(15, 1) . '</td>';
+		$out .= '<td valign="top" style="width:110px;border-bottom:1px solid #AFB0AF;" class="middlefont">' . $headline[0]["dat"] . getPixel(110, 1) . '</td>';
+		$out .= '<td valign="top" style="width:110px;border-bottom:1px solid #AFB0AF;" class="middlefont">' . $headline[1]["dat"] . getPixel(110, 1) . '</td>';
+		$out .= '<td valign="top" style="width:120px;border-bottom:1px solid #AFB0AF;" class="middlefont">' . $headline[2]["dat"] . getPixel(120, 1) . '</td>';
+		$out .= '<td valign="top" style="width:120px;border-bottom:1px solid #AFB0AF;" class="middlefont">' . $headline[4]["dat"] . getPixel(120, 1) . '</td>';
+		$out .= '<td valign="top" style="width:auto;border-bottom:1px solid #AFB0AF;" class="middlefont">' . $headline[3]["dat"] . '</td>';
 		$out .= '</tr>';
 		$out .= '</table>';
 		
@@ -1399,7 +1403,7 @@ class weVersionsView
 		
 		$we_button = new we_button();
 		
-		$out = '<table border="0" cellpadding="0" cellspacing="0" width="100%">';
+		$out = '<table border="0" cellpadding="5" cellspacing="0" width="100%">';
 		
 		$anz = count($content);
 		$x = $searchstart + $anzahl;
@@ -1422,38 +1426,25 @@ class weVersionsView
 		
 		$anz = count($content) - 1;
 		$out = '';
+				
+		$out .= '<td valign="top" style="width:15px;">' . getPixel(1, 1) . '</td>';
 		
-		$widths = array(
-			70, 80, 130, 210, 90, 90, 110, 110
-		);
+		$out .= '<td valign="top" style="width:110px;height:30px;" class="middlefont">' . ((isset($content[0]["dat"]) && $content[0]["dat"]) ? $content[0]["dat"] : "&nbsp;") . '</td>';
+		$out .= '<td valign="top" style="width:110px;" class="middlefont">' . ((isset($content[1]["dat"]) && $content[1]["dat"]) ? $content[1]["dat"] : "&nbsp;") . '</td>';
+		$out .= '<td valign="top" style="width:120px;" class="middlefont">' . ((isset($content[2]["dat"]) && $content[2]["dat"]) ? $content[2]["dat"] : "&nbsp;") . '</td>';
+		$out .= '<td valign="top" style="width:120px;" class="middlefont">' . ((isset($content[4]["dat"]) && $content[4]["dat"]) ? $content[4]["dat"] : "&nbsp;") . '</td>';
+		$out .= '<td valign="top" rowspan="2" style="line-height:20px;width:auto;border-bottom:1px solid #D1D1D1;" class="middlefont">' . ((isset($content[3]["dat"]) && $content[3]["dat"]) ? $content[3]["dat"] : "&nbsp;") . '</td>';
 		
-		$out .= '<td style="width:15px;">' . getPixel(15, 1) . '</td>';
-		
-		for ($f = 0; $f < $anz; $f++) {
-			$out .= '<td style="width: ' . $widths[$f] . 'px;" class="middlefont">' . ((isset($content[$f]["dat"]) && $content[$f]["dat"]) ? $content[$f]["dat"] : "&nbsp;") . '</td>';
-		}
-		
-		$out .= '<td style="width:15px;">' . getPixel(15, 1) . '</td>';
-		
-		$out .= '</tr><tr>';
+		$out .= '</tr>';
+		$out .= '<tr>';
 		
 		$out .= '<td style="width:15px;border-bottom:1px solid #D1D1D1;">' . getPixel(15, 1) . '</td>';
 		
-		for ($f = 0; $f < $anz; $f++) {
-			if ($f == 6) {
-				$out .= '<td colspan="2" style="width: ' . $widths[$f] . 'px;border-bottom:1px solid #D1D1D1;" class="middlefont" ><span id="print">' . ((isset(
-						$content[8]["dat"]) && $content[8]["dat"]) ? $content[8]["dat"] : "&nbsp;") . '</span><br/></td>';
-			} elseif ($f != 6 && $f != 7) {
-				$out .= '<td style="width: ' . $widths[$f] . 'px;border-bottom:1px solid #D1D1D1;" class="middlefont">' . getPixel(
-						1, 
-						1) . '</td>';
-			}
-		}
-		
-		$out .= '<td style="width:15px;border-bottom:1px solid #D1D1D1;border-bottom:1px solid #D1D1D1;">' . getPixel(
-				15, 
-				1) . '</td>';
-		
+		$out .= '<td valign="top" colspan="2" style="width:220px;border-bottom:1px solid #D1D1D1;" class="middlefont">' . ((isset($content[5]["dat"]) && $content[5]["dat"]) ? $content[5]["dat"] : "&nbsp;") . ((isset($content[7]["dat"]) && $content[7]["dat"]) ? $content[7]["dat"] : "&nbsp;") . '</td>';
+		$out .= '<td valign="top" style="width:120px;border-bottom:1px solid #D1D1D1;" class="middlefont">' . ((isset($content[6]["dat"]) && $content[6]["dat"]) ? $content[6]["dat"] : "&nbsp;") . '</td>';
+		$out .= '<td valign="top" style="width:120px;border-bottom:1px solid #D1D1D1;" class="middlefont">' . getPixel(120, 1) . '</td>';
+		$out .= '<td valign="top" style="width:auto;border-bottom:1px solid #D1D1D1;" class="middlefont">' . getPixel(1, 1) . '</td>';	
+
 		return $out;
 	}
 
