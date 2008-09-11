@@ -1718,7 +1718,7 @@ function mapPermissions() {
 		$yuiSuggest->setContentType("folder");
 		$yuiSuggest->setInput($this->Name.'_ParentID_Text',$parent_name,array("onChange"=>"top.content.setHot()"));
 		$yuiSuggest->setMaxResults(10);
-		$yuiSuggest->setMayBeEmpty(true);
+		$yuiSuggest->setMayBeEmpty(false);
 		$yuiSuggest->setResult($this->Name.'_ParentID',$this->ParentID);
 		$yuiSuggest->setSelector("Dirselector");
 		$yuiSuggest->setTable(USER_TABLE);
