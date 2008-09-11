@@ -28,7 +28,7 @@ $rowGeneral = new we_ui_layout_HeadlineIconTableRow(array('title' => $translate-
 
 $labelName = new we_ui_controls_Label();
 $labelName->setStyle('display:block;');
-$labelName->setText($translate->_('Name'). ($this->model->isRequiredField('Text') ? ' ['.$translate->_('mandatory field').']' : ''));
+$labelName->setText($translate->_('Name'). ($this->model->isRequiredField('Text') ? ' ['.$translate->_('Mandatory field').']' : ''));
 $inputName = new we_ui_controls_TextField();
 $inputName->setName('Text');
 if(!empty($this->model->ID)) {
@@ -43,7 +43,7 @@ $rowGeneral->addElement($inputName);
 
 $labelClass = new we_ui_controls_Label();
 $labelClass->setStyle('margin-top:20px;display:block;');
-$labelClass->setText($translate->_('name of the model class'). ($this->model->isRequiredField('classname') ? ' ['.$translate->_('mandatory field').']' : ''));
+$labelClass->setText($translate->_('Name of the model class'). ($this->model->isRequiredField('classname') ? ' ['.$translate->_('Mandatory field').']' : ''));
 $inputClass = new we_ui_controls_TextField();
 $inputClass->setName('classname');
 
@@ -57,7 +57,7 @@ $rowGeneral->addElement($labelClass);
 $rowGeneral->addElement($inputClass);
 
 $labelDatasource = new we_ui_controls_Label();
-$labelDatasource->setText($translate->_('datasource'). ($this->model->isRequiredField('datasource') ? ' ['.$translate->_('mandatory field').']' : ''));
+$labelDatasource->setText($translate->_('Datasource'). ($this->model->isRequiredField('datasource') ? ' ['.$translate->_('Mandatory field').']' : ''));
 $labelDatasource->setStyle('margin-top:20px;display:block;');
 if(!empty($this->model->ID)) {
 	$labelDatasource->setHidden(true);
@@ -65,7 +65,7 @@ if(!empty($this->model->ID)) {
 $selectDatasource = new we_ui_controls_Select();
 $optDatasource = array(
 		'custom:'=>'custom', 
-		'table:'=>$translate->_('maintable')
+		'table:'=>$translate->_('Maintable')
 );
 $selectDatasource->setOptions($optDatasource);
 $selectDatasource->setSelectedValue($this->model->datasource);
@@ -88,7 +88,7 @@ if(substr($this->model->datasource, 0, 6) !='table:') {
 }
 
 $labelMaintable = new we_ui_controls_Label();
-$labelMaintable->setText($translate->_('maintable (leave empty if not necessary)'));
+$labelMaintable->setText($translate->_('Maintable (leave empty if not necessary)'));
 $labelMaintable->setStyle('margin-top:20px;display:block;');
 $inputMaintable = new we_ui_controls_TextField();
 $inputMaintable->setName('maintable');
@@ -112,7 +112,7 @@ if(!empty($this->model->ID)) {
 }
 $checkboxMaintable->setChecked(($this->model->makeTable) ? true : false);
 $checkboxMaintable->setValue($this->model->makeTable);
-$checkboxMaintable->setLabel($translate->_('create maintable'));
+$checkboxMaintable->setLabel($translate->_('Create maintable'));
 $divMaintable->addElement($checkboxMaintable);
 
 $rowGeneral->addElement($divMaintable);

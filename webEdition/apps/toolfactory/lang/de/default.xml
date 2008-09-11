@@ -22,22 +22,22 @@
 		<tu tuid="Save toolfactory data">
 			<tuv xml:lang="de"><seg>Die Daten des Tools Applikationsverwaltung sichern</seg></tuv>
 		</tu>
-		<tu tuid="name of the model class">
+		<tu tuid="Name of the model class">
 			<tuv xml:lang="de"><seg>Name der Model-Klasse</seg></tuv>
 		</tu>
-		<tu tuid="mandatory field">
+		<tu tuid="Mandatory field">
 			<tuv xml:lang="de"><seg>Pflichtfeld</seg></tuv>
 		</tu>
-		<tu tuid="maintable">
+		<tu tuid="Maintable">
 			<tuv xml:lang="de"><seg>Haupttabelle</seg></tuv>
 		</tu>
-		<tu tuid="create maintable">
+		<tu tuid="Create maintable">
 			<tuv xml:lang="de"><seg>Haupttabelle erstellen</seg></tuv>
 		</tu>
-		<tu tuid="maintable (leave empty if not necessary)">
+		<tu tuid="Maintable (leave empty if not necessary)">
 			<tuv xml:lang="de"><seg>Haupttabelle (leer lassen falls keine Tabelle benötigt wird)</seg></tuv>
 		</tu>
-		<tu tuid="datasource">
+		<tu tuid="Datasource">
 			<tuv xml:lang="de"><seg>Datenquelle</seg></tuv>
 		</tu>
 		<tu tuid="Create Support for webEdition-Tags and the pattern-tag">
