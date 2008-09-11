@@ -1182,12 +1182,14 @@ class doclistView {
 			$fontColor = "black";
 			if (isset ( $_result [$f] ["Published"] )) {
 				$published = ((($_result [$f] ["Published"] != 0) && ($_result [$f] ["Published"] < $_result [$f] ["ModDate"]) && ($_result [$f] ["ContentType"] == "text/html" || $_result [$f] ["ContentType"] == "text/webedition" || $_result [$f] ["ContentType"] == "objectFile")) ? - 1 : $_result [$f] ["Published"]);
-				
+				$showPubCheckbox = true;
 				if ($_result [$f] ["ContentType"] != "folder") {
 					if ($published == 0) {
 						$fontColor = "red";
+						$showPubCheckbox = false;
 					} elseif ($published == - 1) {
 						$fontColor = "#3366CC";
+						$showPubCheckbox = false;
 					}
 				}
 			}
@@ -1195,7 +1197,7 @@ class doclistView {
 			$Icon = isset ( $GLOBALS ["WE_CONTENT_TYPES"] [$_result [$f] ["ContentType"]] ) ? we_getIcon ( $_result [$f] ["ContentType"], $ext ) : "link.gif";
 			
 			if ($view == 0) {
-				$publishCheckbox = (($_result[$f]["ContentType"]=="text/webedition" || $_result[$f]["ContentType"]=="text/html" || $_result[$f]["ContentType"]=="objectFile") && we_hasPerm('PUBLISH')) ? we_forms::checkbox($_result[$f]["docID"]."_".$_result[$f]["docTable"], 0, "publish_docs_doclist", "", false, "middlefont", "") : getPixel(20,10);
+				$publishCheckbox = (!$showPubCheckbox) ? (($_result[$f]["ContentType"]=="text/webedition" || $_result[$f]["ContentType"]=="text/html" || $_result[$f]["ContentType"]=="objectFile") && we_hasPerm('PUBLISH')) ? we_forms::checkbox($_result[$f]["docID"]."_".$_result[$f]["docTable"], 0, "publish_docs_doclist", "", false, "middlefont", "") : getPixel(20,10) : '';
 	            
 				$content [$f] [0] ["dat"] = $publishCheckbox;
 				$content [$f] [1] ["dat"] = '<img src="' . ICON_DIR . $Icon . '" border="0" width="16" height="18" />';
