@@ -113,13 +113,9 @@ class searchtoolTreeDataSource extends weToolTreeDataSource
 				}
 				
 				global $l_weSearch;
-				
+
 				$_text = searchtool::getLangText($db->f('Path'), $db->f('Text'));
-				
-				if (eregi('_UTF-8', $GLOBALS['WE_LANGUAGE'])) {
-					$_text = utf8_encode($_text);
-				}
-				
+			
 				$typ['text'] = $_text;
 				
 				$this->treeItems[] = array_merge($fields, $typ);
