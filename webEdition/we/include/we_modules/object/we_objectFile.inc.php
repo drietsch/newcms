@@ -1343,7 +1343,7 @@ class we_objectFile extends we_document
 		// handling thumbnails for this image
 		// identifying default thumbnail of class:
 		$defvals = $this->getDefaultValueArray();
-		$thumbID = $defvals["img_".$name]["defaultThumb"];
+		$thumbID = isset($defvals["img_".$name]["defaultThumb"]) ? $defvals["img_".$name]["defaultThumb"] : "";
 		$thumbID;
 		// creating thumbnail only if it really exists:
 		$thumbdb = new DB_WE();
