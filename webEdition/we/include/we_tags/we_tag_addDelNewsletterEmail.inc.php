@@ -292,7 +292,7 @@ function we_tag_addDelNewsletterEmail($attribs, $content) {
 				if($f["subscribe_html"]){
 					$phpmail->addHTMLPart($mailtextHTML);
 				}else{
-					$phpmail->addTextPart($mailtext);
+					$phpmail->addTextPart(trim($mailtext));
 				}
 				$phpmail->buildMessage();
 				$phpmail->Send();
