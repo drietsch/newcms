@@ -1827,7 +1827,7 @@ class we_objectFile extends we_document
 
 		if (isset($foo["DefaultTitle"]) && $foo["DefaultTitle"] && strpos($foo["DefaultTitle"], '_')) {
 			list($f,$t) = explode("_", $foo["DefaultTitle"]);
-			if ($f !== '' && $d !== '') {
+			if ($f !== '' && isset($d) && $d !== '') {
 				$elem = $this->geFieldValue($t, $f);
 				$this->setElement("Title", $elem);
 			}
