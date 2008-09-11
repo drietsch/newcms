@@ -116,7 +116,7 @@
 			<tuv xml:lang="fi"><seg>The name of the model class is invalid!</seg></tuv>
 		</tu>
 		<tu tuid="The name of the maintable is not valid!">
-			<tuv xml:lang="fi"><seg>The name of the main table is ivalid!</seg></tuv>
+			<tuv xml:lang="fi"><seg>The name of the main table is invalid!</seg></tuv>
 		</tu>
 		<tu tuid="The model class exists!">
 			<tuv xml:lang="fi"><seg>This model class already exists!</seg></tuv>

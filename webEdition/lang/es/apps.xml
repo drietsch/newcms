@@ -83,7 +83,7 @@
 			<tuv xml:lang="es"><seg>General</seg></tuv>
 		</tu>
 		<tu tuid="The folder '%s' has been succesfully saved.">
-			<tuv xml:lang="es"><seg>The Folder '%s' has been succesfully saved.</seg></tuv>
+			<tuv xml:lang="es"><seg>The folder '%s' has been succesfully saved.</seg></tuv>
 		</tu>
 		<tu tuid="The entry '%s' has been succesfully saved.">
 			<tuv xml:lang="es"><seg>The entry '%s' has been succesfully saved.</seg></tuv>
@@ -116,7 +116,7 @@
 			<tuv xml:lang="es"><seg>The name of the model class is invalid!</seg></tuv>
 		</tu>
 		<tu tuid="The name of the maintable is not valid!">
-			<tuv xml:lang="es"><seg>The name of the main table is ivalid!</seg></tuv>
+			<tuv xml:lang="es"><seg>The name of the main table is invalid!</seg></tuv>
 		</tu>
 		<tu tuid="The model class exists!">
 			<tuv xml:lang="es"><seg>This model class already exists!</seg></tuv>
