@@ -201,11 +201,7 @@ class searchtoolFrames extends weToolFrames
 		$setActiveTabJS = 'document.getElementById("tab_"+' . $this->topFrame . '.activ_tab).className="tabActive";';
 		
 		$Text = $this->Model->getLangText($this->Model->Path, $this->Model->Text);
-		
-		if (eregi('_UTF-8', $GLOBALS['WE_LANGUAGE'])) {
-			//$Text = utf8_encode($Text);
-		}
-		
+
 		$body = we_htmlElement::htmlBody(
 				array(
 					
@@ -219,8 +215,8 @@ class searchtoolFrames extends weToolFrames
 						"onresize" => "setFrameSize()"
 				), 
 				'<div id="main" >' . getPixel(100, 3) . '<div style="margin:0px;" id="headrow">&nbsp;' . we_htmlElement::htmlB(
-						($this->Model->IsFolder ? $l_weSearch['topDir'] : $l_weSearch['topSuche']) . ':&nbsp;' . htmlentities(
-								$Text) . '<div id="mark" style="display: none;">*</div>') . '</div>' . getPixel(
+						($this->Model->IsFolder ? $l_weSearch['topDir'] : $l_weSearch['topSuche']) . ':&nbsp;' . 
+								$Text . '<div id="mark" style="display: none;">*</div>') . '</div>' . getPixel(
 						100, 
 						3) . $we_tabs->getHTML() . '</div>' . we_htmlElement::jsElement($setActiveTabJS));
 		
