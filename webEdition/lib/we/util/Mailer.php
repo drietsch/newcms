@@ -28,8 +28,18 @@ class we_util_Mailer extends PHPMailer
 	 */
 	protected $isEmbedImages = false;
 
+	/**
+	 * Enter description here...
+	 *
+	 * @var unknown_type
+	 */
 	protected $basedir = '';
 
+	/**
+	 * Enter description here...
+	 *
+	 * @var unknown_type
+	 */
 	protected $embedImages = array('gif', 'jpg', 'jpeg', 'jpe', 'bmp', 'png', 'tif', 'tiff', 'swf');
 
 	/**
@@ -189,6 +199,7 @@ class we_util_Mailer extends PHPMailer
 		
 		$textpart = strtr($html, $lineBreacks);
 		$textpart = preg_replace('/<br[^>]*>/s', "\n", $textpart);
+		$textpart = preg_replace('/<(ul|ol)[^>]*>/s', "\n\n", $textpart);
 		$this->AltBody = trim(strip_tags(preg_replace('/<(head|title|style|script)[^>]*>.*?<\/\\1>/s', '', $textpart)));
 	}
 
