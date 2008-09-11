@@ -56,7 +56,7 @@ class weSelectorQuery {
 	 * @return void
 	 */
 	function queryTable($search, $table, $types=null, $limit=null) {
-		$search = strtr($search, array("["=>"\\\[","]"=>"\\\]"));
+		$search = strtr($search, array('['=>'\\[',']'=>'\\]'));
 		$_nlTable = defined('NEWSLETTER_TABLE') ? NEWSLETTER_TABLE : "";
 		switch ($table) {
 			case USER_TABLE:
