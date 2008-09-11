@@ -185,16 +185,24 @@ class we_core_Local
 	{
 		$locale = self::getLocale();
 		$path = ($appName === '') ? ($GLOBALS['__WE_BASE_PATH__'] . '/lang/' . $locale . '/' . $file) : ($GLOBALS['__WE_APP_PATH__'] . '/' . $appName . '/lang/' . $locale . '/' . $file);
-		
-		if (!in_array($path, self::$_translationSources)) {
-			
-			if (is_null(self::$_translate)) {
-				self::$_translate = new we_core_Translate('tmx', $path, $locale);
-				self::$_translate->setLocale($locale);
-			} else {
-				self::$_translate->addTranslation($path, $locale);
+		if(!file_exists($path)) {
+			if(defined('WE_LANGUAGE')) {
+				$locale = self::weLangToLocale(WE_LANGUAGE);
+				$path = ($appName === '') ? ($GLOBALS['__WE_BASE_PATH__'] . '/lang/' . $locale . '/' . $file) : ($GLOBALS['__WE_APP_PATH__'] . '/' . $appName . '/lang/' . $locale . '/' . $file);
 			}
-			self::$_translationSources[] = $path;
+		}
+		
+		if(file_exists($path)) {
+			if (!in_array($path, self::$_translationSources)) {
+				
+				if (is_null(self::$_translate)) {
+					self::$_translate = new we_core_Translate('tmx', $path, $locale);
+					self::$_translate->setLocale($locale);
+				} else {
+					self::$_translate->addTranslation($path, $locale);
+				}
+				self::$_translationSources[] = $path;
+			}
 		}
 		return self::$_translate;
 	}
