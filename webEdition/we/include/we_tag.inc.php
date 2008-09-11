@@ -2068,7 +2068,7 @@ function we_tag_delete($attribs, $content)
 			}
 			$phpmail = new we_util_Mailer($mail, $subject, $mailfrom);
 			$phpmail->setCharSet($charset);
-			$phpmail->addTextPart($mailtext);				
+			$phpmail->addTextPart(trim($mailtext));				
 			$phpmail->buildMessage();
 			$phpmail->Send();
 		}
@@ -5758,7 +5758,7 @@ function we_tag_sendMail($attribs, $content)
 			for ($l=0;$l < sizeof($to);$l++) {
 
 		    	if (!eregi("@",$to[$l])) {
-		    		if (isset($_SESSION["webuser"]["registered"]) && $_SESSION["webuser"]["registered"] && eregi("@",$_SESSION["webuser"][$to[$l]])) { //wenn man registireten Usern was senden m�chte
+		    		if (isset($_SESSION["webuser"]["registered"]) && $_SESSION["webuser"]["registered"] && eregi("@",$_SESSION["webuser"][$to[$l]])) { //wenn man registireten Usern was senden moechte
 		    			$we_recipient[] = $_SESSION["webuser"][$to[$l]];
 		    		} else if(isset($_REQUEST[$to[$l]]) && eregi("@",$_REQUEST[$to[$l]])) {	//email to friend test
 		    			$we_recipient[] = $_REQUEST[$to[$l]];
