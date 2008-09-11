@@ -17,7 +17,7 @@
 
 include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_classes/" . "we_search.inc.php");
 include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/" . "we_db_tools.inc.php");
-include_once ($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_tools/weSearch/language/language_' . $GLOBALS['WE_LANGUAGE'] . '.inc.php');
+include_once ($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_language/' . $GLOBALS['WE_LANGUAGE'] . '/searchtool.inc.php');
 
 class searchtoolExp extends we_search
 {

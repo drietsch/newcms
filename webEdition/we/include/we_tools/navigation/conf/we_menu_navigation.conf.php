@@ -12,7 +12,7 @@
  */
 
 
-include_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_tools/navigation/language/language_' . $GLOBALS['WE_LANGUAGE'] . '.inc.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we_language/'.$GLOBALS['WE_LANGUAGE'].'/navigation.inc.php');
 
 $we_menu_navigation = array();
 

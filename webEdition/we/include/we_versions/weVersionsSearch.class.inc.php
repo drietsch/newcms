@@ -226,7 +226,7 @@ class weVersionsSearch {
 		
 		foreach($this->version->modFields as $k => $v) {
 			if($k!="status") {
-				$modFields[$k] = $v['txt'];
+				$modFields[$k] = $GLOBALS['l_versions'][$k];
 			}
 		}			
 		

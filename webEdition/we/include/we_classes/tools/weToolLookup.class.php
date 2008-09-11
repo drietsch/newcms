@@ -81,6 +81,9 @@
 				}
 			}
 			if($addInternTools) {
+				include ($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_language/' . $lang . '/searchtool.inc.php');
+				include ($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_language/' . $lang . '/navigation.inc.php');
+				
 				$internToolDir = $_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_tools/';
 				$internTools = array('weSearch', 'navigation');
 				
@@ -89,13 +92,13 @@
 					if(file_exists($_metaFile)) {
 						include($_metaFile);
 						if(isset($metaInfo)) {
-							include($internToolDir . $_toolName . '/language/language_' . $lang . '.inc.php');
 							$metaInfo['text'] = ${'l_' . $metaInfo['name']}[$metaInfo['name']];
 							$_tools[] = $metaInfo;
 							unset($metaInfo);
 						}
 					}
 				}
+			
 			}
 			
 			if(!defined("NO_SESS")) {
@@ -316,9 +319,13 @@
 		}
 
 		function getLanguageInclude($name) {
-			if($name=='weSearch' || $name=='navigation') {
-				$toolFolder = $_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_tools/';
-				return $toolFolder . $name . '/language/language_' . $GLOBALS['WE_LANGUAGE'] . '.inc.php';
+			if($name=='weSearch') {
+				$toolFolder = $_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_language/';
+				return $toolFolder . $GLOBALS['WE_LANGUAGE'] . '/searchtool.inc.php';
+			}
+			elseif($name=='navigation') {
+				$toolFolder = $_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_language/';
+				return $toolFolder . $GLOBALS['WE_LANGUAGE'] . '/navigation.inc.php';
 			}
 			else {
 				if(!defined('WE_TOOLS_DIR')) {
