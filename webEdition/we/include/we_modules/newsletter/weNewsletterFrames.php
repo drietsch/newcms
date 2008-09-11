@@ -2765,9 +2765,9 @@ class weNewsletterFrames extends weModuleFrames {
 			
 			if ($htmlmail) {
 				$phpmail->addHTMLPart($content);
-				$phpmail->addTextPart($content_plain);
+				$phpmail->addTextPart(trim($content_plain));
 			} else {
-				$phpmail->setBody($content_plain);
+				$phpmail->setBody(trim($content_plain));
 			}
 
 			foreach($atts as $att){ 

@@ -2459,7 +2459,7 @@ class weNewsletterView {
 		$phpmail = new we_util_Mailer($this->newsletter->Test,$this->newsletter->Subject,$this->newsletter->Sender,$this->newsletter->Reply,$this->newsletter->isEmbedImages);
 		$phpmail->setCharSet($this->newsletter->Charset!="" ? $this->newsletter->Charset : $GLOBALS["_language"]["charset"]);
 		$phpmail->addHTMLPart($content);
-		$phpmail->addTextPart($plain);
+		$phpmail->addTextPart(trim($plain));
 		foreach ($atts as $att) {
 			$phpmail->AddAttachment($att);
 		}
