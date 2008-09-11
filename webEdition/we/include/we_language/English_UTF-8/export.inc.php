@@ -168,6 +168,6 @@ $l_export['weNavigationRule'] = 'Navigation rule';
 $l_export['weThumbnail'] = 'Thumbnails';
 $l_export['handle_thumbnails'] = 'Thumbnails';
 
-$l_export['navigation_hint'] = 'To export the navigation entries, the template on which the navigation is displayed has also to be exported!';
+$l_export['navigation_hint'] = 'Document types, categories and the navigation are exported depending on your select documents and templates. The export of the navigation therefore requires the export of a template with a document based on it in which the navigation is used.';
 
 ?>
