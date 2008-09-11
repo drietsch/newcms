@@ -24,7 +24,7 @@ $oTblCont = new we_htmlTable(
 		1);
 $oTblCont->setCol(0, 0, null, $inline);
 $aLang = array(
-	$l_cockpit["users_online"], ' ([[span id="num_users"]]' . $UO->getNumUsers() . "[[/span]])"
+	$l_cockpit["users_online"], ' (' . $UO->getNumUsers() . ")"
 );
 
 ?>
