@@ -275,6 +275,17 @@ function selectFile(id){
 			</table>';
 	}
 
-
+	function printFooterJSDef(){
+		print "
+		function press_ok_button() {
+			if(document.we_form.fname.value==''&&top.currentType!='group'){
+				top.exit_close();
+			}else{
+				top.exit_open();
+			};
+		}
+		";
+	}
+	
 }
 ?>
