@@ -168,7 +168,7 @@ $l_export['weNavigation'] = 'Navigation';
 $l_export['weNavigationRule'] = 'Navigation-Regel';
 $l_export['weThumbnail'] = 'Miniaturansichten';
 $l_export['handle_thumbnails'] = 'Miniaturansichten';
-$l_export['navigation_hint'] = 'Um Navigationseinträge zu exportieren muss auch die Vorlage, auf welcher die Navigation ausgegeben wird, exportiert werden!';
+$l_export['navigation_hint'] = 'Dokument-Typen, Kategorien und Navigation werden nur abhängig von Ihren ausgewählten Dokumenten und Vorlagen exportiert. Der Export der Navigation erfordert daher den Export einer Vorlage mit einem darauf basierenden Dokument, in dem die Navigation verwendet wird.';
 
 
 ?>
