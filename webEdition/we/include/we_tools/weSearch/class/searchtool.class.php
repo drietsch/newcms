@@ -22,6 +22,8 @@ if (isset($_SERVER["DOCUMENT" . "_ROOT"]) && substr($_SERVER["DOCUMENT" . "_ROOT
 include_once ($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_tools/weSearch/conf/define.conf.php');
 include_once ($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_classes/tools/weToolModel.class.php');
 
+include($_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we_language/' . $GLOBALS['WE_LANGUAGE'] . '/tools.inc.php');
+
 class searchtool extends weToolModel
 {
 
@@ -38,7 +40,7 @@ class searchtool extends weToolModel
 	/**
 	 * @var string: name of the icon in the tree
 	 */
-	var $Icon = 'weSearch.gif';
+	var $Icon = 'Suche.gif';
 
 	/**
 	 * @var string: toolname
@@ -170,9 +172,16 @@ class searchtool extends weToolModel
 		if ($value) {
 			$this->Icon = 'folder.gif';
 		} else {
-			$this->Icon = 'weSearch.gif';
+			$this->Icon = 'Suche.gif';
 		}
 	
+	}
+	
+	function filenameNotValid($text) {
+		if (eregi('_UTF-8', $GLOBALS['WE_LANGUAGE'])) {
+			$text = utf8_decode($text);
+		}
+		return eregi('[^a-zäöü0-9._-]', $text);
 	}
 
 	function getLangText($path, $text)
@@ -189,7 +198,7 @@ class searchtool extends weToolModel
 			case '/Vordefinierte Suchanfragen/Objekte' :
 				$_text = $GLOBALS['l_weSearch']['objekte'];
 				break;
-			case '/Vordefinierte Suchanfragen/Dokumente/Unverï¿½ffentlichte Dokumente' :
+			case '/Vordefinierte Suchanfragen/Dokumente/Unveröffentlichte Dokumente' :
 				$_text = $GLOBALS['l_weSearch']['unveroeffentlicheDokumente'];
 				break;
 			case '/Vordefinierte Suchanfragen/Dokumente/Statische Dokumente' :
@@ -198,7 +207,7 @@ class searchtool extends weToolModel
 			case '/Vordefinierte Suchanfragen/Dokumente/Dynamische Dokumente' :
 				$_text = $GLOBALS['l_weSearch']['dynamischeDokumente'];
 				break;
-			case '/Vordefinierte Suchanfragen/Objekte/Unverï¿½ffentlichte Objekte' :
+			case '/Vordefinierte Suchanfragen/Objekte/Unveröffentlichte Objekte' :
 				$_text = $GLOBALS['l_weSearch']['unveroeffentlicheObjekte'];
 				break;
 			case '/Eigene Suchanfragen' :
@@ -213,12 +222,17 @@ class searchtool extends weToolModel
 			case '/Versionen/Objekte' :
 				$_text = $GLOBALS['l_weSearch']['objekte'];
 				break;
-			case '/Versionen/Dokumente/gelï¿½schte Dokumente' :
+			case '/Versionen/Dokumente/gelöschte Dokumente' :
 				$_text = $GLOBALS['l_weSearch']['geloeschteDokumente'];
 				break;
-			case '/Versionen/Objekte/gelï¿½schte Objekte' :
+			case '/Versionen/Objekte/gelöschte Objekte' :
 				$_text = $GLOBALS['l_weSearch']['geloeschteObjekte'];
 				break;
+			default:
+				$_text = $_text;
+				if (eregi('_UTF-8', $GLOBALS['WE_LANGUAGE'])) {
+					$_text = utf8_encode($_text);
+				}
 		}
 		
 		return $_text;
