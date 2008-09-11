@@ -909,7 +909,7 @@ class weVersions {
 				if((isset($_REQUEST["we_cmd"][0]) && ($_REQUEST["we_cmd"][0]=="save_document" || $_REQUEST["we_cmd"][0]=="unpublish" || $_REQUEST["we_cmd"][0]=="revert_published")) 
 					|| (isset($_REQUEST["cmd"]) && ($_REQUEST["cmd"]=="ResetVersion" || $_REQUEST["cmd"]=="PublishDocs" || $_REQUEST["cmd"]=="ResetVersionsWizard")) 
 					|| (isset($_REQUEST["type"]) && $_REQUEST["type"]=="reset_versions")
-					|| $_SESSION['versions']['initialVersions']){
+					|| (isset($_SESSION['versions']['initialVersions']) && $_SESSION['versions']['initialVersions'])){
 						if(isset($_SESSION['versions']['initialVersions'])) {
 							unset($_SESSION['versions']['initialVersions']);
 						}
