@@ -53,7 +53,7 @@ if (isset($_REQUEST['cmd']) && $_REQUEST['cmd'] != "ResetVersion") {
 
 // deal with customerFilter
 // @see we_object_showDocument.inc.php
-if ($we_doc->documentCustomerFilter) {
+if ($we_doc->documentCustomerFilter && !isset($GLOBALS["getDocContentVersioning"])) {
 	
 	// call session_start to init session, otherwise NO customer can exist
 	@session_start();
