@@ -76,6 +76,8 @@ if (isset($_SESSION) && isset($_SESSION["we_mode"]) && $_SESSION["we_mode"] == "
 if (defined("WE_WEBUSER_LANGUAGE")) {
 	$GLOBALS["WE_LANGUAGE"] = WE_WEBUSER_LANGUAGE;
 } else 
+	//start session if not done yet (if rpc ajax request starts there is no session)
+	if(!isset($_SESSION)) @session_start();
 	if (isset($_SESSION["prefs"]["Language"]) && $_SESSION["prefs"]["Language"] != "") {
 		if (is_dir($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_language/" . $_SESSION["prefs"]["Language"])) {
 			$GLOBALS["WE_LANGUAGE"] = $_SESSION["prefs"]["Language"];
