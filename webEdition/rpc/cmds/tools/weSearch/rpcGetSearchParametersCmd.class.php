@@ -16,9 +16,7 @@ class rpcGetSearchParametersCmd extends rpcCmd {
 	function execute() {
 		
 		$resp = new rpcResponse();
-		
-		$lang = $_REQUEST['language'];
-		
+				
 		include_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_tools/weSearch/class/searchtoolView.class.php');
 		 
 		$pos = $_REQUEST['position'];
