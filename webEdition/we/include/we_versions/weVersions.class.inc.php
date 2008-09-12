@@ -15,6 +15,8 @@
 include_once($_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we_language/' . $GLOBALS['WE_LANGUAGE'] . '/versions.inc.php');
 include_once($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_ContentTypes.inc.php");
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/base/weFile.class.php");
+include_once($_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we_language/' . $GLOBALS['WE_LANGUAGE'] . '/date.inc.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we_language/' . $GLOBALS['WE_LANGUAGE'] . '/modules/customerFilter.inc.php');
 
 
 class weVersions {
@@ -1093,7 +1095,7 @@ class weVersions {
 				$writeVersion = false;
 			}
 		}
-		
+
 		if($writeVersion) {
 			$mods = true;
 			$tblversionsFields = $this->getFieldsFromTable(VERSIONS_TABLE);
@@ -1185,6 +1187,11 @@ class weVersions {
 			case "status":
 				$this->setStatus($status);
 				$entry = $status;
+			break;
+			case "Charset":
+				if(isset($document['elements']['Charset']['dat'])) {
+					$entry = $document['elements']['Charset']['dat'];
+				}
 			break;
 			case "version":
 				$lastEntryVersion = f("SELECT version FROM " . VERSIONS_TABLE . " WHERE documentID='".$document["ID"]."' AND documentTable='".$document["Table"]."' ORDER BY version DESC LIMIT 1","version",$db);
@@ -1489,15 +1496,12 @@ class weVersions {
 						if(is_array($v) && isset($oldArr['documentCustomerFilter']) && is_array($oldArr['documentCustomerFilter'])) {
 							$_diff = array_diff_assoc($v, $oldArr['documentCustomerFilter']);
 							if(!empty($_diff)) {
-								$diff['documentCustomerFilter'][$key] = $_diff;
+								$diff['documentCustomerFilter'] = $_diff;
 							}
 						}
 					}
 				}				
 			}
-		}
-		else {
-			$diff[] = true;
 		}
 
 		return $diff;
@@ -1520,7 +1524,7 @@ class weVersions {
 		$requestBackup = $_REQUEST;
 		$docBackup = $GLOBALS["we_doc"];
 		//$_REQUEST = "";
-		
+		$GLOBALS["getDocContentVersioning"] = true;
 		$glob = "";
 		foreach($GLOBALS as $k=>$v){
 			if((!ereg('^[0-9]',$k)) && (!eregi('[^a-z0-9_]',$k)) && $k != "FROM_WE_SHOW_DOC" && $k != "we_doc" && $k != "we_transaction" && $k != "GLOBALS" && $k != "HTTP_ENV_VARS" && $k != "HTTP_POST_VARS" && $k != "HTTP_GET_VARS" && $k != "HTTP_COOKIE_VARS" && $k != "HTTP_SERVER_VARS" && $k != "HTTP_POST_FILES" && $k != "HTTP_SESSION_VARS" && $k != "_GET" && $k != "_POST" && $k != "_REQUEST" && $k != "_SERVER" && $k != "_FILES" && $k != "_SESSION" && $k != "_ENV" && $k != "_COOKIE" && $k!="") $glob .= '$'.$k.",";
@@ -1532,11 +1536,13 @@ class weVersions {
 		
 		$isdyn = !isset($GLOBALS["WE_IS_DYN"]) ? 'notSet' : $GLOBALS["WE_IS_DYN"];
 
+	
 		if($includepath!='' && file_exists($includepath)) {
 			ob_start();
 			include($includepath);
 			$contents = ob_get_contents();
     		ob_end_clean();
+    		
 		}
 		else {
 			ob_start();
@@ -1563,6 +1569,8 @@ class weVersions {
 		else {
 			$GLOBALS["WE_IS_DYN"] = $isdyn;
 		}
+		
+		unset($GLOBALS["getDocContentVersioning"]);
 
 		return $contents;
 	}
@@ -1894,12 +1902,12 @@ class weVersions {
    /**
 	* @abstract return the fieldvalue that has been changed
 	*/
-	function showValue($k, $v, $table) {
+	function showValue($k, $v, $table='') {
 		
 		$pathLength = 41;
 		
 		$db = new DB_WE();
-		
+
 		if($k=="timestamp") {
 			$v = date("d.m.y - H:i:s", $v);
 		}
@@ -1932,25 +1940,85 @@ class weVersions {
 			$v = ($v==1) ? $GLOBALS['l_versions']['activ'] : $GLOBALS['l_versions']['notactiv'];
 		}
 		if($k=="Language") {
-			$v = ($v==1) ? $GLOBALS['l_versions']['activ'] : $GLOBALS['l_versions']['notactiv'];
+			$v = isset($GLOBALS['weFrontendLanguages'][$v]) ? $GLOBALS['weFrontendLanguages'][$v] : '';
 		}
 		if($k=="WebUserID") {
 			$v = id_to_path($v, CUSTOMER_TABLE);
 		}
 		if($k=="Workspaces") {
-			$v = id_to_path($v, $table);
+			$fieldValueText = '';
+			if($v!='') {
+				$vals = makeArrayFromCSV($v);
+				if(!empty($vals)) {
+					foreach($vals as $k) {
+						if($fieldValueText!="") {
+							$fieldValueText .= "<br/>";
+						}
+						$fieldValueText .= shortenPathSpace(id_to_path($k, FILE_TABLE),$pathLength);
+					}
+				}
+			}
+			$v = $fieldValueText;
 		}
 		if($k=="ExtraWorkspaces") {
-			$v = id_to_path($v, $table);
+			$fieldValueText = '';
+			if($v!='') {
+				$vals = makeArrayFromCSV($v);
+				if(!empty($vals)) {
+					foreach($vals as $k) {
+						if($fieldValueText!="") {
+							$fieldValueText .= "<br/>";
+						}
+						$fieldValueText .= shortenPathSpace(id_to_path($k, FILE_TABLE),$pathLength);
+					}
+				}
+			}
+			$v = $fieldValueText;
 		}
 		if($k=="ExtraWorkspacesSelected") {
-			$v = id_to_path($v, $table);
+			$fieldValueText = '';
+			if($v!='') {
+				$vals = makeArrayFromCSV($v);
+				if(!empty($vals)) {
+					foreach($vals as $k) {
+						if($fieldValueText!="") {
+							$fieldValueText .= "<br/>";
+						}
+						$fieldValueText .= shortenPathSpace(id_to_path($k, FILE_TABLE),$pathLength);
+					}
+				}
+			}
+			$v = $fieldValueText;
 		}
 		if($k=="Templates") {
-			$v = id_to_path($v, $table);
+			$fieldValueText = '';
+			if($v!='') {
+				$vals = makeArrayFromCSV($v);
+				if(!empty($vals)) {
+					foreach($vals as $k) {
+						if($fieldValueText!="") {
+							$fieldValueText .= "<br/>";
+						}
+						$fieldValueText .= shortenPathSpace(id_to_path($k, FILE_TABLE),$pathLength);
+					}
+				}
+			}
+			$v = $fieldValueText;
 		}
 		if($k=="ExtraTemplates") {
-			$v = id_to_path($v, TEMPLATES_TABLE);
+			$fieldValueText = '';
+			if($v!='') {
+				$vals = makeArrayFromCSV($v);
+				if(!empty($vals)) {
+					foreach($vals as $k) {
+						if($fieldValueText!="") {
+							$fieldValueText .= "<br/>";
+						}
+						$fieldValueText .= shortenPathSpace(id_to_path($k, FILE_TABLE),$pathLength);
+					}
+				}
+			}
+			$v = $fieldValueText;
 		}
 		if($k=="fromScheduler") {
 			$v = ($v==1) ? $GLOBALS['l_versions']['yes'] : $GLOBALS['l_versions']['no'];
@@ -1961,9 +2029,7 @@ class weVersions {
 		if($k=="resetFromVersion") {
 			$v = ($v==0) ? "-" : $v;
 		}
-		
-		$v = shortenPathSpace($v,$pathLength);
-		
+				
 		if($k=="Category") {
 			$fieldValueText = "";
 			$v = makeArrayFromCSV($v);
@@ -1993,7 +2059,7 @@ class weVersions {
 		}
 		if($k=="OwnersReadOnly") {
 			$fieldValueText = "";
-			if($v!=0) {
+			if($v!='') {
 				$v = unserialize($v);
 			}
 			if(is_array($v)) {
@@ -2010,20 +2076,206 @@ class weVersions {
 			
 		}
 		
+		if($k=="weInternVariantElement") {
+			$fieldValueText = "";
+			if($v!='') {
+				$v = unserialize($v);
+			}
+			if(is_array($v)) {
+				foreach($v as $key => $val) {
+					if(is_array($val)) {
+						foreach($val as $k => $vl) {
+							if($fieldValueText!="") {
+								$fieldValueText .= "<br/>";
+							}
+		
+							$fieldValueText .= $k;
+							
+						}
+					}
+					
+				}
+			}
+			$v = $fieldValueText;
+
+			
+		}
 		//Scheduler
 		if($k=="task") {
 			if($v!=""){
 				$v = $GLOBALS['l_versions'][$k."_".$v];
 			}
 		}
+		if($k=="type") {
+			$v = $GLOBALS['l_versions']["type_".$v];
+		}
+		
+		if($k=="active") {
+			$v = ($v==1) ? $GLOBALS['l_versions']['yes'] : $GLOBALS['l_versions']['no'];
+		}
+		
+		if($k=="months") {
+			$months = array();
+			if(is_array($v) && !empty($v)) {
+				foreach($v as $k=>$v) {
+					if($v==1) {
+						$months[] = $GLOBALS["l_monthShort"][$k];
+					}
+				}
+			}
+			$v = makeCSVFromArray($months , false, ", ");
+		}
+		
+		if($k=="days") {
+			$days = array();
+			if(is_array($v) && !empty($v)) {
+				foreach($v as $k=>$v) {
+					if($v==1) {
+						$day = $k+1;
+						if(strlen($day)==1) {
+							$day = "0".$day;
+						}
+						$days[] = $day;
+					}
+				}
+			}
+			
+			$v = makeCSVFromArray($days, false, ", ");
+		}
+		
+		if($k=="weekdays") {
+			$weekdays = array();
+			if(is_array($v) && !empty($v)) {
+				foreach($v as $k=>$v) {
+					if($v==1) {
+						$weekdays[] = $GLOBALS["l_dayShort"][$k];
+					}
+				}
+			}
+			
+			$v = makeCSVFromArray($weekdays, false, ", ");
+		}
+		
 		if($k=="time") {
 			$v = date("d.m.y - H:i:s", $v);
+		}
+		
+		if($k=="doctypeAll") {
+			$v = ($v==1) ? $GLOBALS['l_versions']['yes'] : '';
+		}
+		
+		if($k=="DoctypeID") {
+			$docType = f("SELECT DocType FROM " . DOC_TYPES_TABLE . " WHERE ID = '".$v."'","DocType",$db);
+			$v = $docType;
+		}
+		
+		if($k=="CategoryIDs") {
+			$fieldValueText = "";
+			$v = makeArrayFromCSV($v);
+				if(!empty($v)) {
+					foreach($v as $key) {
+						if($fieldValueText!="") {
+							$fieldValueText .= "<br/>";
+						}
+						$fieldValueText .= shortenPathSpace(id_to_path($key, CATEGORY_TABLE),$pathLength);
+					}
+				}
+			$v = $fieldValueText;
+		}
+		
+		//Customer Filter
+		
+		if($k=="_id") {
+			$v = ($v=="") ? 0 : $v;
+			return $v;
+		}
+
+		if($k=="_accessControlOnTemplate") {
+			$v = ($v==1) ? $GLOBALS['l_versions']['yes'] : $GLOBALS['l_versions']['no'];
+		}
+		
+		if($k=="_errorDocNoLogin") {
+			$v = shortenPathSpace(id_to_path($v, FILE_TABLE),$pathLength);
+		}
+		
+		if($k=="_errorDocNoAccess") {
+			$v = shortenPathSpace(id_to_path($v, FILE_TABLE),$pathLength);
+		}
+		
+		if($k=="_mode") {
+			if($v==0) {
+				$v = $GLOBALS["l_customerFilter"]['mode_off'];
+			}
+			if($v==1) {
+				$v = $GLOBALS["l_customerFilter"]['mode_all'];
+			}
+			if($v==2) {
+				$v = $GLOBALS["l_customerFilter"]['mode_specific'];
+			}
+			if($v==3) {
+				$v = $GLOBALS["l_customerFilter"]['mode_filter'];
+			}
+		}
+		
+		if($k=="_specificCustomers") {
+			$fieldValueText = "";
+			if(is_array($v) && !empty($v)) {
+				foreach($v as $key) {
+					if($fieldValueText!="") {
+						$fieldValueText .= "<br/>";
+					}
+					$fieldValueText .= shortenPathSpace(id_to_path($key, CUSTOMER_TABLE),$pathLength);
+				}
+			}
+			$v = $fieldValueText;
+		}
+		
+		if($k=="_blackList") {
+			$fieldValueText = "";
+			if(is_array($v) && !empty($v)) {
+				foreach($v as $key) {
+					if($fieldValueText!="") {
+						$fieldValueText .= "<br/>";
+					}
+					$fieldValueText .= shortenPathSpace(id_to_path($key, CUSTOMER_TABLE),$pathLength);
+				}
+			}
+			$v = $fieldValueText;
+		}
+		
+		if($k=="_whiteList") {
+			$fieldValueText = "";
+			if(is_array($v) && !empty($v)) {
+				foreach($v as $key) {
+					if($fieldValueText!="") {
+						$fieldValueText .= "<br/>";
+					}
+					$fieldValueText .= shortenPathSpace(id_to_path($key, CUSTOMER_TABLE),$pathLength);
+				}
+			}
+			$v = $fieldValueText;
+		}
+		
+		if($k=="_filter") {
+			$fieldValueText = "";
+			if(is_array($v) && !empty($v)) {
+				foreach($v as $key=>$val) {
+					$fieldValueText .= $key.":<br/>";
+					if(is_array($val) && !empty($val)) {
+						foreach($val as $key2=>$val2) {
+							$fieldValueText .= $key2.":".$val2."<br/>";
+						}
+					}
+				}
+			}
+			$v = $fieldValueText;
 		}
 		
 		if($v=="") {
 			$v = getPixel(1,1);
 		}
-			
+		
+		
 		return $v;
 		
 	}
