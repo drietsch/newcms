@@ -160,7 +160,7 @@ if(  ($_userID != 0 && $_userID != $_SESSION["user"]["ID"]) || (isset($_REQUEST[
 
 // deal with customerFilter
 // @see we_showDocument.inc.php
-if ( isset($GLOBALS["we_obj"]) && $GLOBALS["we_obj"]->documentCustomerFilter ) {
+if ( isset($GLOBALS["we_obj"]) && $GLOBALS["we_obj"]->documentCustomerFilter && !isset($GLOBALS["getDocContentVersioning"]) ) {
 
 	// call session_start to init session, otherwise NO customer can exist
 	@session_start();
