@@ -284,7 +284,7 @@ $contentDiff .= '</tr>';
 			$mark = "border-bottom:1px solid #B8B8B7; ";
 			if(!empty($oldDoc)) {
 				
-				if($k=='weInternVariantElement') {
+				if($k=='weInternVariantElement' && isset($oldDocElements[$k]['dat'])) {
 					$oldVal = weVersions::showValue($k, $oldDocElements[$k]['dat']);
 				}
 				elseif(isset($oldDocElements[$k]['dat']) && $oldDocElements[$k]['dat']!="") {
