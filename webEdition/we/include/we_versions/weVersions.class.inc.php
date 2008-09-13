@@ -775,6 +775,8 @@ class weVersions {
 			'ExtraTemplates' => 24,
 			'Charset' => 25
 		);	
+		
+		
 	}
 	
   	/**
@@ -799,7 +801,8 @@ class weVersions {
 	*/
 	public function setInitialDocObject($obj) {
 		if(is_object($obj)) {	
-			$_SESSION['versions']['versionToCompare'] = serialize($obj);
+			$index = $obj->ID.'_'.$obj->Table;
+			$_SESSION['versions']['versionToCompare'][$index] = serialize($obj);
 			if(in_array($obj->ContentType,$this->getContentTypesVersioning()) && $obj->ID!=0 && !$this->versionsExist($obj->ID, $obj->ContentType)) {
 			    $_SESSION['versions']['initialVersions'] = true;
 				$this->save($obj);
@@ -1080,11 +1083,13 @@ class weVersions {
 				$writeVersion = false;
 			}
 		}
-		
+
 		//look if there were made changes
-		if(isset($_SESSION['versions']['versionToCompare']) && $_SESSION['versions']['versionToCompare']!='') {
-			$lastEntry = unserialize($_SESSION['versions']['versionToCompare']);
+		if(isset($_SESSION['versions']['versionToCompare'][$document["ID"].'_'.$document["Table"]]) && $_SESSION['versions']['versionToCompare'][$document["ID"].'_'.$document["Table"]]!='') {
+			
+			$lastEntry = unserialize($_SESSION['versions']['versionToCompare'][$document["ID"].'_'.$document["Table"]]);
 			$lastEntry = $this->objectToArray($lastEntry);
+			
 			$diffExists = array();
 			if(is_array($document) && is_array($lastEntry)) {
 				$diffExists = $this->array_diff_values($document, $lastEntry);
@@ -1134,7 +1139,7 @@ class weVersions {
 				$q2 = "UPDATE ".VERSIONS_TABLE." SET active = '0' WHERE documentID = '".$document["ID"]."' AND documentTable = '".$document["Table"]."' AND version != '".$vers."'";
 				$db->query($q2);	
 				
-				$_SESSION['versions']['versionToCompare'] = serialize($documentObj);
+				$_SESSION['versions']['versionToCompare'][$document["ID"].'_'.$document["Table"]] = serialize($documentObj);
 			}
 		}
 					
