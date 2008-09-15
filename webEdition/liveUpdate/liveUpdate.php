@@ -118,7 +118,7 @@ if (isset($_REQUEST['update_cmd'])) {
 				$reqVars[$key] = $value;
 			}
 		}
-		$parameters['reqArray'] = serialize($reqVars);
+		$parameters['reqArray'] = base64_encode(serialize($reqVars));
 
 		$response = liveUpdateHttp::getHttpResponse(LIVEUPDATE_SERVER, LIVEUPDATE_SERVER_SCRIPT, $parameters);
 	}

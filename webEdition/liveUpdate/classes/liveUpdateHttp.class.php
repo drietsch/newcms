@@ -178,7 +178,7 @@ class liveUpdateHttp {
 		foreach ($GLOBALS['LU_Variables'] as $LU_name => $LU_value) {
 
 			if (is_array($LU_value)) {
-				$params .= "\t<input type=\"hidden\" name=\"$LU_name\" value=\"" . urlencode( serialize($LU_value) ) . "\" />\n";
+				$params .= "\t<input type=\"hidden\" name=\"$LU_name\" value=\"" . base64_encode(urlencode( serialize($LU_value) )) . "\" />\n";
 			} else {
 				$params .= "\t<input type=\"hidden\" name=\"$LU_name\" value=\"" . urlencode( $LU_value ) . "\" />\n";
 			}

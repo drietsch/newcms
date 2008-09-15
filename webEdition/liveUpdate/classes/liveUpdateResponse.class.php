@@ -70,7 +70,7 @@ class liveUpdateResponse {
 	
 	function responseToArray($response) {
 		
-		$respArray = @unserialize($response);
+		$respArray = @unserialize(base64_decode($response));
 		
 		if (is_array($respArray)) {
 			return $respArray;
