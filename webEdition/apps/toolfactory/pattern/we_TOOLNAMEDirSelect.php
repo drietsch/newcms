@@ -1,6 +1,6 @@
 
 include_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/apps/<?php print $TOOLNAME; ?>/we_<?php print $TOOLNAME; ?>DirSelector.class.php');
-include_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/apps/<?php print $TOOLNAME; ?>/language/language_' . $GLOBALS['WE_LANGUAGE'] . '.inc.php');
+include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GLOBALS["WE_LANGUAGE"]."/tools.inc.php");
 
 $_SERVER['PHP_SELF'] = '/webEdition/apps/<?php print $TOOLNAME; ?>/we_<?php print $TOOLNAME; ?>DirSelect.php';
 $fs = new we_<?php print $TOOLNAME; ?>DirSelector(isset($id) ? $id : (isset($_REQUEST['id']) ? $_REQUEST['id'] : (isset($_REQUEST['we_cmd'][1]) ? $_REQUEST['we_cmd'][1] : '')),
