@@ -16,7 +16,7 @@
  * Liveupdate are set
  */
 
-$_REQUEST["betaVersion"] = 5490;
+$_REQUEST["betaVersion"] = 5901;
 
 // include files -> mainly stored in the application
 define('LIVEUPDATE_LANGUAGE', $GLOBALS['WE_LANGUAGE']);
@@ -34,7 +34,7 @@ if(isset($_REQUEST['section'])) {
 
 }
 
-define('LIVEUPDATE_SERVER_SCRIPT', '/we55/liveUpdate.p' . 'hp');
+define('LIVEUPDATE_SERVER_SCRIPT', '/server/we6/liveUpdate.p' . 'hp');
 
 define('LIVEUPDATE_SOFTWARE_DIR', $_SERVER['DOCUMENT_ROOT']);
 define('LIVEUPDATE_CLIENT_DOCUMENT_DIR', $_SERVER['DOCUMENT_ROOT'] . '/webEdition/liveUpdate/');
