@@ -34,7 +34,7 @@ if(isset($_REQUEST['section'])) {
 
 }
 
-define('LIVEUPDATE_SERVER_SCRIPT', '/server/we6/liveUpdate.p' . 'hp');
+define('LIVEUPDATE_SERVER_SCRIPT', '/server/we/liveUpdate.p' . 'hp');
 
 define('LIVEUPDATE_SOFTWARE_DIR', $_SERVER['DOCUMENT_ROOT']);
 define('LIVEUPDATE_CLIENT_DOCUMENT_DIR', $_SERVER['DOCUMENT_ROOT'] . '/webEdition/liveUpdate/');
@@ -43,12 +43,7 @@ define('LIVEUPDATE_CLIENT_DOCUMENT_DIR', $_SERVER['DOCUMENT_ROOT'] . '/webEditio
 define('LIVEUPDATE_TABLE_PREFIX', TBL_PREFIX);
 
 // liveupdater contains the following actions
-if ( defined('UID') ) {
-	$updatecmds = array('update', 'modules', 'languages', 'updatelog', 'connect');
-} else {
-	$updatecmds = array('register', 'connect');
-}
-
+$updatecmds = array('update', 'languages', 'updatelog', 'connect');
 if(is_callable("set_time_limit") && strtolower(ini_get("safe_mode")) != "on" && ini_get("safe_mode") != "1") {
 	@set_time_limit(180);
 }
