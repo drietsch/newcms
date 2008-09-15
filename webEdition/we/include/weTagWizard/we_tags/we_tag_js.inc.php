@@ -4,6 +4,6 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/weTagWizard/cla
 
 $GLOBALS['weTagWizard']['weTagData']['needsEndtag'] = false;
 
-$GLOBALS['weTagWizard']['attribute']['id332_id'] = new weTagData_selectorAttribute('332', 'id',FILE_TABLE, 'text/js', true, '');
+if(defined("FILE_TABLE")) { $GLOBALS['weTagWizard']['attribute']['id332_id'] = new weTagData_selectorAttribute('332', 'id',FILE_TABLE, 'text/js', true, ''); }
 $GLOBALS['weTagWizard']['attribute']['id734_cachelifetime'] = new weTagData_textAttribute('734', 'cachelifetime', false, '');
 ?>

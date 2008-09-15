@@ -11,7 +11,7 @@ $GLOBALS['weTagWizard']['attribute']['id335_class'] = new weTagData_textAttribut
 $GLOBALS['weTagWizard']['attribute']['id336_style'] = new weTagData_textAttribute('336', 'style', false, '');
 $GLOBALS['weTagWizard']['attribute']['id683_text'] = new weTagData_textAttribute('683', 'text', false, '');
 $GLOBALS['weTagWizard']['attribute']['id628_xml'] = new weTagData_selectAttribute('628', 'xml', array(new weTagDataOption('true', false, ''), new weTagDataOption('false', false, '')), false, '');
-$GLOBALS['weTagWizard']['attribute']['id712_id'] = new weTagData_selectorAttribute('712', 'id',FILE_TABLE, 'text/webedition', false, '');
-$GLOBALS['weTagWizard']['attribute']['id713_imageid'] = new weTagData_selectorAttribute('713', 'imageid',FILE_TABLE, 'image/*', false, '');
+if(defined("FILE_TABLE")) { $GLOBALS['weTagWizard']['attribute']['id712_id'] = new weTagData_selectorAttribute('712', 'id',FILE_TABLE, 'text/webedition', false, ''); }
+if(defined("FILE_TABLE")) { $GLOBALS['weTagWizard']['attribute']['id713_imageid'] = new weTagData_selectorAttribute('713', 'imageid',FILE_TABLE, 'image/*', false, ''); }
 $GLOBALS['weTagWizard']['attribute']['id734_cachelifetime'] = new weTagData_textAttribute('734', 'cachelifetime', false, '');
 ?>

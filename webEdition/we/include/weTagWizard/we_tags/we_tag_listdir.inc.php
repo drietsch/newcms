@@ -1,10 +1,11 @@
 <?php
+require_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/weTagWizard/classes/weTagData_selectorAttribute.class.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/weTagWizard/classes/weTagData_textAttribute.class.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/weTagWizard/classes/weTagData_selectAttribute.class.php');
 
 $GLOBALS['weTagWizard']['weTagData']['needsEndtag'] = true;
 
-$GLOBALS['weTagWizard']['attribute']['id347_id'] = new weTagData_textAttribute('347', 'id', false, '');
+if(defined("FILE_TABLE")) { $GLOBALS['weTagWizard']['attribute']['id812_id'] = new weTagData_selectorAttribute('812', 'id',FILE_TABLE, 'folder', false, ''); }
 $GLOBALS['weTagWizard']['attribute']['id348_index'] = new weTagData_textAttribute('348', 'index', false, '');
 $GLOBALS['weTagWizard']['attribute']['id349_field'] = new weTagData_textAttribute('349', 'field', false, '');
 $GLOBALS['weTagWizard']['attribute']['id350_dirfield'] = new weTagData_textAttribute('350', 'dirfield', false, '');
