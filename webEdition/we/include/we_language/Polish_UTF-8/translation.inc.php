@@ -23,5 +23,5 @@
 //	for each language. This is neccessary, because we then use an alternate charset...
 //	The key represents the folder name - the value will be shown in the select-menu
 
-$_language["translation"]["Polish_UTF-8"] = "Polish (UTF-8)"; // TRANSLATE
+$_language["translation"]["Polish_UTF-8"] = "Polski (UTF-8)"; // TRANSLATE
 ?>
