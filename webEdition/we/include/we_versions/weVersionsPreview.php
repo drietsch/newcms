@@ -197,7 +197,7 @@ $contentDiff = '<div style="margin-left:20px;" id="top">'.$GLOBALS['l_versions']
 					<br/><strong>'.$GLOBALS['l_versions']["documentID"].':</strong> '.$newDoc["documentID"].'
 					<br/><strong>'.$GLOBALS['l_versions']["path"].':</strong> '.$newDoc["Path"].'
 			</div>
-			<table cellpadding="5" cellspacing="0" border="0" width="97%" style="background-color:#FFF;margin:15px;">
+			<table cellpadding="5" cellspacing="0" border="0" width="95%" style="background-color:#FFF;margin:15px;">
 			<tr>
 			<td style="border-bottom:1px solid #B8B8B7;">'.getPixel(30,30).'	
 			</td>
@@ -258,7 +258,7 @@ $contentDiff .= '</table>';
  
 //elements
 
-$contentDiff .= '<table cellpadding="5" cellspacing="0" border="0" width="97%" style="background-color:#FFF;margin:15px;">
+$contentDiff .= '<table cellpadding="5" cellspacing="0" border="0" width="95%" style="background-color:#FFF;margin:15px;">
 		<tr>
 		<td align="left" colspan="3" style="padding:5px;background-color:#BCBBBB;" class="defaultfont"><strong>'.$GLOBALS['l_versions']['contentElementsMod'].'</strong></td>';
 
@@ -331,7 +331,7 @@ $contentDiff .= '</tr>';
 $contentDiff .= '</table>';
 
 	//scheduler
-	$contentDiff .= '<table cellpadding="5" cellspacing="0" border="0" width="97%" style="background-color:#FFF;margin:15px;">
+	$contentDiff .= '<table cellpadding="5" cellspacing="0" border="0" width="95%" style="background-color:#FFF;margin:15px;">
 
 			<tr>
 			<td align="left" colspan="3" style="padding:5px;background-color:#BCBBBB;" class="defaultfont"><strong>'.$GLOBALS['l_versions']['schedulerMod'].'</strong></td>';
@@ -459,7 +459,7 @@ $contentDiff .= '</table>';
 	
 	
 	//customfilter
-	$contentDiff .= '<table cellpadding="5" cellspacing="0" border="0" width="97%" style="background-color:#FFF;margin:15px;">
+	$contentDiff .= '<table cellpadding="5" cellspacing="0" border="0" width="95%" style="background-color:#FFF;margin:15px;">
 			<tr>
 			<td align="left" colspan="3" style="padding:5px;background-color:#BCBBBB;" class="defaultfont"><strong>'.$GLOBALS['l_versions']['customerMod'].'</strong></td>';
 
