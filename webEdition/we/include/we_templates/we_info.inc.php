@@ -94,7 +94,7 @@ $_table->setCol($_actRow++,0,array(	"width"   => $_widthTotal,
 //	7th copyright
 $_table->setCol($_actRow,0,array(	"width" => $_space), getPixel($_space,5));
 $_table->setCol($_actRow,1,array(	"width" => $_middlePart,
-							"class" => "small"), "&copy; 2000-2007 living-e AG. " . $l_global["all_rights_reserved"]);
+							"class" => "small"), "&copy; 2000-2008 living-e AG. " . $l_global["all_rights_reserved"]);
 $_table->setCol($_actRow++,2,array(	"width" => $_space), getPixel($_space,1));
 
 //	8th row
