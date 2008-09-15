@@ -60,7 +60,7 @@ define("SERVER_NAME", $SERVER_NAME);
 define("DB_HOST","localhost");
 
 // Name of database being used by webEdition
-define("DB_DATABASE","wedev_svn");
+define("DB_DATABASE","webedition");
 
 // Username to access the database
 define("DB_USER","root");
@@ -86,7 +86,7 @@ define("DB_CONNECT","connect");
 define("TBL_PREFIX","");
 
 // Charset of tables in database for this webEdition.
-define("DB_CHARSET","UTF-8");
+define("DB_CHARSET","");
 
 // Collation of tables in database for this webEdition.
 define("DB_COLLATION","");
@@ -108,7 +108,7 @@ define("LOG_DIR",$_SERVER["DOCUMENT_ROOT"] . "/webEdition/log");
 define("TMP_DIR",$_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/tmp");
 
 // Original language of this version of webEdition, used for login-screen
-define("WE_LANGUAGE","Dutch_UTF-8");
+define("WE_LANGUAGE","English_UTF-8");
 
 if (!isset($GLOBALS["WE_LANGUAGE"])) {
 	$GLOBALS["WE_LANGUAGE"] = WE_LANGUAGE;
