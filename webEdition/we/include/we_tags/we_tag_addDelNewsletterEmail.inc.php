@@ -425,7 +425,7 @@ function we_tag_addDelNewsletterEmail($attribs, $content) {
 							return;
 						}
 					}
-					@chmod($path,0777); // For Users where Apache is running under a different user than FTP
+					@chmod($path);
 				}
 				if($emailwritten==0){
 					$GLOBALS["WE_WRITENEWSLETTER_STATUS"] = WE_NEWSLETTER_STATUS_EMAIL_EXISTS;
