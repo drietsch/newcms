@@ -1,0 +1,829 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class we_app_Model</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class we_app_Model</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Base class for app models</p>
+	<ul class="tags">
+				<li><span class="field">copyright:</span> Copyright (c) 2008 living-e AG (http://www.living-e.com)</li>
+				<li><span class="field">license:</span> <a href="http://www.living-e.de/license">LICENSE_TYPE  TODO insert license type and url</a></li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_app---Model.php.html">/app/Model.php</a> (line <span class="field">28</span>)
+		</p>
+		
+				
+		<pre><a href="../we_core/we_core_AbstractObject.html">we_core_AbstractObject</a>
+   |
+   --<a href="../we_core/we_core_AbstractModel.html">we_core_AbstractModel</a>
+      |
+      --we_app_Model</pre>
+	
+			</div>
+</div>
+
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+																																																																																<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$ContentType" title="details" class="var-name">$ContentType</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">integer</span>
+					<a href="#$ID" title="details" class="var-name">$ID</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">boolean</span>
+					<a href="#$IsFolder" title="details" class="var-name">$IsFolder</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">integer</span>
+					<a href="#$ParentID" title="details" class="var-name">$ParentID</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$Path" title="details" class="var-name">$Path</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$Text" title="details" class="var-name">$Text</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$_appName" title="details" class="var-name">$_appName</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">array</span>
+					<a href="#$_requiredFields" title="details" class="var-name">$_requiredFields</a>
+				</div>
+											</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																																																				
+												<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$table</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#delete" title="details" class="method-name">delete</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#deleteChilds" title="details" class="method-name">deleteChilds</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#filenameNotValid" title="details" class="method-name">filenameNotValid</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#hasRequiredFields" title="details" class="method-name">hasRequiredFields</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">&$failed</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#isAllowedForUser" title="details" class="method-name">isAllowedForUser</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#isRequiredField" title="details" class="method-name">isRequiredField</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$fieldname</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#isSelf" title="details" class="method-name">isSelf</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#pathExists" title="details" class="method-name">pathExists</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$path</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setFields" title="details" class="method-name">setFields</a>
+											(<span class="var-type">array</span>&nbsp;<span class="var-name">$fields</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setIsFolder" title="details" class="method-name">setIsFolder</a>
+											(<span class="var-type">boolean</span>&nbsp;<span class="var-name">$value</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setPath" title="details" class="method-name">setPath</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$path</span> = <span class="var-default">''</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#updateChildPaths" title="details" class="method-name">updateChildPaths</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$oldpath</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#_evalPath" title="details" class="method-name">_evalPath</a>
+											([<span class="var-type">integer</span>&nbsp;<span class="var-name">$id</span> = <span class="var-default">0</span>])
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<a name="var$ContentType" id="$ContentType"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$ContentType</span>
+			 = <span class="var-default"> ''</span>			(line <span class="line-number">64</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">ContentType attribute</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$ID" id="$ID"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">integer</span>
+			<span class="var-name">$ID</span>
+			 = <span class="var-default"> 0</span>			(line <span class="line-number">36</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">id attribute</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$IsFolder" id="$IsFolder"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">boolean</span>
+			<span class="var-name">$IsFolder</span>
+						(line <span class="line-number">71</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">IsFolder attribute</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$ParentID" id="$ParentID"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">integer</span>
+			<span class="var-name">$ParentID</span>
+			 = <span class="var-default"> 0</span>			(line <span class="line-number">50</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">ParentID attribute</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$Path" id="$Path"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$Path</span>
+			 = <span class="var-default"> ''</span>			(line <span class="line-number">57</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Path attribute</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$Text" id="$Text"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$Text</span>
+			 = <span class="var-default"> ''</span>			(line <span class="line-number">43</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Text attribute</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$_appName" id="$_appName"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$_appName</span>
+			 = <span class="var-default"> ''</span>			(line <span class="line-number">78</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">_appName attribute</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$_requiredFields" id="$_requiredFields"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">array</span>
+			<span class="var-name">$_requiredFields</span>
+			 = <span class="var-default">array()</span>			(line <span class="line-number">85</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">_requiredFields attribute</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+							<h4>Inherited Variables</h4>
+				<A NAME='inherited_vars'><!-- --></A>
+									<p>Inherited from <span class="classname"><a href="../we_core/we_core_AbstractModel.html">we_core_AbstractModel</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../we_core/we_core_AbstractModel.html#var$_metadata">we_core_AbstractModel::$_metadata</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../we_core/we_core_AbstractModel.html#var$_persistentSlots">we_core_AbstractModel::$_persistentSlots</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../we_core/we_core_AbstractModel.html#var$_primaryKey">we_core_AbstractModel::$_primaryKey</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../we_core/we_core_AbstractModel.html#var$_table">we_core_AbstractModel::$_table</a></span><br>
+							</span>
+											</blockquote> 
+										
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">95</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Constructor</p>
+<p class="description"><p>Set table and load persistents</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			__construct
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$table</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$table</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../we_core/we_core_AbstractModel.html#method__construct">we_core_AbstractModel::__construct()</a></dt>
+						<dd>Constructor</dd>
+					</dl>
+			
+	</div>
+<a name="methoddelete" id="delete"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">delete</span> (line <span class="line-number">281</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">deletes entry</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			delete
+		</span>
+				()
+			</div>
+	
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../we_core/we_core_AbstractModel.html#methoddelete">we_core_AbstractModel::delete()</a></dt>
+						<dd>delete entry from database</dd>
+					</dl>
+			
+	</div>
+<a name="methoddeleteChilds" id="deleteChilds"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">deleteChilds</span> (line <span class="line-number">263</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">delete childs</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			deleteChilds
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodfilenameNotValid" id="filenameNotValid"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">filenameNotValid</span> (line <span class="line-number">105</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">validates the Text</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			filenameNotValid
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodhasRequiredFields" id="hasRequiredFields"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">hasRequiredFields</span> (line <span class="line-number">127</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">check if required fields are available</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			hasRequiredFields
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">&$failed</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">&$failed</span><span class="var-description">: (reference) $failed</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodisAllowedForUser" id="isAllowedForUser"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">isAllowedForUser</span> (line <span class="line-number">195</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">check permissions of user</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			isAllowedForUser
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodisRequiredField" id="isRequiredField"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">isRequiredField</span> (line <span class="line-number">116</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">check if field is required</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			isRequiredField
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$fieldname</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$fieldname</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodisSelf" id="isSelf"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">isSelf</span> (line <span class="line-number">167</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">check if ParentId is equal to Id</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			isSelf
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodpathExists" id="pathExists"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">pathExists</span> (line <span class="line-number">157</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">check if path exists</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			pathExists
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$path</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$path</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetFields" id="setFields"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setFields</span> (line <span class="line-number">301</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">set Fields</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setFields
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">$fields</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$fields</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../we_core/we_core_AbstractModel.html#methodsetFields">we_core_AbstractModel::setFields()</a></dt>
+					</dl>
+			
+	</div>
+<a name="methodsetIsFolder" id="setIsFolder"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setIsFolder</span> (line <span class="line-number">253</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">set IsFolder</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setIsFolder
+		</span>
+					(<span class="var-type">boolean</span>&nbsp;<span class="var-name">$value</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$value</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetPath" id="setPath"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setPath</span> (line <span class="line-number">143</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">set path</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setPath
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$path</span> = <span class="var-default">''</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$path</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodupdateChildPaths" id="updateChildPaths"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">updateChildPaths</span> (line <span class="line-number">232</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">update the child paths</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			updateChildPaths
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$oldpath</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$oldpath</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="method_evalPath" id="_evalPath"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">_evalPath</span> (line <span class="line-number">206</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">returns the path of given id</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			_evalPath
+		</span>
+					([<span class="var-type">integer</span>&nbsp;<span class="var-name">$id</span> = <span class="var-default">0</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$id</span>			</li>
+				</ul>
+		
+			
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../we_core/we_core_AbstractModel.html">we_core_AbstractModel</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../we_core/we_core_AbstractModel.html#method__construct">we_core_AbstractModel::__construct()</a></span><br>
+													<span class="method-name"><a href="../we_core/we_core_AbstractModel.html#methoddelete">we_core_AbstractModel::delete()</a></span><br>
+													<span class="method-name"><a href="../we_core/we_core_AbstractModel.html#methodgetPersistentSlots">we_core_AbstractModel::getPersistentSlots()</a></span><br>
+													<span class="method-name"><a href="../we_core/we_core_AbstractModel.html#methodgetTable">we_core_AbstractModel::getTable()</a></span><br>
+													<span class="method-name"><a href="../we_core/we_core_AbstractModel.html#methodload">we_core_AbstractModel::load()</a></span><br>
+													<span class="method-name"><a href="../we_core/we_core_AbstractModel.html#methodloadPersistents">we_core_AbstractModel::loadPersistents()</a></span><br>
+													<span class="method-name"><a href="../we_core/we_core_AbstractModel.html#methodsave">we_core_AbstractModel::save()</a></span><br>
+													<span class="method-name"><a href="../we_core/we_core_AbstractModel.html#methodsetFields">we_core_AbstractModel::setFields()</a></span><br>
+													<span class="method-name"><a href="../we_core/we_core_AbstractModel.html#methodsetPersistentSlots">we_core_AbstractModel::setPersistentSlots()</a></span><br>
+													<span class="method-name"><a href="../we_core/we_core_AbstractModel.html#method_getPKCondition">we_core_AbstractModel::_getPKCondition()</a></span><br>
+											</blockquote>
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../we_core/we_core_AbstractObject.html">we_core_AbstractObject</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../we_core/we_core_AbstractObject.html#method__construct">we_core_AbstractObject::__construct()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Mon, 01 Sep 2008 11:35:42 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
+	</p>
+	</div></body>
+</html>

@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class we_util_Sys_Webedition</title>
+			<link rel="stylesheet" href="../../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class we_util_Sys_Webedition</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Class to check webEdition settings and installation properties</p>
+	<ul class="tags">
+				<li><span class="field">copyright:</span> Copyright (c) 2008 living-e AG (http://www.living-e.com)</li>
+				<li><span class="field">license:</span> <a href="http://www.living-e.de/license">LICENSE_TYPE  TODO insert license type and url</a></li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_util---Sys---Webedition.php.html">/util/Sys/Webedition.php</a> (line <span class="field">37</span>)
+		</p>
+		
+				
+		<pre><a href="../../we_util/we_util_Sys.html">we_util_Sys</a>
+   |
+   --we_util_Sys_Webedition</pre>
+	
+			</div>
+</div>
+
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+												<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+												<div class="method-definition">
+					static 						<span class="method-result">int</span>
+										<a href="#module" title="details" class="method-name">module</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$property</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">array</span>
+										<a href="#modulesActive" title="details" class="method-name">modulesActive</a>
+										()
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">array</span>
+										<a href="#modulesAvailable" title="details" class="method-name">modulesAvailable</a>
+										()
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">array</span>
+										<a href="#modulesInstalled" title="details" class="method-name">modulesInstalled</a>
+										()
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">false</span>
+										<a href="#tool" title="details" class="method-name">tool</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$property</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">void</span>
+										<a href="#toolsInstalled" title="details" class="method-name">toolsInstalled</a>
+										()
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">string</span>
+										<a href="#toolVersion" title="details" class="method-name">toolVersion</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$property</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">void</span>
+										<a href="#toolVersionCompare" title="details" class="method-name">toolVersionCompare</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$property</span> = <span class="var-default">&quot;&quot;</span>], [<span class="var-type">int</span>&nbsp;<span class="var-name">$reference</span> = <span class="var-default">&quot;&quot;</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$operator</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">version</span>
+										<a href="#version" title="details" class="method-name">version</a>
+										()
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">void</span>
+										<a href="#versionCompare" title="details" class="method-name">versionCompare</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$version</span> = <span class="var-default">&quot;&quot;</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$operator</span> = <span class="var-default">&quot;&quot;</span>], <span class="var-type">int</span>&nbsp;<span class="var-name">$reference</span>)
+									</div>
+								
+																																																																																				</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodmodule" id="module"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method module</span> (line <span class="line-number">85</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">checks if a requested module is installed and / or active</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> -1    module not installed or an error occured on fetching module installation informations from webEdition <ol><li>module installed but inactive (only available for integrated modules)</li><li>module installed and active</li></ol></li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">int</span>
+		<span class="method-name">
+			module
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$property</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$property</span><span class="var-description">: module name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodmodulesActive" id="modulesActive"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method modulesActive</span> (line <span class="line-number">151</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">builds a list of all activated modules (including free and formerly non-free modules) and returns it to the caller</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> a list of all active webEdition modules or (bool)false, if an error occured</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">array</span>
+		<span class="method-name">
+			modulesActive
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodmodulesAvailable" id="modulesAvailable"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method modulesAvailable</span> (line <span class="line-number">162</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">builds a list of all available modules and returns it to the caller</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> a list of all available webEdition modules or (bool)false, if an error occured</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">array</span>
+		<span class="method-name">
+			modulesAvailable
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodmodulesInstalled" id="modulesInstalled"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method modulesInstalled</span> (line <span class="line-number">140</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">builds a list of all installed modules (active and inactive) and returns it to the caller</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> a list of all installed webEdition modules or (bool)false, if an error occured</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">array</span>
+		<span class="method-name">
+			modulesInstalled
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodtool" id="tool"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method tool</span> (line <span class="line-number">182</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">checks if a requested tool is installed</p>
+<p class="description"><p>this implementation is preliminary and WILL be changed once the we_tool-implementation is completed</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> (not installed) or true (installed)</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">false</span>
+		<span class="method-name">
+			tool
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$property</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$property</span><span class="var-description">: tool name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodtoolsInstalled" id="toolsInstalled"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method toolsInstalled</span> (line <span class="line-number">230</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">void</span>
+		<span class="method-name">
+			toolsInstalled
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodtoolVersion" id="toolVersion"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method toolVersion</span> (line <span class="line-number">201</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">get the version of the requested tool (if it is installed)</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> version</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">string</span>
+		<span class="method-name">
+			toolVersion
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$property</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$property</span><span class="var-description">: tool name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodtoolVersionCompare" id="toolVersionCompare"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method toolVersionCompare</span> (line <span class="line-number">216</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">compares specified tool version with the currently installed version of this tool</p>
+	<ul class="tags">
+				<li><span class="field">see:</span> <a href="../../we_util/we_util_Sys.html#method_versionCompare">we_util_Sys::_versionCompare()</a></li>
+				<li><span class="field">access:</span> public</li>
+				<li><span class="field">example:</span> example not found</li>
+				<li><span class="field">example:</span> example not found</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">void</span>
+		<span class="method-name">
+			toolVersionCompare
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$property</span> = <span class="var-default">&quot;&quot;</span>], [<span class="var-type">int</span>&nbsp;<span class="var-name">$reference</span> = <span class="var-default">&quot;&quot;</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$operator</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$reference</span><span class="var-description">: target version to be compared to currently installed tool version</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$operator</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$property</span><span class="var-description">: tool name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodversion" id="version"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method version</span> (line <span class="line-number">44</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">tries to identify the version of the currently installed webEdition</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> string without dots (i.e. &quot;5501&quot;) or false, if the version could not be identified.</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">version</span>
+		<span class="method-name">
+			version
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodversionCompare" id="versionCompare"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method versionCompare</span> (line <span class="line-number">70</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">compares specified webEdition version with the currently installed webEdition version</p>
+	<ul class="tags">
+				<li><span class="field">see:</span> <a href="../../we_util/we_util_Sys.html#method_versionCompare">we_util_Sys::_versionCompare()</a></li>
+				<li><span class="field">access:</span> public</li>
+				<li><span class="field">example:</span> example not found</li>
+				<li><span class="field">example:</span> example not found</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">void</span>
+		<span class="method-name">
+			versionCompare
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$version</span> = <span class="var-default">&quot;&quot;</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$operator</span> = <span class="var-default">&quot;&quot;</span>], <span class="var-type">int</span>&nbsp;<span class="var-name">$reference</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$reference</span><span class="var-description">: target version to be compared to current webEdition version</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$operator</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$version</span>			</li>
+				</ul>
+		
+			
+	</div>
+
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../../we_util/we_util_Sys.html">we_util_Sys</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../../we_util/we_util_Sys.html#method_versionCompare">we_util_Sys::_versionCompare()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Mon, 01 Sep 2008 11:35:46 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
+	</p>
+	</div></body>
+</html>

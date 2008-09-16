@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<!DOCTYPE tmx SYSTEM "tmx14.dtd">
+<tmx version="1.4">
+	<header creationtoolversion="1.0" datatype="plaintext" segtype="sentence" adminlang="en-us" srclang="en-us" o-tmf="Undefined" creationtool="text edit" >
+	</header>
+	<body>
+		<tu tuid="You are not permitted to perform this action! Please login again.">
+			<tuv xml:lang="ru"><seg>You are not permitted to perform this action! Please login again.</seg></tuv>
+		</tu>
+	</body>
+</tmx>

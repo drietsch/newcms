@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class we_net_Http</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class we_net_Http</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">class for local installation of webEdition applications (formerly known as &quot;tools&quot;)  the source files need to be present as a zip file at a specified location</p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Alexander Lindenstruth</li>
+				<li><span class="field">copyright:</span> Copyright (c) 2008 living-e AG (http://www.living-e.com)</li>
+				<li><span class="field">link:</span> <a href="http://en.wikipedia.org/wiki/HTTP">http://en.wikipedia.org/wiki/HTTP more informations about http</a></li>
+				<li><span class="field">license:</span> <a href="http://www.living-e.de/license">LICENSE_TYPE  TODO insert license type and url</a></li>
+				<li><span class="field">usedby:</span> <a href="../we_net/we_net_LiveUpdate.html">we_net_LiveUpdate</a></li>
+				<li><span class="field">example:</span> example not found</li>
+				<li><span class="field">example:</span> example not found</li>
+				<li><span class="field">uses:</span> Zend_Http_Client</li>
+				<li><span class="field">uses:</span> Zend_Uri</li>
+				<li><span class="field">example:</span> example not found</li>
+				<li><span class="field">example:</span> example not found</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_net---Http.php.html">/net/Http.php</a> (line <span class="field">75</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+												<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																																				
+												<div class="method-definition">
+											<span class="method-result">we_net_Http</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$uri</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#disableProxy" title="details" class="method-name">disableProxy</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#enableProxy" title="details" class="method-name">enableProxy</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">object Zend_Http_Response</span>
+										<a href="#get" title="details" class="method-name">get</a>
+											([<span class="var-type">array</span>&nbsp;<span class="var-name">$param</span> = <span class="var-default">array()</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">object Zend_Http_Response</span>
+										<a href="#head" title="details" class="method-name">head</a>
+											([<span class="var-type">array</span>&nbsp;<span class="var-name">$param</span> = <span class="var-default">array()</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">object Zend_Http_Response</span>
+										<a href="#post" title="details" class="method-name">post</a>
+											([<span class="var-type">array</span>&nbsp;<span class="var-name">$param</span> = <span class="var-default">array()</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">object Zend_Http_Response</span>
+										<a href="#put" title="details" class="method-name">put</a>
+											([<span class="var-type">array</span>&nbsp;<span class="var-name">$param</span> = <span class="var-default">array()</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setProxy" title="details" class="method-name">setProxy</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$params</span> = <span class="var-default">array()</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setUri" title="details" class="method-name">setUri</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$uri</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">mixed</span>
+										<a href="#__get" title="details" class="method-name">__get</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$attribute</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#__set" title="details" class="method-name">__set</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$attribute</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$value</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#__toString" title="details" class="method-name">__toString</a>
+										()
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">137</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">we_net_Http</span>
+		<span class="method-name">
+			__construct
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$uri</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$uri</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddisableProxy" id="disableProxy"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">disableProxy</span> (line <span class="line-number">243</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">disable usage of proxy for the forthcoming connections</p>
+<p class="description"><p>the proxy parameters won't be lost</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			disableProxy
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodenableProxy" id="enableProxy"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">enableProxy</span> (line <span class="line-number">234</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">enable usage of proxy, but you neet to specify the connection parameters</p>
+<p class="description"><p>first using $this-&gt;setProxy()</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			enableProxy
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodget" id="get"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">get</span> (line <span class="line-number">273</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">send a http request of method &quot;GET&quot;</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> object</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">object Zend_Http_Response</span>
+		<span class="method-name">
+			get
+		</span>
+					([<span class="var-type">array</span>&nbsp;<span class="var-name">$param</span> = <span class="var-default">array()</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$param</span><span class="var-description">: request parameters (optional)</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodhead" id="head"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">head</span> (line <span class="line-number">258</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">send a http request of method &quot;HEAD&quot;</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> object or false</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">object Zend_Http_Response</span>
+		<span class="method-name">
+			head
+		</span>
+					([<span class="var-type">array</span>&nbsp;<span class="var-name">$param</span> = <span class="var-default">array()</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$param</span><span class="var-description">: request parameters (optional)</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodpost" id="post"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">post</span> (line <span class="line-number">288</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">send a http request of method &quot;POST&quot;</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> object or false</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">object Zend_Http_Response</span>
+		<span class="method-name">
+			post
+		</span>
+					([<span class="var-type">array</span>&nbsp;<span class="var-name">$param</span> = <span class="var-default">array()</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$param</span><span class="var-description">: request parameters (optional)</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodput" id="put"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">put</span> (line <span class="line-number">303</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">send a http request of method &quot;PUT&quot;</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> object or false</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">object Zend_Http_Response</span>
+		<span class="method-name">
+			put
+		</span>
+					([<span class="var-type">array</span>&nbsp;<span class="var-name">$param</span> = <span class="var-default">array()</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$param</span><span class="var-description">: request parameters (optional)</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetProxy" id="setProxy"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setProxy</span> (line <span class="line-number">224</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">specify proxy connection parameters to use for http connections:  automatically enables usage of this proxy</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+				<li><span class="field">uses:</span> Zend_Http_Client_Adapter_Proxy</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setProxy
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$params</span> = <span class="var-default">array()</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$params</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetUri" id="setUri"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setUri</span> (line <span class="line-number">192</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">specify the uri for the next request, can also be done via __set()</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setUri
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$uri</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$uri</span><span class="var-description">: complete uri with scheme, host, port, path, parameters etc.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="method__get" id="__get"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">__get</span> (line <span class="line-number">156</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">getter method</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> returns a class variable</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			__get
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$attribute</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$attribute</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="method__set" id="__set"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">__set</span> (line <span class="line-number">172</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">public setter method for all request parameters</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			__set
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$attribute</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$value</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$attribute</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$value</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="method__toString" id="__toString"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">__toString</span> (line <span class="line-number">147</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">return:</span> response of the current request</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			__toString
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Mon, 01 Sep 2008 11:35:40 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
+	</p>
+	</div></body>
+</html>

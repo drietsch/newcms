@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic SYSTEM "http://docs.oasis-open.org/dita/v1.0.1/dtd/topic.dtd">
+<topic id="topic_52EC37D9C7A34C07B8A1808A4CD3E552">
+	<title>Summary of documents</title>
+	<shortdesc>Use this source code to create an overview of documents.</shortdesc>
+	<prolog>
+		<author>living-e AG</author>
+	</prolog>
+	<body>
+		<p>
+			<codeblock>
+				<![CDATA[
+<we:listview type="document">
+  <we:ifFound>
+    <p>
+      Page: <we:listviewPageNr /> of <we:listviewPages /> |
+      Entry: <we:listviewStart /> to <we:listviewEnd />
+      <we:ifBack> | <we:back>back</strong></we:back></we:ifBack>
+      <we:ifNext> | <we:next>next</we:next></we:ifNext>
+    </p>
+    <ul>
+      <we:repeat>
+        <li><we:field name="Title" alt="we_path" hyperlink="true" /></li>
+      </we:repeat>
+    </ul>
+    <p>
+      Page: <we:listviewPageNr /> of <we:listviewPages /> |
+      Entry: <we:listviewStart /> to <we:listviewEnd />
+      <we:ifBack> | <we:back>back</strong></we:back></we:ifBack>
+      <we:ifNext> | <we:next>next</we:next></we:ifNext>
+    </p>
+  </we:ifFound>
+  <we:ifNotFound>
+    <p>
+      Sorry, no entries could be found.
+    </p>
+  </we:ifNotFound>
+</we:listview>
+				]]>
+			</codeblock>
+		</p>
+	</body>
+</topic>

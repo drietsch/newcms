@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<!DOCTYPE tmx SYSTEM "tmx14.dtd">
+<tmx version="1.4">
+	<header creationtoolversion="1.0" datatype="plaintext" segtype="sentence" adminlang="en-us" srclang="en-us" o-tmf="Undefined" creationtool="text edit" >
+	</header>
+	<body>
+		<tu tuid="New notice">
+			<tuv xml:lang="de"><seg>Neuer Hinweis</seg></tuv>
+		</tu>
+		<tu tuid="New warning">
+			<tuv xml:lang="de"><seg>Neue Warnung</seg></tuv>
+		</tu>
+		<tu tuid="New error">
+			<tuv xml:lang="de"><seg>Neuer Fehler</seg></tuv>
+		</tu>
+		<tu tuid="Message window">
+			<tuv xml:lang="de"><seg>Nachrichten Fenster</seg></tuv>
+		</tu>
+	</body>
+</tmx>

@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+
+// +----------------------------------------------------------------------+
+// | webEdition                                                           |
+// +----------------------------------------------------------------------+
+// | PHP version 4.1.0 or greater                                         |
+// +----------------------------------------------------------------------+
+// | Copyright (c) 2000 - 2007 living-e AG                                |
+// +----------------------------------------------------------------------+
+//
+
+
+//-->
+<html>
+
+	<head>
+		<title>webEdition</title>
+	<script type="text/javascript">
+
+	var drag = false;
+	var startWidth = 0;
+	var startX = 0;
+
+	document.onmousemove = moveMouse;
+
+	function startDrag(e){
+		top.load.document.body.innerHTML += "start<br>\n";
+		drag = true;
+		startX = e.screenX;
+	}
+
+	function stopDrag() {
+		top.load.document.body.innerHTML += "stop<br>\n";
+		if (drag) {
+			drag = false;
+			calculateStartWidth();
+		}
+	}
+
+	function weSetCookie(name, value, expires, path, domain){
+		var doc = self.document;
+		doc.cookie = name + "=" + escape(value) +
+		((expires == null) ? "" : "; expires=" + expires.toGMTString()) +
+		((path == null)    ? "" : "; path=" + path) +
+		((domain == null)  ? "" : "; domain=" + domain);
+	}
+
+	function calculateStartWidth() {
+		var frameobj = parent.parent.document.getElementById("resizeframeid");
+		if (frameobj == null) {
+			frameobj = parent.document.getElementById("resizeframeid");
+		}
+		if (frameobj == null) {
+			return;
+		}
+		var cols = frameobj.cols;
+		var pairs = cols.split(",");
+		startWidth = pairs[0];
+		var ablauf = new Date();
+		var newTime = ablauf.getTime() + 30758400000;
+		ablauf.setTime(newTime);
+
+		if (parent.name == "bm_content_frame") {
+			weSetCookie("treewidth_main", startWidth,ablauf,"/");
+		}
+	}
+
+	function moveMouse(e) {
+		
+		if (drag) {
+			var newWidth = Math.max(22,parseInt(startWidth) + (e.screenX - startX));
+
+
+			var frameobj = parent.parent.document.getElementById("resizeframeid");
+			if (frameobj == null) {
+				frameobj = parent.document.getElementById("resizeframeid");
+			}
+			var tmp = frameobj.cols.split(",");
+
+
+			frameobj.cols = newWidth+",*,"+tmp[2];
+			if (newWidth <= 22) {
+				top.setTreeArrow("right");
+			} else {
+				top.setTreeArrow("left");
+			}
+		}
+	}
+
+	</script>
+	</head>
+
+	<body style="height:2000px;cursor:move;background-color:white;margin:0;padding:0;border-left:1px solid black;"  onload="calculateStartWidth();" onmouseup="stopDrag(event);" onmousedown="startDrag(event);">
+
+	</body>
+</html>
