@@ -23,7 +23,6 @@ include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/we_uti
  * @return         void
  */
 function we_tag_writeShopData($attribs) {
-
 	global $DB_WE;
 
 	$name = we_getTagAttribute("name",$attribs);
@@ -82,7 +81,11 @@ function we_tag_writeShopData($attribs) {
 		$maxOrderID = $DB_WE->f('max');
 
 		$totPrice = 0;
-
+		
+		if(defined("WE_ECONDA_STAT") && defined("WE_ECONDA_PATH") && WE_ECONDA_STAT  && WE_ECONDA_PATH !="" && !$GLOBALS["we_doc"]->InWebEdition){
+			$_GLOBALS['weEconda'] = array('emosBasket'=>""); 
+		}
+		$articleCount = 0;
 		foreach ($shoppingItems as $shoppingItem) {
 
 			$preis = ((isset($shoppingItem['serial']["we_".$pricename])) ? $shoppingItem['serial']["we_".$pricename] : $shoppingItem['serial'][$pricename]);
@@ -122,6 +125,21 @@ function we_tag_writeShopData($attribs) {
 				echo "Data Insert Failed";
 				return;
 			}
+			
+			if (isset($_GLOBALS['weEconda'])){
+				$_GLOBALS['weEconda']['emosBasket'] .= "
+emosBasketPageArray[$articleCount] = new Array();
+emosBasketPageArray[$articleCount][0]='" . $shoppingItem['id'] . "';
+emosBasketPageArray[$articleCount][1]='" . $shoppingItem['serial']['shoptitle'] . "';
+emosBasketPageArray[$articleCount][2]='$preis';
+emosBasketPageArray[$articleCount][3]='';
+emosBasketPageArray[$articleCount][4]='".$shoppingItem['quantity']."';
+emosBasketPageArray[$articleCount][5]='NULL';
+emosBasketPageArray[$articleCount][6]='NULL';
+emosBasketPageArray[$articleCount][7]='NULL';
+";
+			}
+			$articleCount++;
 		}
 
 		// second part: add cart fields to table order.
