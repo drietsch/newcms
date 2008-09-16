@@ -521,7 +521,6 @@ $l_prefs["tab_versions"] = 'Versionierung';
 	$l_prefs["versions_create_always"] = "immer";
 	
 	
-//########### NEU
 	$l_prefs['use_jeditor'] = "Benutzen";
 	$l_prefs["editor_font_colors"] = 'Schriftfarben spezifizieren';
 	$l_prefs["editor_normal_font_color"] = 'Standard';
