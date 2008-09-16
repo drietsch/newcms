@@ -317,20 +317,23 @@ class we_template extends we_document
 
 
 		$head = '
-<?php if(isset($GLOBALS["we_editmode"]) && $GLOBALS["we_editmode"] ): ?>
+<?php if(isset($GLOBALS["we_editmode"]) && $GLOBALS["we_editmode"] ){ ?>
 <?php print STYLESHEET_BUTTONS_ONLY . SCRIPT_BUTTONS_ONLY; ?>
 <script language="JavaScript" type="text/javascript" src="<?php print JS_DIR; ?>windows.js"></script>
 <?php include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_editors/we_editor_script.inc.php"); ?>
-<?php endif ?>';
+<?php } else if(defined("WE_ECONDA_STAT") && defined("WE_ECONDA_PATH") && WE_ECONDA_STAT  && WE_ECONDA_PATH !="" && !$GLOBALS["we_doc"]->InWebEdition) { 
+	include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/weTracking/econda/weEcondaImplementHeader.inc.php");
+} ?>';
 
-		$preContent = '<?php if (isset($GLOBALS["we_editmode"]) && $GLOBALS["we_editmode"]) : ?>
+		$preContent = '<?php if (isset($GLOBALS["we_editmode"]) && $GLOBALS["we_editmode"]) { ?>
 <form name="we_form" method="post" onsubmit="return false;"><?php $GLOBALS["we_doc"]->pHiddenTrans() ?>
-<?php endif ?>';
+<?php } ?>';
 
-		$postContent = '<?php if (isset($GLOBALS["we_editmode"]) && $GLOBALS["we_editmode"]) : ?>
+		$postContent = '<?php if (isset($GLOBALS["we_editmode"]) && $GLOBALS["we_editmode"]) { ?>
 </form>
-<?php endif ?>';
-
+<?php } else if(defined("WE_ECONDA_STAT") && defined("WE_ECONDA_PATH") && WE_ECONDA_STAT  && WE_ECONDA_PATH !="" && !$GLOBALS["we_doc"]->InWebEdition) { 
+	include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/weTracking/econda/weEcondaImplement.inc.php");
+} ?>';
 
 		if($this->hasStartAndEndTag("html",$code) && $this->hasStartAndEndTag("head",$code) && $this->hasStartAndEndTag("body",$code)){
 			$pre_code = '<?php $GLOBALS["WE_HTML_HEAD_BODY"] = true; ?>'.$pre_code;
