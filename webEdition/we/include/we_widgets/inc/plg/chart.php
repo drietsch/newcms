@@ -57,6 +57,7 @@ function getPLogChart($vals)
 
 function getPLogGraph($gf)
 {
+	
 	global $_pLogUrl, $_url, $l_cockpit;
 	$_graph = new we_htmlTable(
 			array(

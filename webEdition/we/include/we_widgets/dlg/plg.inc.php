@@ -233,30 +233,6 @@ $chbxChart[8] = we_forms::checkbox(
 		$description = "", 
 		$type = 0, 
 		$width = 0);
-$chbxChart[9] = we_forms::checkbox(
-		$value = 0, 
-		$checked = 0, 
-		$name = "chbx_chart", 
-		$text = $l_cockpit['graph_visitors_today'], 
-		$uniqid = true, 
-		$class = "defaultfont", 
-		$onClick = "", 
-		$disabled = false, 
-		$description = "", 
-		$type = 0, 
-		$width = 0);
-$chbxChart[10] = we_forms::checkbox(
-		$value = 0, 
-		$checked = 0, 
-		$name = "chbx_chart", 
-		$text = $l_cockpit['graph_impressions_today'], 
-		$uniqid = true, 
-		$class = "defaultfont", 
-		$onClick = "", 
-		$disabled = false, 
-		$description = "", 
-		$type = 0, 
-		$width = 0);
 
 $chart = new we_htmlTable(array(
 	"cellpadding" => "0", "cellspacing" => "0", "border" => "0"
@@ -272,8 +248,6 @@ $chart->setCol(7, 0, null, $chbxChart[5]);
 $chart->setCol(8, 0, null, $chbxChart[6]);
 $chart->setCol(9, 0, null, $chbxChart[7]);
 $chart->setCol(10, 0, null, $chbxChart[8]);
-$chart->setCol(11, 0, null, $chbxChart[9]);
-$chart->setCol(12, 0, null, $chbxChart[10]);
 
 $_pLog = $chart->getHTMLCode();
 

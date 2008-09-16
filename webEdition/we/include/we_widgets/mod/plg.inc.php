@@ -24,7 +24,6 @@ $_isPrev = !isset($aProps);
 
 list($_pLogCsv, $_pLogUrl64) = explode(";", (($_isPrev) ? $_REQUEST["we_cmd"][0] : $aProps[3]));
 $_pLogUrl = base64_decode($_pLogUrl64);
-
 $_pLog_[] = array(
 	
 		'visitors_data_today', 
@@ -100,17 +99,6 @@ for ($i = 0; $i <= 10; $i++) {
 		if ($i <= 8) {
 			$_pLogChart = getPLogChart($_pLog_[$i]);
 			$_pLogOut .= $_pLogChart->getHTMLCode();
-		} else {
-			switch ($i) {
-				case 9 :
-					$_gf = "graph_visitors_today";
-					break;
-				case 10 :
-					$_gf = "graph_impressions_today";
-					break;
-			}
-			$_pLogGraph = getPLogGraph($_gf);
-			$_pLogOut .= $_pLogGraph->getHTMLCode();
 		}
 	}
 }
