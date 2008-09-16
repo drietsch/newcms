@@ -30,14 +30,6 @@ function we_writeDefaultMasterTemplateConfig($default)
 	$code = <<<EOF
 <?php
 
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2007 living-e AG                                |
-// +----------------------------------------------------------------------+
-
 // Default Master Template for the First Steps Wizard
 define("FSW_DEFAULT_MASTER_TEMPLATE", {$default});
 
