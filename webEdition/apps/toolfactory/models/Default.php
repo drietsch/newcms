@@ -359,7 +359,7 @@ class toolfactory_models_Default extends we_app_Model
 						 for ($i=1; $i < count($pathteile); $i++) {
 					         $path .= "/". $pathteile[$i];
 					         if(!is_dir($path)) {
-					         	mkdir($path, 0777);
+					         	mkdir($path);
 					         }
 						}
 					}
