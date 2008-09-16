@@ -1,0 +1,200 @@
+<?xml version="1.0" ?>
+<!DOCTYPE tmx SYSTEM "tmx14.dtd">
+<tmx version="1.4">
+	<header creationtoolversion="1.0" datatype="plaintext" segtype="sentence" adminlang="en-us" srclang="en-us" o-tmf="Undefined" creationtool="text edit" >
+	</header>
+	<body>
+		<tu tuid="Applications">
+			<tuv xml:lang="fi"><seg>Applications</seg></tuv>
+		</tu>
+		<tu tuid="You do not have the permission to create new entries or folders!">
+			<tuv xml:lang="fi"><seg>You do not have the permission to create new entries or folders!</seg></tuv>
+		</tu>
+		<tu tuid="The tablename is missing.">
+			<tuv xml:lang="fi"><seg>Please specify a table name.</seg></tuv>
+		</tu>
+		<tu tuid="Delete Entry/Group.">
+			<tuv xml:lang="fi"><seg>Delete current entry/folder.</seg></tuv>
+		</tu>
+		<tu tuid="Are you sure?">
+			<tuv xml:lang="fi"><seg>Are you sure?</seg></tuv>
+		</tu>
+		<tu tuid="It is not possible to delete the entry!">
+			<tuv xml:lang="fi"><seg>This entry cannot be deleted!</seg></tuv>
+		</tu>
+		<tu tuid="It is not possible to save the entry!">
+			<tuv xml:lang="fi"><seg>This entry cannot be saved!</seg></tuv>
+		</tu>
+		<tu tuid="Please select the entry/group that should be deleted.">
+			<tuv xml:lang="fi"><seg>Please chose the entry/folder you want to be deleted.</seg></tuv>
+		</tu>
+		<tu tuid="Invalid filename!">
+			<tuv xml:lang="fi"><seg>The filename is not valid!</seg></tuv>
+		</tu>
+		<tu tuid="New">
+			<tuv xml:lang="fi"><seg>New</seg></tuv>
+		</tu>
+		<tu tuid="Save">
+			<tuv xml:lang="fi"><seg>Save</seg></tuv>
+		</tu>
+		<tu tuid="Delete">
+			<tuv xml:lang="fi"><seg>Delete</seg></tuv>
+		</tu>
+		<tu tuid="Close">
+			<tuv xml:lang="fi"><seg>Close</seg></tuv>
+		</tu>
+		<tu tuid="Info">
+			<tuv xml:lang="fi"><seg>Informations</seg></tuv>
+		</tu>
+		<tu tuid="Help">
+			<tuv xml:lang="fi"><seg>Help</seg></tuv>
+		</tu>
+		<tu tuid="Export">
+			<tuv xml:lang="fi"><seg>Export</seg></tuv>
+		</tu>
+		<tu tuid="Import">
+			<tuv xml:lang="fi"><seg>Import</seg></tuv>
+		</tu>
+		<tu tuid="New Entry">
+			<tuv xml:lang="fi"><seg>New Entry</seg></tuv>
+		</tu>
+		<tu tuid="New Folder">
+			<tuv xml:lang="fi"><seg>New Folder</seg></tuv>
+		</tu>
+		<tu tuid="New Tab">
+			<tuv xml:lang="fi"><seg>New Tab</seg></tuv>
+		</tu>
+		<tu tuid="This is a custom tab. You can either edit it or remove it.">
+			<tuv xml:lang="fi"><seg>This is a custom tab. You can either edit it or remove it.</seg></tuv>
+		</tu>
+		<tu tuid="Properties">
+			<tuv xml:lang="fi"><seg>Preferences</seg></tuv>
+		</tu>
+		<tu tuid="Folder">
+			<tuv xml:lang="fi"><seg>Folder</seg></tuv>
+		</tu>
+		<tu tuid="Entry">
+			<tuv xml:lang="fi"><seg>Entry</seg></tuv>
+		</tu>
+		<tu tuid="Name">
+			<tuv xml:lang="fi"><seg>Name</seg></tuv>
+		</tu>
+		<tu tuid="General">
+			<tuv xml:lang="fi"><seg>General</seg></tuv>
+		</tu>
+		<tu tuid="The folder '%s' has been succesfully saved.">
+			<tuv xml:lang="fi"><seg>The Folder '%s' has been succesfully saved.</seg></tuv>
+		</tu>
+		<tu tuid="The entry '%s' has been succesfully saved.">
+			<tuv xml:lang="fi"><seg>The entry '%s' has been succesfully saved.</seg></tuv>
+		</tu>
+		<tu tuid="The entry/folder '%s' has been succesfully saved.">
+			<tuv xml:lang="de"><seg>The entry/folder '%s' has been succesfully saved.</seg></tuv>
+		</tu>
+		<tu tuid="The folder could not be saved.">
+			<tuv xml:lang="fi"><seg>This folder cannot be saved.</seg></tuv>
+		</tu>
+		<tu tuid="The entry could not be saved.">
+			<tuv xml:lang="fi"><seg>This entry cannot be saved.</seg></tuv>
+		</tu>
+		<tu tuid="The path is not correct!">
+			<tuv xml:lang="fi"><seg>The specified path is invalid!</seg></tuv>
+		</tu>
+		<tu tuid="The name must not be empty!">
+			<tuv xml:lang="fi"><seg>The name must not be empty!</seg></tuv>
+		</tu>
+		<tu tuid="The required fields must not be empty!">
+			<tuv xml:lang="fi"><seg>The mandatory fields must not be empty!</seg></tuv>
+		</tu>
+		<tu tuid="The name already exists! Please choose another name or folder.">
+			<tuv xml:lang="fi"><seg>This name already exists! Please chose another name or folder.</seg></tuv>
+		</tu>
+		<tu tuid="The name is not valid!">
+			<tuv xml:lang="fi"><seg>The specified name is invalid!</seg></tuv>
+		</tu>
+		<tu tuid="The name of the model class is not valid!">
+			<tuv xml:lang="fi"><seg>The name of the model class is invalid!</seg></tuv>
+		</tu>
+		<tu tuid="The name of the maintable is not valid!">
+			<tuv xml:lang="fi"><seg>The name of the main table is invalid!</seg></tuv>
+		</tu>
+		<tu tuid="The model class exists!">
+			<tuv xml:lang="fi"><seg>This model class already exists!</seg></tuv>
+		</tu>
+		<tu tuid="The maintable exists!">
+			<tuv xml:lang="fi"><seg>This table already exists!</seg></tuv>
+		</tu>
+		<tu tuid="The application exists!">
+			<tuv xml:lang="fi"><seg>The application exists!</seg></tuv>
+		</tu>
+		<tu tuid="The entry '%s' has been succesfully deleted.">
+			<tuv xml:lang="en"><seg>The entry '%s' has been succesfully deleted.</seg></tuv>
+		</tu>
+		<tu tuid="The folder '%s' has been succesfully deleted.">
+			<tuv xml:lang="en"><seg>The folder '%s' has been succesfully deleted.</seg></tuv>
+		</tu>
+		<tu tuid="The entry/folder '%s' has been succesfully deleted.">
+			<tuv xml:lang="de"><seg>The entry/folder '%s' has been succesfully deleted.</seg></tuv>
+		</tu>
+		<tu tuid="The document has been changed.">
+			<tuv xml:lang="fi"><seg>This document has been altered.</seg></tuv>
+		</tu>
+		<tu tuid="Would you like to save your changes?">
+			<tuv xml:lang="fi"><seg>Do you want to save your changes?</seg></tuv>
+		</tu>
+		<tu tuid="Permissions">
+			<tuv xml:lang="fi"><seg>Permissions</seg></tuv>
+		</tu>
+		<tu tuid="Tags">
+			<tuv xml:lang="fi"><seg>Tags</seg></tuv>
+		</tu>
+		<tu tuid="Backup Table">
+			<tuv xml:lang="fi"><seg>Backup table</seg></tuv>
+		</tu>
+		<tu tuid="Services">
+			<tuv xml:lang="fi"><seg>Services</seg></tuv>
+		</tu>
+		<tu tuid="Language">
+			<tuv xml:lang="fi"><seg>Language</seg></tuv>
+		</tu>
+		<tu tuid="Default">
+			<tuv xml:lang="fi"><seg>Default</seg></tuv>
+		</tu>
+		<tu tuid="The entry has been deleted.">
+			<tuv xml:lang="fi"><seg>The entry has been deleted.</seg></tuv>
+		</tu>
+		<tu tuid="Select">
+			<tuv xml:lang="fi"><seg>Select</seg></tuv>
+		</tu>
+		<tu tuid="Yes">
+			<tuv xml:lang="fi"><seg>Yes</seg></tuv>
+		</tu>
+		<tu tuid="No">
+			<tuv xml:lang="fi"><seg>No</seg></tuv>
+		</tu>
+		<tu tuid="Cancel">
+			<tuv xml:lang="fi"><seg>Cancel</seg></tuv>
+		</tu>
+		<tu tuid="OK">
+			<tuv xml:lang="fi"><seg>OK</seg></tuv>
+		</tu>
+		<tu tuid="There is nothing to save!">
+			<tuv xml:lang="fi"><seg>There is nothing to save!</seg></tuv>
+		</tu>
+		<tu tuid="There is nothing to delete!">
+			<tuv xml:lang="fi"><seg>There is nothing to delete!</seg></tuv>
+		</tu>
+		<tu tuid="The folder cannot be saved in the chosen folder!">
+			<tuv xml:lang="fi"><seg>The folder cannot be saved in the chosen folder!</seg></tuv>
+		</tu>
+		<tu tuid="Required fields are empty!">
+			<tuv xml:lang="fi"><seg>Required fields are empty!</seg></tuv>
+		</tu>
+		<tu tuid="default">
+			<tuv xml:lang="fi"><seg>Default</seg></tuv>
+		</tu>
+		<tu tuid="This entry cannot be deleted. Probably there is no appropriate data record in the data base or the data base does not exist. In this case you must implement the data retention.">
+			<tuv xml:lang="de"><seg>This entry cannot be deleted. Probably there is no appropriate data record in the data base or the data base does not exist. In this case you must implement the data retention.</seg></tuv>
+		</tu>
+	</body>
+</tmx>

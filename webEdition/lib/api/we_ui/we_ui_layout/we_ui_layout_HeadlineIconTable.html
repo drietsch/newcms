@@ -1,0 +1,1081 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class we_ui_layout_HeadlineIconTable</title>
+			<link rel="stylesheet" href="../../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class we_ui_layout_HeadlineIconTable</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+											<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+						
+			</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Class which creates a table to display several rows with ui elements separated by a rule  For each row an icon can be provided together with a headline (title)</p>
+	<ul class="tags">
+				<li><span class="field">copyright:</span> Copyright (c) 2008 living-e AG (http://www.living-e.com)</li>
+				<li><span class="field">license:</span> <a href="http://www.living-e.de/license">LICENSE_TYPE  TODO insert license type and url</a></li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_ui---layout---HeadlineIconTable.php.html">/ui/layout/HeadlineIconTable.php</a> (line <span class="field">31</span>)
+		</p>
+		
+				
+		<pre><a href="../../we_core/we_core_AbstractObject.html">we_core_AbstractObject</a>
+   |
+   --<a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html">we_ui_abstract_AbstractElement</a>
+      |
+      --we_ui_layout_HeadlineIconTable</pre>
+	
+			</div>
+</div>
+
+
+	<a name="sec-const-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Class Constant Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Constants</span> (<a href="#sec-consts">details</a>)
+												<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<div class="const-summary">
+								<div class="const-title">
+					<img src="../../media/images/Constant.png" alt=" " />
+					<a href="#kRowTitle" title="details" class="const-name">kRowTitle</a> = 					<span class="var-type"> 'we_ui_layout_HeadlineIconTable_RowTitle'</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../../media/images/Constant.png" alt=" " />
+					<a href="#kTableTitle" title="details" class="const-name">kTableTitle</a> = 					<span class="var-type"> 'we_ui_layout_HeadlineIconTable_Title'</span>
+
+				</div>
+							</div>
+		</div>
+	</div>
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+															<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+																																																																																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$_buttonTable" title="details" class="var-name">$_buttonTable</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$_foldAtIndex" title="details" class="var-name">$_foldAtIndex</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$_foldedText" title="details" class="var-name">$_foldedText</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$_marginLeft" title="details" class="var-name">$_marginLeft</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$_rows" title="details" class="var-name">$_rows</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$_unfoldedText" title="details" class="var-name">$_unfoldedText</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$_unfoldWhenRenders" title="details" class="var-name">$_unfoldWhenRenders</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">integer|string</span>
+					<a href="#$_width" title="details" class="var-name">$_width</a>
+				</div>
+											</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+							
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																																																																																				
+												<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+											([<span class="var-type">array</span>&nbsp;<span class="var-name">$properties</span> = <span class="var-default">null</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../../we_ui/we_ui_controls/we_ui_layout_ButtonTable.html">we_ui_layout_ButtonTable</a></span>
+										<a href="#getButtonTable" title="details" class="method-name">getButtonTable</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">integer</span>
+										<a href="#getFoldAtIndex" title="details" class="method-name">getFoldAtIndex</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getFoldedText" title="details" class="method-name">getFoldedText</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">integer</span>
+										<a href="#getMarginLeft" title="details" class="method-name">getMarginLeft</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#getRows" title="details" class="method-name">getRows</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getUnfoldedText" title="details" class="method-name">getUnfoldedText</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#getUnfoldWhenRenders" title="details" class="method-name">getUnfoldWhenRenders</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setButtonTable" title="details" class="method-name">setButtonTable</a>
+											(<span class="var-type"><a href="../../we_ui/we_ui_controls/we_ui_layout_ButtonTable.html">we_ui_layout_ButtonTable</a></span>&nbsp;<span class="var-name">$buttonTable</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setFoldAtIndex" title="details" class="method-name">setFoldAtIndex</a>
+											(<span class="var-type">integer</span>&nbsp;<span class="var-name">$foldAtIndex</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setFoldedText" title="details" class="method-name">setFoldedText</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$foldedText</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setMarginLeft" title="details" class="method-name">setMarginLeft</a>
+											(<span class="var-type">integer</span>&nbsp;<span class="var-name">$marginLeft</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setRows" title="details" class="method-name">setRows</a>
+											(<span class="var-type">array</span>&nbsp;<span class="var-name">$rows</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setUnfoldedText" title="details" class="method-name">setUnfoldedText</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$unfoldedText</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setUnfoldWhenRenders" title="details" class="method-name">setUnfoldWhenRenders</a>
+											(<span class="var-type">boolean</span>&nbsp;<span class="var-name">$unfoldWhenRenders</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#_getFooter" title="details" class="method-name">_getFooter</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#_getHeader" title="details" class="method-name">_getHeader</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#_renderHTML" title="details" class="method-name">_renderHTML</a>
+										()
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+												<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+							
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<a name="var$_buttonTable" id="$_buttonTable"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$_buttonTable</span>
+			 = <span class="var-default"> NULL</span>			(line <span class="line-number">62</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$_foldAtIndex" id="$_foldAtIndex"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$_foldAtIndex</span>
+			 = <span class="var-default"> -1</span>			(line <span class="line-number">70</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$_foldedText" id="$_foldedText"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$_foldedText</span>
+			 = <span class="var-default"> ''</span>			(line <span class="line-number">78</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$_marginLeft" id="$_marginLeft"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$_marginLeft</span>
+			 = <span class="var-default"> 0</span>			(line <span class="line-number">101</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$_rows" id="$_rows"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$_rows</span>
+			 = <span class="var-default">array()</span>			(line <span class="line-number">55</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$_unfoldedText" id="$_unfoldedText"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$_unfoldedText</span>
+			 = <span class="var-default"> ''</span>			(line <span class="line-number">86</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$_unfoldWhenRenders" id="$_unfoldWhenRenders"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$_unfoldWhenRenders</span>
+			 = <span class="var-default"> false</span>			(line <span class="line-number">94</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$_width" id="$_width"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">integer|string</span>
+			<span class="var-name">$_width</span>
+			 = <span class="var-default"> '100%'</span>			(line <span class="line-number">50</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">width of table is 100% per default</p>
+	<ul class="tags">
+				<li><span class="field">see:</span> we_ui_abstractElement</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#var$_width">we_ui_abstract_AbstractElement::$_width</a></dt>
+						<dd>width of element. Will be inserted into style attribute</dd>
+					</dl>
+		
+		
+
+</div>
+							<h4>Inherited Variables</h4>
+				<A NAME='inherited_vars'><!-- --></A>
+									<p>Inherited from <span class="classname"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html">we_ui_abstract_AbstractElement</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#var$_class">we_ui_abstract_AbstractElement::$_class</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#var$_CSSFiles">we_ui_abstract_AbstractElement::$_CSSFiles</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#var$_disabled">we_ui_abstract_AbstractElement::$_disabled</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#var$_height">we_ui_abstract_AbstractElement::$_height</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#var$_hidden">we_ui_abstract_AbstractElement::$_hidden</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#var$_id">we_ui_abstract_AbstractElement::$_id</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#var$_JSFiles">we_ui_abstract_AbstractElement::$_JSFiles</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#var$_lang">we_ui_abstract_AbstractElement::$_lang</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#var$_left">we_ui_abstract_AbstractElement::$_left</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#var$_overflow">we_ui_abstract_AbstractElement::$_overflow</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#var$_position">we_ui_abstract_AbstractElement::$_position</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#var$_style">we_ui_abstract_AbstractElement::$_style</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#var$_title">we_ui_abstract_AbstractElement::$_title</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#var$_top">we_ui_abstract_AbstractElement::$_top</a></span><br>
+							</span>
+											</blockquote> 
+										
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																			<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+							
+										<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">111</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Constructor</p>
+<p class="description"><p>Sets object properties if set in $properties array</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			__construct
+		</span>
+					([<span class="var-type">array</span>&nbsp;<span class="var-name">$properties</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$properties</span><span class="var-description">: associative array containing named object properties</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../../we_core/we_core_AbstractObject.html#method__construct">we_core_AbstractObject::__construct()</a></dt>
+						<dd>Constructor</dd>
+					</dl>
+			
+	</div>
+<a name="methodgetButtonTable" id="getButtonTable"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getButtonTable</span> (line <span class="line-number">128</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve ButtonTable</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../we_ui/we_ui_controls/we_ui_layout_ButtonTable.html">we_ui_layout_ButtonTable</a></span>
+		<span class="method-name">
+			getButtonTable
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetFoldAtIndex" id="getFoldAtIndex"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getFoldAtIndex</span> (line <span class="line-number">138</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve foldAtIndex property</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">integer</span>
+		<span class="method-name">
+			getFoldAtIndex
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetFoldedText" id="getFoldedText"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getFoldedText</span> (line <span class="line-number">148</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve foldedText property</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getFoldedText
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetMarginLeft" id="getMarginLeft"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getMarginLeft</span> (line <span class="line-number">158</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve marginLeft property</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">integer</span>
+		<span class="method-name">
+			getMarginLeft
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetRows" id="getRows"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getRows</span> (line <span class="line-number">168</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve array with we_ui_layout_HeadlineIconTableRow objects</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getRows
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetUnfoldedText" id="getUnfoldedText"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getUnfoldedText</span> (line <span class="line-number">178</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve unfoldedText property</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getUnfoldedText
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetUnfoldWhenRenders" id="getUnfoldWhenRenders"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getUnfoldWhenRenders</span> (line <span class="line-number">188</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve unfoldWhenRenders property</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			getUnfoldWhenRenders
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodsetButtonTable" id="setButtonTable"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setButtonTable</span> (line <span class="line-number">198</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setButtonTable
+		</span>
+					(<span class="var-type"><a href="../../we_ui/we_ui_controls/we_ui_layout_ButtonTable.html">we_ui_layout_ButtonTable</a></span>&nbsp;<span class="var-name">$buttonTable</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../we_ui/we_ui_controls/we_ui_layout_ButtonTable.html">we_ui_layout_ButtonTable</a></span>
+				<span class="var-name">$buttonTable</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetFoldAtIndex" id="setFoldAtIndex"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setFoldAtIndex</span> (line <span class="line-number">208</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setFoldAtIndex
+		</span>
+					(<span class="var-type">integer</span>&nbsp;<span class="var-name">$foldAtIndex</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$foldAtIndex</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetFoldedText" id="setFoldedText"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setFoldedText</span> (line <span class="line-number">218</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setFoldedText
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$foldedText</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$foldedText</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetMarginLeft" id="setMarginLeft"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setMarginLeft</span> (line <span class="line-number">228</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setMarginLeft
+		</span>
+					(<span class="var-type">integer</span>&nbsp;<span class="var-name">$marginLeft</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$marginLeft</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetRows" id="setRows"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setRows</span> (line <span class="line-number">238</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Set the rows array</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setRows
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">$rows</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$rows</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetUnfoldedText" id="setUnfoldedText"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setUnfoldedText</span> (line <span class="line-number">253</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setUnfoldedText
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$unfoldedText</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$unfoldedText</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetUnfoldWhenRenders" id="setUnfoldWhenRenders"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setUnfoldWhenRenders</span> (line <span class="line-number">263</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setUnfoldWhenRenders
+		</span>
+					(<span class="var-type">boolean</span>&nbsp;<span class="var-name">$unfoldWhenRenders</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$unfoldWhenRenders</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="method_getFooter" id="_getFooter"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">_getFooter</span> (line <span class="line-number">330</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">gets the footer HTML for the table</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			_getFooter
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="method_getHeader" id="_getHeader"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">_getHeader</span> (line <span class="line-number">296</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">gets the header HTML for the table</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			_getHeader
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="method_renderHTML" id="_renderHTML"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">_renderHTML</span> (line <span class="line-number">273</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Renders and returns the HTML</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			_renderHTML
+		</span>
+				()
+			</div>
+	
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#method_renderHTML">we_ui_abstract_AbstractElement::_renderHTML()</a></dt>
+						<dd>Renders and returns HTML of ui element</dd>
+					</dl>
+			
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html">we_ui_abstract_AbstractElement</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodaddCSSFile">we_ui_abstract_AbstractElement::addCSSFile()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodaddCSSFiles">we_ui_abstract_AbstractElement::addCSSFiles()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodaddJSFile">we_ui_abstract_AbstractElement::addJSFile()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodaddJSFiles">we_ui_abstract_AbstractElement::addJSFiles()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodcomputeJSURL">we_ui_abstract_AbstractElement::computeJSURL()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodgetClass">we_ui_abstract_AbstractElement::getClass()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodgetCSSFiles">we_ui_abstract_AbstractElement::getCSSFiles()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodgetDisabled">we_ui_abstract_AbstractElement::getDisabled()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodgetHeight">we_ui_abstract_AbstractElement::getHeight()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodgetHidden">we_ui_abstract_AbstractElement::getHidden()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodgetHTML">we_ui_abstract_AbstractElement::getHTML()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodgetId">we_ui_abstract_AbstractElement::getId()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodgetJSFiles">we_ui_abstract_AbstractElement::getJSFiles()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodgetJSHTML">we_ui_abstract_AbstractElement::getJSHTML()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodgetLang">we_ui_abstract_AbstractElement::getLang()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodgetLeft">we_ui_abstract_AbstractElement::getLeft()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodgetOverflow">we_ui_abstract_AbstractElement::getOverflow()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodgetPosition">we_ui_abstract_AbstractElement::getPosition()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodgetStyle">we_ui_abstract_AbstractElement::getStyle()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodgetTitle">we_ui_abstract_AbstractElement::getTitle()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodgetTop">we_ui_abstract_AbstractElement::getTop()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodgetWidth">we_ui_abstract_AbstractElement::getWidth()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodsetClass">we_ui_abstract_AbstractElement::setClass()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodsetDisabled">we_ui_abstract_AbstractElement::setDisabled()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodsetHeight">we_ui_abstract_AbstractElement::setHeight()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodsetHidden">we_ui_abstract_AbstractElement::setHidden()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodsetId">we_ui_abstract_AbstractElement::setId()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodsetLang">we_ui_abstract_AbstractElement::setLang()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodsetLeft">we_ui_abstract_AbstractElement::setLeft()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodsetOverflow">we_ui_abstract_AbstractElement::setOverflow()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodsetPosition">we_ui_abstract_AbstractElement::setPosition()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodsetStyle">we_ui_abstract_AbstractElement::setStyle()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodsetTitle">we_ui_abstract_AbstractElement::setTitle()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodsetTop">we_ui_abstract_AbstractElement::setTop()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#methodsetWidth">we_ui_abstract_AbstractElement::setWidth()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#method_didRenderHTML">we_ui_abstract_AbstractElement::_didRenderHTML()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#method_getBooleanAttribs">we_ui_abstract_AbstractElement::_getBooleanAttribs()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#method_getComputedClassAttrib">we_ui_abstract_AbstractElement::_getComputedClassAttrib()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#method_getComputedStyleAttrib">we_ui_abstract_AbstractElement::_getComputedStyleAttrib()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#method_getNonBooleanAttribs">we_ui_abstract_AbstractElement::_getNonBooleanAttribs()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#method_renderHTML">we_ui_abstract_AbstractElement::_renderHTML()</a></span><br>
+													<span class="method-name"><a href="../../we_ui/we_ui_abstract/we_ui_abstract_AbstractElement.html#method_willRenderHTML">we_ui_abstract_AbstractElement::_willRenderHTML()</a></span><br>
+											</blockquote>
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../../we_core/we_core_AbstractObject.html">we_core_AbstractObject</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../../we_core/we_core_AbstractObject.html#method__construct">we_core_AbstractObject::__construct()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+
+	<a name="sec-consts"></a>
+	<div class="info-box">
+		<div class="info-box-title">Class Constants</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Constants</a> (<span class="disabled">details</span>)
+						
+			
+												<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+														| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<a name="constkRowTitle" id="kRowTitle"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">kRowTitle</span>
+			 = <span class="const-default"> 'we_ui_layout_HeadlineIconTable_RowTitle'</span>
+			(line <span class="line-number">42</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+</div>
+<a name="constkTableTitle" id="kTableTitle"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">kTableTitle</span>
+			 = <span class="const-default"> 'we_ui_layout_HeadlineIconTable_Title'</span>
+			(line <span class="line-number">37</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+</div>
+						
+		</div>
+	</div>
+
+	<p class="notes" id="credit">
+		Documentation generated on Mon, 01 Sep 2008 11:35:39 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.0</a>
+	</p>
+	</div></body>
+</html>
