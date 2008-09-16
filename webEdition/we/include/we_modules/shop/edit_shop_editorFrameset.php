@@ -1,18 +1,17 @@
 <?php
 
 
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or higher                                          |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2005 living-e AG                   |
-// +----------------------------------------------------------------------+
-// +----------------------------------------------------------------------+
-// | shopModule by Jan Gorba                                              |
-// +----------------------------------------------------------------------+
-//
-// $Id: edit_shop_editorFrameset.php,v 1.9 2007/04/25 15:23:01 holger.meyer Exp $
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
 $bid = isset($_REQUEST["bid"]) ? $_REQUEST["bid"] : 0;
 $mid = isset($_REQUEST["mid"]) ? $_REQUEST["mid"] : 0;

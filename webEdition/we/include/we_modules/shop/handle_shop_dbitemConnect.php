@@ -1,17 +1,16 @@
 <?php
 
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or higher                                          |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2005 living-e AG                   |
-// +----------------------------------------------------------------------+
-// +----------------------------------------------------------------------+
-// | shopModule by Jan Gorba                                              |
-// +----------------------------------------------------------------------+
-//
-// $Id: handle_shop_dbitemConnect.php,v 1.5 2007/04/25 15:23:01 holger.meyer Exp $
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
 
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/"."we.inc.php");

@@ -1,17 +1,16 @@
 <?php
 
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or higher                                          |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2005 living-e AG                   |
-// +----------------------------------------------------------------------+
-// +----------------------------------------------------------------------+
-// | shopModule by Jan Gorba                                              |
-// +----------------------------------------------------------------------+
-//
-// $Id: edit_shop_frameset.php,v 1.43 2008/01/21 14:19:24 alexander.lindenstruth Exp $
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/"."we.inc.php");
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/"."we_html_tools.inc.php");
@@ -192,7 +191,7 @@ function doUnload() {
     fr.write("</HEAD>\n");
     fr.write("<BODY BGCOLOR=\"#F3F7FF\" LINK=\"#000000\" ALINK=\"#000000\" VLINK=\"#000000\" leftmargin=5 topmargin=0 marginheight=0 marginwidth=5>\n");
     fr.write("<table border=0 cellpadding=0 cellspacing=0 width=100%><tr><td class=\"tree\">\n<NOBR>\n");
-    fr.write("<tr><td class=\"tree\">\n<NOBR>\n<a href=javascript:// onClick=\"doYearClick("+ top.yearshop +");return true;\" title=\"Umsätze des Geschäftsjahres\" ><?php print $l_shop["treeYear"];?>: <strong>" + top.yearshop + " </strong></a> <br/>\n");
+    fr.write("<tr><td class=\"tree\">\n<NOBR>\n<a href=javascript:// onClick=\"doYearClick("+ top.yearshop +");return true;\" title=\"Umsï¿½tze des Geschï¿½ftsjahres\" ><?php print $l_shop["treeYear"];?>: <strong>" + top.yearshop + " </strong></a> <br/>\n");
 
     zeichne("0","");
     fr.write("</NOBR>\n</td></tr></table>\n");

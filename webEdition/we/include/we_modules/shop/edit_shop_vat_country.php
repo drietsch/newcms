@@ -1,12 +1,16 @@
 <?php
 
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2007 living-e AG                                |
-// +----------------------------------------------------------------------+
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we.inc.php');
@@ -82,7 +86,7 @@ foreach ($customerTableFields as $tblField) {
 
 $parts = array();
 
-// default value für mwst
+// default value fï¿½r mwst
 	$defaultInput = we_class::htmlSelect('defaultValue', array('true'=>'true', 'false' => 'false'), 1, $weShopVatRule->defaultValue);
 	array_push($parts, array(
 			'headline' => $l_shop['vat_country']['defaultReturn'],

@@ -1,17 +1,16 @@
 <?php
 
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or higher                                          |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2005 living-e AG                   |
-// +----------------------------------------------------------------------+
-// +----------------------------------------------------------------------+
-// | shopModule by Jan Gorba                                              |
-// +----------------------------------------------------------------------+
-//
-// $Id: edit_shop_article_extend.php,v 1.49 2008/01/21 14:19:24 alexander.lindenstruth Exp $
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
 
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/"."we.inc.php");
@@ -529,7 +528,7 @@ if (isset($daten)){
 
     }else{
 
-        print"	Die von Ihnen gewünschte Seite kann nicht angezeigt werden!"; //if ($_REQUEST['typ'] == "doc")
+        print"	Die von Ihnen gewï¿½nschte Seite kann nicht angezeigt werden!"; //if ($_REQUEST['typ'] == "doc")
 
     }
 

@@ -1,12 +1,16 @@
 <?php
 
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2007 living-e AG                                |
-// +----------------------------------------------------------------------+
+/**
+ * webEdition CMS
+ *
+ * LICENSETEXT_CMS
+ *
+ *
+ * @category   webEdition
+ * @package    webEdition_base
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.living-e.de/licence     LICENSETEXT_CMS  TODO insert license type and url
+ */
 
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we.inc.php');
@@ -125,7 +129,7 @@ $jsFunction = '
             	break;
 
             	case "delete":
-            		if (confirm("' . 'Möchten sie den ausgewählten Portosatz wirklich löschen?' . '")) {
+            		if (confirm("' . 'Mï¿½chten sie den ausgewï¿½hlten Portosatz wirklich lï¿½schen?' . '")) {
             			var we_cmd_field = document.getElementById("we_cmd_field");
             			we_cmd_field.value = "deleteShipping";
             			we_submitForm("' . $_SERVER['PHP_SELF'] . '");
@@ -299,7 +303,7 @@ if (isset($weShipping)) { // show the shipping which must be edited
 	array_push(
 		$parts,
 		array(
-			'headline' => 'Länder',
+			'headline' => 'Lï¿½nder',
 			'space' => 150,
 			'html' => we_class::htmlTextArea('weShipping_countries', 4, 20, implode("\n", $weShipping->countries)),
 			'noline' => 1
