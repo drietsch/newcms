@@ -1,4 +1,5 @@
 <?php
+
 /**
  * webEdition CMS
  *
