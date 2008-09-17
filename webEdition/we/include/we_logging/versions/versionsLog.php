@@ -41,34 +41,19 @@ $closeButton = $we_button->create_button("close", "javascript:window.close();");
 
 ?>
 <style type="text/css">
-#jsMessageUl {
-	border-top			: 1px solid black;
-	background			: #fff;
-	list-style-type		: none;
-	margin				: 0;
-	padding				: 0;
-	
-}
-
-#jsMessageUl li {
-	border-bottom		: 1px solid black;
-	margin				: 0 0 0 0;
-	padding				: 8px 0 8px 35px;
-	background-repeat	: no-repeat;
-	background-position	: 6 50%;
-}
 
 #headlineDiv {
 	height				: 40px;
 }
 #headlineDiv div {
-	padding				: 10px 0 0 10px;
+	padding				: 10px 0 0 15px;
 }
 
-#messageDiv {
+#versionsDiv {
 	background			: #fff;
 	overflow			: auto;
 	height				: 420px ! important;
+	margin				: 0px ! important;
 }
 
 .dialogButtonDiv {
@@ -92,7 +77,7 @@ $closeButton = $we_button->create_button("close", "javascript:window.close();");
 		<?php print $GLOBALS["l_versions"]["versions_log"] ?>
 	</div>
 </div>
-<div id="messageDiv">
+<div id="versionsDiv">
 	<?php 
 	
 	print $out;
