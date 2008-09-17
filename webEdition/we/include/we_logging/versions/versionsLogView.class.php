@@ -210,7 +210,7 @@ class versionsLogView {
 		
 		$out = "";
 
-		$out .= '<table width="570" border="0" cellpadding="3" cellspacing="0" class="middlefont">';
+		$out .= '<div align="center" width="100%"><table border="0" width="100%" cellpadding="0" cellspacing="0" class="middlefont">';
 //		$out .= '<thead>';
 //		$out .= '<tr>';
 //		$out .= '<th style="width:150px;">';
@@ -228,44 +228,47 @@ class versionsLogView {
 
 		for($i=0;$i<$anz;$i++) {
 			$out .= '<tr>';
-			$out .= '<td style="font-weight:bold;width:100px;">';
+			$out .= '<td style="font-weight:bold;width:100px;padding:5px 15px 5px 15px;">';
 			$out .= $GLOBALS['l_logging']['date'].":";
 			$out .= '</td>';
-			$out .= '<td>';
+			$out .= '<td width="200">';
 			$out .= date("d.m.y - H:i:s",$content[$i]['timestamp']);
+			$out .= '</td>';
+			$out .= '<td width="auto">';
+			$out .= getPixel(1,1);
 			$out .= '</td>';
 			$out .= '</tr>';
 			$out .= '<tr>';
-			$out .= '<td style="font-weight:bold;">';
+			$out .= '<td style="font-weight:bold;width:100px;padding:5px 15px 5px 15px;">';
 			$out .= $GLOBALS['l_logging']['user'].":";
 			$out .= '</td>';
-			$out .= '<td>';
+			$out .= '<td width="auto">';
 			$out .= f("SELECT Text FROM `".USER_TABLE."` WHERE ID='".$content[$i]['userID']."'","Text", new DB_WE());
 			$out .= '</td>';
 			$out .= '</tr>';
 			$out .= '<tr>';
-			$out .= '<td style="font-weight:bold;">';
+			$out .= '<td style="font-weight:bold;width:100px;padding:5px 15px 5px 15px;">';
 			$out .= $GLOBALS['l_logging']['logEntry'].":";
 			$out .= '</td>';
-			$out .= '<td>';
+			$out .= '<td width="auto">';
 			$showLog = $this->showLog($content[$i]['action'],$content[$i]['ID']);
 			$out .= $showLog;
 			$out .= '</td>';
 			$out .= '</tr>';
 			$out .= '<tr>';
-			$out .= '<td colspan="2">';
+			$out .= '<td colspan="3" style="padding:5px 15px 5px 15px;">';
 			$out .= '<div id="dataContent_'.$content[$i]['ID'].'" name="dataContent">';
 			$out .= $this->handleData($content[$i]['ID'],0,$this->versionPerPage);
 			$out .= '</div>';
 			$out .= '<div style="border-top:1px solid #000;margin-top:20px;margin-bottom:20px;">';
 			$out .= getPixel(1,1);
 			$out .= '</div>';
-			$out .= '<td>';
+			$out .= '</td>';
 			$out .= '</tr>';
 			
 		}
 		
-		$out .= '</table>';
+		$out .= '</table></div>';
 		
 		
 		return $out;
@@ -321,7 +324,7 @@ class versionsLogView {
 
 		if($action==WE_LOGGING_VERSIONS_DELETE || $action==WE_LOGGING_VERSIONS_RESET) {
 								
-			$out .= '<table cellpadding="3" cellspacing="0" border="0" style="border:1px solid #BBBAB9;" width="570" class="middlefont">';
+			$out .= '<table cellpadding="3" cellspacing="0" border="0" style="width:100%;border:1px solid #BBBAB9;" class="middlefont">';
 			$out .= '<thead>';
 			$out .= '<tr style="background-color:#dddddd;font-weight:bold;">';
 			$out .= '<td>';
@@ -330,16 +333,16 @@ class versionsLogView {
 			$out .= '<td>';
 			$out .= $GLOBALS['l_logging']['ID']."";
 			$out .= '</td>';
-			$out .= '<td style="width:100px;">';
+			$out .= '<td>';
 			$out .= $GLOBALS['l_logging']['name']."";
 			$out .= '</td>';
-			$out .= '<td style="width:230px;">';
+			$out .= '<td>';
 			$out .= $GLOBALS['l_logging']['path'];
 			$out .= '</td>';
-			$out .= '<td style="width:50px;">';
+			$out .= '<td>';
 			$out .= $GLOBALS['l_logging']['version'];
 			$out .= '</td>';
-			$out .= '<td style="width:100px;">';
+			$out .= '<td>';
 			$out .= $GLOBALS['l_logging']['contenttype'];
 			$out .= '</td>';
 			$out .= '</tr>';
@@ -364,7 +367,7 @@ class versionsLogView {
 					$showNumber++;
 				}
 				$out .= '<tr id="'.$name.'" name="'.$name.'" style="display:'.$display.';">';
-				$out .= '<td align="right">';
+				$out .= '<td align="left">';
 				$out .= $m.".";
 				$out .= '</td>';
 				$out .= '<td align="left">';
