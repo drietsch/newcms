@@ -12,6 +12,7 @@
  */
 
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/"."we_live_tools.inc.php");
+include_once(WE_GLOSSARY_MODULE_DIR."weGlossary.php");
 
 /**
  * this class implements the cache functionality for the glossary
@@ -155,8 +156,17 @@ class weGlossaryCache {
 		
 			$temp = array();
 
-			// Title
+			if(stristr($GLOBALS['WE_LANGUAGE'], '_UTF-8') === TRUE && isset($GLOBALS['we_doc']->elements['Charset']['dat']) && $GLOBALS['we_doc']->elements['Charset']['dat']!='UTF-8') {
+				$Text = utf8_decode($Text);
+				$Title = utf8_decode($Title);
+			}
+
+			$Text = htmlspecialchars($Text, ENT_NOQUOTES);
+
+			$Text = weGlossary::escapeChars($Text);
+			
 			$Title = htmlspecialchars($Title, ENT_QUOTES);
+			
 			if(trim($Title) != "") {
 				$temp['title'] = trim($Title);
 			}
@@ -407,7 +417,7 @@ class weGlossaryCache {
 			$Items[$Text][$Type] = $temp;
 			
 		}
-		
+	
 		$Link = 	"\n"
 				.	"\$link = array(\n";
 					
@@ -466,24 +476,8 @@ class weGlossaryCache {
 
 				
 			}
-			
-			$Text = addslashes($Text);
-			$Text = str_replace(".","\.",$Text);
-			$Text = str_replace("/", "\/", $Text);
-			$Text = str_replace('|', '\|', $Text);
-			$Text = str_replace('+', '\+', $Text);
-			$Text = str_replace('*', '\*', $Text);
-			$Text = str_replace('(', '\(', $Text);
-			$Text = str_replace(')', '\)', $Text);
-			$Text = str_replace('?', '\?', $Text);
-			$Text = str_replace('[', '\[', $Text);
-			$Text = str_replace(']', '\]', $Text);
-			$Text = str_replace('^', '\^', $Text);
-
-
 			$$PushTo	.=	'"/((<[^>]*)|([^[:alnum:]])('.$Text.')([^[:alnum:]]))/e" => \'"\2"=="\1"?"\1":"\3' . $prefix . '\4' . $postfix . '\5"\'' . ",\n";
-				
-				
+
 		}
 		
 		$Link	.=		");\n"
