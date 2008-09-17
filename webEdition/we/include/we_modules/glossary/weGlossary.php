@@ -464,14 +464,8 @@ class weGlossary extends weModelBase {
 	 * @return boolean
 	 */
 	function isSelf() {
-		$this->Text = str_replace('+', '\+', $this->Text);
-		$this->Text = str_replace('*', '\*', $this->Text);
-		$this->Text = str_replace('|', '\|', $this->Text);
-		$this->Text = str_replace('?', '\?', $this->Text);
-		$this->Text = str_replace('[', '\[', $this->Text);
-		$this->Text = str_replace(']', '\]', $this->Text);
-
-		if(ereg('/'.$this->Text.'/',clearPath(dirname($this->Path) . '/'))) {
+		$Text = weGlossary::escapeChars($this->Text);
+		if(ereg('/'.$Text.'/',htmlentities(clearPath(dirname($this->Path)) . '/'))) {
 			return true;
 
 		} else {
@@ -479,6 +473,22 @@ class weGlossary extends weModelBase {
 
 		}
 
+	}
+
+	function escapeChars($Text) {
+		
+		$Text = quotemeta($Text); // escape . \ + * ? [ ^ ] ( $ )
+			
+		$escape = array('°','{','&','/','\'','"','§','%');
+		
+		foreach($escape as $k) {
+			$before = $k;
+			$after = "\\".$k;
+			if($k!='') {
+				$Text = str_replace($before, $after, $Text);
+			}
+		}
+		return $Text;
 	}
 
 
@@ -590,7 +600,7 @@ class weGlossary extends weModelBase {
 	
 	function checkFieldText($text) {
 		
-		$check = array("\\","$");
+		$check = array("\\","$", "|");
 
 		foreach($check as $k) {
 			if(stristr(trim($text), $k)) {
