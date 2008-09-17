@@ -603,11 +603,19 @@ class weGlossaryView {
 						);
 						break;
 					}
+					
+					if($this->Glossary->checkFieldText($this->Glossary->Title)){
+						print we_htmlElement::jsElement(
+							we_message_reporting::getShowMessageCall($GLOBALS["l_glossary"]["title_notValid"], WE_MESSAGE_ERROR)
+						);
+						break;
+					}
 
 					$oldpath = $this->Glossary->Path;
 
 					// set the path and check it
 					$this->Glossary->setPath();
+
 					if($this->Glossary->pathExists($this->Glossary->Path)){
 						print we_htmlElement::jsElement(
 							we_message_reporting::getShowMessageCall($GLOBALS["l_glossary"]["name_exists"], WE_MESSAGE_ERROR)
@@ -631,33 +639,28 @@ class weGlossaryView {
 						
 					}
 					
-					$this->Glossary->Text = str_replace('\+', '+', $this->Glossary->Text);
-					$this->Glossary->Text = str_replace('\*', '*', $this->Glossary->Text);
-					$this->Glossary->Text = str_replace('\|', '|', $this->Glossary->Text);
-					$this->Glossary->Text = str_replace('\?', '?', $this->Glossary->Text);
-					$this->Glossary->Text = str_replace('\[', '[', $this->Glossary->Text);
-					$this->Glossary->Text = str_replace('\]', ']', $this->Glossary->Text);
 					
-	
 					$isNew = $this->Glossary->ID==0;
-
-					$this->Glossary->Text = htmlspecialchars($this->Glossary->Text, ENT_NOQUOTES);
-					
+								
 	                if($this->Glossary->save()) {
-
-						$this->Glossary->Text = htmlspecialchars_decode($this->Glossary->Text, ENT_NOQUOTES);
+	                	
+	                	$this->Glossary->Text = htmlentities($this->Glossary->Text,ENT_QUOTES);
+						$this->Glossary->Title = htmlentities($this->Glossary->Title,ENT_QUOTES);
 					
 						if($isNew) {
-							$js = $this->TopFrame . '.makeNewEntry(\''.$this->Glossary->Icon.'\',\''.$this->Glossary->ID.'\',\''.$this->Glossary->Language.'_'.$this->Glossary->Type.'\',\''.addslashes(htmlspecialchars($this->Glossary->Text)).'\',0,\''.($this->Glossary->IsFolder ? 'folder' : 'item').'\',\''. GLOSSARY_TABLE .'\',' . ($this->Glossary->Published>0?1:0) . ');
+							$js = $this->TopFrame . '.makeNewEntry(\''.$this->Glossary->Icon.'\',\''.$this->Glossary->ID.'\',\''.$this->Glossary->Language.'_'.$this->Glossary->Type.'\',\''.$this->Glossary->Text.'\',0,\''.($this->Glossary->IsFolder ? 'folder' : 'item').'\',\''. GLOSSARY_TABLE .'\',' . ($this->Glossary->Published>0?1:0) . ');
 								'. $this->TopFrame.'.drawTree();';
 						} else {
-							$js = $this->TopFrame.'.updateEntry('.$this->Glossary->ID.',"'.addslashes(htmlspecialchars($this->Glossary->Text)).'","'.$this->Glossary->Language.'_'.$this->Glossary->Type.'",' . ($this->Glossary->Published>0?1:0) . ');'."\n";
+							$js = $this->TopFrame.'.updateEntry('.$this->Glossary->ID.',"'.$this->Glossary->Text.'","'.$this->Glossary->Language.'_'.$this->Glossary->Type.'",' . ($this->Glossary->Published>0?1:0) . ');'."\n";
 						}
+						
+						$this->Glossary->Text = html_entity_decode($this->Glossary->Text,ENT_QUOTES);
+						$this->Glossary->Title = html_entity_decode($this->Glossary->Title,ENT_QUOTES);
 						
 						$message = "";
 						// Replacment of item is activated
 						if($StateBefore == 0 && $_REQUEST['Published']=="1") {
-							$message .= sprintf($GLOBALS['l_glossary']["replace_activated"],$this->Glossary->Text);
+							$message .= sprintf($GLOBALS['l_glossary']["replace_activated"], $this->Glossary->Text);
 							$message .= "\\n";
 						
 						// Replacement of item is deactivated
@@ -666,9 +669,8 @@ class weGlossaryView {
 							$message .= "\\n";
 							
 						}
-						
 						$message .= sprintf($GLOBALS['l_glossary']["item_saved"], $this->Glossary->Text);
-					
+
 						print we_htmlElement::jsElement(
 							$js . 
 							we_message_reporting::getShowMessageCall($message, WE_MESSAGE_NOTICE) . '
@@ -679,19 +681,14 @@ class weGlossaryView {
 							}
 							'.$this->TopFrame.'.hot=0;
 						');
-							
-						
 
 						//
 						// --> Save to Cache
 						//
-						
 
 						$Cache = new weGlossaryCache($this->Glossary->Language);
 						$Cache->write();
 						unset($Cache);
-						
-						$this->Glossary->Text = htmlspecialchars($this->Glossary->Text, ENT_NOQUOTES);
 
 						//
 						// --> Save to Cache End
