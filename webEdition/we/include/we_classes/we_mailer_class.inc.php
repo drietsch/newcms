@@ -16,7 +16,7 @@ define("WE_MAIL_TEXT_ONLY",0);
 define("WE_MAIL_HTML_ONLY",1);
 define("WE_MAIL_TEXT_AND_HTML",2);
 
-require($_SERVER['DOCUMENT_ROOT'] . "/webEdition/we/include/we_classes/smtp.class.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/webEdition/we/include/we_classes/smtp.class.php");
 
 class we_mailer {
 
