@@ -56,7 +56,6 @@ echo '
 #deleteAllVersions{display: block; }
 #label_deleteAllVersions{display: block; }
 #deleteButton{display: block; }
-#print{display: inline; }
 </style>
 
 <style type="text/css" media="print"> 
@@ -76,7 +75,6 @@ echo '
 #deleteAllVersions{display: none; }
 #label_deleteAllVersions{display: none; }
 #deleteButton{display: none; }
-#print{display: none; }
 </style>
 ';
 
