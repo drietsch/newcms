@@ -2470,7 +2470,6 @@ class weNewsletterFrames extends weModuleFrames {
 
 	function getHTMLSendCmd(){
 		global $l_newsletter;
-		include_once(WE_NEWSLETTER_MODULE_DIR . "weNewsletterMailer.php");
 
 		if(isset($_REQUEST["nid"])) $nid=$_REQUEST["nid"];
 		else return;
