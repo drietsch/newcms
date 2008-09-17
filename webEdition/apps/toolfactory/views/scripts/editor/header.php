@@ -62,8 +62,13 @@ $js = <<<EOS
 	});
 
 	weEventController.register("docChanged", function(data, sender) {
-		//var path = parent.edbody.document.we_form.ParentPath.value + "/"+ parent.edbody.document.we_form.Text.value;
-		//self.setTitlePath("", path.replace(/\/\//,"/"));
+		var path = "";
+		if(typeof(parent.edbody.document.we_form.ParentPath)!="undefined") {
+			path = parent.edbody.document.we_form.ParentPath.value + "/";
+		}
+
+		path += parent.edbody.document.we_form.Text.value;
+		self.setTitlePath("", path.replace(/\/\//,"/"));
 		self.mark();
 	});
 
