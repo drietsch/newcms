@@ -271,7 +271,7 @@ $contentDiff .= '</tr>';
 	}
 	if(!empty($newDocElements)) {
 		foreach($newDocElements as $k => $v) {
-			$name = $k;
+			$name = ($k!="") ? $k : getPixel(1,1);
 			$oldVersion = true;
 			
 			if($k=='weInternVariantElement') {
