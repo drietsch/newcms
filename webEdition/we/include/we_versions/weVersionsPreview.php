@@ -187,17 +187,17 @@ foreach($versions as $k => $v) {
 	$_versions_time_days->addOption($k,$txt);
 }
 
-$contentDiff = '<div style="margin-left:20px;" id="top">'.$GLOBALS['l_versions']['VersionChangeTxt'].'<br/><br/>'.
+$contentDiff = '<div style="margin-left:25px;" id="top">'.$GLOBALS['l_versions']['VersionChangeTxt'].'<br/><br/>'.
 			$GLOBALS['l_versions']['VersionNumber']." ".$_versions_time_days->getHtmlCode().'
 			<div style="margin:20px 0px 0px 0px;" class="defaultfont"><a href="javascript:window.print()">'.$GLOBALS['l_versions']["printPage"].'</a></div>
 			</div>
-			<div style="margin:0px 0px 0px 20px;" id="topPrint">
+			<div style="margin:0px 0px 0px 25px;" id="topPrint">
 					<strong>'.$GLOBALS['l_versions']['versionDiffs'].':</strong><br/>
 					<br/><strong>'.$GLOBALS['l_versions']["Text"].':</strong> '.$newDoc["Text"].'
 					<br/><strong>'.$GLOBALS['l_versions']["documentID"].':</strong> '.$newDoc["documentID"].'
 					<br/><strong>'.$GLOBALS['l_versions']["path"].':</strong> '.$newDoc["Path"].'
 			</div>
-			<table cellpadding="5" cellspacing="0" border="0" width="95%" style="background-color:#FFF;margin:15px;">
+			<table cellpadding="5" cellspacing="0" border="0" width="95%" style="background-color:#F5F5F5;margin:15px 15px 15px 25px;">
 			<tr>
 			<td style="border-bottom:1px solid #B8B8B7;">'.getPixel(30,30).'	
 			</td>
@@ -245,10 +245,10 @@ foreach($newDoc as $k => $v) {
 		}
 
 		$contentDiff .= '<tr>';
-		$contentDiff .= '<td width="33%" class="middlefont" style="'.$mark.'"><strong>'.$name.'</strong></td>';
-		$contentDiff .= '<td width="33%" class="middlefont" style="'.$mark.'">'.$newVal.'</td>';
+		$contentDiff .= '<td width="33%" style="'.$mark.'"><strong>'.$name.'</strong></td>';
+		$contentDiff .= '<td width="33%" style="'.$mark.'">'.$newVal.'</td>';
 		if($oldVersion) {
-			$contentDiff .= '<td width="33%" class="middlefont" style="'.$mark.'border-left:1px solid #B8B8B7;">'.$oldVal.'</td>';
+			$contentDiff .= '<td width="33%" style="'.$mark.'border-left:1px solid #B8B8B7;">'.$oldVal.'</td>';
 		}
 		$contentDiff .= '</tr>';
 	}
@@ -258,7 +258,7 @@ $contentDiff .= '</table>';
  
 //elements
 
-$contentDiff .= '<table cellpadding="5" cellspacing="0" border="0" width="95%" style="background-color:#FFF;margin:15px;">
+$contentDiff .= '<table cellpadding="5" cellspacing="0" border="0" width="95%" style="background-color:#F5F5F5;margin:15px 15px 15px 25px;">
 		<tr>
 		<td align="left" colspan="3" style="padding:5px;background-color:#BCBBBB;" class="defaultfont"><strong>'.$GLOBALS['l_versions']['contentElementsMod'].'</strong></td>';
 
@@ -315,13 +315,13 @@ $contentDiff .= '</tr>';
 			}
 			
 			$contentDiff .= '<tr>';
-			$contentDiff .= '<td width="33%" class="middlefont" style="'.$mark.'"><strong>'.$name.'</strong></td>';
-			$contentDiff .= '<td width="33%" class="middlefont" style="'.$mark.'">'.$newVal.'</td>';
+			$contentDiff .= '<td width="33%" style="'.$mark.'"><strong>'.$name.'</strong></td>';
+			$contentDiff .= '<td width="33%" style="'.$mark.'">'.$newVal.'</td>';
 			if($oldVersion) {
 				if(!stristr($GLOBALS['WE_LANGUAGE'], '_UTF-8') === FALSE) {
 					$oldVal = utf8_encode($oldVal);
 				}
-				$contentDiff .= '<td width="33%" class="middlefont" style="'.$mark.'border-left:1px solid #B8B8B7;">'.$oldVal.'</td>';
+				$contentDiff .= '<td width="33%" style="'.$mark.'border-left:1px solid #B8B8B7;">'.$oldVal.'</td>';
 			}
 			$contentDiff .= '</tr>';
 			
@@ -331,7 +331,7 @@ $contentDiff .= '</tr>';
 $contentDiff .= '</table>';
 
 	//scheduler
-	$contentDiff .= '<table cellpadding="5" cellspacing="0" border="0" width="95%" style="background-color:#FFF;margin:15px;">
+	$contentDiff .= '<table cellpadding="5" cellspacing="0" border="0" width="95%" style="background-color:#F5F5F5;margin:15px 15px 15px 25px;">
 
 			<tr>
 			<td align="left" colspan="3" style="padding:5px;background-color:#BCBBBB;" class="defaultfont"><strong>'.$GLOBALS['l_versions']['schedulerMod'].'</strong></td>';
@@ -355,9 +355,9 @@ $contentDiff .= '</table>';
 			foreach($oldDocScheduler as $k => $v) {
 				$number = $k+1;
 				$contentDiff .= '<tr>';
-				$contentDiff .= '<td width="33%" class="middlefont" style="background-color:#EFEFEF; "><strong>'.$GLOBALS['l_versions']['scheduleTask'].' '.$number.'</strong></td>';
-				$contentDiff .= '<td width="33%" class="middlefont" style="background-color:#EFEFEF;">'.getPixel(1,1).'</td>';
-				$contentDiff .= '<td width="33%" class="middlefont" style="background-color:#EFEFEF;">'.getPixel(1,1).'</td>';
+				$contentDiff .= '<td width="33%" style="background-color:#FFF; "><strong>'.$GLOBALS['l_versions']['scheduleTask'].' '.$number.'</strong></td>';
+				$contentDiff .= '<td width="33%" style="background-color:#FFF;">'.getPixel(1,1).'</td>';
+				$contentDiff .= '<td width="33%" style="background-color:#FFF;">'.getPixel(1,1).'</td>';
 				$contentDiff .= '</tr>';
 			
 				foreach($v as $key => $val) {
@@ -378,9 +378,9 @@ $contentDiff .= '</table>';
 					
 					
 					$contentDiff .= '<tr>';
-					$contentDiff .= '<td width="33%" class="middlefont" style="'.$mark.'"><strong>'.$name.'</strong></td>';
+					$contentDiff .= '<td width="33%" style="'.$mark.'"><strong>'.$name.'</strong></td>';
 					$contentDiff .= '<td width="33%" style="'.$mark.'">'.$newVal.'</td>';
-					$contentDiff .= '<td width="33%" class="middlefont" style="border-left:1px solid #B8B8B7;'.$mark.'">'.$oldVal.'</td>';
+					$contentDiff .= '<td width="33%" style="border-left:1px solid #B8B8B7;'.$mark.'">'.$oldVal.'</td>';
 					$contentDiff .= '</tr>';
 					
 				}
@@ -392,10 +392,10 @@ $contentDiff .= '</table>';
 				$number = $k+1;
 
 				$contentDiff .= '<tr>';
-				$contentDiff .= '<td width="33%" class="middlefont" style="background-color:#EFEFEF; "><strong>'.$GLOBALS['l_versions']['scheduleTask'].' '.$number.'</strong></td>';
-				$contentDiff .= '<td width="33%" class="middlefont" style="background-color:#EFEFEF;">'.getPixel(1,1).'</td>';
+				$contentDiff .= '<td width="33%" style="background-color:#FFF; "><strong>'.$GLOBALS['l_versions']['scheduleTask'].' '.$number.'</strong></td>';
+				$contentDiff .= '<td width="33%" style="background-color:#FFF;">'.getPixel(1,1).'</td>';
 				if(!empty($oldDoc)) {
-					$contentDiff .= '<td width="33%" class="middlefont" style="background-color:#EFEFEF;">'.getPixel(1,1).'</td>';
+					$contentDiff .= '<td width="33%" style="background-color:#FFF;">'.getPixel(1,1).'</td>';
 				}
 				$contentDiff .= '</tr>';
 
@@ -444,10 +444,10 @@ $contentDiff .= '</table>';
 					
 					
 					$contentDiff .= '<tr>';
-					$contentDiff .= '<td width="33%" class="middlefont" style="'.$mark.'"><strong>'.$name.'</strong></td>';
-					$contentDiff .= '<td width="33%" class="middlefont" style="'.$mark.'">'.$newVal.'</td>';
+					$contentDiff .= '<td width="33%" style="'.$mark.'"><strong>'.$name.'</strong></td>';
+					$contentDiff .= '<td width="33%" style="'.$mark.'">'.$newVal.'</td>';
 					if(!empty($oldDoc)) {
-						$contentDiff .= '<td width="33%" class="middlefont" style="border-left:1px solid #B8B8B7;'.$mark.'">'.$oldVal.'</td>';
+						$contentDiff .= '<td width="33%" style="border-left:1px solid #B8B8B7;'.$mark.'">'.$oldVal.'</td>';
 					}
 					$contentDiff .= '</tr>';
 					
@@ -459,7 +459,7 @@ $contentDiff .= '</table>';
 	
 	
 	//customfilter
-	$contentDiff .= '<table cellpadding="5" cellspacing="0" border="0" width="95%" style="background-color:#FFF;margin:15px;">
+	$contentDiff .= '<table cellpadding="5" cellspacing="0" border="0" width="95%" style="background-color:#F5F5F5;margin:15px 15px 15px 25px;">
 			<tr>
 			<td align="left" colspan="3" style="padding:5px;background-color:#BCBBBB;" class="defaultfont"><strong>'.$GLOBALS['l_versions']['customerMod'].'</strong></td>';
 
@@ -496,10 +496,10 @@ $contentDiff .= '</table>';
 				}
 				
 				$contentDiff .= '<tr>';
-				$contentDiff .= '<td width="33%" class="middlefont" style="'.$mark.'"><strong>'.$name.'</strong></td>';
-				$contentDiff .= '<td width="33%" class="middlefont" style="'.$mark.'border-right:1px solid #000;">'.$newVal.'</td>';
+				$contentDiff .= '<td width="33%" style="'.$mark.'"><strong>'.$name.'</strong></td>';
+				$contentDiff .= '<td width="33%" style="'.$mark.'border-right:1px solid #000;">'.$newVal.'</td>';
 				if(!empty($oldDoc)) {
-					$contentDiff .= '<td width="33%" class="middlefont" style="'.$mark.'">'.$oldVal.'</td>';
+					$contentDiff .= '<td width="33%" style="'.$mark.'">'.$oldVal.'</td>';
 				}
 				$contentDiff .= '</tr>';
 				
@@ -550,10 +550,10 @@ $contentDiff .= '</table>';
 
 				
 				$contentDiff .= '<tr>';
-				$contentDiff .= '<td width="33%" class="middlefont" style="'.$mark.'"><strong>'.$name.'</strong></td>';
-				$contentDiff .= '<td width="33%" class="middlefont" style="'.$mark.'">'.$newVal.'</td>';
+				$contentDiff .= '<td width="33%" style="'.$mark.'"><strong>'.$name.'</strong></td>';
+				$contentDiff .= '<td width="33%" style="'.$mark.'">'.$newVal.'</td>';
 				if(!empty($oldDoc)) {
-					$contentDiff .= '<td width="33%" class="middlefont" style="'.$mark.'">'.$oldVal.'</td>';
+					$contentDiff .= '<td width="33%" style="'.$mark.'">'.$oldVal.'</td>';
 				}
 				$contentDiff .= '</tr>';
 				
@@ -607,12 +607,16 @@ function previewVersion(ID, newID) {
 <script src="<?php print JS_DIR; ?>windows.js" language="JavaScript" type="text/javascript"></script>
 <?php print $js;?>
 <style type="text/css" media="screen"> 
+body {margin: 0;padding: 0;}
+td {font-size:11px;}
 #tab1 {position:absolute;overflow:auto; }
 #topPrint {display: none;}
 </style>
 
 <style type="text/css" media="print"> 
-#tab1 {position:relative;overflow: visible; }
+body {margin: 0;padding: 0;}
+td {font-size:9px;}
+#tab1 {position:relative;overflow: visible;font-size:12px; }
 #tab2 {display: none}
 #tab3 {display: none}
 #mytabs {display: none}
@@ -621,7 +625,7 @@ function previewVersion(ID, newID) {
 </style>
 </head>
 
-<body class="weDialogBody">
+<body>
 <div id="mytabs">
 <?php print $tabsBody;?>
 </div>
