@@ -66,6 +66,30 @@ class weVersionsView
 				
 			}
 		
+			function printScreen() {
+				
+				var scrollContent = document.getElementById("scrollContent");
+				var hScrollContent = scrollContent.innerHeight ? scrollContent.innerHeight : scrollContent.offsetHeight;
+				
+				var contentTable = document.getElementById("contentTable");
+				var hContentTable = contentTable.innerHeight ? contentTable.innerHeight : contentTable.offsetHeight;
+	
+				hContentTable = hContentTable-1500;
+				
+				scrollContent.style.height = hContentTable+"px";
+				window.print();
+				
+				setTimeout(function(){setCrollContent(hScrollContent);},2000);
+
+			}
+			
+			function setCrollContent(hScrollContent) {
+
+				var scrollContent = document.getElementById("scrollContent");
+				scrollContent.style.height = hScrollContent+"px";
+			
+			}
+			
 			function sizeScrollContent() {
 			
 				var elem = document.getElementById("filterTable");
@@ -78,7 +102,7 @@ class weVersionsView
 	  				
 	  				var h = window.innerHeight ? window.innerHeight : document.body.offsetHeight;
 	  				var scrollContent = document.getElementById("scrollContent");
-	  				
+
 	  				var height = 240;
 	  				if((h - height)>0) {
 	  					scrollContent.style.height=h - height;
@@ -1004,7 +1028,7 @@ class weVersionsView
 					<td>' . self::getNextPrev($foundItems) . '</td>
 					<td id="print" class="defaultfont">' . getPixel(
 				10, 
-				12) . '<a href="javascript:window.print()">' . $GLOBALS['l_versions']["printPage"] . '</a></td>
+				12) . '<a href="javascript:printScreen();">' . $GLOBALS['l_versions']["printPage"] . '</a></td>
 				</tr>
 				<tr>
 					<td colspan="12">' . getPixel(1, 12) . '</td>
@@ -1235,15 +1259,17 @@ class weVersionsView
 					$disabledReset) . "</span>";
 			$content[$f][6]["dat"] = "<span class='printShow'>" . $we_button->create_button(
 					"preview", 
-					"javascript:previewVersion('" . $_versions[$f]["ID"] . "');") . "</span>";
-			$content[$f][7]["dat"] = ($_versions[$f]["ContentType"] == "text/webedition" || $_versions[$f]["ContentType"] == "text/html" || $_versions[$f]["ContentType"] == "objectFile") ? we_forms::checkbox(
+					"javascript:previewVersion('" . $_versions[$f]["ID"] . "');") . "</span>".getPixel(1,1);
+			$content[$f][7]["dat"] = "<span class='printShow'>";
+			$content[$f][7]["dat"] .= ($_versions[$f]["ContentType"] == "text/webedition" || $_versions[$f]["ContentType"] == "text/html" || $_versions[$f]["ContentType"] == "objectFile") ? we_forms::checkbox(
 					$_versions[$f]["ID"], 
 					0, 
 					"publishVersion_" . $_versions[$f]["ID"], 
 					$GLOBALS['l_versions']['publishIfReset'], 
 					false, 
 					"middlefont", 
-					"") : "";
+					"") : '';
+			$content[$f][7]["dat"] .= "</span>".getPixel(1,1);
 		}
 		
 		return $content;
@@ -1403,7 +1429,7 @@ class weVersionsView
 		
 		$we_button = new we_button();
 		
-		$out = '<table border="0" cellpadding="5" cellspacing="0" width="100%">';
+		$out = '<table border="0" cellpadding="5" cellspacing="0" width="100%" id="contentTable">';
 		
 		$anz = count($content);
 		$x = $searchstart + $anzahl;
