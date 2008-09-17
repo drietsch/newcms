@@ -130,6 +130,7 @@
 			$before = "";
 			foreach($pieces as $piece) {
 				if (!ereg("^<", $piece) && !eregi("<script", $before)) {
+					$piece = str_replace('&quot;', '"', $piece);
 					if(!eregi("<a ", $before)) {
 						$piece = weGlossaryReplace::doReplaceWords($piece, $link);
 					}
@@ -180,19 +181,16 @@
 				foreach($replacements as $k => $rep) {
 					//forbid self-reference links
 					if(stristr($rep,'"\2"=="\1"?"\1":"\3<a href=\"'.$GLOBALS["we_doc"]->Path.'')) { 
-						unset($replacements[$k]);
-						
+						unset($replacements[$k]);	
 					}
-
 				}
 				
-				$return = ereg_replace("^ ", "", ereg_replace(" $", "", preg_replace(array_keys($replacements), $replacements, " " . $src . " ")));
-				
+				$return =  ereg_replace("^ ", "", str_replace(" $", "", preg_replace(array_keys($replacements), $replacements, " " . $src . " ")));
+
 				return stripslashes($return);
-			
 			} else {
-				return $src;
 				
+				return $src;
 			}
 			
 		}
