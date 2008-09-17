@@ -68,7 +68,7 @@ class we_core_Local
 	{
 		$locales = array(
 
-		'Deutsch' => 'de', 'English' => 'en', 'Dutch' => 'nl', 'Finnish' => 'fi', 'French' => 'fr', 'Polish' => 'pl', 'Russian' => 'ru', 'Spanish' => 'es');
+		'Deutsch' => 'de', 'English' => 'en', 'Dutch' => 'nl', 'Finnish' => 'fi', 'French' => 'fr', 'Polish' => 'pl', 'Russian' => 'ru', 'Spanish' => 'es', 'Norwegian' => 'no');
 		
 		$lang = str_replace('_UTF-8', '', $lang);
 		
@@ -88,7 +88,7 @@ class we_core_Local
 	{
 		$langs = array(
 
-		'de' => 'Deutsch', 'en' => 'English', 'nl' => 'Dutch', 'fi' => 'Finnish', 'fr' => 'French', 'pl' => 'Polish', 'ru' => 'Russian', 'es' => 'Spanish');
+		'de' => 'Deutsch', 'en' => 'English', 'nl' => 'Dutch', 'fi' => 'Finnish', 'fr' => 'French', 'pl' => 'Polish', 'ru' => 'Russian', 'es' => 'Spanish', 'no' => 'Norwegian');
 		
 		$locale = substr($locale, 0, 2);
 		
