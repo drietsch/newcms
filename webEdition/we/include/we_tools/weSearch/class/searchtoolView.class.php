@@ -13,6 +13,7 @@
 
 include_once ($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we.inc.php');
 include_once ($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_language/' . $GLOBALS['WE_LANGUAGE'] . '/searchtool.inc.php');
+include_once ($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_language/' . $GLOBALS['WE_LANGUAGE'] . '/versions.inc.php');
 include_once ($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_tools/weSearch/class/searchtool.class.php');
 include_once ($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_classes/tools/weToolView.class.php');
 include_once ($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_tools/weSearch/class/searchtoolSearch.class.inc.php');
@@ -2688,9 +2689,9 @@ class searchtoolView extends weToolView
 		
 		for ($f = 0; $f < $resultCount; $f++) {
 			$fontColor = "black";
+			$showPubCheckbox = true;
 			if (isset($_result[$f]["Published"]) && isset($_result[$f]["VersionID"]) && !$_result[$f]["VersionID"]) {
 				$published = ((($_result[$f]["Published"] != 0) && ($_result[$f]["Published"] < $_result[$f]["ModDate"]) && ($_result[$f]["ContentType"] == "text/html" || $_result[$f]["ContentType"] == "text/webedition" || $_result[$f]["ContentType"] == "objectFile")) ? -1 : $_result[$f]["Published"]);
-				$showPubCheckbox = true;
 				if ($_result[$f]["ContentType"] == "text/html" || $_result[$f]["ContentType"] == "objectFile" || $_result[$f]["ContentType"] == "text/webedition") {
 					if ($published == 0) {
 						$fontColor = "red";
