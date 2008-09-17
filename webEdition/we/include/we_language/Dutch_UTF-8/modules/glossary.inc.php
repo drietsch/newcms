@@ -155,7 +155,8 @@ $l_glossary['popup_location'] = 'Locatie';
 $l_glossary['popup_toolbar'] = 'Knoppenbalk'; 
 
 $l_glossary['linkprops_desc'] = 'Hier kunt u de additionele koppeling-instellingen wijzigen.'; 
-$l_glossary['text_notValid'] = "Invalid text entry.\\nInvalid characters are used.";
+$l_glossary['text_notValid'] = "Invalid text entry.\\nInvalid characters are $, | and \\\\.";
+$l_glossary['title_notValid'] = "Invalid title entry.\\nInvalid characters are $, | and \\\\.";
 
 $l_glossary['enable_replacement'] = 'Activeer automatiche woordenlijst vervanging'; 
 $l_glossary['enabe_dictionary_check'] = 'Activeer woordenlijst controle tijdens het publiceren van documenten/objecten';

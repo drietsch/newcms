@@ -155,7 +155,8 @@ $l_glossary['popup_location'] = 'Location';
 $l_glossary['popup_toolbar'] = 'Toolbar';
 
 $l_glossary['linkprops_desc'] = 'Hier können Sie die zusätzlichen Link-Eigenschaften definieren. Für die dynamischen Einträge werden nur die Link-Eigenschaften Linkziel und Popup-Fenster verwendet.';
-$l_glossary['text_notValid'] = "Der Text enthält ungültige Zeichen.";
+$l_glossary['text_notValid'] = "Der Text enthält ungültige Zeichen. Zu diesen gehören $, | und \\\\.";
+$l_glossary['title_notValid'] = "Der Titel enthält ungültige Zeichen. Zu diesen gehören $, | und \\\\.";
 
 
 $l_glossary['enable_replacement'] = 'automatische Glossarersetzung aktivieren';

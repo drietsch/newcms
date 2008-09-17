@@ -154,7 +154,8 @@ $l_glossary['popup_location'] = 'Location';
 $l_glossary['popup_toolbar'] = 'Toolbar';
 
 $l_glossary['linkprops_desc'] = 'Here you could change the additional link properties.';
-$l_glossary['text_notValid'] = "Invalid text entry.\\nInvalid characters are used.";
+$l_glossary['text_notValid'] = "Invalid text entry.\\nInvalid characters are $, | and \\\\.";
+$l_glossary['title_notValid'] = "Invalid title entry.\\nInvalid characters are $, | and \\\\.";
 
 $l_glossary['enable_replacement'] = 'Activate automatic grlossary replacement';
 $l_glossary['enabe_dictionary_check'] = 'Activate glossary check when publishing documents/objects';

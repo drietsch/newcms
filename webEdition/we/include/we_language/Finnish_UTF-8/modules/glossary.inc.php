@@ -155,7 +155,8 @@ $l_glossary['popup_location'] = 'Sijainti';
 $l_glossary['popup_toolbar'] = 'Työkalupalkki';
 
 $l_glossary['linkprops_desc'] = 'Täällä voit vaihtaa linkin lisäasetuksia.';
-$l_glossary['text_notValid'] = "Invalid text entry.\\nInvalid characters are $ and \\\\.";
+$l_glossary['text_notValid'] = "Invalid text entry.\\nInvalid characters are $, | and \\\\.";
+$l_glossary['title_notValid'] = "Invalid title entry.\\nInvalid characters are $, | and \\\\.";
 
 $l_glossary['enable_replacement'] = 'Aktivoi automaattinen sanastokorvaus';
 $l_glossary['enabe_dictionary_check'] = 'Aktivoi sanastotarkastus kun dokumentteja/objekteja julkaistaan';
