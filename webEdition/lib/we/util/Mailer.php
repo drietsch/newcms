@@ -75,7 +75,7 @@ class we_util_Mailer extends PHPMailer
 						$this->Timeout = SMTP_TIMEOUT;
 					if (defined('SMTP_HALO'))
 						$this->Halo = SMTP_HALO;
-				
+					break;
 				default :
 					$this->IsMail();
 					break;
