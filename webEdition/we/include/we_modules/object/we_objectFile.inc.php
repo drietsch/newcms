@@ -797,8 +797,8 @@ class we_objectFile extends we_document
 		$we_button = new we_button();
 
 		$foo = getHash("SELECT Text,Path FROM " .OBJECT_TABLE . " WHERE ID='$ObjectID'",$db) ;
-		$name = $foo["Text"];
-		$classPath = $foo["Path"];
+		$name = isset($foo["Text"]) ? $foo["Text"] : '';
+		$classPath = isset($foo["Path"]) ? $foo["Path"] : '';
 		$pid = f("SELECT ID FROM " . OBJECT_FILES_TABLE . " WHERE Path='$classPath'","ID",$db);
 		$textname = 'we_'.$this->Name.'_txt[we_object_'.$ObjectID.'_path]';
 		$idname = 'we_'.$this->Name."_object[we_object_$ObjectID]";
