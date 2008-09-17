@@ -74,7 +74,7 @@ class weVersionsView
 				var contentTable = document.getElementById("contentTable");
 				var hContentTable = contentTable.innerHeight ? contentTable.innerHeight : contentTable.offsetHeight;
 	
-				hContentTable = hContentTable-1500;
+				//hContentTable = hContentTable-500;
 				
 				scrollContent.style.height = hContentTable+"px";
 				window.print();
