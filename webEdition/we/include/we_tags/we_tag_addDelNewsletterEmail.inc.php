@@ -107,6 +107,8 @@ function we_tag_addDelNewsletterEmail($attribs, $content) {
 				}
 				return;
 			}
+		} else {
+			$GLOBALS["WE_MAILING_LIST_EMPTY"] = 1;
 		}
 	}
 
