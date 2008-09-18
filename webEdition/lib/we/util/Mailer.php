@@ -269,7 +269,7 @@ class we_util_Mailer extends PHPMailer
 
 	public function setBody($val)
 	{
-		$this->setBody = $val;
+		$this->Body = $val;
 	}
 
 }
