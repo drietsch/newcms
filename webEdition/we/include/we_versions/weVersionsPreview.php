@@ -197,14 +197,14 @@ $contentDiff = '<div style="margin-left:25px;" id="top">'.$GLOBALS['l_versions']
 					<br/><strong>'.$GLOBALS['l_versions']["documentID"].':</strong> '.$newDoc["documentID"].'
 					<br/><strong>'.$GLOBALS['l_versions']["path"].':</strong> '.$newDoc["Path"].'
 			</div>
-			<table cellpadding="5" cellspacing="0" border="0" width="95%" style="background-color:#F5F5F5;margin:15px 15px 15px 25px;">
+			<table cellpadding="5" cellspacing="0" border="0" width="95%" style="background-color:#F5F5F5;margin:15px 15px 15px 25px;border:1px solid #B8B8B7;">
 			<tr>
-			<td style="border-bottom:1px solid #B8B8B7;">'.getPixel(30,30).'	
+			<td style="border-bottom:1px solid #B8B8B7;background-color:#BCBBBB;">'.getPixel(30,15).'	
 			</td>
-	  		<td class="defaultfont" align="center" style="border-bottom:1px solid #B8B8B7;"><strong>'.$GLOBALS['l_versions']['VersionNew'].'</strong></td>';
+	  		<td class="defaultfont" align="center" style="border-bottom:1px solid #B8B8B7;background-color:#BCBBBB;"><strong>'.$GLOBALS['l_versions']['VersionNew'].'</strong></td>';
 
 if(!empty($oldDoc)) {
-	 $contentDiff .= '<td class="defaultfont" align="center" style="border-left:1px solid #B8B8B7;border-bottom:1px solid #B8B8B7;"><strong>'.$GLOBALS['l_versions']['VersionOld'].'</strong></td>';
+	 $contentDiff .= '<td class="defaultfont" align="center" style="border-left:1px solid #B8B8B7;background-color:#BCBBBB;border-bottom:1px solid #B8B8B7;"><strong>'.$GLOBALS['l_versions']['VersionOld'].'</strong></td>';
 }
 $contentDiff .= '</tr>';
 
@@ -258,7 +258,7 @@ $contentDiff .= '</table>';
  
 //elements
 
-$contentDiff .= '<table cellpadding="5" cellspacing="0" border="0" width="95%" style="background-color:#F5F5F5;margin:15px 15px 15px 25px;">
+$contentDiff .= '<table cellpadding="5" cellspacing="0" border="0" width="95%" style="background-color:#F5F5F5;margin:15px 15px 15px 25px;border:1px solid #B8B8B7;">
 		<tr>
 		<td align="left" colspan="3" style="padding:5px;background-color:#BCBBBB;" class="defaultfont"><strong>'.$GLOBALS['l_versions']['contentElementsMod'].'</strong></td>';
 
@@ -331,7 +331,7 @@ $contentDiff .= '</tr>';
 $contentDiff .= '</table>';
 
 	//scheduler
-	$contentDiff .= '<table cellpadding="5" cellspacing="0" border="0" width="95%" style="background-color:#F5F5F5;margin:15px 15px 15px 25px;">
+	$contentDiff .= '<table cellpadding="5" cellspacing="0" border="0" width="95%" style="background-color:#F5F5F5;margin:15px 15px 15px 25px;border:1px solid #B8B8B7;">
 
 			<tr>
 			<td align="left" colspan="3" style="padding:5px;background-color:#BCBBBB;" class="defaultfont"><strong>'.$GLOBALS['l_versions']['schedulerMod'].'</strong></td>';
@@ -459,7 +459,7 @@ $contentDiff .= '</table>';
 	
 	
 	//customfilter
-	$contentDiff .= '<table cellpadding="5" cellspacing="0" border="0" width="95%" style="background-color:#F5F5F5;margin:15px 15px 15px 25px;">
+	$contentDiff .= '<table cellpadding="5" cellspacing="0" border="0" width="95%" style="background-color:#F5F5F5;margin:15px 15px 15px 25px;border:1px solid #B8B8B7;">
 			<tr>
 			<td align="left" colspan="3" style="padding:5px;background-color:#BCBBBB;" class="defaultfont"><strong>'.$GLOBALS['l_versions']['customerMod'].'</strong></td>';
 
