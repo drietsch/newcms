@@ -109,6 +109,13 @@ function we_tag_addDelNewsletterEmail($attribs, $content) {
 			}
 		} else {
 			$GLOBALS["WE_MAILING_LIST_EMPTY"] = 1;
+			if($isSubscribe){
+				$GLOBALS["WE_WRITENEWSLETTER_STATUS"] = WE_NEWSLETTER_STATUS_ERROR;
+			}
+			if($isUnsubscribe){
+				$GLOBALS["WE_REMOVENEWSLETTER_STATUS"] = WE_NEWSLETTER_STATUS_ERROR;
+			}
+			return;
 		}
 	}
 
