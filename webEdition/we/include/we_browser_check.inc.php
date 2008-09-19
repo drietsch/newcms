@@ -90,10 +90,14 @@ if (($BROWSER == "NN6")) {
 
 
 $NET6 = false;
-
+$FF = ""; 
 if (($BROWSER == "NN6")) {
 	if (ereg('.*Netscape.*', $_SERVER["HTTP_USER_AGENT"], $regs)) {
 		$NET6 = true;
+	} elseif (ereg('.*Firefox*', $_SERVER["HTTP_USER_AGENT"], $regs)) {
+		$BROWSERVERSION = substr(strstr($_SERVER["HTTP_USER_AGENT"], "Firefox/"),8);
+		$_bvArray=explode(".",$BROWSERVERSION);
+		$FF = $_bvArray[0];		
 	}
 }
 
