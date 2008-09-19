@@ -1515,7 +1515,7 @@ function debug($text)
 function debug2html($text)
 {
 	if (!($fp = fopen(LOG_DIR . "/debug.html", "ab"))) {
-		mkdir(WE_LOG, 0755);
+		mkdir(LOG_DIR, 0755);
 		$fp = fopen(LOG_DIR . "/debug.html", "ab");
 	}
 	
