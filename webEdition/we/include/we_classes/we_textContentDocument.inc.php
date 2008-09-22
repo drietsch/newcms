@@ -237,6 +237,9 @@ class we_textContentDocument extends we_textDocument{
 	<tr>
 		<td>'.$this->formIsSearchable().'</td>
 	</tr>
+	<tr>
+		<td>'.$this->formInGlossar().'</td>
+	</tr>
 </table>
 ';
 		return $content;
