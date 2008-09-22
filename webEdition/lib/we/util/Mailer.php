@@ -177,9 +177,10 @@ class we_util_Mailer extends PHPMailer
 				}
 			}
 		}
+		$protocol = strtolower(str_replace(strstr($_SERVER['SERVER_PROTOCOL'],"/"),"",$_SERVER['SERVER_PROTOCOL']));
 		
 		if ($this->ContentType == 'text/html' && !strpos($this->Body,"<base")) {
-			$this->Body = str_replace("</head>","<base href='".$_SERVER['HTTP_HOST']."' />\n</head>",$this->Body);
+			$this->Body = str_replace("</head>","<base href='".($protocol==""?"":$protocol."://").$_SERVER['HTTP_HOST']."' />\n</head>",$this->Body);
 		}
 		
 		if ((!isset($this->AltBody) || $this->AltBody == "") && $this->ContentType == 'text/html') {
