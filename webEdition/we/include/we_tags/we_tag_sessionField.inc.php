@@ -128,81 +128,87 @@ function we_tag_sessionField($attribs,$content) {
 
 		case "img":
 
-			$we_button = new we_button();
-			include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GLOBALS["WE_LANGUAGE"]."/parser.inc.php");
+			$showcontrol = we_getTagAttribute("showcontrol", $attribs, "", true, true);
+			if ($showcontrol) {
+				$we_button = new we_button();
+				include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GLOBALS["WE_LANGUAGE"]."/parser.inc.php");
+	
+				$foo = attributFehltError($attribs, "parentid", "sessionField");if($foo) return $foo;
+	
+				if (!isset($_SESSION["webuser"]['imgtmp'])) {
+					$_SESSION["webuser"]['imgtmp'] = array();
+				}
+				if (!isset($_SESSION["webuser"]['imgtmp'][$name])) {
+					$_SESSION["webuser"]['imgtmp'][$name] = array();
+				}
+	
+				$_SESSION["webuser"]['imgtmp'][$name]["parentid"] = we_getTagAttribute("parentid",$attribs, "0");
+				$_SESSION["webuser"]['imgtmp'][$name]["width"] = we_getTagAttribute("width",$attribs,0);
+				$_SESSION["webuser"]['imgtmp'][$name]["height"] = we_getTagAttribute("height",$attribs,0);
+				$_SESSION["webuser"]['imgtmp'][$name]["quality"] = we_getTagAttribute("quality",$attribs,"8");
+				$_SESSION["webuser"]['imgtmp'][$name]["keepratio"] = we_getTagAttribute("keepratio",$attribs,"",true, true);
+				$_SESSION["webuser"]['imgtmp'][$name]["maximize"] = we_getTagAttribute("maximize",$attribs,"",true);
+				$_SESSION["webuser"]['imgtmp'][$name]["id"] = $orgVal ? $orgVal : '';
+	
+				$_foo = id_to_path($_SESSION["webuser"]['imgtmp'][$name]["id"]);
+				if (!$_foo) {
+					$_SESSION["webuser"]['imgtmp'][$name]["id"] = 0;
+				}
+	
+				$bordercolor = we_getTagAttribute("bordercolor",$attribs, "#006DB8");
+				$checkboxstyle = we_getTagAttribute("checkboxstyle",$attribs);
+				$inputstyle = we_getTagAttribute("inputstyle",$attribs);
+				$checkboxclass = we_getTagAttribute("checkboxclass",$attribs);
+				$inputclass = we_getTagAttribute("inputclass",$attribs);
+				$checkboxtext = we_getTagAttribute("checkboxtext",$attribs, $GLOBALS["l_parser"]["delete"]);
+	
+				if($_SESSION["webuser"]['imgtmp'][$name]["id"]){
+				    $attribs["id"] = $_SESSION["webuser"]['imgtmp'][$name];
+				}
+	
+				unset($attribs["width"]);
+				unset($attribs["height"]);
 
-			$foo = attributFehltError($attribs, "parentid", "sessionField");if($foo) return $foo;
-
-			if (!isset($_SESSION["webuser"]['imgtmp'])) {
-				$_SESSION["webuser"]['imgtmp'] = array();
 			}
-			if (!isset($_SESSION["webuser"]['imgtmp'][$name])) {
-				$_SESSION["webuser"]['imgtmp'][$name] = array();
-			}
-
-			$_SESSION["webuser"]['imgtmp'][$name]["parentid"] = we_getTagAttribute("parentid",$attribs, "0");
-			$_SESSION["webuser"]['imgtmp'][$name]["width"] = we_getTagAttribute("width",$attribs,0);
-			$_SESSION["webuser"]['imgtmp'][$name]["height"] = we_getTagAttribute("height",$attribs,0);
-			$_SESSION["webuser"]['imgtmp'][$name]["quality"] = we_getTagAttribute("quality",$attribs,"8");
-			$_SESSION["webuser"]['imgtmp'][$name]["keepratio"] = we_getTagAttribute("keepratio",$attribs,"",true, true);
-			$_SESSION["webuser"]['imgtmp'][$name]["maximize"] = we_getTagAttribute("maximize",$attribs,"",true);
-			$_SESSION["webuser"]['imgtmp'][$name]["id"] = $orgVal ? $orgVal : '';
-
-			$_foo = id_to_path($_SESSION["webuser"]['imgtmp'][$name]["id"]);
-			if (!$_foo) {
-				$_SESSION["webuser"]['imgtmp'][$name]["id"] = 0;
-			}
-
-			$bordercolor = we_getTagAttribute("bordercolor",$attribs, "#006DB8");
-			$checkboxstyle = we_getTagAttribute("checkboxstyle",$attribs);
-			$inputstyle = we_getTagAttribute("inputstyle",$attribs);
-			$checkboxclass = we_getTagAttribute("checkboxclass",$attribs);
-			$inputclass = we_getTagAttribute("inputclass",$attribs);
-			$checkboxtext = we_getTagAttribute("checkboxtext",$attribs, $GLOBALS["l_parser"]["delete"]);
-
-			if($_SESSION["webuser"]['imgtmp'][$name]["id"]){
-			    $attribs["id"] = $_SESSION["webuser"]['imgtmp'][$name];
-			}
-
-			unset($attribs["width"]);
-			unset($attribs["height"]);
-
-
+			
 			$imgId = $_SESSION["webuser"]['imgtmp'][$name]["id"];
 
 			include_once($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/"."we_classes/we_document.inc.php");
 			$imgTag = we_document::getFieldByVal($imgId, "img");
 
-			$checked = '';
-
-
-			return '<table border="0" cellpadding="2" cellspacing="2" style="border: solid ' . $bordercolor . ' 1px;">
-				<tr>
-					<td class="weEditmodeStyle" colspan="2" align="center">' .
-					$imgTag . '
-						<input type="hidden" name="s[' . $name . ']" value="'.$_SESSION["webuser"]['imgtmp'][$name]["id"].'" /></td>
-				</tr>
-				<tr>
-					<td class="weEditmodeStyle" colspan="2" align="left">
-						<input'.($size ? ' size="'.$size.'"' : '').' name="WE_SF_IMG_DATA['.$name.']" type="file" accept="'.IMAGE_CONTENT_TYPES.'"'.($inputstyle ? (' style="'.$inputstyle.'"') : '').($inputclass ? (' class="'.$inputclass.'"') : '').' />
-					</td>
-				</tr>
-				<tr>
-					<td class="weEditmodeStyle" colspan="2" align="left">
-						<table border="0" cellpadding="0" cellspacing="0">
-							<tr>
-								<td style="padding-right: 5px;">
-									<input style="border:0px solid black;" type="checkbox" id="WE_SF_DEL_CHECKBOX_' . $name . '" name="WE_SF_DEL_CHECKBOX_' . $name . '" value="1" '.$checked.'/>
-								</td>
-								<td>
-									<label for="WE_SF_DEL_CHECKBOX_' . $name . '"'.($checkboxstyle ? (' style="'.$checkboxstyle.'"') : '').($checkboxclass ? (' class="'.$checkboxclass.'"') : '').'>'.$checkboxtext.'</label>
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-			</table>';
-
+			if ($showcontrol) {
+				$checked = '';
+	
+	
+				return '<table border="0" cellpadding="2" cellspacing="2" style="border: solid ' . $bordercolor . ' 1px;">
+					<tr>
+						<td class="weEditmodeStyle" colspan="2" align="center">' .
+						$imgTag . '
+							<input type="hidden" name="s[' . $name . ']" value="'.$_SESSION["webuser"]['imgtmp'][$name]["id"].'" /></td>
+					</tr>
+					<tr>
+						<td class="weEditmodeStyle" colspan="2" align="left">
+							<input'.($size ? ' size="'.$size.'"' : '').' name="WE_SF_IMG_DATA['.$name.']" type="file" accept="'.IMAGE_CONTENT_TYPES.'"'.($inputstyle ? (' style="'.$inputstyle.'"') : '').($inputclass ? (' class="'.$inputclass.'"') : '').' />
+						</td>
+					</tr>
+					<tr>
+						<td class="weEditmodeStyle" colspan="2" align="left">
+							<table border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td style="padding-right: 5px;">
+										<input style="border:0px solid black;" type="checkbox" id="WE_SF_DEL_CHECKBOX_' . $name . '" name="WE_SF_DEL_CHECKBOX_' . $name . '" value="1" '.$checked.'/>
+									</td>
+									<td>
+										<label for="WE_SF_DEL_CHECKBOX_' . $name . '"'.($checkboxstyle ? (' style="'.$checkboxstyle.'"') : '').($checkboxclass ? (' class="'.$checkboxclass.'"') : '').'>'.$checkboxtext.'</label>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>';
+			} else {
+				return $imgTag;
+			}
 	}
 }
 ?>
