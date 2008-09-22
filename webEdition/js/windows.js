@@ -49,10 +49,11 @@ function  jsWindowOpen(noPopupErrorMsg, noPopupLocation) {
 	var properties = (this.hideMenue ? "menubar=no," : "menubar=yes,")+(this.resizable ? "resizable=yes," : "resizable=no,")+((this.scroll) ? "scrollbars=yes," : "scrollbars=no,")+"width="+this.w+",height="+this.h;
 	properties += ",left="+this.x+",top="+this.y;
 	try{
-		
 		this.wind = window.open(this.url, this.ref, properties);
 		this.wind.moveTo(this.x,this.y);
 		this.wind.focus();
+		// Bug WE-356, bugfix for IE7
+		self.focus();
 		
 	}catch(e) {
 	 	if (noPopupErrorMsg != undefined &&  noPopupErrorMsg.length) {
