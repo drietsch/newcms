@@ -58,6 +58,8 @@ class we_document extends we_root {
 	var $Category="";
 
 	var $IsSearchable = "";
+	
+	var $InGlossar = 1;
 
 	var $NavigationItems='';
 
@@ -68,7 +70,7 @@ class we_document extends we_root {
 	// Constructor
 	function we_document() {
 		$this->we_root();
-		array_push($this->persistent_slots,"Extension","IsDynamic","Published","Category","IsSearchable","Language");
+		array_push($this->persistent_slots,"Extension","IsDynamic","Published","Category","IsSearchable","InGlossar","Language");
 		array_push($this->persistent_slots,"schedArr");
 	}
 
@@ -220,6 +222,21 @@ class we_document extends we_root {
 			</table>';
 		return $content;
 
+	}
+	
+	function formInGlossar($leftwidth=100){
+		global $l_we_class;
+		$n = "we_".$this->Name."_InGlossar";
+		
+		$glossarActivated = we_getModuleNameByContentType('glossary');
+
+		if($glossarActivated=='glossary') {
+			$v = $this->InGlossar;
+			return we_forms::checkboxWithHidden($v ? true : false, $n, $l_we_class["InGlossar"],false,"defaultfont","_EditorFrame.setEditorIsHot(true);");
+		}
+		else {
+			return''; 
+		}
 	}
 
 	function formIsSearchable($leftwidth=100){
