@@ -87,7 +87,7 @@ class we_app_TopFrameView extends Zend_View
 
 
 self.hot = false;
-
+self.focus();
 self.appName = "{$this->appName}";
 
 /*******************************************
