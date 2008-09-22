@@ -38,10 +38,9 @@ include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GL
 		var _EditorFrame = top.weEditorFrameController.getActiveEditorFrame();
 				
 		var source = "###EDITORPLUGIN:EMPTYSTRING###";
-		
-		if(_EditorFrame.getEditorFrameWindow().editor.getSource){
-			source = _EditorFrame.getEditorFrameWindow().editor.getSource();
-			document.we_form.acceptCharset = _EditorFrame.getEditorFrameWindow().editor.getCharset();
+		if(_EditorFrame.getContentEditor().getSource){
+			source = _EditorFrame.getContentEditor().getSource();
+			document.we_form.acceptCharset = _EditorFrame.getContentEditor().getCharset();
 		}
 	
 		document.we_form.elements[\'we_cmd[0]\'].value="editSource";
