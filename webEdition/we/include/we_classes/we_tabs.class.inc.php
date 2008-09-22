@@ -147,10 +147,15 @@ function setTabClass(elem) {
 }
 
 function allowed_change_edit_page() {
-	var contentEditor = top.opener.top.opener && top.opener.top.opener.top.weEditorFrameController ? top.opener.top.opener.top.weEditorFrameController.getVisibleEditorFrame() : top.opener && top.opener.top.weEditorFrameController ? top.opener.top.weEditorFrameController.getVisibleEditorFrame() : top.weEditorFrameController.getVisibleEditorFrame();
-	if ( contentEditor && contentEditor.fields_are_valid ) {
-		return contentEditor.fields_are_valid();
-	
+	try	{
+		var contentEditor = top.opener.top.opener && top.opener.top.opener.top.weEditorFrameController ? top.opener.top.opener.top.weEditorFrameController.getVisibleEditorFrame() : top.opener && top.opener.top.weEditorFrameController ? top.opener.top.weEditorFrameController.getVisibleEditorFrame() : top.weEditorFrameController.getVisibleEditorFrame();
+		if ( contentEditor && contentEditor.fields_are_valid ) {
+			return contentEditor.fields_are_valid();
+		
+		}
+	}
+	catch(e) {
+		// Nothing
 	}
 	return true;
 }
@@ -178,21 +183,26 @@ if (__weEditorFrameController.getVisibleEditorFrame()) {
 var loop = 0;
 
 function getPathInfos(){
-	var contentEditor = __weEditorFrameController.getVisibleEditorFrame();
-
-	if(contentEditor.loaded) {
-		if(pathNameElem = contentEditor.document.getElementById('yuiAcInputPathName')) {
-			hasPathName   = true;
-			titlePathName = pathNameElem.value;
+	try	{
+		var contentEditor = __weEditorFrameController.getVisibleEditorFrame();
+	
+		if(contentEditor.loaded) {
+			if(pathNameElem = contentEditor.document.getElementById('yuiAcInputPathName')) {
+				hasPathName   = true;
+				titlePathName = pathNameElem.value;
+			}
+			if(pathGroupElem = contentEditor.document.getElementById('yuiAcInputPathGroup')) {
+				hasPathGroup   = true;
+				titlePathGroup = pathGroupElem.value;
+			}
+			loop=0;
+		} else if(loop<10) {
+			loop++;
+			setTimeout("getPathInfos()",250);
 		}
-		if(pathGroupElem = contentEditor.document.getElementById('yuiAcInputPathGroup')) {
-			hasPathGroup   = true;
-			titlePathGroup = pathGroupElem.value;
-		}
-		loop=0;
-	} else if(loop<10) {
-		loop++;
-		setTimeout("getPathInfos()",250);
+	}
+	catch(e) {
+		// Nothing
 	}
 }
 
