@@ -118,7 +118,7 @@ if($we_responseText) {
 	
 	// enable navigation box if doc has been published
 	if(isset($GLOBALS["we_doc"]->Published) && $GLOBALS["we_doc"]->Published) {
-		print "if( _EditorFrame && _EditorFrame.getEditorIsInUse() && contentEditor && contentEditor.switch_button_state) contentEditor.switch_button_state('add', 'add_enabled', 'enabled');";
+		print "try{ if( _EditorFrame && _EditorFrame.getEditorIsInUse() && contentEditor && contentEditor.switch_button_state) contentEditor.switch_button_state('add', 'add_enabled', 'enabled'); } catch(e) {}";
 	}
 	
 	if( $_SESSION["we_mode"] == "seem" && (!isset($_showAlert) || !$_showAlert) ){	//	Confirm Box or alert in seeMode
