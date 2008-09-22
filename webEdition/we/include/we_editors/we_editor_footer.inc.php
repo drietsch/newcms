@@ -120,12 +120,17 @@ $_js_we_save_document = "
     var _showGlossaryCheck = $showGlossaryCheck;
 	var countSaveLoop = 0;
 	function we_save_document(){
-		var contentEditor = top.weEditorFrameController.getVisibleEditorFrame();
-		if (contentEditor && contentEditor.fields_are_valid && !contentEditor.fields_are_valid()) {
-			return;
-
+		try{
+			var contentEditor = top.weEditorFrameController.getVisibleEditorFrame();
+			if (contentEditor && contentEditor.fields_are_valid && !contentEditor.fields_are_valid()) {
+				return;
+	
+			}
 		}
-
+		catch(e) {
+			// Nothing
+		}
+		
 		if (  _EditorFrame.getEditorPublishWhenSave() && _showGlossaryCheck) {
 			we_cmd('check_glossary', '', '".$we_transaction."');
 
@@ -133,8 +138,13 @@ $_js_we_save_document = "
 
 			acStatus = '';
 			invalidAcFields = false;
-			if(parent && parent.frames[1] && parent.frames[1].YAHOO && parent.frames[1].YAHOO.autocoml) {
-				 acStatus = parent.frames[1].YAHOO.autocoml.checkACFields();
+			try{
+				if(parent && parent.frames[1] && parent.frames[1].YAHOO && parent.frames[1].YAHOO.autocoml) {
+					 acStatus = parent.frames[1].YAHOO.autocoml.checkACFields();
+				}
+			}
+			catch(e) {
+				// Nothing
 			}
 			acStatusType = typeof acStatus;
 			if(parent && parent.weAutoCompetionFields && parent.weAutoCompetionFields.length>0) {
