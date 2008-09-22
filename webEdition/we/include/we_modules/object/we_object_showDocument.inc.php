@@ -276,10 +276,12 @@ if(isset($_SESSION["we_data"][$we_transaction]["0"]["InWebEdition"]) && $_SESSIO
 		//
 
 		if(defined("GLOSSARY_TABLE") && (!isset($GLOBALS["WE_MAIN_DOC"]) || $GLOBALS["WE_MAIN_DOC"] == $GLOBALS["we_doc"])) {
-			include_once(WE_GLOSSARY_MODULE_DIR."weGlossaryCache.php");
-			include_once(WE_GLOSSARY_MODULE_DIR."weGlossaryReplace.php");
-
-			weGlossaryReplace::start();
+			if(isset($we_doc->InGlossar) && $we_doc->InGlossar) {
+				include_once(WE_GLOSSARY_MODULE_DIR."weGlossaryCache.php");
+				include_once(WE_GLOSSARY_MODULE_DIR."weGlossaryReplace.php");
+	
+				weGlossaryReplace::start();
+			}
 
 		}
 
@@ -294,7 +296,9 @@ if(isset($_SESSION["we_data"][$we_transaction]["0"]["InWebEdition"]) && $_SESSIO
 		//
 
 		if(defined("GLOSSARY_TABLE") && (!isset($GLOBALS["WE_MAIN_DOC"]) || $GLOBALS["WE_MAIN_DOC"] == $GLOBALS["we_doc"])) {
-			weGlossaryReplace::end($GLOBALS["we_doc"]->Language);
+			if(isset($we_doc->InGlossar) && $we_doc->InGlossar) {
+				weGlossaryReplace::end($GLOBALS["we_doc"]->Language);
+			}
 
 		}
 
@@ -306,10 +310,12 @@ if(isset($_SESSION["we_data"][$we_transaction]["0"]["InWebEdition"]) && $_SESSIO
 		//
 
 		if(defined("GLOSSARY_TABLE") && (!isset($GLOBALS["WE_MAIN_DOC"]) || $GLOBALS["WE_MAIN_DOC"] == $GLOBALS["we_doc"])) {
-			include_once(WE_GLOSSARY_MODULE_DIR."weGlossaryCache.php");
-			include_once(WE_GLOSSARY_MODULE_DIR."weGlossaryReplace.php");
-
-			weGlossaryReplace::start();
+			if(isset($we_doc->InGlossar) && $we_doc->InGlossar) {
+				include_once(WE_GLOSSARY_MODULE_DIR."weGlossaryCache.php");
+				include_once(WE_GLOSSARY_MODULE_DIR."weGlossaryReplace.php");
+	
+				weGlossaryReplace::start();
+			}
 
 		}
 
@@ -324,7 +330,9 @@ if(isset($_SESSION["we_data"][$we_transaction]["0"]["InWebEdition"]) && $_SESSIO
 		//
 
 		if(defined("GLOSSARY_TABLE") && (!isset($GLOBALS["WE_MAIN_DOC"]) || $GLOBALS["WE_MAIN_DOC"] == $GLOBALS["we_doc"])) {
-			weGlossaryReplace::end($GLOBALS["we_doc"]->Language);
+			if(isset($we_doc->InGlossar) && $we_doc->InGlossar) {
+				weGlossaryReplace::end($GLOBALS["we_doc"]->Language);
+			}
 
 		}
 
