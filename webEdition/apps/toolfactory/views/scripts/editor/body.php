@@ -348,7 +348,28 @@ function setClassField(classname) {
 	var form = document.we_form;
 	var newClassname = classname.toLowerCase();
 	newClassname = newClassname.replace(/[^a-z0-9]/g, \'\'); 
+	var firstCharIsNum = false;
+	if(newClassname!="") {
+		firstCharIsNum = firstCharNum(newClassname);
+	}
+	if(firstCharIsNum) {
+		newClassname = newClassname.replace(/[^a-z]/g, \'\'); 
+	}
 	form.classname.value = newClassname;
+}
+
+function firstCharNum(str) {
+
+   var numbers = "0123456789";
+   var IsNumber=true;
+   var char;
+
+   char = str.charAt(0); 
+   if (numbers.indexOf(char) == -1) {
+       IsNumber = false;
+   }
+
+   return IsNumber;
 }
 
 ';
