@@ -50,18 +50,7 @@ class we_<?php print $TOOLNAME; ?>DirSelector extends we_dirSelector{
   	}
 
 	function printHeaderTableExtraCols(){
-		print '                <td width="10">'.getPixel(10,10).'</td><td width="40">
-';                  
-        <?php if(!empty($PERMISSIONCONDITION)) {?>
-		$makefolderState = we_hasPerm("<?php print $PERMISSIONCONDITION; ?>");
-		<?php } else {?>
-		$makefolderState = 1;
-		<?php }?>
-       	print '<script language="JavaScript">makefolderState='.$makefolderState.';</script>';
- 		$we_button = new we_button();
-		print $we_button->create_button("image:btn_new_dir", "javascript:if(makefolderState==1){top.drawNewFolder();}",true,-1,22,"","",$makefolderState ? false : true);
- 		print '               </td>
-';
+		print '<td></td>';
 	}
 
 	function printFramesetJSFunctioWriteBody(){
