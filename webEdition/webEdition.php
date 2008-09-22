@@ -343,18 +343,23 @@ function focusise(){
 
 function we_repl(target,url) {
 	if(target) {
-		// use 2 loadframes to avoid missing cmds
-		if (target.name == "load" || target.name == "load2") {
-
-			if (top.lastUsedLoadFrame == target.name) {
-
-				if (target.name == "load") {
-					target = self.load2;
-				} else {
-					target = self.load;
+		try {
+			// use 2 loadframes to avoid missing cmds
+			if (target.name == "load" || target.name == "load2") {
+	
+				if (top.lastUsedLoadFrame == target.name) {
+	
+					if (target.name == "load") {
+						target = self.load2;
+					} else {
+						target = self.load;
+					}
 				}
+				top.lastUsedLoadFrame = target.name;
 			}
-			top.lastUsedLoadFrame = target.name;
+		}
+		catch(e) {
+			// Nothing	
 		}
 		target.location.replace(url);
 	}
