@@ -342,7 +342,7 @@ $this->getSpacerRowHTML().
 		}else{
 			include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/".$schedFile["ClassName"].".inc.php");
 		}
-		$doc_save = isset($GLOBALS["we_doc"]) ? $GLOBALS["we_doc"] : NIL;
+		$doc_save = isset($GLOBALS["we_doc"]) ? $GLOBALS["we_doc"] : NULL;
 		eval('$GLOBALS["we_doc"] = new '.$schedFile["ClassName"].'();');
 		$GLOBALS["we_doc"]->InitByID($id,$schedFile["table"],LOAD_SCHEDULE_DB);
 		$deleted = false;
