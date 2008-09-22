@@ -199,6 +199,10 @@ class we_webEditionDocument extends we_textContentDocument {
 								<td>
 									'.$this->formIsSearchable().'</td>
 							</tr>
+							<tr>
+								<td>
+									'.$this->formInGlossar(100).'</td>
+							</tr>
 						</table></td>
 				</tr>';
 		$content .= '</table>';
@@ -895,10 +899,11 @@ class we_webEditionDocument extends we_textContentDocument {
 				// --> Glossary Replacement
 				//
 				if(defined("GLOSSARY_TABLE")) {
-					include_once(WE_GLOSSARY_MODULE_DIR."weGlossaryCache.php");
-					include_once(WE_GLOSSARY_MODULE_DIR."weGlossaryReplace.php");
-					$doc = weGlossaryReplace::replace($doc, $this->Language);
-
+					if(isset($this->InGlossar) && $this->InGlossar) {
+						include_once(WE_GLOSSARY_MODULE_DIR."weGlossaryCache.php");
+						include_once(WE_GLOSSARY_MODULE_DIR."weGlossaryReplace.php");
+						$doc = weGlossaryReplace::replace($doc, $this->Language);
+					}
 				}
 				$GLOBALS["DocStream"][$this->ID] = $doc;
 			}
