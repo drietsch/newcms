@@ -126,6 +126,7 @@ CREATE TABLE tblFile (
   `Language` varchar(5) NOT NULL default '',
   WebUserID bigint(20) NOT NULL default '0',
   listview tinyint(1) NOT NULL default '0',
+  InGlossar tinyint(1) NOT NULL default '1',
   PRIMARY KEY  (ID),
   KEY Path (Path),
   KEY WebUserID (WebUserID)
