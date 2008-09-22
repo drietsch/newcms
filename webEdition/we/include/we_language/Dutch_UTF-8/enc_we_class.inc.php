@@ -30,6 +30,7 @@ $l_we_class["template"] = "Sjabloon";
 $l_we_class["no_template"] = "Geen sjabloon";
 $l_we_class["IsDynamic"] = "Genereer dynamische pagina";
 $l_we_class["IsSearchable"] = "kan doorzocht worden?";
+$l_we_class["InGlossar"] = "Allowed for automatic glossary replacement"; //TRANSLATE
 $l_we_class["metainfo"] = "Meta tags";
 $l_we_class["Title"] = "Titel";
 $l_we_class["Keywords"] = "Sleutelwoorden";

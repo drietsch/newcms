@@ -30,6 +30,7 @@ $l_we_class["template"] = "Szablon";
 $l_we_class["no_template"] = "Bez szablonu";
 $l_we_class["IsDynamic"] = "Strona dynamicznie generowana";
 $l_we_class["IsSearchable"] = "Jest przeszukiwalny?";
+$l_we_class["InGlossar"] = "Allowed for automatic glossary replacement"; //TRANSLATE
 $l_we_class["metainfo"] = "Meta-Info";
 $l_we_class["Title"] = "Tytuł";
 $l_we_class["Keywords"] = "Słowa kluczowe";

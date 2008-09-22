@@ -30,6 +30,7 @@ $l_we_class["template"] = "Plantilla";
 $l_we_class["no_template"] = "Sin plantilla";
 $l_we_class["IsDynamic"] = "Generar página dinámica";
 $l_we_class["IsSearchable"] = "És buscable?";
+$l_we_class["InGlossar"] = "Allowed for automatic glossary replacement"; //TRANSLATE
 $l_we_class["metainfo"] = "Meta rótulos";
 $l_we_class["Title"] = "Titulo";
 $l_we_class["Keywords"] = "Palabras claves";
