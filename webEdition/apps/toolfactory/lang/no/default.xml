@@ -79,6 +79,9 @@
 		<tu tuid="Backup table">
 			<tuv xml:lang="no"><seg>Backup table</seg></tuv>
 		</tu>
+		<tu tuid="The application '%s' has been succesfully saved. Please restart webEdition!">
+			<tuv xml:lang="no"><seg>The application '%s' has been succesfully saved. Please restart webEdition!</seg></tuv>
+		</tu>
 	</body>
 </tmx>
 	
