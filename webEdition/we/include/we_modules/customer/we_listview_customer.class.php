@@ -66,13 +66,19 @@ class we_listview_customer extends listviewBase {
 			$this->order .= " DESC";
 		}
 
+ 		if ($this->order != '') { 
+			$orderstring = " ORDER BY ".$this->order." "; 
+		} else { 
+			$orderstring = ''; 
+		}
+		
 		$where = $this->condition ? (' where ' . $this->condition) : '';
 
 		$q = 'SELECT * FROM ' . CUSTOMER_TABLE . $where;
 		$this->DB_WE->query($q);
 		$this->anz_all = $this->DB_WE->num_rows();
 
-		$q = 'SELECT * FROM ' . CUSTOMER_TABLE . $where . ' ' . $this->order . ' ' . (($rows > 0) ? (' limit '.$this->start.','.$this->rows) : '');;
+		$q = 'SELECT * FROM ' . CUSTOMER_TABLE . $where . ' ' . $orderstring . ' ' . (($rows > 0) ? (' limit '.$this->start.','.$this->rows) : '');;
 
 		$this->DB_WE->query($q);
 		$this->anz = $this->DB_WE->num_rows();
