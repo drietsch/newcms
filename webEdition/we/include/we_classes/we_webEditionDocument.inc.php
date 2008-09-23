@@ -899,7 +899,7 @@ class we_webEditionDocument extends we_textContentDocument {
 				// --> Glossary Replacement
 				//
 				if(defined("GLOSSARY_TABLE")) {
-					if(isset($this->InGlossar) && $this->InGlossar) {
+					if(isset($this->InGlossar) && $this->InGlossar==0) {
 						include_once(WE_GLOSSARY_MODULE_DIR."weGlossaryCache.php");
 						include_once(WE_GLOSSARY_MODULE_DIR."weGlossaryReplace.php");
 						$doc = weGlossaryReplace::replace($doc, $this->Language);

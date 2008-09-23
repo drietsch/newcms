@@ -276,7 +276,7 @@ if(isset($_SESSION["we_data"][$we_transaction]["0"]["InWebEdition"]) && $_SESSIO
 		//
 
 		if(defined("GLOSSARY_TABLE") && (!isset($GLOBALS["WE_MAIN_DOC"]) || $GLOBALS["WE_MAIN_DOC"] == $GLOBALS["we_doc"])) {
-			if(isset($we_doc->InGlossar) && $we_doc->InGlossar) {
+			if(isset($we_doc->InGlossar) && $we_doc->InGlossar==0) {
 				include_once(WE_GLOSSARY_MODULE_DIR."weGlossaryCache.php");
 				include_once(WE_GLOSSARY_MODULE_DIR."weGlossaryReplace.php");
 	
@@ -296,7 +296,7 @@ if(isset($_SESSION["we_data"][$we_transaction]["0"]["InWebEdition"]) && $_SESSIO
 		//
 
 		if(defined("GLOSSARY_TABLE") && (!isset($GLOBALS["WE_MAIN_DOC"]) || $GLOBALS["WE_MAIN_DOC"] == $GLOBALS["we_doc"])) {
-			if(isset($we_doc->InGlossar) && $we_doc->InGlossar) {
+			if(isset($we_doc->InGlossar) && $we_doc->InGlossar==0) {
 				weGlossaryReplace::end($GLOBALS["we_doc"]->Language);
 			}
 
@@ -310,7 +310,7 @@ if(isset($_SESSION["we_data"][$we_transaction]["0"]["InWebEdition"]) && $_SESSIO
 		//
 
 		if(defined("GLOSSARY_TABLE") && (!isset($GLOBALS["WE_MAIN_DOC"]) || $GLOBALS["WE_MAIN_DOC"] == $GLOBALS["we_doc"])) {
-			if(isset($we_doc->InGlossar) && $we_doc->InGlossar) {
+			if(isset($we_doc->InGlossar) && $we_doc->InGlossar==0) {
 				include_once(WE_GLOSSARY_MODULE_DIR."weGlossaryCache.php");
 				include_once(WE_GLOSSARY_MODULE_DIR."weGlossaryReplace.php");
 	
@@ -330,7 +330,7 @@ if(isset($_SESSION["we_data"][$we_transaction]["0"]["InWebEdition"]) && $_SESSIO
 		//
 
 		if(defined("GLOSSARY_TABLE") && (!isset($GLOBALS["WE_MAIN_DOC"]) || $GLOBALS["WE_MAIN_DOC"] == $GLOBALS["we_doc"])) {
-			if(isset($we_doc->InGlossar) && $we_doc->InGlossar) {
+			if(isset($we_doc->InGlossar) && $we_doc->InGlossar==0) {
 				weGlossaryReplace::end($GLOBALS["we_doc"]->Language);
 			}
 
