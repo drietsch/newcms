@@ -1,0 +1,87 @@
+<?xml version="1.0" ?>
+<!DOCTYPE tmx SYSTEM "tmx14.dtd">
+<tmx version="1.4">
+	<header creationtoolversion="1.0" datatype="plaintext" segtype="sentence" adminlang="en-us" srclang="en-us" o-tmf="Undefined" creationtool="text edit" >
+	</header>
+	<body>
+		<tu tuid="toolfactory">
+			<tuv xml:lang="en"><seg>Application Management</seg></tuv>
+		</tu>
+		<tu tuid="The user is allowed to create new items in toolfactory">
+			<tuv xml:lang="en"><seg>The user is allowed to create new items in Application Management</seg></tuv>
+		</tu>
+		<tu tuid="The user is allowed to delete items from toolfactory">
+			<tuv xml:lang="en"><seg>The user is allowed to delete items from Application Management</seg></tuv>
+		</tu>
+		<tu tuid="The user is allowed to edit items toolfactory">
+			<tuv xml:lang="en"><seg>The user is allowed to edit items Application Management</seg></tuv>
+		</tu>
+		<tu tuid="Restore toolfactory data">
+			<tuv xml:lang="en"><seg>Restore Application Management data</seg></tuv>
+		</tu>
+		<tu tuid="Save toolfactory data">
+			<tuv xml:lang="en"><seg>Save Application Management data</seg></tuv>
+		</tu>
+		<tu tuid="Name of the model class">
+			<tuv xml:lang="en"><seg>Name of the model class</seg></tuv>
+		</tu>
+		<tu tuid="Mandatory field">
+			<tuv xml:lang="en"><seg>Mandatory field</seg></tuv>
+		</tu>
+		<tu tuid="Maintable">
+			<tuv xml:lang="en"><seg>Maintable</seg></tuv>
+		</tu>
+		<tu tuid="Create maintable">
+			<tuv xml:lang="en"><seg>Create maintable</seg></tuv>
+		</tu>
+		<tu tuid="Maintable (leave empty if not necessary)">
+			<tuv xml:lang="en"><seg>Maintable (leave empty if not necessary)</seg></tuv>
+		</tu>
+		<tu tuid="Datasource">
+			<tuv xml:lang="en"><seg>Datasource</seg></tuv>
+		</tu>
+		<tu tuid="Create Support for webEdition-Tags and the pattern-tag">
+			<tuv xml:lang="en"><seg>Create Support for webEdition-Tags and the pattern-tag</seg></tuv>
+		</tu>
+		<tu tuid="Create Support for webEdition-services and the pattern-service">
+			<tuv xml:lang="en"><seg>Create Support for webEdition-services and the pattern-service</seg></tuv>
+		</tu>
+		<tu tuid="Create Support for webEdition-permissions and the pattern-permission">
+			<tuv xml:lang="en"><seg>Create Support for webEdition-permissions and the pattern-permission</seg></tuv>
+		</tu>
+		<tu tuid="Create Support for webEdition-Backupsytem">
+			<tuv xml:lang="en"><seg>Create Support for webEdition-Backupsytem</seg></tuv>
+		</tu>
+		<tu tuid="The name of the model class could not be empty!">
+			<tuv xml:lang="en"><seg>The name of the model class must not be empty!</seg></tuv>
+		</tu>
+		<tu tuid="You do not have the permission to select this option.">
+			<tuv xml:lang="en"><seg>You do not have the permission to select this option.</seg></tuv>
+		</tu>
+		<tu tuid="The required fields must not be empty!">
+			<tuv xml:lang="en"><seg>The required fields must not be empty!</seg></tuv>
+		</tu>
+		<tu tuid="The tablename is missing.">
+			<tuv xml:lang="en"><seg>The tablename is missing.</seg></tuv>
+		</tu>
+		<tu tuid="Tags">
+			<tuv xml:lang="en"><seg>Tags</seg></tuv>
+		</tu>
+		<tu tuid="Services">
+			<tuv xml:lang="en"><seg>Services</seg></tuv>
+		</tu>
+		<tu tuid="Language">
+			<tuv xml:lang="en"><seg>Language</seg></tuv>
+		</tu>
+		<tu tuid="Permissions">
+			<tuv xml:lang="en"><seg>Permissions</seg></tuv>
+		</tu>
+		<tu tuid="Backup table">
+			<tuv xml:lang="en"><seg>Backup table</seg></tuv>
+		</tu>
+		<tu tuid="The application '%s' has been succesfully saved. Please restart webEdition!">
+			<tuv xml:lang="en"><seg>The application '%s' has been succesfully saved. Please restart webEdition!</seg></tuv>
+		</tu>
+	</body>
+</tmx>
+	

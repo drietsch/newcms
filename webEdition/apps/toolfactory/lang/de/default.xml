@@ -1,0 +1,87 @@
+<?xml version="1.0" ?>
+<!DOCTYPE tmx SYSTEM "tmx14.dtd">
+<tmx version="1.4">
+	<header creationtoolversion="1.0" datatype="plaintext" segtype="sentence" adminlang="en-us" srclang="en-us" o-tmf="Undefined" creationtool="text edit" >
+	</header>
+	<body>
+		<tu tuid="toolfactory">
+			<tuv xml:lang="de"><seg>Applikationsverwaltung</seg></tuv>
+		</tu>
+		<tu tuid="The user is allowed to create new items in toolfactory">
+			<tuv xml:lang="de"><seg>Der Benutzer darf Applikationsverwaltung erstellen</seg></tuv>
+		</tu>
+		<tu tuid="The user is allowed to delete items from toolfactory">
+			<tuv xml:lang="de"><seg>Der Benutzer darf Applikationsverwaltung löschen</seg></tuv>
+		</tu>
+		<tu tuid="The user is allowed to edit items toolfactory">
+			<tuv xml:lang="de"><seg>Der Benutzer darf Applikationsverwaltung bearbeiten</seg></tuv>
+		</tu>
+		<tu tuid="Restore toolfactory data">
+			<tuv xml:lang="de"><seg>Der Benutzer darf Applikationsverwaltung bearbeiten</seg></tuv>
+		</tu>
+		<tu tuid="Save toolfactory data">
+			<tuv xml:lang="de"><seg>Die Daten des Tools Applikationsverwaltung sichern</seg></tuv>
+		</tu>
+		<tu tuid="Name of the model class">
+			<tuv xml:lang="de"><seg>Name der Model-Klasse</seg></tuv>
+		</tu>
+		<tu tuid="Mandatory field">
+			<tuv xml:lang="de"><seg>Pflichtfeld</seg></tuv>
+		</tu>
+		<tu tuid="Maintable">
+			<tuv xml:lang="de"><seg>Haupttabelle</seg></tuv>
+		</tu>
+		<tu tuid="Create maintable">
+			<tuv xml:lang="de"><seg>Haupttabelle erstellen</seg></tuv>
+		</tu>
+		<tu tuid="Maintable (leave empty if not necessary)">
+			<tuv xml:lang="de"><seg>Haupttabelle (leer lassen falls keine Tabelle benötigt wird)</seg></tuv>
+		</tu>
+		<tu tuid="Datasource">
+			<tuv xml:lang="de"><seg>Datenquelle</seg></tuv>
+		</tu>
+		<tu tuid="Create Support for webEdition-Tags and the pattern-tag">
+			<tuv xml:lang="de"><seg>Unterstützung für webEdition-Tags und ein Muster-Tag erstellen</seg></tuv>
+		</tu>
+		<tu tuid="Create Support for webEdition-services and the pattern-service">
+			<tuv xml:lang="de"><seg>Unterstützung für webEdition-Services und einen Muster-Service erstellen</seg></tuv>
+		</tu>
+		<tu tuid="Create Support for webEdition-permissions and the pattern-permission">
+			<tuv xml:lang="de"><seg>Unterstützung für das webEdition-Rechtesystem und ein Muster-Recht erstellen</seg></tuv>
+		</tu>
+		<tu tuid="Create Support for webEdition-Backupsytem">
+			<tuv xml:lang="de"><seg>Unterstützung für das webEdition-Backupsystem erstellen</seg></tuv>
+		</tu>
+		<tu tuid="The name of the model class could not be empty!">
+			<tuv xml:lang="de"><seg>Der Name der Model-Klasse darf nicht leer sein!</seg></tuv>
+		</tu>
+		<tu tuid="You do not have the permission to select this option.">
+			<tuv xml:lang="de"><seg>Sie haben nicht die Berechtigung diese Option auszuwählen.</seg></tuv>
+		</tu>
+		<tu tuid="The required fields must not be empty!">
+			<tuv xml:lang="de"><seg>Die Pflichtfelder dürfen nicht leer sein!</seg></tuv>
+		</tu>
+		<tu tuid="The tablename is missing.">
+			<tuv xml:lang="de"><seg>Sie haben keinen Tabellennamen angegeben.</seg></tuv>
+		</tu>
+		<tu tuid="Tags">
+			<tuv xml:lang="de"><seg>Tags</seg></tuv>
+		</tu>
+		<tu tuid="Services">
+			<tuv xml:lang="de"><seg>Services</seg></tuv>
+		</tu>
+		<tu tuid="Language">
+			<tuv xml:lang="de"><seg>Sprache</seg></tuv>
+		</tu>
+		<tu tuid="Permissions">
+			<tuv xml:lang="de"><seg>Rechte</seg></tuv>
+		</tu>
+		<tu tuid="Backup table">
+			<tuv xml:lang="de"><seg>Backup-Tabelle</seg></tuv>
+		</tu>
+		<tu tuid="The application '%s' has been succesfully saved. Please restart webEdition!">
+			<tuv xml:lang="de"><seg>Die Applikation '%s' wurde erfolgreich gespeichert. Bitte starten Sie webEdition neu!</seg></tuv>
+		</tu>
+	</body>
+</tmx>
+	
