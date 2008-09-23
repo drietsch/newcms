@@ -115,7 +115,9 @@ if($we_editmode) {
 			if (document.weEditorApplet) {
 				if (top.weEditorWasLoaded && document.weEditorApplet && typeof(document.weEditorApplet.setCode) != "undefined") {
 					document.getElementById("weEditorApplet").style.left="0";
-					document.weEditorApplet.setCode(document.forms['we_form'].elements["<?php print 'we_'.$we_doc->Name.'_txt[data]'; ?>"].value);
+					document.weEditorApplet.setCode(document.forms['we_form'].elements["<?php print 'we_'.$we_doc->Name.'_txt[data]'; ?>"].value);					
+					document.weEditorApplet.initUndoManager();
+					
 					sizeEditor();
 					checkAndSetHot();
 				} else {
