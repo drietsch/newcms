@@ -1,16 +1,18 @@
-package com.livinge.eplugin.gui;
-/*
- * Created on 31.01.2005
- *
- * To change the template for this generated file go to
- * Window - Preferences - Java - Code Generation - Code and Comments
- */
-
 /**
- * @author slavko
+ * webEdition CMS
  *
- * To change the template for this generated type comment go to
- * Window - Preferences - Java - Code Generation - Code and Comments
+ * This source is part of webEdition CMS. webEdition CMS is
+ * free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * any later version.
+ *
+ * The GNU General Public License can be found at
+ * http://www.gnu.org/copyleft/gpl.html.
+ * A copy is found in the textfile license.txt
+ *
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.gnu.org/copyleft/gpl.html  GPL
  */
 
 import java.awt.BorderLayout;

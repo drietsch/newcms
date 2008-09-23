@@ -1,3 +1,20 @@
+/**
+ * webEdition CMS
+ *
+ * This source is part of webEdition CMS. webEdition CMS is
+ * free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * any later version.
+ *
+ * The GNU General Public License can be found at
+ * http://www.gnu.org/copyleft/gpl.html.
+ * A copy is found in the textfile license.txt
+ *
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.gnu.org/copyleft/gpl.html  GPL
+ */
+
 import java.applet.*;
 import java.awt.*;
 import java.net.*;
@@ -70,7 +87,7 @@ public class menuapplet extends Applet{
 					ch = new Character((char)228);
 					par[3] = replaceAll(par[3], "%auml%",ch.toString());
 				}else{
-					par[3] = replaceAll(par[3], "%auml%","ä");
+					par[3] = replaceAll(par[3], "%auml%","ï¿½");
 				}
 			}
 			umlPos = par[3].indexOf("%uuml%");
@@ -79,7 +96,7 @@ public class menuapplet extends Applet{
 					ch = new Character((char)252);
 					par[3] = replaceAll(par[3], "%uuml%",ch.toString());
 				}else{
-					par[3] = replaceAll(par[3], "%uuml%","ü");
+					par[3] = replaceAll(par[3], "%uuml%","ï¿½");
 				}
 			}
 			umlPos = par[3].indexOf("%ouml%");
@@ -88,7 +105,7 @@ public class menuapplet extends Applet{
 					ch = new Character((char)246);
 					par[3] = replaceAll(par[3], "%ouml%",ch.toString());
 				}else{
-					par[3] = replaceAll(par[3], "%ouml%","ö");
+					par[3] = replaceAll(par[3], "%ouml%","ï¿½");
 				}
 			}
 		   umlPos = par[3].indexOf("%Auml%");
@@ -97,7 +114,7 @@ public class menuapplet extends Applet{
 					ch = new Character((char)196);
 					par[3] = replaceAll(par[3], "%Auml%",ch.toString());
 				}else{
-					par[3] = replaceAll(par[3], "%Auml%","Ä");
+					par[3] = replaceAll(par[3], "%Auml%","ï¿½");
 				}
 			}
 			umlPos = par[3].indexOf("%Uuml%");
@@ -106,7 +123,7 @@ public class menuapplet extends Applet{
 					ch = new Character((char)220);
 					par[3] = replaceAll(par[3], "%Uuml%",ch.toString());
 				}else{
-					par[3] = replaceAll(par[3], "%Uuml%","Ü");
+					par[3] = replaceAll(par[3], "%Uuml%","ï¿½");
 				}
 			}
 			umlPos = par[3].indexOf("%Ouml%");
@@ -115,7 +132,7 @@ public class menuapplet extends Applet{
 					ch = new Character((char)214);
 					par[3] = replaceAll(par[3], "%Ouml%",ch.toString());
 				}else{
-					par[3] = replaceAll(par[3], "%Ouml%","Ö");
+					par[3] = replaceAll(par[3], "%Ouml%","ï¿½");
 				}
 			}
 			umlPos = par[3].indexOf("%szlig%");
@@ -124,7 +141,7 @@ public class menuapplet extends Applet{
 					ch = new Character((char)223);
 					par[3] = replaceAll(par[3], "%szlig%",ch.toString());
 				}else{
-					par[3] = replaceAll(par[3], "%szlig%","ß");
+					par[3] = replaceAll(par[3], "%szlig%","ï¿½");
 				}
 			}
 
@@ -296,7 +313,7 @@ public class menuapplet extends Applet{
 
 	public static String replaceAll(String source, String search,String replace) {
 		if(search.equals(replace)) {
-			return source; //kann ja sein, dass wir nichts tun mŸssen
+			return source; //kann ja sein, dass wir nichts tun mï¿½ssen
 		}
 
 		StringBuffer result = new StringBuffer();

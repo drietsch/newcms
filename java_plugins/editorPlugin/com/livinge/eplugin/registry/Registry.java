@@ -1,20 +1,24 @@
-/*
- * Registry.java
+/**
+ * webEdition CMS
  *
- * Created on February 28, 2007, 3:35 PM
+ * This source is part of webEdition CMS. webEdition CMS is
+ * free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * any later version.
  *
- * To change this template, choose Tools | Template Manager
- * and open the template in the editor.
+ * The GNU General Public License can be found at
+ * http://www.gnu.org/copyleft/gpl.html.
+ * A copy is found in the textfile license.txt
+ *
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.gnu.org/copyleft/gpl.html  GPL
  */
 
 package com.livinge.eplugin.registry;
 
 import java.util.Vector;
 
-/**
- *
- * @author slavko
- */
 public interface Registry {
  
     public Vector getAppList(String extension);

@@ -1,8 +1,20 @@
-/*
-LeSpellchecker - a spellchecking applet for webEdition
-Copyright (C) 2006 living-e AG
+/**
+ * webEdition CMS
+ *
+ * This source is part of webEdition CMS. webEdition CMS is
+ * free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * any later version.
+ *
+ * The GNU General Public License can be found at
+ * http://www.gnu.org/copyleft/gpl.html.
+ * A copy is found in the textfile license.txt
+ *
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.gnu.org/copyleft/gpl.html  GPL
+ */
 
-*/
 import java.applet.Applet;
 import java.awt.Graphics;
 import java.io.File;
@@ -25,13 +37,6 @@ import com.swabunga.spell.event.SpellCheckListener;
 import com.swabunga.spell.event.SpellChecker;
 import com.swabunga.spell.event.StringWordTokenizer;
 
-/**
- * The applet immplements spellchecking function for webEdition CMS
- * The Jazzy library has been used   
- *
- * @author Slavko Tomcic
- * @version 1.0.1
- */
 
 public class LeSpellchecker extends Applet implements SpellCheckListener {
 
