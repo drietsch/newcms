@@ -59,7 +59,7 @@ class we_document extends we_root {
 
 	var $IsSearchable = "";
 	
-	var $InGlossar = 1;
+	var $InGlossar = 0;
 
 	var $NavigationItems='';
 
