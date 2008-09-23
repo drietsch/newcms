@@ -347,8 +347,9 @@ if((($_REQUEST["we_cmd"][0] != "save_document" && $_REQUEST["we_cmd"][0] != "pub
 		//
 	// --> Glossary Replacement
 	//
+	
 	if(defined("GLOSSARY_TABLE") && ((isset($GLOBALS["we_editmode"]) && !$GLOBALS["we_editmode"]) || !isset($GLOBALS["we_editmode"]))) {
-		if(isset($we_doc->InGlossar) && $we_doc->InGlossar) {
+		if(isset($we_doc->InGlossar) && $we_doc->InGlossar==0) {
 			include_once(WE_GLOSSARY_MODULE_DIR."weGlossaryCache.php");
 			include_once(WE_GLOSSARY_MODULE_DIR."weGlossaryReplace.php");
 			$contents = weGlossaryReplace::replace($contents, $we_doc->Language);
@@ -722,8 +723,9 @@ else {
     			    	//
 						// --> Start Glossary Replacement
 						//
+						
 						if(defined("GLOSSARY_TABLE") && (!isset($GLOBALS["WE_MAIN_DOC"]) || $GLOBALS["WE_MAIN_DOC"] == $GLOBALS["we_doc"])  && !$GLOBALS["we_editmode"]) {
-							if(isset($we_doc->InGlossar) && $we_doc->InGlossar) {
+							if(isset($we_doc->InGlossar) && $we_doc->InGlossar==0) {
 								include_once(WE_GLOSSARY_MODULE_DIR."weGlossaryCache.php");
 								include_once(WE_GLOSSARY_MODULE_DIR."weGlossaryReplace.php");
 	
@@ -743,7 +745,7 @@ else {
 						//
 
 						if(defined("GLOSSARY_TABLE") && (!isset($GLOBALS["WE_MAIN_DOC"]) || $GLOBALS["WE_MAIN_DOC"] == $GLOBALS["we_doc"])  && !$GLOBALS["we_editmode"]) {
-							if(isset($we_doc->InGlossar) && $we_doc->InGlossar) {
+							if(isset($we_doc->InGlossar) && $we_doc->InGlossar==0) {
 								weGlossaryReplace::end($GLOBALS["we_doc"]->Language);
 							}
 
