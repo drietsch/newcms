@@ -2260,7 +2260,7 @@ function we_tag_field($attribs, $content)
 				
 				$_imgAtts['alt'] = ''; //  alt must be set
 				$_imgAtts['src'] = $src; //  src
-				$_imgAtts['xml'] = $xml; //  xml
+				$_imgAtts['xml'] = true; //  xml
 				
 
 				$_imgAtts = array_merge(
