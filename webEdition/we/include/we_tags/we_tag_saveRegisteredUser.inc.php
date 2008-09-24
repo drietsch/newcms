@@ -161,7 +161,9 @@ function we_tag_saveRegisteredUser($attribs,$content){
 
 			}else{ // existierender User (Daten werden von User geaendert)!!
 
-				if(strlen($_REQUEST["s"]["Password"]) == 0){
+					error_log2($_SESSION["webuser"]);
+				
+					if(strlen($_REQUEST["s"]["Password"]) == 0){
 					if(!$passempty){
 						$passempty = $l_customer["password_empty"];
 					}
