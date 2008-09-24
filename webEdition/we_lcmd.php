@@ -17,6 +17,8 @@ include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GL
 
 ?>
 <script language="JavaScript" type="text/javascript">
+// bugfix WE-356
+self.focus();
 <?php
 if(isset($_REQUEST["wecmd0"])){ // when calling from applet (we can not call directly we_cmd[0] with the applet =>  Safari OSX doesn't support live connect)
 	$_REQUEST["we_cmd"][0] = $_REQUEST["wecmd0"];
