@@ -1236,6 +1236,7 @@ $GLOBALS["lv"] = new we_listview("' . $name . '", $we_rows, $we_offset, $we_lv_o
 			if ($type == "search") {
 				$php .= 'include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/listview/we_search_listview.class.php");
 $GLOBALS["lv"] = new we_search_listview("' . $name . '", $we_rows, $we_offset, $we_lv_order , $we_lv_desc, "' . $doctype . '", "' . $class . '", $we_lv_cats, $we_lv_catOr, ' . ($casesensitive ? "true" : "false") . ', $we_lv_ws, "' . $cols . '", "' . $cfilter . '");
+$GLOBALS["econda"]["HTML"] .= \'<a name="emos_name" title="search" rel="\'.$GLOBALS["lv"]->search.\'" rev="\'.$GLOBALS["lv"]->anz_all.\'" >\';
 ';
 			} else 
 				if ($type == "object") {
@@ -1339,8 +1340,8 @@ if(is_array($GLOBALS["we_lv_array"])) array_push($GLOBALS["we_lv_array"],clone($
 ';
 		
 		$pre = $this->getStartCacheCode($tag, $attribs);
-		
-		return $this->replaceTag($tag, $code, $pre . $php);
+		$ret = $this->replaceTag($tag, $code, $pre . $php) ;
+		return $ret;
 	}
 
 	function parseObjectTag($tag, $code, $attribs = "", $postName = "")
@@ -2103,7 +2104,7 @@ if (!$GLOBALS["we_doc"]->InWebEdition) {
 								'xml' => $xml
 						)) . '
 			                 </div>
-				        <?php endif ?>';
+				        <?php endif ?><a name="emos_name" title="scontact" rel="'.$subject.'" rev=""></a>';
 				break;
 			default :
 				

@@ -46,7 +46,7 @@ switch (true){
 		
 	case isset($_SESSION['webuser']) && isset($_SESSION['webuser']['MemberSince']) && $_SESSION['webuser']['MemberSince']<1 :
 		// user registration
-		$emos->emosRegister();
+		//$emos->emosRegister();
 		break;
 
 	case isset($_REQUEST['s']) && isset($_REQUEST['s']['Username']) :
@@ -65,11 +65,15 @@ switch (true){
 }
 
 ?>
-<?php ?>
+<?php 
+echo $emos->getEmosHTMLFooter(); 
+?>
 <script type="text/javascript">
 //<!--
 var emosPageId = "<?php echo $GLOBALS["WE_DOC_ID"]; ?>";
-<?php echo $emos->getEmosJsFooter(); ?>
+<?php 
+echo $emos->getEmosJsFooter(); 
+?>
 //-->
 </script>
 <script type="text/javascript" src="<?php print WE_ECONDA_PATH; ?>"></script>

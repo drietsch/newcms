@@ -27,13 +27,17 @@ class weEmos{
 	 */
 	private $emosHTMLFooter;
 	
+	function __construct(){
+		$this->emosJsFooter = $GLOBALS["econda"]["JS"];
+		$this->emosHTMLFooter = $GLOBALS["econda"]["HTML"];
+	}
 	/**
 	 * Article content page
 	 *
 	 * @param String $type (doc|ojb)
 	 */
 	function weViewArticle($type){
-				$this->emosJsFooter .= "
+		$this->emosJsFooter .= "
 emosECPageArray['event'] 	= 'view';
 emosECPageArray['id']		= 'd_" . $GLOBALS["we_".$type]->ID . "';
 emosECPageArray['name']		= '" . urlencode($GLOBALS["we_".$type]->elements["shoptitle"]["dat"]) . "';
@@ -45,6 +49,7 @@ emosECPageArray['var2']		= 'NULL';
 emosECPageArray['var3']		= 'NULL';
 ";
 		
+		//$this->emosHTMLFooter .= '<a name="emos_name" title="content" rel="Katalog/" rev=""';
 	}
 	
 	/**
