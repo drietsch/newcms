@@ -141,7 +141,7 @@
 
 				if(openstatus && treeData[eintragsIndex].loaded!=1){
 					if(sort!="")
-						'.$this->cmdFrame.'.location="'.$this->frameset.'?pnt=cmd&pid="+id+"&sort="+sort;
+						'.$this->cmdFrame.'.location="'.$this->frameset.'?pnt=cmd&pid="+id+"&sort="+escape(sort);
 					else
 						'.$this->cmdFrame.'.location="'.$this->frameset.'?pnt=cmd&pid="+id;
 				}else{
