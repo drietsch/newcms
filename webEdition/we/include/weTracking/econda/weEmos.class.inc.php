@@ -28,8 +28,8 @@ class weEmos{
 	private $emosHTMLFooter;
 	
 	function __construct(){
-		$this->emosJsFooter = $GLOBALS["econda"]["JS"];
-		$this->emosHTMLFooter = $GLOBALS["econda"]["HTML"];
+		$this->emosJsFooter = $GLOBALS["weEconda"]["JS"];
+		$this->emosHTMLFooter = $GLOBALS["weEconda"]["HTML"];
 	}
 	/**
 	 * Article content page

@@ -15,7 +15,7 @@ function we_tag_econda($attribs, $content){
 	// Define globals
 	global $we_editmode, $l_global;
 	
-	$type = we_getTagAttribute("type",$attribs,false);
+	$type = we_getTagAttribute("type",$attribs);
 	if ($type=="exclude" && !$GLOBALS["we_doc"]->InWebEdition) {
 			return "\n".'<script type="text/javascript">
 //<!--
@@ -32,6 +32,12 @@ function we_tag_econda($attribs, $content){
 				$contentLabel = htmlspecialchars(isset($GLOBALS["we_doc"]->elements["econda_content"]["dat"]) ? $GLOBALS["we_doc"]->getElement("econda_content") : $value);
 				$retEdit = '<input onchange="_EditorFrame.setEditorIsHot(true);" class="wetextinput" type="text" name="we_' . $GLOBALS["we_doc"]->Name . '_txt[' . $name . ']" value="' . $val . '"' . ($attr ? " $attr" : "") . '>';
 				break;
+			case "hidden":
+				$name = "econda_content";
+				$value = we_getTagAttribute("value", $attribs);
+				$contentLabel = htmlspecialchars(isset($GLOBALS["we_doc"]->elements["econda_content"]["dat"]) ? $GLOBALS["we_doc"]->getElement("econda_content") : $value);
+				$retEdit = '<input onchange="_EditorFrame.setEditorIsHot(true);" type="hidden" name="we_' . $GLOBALS["we_doc"]->Name . '_txt[' . $name . ']" value="' . $val . '"' . ($attr ? " $attr" : "") . '>';
+				break;
 			case "navigation":
 				if(isset($GLOBALS["we_doc"]->NavigationItems) && $GLOBALS["we_doc"]->NavigationItems != "") {
 					$navItems = explode(",",$GLOBALS["we_doc"]->NavigationItems);
@@ -41,7 +47,7 @@ function we_tag_econda($attribs, $content){
 			case "path":
 				$contentLabel = substr($GLOBALS["we_doc"]->Path,1);
 				break;
-			case "categorie":
+			case "category":
 				if(isset($GLOBALS["we_doc"]->Category) && $GLOBALS["we_doc"]->Category != "") {
 					$catIds = explode(",",$GLOBALS["we_doc"]->Category); 
 					$contentLabel = f("SELECT Path FROM " . CATEGORY_TABLE . " WHERE ID=" . $catIds[1], "Path", $GLOBALS["DB_WE"]);
