@@ -1529,7 +1529,7 @@ class we_versions_wizard
 				we_htmlElement::htmlHead(
 						we_htmlElement::jsElement("", array(
 							"src" => JS_DIR . "we_showMessage.js"
-						)) . we_htmlElement::htmlTitle($GLOBALS["l_versions"]["versioning"])) . $fst->getHtmlCode());
+						)) . we_htmlElement::htmlTitle($GLOBALS["l_versions"]["versions_wizard"])) . $fst->getHtmlCode());
 	
 	}
 
