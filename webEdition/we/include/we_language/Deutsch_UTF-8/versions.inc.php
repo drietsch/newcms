@@ -15,6 +15,7 @@ $GLOBALS['l_versions'] = array(
 	'version' 						=> 'Version',
 	'versions' 						=> 'Versionen',
 	'versions_log' 					=> 'Versions-Log',
+	'versions_wizard' 				=> 'Versions-Wizard',
 	'versioning' 					=> 'Versionierung',
 	'user' 							=> 'Benutzer',
 	'modDate' 						=> 'Änderungsdatum',
