@@ -579,7 +579,7 @@ $contentDiff .= '</table>';
 	
 	
 
-	htmlTop();
+	htmlTop("webEdition (c) living-e AG - " .$GLOBALS['l_versions']['versioning']);
 	
 	print STYLESHEET;
 	
