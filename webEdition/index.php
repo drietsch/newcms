@@ -121,7 +121,7 @@ function checkSupportedBrowser() {
 }
 
 /*****************************************************************************
- * CREATE TMP AND FRAMGMENTS FOLDER
+ * CREATE TMP, FRAGMENTS AND VERSIONS FOLDER
  *****************************************************************************/
 if (!is_dir(TMP_DIR)) {
 	createLocalFolder(TMP_DIR);
@@ -129,6 +129,9 @@ if (!is_dir(TMP_DIR)) {
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/taskFragment.class.php");
 if (!is_dir(FRAGMENT_LOCATION)) {
 	createLocalFolder(FRAGMENT_LOCATION);
+}
+if (!is_dir($_SERVER["DOCUMENT_ROOT"].VERSION_DIR)) {
+	createLocalFolder($_SERVER["DOCUMENT_ROOT"], VERSION_DIR);
 }
 
 /*****************************************************************************
