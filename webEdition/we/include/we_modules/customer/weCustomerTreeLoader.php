@@ -136,6 +136,7 @@ class weCustomerTreeLoader{
 		$fieldarr=array();
 
 		$havingarr=array();
+		$sort_defs=array();
 		$pidarr=array();
 		$check=array();
 		$level=0;
@@ -154,7 +155,9 @@ class weCustomerTreeLoader{
 		$settings=new weCustomerSettings();
 		$settings->load(false);
 
-		$sort_defs=$settings->SortView[$sort];
+		if(isset($settings->SortView[$sort])) {
+			$sort_defs=$settings->SortView[$sort];
+		}
 
 		$c=0;
 		$select = array();
