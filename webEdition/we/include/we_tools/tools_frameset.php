@@ -15,10 +15,26 @@
 include_once($_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we.inc.php');
 include_once($_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we_html_tools.inc.php');
 include($_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we_language/'.$GLOBALS['WE_LANGUAGE'].'/tools.inc.php');
-
+include($_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we_language/'.$GLOBALS['WE_LANGUAGE'].'/navigation.inc.php');
+include($_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we_language/'.$GLOBALS['WE_LANGUAGE'].'/searchtool.inc.php');
 protect();
 
-htmlTop('webEdition '.$l_tools['tools']);
+$title = 'webEdition '.$l_tools['tools'];
+if(isset($_REQUEST['tool']) && !isset($tool)) {
+	$tool = $_REQUEST['tool'];
+	if($tool=='weSearch') {
+		$title = 'webEdition '.$GLOBALS['l_weSearch']['weSearch'];
+	}
+	if($tool=='navigation') {
+		$title = 'webEdition '.$GLOBALS['l_navigation']['navigation'];
+	}
+} else {
+	$tool = 'navigation';
+	$title = 'webEdition '.$GLOBALS['l_navigation']['navigation'];
+}
+
+htmlTop($title);
+
 print we_htmlElement::jsElement('
 
 	top.weToolWindow = true;
@@ -39,11 +55,7 @@ print we_htmlElement::jsElement('
 
 
 ');
-if(isset($_REQUEST['tool']) && !isset($tool)) {
-	$tool = $_REQUEST['tool'];
-} else {
-	$tool = 'navigation';
-}
+
 if($tool=="weSearch") {
 	if(isset($_REQUEST['we_cmd'][1])) {
 		$_SESSION["weSearch"]["keyword"] = $_REQUEST['we_cmd'][1];
