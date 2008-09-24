@@ -52,8 +52,6 @@ function  jsWindowOpen(noPopupErrorMsg, noPopupLocation) {
 		this.wind = window.open(this.url, this.ref, properties);
 		this.wind.moveTo(this.x,this.y);
 		this.wind.focus();
-		// Bug WE-356, bugfix for IE7
-		self.focus();
 		
 	}catch(e) {
 	 	if (noPopupErrorMsg != undefined &&  noPopupErrorMsg.length) {
