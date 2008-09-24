@@ -27,5 +27,6 @@
 					eval("if(jsWindow"+k+"Object.ref=='edit_module'){ jsWindow"+k+"Object.wind.content.we_cmd('"+arguments[0]+"');fo=true;wind=jsWindow"+k+"Object.wind}");
 					if(fo) break;
 				}
-				if(!!wind && arguments[0]!="empty_log") wind.focus();
+				// bugfix WE-356
+				//if(!!wind && arguments[0]!="empty_log") wind.focus();
 				break;
