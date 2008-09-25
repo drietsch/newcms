@@ -368,6 +368,14 @@ class weNewsletterView {
 	function getJSTopCode() {
 		global $l_newsletter;
 
+		$mod = isset($_REQUEST['mod']) ? $_REQUEST['mod'] : '';
+		$title = '';
+		foreach($GLOBALS["_we_available_modules"] as $modData){
+			if($modData["name"] == $mod){
+				$title	= "webEdition " . $GLOBALS["l_global"]["modules"] . ' - ' .$modData["text"];
+				break;
+			}
+		}
 
 		return we_htmlElement::jsElement('
 			var get_focus = 1;
@@ -388,6 +396,8 @@ class weNewsletterView {
 					}
 				}
 			}
+			
+			parent.document.title = "'.$title.'";
 			
 			/**
 			  * Menu command controler

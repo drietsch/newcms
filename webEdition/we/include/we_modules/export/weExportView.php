@@ -81,6 +81,16 @@ class weExportView {
 	
 	function getJSTop(){
 		global $l_export;
+		
+		$mod = isset($_REQUEST['mod']) ? $_REQUEST['mod'] : '';
+		$title = '';
+		foreach($GLOBALS["_we_available_modules"] as $modData){
+			if($modData["name"] == $mod){
+				$title	= "webEdition " . $GLOBALS["l_global"]["modules"] . ' - ' .$modData["text"];
+				break;
+			}
+		}
+		
 		$js='
 			var get_focus = 1;
 			var activ_tab = 1;
@@ -103,6 +113,8 @@ class weExportView {
 					}
 				}
 			}
+			
+			parent.document.title = "'.$title.'";
 			
 			function we_cmd() {
 				var args = "";

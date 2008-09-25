@@ -25,6 +25,15 @@ htmlTop();
 
 print STYLESHEET;
 
+$mod = isset($_REQUEST['mod']) ? $_REQUEST['mod'] : '';
+$title = '';
+foreach($GLOBALS["_we_available_modules"] as $modData){
+	if($modData["name"] == $mod){
+		$title	= "webEdition " . $GLOBALS["l_global"]["modules"] . ' - ' .$modData["text"];
+		break;
+	}
+}
+
 ?>
 <script language="JavaScript" type="text/javascript" src="<?php print JS_DIR; ?>images.js"></script>
 <script language="JavaScript" type="text/javascript" src="<?php print JS_DIR; ?>windows.js"></script>
@@ -33,6 +42,9 @@ print STYLESHEET;
 	var loaded=0;
 	var hot=0;
 	var hloaded=0;
+	
+	parent.document.title = "<?php print $title; ?>";
+	
 	<?php
 		if($_SESSION["user"]["ID"] && isset($GLOBALS["BIG_USER_MODULE"]) && $GLOBALS["BIG_USER_MODULE"] && in_array("busers",$GLOBALS["_pro_modules"])) {
 			$DB_WE->query("SELECT ParentID FROM ".USER_TABLE." WHERE ID=".$_SESSION["user"]["ID"]);

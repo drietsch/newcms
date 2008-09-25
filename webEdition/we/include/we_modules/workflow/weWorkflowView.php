@@ -514,9 +514,18 @@ class weWorkflowView extends weWorkflowBase{
 	}
 
 	function getJSTopCode(){
-	global $l_workflow;
-	?>
-	<script language="JavaScript" type="text/javascript">
+		global $l_workflow;
+	
+		$mod = isset($_REQUEST['mod']) ? $_REQUEST['mod'] : '';
+		$title = '';
+		foreach($GLOBALS["_we_available_modules"] as $modData){
+			if($modData["name"] == $mod){
+				$title	= "webEdition " . $GLOBALS["l_global"]["modules"] . ' - ' .$modData["text"];
+				break;
+			}
+		}
+		?>
+		<script language="JavaScript" type="text/javascript">
 
 			function doUnload() {
 				if (!!jsWindow_count) {
@@ -525,6 +534,8 @@ class weWorkflowView extends weWorkflowBase{
 					}
 				}
 			}
+			
+			parent.document.title = "<?php print $title; ?>";
 
 			function we_cmd(){
 				var args = "";

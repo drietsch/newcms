@@ -17,21 +17,31 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we_html_tools.inc
 include($_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we_language/'.$GLOBALS['WE_LANGUAGE'].'/tools.inc.php');
 include($_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we_language/'.$GLOBALS['WE_LANGUAGE'].'/navigation.inc.php');
 include($_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we_language/'.$GLOBALS['WE_LANGUAGE'].'/searchtool.inc.php');
+
 protect();
 
-$title = 'webEdition '.$l_tools['tools'];
-if(isset($_REQUEST['tool']) && !isset($tool)) {
+// include autoload function
+include_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/lib/we/core/autoload.php');
+
+Zend_Loader::loadClass('we_core_Local');
+
+
+		
+$title = 'webEdition ';
+if(isset($_REQUEST['tool'])) {
 	$tool = $_REQUEST['tool'];
 	if($tool=='weSearch') {
-		$title = 'webEdition '.$GLOBALS['l_weSearch']['weSearch'];
+		$title .= $l_tools['tools']. ' - '.$GLOBALS['l_weSearch']['weSearch'];
 	}
-	if($tool=='navigation') {
-		$title = 'webEdition '.$GLOBALS['l_navigation']['navigation'];
+	elseif($tool=='navigation') {
+		$title .= $l_tools['tools']. ' - '.$GLOBALS['l_navigation']['navigation'];
 	}
-} else {
-	$tool = 'navigation';
-	$title = 'webEdition '.$GLOBALS['l_navigation']['navigation'];
-}
+	else {
+		$translate = we_core_Local::addTranslation('apps.xml');
+		we_core_Local::addTranslation('default.xml', $tool);
+		$title .= $translate->_('Applications'). ' - '.$translate->_($tool);
+	}
+} 
 
 htmlTop($title);
 

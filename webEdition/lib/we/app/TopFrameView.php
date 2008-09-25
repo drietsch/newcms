@@ -66,7 +66,8 @@ class we_app_TopFrameView extends Zend_View
 		$page->addJSFile('/webEdition/lib/we/ui/layout/Dialog.js');
 		
 		$translate = we_core_Local::addTranslation('apps.xml');
-		
+		we_core_Local::addTranslation('default.xml', $this->appName);
+
 		$fs = self::kEditorFrameset;
 		
 		// predefined message for JS output
@@ -97,6 +98,8 @@ class we_app_TopFrameView extends Zend_View
 self.hot = false;
 self.focus();
 self.appName = "{$this->appName}";
+
+parent.document.title = "webEdition {$translate->_('Applications')} - {$translate->_($this->appName)}";
 
 /*******************************************
 ****************** Events ******************

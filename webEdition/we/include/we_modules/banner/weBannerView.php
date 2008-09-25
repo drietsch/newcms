@@ -235,7 +235,20 @@ class weBannerView extends weBannerBase{
 					}
 				}
 			}
-			 
+			<?php 
+
+			$mod = isset($_REQUEST['mod']) ? $_REQUEST['mod'] : '';
+			$title = '';
+			foreach($GLOBALS["_we_available_modules"] as $modData){
+				if($modData["name"] == $mod){
+					$title	= $modData["text"];
+					break;
+				}
+			}
+			?>
+			
+			parent.document.title = "webEdition <?php print $GLOBALS["l_global"]["modules"] . ' - ' .$title; ?>";
+			
 			function setHot() {
 				hot = "1";
 			}

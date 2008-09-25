@@ -78,6 +78,16 @@ class weVotingView {
 	
 	function getJSTop(){
 		global $l_voting;
+		
+		$mod = isset($_REQUEST['mod']) ? $_REQUEST['mod'] : '';
+		$title = '';
+		foreach($GLOBALS["_we_available_modules"] as $modData){
+			if($modData["name"] == $mod){
+				$title	= "webEdition " . $GLOBALS["l_global"]["modules"] . ' - ' .$modData["text"];
+				break;
+			}
+		}
+		
 		$js='
 			var get_focus = 1;
 			var activ_tab = 1;
@@ -97,6 +107,8 @@ class weVotingView {
 					}
 				}
 			}
+			
+			parent.document.title = "'.$title.'";
 			
 			function we_cmd() {
 				var args = "";

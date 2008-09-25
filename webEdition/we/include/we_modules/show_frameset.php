@@ -17,7 +17,7 @@ include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/"."we.inc.php");
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/"."we_html_tools.inc.php");
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GLOBALS["WE_LANGUAGE"]."/global.inc.php");
 protect();
-htmlTop("webEdition ".$l_global["modules_and_tools"]);
+htmlTop();
 print we_htmlElement::jsElement('
 	function toggleBusy(){
 	}
