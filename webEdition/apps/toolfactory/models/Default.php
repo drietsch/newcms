@@ -266,8 +266,12 @@ class toolfactory_models_Default extends we_app_Model
 	 */
 	function save() {
 
-		$TOOLREALNAME = $this->realname;
-		$TOOLNAMELANG = htmlspecialchars($this->Text, ENT_NOQUOTES);
+		$charset = we_core_Local::getComputedUICharset();
+		$TOOLREALNAME = htmlentities($this->realname);
+		if($charset=='UTF-8') {
+			$this->realname = utf8_encode($this->realname);
+		}
+		$TOOLNAMELANG = htmlspecialchars($this->realname, ENT_NOQUOTES);
 		$TOOLNAME = $this->classname;
 		$CLASSNAME = $this->classname;
 		$TABLENAME = $this->maintable;
