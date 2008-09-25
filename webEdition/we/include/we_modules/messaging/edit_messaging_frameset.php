@@ -54,6 +54,15 @@ $messaging->saveInSession($_SESSION["we_data"][$we_transaction]);
 
 print STYLESHEET;
 
+$mod = isset($_REQUEST['mod']) ? $_REQUEST['mod'] : '';
+$title = '';
+foreach($GLOBALS["_we_available_modules"] as $modData){
+	if($modData["name"] == $mod){
+		$title	= "webEdition " . $GLOBALS["l_global"]["modules"] . ' - ' .$modData["text"];
+		break;
+	}
+}
+
 ?>
 
 <script language="JavaScript" type="text/javascript">
@@ -71,6 +80,8 @@ print STYLESHEET;
 	open_folder = -1;
 	viewclass ="message";
 	mode = "show_folder_content";
+	
+	parent.document.title = "<?php echo $title; ?>";
 
 	we_transaction = "<?php echo $we_transaction?>";
 
