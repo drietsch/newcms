@@ -70,19 +70,14 @@
 						//$langFile = $_bd . '/' . $metaInfo['name'] . '/language/language_' . $lang . '.inc.php';
 						//$langStr = '';
 						if(isset($metaInfo['realname'])) {
-							$langStr = $metaInfo['realname'];
+							$langStr = html_entity_decode($metaInfo['realname']);
 						}
 						else {
 							$langStr = $metaInfo['name'];
 						}
 						
-						if(eregi('_UTF-8',$lang)) {
-							$metaInfo['text'] = utf8_decode(stripslashes($langStr));
-						}
-						else {
-							$metaInfo['text'] = stripslashes($langStr);
-						}
-
+						$metaInfo['text'] = stripslashes($langStr);
+						
 						$_tools[] = $metaInfo;
 						unset($metaInfo);
 					}
