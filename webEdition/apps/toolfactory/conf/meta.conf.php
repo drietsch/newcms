@@ -1,5 +1,4 @@
 <?php
-error_log("22");
 /**
  * webEdition CMS
  *
