@@ -149,15 +149,14 @@ class toolfactory_service_Cmd extends we_app_service_AbstractCmd
 			$ex->setType('warning');
 			throw $ex;
 		}
-
+		
 		$charset = we_core_Local::getComputedUICharset();
 		//$model->realname = htmlentities($model->Text,ENT_QUOTES);
 		$text = $model->Text;
-		if($charset=='UTF-8') {
-			$text = utf8_decode($model->Text);
-		}
-				
-		$model->realname = addslashes($text);
+		
+		$text = utf8_decode($model->Text);
+		
+		$model->realname = addslashes($text);		
 		
 		/*
 		if($model->toolExists($model->realname)) {
