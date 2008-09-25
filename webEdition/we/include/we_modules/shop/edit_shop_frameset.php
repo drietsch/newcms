@@ -59,9 +59,17 @@ $DB_WE->query("SELECT strFelder from ".ANZEIGE_PREFS_TABLE." where strDateiname 
     // wether the resultset ist empty?
 	$DB_WE->query("SELECT count(Name) as Anzahl FROM ".LINK_TABLE." WHERE Name ='$dbTitlename'");
 	$DB_WE->next_record();
-	$resultD = $DB_WE->f("Anzahl")
+	$resultD = $DB_WE->f("Anzahl");
 
 
+	$mod = isset($_REQUEST['mod']) ? $_REQUEST['mod'] : '';
+	$title = '';
+	foreach($GLOBALS["_we_available_modules"] as $modData){
+		if($modData["name"] == $mod){
+			$title	= "webEdition " . $GLOBALS["l_global"]["modules"] . ' - ' .$modData["text"];
+			break;
+		}
+	}
 
 ?>
 
@@ -71,6 +79,8 @@ $DB_WE->query("SELECT strFelder from ".ANZEIGE_PREFS_TABLE." where strDateiname 
  <script language="JavaScript" type="text/javascript">
 
  var hot = 0;
+ 
+ parent.document.title = "<?php print $title; ?>";
  
 function doUnload() {
 	if (!!jsWindow_count) {
