@@ -76,6 +76,8 @@ $js = <<<EOS
 		}
 
 		path += parent.edbody.document.we_form.Text.value;
+		path = path.replace(/</g,"&lt;");
+		path = path.replace(/>/g,"&gt;");
 		self.setTitlePath("", path.replace(/\/\//,"/"));
 		self.mark();
 	});
