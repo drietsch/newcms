@@ -663,7 +663,7 @@ class we_template extends we_document
 			<table border="0" cellpadding="0" cellspacing="0">
 				<tr>
 					<td colspan="3" class="defaultfont">' . $l_we_cache['cache_type']. '<br />
-						' . $this->htmlSelect('we_' . $this->Name . '_CacheType', array('none' => $l_we_cache['cache_type_none'], 'tag' => $l_we_cache['cache_type_wetag'], 'document' => $l_we_cache['cache_type_document'], 'full' => $l_we_cache['cache_type_full']), 1, $this->CacheType, false, "", "value", 508)	 . '</td>
+						' . $this->htmlSelect('we_' . $this->Name . '_CacheType', array('none' => $l_we_cache['cache_type_none'], 'tag' => $l_we_cache['cache_type_wetag'], 'document' => $l_we_cache['cache_type_document'], 'full' => $l_we_cache['cache_type_full']), 1, $this->CacheType, false, 'onChange="if(this.value==\'none\') {document.forms[0].elements[\'we_' . $this->Name . '_CacheLifeTime\'].value=0;document.forms[0].elements[\'we_tmp_' . $this->Name . '_select[CacheLifeTime]\'].value=0;};"', "value", 508)	 . '</td>
 				</tr>
 				<tr>
 					<td>
