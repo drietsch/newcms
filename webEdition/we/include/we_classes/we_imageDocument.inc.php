@@ -580,7 +580,12 @@ class we_imageDocument extends we_binaryDocument {
 
 
 		} else {
-			$this->html = '<img src="' . IMAGE_DIR . 'icons/no_image.gif" width="64" height="64" style="margin:8px 18px;" border="0"' . (isset($this->name) ? (' name="' . $this->name . '"') : '') . ' alt="">';
+			//bugfix WE-350
+			$xhtmlSlash = '';
+			if(defined("XHTML_DEFAULT") && XHTML_DEFAULT) {
+				$xhtmlSlash = ' /';
+			}
+			$this->html = '<img src="' . IMAGE_DIR . 'icons/no_image.gif" width="64" height="64" style="margin:8px 18px;" border="0"' . (isset($this->name) ? (' name="' . $this->name . '"') : '') . ' alt=""'.$xhtmlSlash.'>';
 		}
 
 		return $this->html;
