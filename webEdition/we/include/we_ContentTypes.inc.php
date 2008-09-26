@@ -71,7 +71,7 @@ $GLOBALS["WE_CONTENT_TYPES"]["text/weTmpl"] = array(
   <we:title></we:title>
   <we:description/>
   <we:keywords/>
-  <we:charset defined="ISO-8859-1">ISO-8859-1</we:charset>
+  <we:charset defined="UTF-8">UTF-8</we:charset>
 </head>
 <body>
   <table cellpadding="0" cellspacing="0" border="0" width="400">
