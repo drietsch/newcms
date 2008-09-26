@@ -169,16 +169,6 @@ function we_tag_saveRegisteredUser($attribs,$content){
 
 			}else{ // existierender User (Daten werden von User geaendert)!!
 
-					error_log2($_SESSION["webuser"]);
-				
-					if(strlen($_REQUEST["s"]["Password"]) == 0){
-					if(!$passempty){
-						$passempty = $l_customer["password_empty"];
-					}
-					print getHtmlTag('script',array('type'=>'text/javascript'), 'history.back();' . we_message_reporting::getShowMessageCall($passempty, WE_MESSAGE_FRONTEND));
-
-				}else{
-
 					$Username = isset($_REQUEST["s"]["Username"]) ?  $_REQUEST["s"]["Username"] : "";
 
 					$GLOBALS["DB_WE"]->query("SELECT ID FROM ".CUSTOMER_TABLE." WHERE Username='".$Username."' AND ID<> '".$_REQUEST["s"]["ID"]."'");
@@ -237,7 +227,6 @@ function we_tag_saveRegisteredUser($attribs,$content){
 					$_SESSION["webuser"]=$u;
 					$_SESSION["webuser"]["registered"] = true;
 				}
-			}
 
 		}
 	}
