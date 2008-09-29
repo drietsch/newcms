@@ -43,11 +43,12 @@ $we_dt = isset($_SESSION["we_data"][$we_transaction]) ? $_SESSION["we_data"][$we
 // init document
 include ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/" . "we_editors/we_init_doc.inc.php");
 
-if (isset($_REQUEST['cmd']) && $_REQUEST['cmd'] != "ResetVersion") {
+if (isset($_REQUEST['cmd']) && $_REQUEST['cmd'] != "ResetVersion" && $_REQUEST['cmd'] != "PublishDocs") {
 	if (isset($FROM_WE_SHOW_DOC) && $FROM_WE_SHOW_DOC) { // when called showDoc.php
 		$publ = $we_doc->Published;
 		$prot = getServerProtocol();
 		$preurl = (isset($_SERVER["HTTP_HOST"]) && $_SERVER["HTTP_HOST"]) ? "$prot://" . $_SERVER["HTTP_HOST"] : "";
+		
 		if ((!$we_doc->IsDynamic) && $publ && (!$tmplID)) { // if the document is not a dynamic php-doc and is published we make a redirect to the static page
 			header("Location: " . $preurl . $we_doc->Path);
 			exit();
