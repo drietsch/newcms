@@ -35,9 +35,9 @@ if(isset($_REQUEST["ok"]) && $_REQUEST["ok"]){
 	$DefaultBannerID = isset($_REQUEST["DefaultBannerID"]) ? $_REQUEST["DefaultBannerID"] : 0;
 	$DB_WE->query("SELECT * FROM ".BANNER_PREFS_TABLE." WHERE pref_name='DefaultBannerID'");
 	if($DB_WE->num_rows()){
-		$DB_WE->query("UPDATE ".BANNER_PREFS_TABLE." SET pref_value='".$DefaultBannerID."' WHERE pref_name='DefaultBannerID'");
+		$DB_WE->query("UPDATE ".BANNER_PREFS_TABLE." SET pref_value='".addslashes($DefaultBannerID)."' WHERE pref_name='DefaultBannerID'");
 	}else{
-		$DB_WE->query("INSERT INTO ".BANNER_PREFS_TABLE." (pref_name,pref_value) VALUES('DefaultBannerID','".$DefaultBannerID."')");
+		$DB_WE->query("INSERT INTO ".BANNER_PREFS_TABLE." (pref_name,pref_value) VALUES('DefaultBannerID','".addslashes($DefaultBannerID)."')");
 	}
 
 	print '<script language="JavaScript">
