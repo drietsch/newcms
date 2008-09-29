@@ -261,7 +261,7 @@ function getObjectRootPathOfObjectWorkspace($classDir, $classId, $db = "")
 				"
 			SELECT ID,Path
 			FROM " . OBJECT_FILES_TABLE . "
-			WHERE IsFolder=1 AND Path LIKE '" . $classDir . "%'");
+			WHERE IsFolder=1 AND Path LIKE '" . addslashes($classDir) . "%'");
 		while ($db->next_record()) {
 			if (!$ws || in_workspace($db->f("ID"), $ws, OBJECT_FILES_TABLE, "", true)) {
 				if ($rootPath == "/" || strlen($db->f("Path")) < strlen($rootPath)) {
@@ -280,7 +280,7 @@ function weFileExists($id, $table = FILE_TABLE, $db = "")
 		return true;
 	if (!$db)
 		$db = new DB_WE();
-	return f("SELECT ID FROM $table WHERE ID='$id'", "ID", $db);
+	return f("SELECT ID FROM $table WHERE ID=".abs($id), "ID", $db);
 }
 
 function makePIDTail($pid, $cid, $db = "", $table = FILE_TABLE)
@@ -295,13 +295,13 @@ function makePIDTail($pid, $cid, $db = "", $table = FILE_TABLE)
 			$pid = f("
 				SELECT ParentID
 				FROM " . FILE_TABLE . "
-				WHERE ID='$pid'", "ParentID", $db);
+				WHERE ID=".abs($pid), "ParentID", $db);
 			array_push($parentIDs, $pid);
 		}
 		$foo = f("
 			SELECT DefaultValues
 			FROM " . OBJECT_TABLE . "
-			WHERE ID='" . $cid . "'", "DefaultValues", $db);
+			WHERE ID=".abs($cid), "DefaultValues", $db);
 		$fooArr = unserialize($foo);
 		if (isset($fooArr["WorkspaceFlag"]))
 			$flag = $fooArr["WorkspaceFlag"];
@@ -312,7 +312,7 @@ function makePIDTail($pid, $cid, $db = "", $table = FILE_TABLE)
 		else
 			$pid_tail = " ( ";
 		foreach ($parentIDs as $pid)
-			$pid_tail .= " " . OBJECT_X_TABLE . $cid . ".OF_Workspaces like '%,$pid,%' OR " . OBJECT_X_TABLE . $cid . ".OF_ExtraWorkspacesSelected like '%," . $pid . ",%' OR ";
+			$pid_tail .= " " . OBJECT_X_TABLE . $cid . ".OF_Workspaces like '%,".abs($pid).",%' OR " . OBJECT_X_TABLE . abs($cid) . ".OF_ExtraWorkspacesSelected like '%," . abs($pid) . ",%' OR ";
 		$pid_tail = ereg_replace('^(.*)OR ', '\1', $pid_tail) . ")";
 		if (trim($pid_tail) == "( )")
 			return "1";
@@ -1024,7 +1024,7 @@ function getSQLForOneCatId($cat, $table = FILE_TABLE, $db = "", $fieldName = "Ca
 	$query = '
 		SELECT Path
 		FROM ' . CATEGORY_TABLE . '
-		WHERE ID = ' . $cat;
+		WHERE ID = ' . abs($cat);
 	
 	$db->query($query);
 	if ($db->next_record()) {
@@ -1043,12 +1043,12 @@ function getSQLForOneCat($cat, $table = FILE_TABLE, $db = "", $fieldName = "Cate
 	$q = "
 		SELECT DISTINCT ID
 		FROM " . CATEGORY_TABLE . "
-		WHERE Path LIKE '" . $cat . "/%' OR Path='" . $cat . "'";
+		WHERE Path LIKE '" . addslashes($cat) . "/%' OR Path='" . addslashes($cat) . "'";
 	
 	$db->query($q);
 	$z = 0;
 	while ($db->next_record())
-		$sql .= " " . $table . "." . $fieldName . " like '%," . $db->f("ID") . ",%' OR ";
+		$sql .= " " . $table . "." . $fieldName . " like '%," . abs($db->f("ID")) . ",%' OR ";
 	$sql = ereg_replace('^(.*)OR $', '\1', $sql);
 	if ($sql)
 		return "( $sql )";
@@ -1252,19 +1252,19 @@ function deleteContentFromDB($id, $table)
 			"
 		SELECT *
 		FROM " . LINK_TABLE . "
-		WHERE DID=$id AND DocumentTable='" . substr($table, strlen(TBL_PREFIX)) . "'")) {
+		WHERE DID=".abs($id) . " AND DocumentTable='" . addslashes(substr($table, strlen(TBL_PREFIX))) . "'")) {
 		return false;
 	}
 	while ($DB_WE->next_record())
 		$dbc->query("
 			DELETE
 			FROM " . CONTENT_TABLE . "
-			WHERE ID=" . $DB_WE->f("CID"));
+			WHERE ID=" . abs($DB_WE->f("CID")));
 	return $DB_WE->query(
 			"
 		DELETE
 		FROM " . LINK_TABLE . "
-		WHERE DID=$id AND DocumentTable='" . substr($table, strlen(TBL_PREFIX)) . "'");
+		WHERE DID=".abs($id)." AND DocumentTable='" . addslashes(substr($table, strlen(TBL_PREFIX))) . "'");
 }
 
 function cleanTempFiles($cleanSessFiles = 0)
@@ -1292,7 +1292,7 @@ function cleanTempFiles($cleanSessFiles = 0)
 		$DB_WE->query("
 			SELECT Date,Path
 			FROM " . CLEAN_UP_TABLE . "
-			WHERE Path like '%$seesID%'");
+			WHERE Path like '%".addslashes($seesID)."%'");
 		if ($DB_WE->num_rows())
 			while ($DB_WE->next_record()) {
 				$p = $DB_WE->f("Path");
@@ -1301,7 +1301,7 @@ function cleanTempFiles($cleanSessFiles = 0)
 				$db2->query("
 					DELETE
 					FROM " . CLEAN_UP_TABLE . "
-					WHERE Path like '%$seesID%'");
+					WHERE Path like '%".addslashes($seesID)."%'");
 			}
 	}
 	$d = dir(TMP_DIR);
@@ -1412,7 +1412,9 @@ function getTemplAndDocIDsOfTemplate($id, $staticOnly = true, $publishedOnly = f
 	//	array_push($returnIDs["templateIDs"], $DB_WE->f("ID"));
 	//}
 	
-
+	$id = abs($id);
+	$tid = abs($tid);
+	
 	// Bug Fix 6615
 	if ($PublishedAndTemp) {
 		$where = " temp_template_id='" . $id . "' OR ";
@@ -1458,7 +1460,7 @@ function ObjectUsedByObjectFile($id)
 	$DB_WE->query("
 		SELECT ID
 		FROM " . OBJECT_FILES_TABLE . "
-		WHERE TableID='" . $id . "'");
+		WHERE TableID=" . abs($id));
 	return $DB_WE->num_rows();
 }
 
@@ -1592,7 +1594,7 @@ function makeOwnersSql($useCreatorID = true)
 		foreach ($aliases as $id)
 			we_getParentIDs(USER_TABLE, $id, $groups, $GLOBALS["DB_WE"]);
 		foreach ($groups as $id)
-			$q .= "Owners like '%,$id,%' OR ";
+			$q .= "Owners like '%,".abs($id).",%' OR ";
 		$q = ereg_replace('^(.*) OR $', '\1', $q);
 		return " AND ( RestrictOwners=0 OR (" . $q . ")) ";
 	} else
@@ -1606,13 +1608,13 @@ function we_getParentIDs($table, $id, &$ids, $db = "")
 	$pid = f("
 		SELECT ParentID
 		FROM $table
-		WHERE ID='$id'", "ParentID", $db);
+		WHERE ID=".abs($id), "ParentID", $db);
 	while ($pid > 0) {
 		array_push($ids, $pid);
 		$pid = f("
 			SELECT ParentID
 			FROM $table
-			WHERE ID='" . $pid . "'", "ParentID", $db);
+			WHERE ID=".abs($pid), "ParentID", $db);
 	}
 }
 
@@ -1625,7 +1627,7 @@ function we_getAliases($id, &$ids, $db = "")
 	$db->query("
 		SELECT ID
 		FROM " . USER_TABLE . "
-		WHERE Alias='$id'", "ID", $db);
+		WHERE Alias=".abs($id), "ID", $db);
 	while ($db->next_record())
 		array_push($ids, $db->f("ID"));
 }
@@ -1721,14 +1723,14 @@ function in_parentID($id, $pid, $table = FILE_TABLE, $db = "")
 	$p = f("
 		SELECT ParentID
 		FROM $table
-		WHERE ID='$id'", "ParentID", $db);
+		WHERE ID=".abs($id), "ParentID", $db);
 	while ($p) {
 		if ($p == $pid)
 			return true;
 		$p = f("
 			SELECT ParentID
 			FROM $table
-			WHERE ID='$p'", "ParentID", $db);
+			WHERE ID=".abs($p), "ParentID", $db);
 	}
 	return false;
 }
@@ -1779,7 +1781,7 @@ function userIsOwnerCreatorOfParentDir($folderID, $tab)
 	$db->query("
 		SELECT RestrictOwners,Owners,CreatorID
 		FROM $tab
-		WHERE ID='$folderID'");
+		WHERE ID=".abs($folderID));
 	if ($db->next_record())
 		if ($db->f("RestrictOwners")) {
 			$ownersArr = makeArrayFromCSV($db->f("Owners"));
@@ -1793,7 +1795,7 @@ function userIsOwnerCreatorOfParentDir($folderID, $tab)
 				return false;
 			}
 		} else {
-			$pid = f("SELECT ParentID FROM $tab WHERE ID='$folderID'", "ParentID", $db);
+			$pid = f("SELECT ParentID FROM $tab WHERE ID=".abs($folderID), "ParentID", $db);
 			return userIsOwnerCreatorOfParentDir($pid, $tab);
 		}
 	return true;
@@ -1805,7 +1807,7 @@ function path_to_id($path, $table = FILE_TABLE)
 	if ($path == "/") {
 		return 0;
 	}
-	return abs(f("SELECT ID FROM $table WHERE Path='$path'", "ID", $db));
+	return abs(f("SELECT ID FROM $table WHERE Path='".addslashes($path)."'", "ID", $db));
 }
 
 function weConvertToIds($paths, $table)
@@ -1826,7 +1828,7 @@ function path_to_id_ct($path, $table = FILE_TABLE, &$contentType)
 	if ($path == "/") {
 		return 0;
 	}
-	$res = getHash("SELECT ID,ContentType FROM $table WHERE Path='$path'", $db);
+	$res = getHash("SELECT ID,ContentType FROM $table WHERE Path='".addslashes($path)."'", $db);
 	$contentType = isset($res["ContentType"]) ? $res["ContentType"] : null;
 	
 	return abs(isset($res["ID"]) ? $res["ID"] : 0);
@@ -1848,7 +1850,7 @@ function id_to_path($IDs, $table = FILE_TABLE, $db = "", $prePostKomma = false, 
 		if ($id == 0) {
 			array_push($foo, "/");
 		} else {
-			$foo2 = getHash("SELECT Path,IsFolder FROM $table WHERE ID='$id'", $db);
+			$foo2 = getHash("SELECT Path,IsFolder FROM $table WHERE ID=".abs($id), $db);
 			if (isset($foo2["Path"])) {
 				if ($endslash && $foo2["IsFolder"]) {
 					$foo2["Path"] .= "/";
@@ -1947,7 +1949,7 @@ function pushChilds(&$arr, $id, $table = FILE_TABLE, $isFolder = "")
 			"
 		SELECT ID
 		FROM $table
-		WHERE ParentID='$id'" . (($isFolder != "" || $isFolder == "0") ? (" AND IsFolder='$isFolder'") : ""));
+		WHERE ParentID=".abs($id) . (($isFolder != "" || $isFolder == "0") ? (" AND IsFolder='$isFolder'") : ""));
 	while ($db->next_record())
 		pushChilds($arr, $db->f("ID"), $table, $isFolder);
 }
@@ -2006,7 +2008,7 @@ function we_readParents($id, &$parentlist, $tab, $match = 'ContentType', $matchv
 	$db_temp->query("
 		SELECT ParentID
 		FROM $tab
-		WHERE ID='" . $id . "'");
+		WHERE ID=" . abs($id));
 	while ($db_temp->next_record())
 		if ($db_temp->f("ParentID") == 0) {
 			array_push($parentlist, $db_temp->f("ParentID"));
@@ -2015,7 +2017,7 @@ function we_readParents($id, &$parentlist, $tab, $match = 'ContentType', $matchv
 			$db_temp1->query("
 				SELECT $match
 				FROM $tab
-				WHERE ID='" . $db_temp->f("ParentID") . "'");
+				WHERE ID=" . abs($db_temp->f("ParentID")));
 			if ($db_temp1->next_record())
 				if ($db_temp1->f($match) == $matchvalue) {
 					array_push($parentlist, $db_temp->f("ParentID"));
@@ -2031,7 +2033,7 @@ function we_readChilds($pid, &$childlist, $tab, $folderOnly = true, $where = '',
 			"
 		SELECT ID,$match
 		FROM $tab
-		WHERE " . ($folderOnly ? " IsFolder=1 AND " : "") . "ParentID='" . $pid . "'" . $where);
+		WHERE " . ($folderOnly ? " IsFolder=1 AND " : "") . "ParentID=" . abs($pid) . $where);
 	while ($db_temp->next_record()) {
 		if ($db_temp->f($match) == $matchvalue) {
 			we_readChilds($db_temp->f("ID"), $childlist, $tab, $folderOnly);
@@ -2061,20 +2063,20 @@ function getWsQueryForSelector($tab, $includingFolders = true)
 				
 				$path .= $part;
 				if ($includingFolders) {
-					$wsQuery .= ' (Path = "' . $path . '") OR ';
+					$wsQuery .= ' (Path = "' . addslashes($path) . '") OR ';
 				} else {
-					$wsQuery .= ' (Path LIKE "' . $path . '/%") OR ';
+					$wsQuery .= ' (Path LIKE "' . addslashes($path) . '/%") OR ';
 				}
 				$path .= "/";
 			
 			}
 			$path .= $last;
 			if ($includingFolders) {
-				$wsQuery .= ' (Path = "' . $path . '" OR Path LIKE "' . $path . '/%") OR ';
+				$wsQuery .= ' (Path = "' . addslashes($path) . '" OR Path LIKE "' . addslashes($path) . '/%") OR ';
 			} else {
-				$wsQuery .= ' (Path LIKE "' . $path . '/%") OR ';
+				$wsQuery .= ' (Path LIKE "' . addslashes($path) . '/%") OR ';
 			}
-			$wsQuery .= ' (Path LIKE "' . $path . '/%") OR ';
+			$wsQuery .= ' (Path LIKE "' . addslashes($path) . '/%") OR ';
 		
 		}
 		$wsQuery .= ' 0 )'; // end with "OR 0"
@@ -2107,11 +2109,11 @@ function getWsFileList($table, $childsOnly = false)
 				$path = "/";
 				foreach ($parts as $part) {
 					$path .= $part;
-					$_query .= "OR PATH = '$path' ";
+					$_query .= "OR PATH = '".addslashes($path)."' ";
 					$path .= "/";
 				}
 			}
-			$_query .= "OR PATH LIKE '$myPath/%' OR PATH = '$myPath' ";
+			$_query .= "OR PATH LIKE '$myPath/%' OR PATH = '".addslashes($myPath)."' ";
 			$db->query($_query);
 			while ($db->next_record()) {
 				array_push($childList, $db->f("ID"));
@@ -2138,7 +2140,7 @@ function get_def_ws($table = FILE_TABLE, $prePostKomma = false)
 				"
 			SELECT workSpaceDef
 			FROM " . USER_TABLE . "
-			WHERE ID='" . $_SESSION["user"]["ID"] . "'", 
+			WHERE ID=" . abs($_SESSION["user"]["ID"]) , 
 				"workSpaceDef", 
 				new DB_WE());
 		$ws = makeCSVFromArray(makeArrayFromCSV($foo), $prePostKomma);
@@ -2187,7 +2189,7 @@ function getHrefForObject($id, $pid, $path = "", $DB_WE = "")
 			
 			// check if object is published.
 			$published = f(
-					"SELECT Published FROM " . OBJECT_FILES_TABLE . " WHERE ID='$id'", 
+					"SELECT Published FROM " . OBJECT_FILES_TABLE . " WHERE ID=".abs($id), 
 					"Published", 
 					$DB_WE);
 			if (!$published) {
@@ -2200,7 +2202,7 @@ function getHrefForObject($id, $pid, $path = "", $DB_WE = "")
 			"
 		SELECT Workspaces, ExtraWorkspacesSelected
 		FROM " . OBJECT_FILES_TABLE . "
-		WHERE ID='" . $id . "'", 
+		WHERE ID=" . abs($id), 
 			$DB_WE);
 	if (count($foo) == 0)
 		return "";
@@ -2220,7 +2222,7 @@ function getHrefForObject($id, $pid, $path = "", $DB_WE = "")
 		$path = getNextDynDoc($path, $pid, $foo["Workspaces"], $foo["ExtraWorkspacesSelected"], $DB_WE);
 		if (!$path)
 			return "";
-		return $path . "?we_objectID=" . $id . "&amp;pid=$pid";
+		return $path . "?we_objectID=" . abs($id) . "&amp;pid=".abs($pid);
 	} else {
 		if ($foo["Workspaces"]) {
 			$fooArr = makeArrayFromCSV($foo["Workspaces"]);
@@ -2229,12 +2231,12 @@ function getHrefForObject($id, $pid, $path = "", $DB_WE = "")
 					"
 				SELECT Path
 				FROM " . FILE_TABLE . "
-				WHERE Published > 0 AND ContentType='text/webedition' AND IsDynamic=1 AND Path like '$path%'", 
+				WHERE Published > 0 AND ContentType='text/webedition' AND IsDynamic=1 AND Path like '".addslashes($path)."%'", 
 					"Path", 
 					$DB_WE);
 			if (!$path)
 				return "";
-			return $path . "?we_objectID=" . $id . "&amp;pid=$pid";
+			return $path . "?we_objectID=" . abs($id) . "&amp;pid=".abs($pid);
 		} else
 			return "";
 	}
@@ -2247,7 +2249,7 @@ function getNextDynDoc($path, $pid, $ws1, $ws2, $DB_WE = "")
 	if (f("
 		SELECT IsDynamic
 		FROM " . FILE_TABLE . "
-		WHERE Path='$path'", "IsDynamic", $DB_WE)) {
+		WHERE Path=".addslashes($path)."'", "IsDynamic", $DB_WE)) {
 		return $path;
 	}
 	$arr1 = makeArrayFromCSV(id_to_path($ws1, FILE_TABLE, $DB_WE));
@@ -2260,7 +2262,7 @@ function getNextDynDoc($path, $pid, $ws1, $ws2, $DB_WE = "")
 					"
 				SELECT Path
 				FROM " . FILE_TABLE . "
-				WHERE Published > 0 AND ContentType='text/webedition' AND IsDynamic=1 AND Path like '$ws%'", 
+				WHERE Published > 0 AND ContentType='text/webedition' AND IsDynamic=1 AND Path like '".addslashes($ws)."%'", 
 					"Path", 
 					$DB_WE);
 			if ($path)
@@ -2272,7 +2274,7 @@ function getNextDynDoc($path, $pid, $ws1, $ws2, $DB_WE = "")
 					"
 				SELECT Path
 				FROM " . FILE_TABLE . "
-				WHERE Published > 0 AND ContentType='text/webedition' AND IsDynamic=1 AND Path like '$ws%'", 
+				WHERE Published > 0 AND ContentType='text/webedition' AND IsDynamic=1 AND Path like '".addslashes($ws)."%'", 
 					"Path", 
 					$DB_WE);
 			if ($path)
@@ -2291,13 +2293,13 @@ function parseInternalLinks(&$text, $pid, $path = "")
 				$foo = getHash("
 					SELECT Path
 					FROM " . FILE_TABLE . "
-					WHERE ID='" . $regs[$i][2] . "'", $DB_WE);
+					WHERE ID=" . abs($regs[$i][2]) , $DB_WE);
 			} else {
 				$foo = getHash(
 						"
 					SELECT Path
 					FROM " . FILE_TABLE . "
-					WHERE ID='" . $regs[$i][2] . "' AND Published > 0", 
+					WHERE ID=" . abs($regs[$i][2]) . " AND Published > 0", 
 						$DB_WE);
 			}
 			
@@ -2632,7 +2634,7 @@ function we_getDocumentByID($id, $includepath = "", $db = "", $charset = "")
 		$db = new DB_WE();
 	}
 	// look what document it is and get the className
-	$clNm = f("SELECT ClassName FROM " . FILE_TABLE . " WHERE ID='" . $id . "'", "ClassName", $db);
+	$clNm = f("SELECT ClassName FROM " . FILE_TABLE . " WHERE ID=" . abs($id) , "ClassName", $db);
 	//include the right class
 	include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/" . "we_classes/$clNm.inc.php");
 	// init Document
@@ -2641,7 +2643,9 @@ function we_getDocumentByID($id, $includepath = "", $db = "", $charset = "")
 	if (isset($GLOBALS["we_doc"])) {
 		$backupdoc = $GLOBALS["we_doc"];
 	}
-	eval('$GLOBALS["we_doc"] = new ' . $clNm . '();');
+	
+	$GLOBALS["we_doc"] = new $clNm();
+	
 	$GLOBALS["we_doc"]->initByID($id, FILE_TABLE, LOAD_MAID_DB);
 	$content = $GLOBALS["we_doc"]->i_getDocument($includepath);
 	$charset = $GLOBALS["we_doc"]->getElement("Charset");
@@ -3162,16 +3166,16 @@ function getDoctypeQuery($db = "")
 		$b = makeArrayFromCSV($ws);
 		foreach ($b as $k => $v) {
 			if ((!defined("WE_DOCTYPE_WORKSPACE_BEHAVIOR")) || WE_DOCTYPE_WORKSPACE_BEHAVIOR == 0) {
-				$db->query("SELECT ID,Path FROM " . FILE_TABLE . " WHERE ID='" . $v . "'");
+				$db->query("SELECT ID,Path FROM " . FILE_TABLE . " WHERE ID=" . abs($v) );
 				while ($db->next_record()) {
 					array_push(
 							$paths, 
-							"(ParentPath = '" . $db->f("Path") . "' || ParentPath like '" . $db->f("Path") . "/%')");
+							"(ParentPath = '" . addslashes($db->f("Path")) . "' || ParentPath like '" . addslashes($db->f("Path")) . "/%')");
 				}
 			} else {
 				$_tmp_path = id_to_path($v);
 				while ($_tmp_path && $_tmp_path != "/") {
-					array_push($paths, "ParentPath = '" . $_tmp_path . "'");
+					array_push($paths, "ParentPath = '" . addslashes($_tmp_path) . "'");
 					$_tmp_path = dirname($_tmp_path);
 				}
 			}
