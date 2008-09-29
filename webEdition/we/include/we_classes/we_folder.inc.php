@@ -29,7 +29,7 @@ if (defined("CUSTOMER_FILTER_TABLE")) {
 
 }
 include_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_tools/weSearch/class/searchtoolSearch.class.inc.php');
-
+include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_hook/class/weHook.class.php");
 
 /* a class for handling directories */
 class we_folder extends we_root
@@ -267,6 +267,10 @@ class we_folder extends we_root
 		if($resave==0) {
 			$this->rewriteNavigation();
 		}
+		
+		/* hook */
+		$hook = new weHook($this, 'save');
+		$hook->executeHook();
 
 		return true;
 	}
