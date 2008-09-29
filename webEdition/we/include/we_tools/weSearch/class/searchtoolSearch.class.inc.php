@@ -131,10 +131,10 @@ class searchtoolsearch extends we_search
 		$versions = new weVersions();
 		foreach ($versions->modFields as $k => $v) {
 			if ($k != "status") {
-				$modFields[$k] = $v['txt'];
+				$modFields[$k] = $k;
 			}
 		}
-		
+
 		return $modFields;
 	
 	}
