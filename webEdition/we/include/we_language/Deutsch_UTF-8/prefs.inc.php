@@ -353,6 +353,13 @@ $l_prefs["tab_versions"] = 'Versionierung';
 	 */
 	$l_prefs["pagelogger_dir"] = "pageLogger-Verzeichnis";
 	
+	/**
+	 * HOOKS
+	 */
+	$l_prefs["hooks"] = "Hooks";
+	$l_prefs["hooks_information"] = "Ausführen von Hooks erlauben";
+	
+	
 /*****************************************************************************
  * ERROR HANDLING
  *****************************************************************************/

@@ -345,6 +345,12 @@ $l_prefs["tab_versions"] = 'Versioning';
 	$l_prefs["thumbnail_dir"] = "Thumbnail directorie";
 
 	$l_prefs["pagelogger_dir"] = "pageLogger directorie";
+	
+	/**
+	 * HOOKS
+	 */
+	$l_prefs["hooks"] = "Hooks"; //TRANSLATE
+	$l_prefs["hooks_information"] = "Allow Hook Execution"; //TRANSLATE
 
 /*****************************************************************************
  * ERROR HANDLING

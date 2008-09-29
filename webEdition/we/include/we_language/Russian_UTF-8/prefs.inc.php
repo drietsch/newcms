@@ -253,6 +253,12 @@ $l_prefs["tab_modules"] = 'Модули';
 	$l_prefs["thumbnail_dir"] = "Thumbnail directory"; // TRANSLATE
 
 	$l_prefs["pagelogger_dir"] = "директория pageLogger";
+	
+	/**
+	 * HOOKS
+	 */
+	$l_prefs["hooks"] = "Hooks"; //TRANSLATE
+	$l_prefs["hooks_information"] = "Allow Hook Execution"; //TRANSLATE
 
 /*****************************************************************************
  * ERROR HANDLING

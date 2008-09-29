@@ -349,6 +349,12 @@ $l_prefs["tab_versions"] = 'Versioning'; // TRANSLATE
 	$l_prefs["thumbnail_dir"] = "Esikatselukuvien hakemisto";
 
 	$l_prefs["pagelogger_dir"] = "pageLogger hakemisto";
+	
+	/**
+	 * HOOKS
+	 */
+	$l_prefs["hooks"] = "Hooks"; //TRANSLATE
+	$l_prefs["hooks_information"] = "Allow Hook Execution"; //TRANSLATE
 
 /*****************************************************************************
  * ERROR HANDLING
