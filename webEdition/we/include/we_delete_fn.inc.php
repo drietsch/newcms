@@ -25,6 +25,7 @@ include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_tools/cache
 
 include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_exim/weContentProvider.class.php");
 include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_versions/weVersions.class.inc.php");
+include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_hook/class/weHook.class.php");
 
 $notprotect = isset($GLOBALS["NOT_PROTECT"]) && $GLOBALS["NOT_PROTECT"] && (!isset($_REQUEST["NOT_PROTECT"]));
 
@@ -363,15 +364,18 @@ function deleteEntry($id, $table, $delR = true)
 		$row = getHash("SELECT Path,IsFolder,ContentType FROM $table WHERE ID=$id", $DB_WE);
 		
 		$version = new weVersions();
+		$object = weContentProvider::getInstance($row['ContentType'], $id, $table);
 		if (in_array($row['ContentType'], $version->contentTypes)) {
 			$version_exists = $version->getLastEntry($id, $table);
 			if (empty($version_exists)) {
-				$object = weContentProvider::getInstance($row['ContentType'], $id, $table);
 				$version->saveVersion($object);
 			}
 			
 			$version->setVersionOnDelete($id, $table);
 		}
+		
+		$hook = new weHook($object, 'delete');
+		$hook->executeHook();
 		
 		we_temporaryDocument::delete($id, $table, $DB_WE);
 		
