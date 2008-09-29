@@ -37,6 +37,7 @@ if(!isset($GLOBALS["WE_IS_IMG"])){
 	}
 }
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_versions/weVersions.class.inc.php");
+include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_hook/class/weHook.class.php");
 
 /* the parent class for documents */
 class we_document extends we_root {
@@ -702,7 +703,7 @@ class we_document extends we_root {
 	}
 
 	function we_save($resave=0){
-		
+
 		/* version */
 		$version = new weVersions();
 		
@@ -717,7 +718,7 @@ class we_document extends we_root {
 			$this->resaveWeDocumentCustomerFilter();
 
 		}
-	
+		
 		
 		if($this->ContentType=="application/x-shockwave-flash" || $this->ContentType=="image/*" 
 			|| $this->ContentType=="video/quicktime" || $this->ContentType=="text/js" || $this->ContentType=="text/css" 
@@ -725,6 +726,10 @@ class we_document extends we_root {
 
 				$version->save($this);
 		}
+		
+		/* hook */
+		$hook = new weHook($this, 'save');
+		$hook->executeHook();
 
 		return $ret;
 	}
