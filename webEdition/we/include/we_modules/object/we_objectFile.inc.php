@@ -34,6 +34,7 @@ include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_modules/object
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/base/we_thumbnail.class.php");
 
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_versions/weVersions.class.inc.php");
+include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_hook/class/weHook.class.php");
 
 /* a class for handling templates */
 class we_objectFile extends we_document
@@ -2032,6 +2033,9 @@ class we_objectFile extends we_document
 			
 		}
 
+		$hook = new weHook($this, 'save');
+		$hook->executeHook();
+
 		return $a;
 	}
 
@@ -2160,6 +2164,9 @@ class we_objectFile extends we_document
 			if(!$this->DB_WE->query("UPDATE ".OBJECT_X_TABLE.$this->TableID." SET OF_Published='".$this->Published."' WHERE OF_ID='".$this->ID."'")) return false;
 			$this->we_clearCache($this->ID);
 		}
+		
+		$hook = new weHook($this, 'publish');
+		$hook->executeHook();
 
 		return $this->insertAtIndex();
 	}
@@ -2176,6 +2183,9 @@ class we_objectFile extends we_document
 			$version = new weVersions();
 			$version->save($this, "unpublished");
 		}
+		
+		$hook = new weHook($this, 'unpublish');
+		$hook->executeHook();
 		
 		return $this->DB_WE->query("DELETE FROM " . INDEX_TABLE . " WHERE OID=".$this->ID);
 	}
