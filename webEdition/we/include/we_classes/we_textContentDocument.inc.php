@@ -25,6 +25,7 @@ include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/we_tem
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/"."we_live_tools.inc.php");
 
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_versions/weVersions.class.inc.php");
+include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_hook/class/weHook.class.php");
 
 if(defined("WORKFLOW_TABLE")) {
 	include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_modules/workflow/"."weWorkflowUtility.php");
@@ -349,6 +350,10 @@ class we_textContentDocument extends we_textDocument{
 			$version->save($this);
 		}
 		
+		/* hook */
+		$hook = new weHook($this, 'save');
+		$hook->executeHook();
+		
 		return $ret;
 	}
 
@@ -373,6 +378,10 @@ class we_textContentDocument extends we_textDocument{
 		if($saveinMainDB) {
 			$this->rewriteNavigation();
 		}
+		
+		/* hook */
+		$hook = new weHook($this, 'publish');
+		$hook->executeHook();
 
 		return $this->insertAtIndex();
 	}
@@ -400,11 +409,15 @@ class we_textContentDocument extends we_textDocument{
 			$version = new weVersions();
 			$version->save($this, "unpublished");
 		}
+		
+		$hook = new weHook($this, 'unpublish');
+		$hook->executeHook();
 
 		$this->DB_WE->query('SELECT DID FROM ' . INDEX_TABLE . ' WHERE DID=' . $this->ID);
 		if($this->DB_WE->next_record()) {
 			return $this->DB_WE->query("DELETE FROM " . INDEX_TABLE . " WHERE DID=".$this->ID);
 		}
+		
 
 		return true;
 	}
