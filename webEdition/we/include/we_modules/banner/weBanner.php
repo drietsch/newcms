@@ -234,7 +234,7 @@ class weBanner extends weBannerBase{
 
 		we_readParents($did,$parents,FILE_TABLE);
 
-		$where = "IsActive=1 AND IsFolder=0 AND ( FileIDs LIKE '%,"abs($did),",%' OR FileIDs='' )";
+		$where = "IsActive=1 AND IsFolder=0 AND ( FileIDs LIKE '%,".abs($did).",%' OR FileIDs='' )";
 		$foo = "";
 		foreach($parents as $p){
 			$foo .= " FolderIDs LIKE '%,".abs($p).",%' OR ";
@@ -245,7 +245,7 @@ class weBanner extends weBannerBase{
 
 		$foo = "";
 		foreach($dtArr as $d){
-			$foo .= " DoctypeIDs LIKE '%,".abs($d),",%' OR ";
+			$foo .= " DoctypeIDs LIKE '%,".abs($d).",%' OR ";
 		}
 		$where = " $where AND (  $foo  DoctypeIDs='' ) ";
 
