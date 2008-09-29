@@ -1342,7 +1342,7 @@ class weVersions {
 											}
 										break;
 										case "documentCustomFilter":
-										if(is_array($document["documentCustomerFilter"]) && is_array($lastEntryField)) {
+										if(isset($document["documentCustomerFilter"]) && is_array($document["documentCustomerFilter"]) && is_array($lastEntryField)) {
 											$_diff = array_diff_assoc($document["documentCustomerFilter"], $lastEntryField);
 											if(!empty($_diff)) {
 												$diff['documentCustomerFilter'] = $_diff;
