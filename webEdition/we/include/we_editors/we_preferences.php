@@ -93,6 +93,9 @@ $global_config[] = array('define("BACKUP_STEPS",', '// Number of entries per bat
 $global_config[] = array('define("INLINEEDIT_DEFAULT",', '// Default setting for inlineedit attribute' . "\n" . 'define("INLINEEDIT_DEFAULT", true);');
 $global_config[] = array('define("WE_PHP_DEFAULT",', '// Default setting for php attribute' . "\n" . 'define("WE_PHP_DEFAULT", false);');
 
+// hooks
+$global_config[] = array('define("EXECUTE_HOOKS",', '// Default setting for hook execution' . "\n" . 'define("EXECUTE_HOOKS", false);');
+
 // xhtml
 $global_config[] = array('define("XHTML_DEFAULT",', '// Default setting for xml attribute' . "\n" . 'define("XHTML_DEFAULT", false);');
 $global_config[] = array('define("XHTML_DEBUG",', '// Enable XHTML debug' . "\n" . 'define("XHTML_DEBUG", false);');
@@ -523,6 +526,13 @@ function get_value($settingvalue) {
 		case "default_tree_count":
 			return $_SESSION["prefs"]["default_tree_count"];
 			break;
+			
+		/*********************************************************************
+    	 * HOOKS
+ 	     *********************************************************************/
+		case "execute_hooks":
+            return defined("EXECUTE_HOOKS") ? EXECUTE_HOOKS : false;
+            break;
 
 		/*********************************************************************
     	 * Validation
@@ -1511,6 +1521,18 @@ $_we_active_integrated_modules = array();
 
 
 			/*****************************************************************
+			 * Hooks
+			 *****************************************************************/
+
+			case '$_REQUEST["execute_hooks"]':
+
+				$_file = &$GLOBALS['config_files']['conf_global']['content'];
+				$_file = weConfParser::changeSourceCode("define", $_file, "EXECUTE_HOOKS", $settingvalue);
+
+				$_update_prefs = false;
+				break;
+				
+			/*****************************************************************
 			 * Validation
 			 *****************************************************************/
 
@@ -2275,7 +2297,7 @@ function save_all_values() {
         $_update_prefs = remember_value(isset($_REQUEST["we_econda_stat"]) ? $_REQUEST["we_econda_stat"] : null, '$_REQUEST["we_econda_stat"]') || $_update_prefs;
         $_update_prefs = remember_value(isset($_REQUEST["we_econda_path"]) ? $_REQUEST["we_econda_path"] : null, '$_REQUEST["we_econda_path"]') || $_update_prefs;
         $_update_prefs = remember_value(isset($_REQUEST["we_econda_id"]) ? $_REQUEST["we_econda_id"] : null, '$_REQUEST["we_econda_id"]') || $_update_prefs;
-
+		$_update_prefs = remember_value(isset($_REQUEST["execute_hooks"]) ? $_REQUEST["execute_hooks"] : null, '$_REQUEST["execute_hooks"]') || $_update_prefs;
 		$_update_prefs = remember_value(isset($_REQUEST["inlineedit_default"]) ? $_REQUEST["inlineedit_default"] : null, '$_REQUEST["inlineedit_default"]') || $_update_prefs;
 		$_update_prefs = remember_value(isset($_REQUEST["safari_wysiwyg"]) ? $_REQUEST["safari_wysiwyg"] : null, '$_REQUEST["safari_wysiwyg"]') || $_update_prefs;
 		$_update_prefs = remember_value(isset($_REQUEST["showinputs_default"]) ? $_REQUEST["showinputs_default"] : null, '$_REQUEST["showinputs_default"]') || $_update_prefs;
@@ -4491,6 +4513,25 @@ function setColorChooserDisabled(id, disabled) {
 				$_inp = htmlTextInput("we_tracker_dir", 12, get_value("we_tracker_dir"), "", "", "text", 125);
                 $_we_tracker_dir = $we_button->create_button_table(array($_inp,$_but));
 			    array_push($_settings, array("headline" => $l_prefs["pagelogger_dir"], "html" => $_we_tracker_dir, "space" => 200));
+			    
+			    
+			    //  select if hooks were executed
+				$_php_setting = new we_htmlSelect(array("name" => "execute_hooks","class"=>"weSelect"));
+				$_php_setting->addOption(0,$l_prefs["no"]);
+				$_php_setting->addOption(1,$l_prefs["yes"]);
+
+				if(get_value("execute_hooks")){
+				    $_php_setting->selectOption(1);
+				} else {
+				    $_php_setting->selectOption(0);
+				}
+				
+				$hooksHtml = htmlAlertAttentionBox($l_prefs["hooks_information"], 2, 240, false)."<br/>";
+				
+				$hooksHtml .= $_php_setting->getHtmlCode();
+				
+				array_push($_settings, array("headline" => $l_prefs["hooks"], "html" => $hooksHtml, "space" => 200));
+			    
 			    
 			    /**
 			     * econda settings
