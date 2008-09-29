@@ -21,6 +21,7 @@
 
 include_once ($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_classes/tools/weToolLookup.class.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_classes/base/weFile.class.php');
+include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_hook/class/weHook.class.php");
 
 /**
  * Base class for app models
@@ -402,6 +403,9 @@ class toolfactory_models_Default extends we_app_Model
 		}
 		
 		$this->ID = $this->Text;
+		
+		$hook = new weHook($this, 'save', $this->classname);
+		$hook->executeHook();
 				
 		return true;
 			
