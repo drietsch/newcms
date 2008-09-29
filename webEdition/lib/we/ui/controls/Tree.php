@@ -343,7 +343,9 @@ class we_ui_controls_Tree extends we_ui_abstract_AbstractElement
 					    var callback = {
 					        success: function(oResponse) {
 					        	var _node = document.getElementById(node.labelElId);
-								_node.className = "'.$this->getTreeIconClass('folder').'";
+					        	if(_node) {
+									_node.className = "'.$this->getTreeIconClass('folder').'";
+								}
 					        },
 					        failure: function(oResponse) {
 					        }
