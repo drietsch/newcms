@@ -1324,7 +1324,7 @@ class searchtoolView extends weToolView
      
     }
     else if(value=="allModsIn") {
-		if (locationTD!=null) {
+	if (locationTD!=null) {
       location.disabled = true;
      }
      row.removeChild(searchTD);
@@ -1343,7 +1343,7 @@ class searchtoolView extends weToolView
 										"", 
 										false, 
 										'class="defaultfont" style="width:170px;" id="searchAdvSearch[__we_new_id__]" '))) . '";
-     
+   
      var cell = document.createElement("TD");
         cell.setAttribute("id", "td_searchAdvSearch["+rowNr+"]");
         cell.innerHTML=search.replace(/__we_new_id__/g,rowNr);
@@ -2389,11 +2389,11 @@ class searchtoolView extends weToolView
 						}
 						if (isset($searchString) && $searchString != "") {
 							
-							
-							
-							$searchString = str_replace("_", "\_", $searchString);
-							$searchString = str_replace("%", "\%", $searchString);
-							
+							if($searchFields[$i]!="temp_doc_type" && $searchFields[$i]!="Status" && $searchFields[$i]!="Speicherart") {
+								$searchString = str_replace("_", "\_", $searchString);
+								$searchString = str_replace("%", "\%", $searchString);
+							}
+
 							if (($searchFields[$i] == "Text" || ($whichSearch == "AdvSearch" && $searchFields[$i] != "Content" && $searchFields[$i] != "Status" && $searchFields[$i] != "Speicherart" && $searchFields[$i] != "CreatorName" && $searchFields[$i] != "WebUserName" && $searchFields[$i] != "temp_category"))) {
 								if (isset($searchFields[$i]) && isset($location[$i])) {
 									$where .= $thisObj->searchclass->searchfor(
@@ -3247,6 +3247,17 @@ class searchtoolView extends weToolView
 			if (isset($this->Model->searchFieldsAdvSearch[$i])) {
 				if ($this->Model->searchFieldsAdvSearch[$i] == "ParentIDDoc" || $this->Model->searchFieldsAdvSearch[$i] == "ParentIDObj" || $this->Model->searchFieldsAdvSearch[$i] == "ParentIDTmpl" || $this->Model->searchFieldsAdvSearch[$i] == "Content" || $this->Model->searchFieldsAdvSearch[$i] == "Status" || $this->Model->searchFieldsAdvSearch[$i] == "Speicherart" || $this->Model->searchFieldsAdvSearch[$i] == "MasterTemplateID" || $this->Model->searchFieldsAdvSearch[$i] == "temp_template_id" || $this->Model->searchFieldsAdvSearch[$i] == "temp_doc_type" || $this->Model->searchFieldsAdvSearch[$i] == "temp_category") {
 					$locationDisabled = "disabled";
+				}
+				
+				if ($this->Model->searchFieldsAdvSearch[$i] == "allModsIn") {
+					$searchInput = htmlSelect(
+							"searchAdvSearch[" . $i . "]", 
+							$this->searchclass->getModFields(), 
+							1, 
+							(isset($this->Model->searchAdvSearch) && is_array($this->Model->searchAdvSearch) && isset(
+									$this->Model->searchAdvSearch[$i]) ? $this->Model->searchAdvSearch[$i] : ""), 
+							false, 
+							'class="defaultfont" style="width:170px;" id="searchAdvSearch[' . $i . ']" ');
 				}
 				
 				if ($this->Model->searchFieldsAdvSearch[$i] == "Status") {
