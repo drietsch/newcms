@@ -6,6 +6,9 @@
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.gnu.org/licenses/lgpl-3.0.html  LGPL
  */
+ 
+include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_hook/class/weHook.class.php");
+ 
 class <?php print $CLASSNAME;?>_models_Default extends we_app_Model
 {
 	/**
@@ -73,6 +76,10 @@ class <?php print $CLASSNAME;?>_models_Default extends we_app_Model
 	 */
 	function save()
 	{
+		// allowing hook functionality
+		$hook = new weHook($this, 'save', $this->_appName);
+		$hook->executeHook();
+	
 		return true;
 	}
 	<?php } ?>
