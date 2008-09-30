@@ -33,6 +33,10 @@ print we_htmlElement::jsElement("", array("src"=>JS_DIR . "attachKeyListener.js"
 
 $mod = isset($_REQUEST["mod"]) ? $_REQUEST["mod"] : (isset($GLOBALS["mod"]) ? $GLOBALS["mod"] : "");
 
+$mod = str_replace(".","",$mod);
+$mod = str_replace("/","",$mod);
+$mod = str_replace("\\","",$mod);
+
 $we_head_insert = isset($GLOBALS["we_head_insert"]) ? $GLOBALS["we_head_insert"] : "";
 $we_body_insert = isset($GLOBALS["we_body_insert"]) ? $GLOBALS["we_body_insert"] : "";
 
