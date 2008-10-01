@@ -33,7 +33,7 @@ class weEmos{
 		$this->emosHTMLFooter = $GLOBALS["weEconda"]["HTML"];
 
 		if (isset($GLOBALS["we_doc"]["Language"])) {
-			$this->emosHTMLFooter .= '<a name="emos_name" title="langid" rel="'.$GLOBALS["we_doc"]["Language"].'" rev=""></a>'."\n";	
+			$this->emosHTMLFooter .= '<a name="emos_name" title="langid" rel="'.substr($GLOBALS["we_doc"]["Language"],0,2).'" rev=""></a>'."\n";	
 		}
 		if (isset($_REQUEST['emosScontact']) && $_REQUEST['emosScontact'] != "") {
 			$subject = urldecode($_REQUEST['emosScontact']);
