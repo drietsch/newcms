@@ -180,18 +180,28 @@ function error_page(){
 	}
 }
 
-function ok_page(){
+function ok_page($_subject=""){
 	if($_REQUEST["ok_page"]){
 		$ok_page = (get_magic_quotes_gpc() == 1) ? stripslashes($_REQUEST["ok_page"]) : $_REQUEST["ok_page"];
-		redirect($ok_page);
+		if(defined("WE_ECONDA_STAT") && WE_ECONDA_STAT) {
+			redirect($ok_page, $_subject);
+		} else {
+			redirect($ok_page);
+		}		
 	}else{
 		print "Vielen Dank, Ihre Formulardaten sind bei uns angekommen! / Thank you, we received your form data!";
+		if(defined("WE_ECONDA_STAT") && WE_ECONDA_STAT) {
+			print "<a name='emos_name' title='scontact' rel='$_subject' rev=''></a>\n";
+		}
 		exit;
 	}
 }
 
-function redirect($url){
+function redirect($url,$_emosScontact=""){
     $prot = (isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) === 'on') ? "https://"  : "http://";
+    if ($_emosScontact!="") {
+    	$url = $url . (strpos($url,"?") ? "&" : "?") . "emosScontact=" . urlencode($_emosScontact);
+    }
     header("Location: " . $prot . $_SERVER['HTTP_HOST'] . $url);
     exit;
 }
@@ -340,6 +350,8 @@ $subject = (isset($_REQUEST["subject"]) && $_REQUEST["subject"]) ?
 			$_REQUEST["subject"] :
 			WE_DEFAULT_SUBJECT;
 
+$subject = strip_tags($subject);			
+
 $charset = (isset($_REQUEST["charset"]) && $_REQUEST["charset"]) ?
 			ereg_replace("[\r\n]","",$_REQUEST["charset"]) :
 			$GLOBALS["_language"]["charset"];
@@ -461,6 +473,6 @@ if($recipient){
 	print_error($GLOBALS["l_global"]["email_no_recipient"]);
 }
 
-ok_page();
+ok_page($subject);
 
 ?>
