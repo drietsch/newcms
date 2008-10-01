@@ -32,43 +32,30 @@ function we_tag_econda($attribs, $content){
 </script>'."\n";
 	} else if($type == "content"){
 		$retEdit = "";
-		$contentType = we_getTagAttribute("contentType",$attribs,"path");
+		$contentType = we_getTagAttribute("labelFrom",$attribs,"path");
+		$retView = '<?php $GLOBALS["weEconda"]["content"]["from"] = "'.$contentType.'"; ?>';
 		switch ($contentType){
 			case "input":
 				$name = "econda_content";
 				$value = we_getTagAttribute("value", $attribs);
 				$contentLabel = htmlspecialchars(isset($GLOBALS["we_doc"]->elements["econda_content"]["dat"]) ? $GLOBALS["we_doc"]->getElement("econda_content") : $value);
 				$retEdit = '<input onchange="_EditorFrame.setEditorIsHot(true);" class="wetextinput" type="text" name="we_' . $GLOBALS["we_doc"]->Name . '_txt[' . $name . ']" value="' . $val . '"' . ($attr ? " $attr" : "") . '>';
+				$retView .= '<a name="emos_name" title="content" rel="'.$contentLabel.'" rev=""></a>';
 				break;
 			case "hidden":
 				$name = "econda_content";
 				$value = we_getTagAttribute("value", $attribs);
 				$contentLabel = htmlspecialchars(isset($GLOBALS["we_doc"]->elements["econda_content"]["dat"]) ? $GLOBALS["we_doc"]->getElement("econda_content") : $value);
 				$retEdit = '<input onchange="_EditorFrame.setEditorIsHot(true);" type="hidden" name="we_' . $GLOBALS["we_doc"]->Name . '_txt[' . $name . ']" value="' . $val . '"' . ($attr ? " $attr" : "") . '>';
+				$retView .= '<a name="emos_name" title="content" rel="'.$contentLabel.'" rev=""></a>';
 				break;
-			case "navigation":
-				if(isset($GLOBALS["we_doc"]->NavigationItems) && $GLOBALS["we_doc"]->NavigationItems != "") {
-					$navItems = explode(",",$GLOBALS["we_doc"]->NavigationItems);
-					$contentLabel = $navItems[1]; 
-				}
-				break;
-			case "path":
-				$contentLabel = substr($GLOBALS["we_doc"]->Path,1);
-				break;
-			case "category":
-				if(isset($GLOBALS["we_doc"]->Category) && $GLOBALS["we_doc"]->Category != "") {
-					$catIds = explode(",",$GLOBALS["we_doc"]->Category); 
-					$contentLabel = f("SELECT Path FROM " . CATEGORY_TABLE . " WHERE ID=" . $catIds[1], "Path", $GLOBALS["DB_WE"]);
-				}
-				break;
-			default:
-				$contentLabel = substr($GLOBALS["we_doc"]->Path,1);
 		}
 
 		if ($we_editmode) {
 			return $retEdit;
 		} else if(!$GLOBALS["we_doc"]->InWebEdition){
-			return '<a name="emos_name" title="content" rel="'.$contentLabel.'" rev=""></a>';
+			return $retView;
+			//return '<a name="emos_name" title="content" rel="'.$contentLabel.'" rev=""></a>';
 		}
 	} else if($type == "orderProcess") {
 		if(!$GLOBALS["we_doc"]->InWebEdition){
