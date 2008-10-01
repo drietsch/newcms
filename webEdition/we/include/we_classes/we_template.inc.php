@@ -273,7 +273,6 @@ class we_template extends we_document
 	include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/"."we_global.inc.php");
 	include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/"."we_tag.inc.php");
 	$GLOBALS["DB_WE"] = new DB_WE;
-	$GLOBALS["weEconda"]=array("HTML"=>"","JS"=>"");
 	';
 	$pre_code .= 'if($GLOBALS["we_doc"]){
 		$GLOBALS["WE_DOC_ID"] = $GLOBALS["we_doc"]->ID;
