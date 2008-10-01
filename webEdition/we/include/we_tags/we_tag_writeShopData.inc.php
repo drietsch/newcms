@@ -92,6 +92,7 @@ function we_tag_writeShopData($attribs) {
 		
 		if(defined("WE_ECONDA_STAT") && defined("WE_ECONDA_PATH") && WE_ECONDA_STAT  && WE_ECONDA_PATH !="" && !$GLOBALS["we_doc"]->InWebEdition){
 			$_GLOBALS['weEconda'] = array('emosBasket'=>""); 
+			$GLOBALS['weEconda']  = array('emosBilling'=>"");
 		}
 		$articleCount = 0;
 		foreach ($shoppingItems as $shoppingItem) {
@@ -136,9 +137,10 @@ function we_tag_writeShopData($attribs) {
 			
 			if (isset($_GLOBALS['weEconda'])){
 				$_GLOBALS['weEconda']['emosBasket'] .= "
+if(typeof emosBasketPageArray == 'undefined') var emosBasketPageArray = new Array();
 emosBasketPageArray[$articleCount] = new Array();
 emosBasketPageArray[$articleCount][0]='" . $shoppingItem['id'] . "';
-emosBasketPageArray[$articleCount][1]='" . $shoppingItem['serial']['shoptitle'] . "';
+emosBasketPageArray[$articleCount][1]='" . rawurlencode($shoppingItem['serial']['shoptitle']) . "';
 emosBasketPageArray[$articleCount][2]='$preis';
 emosBasketPageArray[$articleCount][3]='';
 emosBasketPageArray[$articleCount][4]='".$shoppingItem['quantity']."';
@@ -180,6 +182,15 @@ emosBasketPageArray[$articleCount][7]='NULL';
 				echo "Data Insert Failed";
 				return;
 			}
+		}
+		if (isset($_GLOBALS['weEconda'])){
+			$GLOBALS['weEconda']['emosBilling'] .= "
+if(typeof emosBillingPageArray == 'undefined') var emosBillingPageArray = new Array();
+emosBillingPageArray [0]='".($maxOrderID+1)."';
+emosBillingPageArray [1]='".md5($_SESSION["webuser"]["ID"])."';
+emosBillingPageArray [2]='".rawurlencode($_SESSION["webuser"]["Contact_Country"])."/".rawurlencode($_SESSION["webuser"]["Contact_Address2"])."/".rawurlencode($_SESSION["webuser"]["Contact_Address1"])."';
+emosBillingPageArray [3]='".$totPrice."';
+			"; 			
 		}
 	}
 	return;
