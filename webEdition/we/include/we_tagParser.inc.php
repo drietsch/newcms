@@ -2112,7 +2112,7 @@ if (!$GLOBALS["we_doc"]->InWebEdition) {
 								'xml' => $xml
 						)) . '
 			                 </div>
-				        <?php endif ?><a name="emos_name" title="scontact" rel="'.$subject.'" rev=""></a>';
+				        <?php endif ?>';
 				break;
 			default :
 				
