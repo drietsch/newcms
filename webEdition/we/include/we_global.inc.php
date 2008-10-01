@@ -1413,7 +1413,6 @@ function getTemplAndDocIDsOfTemplate($id, $staticOnly = true, $publishedOnly = f
 	//}
 	
 	$id = abs($id);
-	$tid = abs($tid);
 	
 	// Bug Fix 6615
 	if ($PublishedAndTemp) {
