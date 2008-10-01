@@ -28,9 +28,55 @@ class weEmos{
 	private $emosHTMLFooter;
 	
 	function __construct(){
+		
 		$this->emosJsFooter = $GLOBALS["weEconda"]["JS"];
 		$this->emosHTMLFooter = $GLOBALS["weEconda"]["HTML"];
+
+		if (isset($GLOBALS["we_doc"]["Language"])) {
+			$this->emosHTMLFooter .= '<a name="emos_name" title="langid" rel="'.$GLOBALS["we_doc"]["Language"].'" rev=""></a>'."\n";	
+		}
+		if (isset($_REQUEST['emosScontact']) && $_REQUEST['emosScontact'] != "") {
+			$subject = urldecode($_REQUEST['emosScontact']);
+			$subject = strip_tags($subject);
+			$subject = addslashes(rawurlencode($subject));
+			$this->emosHTMLFooter .= '<a name="emos_name" title="scontact" rel="'.$subject.'" rev=""></a>';
+		}
+		if (isset($GLOBALS["weEconda"]["content"]["from"])) {
+			switch ($GLOBALS["weEconda"]["content"]["from"]){
+				case 'path':
+					$this->emosHTMLFooter .= '<a name="emos_name" title="content" rel="'.substr($GLOBALS["we_doc"]->Path,1).'" rev=""></a>';
+					break;
+				case 'navigation':
+					if(isset($GLOBALS["we_doc"]->NavigationItems) && $GLOBALS["we_doc"]->NavigationItems != "") {
+						$navItems = explode(",",$GLOBALS["we_doc"]->NavigationItems);
+						$contentLabel = $navItems[1]; 
+						$this->emosHTMLFooter .= '<a name="emos_name" title="content" rel="'.substr($contentLabel,1).'" rev=""></a>';
+					} else {
+						$this->emosHTMLFooter .= '<a name="emos_name" title="content" rel="'.substr($GLOBALS["we_doc"]->Path,1).'" rev=""></a>';
+					}
+					break;
+				case 'category':
+					if(isset($GLOBALS["we_doc"]->Category) && $GLOBALS["we_doc"]->Category != "") {
+						$catIds = explode(",",$GLOBALS["we_doc"]->Category); 
+						$contentLabel = f("SELECT Path FROM " . CATEGORY_TABLE . " WHERE ID=" . $catIds[1], "Path", $GLOBALS["DB_WE"]);
+						$this->emosHTMLFooter .= '<a name="emos_name" title="content" rel="'.substr($contentLabel,1).'" rev=""></a>';
+					} else {
+						$this->emosHTMLFooter .= '<a name="emos_name" title="content" rel="'.substr($GLOBALS["we_doc"]->Path,1).'" rev=""></a>';
+					}
+					break;
+				case 'input':
+//					$this->emosHTMLFooter .= '<a name="emos_name" title="content" rel="'.substr($GLOBALS["we_doc"]->Path,1).'" rev=""></a>';
+					break;
+				case 'hidden':
+//					$this->emosHTMLFooter .= '<a name="emos_name" title="content" rel="'.substr($GLOBALS["we_doc"]->Path,1).'" rev=""></a>';
+					break;
+				default:
+					$this->emosHTMLFooter .= '<a name="emos_name" title="content" rel="'.substr($GLOBALS["we_doc"]->Path,1).'" rev=""></a>';
+			}
+			$this->emosHTMLFooter .= "\n";
+		}
 	}
+	
 	/**
 	 * Article content page
 	 *
@@ -38,13 +84,14 @@ class weEmos{
 	 */
 	function weViewArticle($type){
 		$this->emosJsFooter .= "
+if(typeof emosECPageArray == 'undefined') var emosECPageArray = new Array();
 emosECPageArray['event'] 	= 'view';
 emosECPageArray['id']		= 'd_" . $GLOBALS["we_".$type]->ID . "';
-emosECPageArray['name']		= '" . urlencode($GLOBALS["we_".$type]->elements["shoptitle"]["dat"]) . "';
+emosECPageArray['name']		= '" . rawurlencode($GLOBALS["we_".$type]->elements["shoptitle"]["dat"]) . "';
 emosECPageArray['preis']	= '" . $GLOBALS["we_".$type]->elements["price"]["dat"] . "';
-emosECPageArray['group']	= '" . urlencode(isset($_REQUEST['catId']) ? id_to_path($_REQUEST['catId'],CATEGORY_TABLE) :  $GLOBALS["we_".$type]->ParentPath ) . "';
+emosECPageArray['group']	= '" . rawurlencode(isset($_REQUEST['catId']) ? substr(id_to_path($_REQUEST['catId'],CATEGORY_TABLE),1) :  substr($GLOBALS["we_".$type]->ParentPath,1) ) . "';
 emosECPageArray['anzahl']	= '1';
-emosECPageArray['var1']		= '" . urlencode(isset($GLOBALS["we_".$type]->Variant) ? $GLOBALS["we_".$type]->Variant : "NULL") . "';
+emosECPageArray['var1']		= '" . rawurlencode(isset($GLOBALS["we_".$type]->Variant) ? rawurlencode($GLOBALS["we_".$type]->Variant) : "NULL") . "';
 emosECPageArray['var2']		= 'NULL';
 emosECPageArray['var3']		= 'NULL';
 ";
@@ -95,13 +142,14 @@ emosECPageArray['var3']		= 'NULL';
 		}
 		
 		$this->emosJsFooter .= "
+if(typeof emosECPageArray == 'undefined') var emosECPageArray = new Array();
 emosECPageArray['event'] 	= '" . $emosEvent . "';
 emosECPageArray['id']		= 'd_" . $_REQUEST["shop_artikelid"] . "';
-emosECPageArray['name']		= '" . urlencode($emosName) . "';
+emosECPageArray['name']		= '" . rawurlencode($emosName) . "';
 emosECPageArray['preis']	= '" . $emosPreis . "';
-emosECPageArray['group']	= '" . urlencode(isset($_REQUEST['catId']) ? id_to_path($_REQUEST['catId'],CATEGORY_TABLE) :  $article->ParentPath ) . "';
+emosECPageArray['group']	= '" . rawurlencode(isset($_REQUEST['catId']) ? id_to_path($_REQUEST['catId'],CATEGORY_TABLE) :  $article->ParentPath ) . "';
 emosECPageArray['anzahl']	= '" . $emosAnzahl . "';
-emosECPageArray['var1']		= '" . urlencode(isset($GLOBALS["we_".$type]->Variant) ? $GLOBALS["we_".$type]->Variant : "NULL") . "';
+emosECPageArray['var1']		= '" . rawurlencode(isset($GLOBALS["we_".$type]->Variant) ? $GLOBALS["we_".$type]->Variant : "NULL") . "';
 emosECPageArray['var2']		= 'NULL';
 emosECPageArray['var3']		= 'NULL';
 ";		

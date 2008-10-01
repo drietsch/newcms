@@ -1,10 +1,8 @@
 <?php
-
+if(!isset($GLOBALS["weEconda"])&&!isset($GLOBALS["weEconda"]["HTML"])){
+	$GLOBALS["weEconda"]["HTML"] = "";
+}
+if(!isset($GLOBALS["weEconda"])&&!isset($GLOBALS["weEconda"]["JS"])){
+	$GLOBALS["weEconda"]["JS"] = "";
+}
 ?>
-<script type="text/javascript">
-//<!--
-var emosECPageArray      = new Array();
-var emosBillingPageArray = new Array();
-var emosBasketPageArray  = new Array();
-//-->
-</script>
