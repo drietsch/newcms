@@ -28,8 +28,8 @@
 		<tu tuid="Please select the entry/group that should be deleted.">
 			<tuv xml:lang="de"><seg>Bitte wählen Sie den Eintrag/Ordner aus, der gelöscht werden soll.</seg></tuv>
 		</tu>
-		<tu tuid="Invalid filename!">
-			<tuv xml:lang="de"><seg>Der Dateiname ist nicht korrekt!</seg></tuv>
+		<tu tuid="Invalid entry name!">
+			<tuv xml:lang="de"><seg>Der Name des Eintrags ist nicht korrekt!</seg></tuv>
 		</tu>
 		<tu tuid="New">
 			<tuv xml:lang="de"><seg>Neu</seg></tuv>

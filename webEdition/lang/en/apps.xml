@@ -28,8 +28,8 @@
 		<tu tuid="Please select the entry/group that should be deleted.">
 			<tuv xml:lang="en"><seg>Please chose the entry/folder you want to be deleted.</seg></tuv>
 		</tu>
-		<tu tuid="Invalid filename!">
-			<tuv xml:lang="en"><seg>The filename is not valid!</seg></tuv>
+		<tu tuid="Invalid entry name!">
+			<tuv xml:lang="en"><seg>The name of the entry is not valid!</seg></tuv>
 		</tu>
 		<tu tuid="New">
 			<tuv xml:lang="en"><seg>New</seg></tuv>
@@ -68,7 +68,7 @@
 			<tuv xml:lang="en"><seg>This is a custom tab. You can either edit it or remove it.</seg></tuv>
 		</tu>
 		<tu tuid="Properties">
-			<tuv xml:lang="en"><seg>Preferences</seg></tuv>
+			<tuv xml:lang="en"><seg>Properties</seg></tuv>
 		</tu>
 		<tu tuid="Folder">
 			<tuv xml:lang="en"><seg>Folder</seg></tuv>
