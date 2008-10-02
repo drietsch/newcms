@@ -3114,7 +3114,7 @@ function build_dialog($selected_setting = "ui") {
 				 *****************************************************************/
 
 				// Cache Type
-				$cache_type = new we_htmlSelect(array("name" => 'cache_type', "style" => "width:200px;", "class" => "weSelect"));
+				$cache_type = new we_htmlSelect(array("name" => 'cache_type', "style" => "width:200px;", "class" => "weSelect", "onChange" => 'if(this.value==\'none\') { document.forms[0].elements[\'cache_lifetime\'].value=0;document.forms[0].elements[\'tmp_cache_lifetime]\'].value=0; } ',));
 				$cache_type->addOption('none', $GLOBALS['l_prefs']["cache_type_none"]);
 				$cache_type->addOption('tag', $GLOBALS['l_prefs']["cache_type_wetag"]);
 				$cache_type->addOption('document', $GLOBALS['l_prefs']["cache_type_document"]);
