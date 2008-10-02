@@ -1,10 +1,8 @@
 
-
 /*
  * @see we_app_controller_EditorAction
  */
 Zend_Loader::loadClass('we_app_controller_EditorAction');
-
 
 /**
  * Base Editor Controller
