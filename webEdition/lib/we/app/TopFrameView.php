@@ -92,6 +92,8 @@ class we_app_TopFrameView extends Zend_View
 		$noticeMessageCall = we_core_MessageReporting::getShowMessageCall('err', we_core_MessageReporting::kMessageNotice, true);
 		$warningMessageCall = we_core_MessageReporting::getShowMessageCall('err', we_core_MessageReporting::kMessageWarning, true);
 		
+		$appName = addslashes($translate->_($this->appName));
+		
 		$js = <<<EOS
 
 
@@ -99,7 +101,7 @@ self.hot = false;
 self.focus();
 self.appName = "{$this->appName}";
 
-parent.document.title = "webEdition {$translate->_('Applications')} - {$translate->_($this->appName)}";
+parent.document.title = "webEdition {$translate->_('Applications')} - {$appName}";
 
 /*******************************************
 ****************** Events ******************
