@@ -689,19 +689,6 @@ $we_menu["4000000"]["enabled"] = "1";
 
 	// Extras > Tools
 	
-	include(weToolLookup::getLanguageInclude('toolfactory'));
-	if(isset($metaInfo['realname'])) {
-		$toolfactoryName = $metaInfo['realname'];
-	}
-	else {
-		$toolfactoryName = $metaInfo['name'];
-	}
-	$we_menu["4044000"]["text"] = $toolfactoryName . "...";
-	$we_menu["4044000"]["parent"] = "4000000";
-	$we_menu["4044000"]["cmd"] = "tool_toolfactory_edit";
-	$we_menu["4044000"]["perm"] = "EDIT_APP_TOOLFACTORY || ADMINISTRATOR";
-	$we_menu["4044000"]["enabled"] = "1";
-	
 	/*
 	include(weToolLookup::getLanguageInclude('weSearch'));
 	$we_menu["4045000"]["text"] = $l_weSearch["weSearch"] . "...";
@@ -713,7 +700,7 @@ $we_menu["4000000"]["enabled"] = "1";
 	
 	// Extras > Tools > Custom tools
 	include_once($_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we_classes/tools/weToolLookup.class.php');
-	$_tools = weToolLookup::getAllCustomTools();
+	$_tools = weToolLookup::getAllTools(true,false);
 	foreach ($_tools as $_k=>$_tool) {
 		$we_menu["405" . sprintf("%04d", $_k)]["text"] = $_tool['text'] . "...";
 		$we_menu["405" . sprintf("%04d", $_k)]["parent"] = "4000000";
