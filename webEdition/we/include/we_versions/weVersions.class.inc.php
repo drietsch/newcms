@@ -1230,12 +1230,21 @@ class weVersions {
 						$versionName = $document["ID"]."_".$document["Table"]."_".$vers.$document["Extension"];
 						$binaryPath = VERSION_DIR.$versionName;
 
-
 						if($document["IsDynamic"]) {
 							$this->writePreviewDynFile($document['ID'], $siteFile, $_SERVER["DOCUMENT_ROOT"].$binaryPath, $documentObj);
 						}
 						elseif(file_exists($siteFile)) {
-							copy($siteFile,$_SERVER["DOCUMENT_ROOT"].$binaryPath);
+							ob_start();
+							include($siteFile);
+							$contents = ob_get_contents();
+							ob_end_clean();
+							saveFile($_SERVER["DOCUMENT_ROOT"].$binaryPath,$contents);
+							if(!(isset($_REQUEST['cmd']) && $_REQUEST['cmd']=='ResetVersion')) {
+								$editPageNr = isset($_SESSION['EditPageNr']) ? $_SESSION['EditPageNr'] : '';
+								$location = '/webEdition/we_cmd.php?we_cmd[0]=switch_edit_page&we_cmd[1]='.abs($editPageNr).'';
+								header("Location: " . $_SERVER['DOCUMENT_ROOT'].$location);
+							}
+							//copy($siteFile,$_SERVER["DOCUMENT_ROOT"].$binaryPath);
 						}								
 						
 					}
@@ -1549,7 +1558,6 @@ class weVersions {
 		
 		$isdyn = !isset($GLOBALS["WE_IS_DYN"]) ? 'notSet' : $GLOBALS["WE_IS_DYN"];
 
-	
 		if($includepath!='' && file_exists($includepath)) {
 			ob_start();
 			include($includepath);
