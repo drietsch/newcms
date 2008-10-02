@@ -54,13 +54,6 @@ class toolfactory_models_Default extends we_app_Model
 	 * @var array
 	 */
 	public $_requiredFields = array('Text','classname');
-	
-	/**
-	 * realname attribute
-	 *
-	 * @var string
-	 */
-	public $realname = '';
 
 	/**
 	 * classname attribute
@@ -186,13 +179,13 @@ class toolfactory_models_Default extends we_app_Model
 	 * @param string $realname
 	 * @return string
 	 */
-	function realNameToIntern($realname) {
+	function realNameToIntern($name) {
 		
-		$name = preg_replace('/[^a-z0-9]/','',strtolower($realname));
+		$name = preg_replace('/[^a-z0-9]/','',strtolower($name));
 		
 		return $name;
 	}
-		
+
 	/**
 	 * Load entry from database
 	 * 
@@ -214,16 +207,10 @@ class toolfactory_models_Default extends we_app_Model
 			$this->$_key = $_prop;
 		}
 		
-		$name = isset($_props['text']) ? $_props['text'] : $_props['name'];
-		
-		$charset = we_core_Local::getComputedUICharset();
+		$name = isset($_props['text']) ? $_props['text'] : $_props['classname'];
+				
+		$this->Text = htmlspecialchars_decode($name);
 
-		if($charset=='UTF-8') {
-			$name = utf8_encode($name);
-		}
-		
-		$this->Text = $name;
-		
 		$this->ID = $this->Text;
 				
 		$this->tags = weToolLookup::getAllToolTags($id);
@@ -266,13 +253,10 @@ class toolfactory_models_Default extends we_app_Model
 	 * @return boolean
 	 */
 	function save() {
-
-		$charset = we_core_Local::getComputedUICharset();
-		$TOOLREALNAME = htmlentities($this->realname);
-		if($charset=='UTF-8') {
-			$this->realname = utf8_encode($this->realname);
-		}
-		$TOOLNAMELANG = htmlspecialchars($this->realname, ENT_NOQUOTES);
+	
+		$text = htmlspecialchars($this->Text, ENT_NOQUOTES);
+		
+		$TOOLNAMELANG = $text;
 		$TOOLNAME = $this->classname;
 		$CLASSNAME = $this->classname;
 		$TABLENAME = $this->maintable;
@@ -287,12 +271,6 @@ class toolfactory_models_Default extends we_app_Model
 			$PERMISSIONCONDITION = '';
 			$DELETECONDITION = '';
 		}
-		
-		//$_prohibit_names = array('navigation','doctype','first_steps_wizard','weSearch','cache','toolfactory');
-		
-		//if(in_array($TOOLREALNAME,$_prohibit_names)) {
-			//die('The name ' . $TOOLREALNAME . ' is prohibit');
-		//}
 	
 		$_templateDir = $_SERVER['DOCUMENT_ROOT'] . '/webEdition/apps/toolfactory/pattern';
 		
@@ -327,7 +305,6 @@ class toolfactory_models_Default extends we_app_Model
 						include($_file);
 						$_content = ob_get_contents();
 						ob_end_clean();
-						$_content = str_replace('{$TOOLREALNAME}',$TOOLREALNAME,$_content);
 						$_content = str_replace('{$TOOLNAME}',$TOOLNAME,$_content);	
 						$_content = str_replace('{$TOOLNAMELANG}',$TOOLNAMELANG,$_content);	
 					} else {
@@ -337,20 +314,10 @@ class toolfactory_models_Default extends we_app_Model
 						$_content = weFile::load($_file);
 						$start = strpos($_content, '<?xml ');
 						$end = strpos($_content, '</tmx>')+$start;
-						$xmlString = substr($_content, $start, $end); 
 						
-						$charset = we_core_Local::getComputedUICharset();
-						if($charset!='UTF-8') {
-							$xmlString = utf8_decode($xmlString);
-						}
-						
-						$_content = str_replace('{$TOOLREALNAME}',$TOOLREALNAME,$xmlString);
 						$_content = str_replace('{$TOOLNAME}',$TOOLNAME,$_content);	
 						$_content = str_replace('{$TOOLNAMELANG}',$TOOLNAMELANG,$_content);	
-						
-						if($charset!='UTF-8') {
-							$_content = utf8_encode($_content);
-						}
+
 						
 					}
 				} else {
@@ -401,9 +368,7 @@ class toolfactory_models_Default extends we_app_Model
 				$_db->query($_sql);
 			}		
 		}
-		
-		$this->ID = $this->Text;
-		
+				
 		$hook = new weHook($this, 'save', $this->classname);
 		$hook->executeHook();
 				
@@ -457,7 +422,8 @@ class toolfactory_models_Default extends we_app_Model
 	 * 
 	 * @return boolean
 	 */
-	function filenameNotValid() {
+	function textNotValid() {
+		// comma not allowed because it causes broken webEdition navigation
 		return eregi(',',$this->Text);
 	}
 	
@@ -466,7 +432,7 @@ class toolfactory_models_Default extends we_app_Model
 	 * 
 	 * @return boolean
 	 */
-	function fileclassnameNotValid() {
+	function classnameNotValid() {
 		if(eregi('[^a-z0-9\-]',$this->classname) || is_numeric(substr($this->classname, 0 , 1))) {
 			return true;
 		}
@@ -506,28 +472,4 @@ class toolfactory_models_Default extends we_app_Model
 		
 	}
 	
-	/**
-	 * checks if tool exists
-	 * 
-	 * @param string $name
-	 * @return boolean
-	 */
-	function toolExists($name){
-		
-		$_menuItems = weToolLookup::getAllTools(true);
-
-		$_prohibit_names = array($_menuItems);
-		
-		foreach ($_menuItems as $_menuItem) {
-			if(isset($_menuItem["realname"])) {
-				$_prohibit_names[] = $_menuItem["realname"];	
-			}	
-		}
-
-		if(in_array($name,$_prohibit_names)) {
-			return true;
-		}
-		else return false;
-	}	
-
 }
