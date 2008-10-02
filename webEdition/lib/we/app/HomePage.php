@@ -103,10 +103,10 @@ class we_app_HomePage extends we_ui_layout_HTMLPage
 		$headerDiv = new we_ui_layout_Div(array('width' => 250, 'height' => 20, 'top' => 0, 'left' => 0, 'position' => 'absolute', 'class' => self::kClassBoxHeader));
 		
 		if ($this->_title === '') {
-			$this->_title = $translate->_($appName);
+			$this->_title = htmlspecialchars($translate->_($appName));
 		}
-		
-		$headerDiv->addHTML(we_util_Strings::shortenPath(htmlspecialchars($this->_title), 30));
+
+		$headerDiv->addHTML(we_util_Strings::shortenPath($this->_title, 40));
 		
 		$bodyDiv = $this->_getBodyDiv();
 		
