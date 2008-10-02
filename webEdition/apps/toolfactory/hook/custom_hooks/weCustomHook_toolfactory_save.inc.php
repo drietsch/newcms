@@ -14,7 +14,7 @@
  * webEdition/licenses/webEditionCMS/License.txt
  *
  * @category   webEdition
- * @package    webEdition_base
+ * @package    webEdition_toolfactory
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.gnu.org/copyleft/gpl.html  GPL
  */
