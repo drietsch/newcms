@@ -133,7 +133,7 @@ if(empty($this->model->ID)) {
 	$checkboxMakeTags->setOnClick('weEventController.fire("docChanged")');
 	$checkboxMakeTags->setChecked(($this->model->makeTags) ? true : false);
 	$checkboxMakeTags->setValue($this->model->makeTags);
-	$checkboxMakeTags->setLabel($translate->_('Create Support for webEdition-Tags and the pattern-tag'));
+	$checkboxMakeTags->setLabel($translate->_('Create Support for webEdition-Tags and the Pattern-Tag'));
 	$checkboxMakeTags->setStyle('margin-top:20px;');
 	$rowGeneral->addElement($checkboxMakeTags);
 	
@@ -143,7 +143,7 @@ if(empty($this->model->ID)) {
 	$checkboxMakeServices->setOnClick('weEventController.fire("docChanged")');
 	$checkboxMakeServices->setChecked(($this->model->makeServices) ? true : false);
 	$checkboxMakeServices->setValue($this->model->makeServices);
-	$checkboxMakeServices->setLabel($translate->_('Create Support for webEdition-services and the pattern-service'));
+	$checkboxMakeServices->setLabel($translate->_('Create Support for webEdition-Services and the Pattern-Service'));
 	$rowGeneral->addElement($checkboxMakeServices);
 	
 	$checkboxMakePerms = new we_ui_controls_Checkbox();
@@ -152,7 +152,7 @@ if(empty($this->model->ID)) {
 	$checkboxMakePerms->setOnClick('weEventController.fire("docChanged")');
 	$checkboxMakePerms->setChecked(($this->model->makePerms) ? true : false);
 	$checkboxMakePerms->setValue($this->model->makePerms);
-	$checkboxMakePerms->setLabel($translate->_('Create Support for webEdition-permissions and the pattern-permission'));
+	$checkboxMakePerms->setLabel($translate->_('Create Support for webEdition-Permissions and the Pattern-Permission'));
 	$rowGeneral->addElement($checkboxMakePerms);
 	
 	$checkboxMakeBackup = new we_ui_controls_Checkbox();
@@ -161,7 +161,7 @@ if(empty($this->model->ID)) {
 	$checkboxMakeBackup->setOnClick('weEventController.fire("docChanged")');
 	$checkboxMakeBackup->setChecked(($this->model->makeBackup) ? true : false);
 	$checkboxMakeBackup->setValue($this->model->makeBackup);
-	$checkboxMakeBackup->setLabel($translate->_('Create Support for webEdition-Backupsytem'));
+	$checkboxMakeBackup->setLabel($translate->_('Create Support for webEdition-Backupsystem'));
 	$rowGeneral->addElement($checkboxMakeBackup);
 }
 
