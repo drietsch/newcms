@@ -110,7 +110,7 @@ class we_app_Model extends we_core_AbstractModel
 	 * 
 	 * @return boolean
 	 */
-	public function filenameNotValid()
+	public function textNotValid()
 	{
 		return eregi('/', $this->Text);
 	}
