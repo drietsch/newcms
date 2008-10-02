@@ -259,7 +259,7 @@ class we_ui_controls_Tree extends we_ui_abstract_AbstractElement
 		$nodes = $this->getNodes();
 		if(!empty($nodes)) {
 			foreach ($nodes as $k => $v) {
-				$out .= $this->getNodeObject(htmlentities($v['ID'],ENT_QUOTES),htmlentities($v['Text'], ENT_QUOTES));
+				$out .= $this->getNodeObject($v['ID'],$v['Text']);
 				$out .= 'var tmpNode = new YAHOO.widget.TextNode(myobj, root, false);';
 				$out .= 'tmpNode.labelStyle = "'.$this->getTreeIconClass($v['ContentType']).'";';
 				if($this->getTreeIconClass($v['ContentType'])!=='folder') {
