@@ -39,10 +39,8 @@ include(weToolLookup::getLanguageInclude('navigation'));
 
 foreach ($_menuItems as $_menuItem) {
 	$text = $_menuItem["text"];
-	if($_menuItem["name"]=="toolfactory") {
-		$text = $_menuItem["text"];
-	}
-	else if ($_menuItem["name"]=="weSearch") {
+
+	if ($_menuItem["name"]=="weSearch") {
 		$text = $l_weSearch["weSearch"];
 	}
 	else if ($_menuItem["name"]=="navigation") {
@@ -57,7 +55,7 @@ foreach ($_menuItems as $_menuItem) {
 	else  {
 		if($text != $l_weSearch["weSearch"] && $text != $l_navigation["navigation"]) {
 			if(we_hasPerm($_menuItem['startpermission'])) {
-				$we_tabs->addTab(new we_tab("#", htmlentities($text,ENT_QUOTES), ( isset($_REQUEST['tool']) && $_REQUEST['tool'] == $_menuItem["name"] ? "TAB_ACTIVE" : "TAB_NORMAL" ) ,"openTool('" . $_menuItem["name"] . "');",array("id" => $_menuItem["name"])));
+				$we_tabs->addTab(new we_tab("#", $text, ( isset($_REQUEST['tool']) && $_REQUEST['tool'] == $_menuItem["name"] ? "TAB_ACTIVE" : "TAB_NORMAL" ) ,"openTool('" . $_menuItem["name"] . "');",array("id" => $_menuItem["name"])));
 			}
 		}
 	}
