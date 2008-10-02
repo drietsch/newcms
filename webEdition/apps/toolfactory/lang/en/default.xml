@@ -40,17 +40,17 @@
 		<tu tuid="Datasource">
 			<tuv xml:lang="en"><seg>Datasource</seg></tuv>
 		</tu>
-		<tu tuid="Create Support for webEdition-Tags and the pattern-tag">
-			<tuv xml:lang="en"><seg>Create Support for webEdition-Tags and the pattern-tag</seg></tuv>
+		<tu tuid="Create Support for webEdition-Tags and the Pattern-Tag">
+			<tuv xml:lang="en"><seg>Create Support for webEdition-Tags and the Pattern-Tag</seg></tuv>
 		</tu>
-		<tu tuid="Create Support for webEdition-services and the pattern-service">
-			<tuv xml:lang="en"><seg>Create Support for webEdition-services and the pattern-service</seg></tuv>
+		<tu tuid="Create Support for webEdition-Services and the Pattern-Service">
+			<tuv xml:lang="en"><seg>Create Support for webEdition-Services and the Pattern-Service</seg></tuv>
 		</tu>
-		<tu tuid="Create Support for webEdition-permissions and the pattern-permission">
-			<tuv xml:lang="en"><seg>Create Support for webEdition-permissions and the pattern-permission</seg></tuv>
+		<tu tuid="Create Support for webEdition-Permissions and the Pattern-Permission">
+			<tuv xml:lang="en"><seg>Create Support for webEdition-Permissions and the Pattern-Permission</seg></tuv>
 		</tu>
-		<tu tuid="Create Support for webEdition-Backupsytem">
-			<tuv xml:lang="en"><seg>Create Support for webEdition-Backupsytem</seg></tuv>
+		<tu tuid="Create Support for webEdition-Backupsystem">
+			<tuv xml:lang="en"><seg>Create Support for webEdition-Backupsystem</seg></tuv>
 		</tu>
 		<tu tuid="The name of the model class could not be empty!">
 			<tuv xml:lang="en"><seg>The name of the model class must not be empty!</seg></tuv>
@@ -71,7 +71,7 @@
 			<tuv xml:lang="en"><seg>Services</seg></tuv>
 		</tu>
 		<tu tuid="Language">
-			<tuv xml:lang="en"><seg>Language</seg></tuv>
+			<tuv xml:lang="en"><seg>Languages</seg></tuv>
 		</tu>
 		<tu tuid="Permissions">
 			<tuv xml:lang="en"><seg>Permissions</seg></tuv>
