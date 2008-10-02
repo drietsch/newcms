@@ -21,6 +21,7 @@
 
 $js = <<<EOS
 
+self.focus();
 weCmdController.fire({cmdName: "{$this->cmdName}"})
 
 EOS;
