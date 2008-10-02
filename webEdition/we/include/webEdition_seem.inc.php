@@ -99,8 +99,9 @@ function doUnload(whichWindow) {
 
     }
 
-    //  only when no SEEM-edit-include window is closed if(whichWindow !="include"
-	){
+    //  only when no SEEM-edit-include window is closed 
+    
+    if(whichWindow !="include"){
         if(opener) {
             opener.location.replace('<?php
 	print WEBEDITION_DIR;
