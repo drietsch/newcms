@@ -19,15 +19,13 @@
  * @license    http://www.gnu.org/copyleft/gpl.html  GPL
  */
 
-class rpctoolfactoryView extends rpcView {
-	
-	
-	function getResponse($response) {
-		
-		$html = '
-			Hallo World! My name is toolfactory and I am a webEdition-Tool	
-		';
+class rpctoolfactoryView extends rpcView 
+{
+	function getResponse($response) 
+	{
+		$html = 'Hello World! My name is toolfactory and I am a webEdition-Application.';
 		
 		return $html;
+		
 	}
 }
