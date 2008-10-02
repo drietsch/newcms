@@ -59,7 +59,7 @@ class toolfactory_service_Cmd extends we_app_service_AbstractCmd
 		}
 		$model = $session->model;
 		$model->setFields($formData);
-		
+
 		$newBeforeSaving = $model->ID == 0;
 		// check if user has the permissions to create new entries
 		if ($model->ID == 0 && !we_core_Permissions::hasPerm('NEW_APP_' . strtoupper($appName))) {
@@ -126,7 +126,7 @@ class toolfactory_service_Cmd extends we_app_service_AbstractCmd
 			}
 		}
 		
-		if($model->filenameNotValid()) {
+		if($model->textNotValid()) {
 			$ex = new we_service_Exception(
 				$translate->_('The name is not valid!',null,$utf8_decode), 
 				we_service_ErrorCodes::kModelTextEmpty);
@@ -134,7 +134,7 @@ class toolfactory_service_Cmd extends we_app_service_AbstractCmd
 			throw $ex;
 		}
 		
-		if($model->fileclassnameNotValid()) {
+		if($model->classnameNotValid()) {
 			$ex = new we_service_Exception(
 				$translate->_('The name of the model class is not valid!',null,$utf8_decode), 
 				we_service_ErrorCodes::kModelTextEmpty);
@@ -149,24 +149,6 @@ class toolfactory_service_Cmd extends we_app_service_AbstractCmd
 			$ex->setType('warning');
 			throw $ex;
 		}
-		
-		$charset = we_core_Local::getComputedUICharset();
-		//$model->realname = htmlentities($model->Text,ENT_QUOTES);
-		$text = $model->Text;
-		
-		$text = utf8_decode($model->Text);
-		
-		$model->realname = addslashes($text);		
-		
-		/*
-		if($model->toolExists($model->realname)) {
-			$ex = new we_service_Exception(
-				$translate->_('The application exists!',null,$utf8_decode), 
-				we_service_ErrorCodes::kModelTextEmpty);
-			$ex->setType('warning');
-			throw $ex;
-		}
-		*/
 
 		try {
 			$model->save();
@@ -185,7 +167,7 @@ class toolfactory_service_Cmd extends we_app_service_AbstractCmd
 		
 		}
 		$model->ID = $model->classname;
-		
+
 		return array(
 			'model' => $model, 'newBeforeSaving' => $newBeforeSaving
 		);
