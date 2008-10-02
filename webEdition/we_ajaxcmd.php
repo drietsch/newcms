@@ -23,13 +23,18 @@ if(!isset($_REQUEST["we_cmd"])){
 	exit();
 }
 
+$include = "";
+
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/"."we.inc.php");
-//protect();
+
+protect();
+
 switch($_REQUEST["we_cmd"][0]){
 	case "selectorSuggest" :
 		$include = "we_ajax/weSelectorSuggest.inc.php";
 		break;
 }
-
-include($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/".$include);
+if ($include) {
+	include($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/".$include);
+}
 ?>
