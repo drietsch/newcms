@@ -19,9 +19,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html  GPL
  */
 
-
 	define('TOOL_REGISTRY_NAME','weToolsRegistry');
-	
+		
 	class weToolLookup {
 		
 		
@@ -59,25 +58,25 @@
 				//}
 			}
 			closedir($_d);
-						
+			
+			// include autoload function
+			include_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/lib/we/core/autoload.php');
+		
 			$lang = isset($GLOBALS['WE_LANGUAGE']) ? $GLOBALS['WE_LANGUAGE'] : we_core_Local::getComputedUILang();
+			Zend_Loader::loadClass('we_core_Local');
+
 
 			foreach ($_toolsDirs as $_toolDir) {
 				$_metaFile = $_toolDir . '/conf/meta.conf.php';
 				if(file_exists($_metaFile)) {
 					include($_metaFile);
 					if(isset($metaInfo)) {
-						//$langFile = $_bd . '/' . $metaInfo['name'] . '/language/language_' . $lang . '.inc.php';
-						//$langStr = '';
-						if(isset($metaInfo['realname'])) {
-							$langStr = html_entity_decode($metaInfo['realname']);
+						$langStr = '';
+						if(isset($metaInfo['name'])) {
+							$translate = we_core_Local::addTranslation('default.xml', $metaInfo['name']);
+							$langStr = $translate->_($metaInfo['name']);
 						}
-						else {
-							$langStr = $metaInfo['name'];
-						}
-						
-						$metaInfo['text'] = stripslashes($langStr);
-						
+						$metaInfo['text'] = htmlspecialchars($langStr);
 						$_tools[] = $metaInfo;
 						unset($metaInfo);
 					}
@@ -111,21 +110,7 @@
 			return $_tools;
 			
 		}
-		
-		function getAllCustomTools() {
-			$_tools = weToolLookup::getAllTools();
-			$_builtin = array('toolfactory','navigation','weSearch');
-			$_custom = array();
-			foreach ($_tools as $_tool) {
-				if(!in_array($_tool['name'],$_builtin)){
-					$_tool['text'] = htmlentities($_tool['text'],ENT_QUOTES);
 				
-					$_custom[] = $_tool;
-				}
-			}
-			return $_custom;
-		}
-		
 		
 		function getToolProperties($name) {
 			
