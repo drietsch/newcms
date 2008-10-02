@@ -59,6 +59,9 @@ function we_ui_controls_Tree(treeId)
 	 */
 	 
 	this.addNode = function(id, text, contentType, parentId) {
+	
+		text = text.replace(/</g,"&lt;");
+		text = text.replace(/>/g,"&gt;");
 		
 		if(parentId>0) {
 			var mParentNode = eval("tree_"+this.id+".getNodeByProperty('id',parentId);");
@@ -154,7 +157,9 @@ function we_ui_controls_Tree(treeId)
 	 * @param string text
 	 */
 	this.renameNode = function(id, text) {
-
+		
+		text = text.replace(/</g,"&lt;");
+		text = text.replace(/>/g,"&gt;");
 		var mNode = eval("tree_"+this.id+".getNodeByProperty('id',id);");
 		mNode.label = "<span title=\""+id+"\" id=\"spanText_"+this.id+"_"+id+"\">"+text+"</span>";
 		mNode.text = text;
