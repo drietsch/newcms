@@ -2,6 +2,7 @@
 include_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/lib/we/core/autoload.php');
 include_once($_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we_classes/we_dirSelector.inc.php');
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GLOBALS["WE_LANGUAGE"]."/tools.inc.php");
+include_once('conf/define.conf.php');
 
 class we_<?php print $TOOLNAME; ?>DirSelector extends we_dirSelector{
 
@@ -261,7 +262,7 @@ top.clearEntries();
 			if($this->db->next_record()){
 				print we_message_reporting::getShowMessageCall($GLOBALS['l_tools']['folder_path_exists'], WE_MESSAGE_ERROR);
 			}else{
-				if(<?php print $CLASSNAME; ?>::filenameNotValid($folder->Text)){
+				if(<?php print $CLASSNAME; ?>::textNotValid($folder->Text)){
 					print we_message_reporting::getShowMessageCall($GLOBALS['l_tools']['wrongtext'], WE_MESSAGE_ERROR);
 		         }else{
 					$folder->we_save();
