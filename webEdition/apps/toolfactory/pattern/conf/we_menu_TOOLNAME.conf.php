@@ -1,13 +1,16 @@
 
+include_once($_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we_classes/tools/weToolLookup.class.php');
+include_once ('meta.conf.php');
+
 $translate = we_core_Local::addTranslation('apps.xml');
 we_core_Local::addTranslation('default.xml', '<?php print $TOOLNAME; ?>');
-
-include_once ('meta.conf.php');
 
 $controller = Zend_Controller_Front::getInstance();
 $appName = $controller->getParam('appName');
 
-$we_menu_<?php print $TOOLNAME; ?>['000100']['text'] = we_util_Strings::shortenPath(htmlspecialchars($translate->_('<?php print $TOOLNAME; ?>')), 30);
+$_tool = weToolLookup::getToolProperties($appName);
+
+$we_menu_<?php print $TOOLNAME; ?>['000100']['text'] = we_util_Strings::shortenPath($_tool['text'], 40);
 $we_menu_<?php print $TOOLNAME; ?>['000100']['parent'] = '000000';
 $we_menu_<?php print $TOOLNAME; ?>['000100']['perm'] = '';
 $we_menu_<?php print $TOOLNAME; ?>['000100']['enabled'] = '1';
@@ -42,7 +45,6 @@ $we_menu_<?php print $TOOLNAME; ?>['000600']['perm'] = 'DELETE_APP_<?php print s
 $we_menu_<?php print $TOOLNAME; ?>['000600']['enabled'] = '1';
 
 $we_menu_<?php print $TOOLNAME; ?>['000950']['parent'] = '000100'; // separator
-
 
 $we_menu_<?php print $TOOLNAME; ?>['001000']['text'] = $translate->_('Close');
 $we_menu_<?php print $TOOLNAME; ?>['001000']['parent'] = '000100';
