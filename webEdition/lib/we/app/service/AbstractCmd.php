@@ -80,8 +80,8 @@ abstract class we_app_service_AbstractCmd extends we_service_AbstractService
 		}
 		
 		// check if name is valid
-		if ($model->filenameNotValid()) {
-			$ex = new we_service_Exception($translate->_('Invalid filename!', null, $utf8_decode), we_service_ErrorCodes::kModelTextEmpty);
+		if ($model->textNotValid()) {
+			$ex = new we_service_Exception($translate->_('Invalid entry name!', null, $utf8_decode), we_service_ErrorCodes::kModelTextEmpty);
 			$ex->setType('warning');
 			throw $ex;
 		}
