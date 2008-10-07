@@ -3,8 +3,6 @@
 include_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/lib/we/core/autoload.php');
 
 $tabs = new we_ui_controls_Tabs();
-$tabs->setHidden(false);
-$tabs->setDisabled(false);
 $tabs->setID('tabContainer');
 $tabs->setTabs(array(
 					array(
@@ -203,7 +201,7 @@ $htmlPage->addInlineJS("
 		");
 
 $htmlPage->addHTML('<form name="we_form">');
-$htmlPage->addHTML('<input type="hidden" name="activTab" value="" />"');
+$htmlPage->addHTML('<input type="hidden" name="activTab" value="" />');
 $htmlPage->addHTML('<div id="tab1" style="display: none">tab1</div>');
 
 $htmlPage->addHTML('<div id="tab2" style="display: block">tab2</div>');
