@@ -86,7 +86,7 @@ if($type=="js"){
 	$bannerpath = f("SELECT Path FROM ".FILE_TABLE." WHERE ID=".abs($bid),"Path",$DB_WE);
 
 	if(($type=="pixel" || (!$nocount) && $id && $c)){
-		$DB_WE->query("INSERT INTO ".BANNER_VIEWS_TABLE." (ID,Timestamp,IP,Referer,DID,Page) VALUES(".abs($id).",".time().",'".addslashes($_SERVER["REMOTE_ADDR"])."','".addslashes($referer ? $referer : (isset($_SERVER["HTTP_REFERER"]) ? $_SERVER["HTTP_REFERER"] :  ""))."',".abs($did).",'".addslashes($page)."')");
+		$DB_WE->query("INSERT INTO ".BANNER_VIEWS_TABLE." (ID,Timestamp,IP,Referer,DID,Page) VALUES(".abs($id).",".time().",'".mysql_real_escape_string($_SERVER["REMOTE_ADDR"])."','".mysql_real_escape_string($referer ? $referer : (isset($_SERVER["HTTP_REFERER"]) ? $_SERVER["HTTP_REFERER"] :  ""))."',".abs($did).",'".mysql_real_escape_string($page)."')");
 		$DB_WE->query("UPDATE ".BANNER_TABLE." SET views=views+1 WHERE ID=".abs($id));
 		setcookie("webid_$bannername",abs($id));
 	}
