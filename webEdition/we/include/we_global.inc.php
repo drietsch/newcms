@@ -261,7 +261,7 @@ function getObjectRootPathOfObjectWorkspace($classDir, $classId, $db = "")
 				"
 			SELECT ID,Path
 			FROM " . OBJECT_FILES_TABLE . "
-			WHERE IsFolder=1 AND Path LIKE '" . addslashes($classDir) . "%'");
+			WHERE IsFolder=1 AND Path LIKE '" . mysql_real_escape_string($classDir) . "%'");
 		while ($db->next_record()) {
 			if (!$ws || in_workspace($db->f("ID"), $ws, OBJECT_FILES_TABLE, "", true)) {
 				if ($rootPath == "/" || strlen($db->f("Path")) < strlen($rootPath)) {
@@ -280,6 +280,8 @@ function weFileExists($id, $table = FILE_TABLE, $db = "")
 		return true;
 	if (!$db)
 		$db = new DB_WE();
+		
+
 	return f("SELECT ID FROM $table WHERE ID=".abs($id), "ID", $db);
 }
 
@@ -1043,7 +1045,7 @@ function getSQLForOneCat($cat, $table = FILE_TABLE, $db = "", $fieldName = "Cate
 	$q = "
 		SELECT DISTINCT ID
 		FROM " . CATEGORY_TABLE . "
-		WHERE Path LIKE '" . addslashes($cat) . "/%' OR Path='" . addslashes($cat) . "'";
+		WHERE Path LIKE '" . mysql_real_escape_string($cat) . "/%' OR Path='" . mysql_real_escape_string($cat) . "'";
 	
 	$db->query($q);
 	$z = 0;
@@ -1252,7 +1254,7 @@ function deleteContentFromDB($id, $table)
 			"
 		SELECT *
 		FROM " . LINK_TABLE . "
-		WHERE DID=".abs($id) . " AND DocumentTable='" . addslashes(substr($table, strlen(TBL_PREFIX))) . "'")) {
+		WHERE DID=".abs($id) . " AND DocumentTable='" . mysql_real_escape_string(substr($table, strlen(TBL_PREFIX))) . "'")) {
 		return false;
 	}
 	while ($DB_WE->next_record())
@@ -1264,7 +1266,7 @@ function deleteContentFromDB($id, $table)
 			"
 		DELETE
 		FROM " . LINK_TABLE . "
-		WHERE DID=".abs($id)." AND DocumentTable='" . addslashes(substr($table, strlen(TBL_PREFIX))) . "'");
+		WHERE DID=".abs($id)." AND DocumentTable='" . mysql_real_escape_string(substr($table, strlen(TBL_PREFIX))) . "'");
 }
 
 function cleanTempFiles($cleanSessFiles = 0)
@@ -1292,7 +1294,7 @@ function cleanTempFiles($cleanSessFiles = 0)
 		$DB_WE->query("
 			SELECT Date,Path
 			FROM " . CLEAN_UP_TABLE . "
-			WHERE Path like '%".addslashes($seesID)."%'");
+			WHERE Path like '%".mysql_real_escape_string($seesID)."%'");
 		if ($DB_WE->num_rows())
 			while ($DB_WE->next_record()) {
 				$p = $DB_WE->f("Path");
@@ -1301,7 +1303,7 @@ function cleanTempFiles($cleanSessFiles = 0)
 				$db2->query("
 					DELETE
 					FROM " . CLEAN_UP_TABLE . "
-					WHERE Path like '%".addslashes($seesID)."%'");
+					WHERE Path like '%".mysql_real_escape_string($seesID)."%'");
 			}
 	}
 	$d = dir(TMP_DIR);
@@ -1806,7 +1808,7 @@ function path_to_id($path, $table = FILE_TABLE)
 	if ($path == "/") {
 		return 0;
 	}
-	return abs(f("SELECT ID FROM $table WHERE Path='".addslashes($path)."'", "ID", $db));
+	return abs(f("SELECT ID FROM $table WHERE Path='".mysql_real_escape_string($path)."'", "ID", $db));
 }
 
 function weConvertToIds($paths, $table)
@@ -1827,7 +1829,7 @@ function path_to_id_ct($path, $table = FILE_TABLE, &$contentType)
 	if ($path == "/") {
 		return 0;
 	}
-	$res = getHash("SELECT ID,ContentType FROM $table WHERE Path='".addslashes($path)."'", $db);
+	$res = getHash("SELECT ID,ContentType FROM $table WHERE Path='".mysql_real_escape_string($path)."'", $db);
 	$contentType = isset($res["ContentType"]) ? $res["ContentType"] : null;
 	
 	return abs(isset($res["ID"]) ? $res["ID"] : 0);
@@ -2062,20 +2064,20 @@ function getWsQueryForSelector($tab, $includingFolders = true)
 				
 				$path .= $part;
 				if ($includingFolders) {
-					$wsQuery .= ' (Path = "' . addslashes($path) . '") OR ';
+					$wsQuery .= ' (Path = "' . mysql_real_escape_string($path) . '") OR ';
 				} else {
-					$wsQuery .= ' (Path LIKE "' . addslashes($path) . '/%") OR ';
+					$wsQuery .= ' (Path LIKE "' . mysql_real_escape_string($path) . '/%") OR ';
 				}
 				$path .= "/";
 			
 			}
 			$path .= $last;
 			if ($includingFolders) {
-				$wsQuery .= ' (Path = "' . addslashes($path) . '" OR Path LIKE "' . addslashes($path) . '/%") OR ';
+				$wsQuery .= ' (Path = "' . mysql_real_escape_string($path) . '" OR Path LIKE "' . mysql_real_escape_string($path) . '/%") OR ';
 			} else {
-				$wsQuery .= ' (Path LIKE "' . addslashes($path) . '/%") OR ';
+				$wsQuery .= ' (Path LIKE "' . mysql_real_escape_string($path) . '/%") OR ';
 			}
-			$wsQuery .= ' (Path LIKE "' . addslashes($path) . '/%") OR ';
+			$wsQuery .= ' (Path LIKE "' . mysql_real_escape_string($path) . '/%") OR ';
 		
 		}
 		$wsQuery .= ' 0 )'; // end with "OR 0"
@@ -2108,11 +2110,11 @@ function getWsFileList($table, $childsOnly = false)
 				$path = "/";
 				foreach ($parts as $part) {
 					$path .= $part;
-					$_query .= "OR PATH = '".addslashes($path)."' ";
+					$_query .= "OR PATH = '".mysql_real_escape_string($path)."' ";
 					$path .= "/";
 				}
 			}
-			$_query .= "OR PATH LIKE '$myPath/%' OR PATH = '".addslashes($myPath)."' ";
+			$_query .= "OR PATH LIKE '$myPath/%' OR PATH = '".mysql_real_escape_string($myPath)."' ";
 			$db->query($_query);
 			while ($db->next_record()) {
 				array_push($childList, $db->f("ID"));
@@ -2230,7 +2232,7 @@ function getHrefForObject($id, $pid, $path = "", $DB_WE = "")
 					"
 				SELECT Path
 				FROM " . FILE_TABLE . "
-				WHERE Published > 0 AND ContentType='text/webedition' AND IsDynamic=1 AND Path like '".addslashes($path)."%'", 
+				WHERE Published > 0 AND ContentType='text/webedition' AND IsDynamic=1 AND Path like '".mysql_real_escape_string($path)."%'", 
 					"Path", 
 					$DB_WE);
 			if (!$path)
@@ -2248,7 +2250,7 @@ function getNextDynDoc($path, $pid, $ws1, $ws2, $DB_WE = "")
 	if (f("
 		SELECT IsDynamic
 		FROM " . FILE_TABLE . "
-		WHERE Path=".addslashes($path)."'", "IsDynamic", $DB_WE)) {
+		WHERE Path=".mysql_real_escape_string($path)."'", "IsDynamic", $DB_WE)) {
 		return $path;
 	}
 	$arr1 = makeArrayFromCSV(id_to_path($ws1, FILE_TABLE, $DB_WE));
@@ -2261,7 +2263,7 @@ function getNextDynDoc($path, $pid, $ws1, $ws2, $DB_WE = "")
 					"
 				SELECT Path
 				FROM " . FILE_TABLE . "
-				WHERE Published > 0 AND ContentType='text/webedition' AND IsDynamic=1 AND Path like '".addslashes($ws)."%'", 
+				WHERE Published > 0 AND ContentType='text/webedition' AND IsDynamic=1 AND Path like '".mysql_real_escape_string($ws)."%'", 
 					"Path", 
 					$DB_WE);
 			if ($path)
@@ -2273,7 +2275,7 @@ function getNextDynDoc($path, $pid, $ws1, $ws2, $DB_WE = "")
 					"
 				SELECT Path
 				FROM " . FILE_TABLE . "
-				WHERE Published > 0 AND ContentType='text/webedition' AND IsDynamic=1 AND Path like '".addslashes($ws)."%'", 
+				WHERE Published > 0 AND ContentType='text/webedition' AND IsDynamic=1 AND Path like '".mysql_real_escape_string($ws)."%'", 
 					"Path", 
 					$DB_WE);
 			if ($path)
@@ -2871,7 +2873,7 @@ function setUserPref($name, $value)
 		$_SESSION['prefs'][$name] = $value;
 		$_db = new DB_WE();
 		$_db->query(
-				'UPDATE ' . PREFS_TABLE . ' SET ' . $name . '="' . addslashes($value) . '" WHERE userId=' . $_SESSION['prefs']['userID']);
+				'UPDATE ' . PREFS_TABLE . ' SET ' . $name . '="' . mysql_real_escape_string($value) . '" WHERE userId=' . $_SESSION['prefs']['userID']);
 		return true;
 	}
 	return false;
@@ -3169,12 +3171,12 @@ function getDoctypeQuery($db = "")
 				while ($db->next_record()) {
 					array_push(
 							$paths, 
-							"(ParentPath = '" . addslashes($db->f("Path")) . "' || ParentPath like '" . addslashes($db->f("Path")) . "/%')");
+							"(ParentPath = '" . mysql_real_escape_string($db->f("Path")) . "' || ParentPath like '" . mysql_real_escape_string($db->f("Path")) . "/%')");
 				}
 			} else {
 				$_tmp_path = id_to_path($v);
 				while ($_tmp_path && $_tmp_path != "/") {
-					array_push($paths, "ParentPath = '" . addslashes($_tmp_path) . "'");
+					array_push($paths, "ParentPath = '" . mysql_real_escape_string($_tmp_path) . "'");
 					$_tmp_path = dirname($_tmp_path);
 				}
 			}

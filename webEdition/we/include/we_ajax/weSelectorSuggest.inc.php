@@ -25,9 +25,12 @@ include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/weSele
 
 if (!isset($_REQUEST["we_cmd"][1]) || !isset($_REQUEST["we_cmd"][2])) exit();
 
+// protection against sql injection
+$table = preg_replace('/\s/','',$_REQUEST["we_cmd"][2]);
+
 $selectorSuggest = new weSelectorQuery();
 $contentTypes = isset($_REQUEST["we_cmd"][3]) ? explode(",",$_REQUEST["we_cmd"][3]) : null;
-$selectorSuggest->search($_REQUEST["we_cmd"][1],$_REQUEST["we_cmd"][2],$contentTypes);
+$selectorSuggest->search($_REQUEST["we_cmd"][1], $table, $contentTypes);
 $suggests = $selectorSuggest->getResult();
 $return = "";
 if (is_array($suggests)) {

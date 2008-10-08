@@ -28,6 +28,8 @@ include_once(WE_USERS_MODULE_DIR . "we_users.inc.php");
 include_once($_SERVER['DOCUMENT_ROOT']."/webEdition/we/include/we_classes/html/we_multibox.inc.php");
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/"."weSuggest.class.inc.php");
 
+protect();
+
 $yuiSuggest =& weSuggest::getInstance();
 
 htmlTop();
@@ -59,7 +61,7 @@ echo $yuiSuggest->getYuiJsFiles();
 					return false;
 				} else {
 					if (f.input_pass.value != "") {
-						var hash = calcMD5(f.input_pass.value);
+						var hash = calcMD5(f.input_pass.value+"<?php print md5($user_object->username); ?>");
 
 						f.input_pass.value = "";
 						eval('f.' + f.obj_name.value + '_passwd.value = hash;');

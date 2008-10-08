@@ -254,49 +254,49 @@
 		$this->fix_text();
 		$this->fix_icon_small();
 
-		 if(defined("BIG_USER_MODULE") && in_array("busers",$GLOBALS["_pro_modules"])){
-			if(!$this->isColExist(USER_TABLE,"Salutation")) $this->addCol(USER_TABLE,"Salutation","VARCHAR(32) DEFAULT ''","AFTER ParentID");
-			if(!$this->isColExist(USER_TABLE,"Type")) $this->addCol(USER_TABLE,"Type","TINYINT(4) DEFAULT '0' NOT NULL","AFTER ParentID");
-			if(!$this->isColExist(USER_TABLE,"Address")) $this->addCol(USER_TABLE,"Address","VARCHAR(255) DEFAULT ''","AFTER Second");
-			if(!$this->isColExist(USER_TABLE,"HouseNo")) $this->addCol(USER_TABLE,"HouseNo","VARCHAR(32) DEFAULT ''","AFTER Address");
-			if(!$this->isColExist(USER_TABLE,"PLZ")) $this->addCol(USER_TABLE,"PLZ","VARCHAR(32) DEFAULT ''","AFTER HouseNo");
-			if(!$this->isColExist(USER_TABLE,"City")) $this->addCol(USER_TABLE,"City","VARCHAR(255) DEFAULT ''","AFTER PLZ");
-			if(!$this->isColExist(USER_TABLE,"State")) $this->addCol(USER_TABLE,"State","VARCHAR(255) DEFAULT ''","AFTER City");
-			if(!$this->isColExist(USER_TABLE,"Country")) $this->addCol(USER_TABLE,"Country","VARCHAR(255) DEFAULT ''","AFTER State");
-			if(!$this->isColExist(USER_TABLE,"Tel_preselection")) $this->addCol(USER_TABLE,"Tel_preselection","VARCHAR(32) DEFAULT ''","AFTER Country");
-			if(!$this->isColExist(USER_TABLE,"Telephone")) $this->addCol(USER_TABLE,"Telephone","VARCHAR(64) DEFAULT ''","AFTER Tel_preselection");
-			if(!$this->isColExist(USER_TABLE,"Fax_preselection")) $this->addCol(USER_TABLE,"Fax_preselection","VARCHAR(32) DEFAULT ''","AFTER Telephone");
-			if(!$this->isColExist(USER_TABLE,"Fax")) $this->addCol(USER_TABLE,"Fax","VARCHAR(64) DEFAULT ''","AFTER Fax_preselection");
-			if(!$this->isColExist(USER_TABLE,"Handy")) $this->addCol(USER_TABLE,"Handy","VARCHAR(64) DEFAULT ''","AFTER Fax");
-			if(!$this->isColExist(USER_TABLE,"Email")) $this->addCol(USER_TABLE,"Email","VARCHAR(255) DEFAULT ''","AFTER Handy");
-			if(!$this->isColExist(USER_TABLE,"Description")) $this->addCol(USER_TABLE,"Description","TEXT DEFAULT ''","AFTER Email");
-			if(!$this->isColExist(USER_TABLE,"workSpaceTmp")) $this->addCol(USER_TABLE,"workSpaceTmp","VARCHAR(255) DEFAULT ''","AFTER workSpace");
-			if(!$this->isColExist(USER_TABLE,"workSpaceDef")) $this->addCol(USER_TABLE,"workSpaceDef","VARCHAR(255) DEFAULT ''","AFTER workSpaceTmp");
-			if(!$this->isColExist(USER_TABLE,"ParentPerms")) $this->addCol(USER_TABLE,"ParentPerms","TINYINT DEFAULT '0' NOT NULL","AFTER passwd");
-			if(!$this->isColExist(USER_TABLE,"ParentWs")) $this->addCol(USER_TABLE,"ParentWs","TINYINT DEFAULT '0' NOT NULL","AFTER workSpaceDef");
-			if(!$this->isColExist(USER_TABLE,"ParentWst")) $this->addCol(USER_TABLE,"ParentWst","TINYINT DEFAULT '0' NOT NULL","AFTER ParentWs");
-			if(!$this->isColExist(USER_TABLE,"Alias")) $this->addCol(USER_TABLE,"Alias","BIGINT DEFAULT '0' NOT NULL");
+		if(!$this->isColExist(USER_TABLE,"Salutation")) $this->addCol(USER_TABLE,"Salutation","VARCHAR(32) DEFAULT ''","AFTER ParentID");
+		if(!$this->isColExist(USER_TABLE,"Type")) $this->addCol(USER_TABLE,"Type","TINYINT(4) DEFAULT '0' NOT NULL","AFTER ParentID");
+		if(!$this->isColExist(USER_TABLE,"Address")) $this->addCol(USER_TABLE,"Address","VARCHAR(255) DEFAULT ''","AFTER Second");
+		if(!$this->isColExist(USER_TABLE,"HouseNo")) $this->addCol(USER_TABLE,"HouseNo","VARCHAR(32) DEFAULT ''","AFTER Address");
+		if(!$this->isColExist(USER_TABLE,"PLZ")) $this->addCol(USER_TABLE,"PLZ","VARCHAR(32) DEFAULT ''","AFTER HouseNo");
+		if(!$this->isColExist(USER_TABLE,"City")) $this->addCol(USER_TABLE,"City","VARCHAR(255) DEFAULT ''","AFTER PLZ");
+		if(!$this->isColExist(USER_TABLE,"State")) $this->addCol(USER_TABLE,"State","VARCHAR(255) DEFAULT ''","AFTER City");
+		if(!$this->isColExist(USER_TABLE,"Country")) $this->addCol(USER_TABLE,"Country","VARCHAR(255) DEFAULT ''","AFTER State");
+		if(!$this->isColExist(USER_TABLE,"Tel_preselection")) $this->addCol(USER_TABLE,"Tel_preselection","VARCHAR(32) DEFAULT ''","AFTER Country");
+		if(!$this->isColExist(USER_TABLE,"Telephone")) $this->addCol(USER_TABLE,"Telephone","VARCHAR(64) DEFAULT ''","AFTER Tel_preselection");
+		if(!$this->isColExist(USER_TABLE,"Fax_preselection")) $this->addCol(USER_TABLE,"Fax_preselection","VARCHAR(32) DEFAULT ''","AFTER Telephone");
+		if(!$this->isColExist(USER_TABLE,"Fax")) $this->addCol(USER_TABLE,"Fax","VARCHAR(64) DEFAULT ''","AFTER Fax_preselection");
+		if(!$this->isColExist(USER_TABLE,"Handy")) $this->addCol(USER_TABLE,"Handy","VARCHAR(64) DEFAULT ''","AFTER Fax");
+		if(!$this->isColExist(USER_TABLE,"Email")) $this->addCol(USER_TABLE,"Email","VARCHAR(255) DEFAULT ''","AFTER Handy");
+		if(!$this->isColExist(USER_TABLE,"Description")) $this->addCol(USER_TABLE,"Description","TEXT DEFAULT ''","AFTER Email");
+		if(!$this->isColExist(USER_TABLE,"workSpaceTmp")) $this->addCol(USER_TABLE,"workSpaceTmp","VARCHAR(255) DEFAULT ''","AFTER workSpace");
+		if(!$this->isColExist(USER_TABLE,"workSpaceDef")) $this->addCol(USER_TABLE,"workSpaceDef","VARCHAR(255) DEFAULT ''","AFTER workSpaceTmp");
+		if(!$this->isColExist(USER_TABLE,"ParentPerms")) $this->addCol(USER_TABLE,"ParentPerms","TINYINT DEFAULT '0' NOT NULL","AFTER passwd");
+		if(!$this->isColExist(USER_TABLE,"ParentWs")) $this->addCol(USER_TABLE,"ParentWs","TINYINT DEFAULT '0' NOT NULL","AFTER workSpaceDef");
+		if(!$this->isColExist(USER_TABLE,"ParentWst")) $this->addCol(USER_TABLE,"ParentWst","TINYINT DEFAULT '0' NOT NULL","AFTER ParentWs");
+		if(!$this->isColExist(USER_TABLE,"Alias")) $this->addCol(USER_TABLE,"Alias","BIGINT DEFAULT '0' NOT NULL");
 
-			if(!$this->isColExist(USER_TABLE,"workSpaceObj")) $this->addCol(USER_TABLE,"workSpaceObj","VARCHAR(255) DEFAULT ''","AFTER workSpace");
-			if(!$this->isColExist(USER_TABLE,"ParentWso")) $this->addCol(USER_TABLE,"ParentWso","TINYINT DEFAULT '0' NOT NULL","AFTER workSpaceDef");
-			if(!$this->isColExist(USER_TABLE,"workSpaceNav")) $this->addCol(USER_TABLE,"workSpaceNav","VARCHAR(255) DEFAULT ''","AFTER workSpace");
-			if(!$this->isColExist(USER_TABLE,"ParentWsn")) $this->addCol(USER_TABLE,"ParentWsn","TINYINT DEFAULT '0' NOT NULL","AFTER workSpaceDef");
-			if(!$this->isColExist(USER_TABLE,"workSpaceNwl")) $this->addCol(USER_TABLE,"workSpaceNwl","VARCHAR(255) DEFAULT ''","AFTER workSpace");
-			if(!$this->isColExist(USER_TABLE,"ParentWsnl")) $this->addCol(USER_TABLE,"ParentWsnl","TINYINT DEFAULT '0' NOT NULL","AFTER workSpaceDef");
+		if(!$this->isColExist(USER_TABLE,"workSpaceObj")) $this->addCol(USER_TABLE,"workSpaceObj","VARCHAR(255) DEFAULT ''","AFTER workSpace");
+		if(!$this->isColExist(USER_TABLE,"ParentWso")) $this->addCol(USER_TABLE,"ParentWso","TINYINT DEFAULT '0' NOT NULL","AFTER workSpaceDef");
+		if(!$this->isColExist(USER_TABLE,"workSpaceNav")) $this->addCol(USER_TABLE,"workSpaceNav","VARCHAR(255) DEFAULT ''","AFTER workSpace");
+		if(!$this->isColExist(USER_TABLE,"ParentWsn")) $this->addCol(USER_TABLE,"ParentWsn","TINYINT DEFAULT '0' NOT NULL","AFTER workSpaceDef");
+		if(!$this->isColExist(USER_TABLE,"workSpaceNwl")) $this->addCol(USER_TABLE,"workSpaceNwl","VARCHAR(255) DEFAULT ''","AFTER workSpace");
+		if(!$this->isColExist(USER_TABLE,"ParentWsnl")) $this->addCol(USER_TABLE,"ParentWsnl","TINYINT DEFAULT '0' NOT NULL","AFTER workSpaceDef");
 
+		if(!$this->isColExist(USER_TABLE,"LoginDenied")) $this->addCol(USER_TABLE,"LoginDenied","TINYINT(1) DEFAULT '0' NOT NULL");
+		if(!$this->isColExist(USER_TABLE,"UseSalt")) $this->addCol(USER_TABLE,"UseSalt","TINYINT(1) DEFAULT '0' NOT NULL");
+		
 
-
-			if($this->isColExist(USER_TABLE,"workSpace")){
-				$this->changeColTyp(USER_TABLE,"workSpace","VARCHAR(255)");
-				$DB_WE->query("UPDATE " . USER_TABLE . " SET workSpace='' WHERE workSpace='0';");
-			}
-			if($this->isColExist(USER_TABLE,"IsFolder")){
-				$DB_WE->query("SELECT ID FROM " . USER_TABLE . " WHERE Type=1");
-				while($DB_WE->next_record()) $db123->query("UPDATE " . USER_TABLE . " SET IsFolder=1 WHERE ID=".$DB_WE->f("ID"));
-			}
-			$this->fix_icon();
-
+		if($this->isColExist(USER_TABLE,"workSpace")){
+			$this->changeColTyp(USER_TABLE,"workSpace","VARCHAR(255)");
+			$DB_WE->query("UPDATE " . USER_TABLE . " SET workSpace='' WHERE workSpace='0';");
 		}
+		if($this->isColExist(USER_TABLE,"IsFolder")){
+			$DB_WE->query("SELECT ID FROM " . USER_TABLE . " WHERE Type=1");
+			while($DB_WE->next_record()) $db123->query("UPDATE " . USER_TABLE . " SET IsFolder=1 WHERE ID=".$DB_WE->f("ID"));
+		}
+		$this->fix_icon();
+
 
 	}
 

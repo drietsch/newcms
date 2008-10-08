@@ -158,7 +158,7 @@ if (isset($GLOBALS["loginpage"]) && $GLOBALS["loginpage"]){
 
 		$_modetable->setCol(0,1, array(	"align"   => "right",
 									"valign"  => "bottom",
-									"rowspan" => "2"), we_htmlElement::htmlHidden(array("name" => "mode", "value" => "normal")) . $we_button->create_button("login", "form:submit:loginForm"));
+									"rowspan" => "2"), we_htmlElement::htmlHidden(array("name" => "mode", "value" => "normal")) . $we_button->create_button("login", "javascript:document.loginForm.submit();"));
 	} else {	//	normal login
 
 		//	15th Mode
@@ -178,7 +178,7 @@ if (isset($GLOBALS["loginpage"]) && $GLOBALS["loginpage"]){
 		</table>');
 		$_modetable->setCol(0,1, array(	"align"   => "right",
 									"valign"  => "bottom",
-									"rowspan" => "2"),$we_button->create_button("login", "form:submit:loginForm"));
+									"rowspan" => "2"),$we_button->create_button("login", "javascript:document.loginForm.submit();"));
 	}
 
 	//	16th
@@ -201,7 +201,7 @@ if (isset($GLOBALS["loginpage"]) && $GLOBALS["loginpage"]){
 	$loginRow = 0;
 
 	$_content = "";
-	if($_SESSION["user"]["Username"] && $_POST["md5password"] && $_POST["username"]){
+	if($_SESSION["user"]["Username"] && $_POST["password"] && $_POST["username"]){
 		$_content = $l_global["loginok"];
 	}
 
@@ -251,6 +251,6 @@ if (isset($GLOBALS["loginpage"]) && $GLOBALS["loginpage"]){
 if(isset($_REQUEST["we_cmd"][0]) && $_REQUEST["we_cmd"][0] == "info"){
 	print $_table->getHtmlCode();
 } else {
-	$_loginTable = $_table->getHtmlCode();
+	$_loginTable = $_table->getHtmlCode() . '<input type="image" width="1" height="1" src="/webEdition/images/pixel.gif"/>';
 }
 ?>

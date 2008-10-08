@@ -26,6 +26,8 @@ include_once ($_SERVER['DOCUMENT_ROOT'] . "/webEdition/we/include/we_classes/htm
 include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_language/" . $GLOBALS["WE_LANGUAGE"] . "/cockpit.inc.php");
 include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_widgets/dlg/prefs.inc.php");
 
+protect();
+
 $jsCode = "
 var _sPlgInc='plg/plg';
 var _oCsv_;
@@ -104,10 +106,6 @@ function exit_close(){
 }";
 
 $_userName = $_SESSION['user']['Username'];
-$_md5passwd = f(
-		"SELECT passwd FROM " . USER_TABLE . " WHERE ID='" . $_SESSION['user']['ID'] . "'", 
-		"passwd", 
-		$GLOBALS['DB_WE']);
 @require ($_SERVER["DOCUMENT_ROOT"] . WE_TRACKER_DIR . "/includes/showme.inc.php");
 //$_dns = getDomainList($_userName,$_md5passwd);
 //if (defined('WE_TRACKER_DIR')) {
@@ -117,8 +115,7 @@ $pl_db = new stat_db();
 $pl_conn = $pl_db->connect();
 $pl_tables = new stat_tables();
 $pl_tables->build_tables();
-@$result = mysql_query(
-		"SELECT websites FROM $pl_tables->accounttable WHERE account_username = '" . $_userName . "' AND account_password = '" . $_md5passwd . "'");
+@$result = mysql_query("SELECT websites FROM " . preg_replace("/\s/","",$pl_tables->accounttable). " WHERE account_username = '" . $_userName . "'");
 $pl_object = mysql_fetch_object($result);
 $websites = $pl_object->websites;
 $websites = str_replace("\r", "", $websites);

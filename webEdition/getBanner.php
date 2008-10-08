@@ -79,15 +79,15 @@ if($type=="js"){
 	}
 	if(!$bid){
 		$id=f("SELECT pref_value FROM ".BANNER_PREFS_TABLE." WHERE pref_name='DefaultBannerID'","pref_value",$DB_WE);
-		$bid=f("SELECT bannerID FROM ".BANNER_TABLE." WHERE ID='$id'","bannerID",$DB_WE);
+		$bid=f("SELECT bannerID FROM ".BANNER_TABLE." WHERE ID=".abs($id),"bannerID",$DB_WE);
 
 	}
 
-	$bannerpath = f("SELECT Path FROM ".FILE_TABLE." WHERE ID='$bid'","Path",$DB_WE);
+	$bannerpath = f("SELECT Path FROM ".FILE_TABLE." WHERE ID=".abs($bid),"Path",$DB_WE);
 
 	if(($type=="pixel" || (!$nocount) && $id && $c)){
-		$DB_WE->query("INSERT INTO ".BANNER_VIEWS_TABLE." (ID,Timestamp,IP,Referer,DID,Page) VALUES('$id',".time().",'".$_SERVER["REMOTE_ADDR"]."','".($referer ? $referer : (isset($_SERVER["HTTP_REFERER"]) ? $_SERVER["HTTP_REFERER"] :  ""))."','".$did."','".$page."')");
-		$DB_WE->query("UPDATE ".BANNER_TABLE." SET views=views+1 WHERE ID='$id'");
+		$DB_WE->query("INSERT INTO ".BANNER_VIEWS_TABLE." (ID,Timestamp,IP,Referer,DID,Page) VALUES(".abs($id).",".time().",'".addslashes($_SERVER["REMOTE_ADDR"])."','".addslashes($referer ? $referer : (isset($_SERVER["HTTP_REFERER"]) ? $_SERVER["HTTP_REFERER"] :  ""))."',".abs($did).",'".addslashes($page)."')");
+		$DB_WE->query("UPDATE ".BANNER_TABLE." SET views=views+1 WHERE ID=".abs($id));
 		setcookie("webid_$bannername",abs($id));
 	}
 

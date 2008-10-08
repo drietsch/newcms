@@ -4938,8 +4938,9 @@ function we_tag_linkToSeeMode($attribs, $content)
 			$tmpDB = new DB_WE();
 			
 			$tmpDB->query(
-					"SELECT ID FROM " . USER_TABLE . " WHERE username=\"" . $_SESSION["webuser"]["Username"] . "\" AND passwd=\"" . md5(
-							$_SESSION["webuser"]["Password"]) . "\";");
+					"SELECT ID FROM " . USER_TABLE . " WHERE username=\"" . $_SESSION["webuser"]["Username"] . "\" AND (UseSalt=0 AND passwd=\"" . md5(
+							$_SESSION["webuser"]["Password"]) . "\") OR UseSalt=1 AND passwd=\"" . md5(
+							$_SESSION["webuser"]["Password"] . md5($_SESSION["webuser"]["Username"])) . "\"");
 			
 			if ($tmpDB->num_rows() == 1) { // customer is also a user
 				$retStr = getHtmlTag(
@@ -4964,8 +4965,8 @@ function we_tag_linkToSeeMode($attribs, $content)
 								array(
 									
 										'type' => 'hidden', 
-										'name' => 'passwd', 
-										'value' => md5($_SESSION["webuser"]["Password"]), 
+										'name' => 'password', 
+										'value' => $_SESSION["webuser"]["Password"], 
 										'xml' => $xml
 								)) . getHtmlTag(
 								'input', 

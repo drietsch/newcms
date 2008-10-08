@@ -641,9 +641,6 @@ function we_cmd() {
 		case "languageinstallation":
 			new jsWindow("<?php print WEBEDITION_DIR; ?>/liveUpdate/liveUpdate.php?active=languages","we_update_<?php print session_id(); ?>",-1,-1, 600,500,true,true,true);
 			break;
-		case "change_username":
-			new jsWindow(url,"we_change_username",-1,-1,250,220,true,true,true);
-			break;
 		case "del":
 			we_cmd('delete',1,arguments[2]);
 			treeData.setstate(treeData.tree_states["select"]);

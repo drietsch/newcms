@@ -91,9 +91,6 @@ if(!$INCLUDE){
 		case "open_tag_wizzard":
 			$INCLUDE = "weTagWizard/we_tag_wizzard.inc.php";
 			break;
-		case "change_username":
-			$INCLUDE = "we_editors/we_editUsername.inc.php";
-			break;
 		case "change_passwd":
 			$INCLUDE = "we_editors/we_editPasswd.inc.php";
 			break;

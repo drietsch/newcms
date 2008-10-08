@@ -162,21 +162,16 @@ if ($DB_WE->num_rows() >= LOGIN_FAILED_NR) {
  *****************************************************************************/
 if ( isset($GLOBALS["userLoginDenied"]) ) {
 	$login = 4;
-} else if (isset($_SESSION["user"]["Username"]) && isset($_POST["md5password"]) && isset($_POST["username"])) {
+} else if (isset($_SESSION["user"]["Username"]) && isset($_POST["password"]) && isset($_POST["username"])) {
 	$login = 2;
 	setcookie("we_mode", $_REQUEST["mode"], time() + 2592000);	//	Cookie remembers the last selected mode, it will expire in one Month !!!
-} else if (isset($_POST["md5password"]) && isset($_POST["username"])) {
+} else if (isset($_POST["password"]) && isset($_POST["username"])) {
 	$login = 1;
 } else {
 	$login = 0;
 	if (isset($_REQUEST["ignore_browser"]) && $_REQUEST["ignore_browser"] == true) {
 		setcookie("ignore_browser", "true", time() + 2592000);	//	Cookie remembers that the incompatible mode has been selected, it will expire in one Month !!!
 	}
-}
-
-if ($login != 2) {
-	// create new Secret for loginpage
-	$_SESSION["we_secret"] = md5(uniqid(time()));
 }
 
 /*****************************************************************************
@@ -187,7 +182,6 @@ print STYLESHEET;
 
 print we_htmlElement::jsElement("", array("src" => JS_DIR . "windows.js"));
 print we_htmlElement::jsElement("", array("src" => JS_DIR . "weJsStrings.php"));
-print we_htmlElement::jsElement("", array("src" => JS_DIR . "md5.js"));
 
 if ($login != 2) {
 	print we_htmlElement::linkElement(array("rel" => "home", "href" => "/webEdition/"));
@@ -206,38 +200,6 @@ $_head_javascript = "
 		" . we_message_reporting::getShowMessageCall( $l_alert["no_cookies"], WE_MESSAGE_ERROR ) . "
 	}
 
-	document.onkeydown = doKeyDown;
-
-	function doKeyDown(e) {
-		" . (($BROWSER == "NN6") ? "
-			if (e.keyCode == 13) {
-				submitForm(document.forms[0]);
-			}
-		" : "") . "
-	}
-
-	function submitForm(f) {
-		if (f.password.value != \"\" && cookieOk) {
-
-			var hash = calcMD5(calcMD5(f.password.value) + '" . (isset($_SESSION["we_secret"]) ? $_SESSION["we_secret"] : "") . "');
-
-			f.password.value = \"\";
-			f.md5password.value=hash;
-
-			" . (($BROWSER == "NN6" || $BROWSER == "NN") ? "
-				f.submit();
-			" : "") . "
-
-			return true;
-		} else {
-
-			" . (($BROWSER == "NN6" || $BROWSER == "NN") ? "
-				f.submit();
-			" : "") . "
-
-			return true;
-		}
-	}
 ";
 
 $_head_javascript .= '
@@ -296,7 +258,68 @@ print "</head>";
  * CHECK FOR PROBLEMS
  *****************************************************************************/
 
-if (isset($_POST["checkLogin"]) && $_POST["checkLogin"] != session_id()) {
+if (isset($_POST["checkLogin"]) && !count($_COOKIE)) {
+	$_error = we_htmlElement::htmlB($l_start["coockies_disabled"]);
+
+	$_error_count = 0;
+	$tmp = ini_get("session.save_path");
+
+	if (!(is_dir($tmp) && file_exists($tmp))) {
+		$_error .= $_error_count++ . " - " . sprintf($l_start["tmp_path"], ini_get("session.save_path")) . "<br>";
+	}
+
+	if (!ini_get("session.use_cookies")) {
+		$_error .= $_error_count++ . " - " . $l_start["use_cookies"] . "<br>";
+	}
+
+	if (ini_get("session.cookie_path") != "/") {
+		$_error .= $_error_count++ . " - " . sprintf($l_start["cookie_path"], ini_get("session.cookie_path")) . "<br>";
+	}
+
+	if ($_error_count == 1) {
+		$_error .= "<br>" . $l_start["solution_one"];
+	} else if ($_error_count > 1) {
+		$_error .= "<br>" . $l_start["solution_more"];
+	}
+
+	$_layout = new we_htmlTable(array("width" => "100%", "height" => "75%", "style" => "width: 100%; height: 75%;"), 1, 1);
+
+	$_layout->setCol(0, 0, array("align" => "center", "valign" => "middle"), we_htmlElement::htmlCenter(htmlMessageBox(500, 250, we_htmlElement::htmlP(array("class" => "defaultfont"), $_error), $l_alert["phpError"])));
+
+	print we_htmlElement::htmlBody(array("bgcolor" => "#FFFFFF"), $_layout->getHtmlCode()) . "</html>";
+
+} else if(!$DB_WE->connect()) {
+	$_error = we_htmlElement::htmlB($l_start["no_db_connction"]);
+
+	$_error_count = 0;
+	$tmp = ini_get("session.save_path");
+
+	if (!(is_dir($tmp) && file_exists($tmp))) {
+		$_error .= $_error_count++ . " - " . sprintf($l_start["tmp_path"], ini_get("session.save_path")) . "<br>";
+	}
+
+	if (!ini_get("session.use_cookies")) {
+		$_error .= $_error_count++ . " - " . $l_start["use_cookies"] . "<br>";
+	}
+
+	if (ini_get("session.cookie_path") != "/") {
+		$_error .= $_error_count++ . " - " . sprintf($l_start["cookie_path"], ini_get("session.cookie_path")) . "<br>";
+	}
+
+	if ($_error_count == 1) {
+		$_error .= "<br>" . $l_start["solution_one"];
+	} else if ($_error_count > 1) {
+		$_error .= "<br>" . $l_start["solution_more"];
+	}
+
+	$_layout = new we_htmlTable(array("width" => "100%", "height" => "75%", "style" => "width: 100%; height: 75%;"), 1, 1);
+
+	$_layout->setCol(0, 0, array("align" => "center", "valign" => "middle"), we_htmlElement::htmlCenter(htmlMessageBox(500, 250, we_htmlElement::htmlP(array("class" => "defaultfont"), $_error), $l_alert["phpError"])));
+
+	print we_htmlElement::htmlBody(array("bgcolor" => "#FFFFFF"), $_layout->getHtmlCode()) . "</html>";
+
+
+} else if (isset($_POST["checkLogin"]) && $_POST["checkLogin"] != session_id()) {
 	$_error = we_htmlElement::htmlB(sprintf($l_start["phpini_problems"], (ini_get("cfg_file_path") ? " (" . ini_get("cfg_file_path") . ")" : "")) . "<br><br>");
 
 	$_error_count = 0;
@@ -390,8 +413,7 @@ if (isset($_POST["checkLogin"]) && $_POST["checkLogin"] != session_id()) {
  * GENERATE LOGIN
  *****************************************************************************/
 
-	$_hidden_values  = we_htmlElement::htmlHidden(array("name" => "md5password", "value" => ""));
-	$_hidden_values .= we_htmlElement::htmlHidden(array("name" => "checkLogin", "value" => session_id()));
+	$_hidden_values = we_htmlElement::htmlHidden(array("name" => "checkLogin", "value" => session_id()));
 
 	if (isset($_REQUEST["ignore_browser"])) {
 		$_hidden_values .= we_htmlElement::htmlHidden(array("name" => "ignore_browser", "value" => $_REQUEST["ignore_browser"]));
@@ -505,7 +527,7 @@ if (isset($_POST["checkLogin"]) && $_POST["checkLogin"] != session_id()) {
 
 		$_body_javascript .= "win = new jsWindow('" . WEBEDITION_DIR . "webEdition.php?h='+ah+'&w='+aw+'&browser='+((document.all) ? 'ie' : 'nn'), '" . md5(uniqid(rand())) . "', -1, -1, aw, ah, true, true, true, true, '" . $l_alert["popupLoginError"] . "', '/webEdition/index.php'); }";
 	} else if ($login == 1) {
-		$DB_WE->query("INSERT INTO ".FAILED_LOGINS_TABLE." (Username, Password, IP, LoginDate) VALUES('" . $_POST["username"] . "', '" . $_POST["md5password"] . "', '" . $_SERVER["REMOTE_ADDR"] . "', '" . time() . "')");
+		$DB_WE->query("INSERT INTO ".FAILED_LOGINS_TABLE." (Username, Password, IP, LoginDate) VALUES('" . $_POST["username"] . "', '*****', '" . $_SERVER["REMOTE_ADDR"] . "', '" . time() . "')");
 
 		/*****************************************************************************
 		 * CHECK FOR FAILED LOGIN ATTEMPTS
@@ -527,7 +549,7 @@ if (isset($_POST["checkLogin"]) && $_POST["checkLogin"] != session_id()) {
 
 	$_layout = new we_htmlTable(array("width" => "100%", "height" => "100%", "style" => "width: 100%; height: 100%;"), 1, 1);
 
-	$_layout->setCol(0, 0, array("align" => "center", "valign" => "middle"), we_htmlElement::htmlForm(array("action" => WEBEDITION_DIR . "index.php", "method" => "post", "name" => "loginForm", "onsubmit" => "return submitForm(this);"), $_hidden_values . $dialogtable));
+	$_layout->setCol(0, 0, array("align" => "center", "valign" => "middle"), we_htmlElement::htmlForm(array("action" => WEBEDITION_DIR . "index.php", "method" => "post", "name" => "loginForm"), $_hidden_values . $dialogtable));
 
 	print we_htmlElement::htmlBody(array("bgcolor" => "#386AAB", "class" => "header", "onload" => (($login == 2) ? "open_we();" : "document.loginForm.username.focus();document.loginForm.username.select();")), $_layout->getHtmlCode() . ((isset($_body_javascript)) ? we_htmlElement::jsElement($_body_javascript) : "")) . "</html>";
 }
