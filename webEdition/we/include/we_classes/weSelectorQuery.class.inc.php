@@ -79,7 +79,7 @@ class weSelectorQuery {
 		}
 
 		$userExtraSQL = $this->getUserExtraQuery($table);	
-		$where = "WHERE Path = '".$search."'";
+		$where = "WHERE Path = '".mysql_real_escape_string($search)."'";
 		$isFolder = 1;
 		$addCT = 0;
 
@@ -145,7 +145,7 @@ class weSelectorQuery {
 		}
 
 		$userExtraSQL = $this->getUserExtraQuery($table);	
-		$where = "WHERE Path REGEXP '^".preg_quote(preg_quote($search))."[^/]*$'" . (isset($rootDir) && !empty($rootDir) ? " AND  (Path LIKE '".$rootDir."' OR Path LIKE '".$rootDir."%')" : "") ;
+		$where = "WHERE Path REGEXP '^".preg_quote(preg_quote($search))."[^/]*$'" . (isset($rootDir) && !empty($rootDir) ? " AND  (Path LIKE '".mysql_real_escape_string($rootDir)."' OR Path LIKE '".mysql_real_escape_string($rootDir)."%')" : "") ;
 		$isFolder = 1;
 		$addCT = 0;
 		
