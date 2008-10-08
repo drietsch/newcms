@@ -59,6 +59,8 @@ class we_ui_layout_Form extends we_ui_abstract_AbstractFormElement
 	 */
 	protected $_action = '';
 
+	protected $_enctype = '';
+
 	/*
 	 * string to hold the HTML of the form
 	 *
@@ -97,7 +99,8 @@ class we_ui_layout_Form extends we_ui_abstract_AbstractFormElement
 	 */
 	protected function _renderHTML()
 	{
-		return '<form' . $this->_getNonBooleanAttribs('id,name,method,onSubmit,action') . '>' . $this->_formHTML . '</form>';
+		$attribs = $this->_enctype == "" ? 'id,name,method,onSubmit,action' : 'id,name,method,onSubmit,action,enctype';
+		return '<form' . $this->_getNonBooleanAttribs($attribs) . '>' . $this->_formHTML . '</form>';
 	}
 
 	/**
@@ -163,6 +166,11 @@ class we_ui_layout_Form extends we_ui_abstract_AbstractFormElement
 		$this->_onSubmit = $onSubmit;
 	}
 
+	public function setEnctype($val)
+	{
+		$this->_enctype = $val;
+	}
+	
 	/**
 	 * Returns the HTML for a hidden field
 	 * 

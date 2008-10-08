@@ -35,6 +35,9 @@ $GLOBALS['__WE_LIB_PATH__'] = $GLOBALS['__WE_BASE_PATH__'] . DIRECTORY_SEPARATOR
 // Absolute Server Path to the apps directory
 $GLOBALS['__WE_APP_PATH__'] = $GLOBALS['__WE_BASE_PATH__'] . DIRECTORY_SEPARATOR . 'apps';
 
+// Absolute Server Path to the apps directory
+$GLOBALS['__WE_CMS_PATH__'] = $GLOBALS['__WE_BASE_PATH__'] . DIRECTORY_SEPARATOR . 'cms';
+
 // Absolute URL to the webEdition base directory (eg. "/webEdition")
 $GLOBALS['__WE_BASE_URL__'] = '/' . basename(str_replace('\\', '/', $GLOBALS['__WE_BASE_PATH__']));
 
@@ -43,6 +46,9 @@ $GLOBALS['__WE_LIB_URL__'] = $GLOBALS['__WE_BASE_URL__'] . '/lib';
 
 // Absolute URL to the apps directory (eg. "/webEdition/apps")
 $GLOBALS['__WE_APP_URL__'] = $GLOBALS['__WE_BASE_URL__'] . '/apps';
+
+// Absolute URL to the apps directory (eg. "/webEdition/apps")
+$GLOBALS['__WE_CMS_URL__'] = $GLOBALS['__WE_BASE_URL__'] . '/cms';
 
 // add __WE_LIB_PATH__ and __WE_APP_PATH__ to the include_path
 ini_set('include_path', ini_get('include_path') . PATH_SEPARATOR . $GLOBALS['__WE_LIB_PATH__'] . PATH_SEPARATOR . $GLOBALS['__WE_APP_PATH__']);

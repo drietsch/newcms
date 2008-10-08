@@ -38,6 +38,7 @@ Zend_Loader::loadClass('we_ui_layout_HTMLPage');
 class we_ui_layout_Dialog extends we_ui_layout_HTMLPage
 {
 
+	protected $_headline = "";
 	/**
 	 * Constructor
 	 * 
@@ -52,6 +53,11 @@ class we_ui_layout_Dialog extends we_ui_layout_HTMLPage
 self.dialog = eval("opener." + self.name + "_Object");		
 ');
 		parent::__construct($properties);
+	}
+	
+	public function setHeadline($headline)
+	{
+		$this->_headline = $headline;
 	}
 
 }

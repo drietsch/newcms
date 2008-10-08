@@ -172,7 +172,7 @@ class we_ui_controls_Checkbox extends we_ui_abstract_AbstractInputElement
 		
 		$this->_onClick .= ';this.form.elements[\'' . $this->getName() . '\'].value=this.checked ? 1 : 0;';
 		
-		return '<table id="' . $tableId . '" ' . $this->_getComputedStyleAttrib() . '><tr><td><input type="hidden" id="' . $this->getId() . '" name="' . $this->getName() . '" value="' . $this->getValue() . '" /><input id="' . $checkBoxId . '" name="' . $checkBoxName . '" ' . $this->_getNonBooleanAttribs('type,title,onClick') . $this->_getBooleanAttribs('disabled,checked') . '/></td><td style="padding-top:2px;">' . $labelHTML . '</td></tr></table>';
+		return '<table id="' . $tableId . '" ' . $this->_getComputedStyleAttrib() . '><tr><td><input type="hidden" id="' . $this->getId() . '" name="' . $this->getName() . '" value="' . ($this->getChecked() ? 1 : 0) . '" /><input id="' . $checkBoxId . '" name="' . $checkBoxName . '" ' . $this->_getNonBooleanAttribs('type,title,onClick') . $this->_getBooleanAttribs('disabled,checked') . '/></td><td style="padding-top:2px;">' . $labelHTML . '</td></tr></table>';
 	}
 
 }

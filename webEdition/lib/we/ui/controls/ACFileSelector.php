@@ -148,6 +148,8 @@ class we_ui_controls_ACFileSelector extends we_ui_abstract_AbstractFormElement
 	 * @var string
 	 */
 	protected $_onChange = '';
+	
+	protected $_scope = '';
 
 	/**
 	 * Constructor
@@ -551,7 +553,12 @@ class we_ui_controls_ACFileSelector extends we_ui_abstract_AbstractFormElement
 	{
 		$ac = $this->getInputField();
 		
-		$page = we_ui_layout_HTMLPage::getInstance();
+		if ($this->_scope != "") {
+			$page = $this->_scope;
+		} else {
+			$page = we_ui_layout_HTMLPage::getInstance();
+		}
+		
 		$page->addInlineCSS($this->_suggestObj->getYuiCss());
 		
 		if ($this->getHidden()) {
@@ -559,5 +566,10 @@ class we_ui_controls_ACFileSelector extends we_ui_abstract_AbstractFormElement
 		}
 		
 		return '<div' . $this->_getComputedStyleAttrib() . '>' . $ac . '</div>' . $this->_suggestObj->getYuiJs();
+	}
+	
+	public function setScope($scope)
+	{
+		$this->_scope = $scope;
 	}
 }
