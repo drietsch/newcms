@@ -23,8 +23,10 @@ class rpcShowPreparedPreviewCmd extends rpcCmd {
 	
 	function execute() {
 		
+		protect();
+
 		$resp = new rpcResponse();
-		
+
 		include_once($_SERVER['DOCUMENT_ROOT'] . "/webEdition/we/include/we_classes/we_template.inc.php");
 		
 		$we_dt = "";
