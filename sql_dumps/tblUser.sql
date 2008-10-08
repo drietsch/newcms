@@ -45,6 +45,7 @@ CREATE TABLE tblUser (
   ParentWsnl tinyint(4) NOT NULL default '0',
   Salutation varchar(32) NOT NULL default '',
   LoginDenied tinyint(4) NOT NULL default '0',
+  UseSalt tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (ID)
 ) TYPE=MyISAM;
 /* query separator */
