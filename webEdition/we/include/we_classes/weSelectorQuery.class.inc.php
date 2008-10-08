@@ -174,7 +174,7 @@ class weSelectorQuery {
 
 		if (count($this->condition)>0) {
 			foreach ($this->condition as $val){
-				$where .= (empty($where) ? "WHERE " : " " . $val['queryOperator']) . " " .$val['field'] . $val['conditionOperator'] . "'" . $val['value'] . "'";
+				$where .= (empty($where) ? "WHERE " : " " . $val['queryOperator']) . " " .$val['field'] . $val['conditionOperator'] . "'" . mysql_real_escape_string($val['value']) . "'";
 			}
 		}
 
