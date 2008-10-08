@@ -221,6 +221,7 @@ $l_javaMenu["change_username"] = "Benutzername ändern";
 $l_javaMenu["change_password"] = "Kennwort ändern";
 $l_javaMenu["versioning"] = "Versions-Wizard";
 $l_javaMenu["versioning_log"] = "Versions-Log";
+$l_javaMenu["econda"] = "Econda";
 
 $l_javaMenu["formmail_recipients"] = "Formmail-Empfänger";
 $l_javaMenu["proxy_server"] = "Proxy-Server";

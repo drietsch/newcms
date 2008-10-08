@@ -215,6 +215,7 @@ $l_javaMenu["metadata"] = "Metadata fields"; // TRANSLATE
 $l_javaMenu["navigation"] = "Navigation"; // TRANSLATE
 $l_javaMenu["change_username"] = "Changer l'identifiant ";
 $l_javaMenu["change_password"] = "Changer le mot de passe";
+$l_javaMenu["econda"] = "Econda";
 
 $l_javaMenu["formmail_recipients"] = "Destinataire de Formmail";
 $l_javaMenu["proxy_server"] = "Serveur proxy";

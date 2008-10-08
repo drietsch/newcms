@@ -196,6 +196,7 @@ $l_javaMenu["thumbnails"] = "Иконки";
 $l_javaMenu["navigation"] = "Navigation"; // TRANSLATE
 $l_javaMenu["change_username"] = "Изменить имя пользователя";
 $l_javaMenu["change_password"] = "Изменить пароль";
+$l_javaMenu["econda"] = "Econda";
 
 $l_javaMenu["formmail_recipients"] = "Получатели Formmail";
 $l_javaMenu["proxy_server"] = "Proxy-сервер";

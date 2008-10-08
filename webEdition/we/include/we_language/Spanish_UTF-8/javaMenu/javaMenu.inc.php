@@ -122,7 +122,7 @@ $l_javaMenu["publish"] = "Publish"; // TRANSLATE
 $l_javaMenu["delete"] = "Borrar";
 
 	##################################
-	##### SubMenu Datei/Löschen ######
+	##### SubMenu Datei/Lï¿½schen ######
 	##################################
 
 	$l_javaMenu["documents"] = "Documentos";
@@ -215,6 +215,7 @@ $l_javaMenu["metadata"] = "Metadata fields"; // TRANSLATE
 $l_javaMenu["navigation"] = "Navigation"; // TRANSLATE
 $l_javaMenu["change_username"] = "Cambiar nombre de usuario";
 $l_javaMenu["change_password"] = "Cambiar contraseÃ±a";
+$l_javaMenu["econda"] = "Econda";
 
 $l_javaMenu["formmail_recipients"] = "Destinatarios de formas de correos";
 $l_javaMenu["proxy_server"] = "Servidor Proxy";

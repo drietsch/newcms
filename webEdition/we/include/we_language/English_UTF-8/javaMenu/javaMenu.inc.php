@@ -222,7 +222,7 @@ $l_javaMenu["unpublished_pages"] = "Unpublished documents";
 $l_javaMenu["preferences"] = "Preferences";
 $l_javaMenu["versioning"] = "Version-Wizard";
 $l_javaMenu["versioning_log"] = "Version-Log";
-
+$l_javaMenu["econda"] = "Econda";
 
 ##################################
 ###### End Menu Bearbeiten #######

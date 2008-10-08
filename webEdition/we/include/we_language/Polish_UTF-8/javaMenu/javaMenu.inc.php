@@ -212,6 +212,7 @@ $l_javaMenu["thumbnails"] = "Podgląd miniatury";
 $l_javaMenu["navigation"] = "Navigation"; // TRANSLATE
 $l_javaMenu["change_username"] = "Zmień nazwę użytkownika";
 $l_javaMenu["change_password"] = "Zmień hasło";
+$l_javaMenu["econda"] = "Econda";
 
 $l_javaMenu["formmail_recipients"] = "Formmail-Odbiorca";
 $l_javaMenu["proxy_server"] = "Serwer Proxy";
