@@ -359,7 +359,7 @@ class weSelectorQuery {
 			$ac = getAllowedClasses($this->db);
 			foreach($ac as $cid){
 				$path = id_to_path($cid,OBJECT_TABLE);
-				$wsQuery .= " Path like '$path/%' OR Path='$path' OR ";
+				$wsQuery .= " Path like '".mysql_real_escape_string($path)."/%' OR Path='".mysql_real_escape_string($path)."' OR ";
 			}
 			if($wsQuery){
 				$wsQuery = substr($wsQuery,0,strlen($wsQuery)-3);
