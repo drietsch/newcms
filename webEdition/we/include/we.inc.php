@@ -84,10 +84,16 @@ if (isset($_SESSION) && isset($_SESSION["we_mode"]) && $_SESSION["we_mode"] == "
 if (defined("WE_WEBUSER_LANGUAGE")) {
 	$GLOBALS["WE_LANGUAGE"] = WE_WEBUSER_LANGUAGE;
 } else 
-	if(!(isset($_REQUEST["weSessionId"]) && isset($_REQUEST["cns"]) && $_REQUEST["cns"]=='dw')) {
-		if(!session_id()){
-			@session_start();
-		}
+	$sid = "";
+	//set new sessionID from dw-extension
+	if((isset($_REQUEST["weSessionId"]) && $_REQUEST["weSessionId"]!="" && isset($_REQUEST["cns"]) && $_REQUEST["cns"]=='dw')) {
+		$sid = strip_tags($_REQUEST["weSessionId"]);
+		$sid = htmlspecialchars($sid);
+		session_id($sid);
+		@session_start();
+	}
+	if(!session_id()){
+		@session_start();
 	}
 	if (isset($_SESSION["prefs"]["Language"]) && $_SESSION["prefs"]["Language"] != "") {
 		if (is_dir($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_language/" . $_SESSION["prefs"]["Language"])) {
