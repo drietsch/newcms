@@ -73,7 +73,7 @@ class weBannerFrames extends weModuleFrames{
 			$ID = $this->db->f("ID");
 			$ParentID = $this->db->f("ParentID");
 			$Path = $this->db->f("Path");
-			$Text = addslashes($this->db->f("Text"));
+			$Text = mysql_real_escape_string($this->db->f("Text"));
 			$Icon = $this->db->f("Icon");
 			$IsFolder = $this->db->f("IsFolder");
 

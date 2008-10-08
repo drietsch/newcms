@@ -314,7 +314,7 @@ top.clearEntries();
 			$folder->Icon="banner_folder.gif";
 			$folder->Text=$txt;
 			$folder->Path=$folder->getPath();
-			$this->db->query("SELECT ID FROM ".$this->table." WHERE Path='".addslashes($folder->Path)."'");
+			$this->db->query("SELECT ID FROM ".$this->table." WHERE Path='".mysql_real_escape_string($folder->Path)."'");
 			if($this->db->next_record()){
 				$we_responseText = sprintf($GLOBALS["l_banner"]["group_path_exists"],$folder->Path);
 				print we_message_reporting::getShowMessageCall($we_responseText, WE_MESSAGE_ERROR);
@@ -376,7 +376,7 @@ top.clearEntries();
 			$folder->Text=$txt;
 			$folder->Filename=$txt;
 			$folder->Path=$folder->getPath();
-			$this->db->query("SELECT ID,Text FROM ".$this->table." WHERE Path='".addslashes($folder->Path)."' AND ID != ".abs($this->we_editDirID));
+			$this->db->query("SELECT ID,Text FROM ".$this->table." WHERE Path='".mysql_real_escape_string($folder->Path)."' AND ID != ".abs($this->we_editDirID));
 			if($this->db->next_record()){
 				$we_responseText = sprintf($GLOBALS["l_banner"]["group_path_exists"],$folder->Path);
 				print we_message_reporting::getShowMessageCall($we_responseText, WE_MESSAGE_ERROR);

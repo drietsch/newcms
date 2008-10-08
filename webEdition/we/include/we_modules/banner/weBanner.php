@@ -209,7 +209,7 @@ class weBanner extends weBannerBase{
 		if($this->IsFolder){
 			$db2 = new DB_WE();
 			$path = (substr($this->Path,-1) == "/") ? $this->Path : $this->Path."/";
-			$this->db->query("SELECT ID FROM ".BANNER_TABLE." WHERE Path LIKE '".addslashes($path)."%'");
+			$this->db->query("SELECT ID FROM ".BANNER_TABLE." WHERE Path LIKE '".mysql_real_escape_string($path)."%'");
 			$ids = array();
 			while($this->db->next_record()){
 				array_push($ids,$this->db->f("ID"));
@@ -277,7 +277,7 @@ class weBanner extends weBannerBase{
 		$anz = 0;
 
 		while($anz == 0 && $weight <= $maxweight){
-			$db->query("SELECT ID, bannerID FROM ".BANNER_TABLE." WHERE $where AND weight <= $weight AND (TagName='' OR TagName='".addslashes($bannername)."')");
+			$db->query("SELECT ID, bannerID FROM ".BANNER_TABLE." WHERE $where AND weight <= $weight AND (TagName='' OR TagName='".mysql_real_escape_string($bannername)."')");
 			$anz = $db->num_rows();
 			if($anz == 0) $weight++;
 		}
@@ -343,7 +343,7 @@ class weBanner extends weBannerBase{
 			$bannerlink = $bannerclick."?".($nocount ? 'nocount='.$nocount.'&amp;' : '')."u=$uniq&amp;bannername=".rawurlencode($bannername)."&amp;id=".$id."&amp;did=".$did."&amp;page=".rawurlencode($page);
 		}
 		if(!$nocount){
-			$db->query("INSERT INTO ".BANNER_VIEWS_TABLE." (ID,Timestamp,IP,Referer,DID,Page) VALUES(".abs($id).",".time().",'".addslashes($_SERVER["REMOTE_ADDR"])."','".addslashes($referer ? $referer : (isset($_SERVER["HTTP_REFERER"]) ? $_SERVER["HTTP_REFERER"] :  ""))."',".abs($did).",'".addslashes($page)."')");
+			$db->query("INSERT INTO ".BANNER_VIEWS_TABLE." (ID,Timestamp,IP,Referer,DID,Page) VALUES(".abs($id).",".time().",'".mysql_real_escape_string($_SERVER["REMOTE_ADDR"])."','".addslashes($referer ? $referer : (isset($_SERVER["HTTP_REFERER"]) ? $_SERVER["HTTP_REFERER"] :  ""))."',".abs($did).",'".addslashes($page)."')");
 			$db->query("UPDATE ".BANNER_TABLE." SET views=views+1 WHERE ID='$id'");
 		}
 
