@@ -410,6 +410,7 @@ function we_setEditorHot() {
 function we_cmd() {
     var hasPerm = 0;
 	var url = "<?php print WEBEDITION_DIR; ?>we_cmd.php?";
+	var cmsurl = "<?php print WEBEDITION_DIR;?>cms/index.php/";
 	for(var i = 0; i < arguments.length; i++) {
 		url += "we_cmd["+i+"]="+escape(arguments[i]);
 		if(i < (arguments.length - 1))
@@ -704,10 +705,10 @@ function we_cmd() {
 			break;
 		case "webEdition_online":
 			new jsWindow("http://www.living-e.com/webEdition/","webEditionOnline",-1,-1,960,700,true,true,true,true);
-		break;
+			break;
 		case "snippet_shop":
 			alert("Es gibt noch keine URL f�r die Snippets Seite");
-		break;
+			break;
 		case "help":
 			<?php if($online_help):?>
 				if(arguments[1])
@@ -992,10 +993,10 @@ function we_cmd() {
 				top.weEditorFrameController.closeDocument( _currentEditor.getFrameId() );
 
 			}
-		break;
+			break;
 		case "close_all_documents":
 			top.weEditorFrameController.closeAllDocuments();
-		break;
+			break;
 		case "close_all_but_active_document":
 
 			activeId = null;
@@ -1004,10 +1005,10 @@ function we_cmd() {
 			}
 			top.weEditorFrameController.closeAllButActiveDocument(activeId);
 
-		break;
+			break;
 		case "open_url_in_editor":
 			we_repl(self.load,url,arguments[0]);
-		break;
+			break;
 		case "publish":
 		case "unpublish":
 			toggleBusy(1);
@@ -1156,13 +1157,13 @@ function we_cmd() {
 			break;
  		case "initPlugin":
             	weplugin_wait=new jsWindow("<?php print WEBEDITION_DIR?>/eplugin/weplugin_wait.php?callback="+arguments[1],"weplugin_wait",-1,-1,300,100,true,false,true);
-		break;
+			break;
 		case "edit_settings_newsletter":
 			new jsWindow("<?php print WEBEDITION_DIR?>/we/include/we_modules/newsletter/edit_newsletter_frameset.php?pnt=newsletter_settings","newsletter_settings",-1,-1,600,750,true,false,true);
-		break;
+			break;
         case "edit_settings_customer":
 			new jsWindow("<?php print WEBEDITION_DIR?>/we/include/we_modules/customer/edit_customer_frameset.php?pnt=settings","customer_settings",-1,-1,520,300,true,false,true);
-		break;
+			break;
 		case "edit_settings_shop":
 <?php
 			if(defined("WE_SHOP_MODULE_PATH")) {
@@ -1171,7 +1172,7 @@ function we_cmd() {
 <?php
 			}
 ?>
-		break;
+			break;
 		case "edit_settings_messaging":
 <?php
 			if(defined("WE_MESSAGING_MODULE_PATH")) {
@@ -1180,34 +1181,34 @@ function we_cmd() {
 <?php
 			}
 ?>
-		break;
+			break;
 		case "edit_settings_spellchecker":
 			we_cmd("edit_spellchecker");
-		break;
+			break;
 		case "edit_settings_banner":
 			we_cmd("default_banner");
-		break;
+			break;
 		case "edit_settings_editor":
 			if(top.plugin.editSettings){
 				top.plugin.editSettings();
 			} else {
 				we_cmd("initPlugin","top.plugin.editSettings()");
 			}
-		break;
+			break;
 		case "edit_settings_glossary":
 			we_cmd("glossary_settings");
-		break;
+			break;
 		case "sysinfo":
 			new jsWindow("<?php print WEBEDITION_DIR; ?>sysinfo.php","we_sysinfo",-1,-1,720,660,true,false,true);
-		break;
+			break;
 		case "show_message_console":
 			new jsWindow("<?php print WEBEDITION_DIR; ?>/we/include/jsMessageConsole/messageConsole.php","we_jsMessageConsole",-1,-1,600,500,true,false,true,false);
-		break;
+			break;
 		case "remove_from_editor_plugin":
 			if(arguments[1] && top.plugin && top.plugin.remove){
 				top.plugin.remove(arguments[1]);
 			}
-		break;
+			break;
 		case "eplugin_exit_doc" :
 			if(typeof(top.plugin.document.WePlugin)!="undefined") {
 				if(top.plugin.isInEditor(arguments[1])) {
@@ -1215,13 +1216,16 @@ function we_cmd() {
 				}
 			}
 			return true;
-		break;
+			break;
 		case "editor_plugin_doc_count":
 			if(typeof(top.plugin.document.WePlugin)!="undefined") {
 				return top.plugin.getDocCount();
 			}
 			return 0;
-		break;
+			break;
+		case "setEconda":
+			new jsWindow(cmsurl+"econdasettings","setEconda",-1,-1,500,400,true,false,true);
+			break;
 		<?php
 		pWebEdition_JSwe_cmds();
 		?>
