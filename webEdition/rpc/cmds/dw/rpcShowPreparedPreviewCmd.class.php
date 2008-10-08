@@ -22,8 +22,6 @@
 class rpcShowPreparedPreviewCmd extends rpcCmd {
 	
 	function execute() {
-		
-		protect();
 
 		$resp = new rpcResponse();
 

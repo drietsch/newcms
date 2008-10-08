@@ -23,8 +23,6 @@ class rpcPreparePreviewCmd extends rpcCmd {
 	
 	function execute() {
 		
-		protect();
-		
 		$_SESSION["rpc_previewCode"] = $_REQUEST["source"];
 		
 		// an empty rpcResponse is enough

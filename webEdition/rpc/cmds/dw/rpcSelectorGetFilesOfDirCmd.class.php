@@ -26,8 +26,6 @@ class rpcSelectorGetFilesOfDirCmd extends rpcCmd {
 	
 	function execute() {
 
-		protect();
-
 		$resp = new rpcResponse();
 
 		$queryClass = new weSelectorQuery();
