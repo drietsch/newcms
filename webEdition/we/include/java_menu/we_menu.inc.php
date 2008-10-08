@@ -746,7 +746,14 @@ if(we_hasPerm("ADMINISTRATOR")) {
 	$we_menu["4162000"]["cmd"] = "versioning_log";
     $we_menu["4162000"]["perm"] = "ADMINISTRATOR";
 	$we_menu["4162000"]["enabled"] = "1";
+
 }
+	// Extras > econda
+	$we_menu["4163000"]["text"] = $l_javaMenu["econda"] . "";
+	$we_menu["4163000"]["parent"] = "4000000";
+	$we_menu["4163000"]["cmd"] = "setEconda";
+	$we_menu["4163000"]["enabled"] = "1";
+	
 
 	$we_menu["4170000"]["parent"] = "4000000"; // separator
 
