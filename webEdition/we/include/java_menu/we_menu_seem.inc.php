@@ -582,16 +582,6 @@ $we_menu["4000000"]["enabled"] = "1";
 	$we_menu["4130000"]["cmd"] = "editThumbs";
 	$we_menu["4130000"]["perm"] = "EDIT_THUMBS || ADMINISTRATOR";
 	$we_menu["4130000"]["enabled"] = "1";
-
-	
-	/*
-	// Extras > change username
-	$we_menu["4150000"]["text"] = $l_javaMenu["change_username"] . "...";
-	$we_menu["4150000"]["parent"] = "4000000";
-	$we_menu["4150000"]["cmd"] = "change_username";
-    $we_menu["4150000"]["perm"] = "EDIT_USER || ADMINISTRATOR";
-	$we_menu["4150000"]["enabled"] = "1";
-	*/
 	
 	// Extras > change password
 	$we_menu["4160000"]["text"] = $l_javaMenu["change_password"] . "...";

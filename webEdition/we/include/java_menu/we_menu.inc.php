@@ -725,15 +725,6 @@ $we_menu["4000000"]["enabled"] = "1";
 	$we_menu["4140000"]["perm"] = "ADMINISTRATOR";
 	$we_menu["4140000"]["enabled"] = "1";
 	
-	//$we_menu["4140000"]["parent"] = "4000000"; // separator
-	/*
-	// Extras > change username
-	$we_menu["4150000"]["text"] = $l_javaMenu["change_username"] . "...";
-	$we_menu["4150000"]["parent"] = "4000000";
-	$we_menu["4150000"]["cmd"] = "change_username";
-    $we_menu["4150000"]["perm"] = "EDIT_USER || ADMINISTRATOR";
-	$we_menu["4150000"]["enabled"] = "1";
-	*/
 	// Extras > change password
 	$we_menu["4160000"]["text"] = $l_javaMenu["change_password"] . "...";
 	$we_menu["4160000"]["parent"] = "4000000";
