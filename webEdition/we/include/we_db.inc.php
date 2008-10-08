@@ -166,5 +166,6 @@ function we_closeConnections()
 
 
 $DB_WE = new DB_WE();
+$DB_WE->connect();
 
 ?>
