@@ -17,6 +17,8 @@
 	require('rpcRoot.inc.php');
 	require('base/rpcCmdShell.class.php');
 	
+	protect();
+	
 	if (!isset($_REQUEST['cmd'])) {
 		
 		switch ($_REQUEST["protocol"]) {
