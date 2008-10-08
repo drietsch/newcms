@@ -111,10 +111,6 @@ $global_config[] = array('define("WE_NEW_FOLDER_MOD",', '// File permissions whe
 // pageLogger Dir
 $global_config[] = array('define("WE_TRACKER_DIR",', '// Directory in which pageLogger is installed' . "\n" . 'define("WE_TRACKER_DIR", "");');
 
-// econda dir
-$global_config[] = array('define("WE_ECONDA_STAT",', '// use econda status' . "\n" . 'define("WE_ECONDA_STAT", 0);');
-$global_config[] = array('define("WE_ECONDA_PATH",', '// econda js path' . "\n" . 'define("WE_ECONDA_PATH", "");');
-$global_config[] = array('define("WE_ECONDA_ID",', '// econda js id' . "\n" . 'define("WE_ECONDA_ID", "");');
 
 $global_config[] = array('define("SAFARI_WYSIWYG",', '// Flag if beta wysiwyg for safari should be used' . "\n" . 'define("SAFARI_WYSIWYG", false);');
 
@@ -573,18 +569,6 @@ function get_value($settingvalue) {
 			return (defined("WE_TRACKER_DIR")  && WE_TRACKER_DIR) ? WE_TRACKER_DIR : '';
 			break;
 
-        case "we_econda_stat":
-            return (defined("WE_ECONDA_STAT")  && WE_ECONDA_STAT) ? WE_ECONDA_STAT : 0;
-            break;
-
-        case "we_econda_path":
-            return (defined("WE_ECONDA_PATH")  && WE_ECONDA_PATH) ? WE_ECONDA_PATH : '';
-            break;
-
-        case "we_econda_id":
-            return (defined("WE_ECONDA_ID")  && WE_ECONDA_ID) ? WE_ECONDA_ID : '';
-            break;
-
         case "use_jupload":
         	if (!file_exists($_SERVER['DOCUMENT_ROOT'] . '/webEdition/jupload/jupload.jar')) {
         		return 0;
@@ -748,7 +732,7 @@ function get_value($settingvalue) {
 function remember_value($settingvalue, $settingname) {
 	global $save_javascript, $editor_reloaded, $email_saved, $DB_WE;
 	$_update_prefs = false;
-	if (isset($settingvalue) && ($settingvalue !== null || $settingname=='$_REQUEST["we_tracker_dir"]' || $settingname=='$_REQUEST["we_econda_stat"]' || $settingname=='$_REQUEST["we_econda_path"]' ||  $settingname=='$_REQUEST["we_econda_id"]' || $settingname=='$_REQUEST["ui_sidebar_disable"]' || $settingname=='$_REQUEST["smtp_halo"]' || $settingname=='$_REQUEST["smtp_timeout"]')) {
+	if (isset($settingvalue) && ($settingvalue !== null || $settingname=='$_REQUEST["we_tracker_dir"]' || $settingname=='$_REQUEST["ui_sidebar_disable"]' || $settingname=='$_REQUEST["smtp_halo"]' || $settingname=='$_REQUEST["smtp_timeout"]')) {
 		switch ($settingname) {
 			/*****************************************************************
 			 * WINDOW DIMENSIONS
@@ -1617,31 +1601,7 @@ $_we_active_integrated_modules = array();
 
                 $_update_prefs = false;
                 break;
-            /*****************************************************************
-             * ECONDA
-             *****************************************************************/
 
-            case '$_REQUEST["we_econda_stat"]':
-                $_update_prefs = false;
-                if(weConfParser::setGlobalPrefInContent($GLOBALS['config_files']['conf_global']['content'], "WE_ECONDA_STAT", $settingvalue,'status for econda')) {
-                    $_update_prefs = true;
-                }
-                break;
-                
-            case '$_REQUEST["we_econda_path"]':
-                $_update_prefs = false;
-                if(weConfParser::setGlobalPrefInContent($GLOBALS['config_files']['conf_global']['content'], "WE_ECONDA_PATH", $settingvalue,'econda js path')) {
-                    $_update_prefs = true;
-                }
-                break;
-                
-            case '$_REQUEST["we_econda_id"]':
-                $_update_prefs = false;
-                if(weConfParser::setGlobalPrefInContent($GLOBALS['config_files']['conf_global']['content'], "WE_ECONDA_ID", $settingvalue,'econda js id')) {
-                    $_update_prefs = true;
-                }
-                break;
-                
             /*****************************************************************
 			 * TREE
 			 *****************************************************************/
@@ -2294,9 +2254,6 @@ function save_all_values() {
 		$_update_prefs = remember_value(isset($_REQUEST["db_connect"]) ? $_REQUEST["db_connect"] : null, '$_REQUEST["db_connect"]') || $_update_prefs;
 		$_update_prefs = remember_value(isset($_REQUEST["thumbnail_dir"]) ? $_REQUEST["thumbnail_dir"] : null, '$_REQUEST["thumbnail_dir"]') || $_update_prefs;
         $_update_prefs = remember_value(isset($_REQUEST["we_tracker_dir"]) ? $_REQUEST["we_tracker_dir"] : null, '$_REQUEST["we_tracker_dir"]') || $_update_prefs;
-        $_update_prefs = remember_value(isset($_REQUEST["we_econda_stat"]) ? $_REQUEST["we_econda_stat"] : null, '$_REQUEST["we_econda_stat"]') || $_update_prefs;
-        $_update_prefs = remember_value(isset($_REQUEST["we_econda_path"]) ? $_REQUEST["we_econda_path"] : null, '$_REQUEST["we_econda_path"]') || $_update_prefs;
-        $_update_prefs = remember_value(isset($_REQUEST["we_econda_id"]) ? $_REQUEST["we_econda_id"] : null, '$_REQUEST["we_econda_id"]') || $_update_prefs;
 		$_update_prefs = remember_value(isset($_REQUEST["execute_hooks"]) ? $_REQUEST["execute_hooks"] : null, '$_REQUEST["execute_hooks"]') || $_update_prefs;
 		$_update_prefs = remember_value(isset($_REQUEST["inlineedit_default"]) ? $_REQUEST["inlineedit_default"] : null, '$_REQUEST["inlineedit_default"]') || $_update_prefs;
 		$_update_prefs = remember_value(isset($_REQUEST["safari_wysiwyg"]) ? $_REQUEST["safari_wysiwyg"] : null, '$_REQUEST["safari_wysiwyg"]') || $_update_prefs;
@@ -4531,70 +4488,7 @@ function setColorChooserDisabled(id, disabled) {
 				$hooksHtml .= $_php_setting->getHtmlCode();
 				
 				array_push($_settings, array("headline" => $l_prefs["hooks"], "html" => $hooksHtml, "space" => 200));
-			    
-			    
-			    /**
-			     * econda settings
-			     * 
-			     * @todo move the language vars to lang.../prefs.inc.php
-			     */
-                //$l_prefs["econda_information"] = "econda ist der Spezialist für erfolgreiches Web Shop Controlling. <br><a href='http://www.econda.de/ssa/shop.php' onclick='window.open(this.href,\"econda\",\"width=800,height=600,resizable=yes,menubar=yes,scrollbars=yes,status=yes,toolbar=yes\"); return false'>Online-Antrag</a>";
-			    $l_prefs["econda_information"] = "Info text for ECONDA is following.";
-				$l_prefs["econda_enable"] = "activate ECONDA";
-                 // Generate needed JS
-                $_needed_JavaScript .= "
-                        <script language=\"JavaScript\" type=\"text/javascript\"><!--
-                            function set_state_econda() {
-                                if (document.getElementsByName('useEcondaEnabler')[0].checked == true) {
-                                    document.getElementsByName('we_econda_stat')[0].value = 1;
-                                    document.getElementsByName('we_econda_path')[0].disabled = false;
-                                } else {
-                                    document.getElementsByName('we_econda_stat')[0].value = 0;
-                                    document.getElementsByName('we_econda_path')[0].disabled = true;
-                                    document.getElementsByName('we_econda_path')[0].value = '';
-                                    document.getElementsByName('we_econda_id')[0].value = 0;
-			                     }
- 			                }
-                             
-			                function selectEcondaJsFile() {
-                                myWind = false;
-
-                                for (k = parent.opener.top.jsWindow_count; k > -1; k--) {
-                                    eval(\"if (parent.opener.top.jsWindow\" + k + \"Object) {\" +
-                                         \" if (parent.opener.top.jsWindow\" + k + \"Object.ref == 'preferences') {\" +
-                                         \"     myWind = parent.opener.top.jsWindow\" + k + \"Object.wind;\" +
-                                         \"     myWindStr = 'top.jsWindow\" + k + \"Object.wind';\" +
-                                         \" }\" +
-                                         \"}\");
-                                    if (myWind) {
-                                       break;
-                                    }
-                                }
-                                parent.opener.top.we_cmd('openDocselector', myWind.frames['we_preferences'].document.forms[0].elements['we_econda_id'].value, '" . FILE_TABLE . "', myWindStr + '.frames[\'we_preferences\'].document.forms[0].elements[\'we_econda_id\'].value', myWindStr + '.frames[\'we_preferences\'].document.forms[0].elements[\'we_econda_path\'].value', '', '" . session_id() . "', '', 'text/js',".(we_hasPerm("CAN_SELECT_OTHER_USERS_FILES") ? 0 : 1).");
-                           }
-                                
-                           //-->
-                        </script>";
-                $econdaHtml = htmlAlertAttentionBox($l_prefs["econda_information"], 2, 240, false)."<br>";
-
-                $econdaHtml .= hidden('we_econda_stat', get_value("we_econda_stat"));
-               
-                $econdaHtml .= we_forms::checkbox(1, get_value("we_econda_stat"), "useEcondaEnabler", $l_prefs["econda_enable"], false, "defaultfont", "set_state_econda()");
-
-                $yuiSuggest->setAcId("Econda");
-                $yuiSuggest->setContentType("folder,text/js");
-                $yuiSuggest->setInput("we_econda_path", get_value("we_econda_path"));
-                $yuiSuggest->setMaxResults(20);
-                $yuiSuggest->setMayBeEmpty(true);
-                $yuiSuggest->setResult("we_econda_id", get_value("we_econda_id"));
-                $yuiSuggest->setSelector("Docselector");
-                $yuiSuggest->setWidth(125);
-                $yuiSuggest->setSelectButton($we_button->create_button("select", "javascript:selectEcondaJsFile()", true, 100, 22, "", "", "", false),10);
-                $yuiSuggest->setContainerWidth(234);
-                        
-                $econdaHtml .= $yuiSuggest->getHTML();
-                array_push($_settings, array("headline" => "econda", "html" => $econdaHtml, "space" => 200));
-			    
+			    		    
 				// Build dialog element if user has permission
 				$_dialog = create_dialog("", $l_prefs["tab_system"], $_settings, -1, "", "", null, $_needed_JavaScript);
 			}
