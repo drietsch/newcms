@@ -25,9 +25,11 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/webEdition/we/include/we_classes/weSe
 class rpcSelectorGetFilesOfDirCmd extends rpcCmd {
 	
 	function execute() {
-		
+
+		protect();
+
 		$resp = new rpcResponse();
-		
+
 		$queryClass = new weSelectorQuery();
 		eval('$table = ' . $_REQUEST["table"] . ';');
 		
