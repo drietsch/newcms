@@ -135,8 +135,11 @@ if( (isset($_REQUEST["we_cmd"][10])) && ($we_Table==FILE_TABLE) && ($we_ContentT
 }
 
 //predefine ParentPath
-if(isset($_REQUEST["we_cmd"][4]) && $_REQUEST["we_cmd"][4]!="" && $_REQUEST["we_cmd"][4]!="new_folder" && $we_doc->ParentID==0) {
-	$we_doc->setParentID($_REQUEST["we_cmd"][4]);
+if(isset($_REQUEST["we_cmd"][0]) && isset($_REQUEST["we_cmd"][5]) && $_REQUEST["we_cmd"][5]!="" && $_REQUEST["we_cmd"][0]=="new_document" && $we_doc->ParentID==0) {
+	if($we_doc->ContentType=="folder") {
+		$we_doc->setParentID($_REQUEST["we_cmd"][5]);
+	}
+	
 }
 
 
