@@ -1375,7 +1375,7 @@ class doclistView {
           <td>' . $thisObj->getNextPrev ( $foundItems ) . '</td>
           <td>' . getPixel ( 10, 12 ) . '</td>
           <td style="width:50px;">
-          ' . $we_button->create_button ( "image:btn_new_dir", "javascript:top.we_cmd('new_folder','" . FILE_TABLE . "','','folder','" . $id . "')", true, 40, "", "", "", false ) . '
+          ' . $we_button->create_button ( "image:btn_new_dir", "javascript:top.we_cmd('new_document','" . FILE_TABLE . "','','folder','','" . $id . "')", true, 40, "", "", "", false ) . '
           </td>
           <td>
           ' . $we_button->create_button ( "image:iconview", "javascript:setview(1);", true, 40, "", "", "", false ) . '
