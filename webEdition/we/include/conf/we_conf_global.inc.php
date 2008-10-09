@@ -98,11 +98,11 @@ define("XHTML_DEFAULT", 0);
 
 
 // Enable XHTML debug
-define("XHTML_DEBUG", "als");
+define("XHTML_DEBUG", 0);
 
 
 // Remove wrong xhtml attributes from we:tags
-define("XHTML_REMOVE_WRONG", "als");
+define("XHTML_REMOVE_WRONG", 0);
 
 
 //
