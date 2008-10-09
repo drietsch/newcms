@@ -33,6 +33,12 @@ $cancelCmd = "self.close();";
 
 $nextCmd = $_REQUEST["we_cmd"][1];
 
+$allowedCmds = array("dologout", "close_all_documents");
+if (!in_array($nextCmd,$allowedCmds)) {
+	$nextCmd = "";
+}
+
+
 $ctLngs = '
 var ctLngs = new Object();';
 
@@ -58,7 +64,7 @@ function yes_cmd_pressed() {
 		
 		}
 	}
-	$nextCmd
+	top.opener.top.we_cmd("$nextCmd");
 	self.close();
 }
 
