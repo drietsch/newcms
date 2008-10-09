@@ -19,12 +19,42 @@
  * @license    http://www.gnu.org/copyleft/gpl.html  GPL
  */
 
-@header("Content-Type: text/html; charset=" . ($_REQUEST["we_cmd"][15] ? $_REQUEST["we_cmd"][15] : "ISO-8859-1"));
 include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/" . "we.inc.php");
 include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/" . "we_html_tools.inc.php");
 include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_language/" . $GLOBALS["WE_LANGUAGE"] . "/wysiwyg.inc.php");
 include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_classes/we_wysiwyg.class.inc.php");
 include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_classes/html/we_button.inc.php");
+
+include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_classes/charsetHandler.class.php");
+
+$defaultCharset = "ISO-8859-1";
+
+$_charsetHandler = new charsetHandler();
+$_charsets = array();
+$whiteList = array();
+$_charsets = $_charsetHandler->charsets;
+
+if(!empty($_charsets) && is_array($_charsets)) {
+	foreach($_charsets as $k =>$v) {
+		if(isset($v['charset']) && $v['charset']!='') {
+			$whiteList[] = $v['charset'];
+		}
+	}
+}
+
+if(isset($_REQUEST["we_cmd"][15])) {
+	if($_REQUEST["we_cmd"][15]=='') {
+		$_REQUEST["we_cmd"][15] = $defaultCharset;
+	}
+	else {
+		if (!in_array($_REQUEST["we_cmd"][15], $whiteList)) {
+			exit();
+		}
+	}
+}
+
+
+@header("Content-Type: text/html; charset=" . ($_REQUEST["we_cmd"][15] ? $_REQUEST["we_cmd"][15] : $defaultCharset));
 
 protect();
 
