@@ -117,7 +117,7 @@ if (isset($_we_active_modules) && in_array('shop', $_we_active_modules)) {
 	$MNEMONIC_EDITPAGES['11'] = 'variants';
 }
 
-eval('$GLOBALS[WE_UA . WE_UB]=' . WE_UA . WE_UB . ';');
+$GLOBALS["BIG_USER_MODULE"] = defined("BIG_USER_MODULE") ? BIG_USER_MODULE : "";
 	
 // refresh pageExt array
 $PAGE_EXT = array(
