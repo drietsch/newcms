@@ -110,11 +110,9 @@ if (we_core_Permissions::hasPerm("ADMINISTRATOR")) {
 	if (isset($this->msg)) {
 		switch ($this->prio){
 			case 4:
-				we_util_Log::errorLog(4);
 				$inlineJS .= "top.opener.top.showMessage('".$this->msg."', ".$this->prio.", window);\n";
 				break;
 			case '-1':
-				we_util_Log::errorLog(1);
 				$inlineJS .= "top.opener.top.drawTree();\n";
 				$inlineJS .= 'top.opener.top.showMessage("'.addslashes($this->msg).'", "-1", window);'."\n";
 				$inlineJS .= "top.close();\n";
