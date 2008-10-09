@@ -152,14 +152,14 @@ echo $yuiSuggest->getYuiJsFiles();
  <body class="weEditorBody" onunload="doUnload()" onload="loaded=1;">
    <form name="we_form" method="post" onsubmit="return false">
 	<input type="hidden" name="ucmd" value="">
-	<input type="hidden" name="tab" value="<?php print (isset($_REQUEST["tab"]) ? $_REQUEST["tab"] : ""); ?>">
-	<input type="hidden" name="oldtab" value="<?php print (isset($_REQUEST["tab"]) ? $_REQUEST["tab"] : ""); ?>">
-	<input type="hidden" name="perm_branch" value="<?php print ( (isset($_REQUEST["perm_branch"]) && $_REQUEST["perm_branch"]) ? $_REQUEST["perm_branch"] : 0); ?>">
-	<input type="hidden" name="old_perm_branch" value="<?php print ( (isset($_REQUEST["perm_branch"]) && $_REQUEST["perm_branch"]) ? $_REQUEST["perm_branch"] : 0); ?>">
+	<input type="hidden" name="tab" value="<?php print (isset($_REQUEST["tab"]) ? abs($_REQUEST["tab"]) : ""); ?>">
+	<input type="hidden" name="oldtab" value="<?php print (isset($_REQUEST["tab"]) ? abs($_REQUEST["tab"]) : ""); ?>">
+	<input type="hidden" name="perm_branch" value="<?php print ( (isset($_REQUEST["perm_branch"]) && $_REQUEST["perm_branch"]) ? htmlspecialchars($_REQUEST["perm_branch"]) : 0); ?>">
+	<input type="hidden" name="old_perm_branch" value="<?php print ( (isset($_REQUEST["perm_branch"]) && $_REQUEST["perm_branch"]) ? htmlspecialchars($_REQUEST["perm_branch"]) : 0); ?>">
 	<input type="hidden" name="obj_name" value="<?php print $user_object->Name ?>">
 	<input type="hidden" name="uid" value="<?php print $user_object->ID?>">
-	<input type="hidden" name="ctype" value="<?php print (isset($_REQUEST["ctype"]) ? $_REQUEST["ctype"] : ""); ?>">
-	<input type="hidden" name="ctable" value="<?php print (isset($_REQUEST["ctable"]) ? $_REQUEST["ctable"] : ""); ?>">
+	<input type="hidden" name="ctype" value="<?php print (isset($_REQUEST["ctype"]) ? htmlspecialchars($_REQUEST["ctype"]) : ""); ?>">
+	<input type="hidden" name="ctable" value="<?php print (isset($_REQUEST["ctable"]) ? htmlspecialchars($_REQUEST["ctable"]) : ""); ?>">
 	<input type="hidden" name="sd" value="0">
 	<?php
 	 if($user_object){
