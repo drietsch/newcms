@@ -274,7 +274,6 @@ function EditorFrameController() {
 	 *   nothing
 	 */
 	this.closeDocument = function(editorId, nextCommand) {
-
 		if (this.EditorFrames == null) {
 			this.init();
 
@@ -361,7 +360,7 @@ function EditorFrameController() {
 				this.closeDocument(this.ActiveEditorFrameId, 'top.we_cmd("dologout");');
 
 			} else {
-				top.we_cmd("exit_multi_doc_question", 'top.opener.top.we_cmd("dologout");');
+				top.we_cmd("exit_multi_doc_question", 'dologout');
 
 			}
 
@@ -410,7 +409,7 @@ function EditorFrameController() {
 					this.closeDocument(this.ActiveEditorFrameId, 'top.we_cmd("close_all_documents");');
 	
 				} else {
-					top.we_cmd("exit_multi_doc_question", 'top.opener.top.we_cmd("close_all_documents");');
+					top.we_cmd("exit_multi_doc_question", 'close_all_documents');
 	
 				}
 			} else {
