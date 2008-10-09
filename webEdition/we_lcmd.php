@@ -141,7 +141,11 @@ if(isset($_REQUEST["wecmd0"])){ // when calling from applet (we can not call dir
 			}
 			$str = "setTimeout(\"top.we_cmd(";
 			for($i=0;$i<sizeof($_REQUEST["we_cmd"]);$i++){
-				$str .= "'".str_replace("'","\\'",$_REQUEST["we_cmd"][$i])."'".(($i<(sizeof($_REQUEST["we_cmd"])-1)) ? "," : "");
+			
+				$val = str_replace("'","\\'", $_REQUEST["we_cmd"][$i]);
+				$val = str_replace("\"","\\\"", $val);
+				
+				$str .= "'".$val."'".(($i<(sizeof($_REQUEST["we_cmd"])-1)) ? "," : "");
 			}
 			$str .= ")\",50);\n";
 			print $str;
