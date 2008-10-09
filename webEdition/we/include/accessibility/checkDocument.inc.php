@@ -35,7 +35,22 @@
         
         $content = $GLOBALS['we_doc']->getDocument();
         
+        
+        $allowedHosts = array('validator.w3.org');
+        
+        $GLOBALS['DB_WE']->query("SELECT host FROM " . VALIDATION_SERVICES_TABLE);
+        while($GLOBALS['DB_WE']->next_record()) {
+        	$allowedHosts[] = $GLOBALS['DB_WE']->f('host');
+        }
+        
+
         $host        = $_REQUEST['host'];
+        
+        if (!in_array($host,$allowedHosts)) {
+        	exit($host . ' not in allowed hosts!');
+        }
+        
+        
         $path        = $_REQUEST['path'];
         $s_method    = $_REQUEST['s_method'];
         $varname     = $_REQUEST['varname'];
