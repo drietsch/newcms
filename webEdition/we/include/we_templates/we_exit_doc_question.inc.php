@@ -25,6 +25,8 @@ include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_html_tools.inc
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GLOBALS["WE_LANGUAGE"]."/global.inc.php");
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GLOBALS["WE_LANGUAGE"]."/alert.inc.php");
 
+protect();
+
 htmlTop($l_global["question"]);
 
 
@@ -35,8 +37,28 @@ htmlTop($l_global["question"]);
 
 
 $editorFrameId	= $_REQUEST['we_cmd']['1'];
+if (!preg_match('/^multiEditFrame_[0-9]+$/', $editorFrameId)) {
+	exit('cmd[1] is not valid at we_exit_doc_question!');
+}
+
 $exitDocCt		= $_REQUEST['we_cmd']['2'];
-$nextCmd		= $_REQUEST['we_cmd']['3']; // close_all, logout, open_document, new_document(seeMode) etc.
+$nextCmd		= isset($_REQUEST['we_cmd']['3']) ? $_REQUEST['we_cmd']['3'] : ""; // close_all, logout, open_document, new_document(seeMode) etc.
+
+$isOpenDocCmd = preg_match('/^top\.weEditorFrameController\.openDocument\("[^"]*"\s*,\s*"[^"]*"\s*,\s*"[^"]*"\s*,\s*"[^"]*"\s*,\s*"[^"]*"\s*,\s*"[^"]*"\s*,\s*"[^"]*"\s*,\s*"[^"]*"\s*,\s*"[^"]*"\s*\)\s*;\s*$/', $nextCmd);
+$isDoLogoutCmd = preg_match('/^top\.we_cmd\("dologout"\)\s*;\s*$/',$nextCmd);
+$isCloseAllCmd = preg_match('/^top\.we_cmd\("close_all_documents"\)\s*;\s*$/',$nextCmd);
+$isCloseAllButActiveDocumentCmd = preg_match('/^top\.we_cmd\("close_all_but_active_document"\s*,\s*"[^"]*"\s*\)\s*;\s*$/',$nextCmd);
+
+$nextCmdOk = ($nextCmd === "")  
+		|| $isOpenDocCmd  
+		|| $isDoLogoutCmd  
+		|| $isCloseAllCmd  
+		|| $isCloseAllButActiveDocumentCmd;
+
+
+if (!$nextCmdOk) {
+	exit('cmd[3] (nextCmd) is not valid at we_exit_doc_question!');
+}
 
 switch ($exitDocCt) {
 	case "text/weTmpl":
