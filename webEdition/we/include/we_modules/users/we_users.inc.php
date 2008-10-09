@@ -814,7 +814,7 @@ function mapPermissions() {
 
 							// Editor Module User
 							if (top.content.user_resize.user_right.user_editor.user_properties) {
-								top.content.user_resize.user_right.user_editor.user_properties.location = top.content.user_resize.user_right.user_editor.user_properties.location +'?tab=".$_REQUEST['tab']."&perm_branch='+top.content.user_resize.user_right.user_editor.user_properties.opened_group;
+								top.content.user_resize.user_right.user_editor.user_properties.location = top.content.user_resize.user_right.user_editor.user_properties.location +'?tab=".abs($_REQUEST['tab'])."&perm_branch='+top.content.user_resize.user_right.user_editor.user_properties.opened_group;
 							}
 
 							// Save Module User
