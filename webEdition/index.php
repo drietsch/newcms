@@ -41,6 +41,9 @@ include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/html/w
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GLOBALS["WE_LANGUAGE"]."/start.inc.php");
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GLOBALS["WE_LANGUAGE"]."/alert.inc.php");
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GLOBALS["WE_LANGUAGE"]."/global.inc.php");
+
+$ignore_browser = isset($_REQUEST["ignore_browser"]) &&  ($_REQUEST["ignore_browser"] === "true");
+
 /*****************************************************************************
  * FUNCTIONS
  *****************************************************************************/
@@ -169,7 +172,7 @@ if ( isset($GLOBALS["userLoginDenied"]) ) {
 	$login = 1;
 } else {
 	$login = 0;
-	if (isset($_REQUEST["ignore_browser"]) && $_REQUEST["ignore_browser"] == true) {
+	if ($ignore_browser) {
 		setcookie("ignore_browser", "true", time() + 2592000);	//	Cookie remembers that the incompatible mode has been selected, it will expire in one Month !!!
 	}
 }
@@ -349,7 +352,7 @@ if (isset($_POST["checkLogin"]) && !count($_COOKIE)) {
 
 	print we_htmlElement::htmlBody(array("bgcolor" => "#FFFFFF"), $_layout->getHtmlCode()) . "</html>";
 
-} else if ((!isset($_REQUEST["ignore_browser"]) || (isset($_REQUEST["ignore_browser"]) && $_REQUEST["ignore_browser"] != "true")) && (!checkSupportedBrowser())) {
+} else if (!$ignore_browser && !checkSupportedBrowser()) {
 
 	/*********************************************************************
 	 * CHECK BROWSER
@@ -415,8 +418,8 @@ if (isset($_POST["checkLogin"]) && !count($_COOKIE)) {
 
 	$_hidden_values = we_htmlElement::htmlHidden(array("name" => "checkLogin", "value" => session_id()));
 
-	if (isset($_REQUEST["ignore_browser"])) {
-		$_hidden_values .= we_htmlElement::htmlHidden(array("name" => "ignore_browser", "value" => $_REQUEST["ignore_browser"]));
+	if ($ignore_browser) {
+		$_hidden_values .= we_htmlElement::htmlHidden(array("name" => "ignore_browser", "value" => "true"));
 	}
 
 
@@ -541,7 +544,7 @@ if (isset($_POST["checkLogin"]) && !count($_COOKIE)) {
 			$_body_javascript =	we_message_reporting::getShowMessageCall($l_alert["login_failed"], WE_MESSAGE_ERROR);
 		}
 	} else if ($login == 3) {
-		$_body_javascript =	we_message_reporting::getShowMessageCall($l_alert["login_failed_security"], WE_MESSAGE_ERROR) . "document.location = '/webEdition/index.php" . ((isset($_REQUEST["ignore_browser"]) || (isset($_COOKIE["ignore_browser"]) && $_COOKIE["ignore_browser"] == "true")) ? "&ignore_browser=" . (isset($_COOKIE["ignore_browser"]) ? $_COOKIE["ignore_browser"] : $_REQUEST["ignore_browser"]) : "") . "';";
+		$_body_javascript =	we_message_reporting::getShowMessageCall($l_alert["login_failed_security"], WE_MESSAGE_ERROR) . "document.location = '/webEdition/index.php" . (($ignore_browser || (isset($_COOKIE["ignore_browser"]) && $_COOKIE["ignore_browser"] == "true")) ? "&ignore_browser=" . (isset($_COOKIE["ignore_browser"]) ? $_COOKIE["ignore_browser"] : ($ignore_browser ? "true" : "false")) : "") . "';";
 		
 	} else if ( $login == 4 ) {
 		$_body_javascript =	we_message_reporting::getShowMessageCall($l_alert["login_denied_for_user"], WE_MESSAGE_ERROR);
