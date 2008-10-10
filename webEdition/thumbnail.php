@@ -22,13 +22,38 @@
 include_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we.inc.php');
   
 protect();
-  
-$imageId = $_REQUEST['id'];
-$imagePath = $_REQUEST['path'];
-$imageSize = $_REQUEST['size'];
+
+if(!isset($_REQUEST['id']) || $_REQUEST['id']=='') {
+	exit();
+}
+if(!isset($_REQUEST['path']) || $_REQUEST['path']=='') {
+	exit();
+}
+if(!isset($_REQUEST['size']) || $_REQUEST['size']=='') {
+	exit();
+}
+if(!isset($_REQUEST['extension']) || $_REQUEST['extension']=='') {
+	exit();
+}
+
+$imageId = abs($_REQUEST['id']);
+$imagePath = addslashes($_REQUEST['path']);
+$imageSize = abs($_REQUEST['size']);
+
+$whiteList = array();
+$exts = isset($GLOBALS["WE_CONTENT_TYPES"]["image/*"]["Extension"]) ? $GLOBALS["WE_CONTENT_TYPES"]["image/*"]["Extension"] : "";
+if(!empty($exts)){
+	$whiteList = makeArrayFromCSV($exts);
+}
+
+if (!in_array($_REQUEST['extension'], $whiteList)) {
+	exit();
+}
+
 $imageExt = substr($_REQUEST['extension'], 1, strlen($_REQUEST['extension']));
-  
+
 include_once($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_classes/base/we_image_edit.class.php");
+
 $thumbpath = we_image_edit::createPreviewThumb($imagePath, $imageId, $imageSize, $imageSize, substr($_REQUEST['extension'], 1));
   
 header("Content-type: image/" . $imageExt . "");
