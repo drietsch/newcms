@@ -106,7 +106,7 @@ class DB_WE extends DB_Sql
 		}
 	}
 
-	function query($Query_String)
+	function query($Query_String, $allowUnion=false)
 	{
 		/* No empty queries, please, since PHP4 chokes on them. */
 		if ($Query_String == "")
@@ -118,6 +118,43 @@ class DB_WE extends DB_Sql
 		if (!$this->connect())
 			return 0;
 			/* we already complained in connect() about that. */
+			
+		// check for union This is the fastest check
+		// if union is found in query, then take a closer look
+		if ($allowUnion == false && preg_match('/union/i', $Query_String)) {
+			if (preg_match('/^(.+)\sunion\s+select\s(.+)$/i', $Query_String) || preg_match('/\sunion\s+all\s+select\s/i', $Query_String)) {
+
+				$queryToCheck = str_replace("\\\"", "", $Query_String);
+				$queryToCheck = str_replace("\\'", "", $queryToCheck);
+
+				$singleQuote = false;
+				$doubleQuote = false;
+				
+				$queryWithoutStrings = "";
+				
+				for ($i=0; $i<strlen($queryToCheck); $i++) {
+					$char = $queryToCheck[$i];
+					if ($char == "\"" && $doubleQuote == false && $singleQuote == false) {
+						$doubleQuote = true;
+					} else if ($char == "'" && $doubleQuote == false && $singleQuote == false) {
+						$singleQuote = true;
+					} else if ($char == "\"" && $doubleQuote == true) {
+						$doubleQuote = false;
+					} else if ($char == "'" && $singleQuote == true) {
+						$singleQuote = false;
+					}
+					if ($doubleQuote == false && $singleQuote == false && $char !== "'"  && $char !== "\"") {
+						$queryWithoutStrings .= $char;
+					}
+				}
+				
+				if (preg_match('/^(.+)\sunion\s+select\s(.+)$/i', $queryWithoutStrings) || preg_match('/\sunion\s+all\s+select\s/i', $queryWithoutStrings)) {
+					exit('Bad SQL statement! For security reasons, the UNION operator is not allowed within SQL statements per default! You need to set the second parameter of the query function to true if you want to use the UNION operator!');
+				}
+				
+			}
+		}
+						
 		# New query, discard previous result.
 		if ($this->Query_ID)
 			$this->free();
