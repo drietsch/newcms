@@ -19,6 +19,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html  GPL
  */
 
+	protect();
 	$id = isset($_REQUEST["we_cmd"][1]) ? $_REQUEST["we_cmd"][1] : "";
 	$JSIDName = stripslashes(isset($_REQUEST["we_cmd"][2]) ? $_REQUEST["we_cmd"][2] : "");
 	$JSTextName = stripslashes(isset($_REQUEST["we_cmd"][3]) ? $_REQUEST["we_cmd"][3] : "");

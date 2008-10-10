@@ -21,7 +21,7 @@
 
 // widget MY DOCUMENTS
 include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we.inc.php");
-
+protect();
 $mdc = "";
 $ct["image"] = true;
 $aCsv = explode(";", $aProps[3]);

@@ -78,6 +78,7 @@
     // object from which class
     $ac = makeCSVFromArray(getAllowedClasses($DB_WE));
     if($ac){
+    	protect();
 		$DB_WE->query("SELECT ID,Text FROM " . OBJECT_TABLE . " ".($ac ? " WHERE ID IN($ac) " : "")."ORDER BY Text");
 		$nr = 801;
 		while($DB_WE->next_record()){

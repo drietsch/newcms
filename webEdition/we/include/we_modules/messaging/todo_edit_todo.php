@@ -27,6 +27,8 @@ include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GL
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/"."we_html_tools.inc.php");
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/html/we_button.inc.php");
 
+protect();
+
 htmlTop($l_messaging['wintitle']);
 
 $messaging = new we_messaging($_SESSION["we_data"][$_REQUEST['we_transaction']]);

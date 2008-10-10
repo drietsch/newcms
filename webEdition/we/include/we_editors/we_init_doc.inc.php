@@ -18,7 +18,7 @@
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.gnu.org/copyleft/gpl.html  GPL
  */
-
+protect();
 if (0 && isset($we_ID) && isset($we_Table) && isset($GLOBALS["weDocumentCache_".$we_ID."_".$we_Table])) {
 	include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/"."we_classes/we_webEditionDocument.inc.php");
 	$we_doc = new we_webEditionDocument();

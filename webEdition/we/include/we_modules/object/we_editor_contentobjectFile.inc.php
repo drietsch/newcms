@@ -28,6 +28,8 @@ include_once($_SERVER['DOCUMENT_ROOT']."/webEdition/we/include/we_classes/html/w
 include_once($_SERVER['DOCUMENT_ROOT']."/webEdition/we/include/we_classes/SEEM/we_SEEM.class.php");
 include_once($_SERVER['DOCUMENT_ROOT']."/webEdition/we/include/we_classes/js_gui/weOrderContainer.class.php");
 
+protect();
+
 if(isset($GLOBALS['we_doc']->Charset)){	//	send charset which might be determined in template
 	header("Content-Type: text/html; charset=" . $GLOBALS['we_doc']->Charset);
 }

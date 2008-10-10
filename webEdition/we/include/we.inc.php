@@ -19,6 +19,11 @@
  * @license    http://www.gnu.org/copyleft/gpl.html  GPL
  */
 
+// exit if script called directly
+if (str_replace(dirname($_SERVER['SCRIPT_NAME']),'',$_SERVER['SCRIPT_NAME'])=="/we.inc.php") {
+	exit();
+}
+
 // remove trailing slash
 if (isset($_SERVER["DOCUMENT" . "_ROOT"]) && substr($_SERVER["DOCUMENT" . "_ROOT"], -1) == "/") {
 	$_SERVER["DOCUMENT" . "_ROOT"] = substr($_SERVER["DOCUMENT" . "_ROOT"], 0, -1);

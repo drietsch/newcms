@@ -22,7 +22,7 @@
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we.inc.php");
 include_once(WE_MESSAGING_MODULE_DIR."messaging_defs.inc.php");
 include_once(WE_MESSAGING_MODULE_DIR . "we_messaging.inc.php");
-
+protect();
 /* send new email message */
 function msg_new_email(&$rcpts, $subject, $body, &$errs) {
     include_once(WE_MESSAGING_MODULE_DIR . "we_msg_email.inc.php");

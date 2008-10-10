@@ -28,6 +28,7 @@
     //	is needed to reopen the document (if possible) with webEdition
     
 	include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/SEEM/"."we_SEEM.class.php");
+	protect();
 	print we_SEEM::getJavaScriptCommandForOneLink("<a href=\"" . $_REQUEST["we_cmd"][1] . "\">");
 ?>
 </script>

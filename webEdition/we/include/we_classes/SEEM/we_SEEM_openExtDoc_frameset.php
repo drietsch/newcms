@@ -21,7 +21,7 @@
 
 	//	frameset called when opened a none webEdition-document from webEdition
 	//	here all parameters are dealt and submitted to the document
-	
+	protect();
 	$_text = $_REQUEST["we_cmd"][1]; // Path
 	$_url = $_REQUEST["we_cmd"][1] . $_REQUEST["we_cmd"]["2"]; // + Parameters
 	

@@ -20,7 +20,6 @@
  * @license    http://www.gnu.org/copyleft/gpl.html  GPL
  */
 
-
 $tagName = $_REQUEST['we_cmd'][1];
 $openAtCursor = $_REQUEST['we_cmd'][2] === "1" ? true : false;
 
@@ -28,6 +27,11 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/weTagWizard/cla
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GLOBALS["WE_LANGUAGE"]."/taged.inc.php");
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GLOBALS["WE_LANGUAGE"]."/we_tag.inc.php");
 
+if (function_exists('protect')) {
+	protect();
+} else {
+	exit();
+}
 
 // include wetag depending on we_cmd[1]
 $weTag = weTagData::getTagData($tagName);

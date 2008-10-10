@@ -23,6 +23,7 @@
 
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/"."we_language/" . $GLOBALS["WE_LANGUAGE"] . "/we_editor.inc.php");
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/html/we_button.inc.php");
+protect();
 if($cmd == "ok"){
 	$wf_text = $_REQUEST["wf_text"];
 	$wf_select = isset($_REQUEST["wf_select"]) ? $_REQUEST["wf_select"] : "";	

@@ -40,6 +40,8 @@ if(isset($_REQUEST["do"]) && $_REQUEST["do"] == "delete") {
 	$javascript .= $we_doc->publishObjects();
 }
 
+protect();
+
 // Ausgabe beginnen
 htmlTop();
 

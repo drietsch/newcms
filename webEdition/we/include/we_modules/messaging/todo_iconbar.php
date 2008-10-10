@@ -26,6 +26,7 @@ include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GL
 include_once(WE_MESSAGING_MODULE_DIR . "we_messaging.inc.php");
 include_once(WE_MESSAGING_MODULE_DIR . "msg_html_tools.inc.php");
 
+protect();
 htmlTop();
 
 $messaging = new we_messaging($_SESSION["we_data"][$_REQUEST['we_transaction']]);

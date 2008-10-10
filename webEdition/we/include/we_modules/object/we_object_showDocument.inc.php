@@ -54,6 +54,9 @@ if(  ($_userID != 0 && $_userID != $_SESSION["user"]["ID"]) || (isset($_REQUEST[
 
 	// init document
 	$we_transaction = $_REQUEST["we_transaction"];
+	if (!eregi("^([a-f0-9]){32}$", $we_transaction)) {
+		exit();
+	}
 
 	$we_dt = $_SESSION["we_data"][$we_transaction];
 

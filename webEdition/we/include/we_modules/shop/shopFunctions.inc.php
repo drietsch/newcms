@@ -39,7 +39,7 @@ function getCustomersOrderList($customerId, $sameModul=true) {
 	$query = '
 		SELECT IntOrderID, DateOrder, DATE_FORMAT(DateOrder,"' . $da . '") AS formatDateOrder, DateShipping, DATE_FORMAT(DateShipping,"' . $da . '") AS formatDateShipping, DatePayment, DATE_FORMAT(DatePayment,"' . $da . '") AS formatDatePayment
 		FROM ' . SHOP_TABLE . '
-		WHERE IntCustomerID=' . addslashes($customerId) . '
+		WHERE IntCustomerID=' . abs($customerId) . '
 		GROUP BY IntOrderId
 		ORDER BY IntID DESC
 	';

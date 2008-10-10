@@ -26,6 +26,7 @@
 <?php
 	
 	include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/SEEM/"."we_SEEM.class.php");
+	protect();
 
 	// build url from REQUEST ...
 	$paraStr = we_SEEM::arrayToParameters($_REQUEST, "", array("we_cmd", "original_action") );

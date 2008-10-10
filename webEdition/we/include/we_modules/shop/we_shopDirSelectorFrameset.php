@@ -21,7 +21,7 @@
  */
 
 
-
+protect();
 		$id = $_REQUEST["we_cmd"][1];
 		$JSIDName = $_REQUEST["we_cmd"][2];
 		$JSTextName = $_REQUEST["we_cmd"][3];

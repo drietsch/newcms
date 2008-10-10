@@ -20,7 +20,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html  GPL
  */
 
-
+protect();
 if($cmd == "ok") {
 	$wf_text = $_REQUEST["wf_text"];
 	$wf_select = isset($_REQUEST["wf_select"]) ? $_REQUEST["wf_select"] : "";

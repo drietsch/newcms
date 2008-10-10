@@ -5,6 +5,7 @@ var _EditorFrameDocumentRef = _EditorFrame.getDocumentReference();
 <?php print $we_JavaScript ?>;
 <?php if($we_responseText): ?>top.toggleBusy(0);<?php print we_message_reporting::getShowMessageCall($we_responseText, $we_responseTextType); endif ?>
 <?php 
+protect();
 if(isset($_REQUEST["we_cmd"][5]) && $_REQUEST["we_cmd"][5] != "") {
 	print $_REQUEST["we_cmd"][5];
 }

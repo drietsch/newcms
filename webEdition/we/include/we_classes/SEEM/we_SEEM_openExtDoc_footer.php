@@ -29,6 +29,7 @@
 
     include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".  $GLOBALS["WE_LANGUAGE"] . "/SEEM.inc.php");
 
+    protect();
     //	footer for a none webEdition-Document opened with webEdition
     //	the back button is only activated when there are documents in
     //	the navigation history

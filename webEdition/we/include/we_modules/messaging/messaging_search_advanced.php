@@ -26,6 +26,8 @@ include_once(WE_MESSAGING_MODULE_DIR . "we_messaging.inc.php");
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GLOBALS["WE_LANGUAGE"]."/modules/messaging.inc.php");
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/html/we_button.inc.php");
 
+protect();
+
 $messaging = new we_messaging($_SESSION["we_data"][$_REQUEST['we_transaction']]);
 $messaging->set_login_data($_SESSION["user"]["ID"], $_SESSION["user"]["Username"]);
 $messaging->init($_SESSION["we_data"][$_REQUEST['we_transaction']]);
@@ -66,7 +68,7 @@ $we_button = new we_button();
 
 <body class="weDialogBody">
 <form action="<?php print WE_MESSAGING_MODULE_PATH; ?>messaging_search_advanced.php" name="search_adv">
-<input type="hidden" name="we_transaction" value="<?php echo $_REQUEST['we_transaction']?>">
+<input type="hidden" name="we_transaction" value="<?php echo htmlspecialchars(strip_tags($_REQUEST['we_transaction']))?>">
 <input type="hidden" name="save" value="1">
 
 <?php

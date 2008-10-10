@@ -20,6 +20,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html  GPL
  */
 
+protect();
 ?>
 <script language="JavaScript" type="text/javascript"><!--
 	top.opener.top.toggleBusy(0);

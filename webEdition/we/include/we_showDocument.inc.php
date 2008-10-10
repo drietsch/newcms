@@ -19,6 +19,10 @@
  * @license    http://www.gnu.org/copyleft/gpl.html  GPL
  */
 
+if (str_replace(dirname($_SERVER['SCRIPT_NAME']),'',$_SERVER['SCRIPT_NAME'])=="/we_showDocument.inc.php") {
+	exit();
+}
+
 if (isset($noSess) && $noSess) {
 	if (!defined("NO_SESS")) {
 		define("NO_SESS", 1);

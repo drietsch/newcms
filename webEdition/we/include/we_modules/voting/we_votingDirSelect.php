@@ -24,7 +24,7 @@
 
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_modules/voting/we_votingDirSelector.php");
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GLOBALS["WE_LANGUAGE"]."/modules/voting.inc.php");
-
+protect();
 $_SERVER["PHP_SELF"] = "/webEdition/we/include/we_modules/voting/we_votingDirSelect.php";
 $fs = new we_votingDirSelector(isset($id) ? $id : (isset($_REQUEST["id"]) ? $_REQUEST["id"] : ''),
 							isset($JSIDName) ? $JSIDName : (isset($_REQUEST["JSIDName"]) ? $_REQUEST["JSIDName"] : ''),

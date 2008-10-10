@@ -19,6 +19,10 @@
  * @license    http://www.gnu.org/copyleft/gpl.html  GPL
  */
 
+if (str_replace(dirname($_SERVER['SCRIPT_NAME']),'',$_SERVER['SCRIPT_NAME'])=="/we_session.inc.php") {
+	exit();
+}
+
 if (!isset($_SESSION))
 	@session_start();
 

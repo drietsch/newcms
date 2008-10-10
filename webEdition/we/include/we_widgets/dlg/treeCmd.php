@@ -20,7 +20,7 @@
  */
 
 include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we.inc.php");
-
+protect();
 if (isset($_REQUEST["cmd"])) {
 	switch ($_REQUEST["cmd"]) {
 		case "load" :

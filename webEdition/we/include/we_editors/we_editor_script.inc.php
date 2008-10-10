@@ -26,7 +26,7 @@ if (!isset($l_alert)) {
 	include($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GLOBALS["WE_LANGUAGE"]."/alert.inc.php");
 }
 
-
+protect();
 // Dreamweaver RPC Command ShowPreparedPreview
 // disable javascript errors
 if (isset($_REQUEST["cmd"]) && $_REQUEST['cmd'] == "ShowPreparedPreview") {

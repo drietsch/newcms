@@ -23,6 +23,8 @@
 
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GLOBALS["WE_LANGUAGE"]."/alert.inc.php");
 
+protect();
+
 if(isset($_REQUEST["ucmd"])){
     switch($_REQUEST["ucmd"]){
         case "new_group":

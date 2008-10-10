@@ -22,7 +22,7 @@
 
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_modules/export/we_exportDirSelector.php");
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GLOBALS["WE_LANGUAGE"]."/export.inc.php");
-
+protect();
 $_SERVER["PHP_SELF"] = "/webEdition/we/include/we_modules/export/we_exportDirSelect.php";
 $fs = new we_exportDirSelector(isset($id) ? $id : (isset($_REQUEST["id"]) ? $_REQUEST["id"] : ''),
 							isset($JSIDName) ? $JSIDName : (isset($_REQUEST["JSIDName"]) ? $_REQUEST["JSIDName"] : ''),

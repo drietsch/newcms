@@ -23,6 +23,8 @@
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we.inc.php");
 include_once(WE_MESSAGING_MODULE_DIR . "we_messaging.inc.php");
 
+protect();
+
 /* Get all values for $key in an array of hashes (e.g. get all ID values) */
 /* params: key, hash */
 /* returns: array of the values for the key */
