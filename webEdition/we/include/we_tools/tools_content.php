@@ -19,12 +19,27 @@
  * @license    http://www.gnu.org/copyleft/gpl.html  GPL
  */
 
+include_once($_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we.inc.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we_classes/tools/weToolLookup.class.php');
+
+$tools = weToolLookup::getAllTools(true,true);
+
+$whiteList = array();
+foreach($tools as $k=>$v) {
+	if(isset($v['name'])) {
+		$whiteList[] = $v['name'];
+	}
+}
+
+if (!isset($_REQUEST['tool']) || $_REQUEST['tool']=='' || !in_array($_REQUEST['tool'], $whiteList)) {
+	exit();
+}
 
 if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/webEdition/apps/' . $_REQUEST['tool'] . '/index.php')) {
 	
 		header('Location: /webEdition/apps/' . $_REQUEST['tool'] . '/index.php/frameset/index' .
-			(isset($REQUEST['modelid']) ? '/modelId/' . $REQUEST['modelid'] : '') . 
-			(isset($REQUEST['tab']) ? '/tab/' . $REQUEST['tab'] : ''));
+			(isset($REQUEST['modelid']) ? '/modelId/' . abs($REQUEST['modelid']) : '') . 
+			(isset($REQUEST['tab']) ? '/tab/' . abs($REQUEST['tab']) : ''));
 		exit();
 }
 if($_REQUEST['tool']=='weSearch' || $_REQUEST['tool']=='navigation') {
