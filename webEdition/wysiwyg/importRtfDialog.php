@@ -21,7 +21,7 @@
  */
 
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/weImportRtfDialog.class.inc.php");
-
+protect();
 $dialog = new weImportRtfDialog();
 $dialog->initByHttp();
 if(isset($dialog->args["ntxt"]) && $dialog->args["ntxt"]){

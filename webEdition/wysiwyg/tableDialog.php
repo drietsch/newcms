@@ -21,7 +21,7 @@
 
 
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/weTableDialog.class.inc.php");
-
+protect();
 $dialog = new weTableDialog();
 // MS-Fix
 if(isset($_REQUEST["we_dialog_args"]["cellPadding"])){

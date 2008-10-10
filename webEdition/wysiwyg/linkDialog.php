@@ -21,7 +21,7 @@
  */
 
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/weHyperlinkDialog.class.inc.php");
-
+protect();
 $dialog = new weHyperlinkDialog();
 $dialog->initByHttp();
 $dialog->registerCmdFn("weDoLinkCmd");

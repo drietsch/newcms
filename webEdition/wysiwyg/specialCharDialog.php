@@ -21,7 +21,7 @@
  */
 
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/weSpecialCharDialog.class.inc.php");
-
+protect();
 $dialog = new weSpecialCharDialog();
 $dialog->initByHttp();
 $dialog->registerOkJsFN("weDoRuleJS");

@@ -23,11 +23,11 @@ include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/weAbbr
 
 $appendJS = "";
 if(defined("GLOSSARY_TABLE") && isset($_REQUEST['weSaveToGlossary']) && $_REQUEST['weSaveToGlossary'] == 1) {
-
 	include_once(WE_GLOSSARY_MODULE_DIR . "/weGlossary.php");
 	include_once(WE_GLOSSARY_MODULE_DIR . "/weGlossaryCache.php");
 	include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GLOBALS["WE_LANGUAGE"]."/modules/glossary.inc.php");
 
+	protect();
 	$Glossary = new weGlossary();
 	$Glossary->Language = $_REQUEST['language'];
 	$Glossary->Type = "abbreviation";
