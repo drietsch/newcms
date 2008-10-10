@@ -21,7 +21,7 @@
 
 
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/we_docSelector.inc.php");
-
+protect();
 $_SERVER["PHP_SELF"] = "/webEdition/we_docSelect.php";
 $fs = new we_docSelector(isset($id) ? $id : ( isset($_REQUEST["id"]) ? $_REQUEST["id"] : '' ),
 							isset($table) ? $table : ( isset($_REQUEST["table"]) ? $_REQUEST["table"] : FILE_TABLE),
