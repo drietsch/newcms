@@ -135,9 +135,10 @@ body {
 		
 		$file = isset($_REQUEST['we_cmd'][1]) ? $_REQUEST['we_cmd'][1] : "";
 		define("WE_SIDEBAR", true);
-		
+
 		if(eregi("^http://", $file) || eregi("^https://", $file)) {
-			header("Location: " . $file);
+			//not implemented
+			//header("Location: " . $file);
 			exit();
 			
 		}
