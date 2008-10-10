@@ -163,8 +163,8 @@ class we_ui_controls_Tree extends we_ui_abstract_AbstractElement
 		
 		$table = $_table;
 		$limit = ($start===0 && $anzahl===0) ? '' : (is_numeric($start)&& is_numeric($anzahl)) ? 'limit '.abs($start).','.abs($anzahl).'' : '';
-		$query = "SELECT " . addslashes($table) . ".*,LOWER(Text) AS lowtext, abs(Text) as Nr, (Text REGEXP '^[0-9]') as isNr FROM `".addslashes($table)."` WHERE ParentID='$parentID' ORDER BY IsFolder DESC, isNr DESC,Nr ,lowtext , Text $limit ";
-		$nodes = $db->fetchAll($query);
+
+		$nodes = $db->fetchAll("SELECT " . addslashes($table) . ".*,LOWER(Text) AS lowtext, abs(Text) as Nr, (Text REGEXP '^[0-9]') as isNr FROM `".addslashes($table)."` WHERE ParentID= ? ORDER BY IsFolder DESC, isNr DESC,Nr ,lowtext , Text $limit ", $parentID);
 		
 		return $nodes;
 	}
