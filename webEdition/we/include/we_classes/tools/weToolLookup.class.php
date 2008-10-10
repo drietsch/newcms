@@ -425,7 +425,7 @@
 		
 		function getModelClassName($name) {
 			if($name=='weSearch' || $name=='navigation') {
-				include_once($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_tools/".$name."/conf/meta.conf.php");
+				include($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_tools/".$name."/conf/meta.conf.php");
 				return $metaInfo['classname'];
 			}
 			
