@@ -36,9 +36,9 @@ if(!isset($_REQUEST['extension']) || $_REQUEST['extension']=='') {
 	exit();
 }
 
-$imageId = abs($_REQUEST['id']);
-$imagePath = addslashes($_REQUEST['path']);
-$imageSize = abs($_REQUEST['size']);
+$imageId = $_REQUEST['id'];
+$imagePath = $_REQUEST['path'];
+$imageSize = $_REQUEST['size'];
 
 $whiteList = array();
 $exts = isset($GLOBALS["WE_CONTENT_TYPES"]["image/*"]["Extension"]) ? $GLOBALS["WE_CONTENT_TYPES"]["image/*"]["Extension"] : "";
