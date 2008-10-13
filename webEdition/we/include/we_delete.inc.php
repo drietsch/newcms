@@ -85,10 +85,10 @@ if (!$wfchk) {
 				'IsFolder' => 0, 'Path' => '', 'hasFiles' => 0
 			);
 			if (sizeof($selectedItems) > 0 && ($table == FILE_TABLE || $table == TEMPLATES_TABLE)) {
-				$idInfos = getHash("SELECT IsFolder, Path FROM $table WHERE ID=" . $selectedItems[0], $DB_WE);
+				$idInfos = getHash("SELECT IsFolder, Path FROM ".mysql_real_escape_string($table)." WHERE ID=" . abs($selectedItems[0]), $DB_WE);
 				if ($idInfos['IsFolder']) {
 					$idInfos['hasFiles'] = f(
-							"SELECT ID FROM $table WHERE ParentID=" . $selectedItems[0] . " AND  IsFolder = 0 AND Path LIKE '" . $idInfos['Path'] . "%'", 
+							"SELECT ID FROM ".mysql_real_escape_string($table)." WHERE ParentID=" . abs($selectedItems[0]) . " AND  IsFolder = 0 AND Path LIKE '" . mysql_real_escape_string($idInfos['Path']) . "%'", 
 							"ID", 
 							$DB_WE) > 0 ? 1 : 0;
 				}
