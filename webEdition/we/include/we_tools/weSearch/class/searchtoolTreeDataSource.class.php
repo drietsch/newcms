@@ -43,14 +43,14 @@ class searchtoolTreeDataSource extends weToolTreeDataSource
 			$id = $_SESSION["weSearch"]["modelidForTree"];
 			$pid = f("
         SELECT ParentID
-        FROM " . $table . "
-        WHERE ID='$id'", "ParentID", $db);
+        FROM " . mysql_real_escape_string($table) . "
+        WHERE ID='".abs($id)."'", "ParentID", $db);
 			$openFolders[] = $pid;
 			while ($pid > 0) {
 				$pid = f("
           SELECT ParentID
-          FROM $table
-          WHERE ID='" . $pid . "'", "ParentID", $db);
+          FROM ".mysql_real_escape_string($table)."
+          WHERE ID='" . abs($pid) . "'", "ParentID", $db);
 				$openFolders[] = $pid;
 			}
 		}
@@ -76,10 +76,10 @@ class searchtoolTreeDataSource extends weToolTreeDataSource
 			);
 		}
 		
-		$where = " WHERE $wsQuery ParentID=$ParentID " . $addWhere;
+		$where = " WHERE $wsQuery ParentID=".abs($ParentID)." " . $addWhere;
 		
 		$db->query(
-				"SELECT $elem, LOWER(Text) AS lowtext, abs(Text) as Nr, (Text REGEXP '^[0-9]') as isNr from $table $where ORDER BY isNr DESC,Nr,lowtext,Text " . ($segment ? "LIMIT $offset,$segment;" : ";"));
+				"SELECT $elem, LOWER(Text) AS lowtext, abs(Text) as Nr, (Text REGEXP '^[0-9]') as isNr from ".mysql_real_escape_string($table)." $where ORDER BY isNr DESC,Nr,lowtext,Text " . ($segment ? "LIMIT ".abs($offset).",".abs($segment).";" : ";"));
 		
 		while ($db->next_record()) {
 			if (($db->f('ID') == 3 || $db->f('ID') == 7) && (!defined('OBJECT_FILES_TABLE') || !defined(
@@ -133,7 +133,7 @@ class searchtoolTreeDataSource extends weToolTreeDataSource
 			}
 		}
 		
-		$total = f("SELECT COUNT(*) as total FROM $table $where;", 'total', $db);
+		$total = f("SELECT COUNT(*) as total FROM ".mysql_real_escape_string($table)." $where;", 'total', $db);
 		$nextoffset = $offset + $segment;
 		if ($segment && ($total > $nextoffset)) {
 			$this->treeItems[] = array(
