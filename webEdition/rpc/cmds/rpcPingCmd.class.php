@@ -29,7 +29,7 @@ class rpcPingCmd extends rpcCmd {
 		$resp = new rpcResponse();
 		
 		if ($_SESSION["user"]["ID"]) {
-			$GLOBALS['DB_WE']->query("UPDATE ".USER_TABLE." SET Ping=".time()." WHERE ID=".$_SESSION["user"]["ID"]);
+			$GLOBALS['DB_WE']->query("UPDATE ".USER_TABLE." SET Ping=".time()." WHERE ID=".abs($_SESSION["user"]["ID"]));
 		}
 		
     	if (defined("MESSAGING_SYSTEM")) {
