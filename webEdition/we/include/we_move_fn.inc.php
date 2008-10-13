@@ -69,7 +69,7 @@ function checkMoveItem($targetDirectoryID, $id, $table, &$items2move)
 {
 	$DB_WE = new DB_WE();
 	// check if entry is a folder
-	$row = getHash("SELECT Path, Text, IsFolder FROM " . addslashes($table) . " WHERE  ID=" . abs($id), $DB_WE);
+	$row = getHash("SELECT Path, Text, IsFolder FROM " . mysql_real_escape_string($table) . " WHERE  ID=" . abs($id), $DB_WE);
 	if (sizeof($row) == 0 || $row["IsFolder"]) {
 		return -1;
 	}
@@ -85,7 +85,7 @@ function checkMoveItem($targetDirectoryID, $id, $table, &$items2move)
 	// add the item to the item names which could be moved
 	array_push($items2move, $text);
 	
-	$DB_WE->query("SELECT Text,Path FROM " . $table . " WHERE ParentID=" . abs($targetDirectoryID));
+	$DB_WE->query("SELECT Text,Path FROM " . mysql_real_escape_string($table) . " WHERE ParentID=" . abs($targetDirectoryID));
 	while ($DB_WE->next_record()) {
 		// check if there is a item with the same name in the target directory
 		if (in_array($DB_WE->f('Text'), $items2move)) {
@@ -117,7 +117,7 @@ function moveItem($targetDirectoryID, $id, $table, &$notMovedItems)
 	if (defined("OBJECT_TABLE") && $table == OBJECT_TABLE && !$targetDirectoryID) {
 		return false;
 	} elseif ($targetDirectoryID) {
-		$row = getHash("SELECT IsFolder,Path,ID FROM " . $table . " WHERE ID=" . abs($targetDirectoryID), $DB_WE);
+		$row = getHash("SELECT IsFolder,Path,ID FROM " . mysql_real_escape_string($table) . " WHERE ID=" . abs($targetDirectoryID), $DB_WE);
 		if (sizeof($row) == 0 || !$row["IsFolder"]) {
 			return false;
 		}
@@ -196,7 +196,7 @@ function moveItem($targetDirectoryID, $id, $table, &$notMovedItems)
 		
 		// get information about the document which has to be moved
 		$row = getHash(
-				"SELECT Text,Path,Published,IsFolder,Icon,ContentType FROM " . $table . " WHERE ID=" . abs($id), 
+				"SELECT Text,Path,Published,IsFolder,Icon,ContentType FROM " . mysql_real_escape_string($table) . " WHERE ID=" . abs($id), 
 				$DB_WE);
 		$fileName = $row['Text'];
 		$oldPath = $row['Path'];
@@ -265,7 +265,7 @@ function moveItem($targetDirectoryID, $id, $table, &$notMovedItems)
 		}
 		
 		// update table
-		$q = "UPDATE " . $table . " SET ParentID=" . $parentID . ", Path='" . $newPath . "/" . $fileName . "' WHERE ID=" . abs(
+		$q = "UPDATE " . mysql_real_escape_string($table) . " SET ParentID=" . abs($parentID) . ", Path='" . mysql_real_escape_string($newPath) . "/" . mysql_real_escape_string($fileName) . "' WHERE ID=" . abs(
 				$id);
 		$DB_WE->query($q);
 		
@@ -276,7 +276,7 @@ function moveItem($targetDirectoryID, $id, $table, &$notMovedItems)
 		
 		// get information about the object which has to be moved
 		$row = getHash(
-				"SELECT TableID,Path,Text,IsFolder,Icon,ContentType FROM " . $table . " WHERE ID=" . abs($id), 
+				"SELECT TableID,Path,Text,IsFolder,Icon,ContentType FROM " . mysql_real_escape_string($table) . " WHERE ID=" . abs($id), 
 				$DB_WE);
 		$tableID = $row['TableID'];
 		$oldPath = $row['Path'];
@@ -313,10 +313,10 @@ function moveItem($targetDirectoryID, $id, $table, &$notMovedItems)
 		}
 		
 		// update table
-		$q = "UPDATE " . $table . " SET ParentID=" . $parentID . ", Path='" . $newPath . "/" . $fileName . "' WHERE ID=" . abs(
+		$q = "UPDATE " . mysql_real_escape_string($table) . " SET ParentID=" . abs($parentID) . ", Path='" . mysql_real_escape_string($newPath) . "/" . mysql_real_escape_string($fileName) . "' WHERE ID=" . abs(
 				$id);
 		$DB_WE->query($q);
-		$q = "UPDATE " . OBJECT_X_TABLE . $tableID . " SET OF_ParentID=" . $parentID . ", OF_Path='" . $newPath . "/" . $fileName . "' WHERE OF_ID=" . abs(
+		$q = "UPDATE " . OBJECT_X_TABLE . $tableID . " SET OF_ParentID=" . abs($parentID) . ", OF_Path='" . mysql_real_escape_string($newPath) . "/" . mysql_real_escape_string($fileName) . "' WHERE OF_ID=" . abs(
 				$id);
 		$DB_WE->query($q);
 		
@@ -332,7 +332,7 @@ function checkIfRestrictUserIsAllowed($id, $table = FILE_TABLE)
 {
 	
 	$DB_WE = new DB_WE();
-	$row = getHash("SELECT CreatorID,RestrictOwners,Owners,OwnersReadOnly FROM $table WHERE ID=$id", $DB_WE);
+	$row = getHash("SELECT CreatorID,RestrictOwners,Owners,OwnersReadOnly FROM ".mysql_real_escape_string($table)." WHERE ID=".abs($id)."", $DB_WE);
 	
 	if (($_SESSION["user"]["ID"] == $row["CreatorID"]) || $_SESSION["perms"]["ADMINISTRATOR"]) { //	Owner or admin
 		return true;

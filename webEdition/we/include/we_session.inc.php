@@ -90,7 +90,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 				$DB_WE->query(
 						(isset($GLOBALS["BIG_USER_MODULE"]) && $GLOBALS["BIG_USER_MODULE"] && in_array(
 								"busers", 
-								$GLOBALS["_pro_modules"])) ? ("SELECT ParentID,workSpace,workSpaceTmp,workSpaceNav,workSpaceObj,workSpaceNwl,ParentWs,ParentWst,ParentWsn,ParentWso,ParentWsnl FROM " . USER_TABLE . " WHERE ID=" . $_SESSION["user"]["ID"] . " OR Alias=" . $_SESSION["user"]["ID"]) : "SELECT workSpace FROM " . USER_TABLE . " WHERE ID=" . $_SESSION["user"]["ID"]);
+								$GLOBALS["_pro_modules"])) ? ("SELECT ParentID,workSpace,workSpaceTmp,workSpaceNav,workSpaceObj,workSpaceNwl,ParentWs,ParentWst,ParentWsn,ParentWso,ParentWsnl FROM " . USER_TABLE . " WHERE ID=" . abs($_SESSION["user"]["ID"]) . " OR Alias=" . abs($_SESSION["user"]["ID"])) : "SELECT workSpace FROM " . USER_TABLE . " WHERE ID=" . abs($_SESSION["user"]["ID"]));
 				while ($DB_WE->next_record()) {
 					// get workspaces
 					$a = makeArrayFromCSV($DB_WE->f("workSpace"));
@@ -142,7 +142,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 							array_push($_userGroups, $pid);
 							
 							$db_tmp->query(
-									"SELECT ParentID,workSpace,workSpaceTmp,workSpaceNav,workSpaceObj,workSpaceNwl,ParentWs,ParentWst,ParentWsn,ParentWso,ParentWsnl FROM " . USER_TABLE . " WHERE ID=" . $pid);
+									"SELECT ParentID,workSpace,workSpaceTmp,workSpaceNav,workSpaceObj,workSpaceNwl,ParentWs,ParentWst,ParentWsn,ParentWso,ParentWsnl FROM " . USER_TABLE . " WHERE ID=" . abs($pid));
 							if ($db_tmp->next_record()) {
 								if ($get_ws) {
 									$a = makeArrayFromCSV($db_tmp->f("workSpace"));
@@ -199,7 +199,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 				
 				$_SESSION["prefs"] = getHash("SELECT * from " . PREFS_TABLE, $DB_WE);
 				
-				$exprefs = getHash("SELECT * FROM " . PREFS_TABLE . " WHERE userID=" . $_userdata["ID"], $DB_WE);
+				$exprefs = getHash("SELECT * FROM " . PREFS_TABLE . " WHERE userID=" . abs($_userdata["ID"]), $DB_WE);
 				if (is_array($exprefs) && (isset($exprefs["userID"]) && $exprefs["userID"] != 0) && sizeof($exprefs) > 0) {
 					$_SESSION["prefs"] = $exprefs;
 				
@@ -233,7 +233,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 				
 				$_SESSION["prefs"] = getHash("SELECT * from " . PREFS_TABLE, $DB_WE);
 				
-				$exprefs = getHash("SELECT * FROM " . PREFS_TABLE . " WHERE userID=" . $_userdata["ID"], $DB_WE);
+				$exprefs = getHash("SELECT * FROM " . PREFS_TABLE . " WHERE userID=" . abs($_userdata["ID"]), $DB_WE);
 				if (is_array($exprefs) && (isset($exprefs["userID"]) && $exprefs["userID"] != 0) && sizeof($exprefs) > 0) {
 					$_SESSION["prefs"] = $exprefs;
 				

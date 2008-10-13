@@ -1018,7 +1018,7 @@ if(isset($weTagListviewCache)) {
 					if("' . $path . '"){
 						$foo = "' . $path . '";
 					}else if("' . $id . '"){
-						$GLOBALS["DB_WE"]->query("SELECT Path,IsDynamic FROM ".FILE_TABLE." WHERE ID=' . $id . '");
+						$GLOBALS["DB_WE"]->query("SELECT Path,IsDynamic FROM ".FILE_TABLE." WHERE ID=' . abs($id) . '");
 						$GLOBALS["DB_WE"]->next_record();
 						$foo = $GLOBALS["DB_WE"]->f("Path");
 					}elseif("' . $name . '"){
@@ -1293,7 +1293,7 @@ $GLOBALS["lv"] = new we_listview_multiobject("' . $name . '", $we_rows, $we_offs
 									$filterdateend = we_getTagAttributeTagParser("filterdateend", $arr, "-1");
 									
 									$php .= '$customer=' . ($customer ? "true" : "false") . ';
-$bannerid = f("SELECT ID FROM ".BANNER_TABLE." WHERE PATH=\'' . $path . '\'","ID",new DB_WE());
+$bannerid = f("SELECT ID FROM ".BANNER_TABLE." WHERE PATH=\'' . mysql_real_escape_string($path) . '\'","ID",new DB_WE());
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_modules/banner/weBanner.php");
 if($customer && defined("CUSTOMER_TABLE") && (!weBanner::customerOwnsBanner($_SESSION["webuser"]["ID"],$bannerid))){
 	$bannerid=0;
@@ -1380,7 +1380,7 @@ include_once(WE_OBJECT_MODULE_DIR . "we_objecttag.inc.php");
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/html/we_button.inc.php");
 ';
 			if ($classid) {
-				$php .= '$classPath = f("SELECT Path FROM ".OBJECT_TABLE." WHERE ID=\'' . $classid . '\'","Path",$GLOBALS["DB_WE"]);
+				$php .= '$classPath = f("SELECT Path FROM ".OBJECT_TABLE." WHERE ID=\'' . abs($classid) . '\'","Path",$GLOBALS["DB_WE"]);
 $rootDirID = f("SELECT ID FROM ".OBJECT_FILES_TABLE." WHERE Path=\'$classPath\'","ID",$GLOBALS["DB_WE"]);
 ';
 			} else {
@@ -1795,7 +1795,7 @@ if(is_array($GLOBALS["we_lv_array"])) array_push($GLOBALS["we_lv_array"],clone($
 		$formAttribs['method'] = $method;
 		
 		if ($id && ($id != "self")) {
-			$php = '<?php $GLOBALS["we_form_action"] = f("SELECT Path FROM ".FILE_TABLE." WHERE ID=\'' . $id . '\'","Path",$GLOBALS["DB_WE"]); ?>
+			$php = '<?php $GLOBALS["we_form_action"] = f("SELECT Path FROM ".FILE_TABLE." WHERE ID=\'' . abs($id) . '\'","Path",$GLOBALS["DB_WE"]); ?>
 ';
 		} else 
 			if ($action) {

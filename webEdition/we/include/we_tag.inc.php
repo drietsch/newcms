@@ -51,7 +51,7 @@ function we_tag($name, $attribs, $content = "")
 			$uAr = makeArrayFromCSV($attribs["user"]);
 			$userIds = array();
 			foreach ($uAr as $u) {
-				$i = f("SELECT ID FROM " . USER_TABLE . " WHERE Username='" . $u . "'", "ID", $GLOBALS["DB_WE"]);
+				$i = f("SELECT ID FROM " . USER_TABLE . " WHERE Username='" . mysql_real_escape_string($u) . "'", "ID", $GLOBALS["DB_WE"]);
 				if ($i) {
 					array_push($userIds, $i);
 				}
@@ -814,7 +814,7 @@ function we_tag_a($attribs, $content)
 	
 	// init variables
 	$db = new DB_WE();
-	$row = getHash("SELECT Path,IsFolder,IsDynamic FROM " . FILE_TABLE . " WHERE ID=$id", $db);
+	$row = getHash("SELECT Path,IsFolder,IsDynamic FROM " . FILE_TABLE . " WHERE ID=".abs($id)."", $db);
 	$url = (isset($row["Path"]) ? $row["Path"] : "") . ((isset($row["IsFolder"]) && $row["IsFolder"]) ? "/" : "");
 	
 	$urladd = "";
@@ -1045,7 +1045,7 @@ function we_tag_author($attribs, $content)
 	$doc = we_getDocForTag($docAttr, true);
 	
 	$foo = getHash(
-			"SELECT Username,First,Second FROM " . USER_TABLE . " WHERE ID='" . ($creator ? $doc->CreatorID : $doc->ModifierID) . "'", 
+			"SELECT Username,First,Second FROM " . USER_TABLE . " WHERE ID='" . abs($creator ? $doc->CreatorID : $doc->ModifierID) . "'", 
 			new DB_WE());
 	
 	switch ($type) {
@@ -1523,7 +1523,7 @@ function we_tag_categorySelect($attribs, $content)
 		}
 		$db = new DB_WE();
 		$dbfield = $showpath ? "Path" : "Category";
-		$db->query("SELECT Path,Category FROM " . CATEGORY_TABLE . " WHERE Path like '$rootdir%' ORDER BY $dbfield");
+		$db->query("SELECT Path,Category FROM " . CATEGORY_TABLE . " WHERE Path like '".mysql_real_escape_string($rootdir)."%' ORDER BY $dbfield");
 		while ($db->next_record()) {
 			$deep = sizeof(explode("/", $db->f('Path'))) - 2;
 			$field = $db->f($dbfield);
@@ -1674,7 +1674,7 @@ function we_tag_css($attribs, $content)
 	$id = we_getTagAttribute("id", $attribs);
 	$rel = we_getTagAttribute("rel", $attribs, "stylesheet");
 	
-	$row = getHash("SELECT Path,IsFolder,IsDynamic FROM " . FILE_TABLE . " WHERE ID=$id", new DB_WE());
+	$row = getHash("SELECT Path,IsFolder,IsDynamic FROM " . FILE_TABLE . " WHERE ID=".abs($id)."", new DB_WE());
 	if (count($row)) {
 		$url = $row["Path"] . ($row["IsFolder"] ? "/" : "");
 		
@@ -2016,7 +2016,7 @@ function we_tag_delete($attribs, $content)
 		$doc->initByID($docID);
 		$table = FILE_TABLE;
 		if ($doctype) {
-			$doctypeID = f("SELECT ID FROM " . DOC_TYPES_TABLE . " WHERE DocType like '$doctype'", "ID", new DB_WE());
+			$doctypeID = f("SELECT ID FROM " . DOC_TYPES_TABLE . " WHERE DocType like '".mysql_real_escape_string($doctype)."'", "ID", new DB_WE());
 			if ($doc->DocType != $doctypeID) {
 				$GLOBALS["we_" . $type . "_delete_ok"] = false;
 				return "";
@@ -2135,7 +2135,7 @@ function we_tag_docType($attribs, $content)
 		case "self" :
 			if ($GLOBALS["we_doc"]->DocType) {
 				$doctype = f(
-						"SELECT DocType FROM " . DOC_TYPES_TABLE . " WHERE ID = " . $GLOBALS["we_doc"]->DocType, 
+						"SELECT DocType FROM " . DOC_TYPES_TABLE . " WHERE ID = " . mysql_real_escape_string($GLOBALS["we_doc"]->DocType), 
 						"DocType", 
 						new DB_WE());
 			}
@@ -2145,13 +2145,13 @@ function we_tag_docType($attribs, $content)
 			if (isset($GLOBALS["WE_MAIN_DOC"])) {
 				if ($GLOBALS["WE_MAIN_DOC"]->DocType) {
 					$doctype = f(
-							"SELECT DocType FROM " . DOC_TYPES_TABLE . " WHERE ID = " . $GLOBALS["WE_MAIN_DOC"]->DocType, 
+							"SELECT DocType FROM " . DOC_TYPES_TABLE . " WHERE ID = " . mysql_real_escape_string($GLOBALS["WE_MAIN_DOC"]->DocType), 
 							"DocType", 
 							new DB_WE());
 				}
 			} elseif ($GLOBALS["we_doc"]->DocType) { // if we_doc is the "top-document"
 				$doctype = f(
-						"SELECT DocType FROM " . DOC_TYPES_TABLE . " WHERE ID = " . $GLOBALS["we_doc"]->DocType, 
+						"SELECT DocType FROM " . DOC_TYPES_TABLE . " WHERE ID = " . mysql_real_escape_string($GLOBALS["we_doc"]->DocType), 
 						"DocType", 
 						new DB_WE());
 			}
@@ -3070,7 +3070,7 @@ function we_tag_href($attribs, $content)
 		if (!$intID && $rootdirid) {
 			$intID = $rootdirid;
 		}
-		$intPath = f("SELECT Path FROM " . FILE_TABLE . " WHERE ID='$intID'", "Path", $GLOBALS["DB_WE"]);
+		$intPath = f("SELECT Path FROM " . FILE_TABLE . " WHERE ID='".abs($intID)."'", "Path", $GLOBALS["DB_WE"]);
 		
 		if ($int) {
 			$href = $intPath;
@@ -3162,7 +3162,7 @@ function we_tag_href($attribs, $content)
 	} else 
 		if ($type == "int") {
 			$intID = $GLOBALS["we_doc"]->getElement($nintID);
-			$intPath = f("SELECT Path FROM " . FILE_TABLE . " WHERE ID='$intID'", "Path", $GLOBALS["DB_WE"]);
+			$intPath = f("SELECT Path FROM " . FILE_TABLE . " WHERE ID='".abs($intID)."'", "Path", $GLOBALS["DB_WE"]);
 			$href = $intPath;
 			$include_path = $href ? $_SERVER["DOCUMENT_ROOT"] . "/" . $href : "";
 			
@@ -3272,7 +3272,7 @@ function we_tag_icon($attribs, $content)
 		return $foo;
 	$xml = we_getTagAttribute("xml", $attribs, "");
 	$id = we_getTagAttribute("id", $attribs);
-	$row = getHash("SELECT Path,IsFolder,IsDynamic FROM " . FILE_TABLE . " WHERE ID=$id", new DB_WE());
+	$row = getHash("SELECT Path,IsFolder,IsDynamic FROM " . FILE_TABLE . " WHERE ID=".abs($id)."", new DB_WE());
 	if (count($row)) {
 		$url = $row["Path"] . ($row["IsFolder"] ? "/" : "");
 		return getHtmlTag('link', array(
@@ -3524,7 +3524,7 @@ function we_tag_ifDoctype($attribs, $content)
 	
 	if (isset($doctype)) {
 		foreach ($matchArr as $match) {
-			$matchID = f("SELECT ID FROM " . DOC_TYPES_TABLE . " WHERE DocType='$match'", "ID", new DB_WE());
+			$matchID = f("SELECT ID FROM " . DOC_TYPES_TABLE . " WHERE DocType='".mysql_real_escape_string($match)."'", "ID", new DB_WE());
 			if ($matchID == $doctype) {
 				return true;
 			}
@@ -3769,7 +3769,7 @@ function we_tag_ifNoJavaScript($attribs, $content)
 		return "";
 	}
 	$id = we_getTagAttribute("id", $attribs);
-	$row = getHash("SELECT Path,IsFolder,IsDynamic FROM " . FILE_TABLE . " WHERE ID=$id", new DB_WE());
+	$row = getHash("SELECT Path,IsFolder,IsDynamic FROM " . FILE_TABLE . " WHERE ID=".abs($id)."", new DB_WE());
 	$url = $row["Path"] . ($row["IsFolder"] ? "/" : "");
 	$attr = we_make_attribs($attribs, "id");
 	return '<noscript><meta http-equiv="refresh" content="0;URL=' . $url . '"></noscript>';
@@ -4509,7 +4509,7 @@ function we_tag_img($attribs, $content)
 	$id = $id ? $id : we_getTagAttribute("id", $attribs);
 	
 	//look if image exists in tblfile
-	$imgExists = f("SELECT ID FROM " . FILE_TABLE . " WHERE ID='" . $id . "'", "ID", new DB_WE());
+	$imgExists = f("SELECT ID FROM " . FILE_TABLE . " WHERE ID='" . abs($id) . "'", "ID", new DB_WE());
 	if ($imgExists == "") {
 		$id = 0;
 	}
@@ -4731,7 +4731,7 @@ function we_tag_js($attribs, $content)
 	if ($foo)
 		return $foo;
 	$id = we_getTagAttribute("id", $attribs);
-	$row = getHash("SELECT Path,IsFolder,IsDynamic FROM " . FILE_TABLE . " WHERE ID=$id", new DB_WE());
+	$row = getHash("SELECT Path,IsFolder,IsDynamic FROM " . FILE_TABLE . " WHERE ID=".abs($id)."", new DB_WE());
 	
 	if (count($row)) {
 		
@@ -4783,14 +4783,14 @@ function we_tag_link($attribs, $content)
 	
 	// check if target document exists (Bug #7167)
 	if ($id != 0) {
-		$row = getHash("SELECT count(*) as tmp FROM " . FILE_TABLE . " WHERE ID=$id", new DB_WE());
+		$row = getHash("SELECT count(*) as tmp FROM " . FILE_TABLE . " WHERE ID=".abs($id)."", new DB_WE());
 		if ($row['tmp'] == 0) {
 			$link = array();
 			$id = 0;
 		}
 	}
 	if ($imageid != 0) {
-		$row = getHash("SELECT count(*) as tmp FROM " . FILE_TABLE . " WHERE ID=$imageid", new DB_WE());
+		$row = getHash("SELECT count(*) as tmp FROM " . FILE_TABLE . " WHERE ID=".abs($imageid)."", new DB_WE());
 		if ($row['tmp'] == 0) {
 			$link = array();
 			$imageid = 0;
@@ -5154,7 +5154,7 @@ function we_tag_listdir($attribs, $content)
 	$db3 = new DB_WE();
 	
 	$db->query(
-			"SELECT ID,Text,IsFolder,Path FROM " . FILE_TABLE . " WHERE ((Published > 0 AND IsSearchable = 1) OR (IsFolder = 1)) AND ParentID='$dirID'");
+			"SELECT ID,Text,IsFolder,Path FROM " . FILE_TABLE . " WHERE ((Published > 0 AND IsSearchable = 1) OR (IsFolder = 1)) AND ParentID='".abs($dirID)."'");
 	
 	while ($db->next_record()) {
 		$sortfield = "";
@@ -5162,12 +5162,12 @@ function we_tag_listdir($attribs, $content)
 		
 		if ($db->f("IsFolder")) {
 			$db2->query(
-					"SELECT ID FROM " . FILE_TABLE . " WHERE ParentID='" . $db->f("ID") . "' AND IsFolder = 0 AND ($q) AND (Published > 0 AND IsSearchable = 1)");
+					"SELECT ID FROM " . FILE_TABLE . " WHERE ParentID='" . abs($db->f("ID")) . "' AND IsFolder = 0 AND ($q) AND (Published > 0 AND IsSearchable = 1)");
 			if ($db2->next_record()) {
 				if ($sort) {
 					$db3->query(
-							"SELECT " . CONTENT_TABLE . ".Dat as Dat FROM " . LINK_TABLE . "," . CONTENT_TABLE . " WHERE " . LINK_TABLE . ".DID='" . $db2->f(
-									"ID") . "' AND " . LINK_TABLE . ".Name='$sort' AND " . CONTENT_TABLE . ".ID = " . LINK_TABLE . ".CID");
+							"SELECT " . CONTENT_TABLE . ".Dat as Dat FROM " . LINK_TABLE . "," . CONTENT_TABLE . " WHERE " . LINK_TABLE . ".DID='" . abs($db2->f(
+									"ID")) . "' AND " . LINK_TABLE . ".Name='".mysql_real_escape_string($sort)."' AND " . CONTENT_TABLE . ".ID = " . LINK_TABLE . ".CID");
 					if ($db3->next_record()) {
 						$sortfield = $db3->f("Dat");
 					} else {
@@ -5178,8 +5178,8 @@ function we_tag_listdir($attribs, $content)
 				}
 				if ($dirfield) {
 					$db3->query(
-							"SELECT " . CONTENT_TABLE . ".Dat as Dat FROM " . LINK_TABLE . "," . CONTENT_TABLE . " WHERE " . LINK_TABLE . ".DID='" . $db2->f(
-									"ID") . "' AND " . LINK_TABLE . ".Name='$dirfield' AND " . CONTENT_TABLE . ".ID = " . LINK_TABLE . ".CID");
+							"SELECT " . CONTENT_TABLE . ".Dat as Dat FROM " . LINK_TABLE . "," . CONTENT_TABLE . " WHERE " . LINK_TABLE . ".DID='" . abs($db2->f(
+									"ID")) . "' AND " . LINK_TABLE . ".Name='".mysql_real_escape_string($dirfield)."' AND " . CONTENT_TABLE . ".ID = " . LINK_TABLE . ".CID");
 					if ($db3->next_record()) {
 						$namefield = $db3->f("Dat");
 					} else {
@@ -5198,8 +5198,8 @@ function we_tag_listdir($attribs, $content)
 		} else {
 			if ($sort) {
 				$db2->query(
-						"SELECT " . CONTENT_TABLE . ".Dat as Dat FROM " . LINK_TABLE . "," . CONTENT_TABLE . " WHERE " . LINK_TABLE . ".DID='" . $db->f(
-								"ID") . "' AND " . LINK_TABLE . ".Name='$sort' AND " . CONTENT_TABLE . ".ID = " . LINK_TABLE . ".CID");
+						"SELECT " . CONTENT_TABLE . ".Dat as Dat FROM " . LINK_TABLE . "," . CONTENT_TABLE . " WHERE " . LINK_TABLE . ".DID='" . abs($db->f(
+								"ID")) . "' AND " . LINK_TABLE . ".Name='".mysql_real_escape_string($sort)."' AND " . CONTENT_TABLE . ".ID = " . LINK_TABLE . ".CID");
 				if ($db2->next_record()) {
 					$sortfield = $db2->f("Dat");
 				} else {
@@ -5210,8 +5210,8 @@ function we_tag_listdir($attribs, $content)
 			}
 			if ($name) {
 				$db2->query(
-						"SELECT " . CONTENT_TABLE . ".Dat as Dat FROM " . LINK_TABLE . "," . CONTENT_TABLE . " WHERE " . LINK_TABLE . ".DID='" . $db->f(
-								"ID") . "' AND " . LINK_TABLE . ".Name='$name' AND " . CONTENT_TABLE . ".ID = " . LINK_TABLE . ".CID");
+						"SELECT " . CONTENT_TABLE . ".Dat as Dat FROM " . LINK_TABLE . "," . CONTENT_TABLE . " WHERE " . LINK_TABLE . ".DID='" . abs($db->f(
+								"ID")) . "' AND " . LINK_TABLE . ".Name='".mysql_real_escape_string($name)."' AND " . CONTENT_TABLE . ".ID = " . LINK_TABLE . ".CID");
 				if ($db2->next_record()) {
 					$namefield = $db2->f("Dat");
 				} else {
@@ -5392,17 +5392,17 @@ function we_tag_path($attribs, $content)
 	}
 	while ($pID) {
 		$db->query(
-				"SELECT ID,Path FROM " . FILE_TABLE . " WHERE ParentID='$pID' AND IsFolder = 0 AND ($q) AND (Published > 0 AND IsSearchable = 1)");
+				"SELECT ID,Path FROM " . FILE_TABLE . " WHERE ParentID='".abs($pID)."' AND IsFolder = 0 AND ($q) AND (Published > 0 AND IsSearchable = 1)");
 		$db->next_record();
 		$fileID = $db->f("ID");
 		$filePath = $db->f("Path");
 		if ($fileID) {
 			$show = f(
-					"SELECT " . CONTENT_TABLE . ".Dat as Dat FROM " . LINK_TABLE . "," . CONTENT_TABLE . " WHERE " . LINK_TABLE . ".DID='$fileID' AND " . LINK_TABLE . ".Name='$dirfield ' AND " . CONTENT_TABLE . ".ID = " . LINK_TABLE . ".CID", 
+					"SELECT " . CONTENT_TABLE . ".Dat as Dat FROM " . LINK_TABLE . "," . CONTENT_TABLE . " WHERE " . LINK_TABLE . ".DID='".abs($fileID)."' AND " . LINK_TABLE . ".Name='".mysql_real_escape_string($dirfield)." ' AND " . CONTENT_TABLE . ".ID = " . LINK_TABLE . ".CID", 
 					"Dat", 
 					$db);
 			if (!$show)
-				$show = f("SELECT Text FROM " . FILE_TABLE . " WHERE ID='$pID'", "Text", $db);
+				$show = f("SELECT Text FROM " . FILE_TABLE . " WHERE ID='".abs($pID)."'", "Text", $db);
 			
 			if ($fileID != $doc->ID) {
 				$link_pre = '<a href="' . $filePath . '"' . $class . $style . '>';
@@ -5414,9 +5414,9 @@ function we_tag_path($attribs, $content)
 		} else {
 			$link_pre = '';
 			$link_post = '';
-			$show = f("SELECT Text FROM " . FILE_TABLE . " WHERE ID='$pID'", "Text", $db);
+			$show = f("SELECT Text FROM " . FILE_TABLE . " WHERE ID='".abs($pID)."'", "Text", $db);
 		}
-		$pID = f("SELECT ParentID from " . FILE_TABLE . " WHERE ID='$pID'", "ParentID", $db);
+		$pID = f("SELECT ParentID from " . FILE_TABLE . " WHERE ID='".abs($pID)."'", "ParentID", $db);
 		if (!$pID && $hidehome) {
 			$path = $link_pre . ($htmlspecialchars ? htmlspecialchars($show) : $show) . $link_post . $path;
 		} else {
@@ -5431,7 +5431,7 @@ function we_tag_path($attribs, $content)
 	$filePath = $db->f("Path");
 	if ($fileID) {
 		$show = f(
-				"SELECT " . CONTENT_TABLE . ".Dat as Dat FROM " . LINK_TABLE . "," . CONTENT_TABLE . " WHERE " . LINK_TABLE . ".DID='$fileID' AND " . LINK_TABLE . ".Name='$field' AND " . CONTENT_TABLE . ".ID = " . LINK_TABLE . ".CID", 
+				"SELECT " . CONTENT_TABLE . ".Dat as Dat FROM " . LINK_TABLE . "," . CONTENT_TABLE . " WHERE " . LINK_TABLE . ".DID='".abs($fileID)."' AND " . LINK_TABLE . ".Name='".mysql_real_escape_string($field)."' AND " . CONTENT_TABLE . ".ID = " . LINK_TABLE . ".CID", 
 				"Dat", 
 				$db);
 		if (!$show) {
@@ -5819,14 +5819,14 @@ function we_tag_sessionStart($attribs, $content)
 				if (isset($_REQUEST["s"]["Username"]) && isset($_REQUEST["s"]["Password"]) && !(isset(
 						$_REQUEST["s"]["ID"]))) {
 					$u = getHash(
-							'SELECT * from ' . CUSTOMER_TABLE . ' WHERE Username="' . $_REQUEST['s']["Username"] . '"', 
+							'SELECT * from ' . CUSTOMER_TABLE . ' WHERE Username="' . mysql_real_escape_string($_REQUEST['s']["Username"]) . '"', 
 							$GLOBALS["DB_WE"]);
 					if (isset($u["Password"]) && $u["LoginDenied"] != 1) {
 						if ($_REQUEST['s']["Username"] == $u["Username"] && $_REQUEST['s']["Password"] == $u["Password"]) {
 							$_SESSION["webuser"] = $u;
 							$_SESSION["webuser"]["registered"] = true;
 							$GLOBALS["DB_WE"]->query(
-									"UPDATE " . CUSTOMER_TABLE . " SET LastLogin='" . time() . "' WHERE ID='" . $_SESSION["webuser"]["ID"] . "'");
+									"UPDATE " . CUSTOMER_TABLE . " SET LastLogin='" . time() . "' WHERE ID='" . abs($_SESSION["webuser"]["ID"]) . "'");
 						} else {
 							$_SESSION["webuser"] = array(
 								"registered" => false, "loginfailed" => true
@@ -5851,7 +5851,7 @@ function we_tag_sessionStart($attribs, $content)
 					}
 					if ($lastAccessExists) {
 						$GLOBALS["DB_WE"]->query(
-								"UPDATE " . CUSTOMER_TABLE . " SET LastAccess='" . time() . "' WHERE ID='" . $_SESSION["webuser"]["ID"] . "'");
+								"UPDATE " . CUSTOMER_TABLE . " SET LastAccess='" . time() . "' WHERE ID='" . mysql_real_escape_string($_SESSION["webuser"]["ID"]) . "'");
 					}
 				}
 			
@@ -6190,7 +6190,7 @@ function we_tag_url($attribs, $content)
 	if ($id == 0) {
 		$url = "/";
 	} else {
-		$row = getHash("SELECT Path,IsFolder,IsDynamic FROM " . FILE_TABLE . " WHERE ID=$id", new DB_WE());
+		$row = getHash("SELECT Path,IsFolder,IsDynamic FROM " . FILE_TABLE . " WHERE ID=".abs($id)."", new DB_WE());
 		$url = isset($row["Path"]) ? ($row["Path"] . ($row["IsFolder"] ? "/" : "")) : "";
 	}
 	$urls[$id] = $url;
@@ -6905,7 +6905,7 @@ function we_tag_write($attribs, $content)
 					$path = $GLOBALS["we_$type"][$name]->Path;
 					if ($type == "object") {
 						$classname = f(
-								"SELECT Text FROM " . OBJECT_TABLE . " WHERE ID='" . $classid . "'", 
+								"SELECT Text FROM " . OBJECT_TABLE . " WHERE ID='" . abs($classid) . "'", 
 								"Text", 
 								$GLOBALS["DB_WE"]);
 						if ($triggerid) {

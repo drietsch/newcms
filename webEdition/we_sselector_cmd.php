@@ -266,7 +266,7 @@ if(isset($_REQUEST["cmd"]) && $_REQUEST["cmd"]=="save_last") {
 		} else if(isset($_REQUEST["cmd"]) && $_REQUEST["cmd"]=="delete_file") {
 			if(isset($_REQUEST["fid"])) {
 				$foo=0;
-				$foo=f("SELECT ID FROM ".FILE_TABLE." WHERE Path='".$_REQUEST["fid"]."';",0,$DB_WE);
+				$foo=f("SELECT ID FROM ".FILE_TABLE." WHERE Path='".mysql_real_escape_string($_REQUEST["fid"])."';",0,$DB_WE);
 				if(ereg($_SERVER["DOCUMENT_ROOT"]."/webEdition/",$_REQUEST["fid"]) || ($_REQUEST["fid"] == $_SERVER["DOCUMENT_ROOT"]."/webEdition") || strpos("..",$_REQUEST["fid"]) || $foo || $_REQUEST["fid"]==$_SERVER["DOCUMENT_ROOT"] || $_REQUEST["fid"]."/"==$_SERVER["DOCUMENT_ROOT"]) {
 					print we_message_reporting::getShowMessageCall($l_alert["access_denied"], WE_MESSAGE_ERROR);
 				} else {

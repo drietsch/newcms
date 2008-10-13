@@ -115,12 +115,12 @@ class weVersionsSearch {
 					if(isset($_REQUEST['searchFields'][$k])) {
 						if($v=="modifierID") {
 							if(isset($_REQUEST['search'][$k])) {
-								$where .= " AND ".$v." = '".$_REQUEST['search'][$k]."'";
+								$where .= " AND ".$v." = '".mysql_real_escape_string($_REQUEST['search'][$k])."'";
 							}
 						}
 						if($v=="status") {
 							if(isset($_REQUEST['search'][$k])) {
-								$where .= " AND ".$v." = '".$_REQUEST['search'][$k]."'";
+								$where .= " AND ".$v." = '".mysql_real_escape_string($_REQUEST['search'][$k])."'";
 							}
 						}
 						if($v=="timestamp") {
@@ -135,19 +135,19 @@ class weVersionsSearch {
                                   
                                   switch ($_REQUEST['location'][$k]) {
 										case "IS":
-											$where .= " AND ".$v." BETWEEN '" . $timestampStart . "' AND '" . $timestampEnd."'";
+											$where .= " AND ".$v." BETWEEN '" . abs($timestampStart) . "' AND '" . abs($timestampEnd)."'";
 										break;
 										case "<":
-											$where .= " AND ".$v."" . $_REQUEST['location'][$k] . " '" . $timestampStart . "'";
+											$where .= " AND ".$v."" . $_REQUEST['location'][$k] . " '" . abs($timestampStart) . "'";
 										break;
 										case "<=":
-											$where .= " AND ".$v."" . $_REQUEST['location'][$k] . " '" . $timestampEnd . "'";
+											$where .= " AND ".$v."" . $_REQUEST['location'][$k] . " '" . abs($timestampEnd) . "'";
 										break;
 										case ">":
-											$where .= " AND ".$v."" . $_REQUEST['location'][$k] . " '" . $timestampEnd . "'";
+											$where .= " AND ".$v."" . $_REQUEST['location'][$k] . " '" . abs($timestampEnd) . "'";
 										break;
 										case ">=":
-											$where .= " AND ".$v."" . $_REQUEST['location'][$k] . " '" . $timestampStart . "'";
+											$where .= " AND ".$v."" . $_REQUEST['location'][$k] . " '" . abs($timestampStart) . "'";
 										break;
 									}   
                              }

@@ -1294,7 +1294,7 @@ class we_versions_wizard
 			$seconds = $version_reset['reset_seconds'];
 			$timestamp = mktime($hour, $minutes, $seconds, $month, $day, $year);
 			
-			$timestampWhere = " timestamp< '" . $timestamp . "' ";
+			$timestampWhere = " timestamp< '" . abs($timestamp) . "' ";
 		}
 		
 		$parts = array();
@@ -1322,7 +1322,7 @@ class we_versions_wizard
 		
 		$cont = array();
 		$docIds = array();
-		$query = "SELECT ID,documentID,documentTable,Text,Path,ContentType,timestamp,MAX(version) as version FROM " . VERSIONS_TABLE . " WHERE timestamp<='" . $timestamp . "'  ";
+		$query = "SELECT ID,documentID,documentTable,Text,Path,ContentType,timestamp,MAX(version) as version FROM " . VERSIONS_TABLE . " WHERE timestamp<='" . abs($timestamp) . "'  ";
 		$query .= " AND " . $w . " ";
 		$query .= " GROUP BY  documentTable,documentID ";
 		$query .= " ORDER BY version DESC ";

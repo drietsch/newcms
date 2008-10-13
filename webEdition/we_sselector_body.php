@@ -236,7 +236,7 @@ if( isset($_REQUEST["nf"]) && $_REQUEST["nf"]=="new_folder"){ ?>
 
 foreach ($final as $key => $entry) {
 	$name=ereg_replace("//","/",$org."/".$entry);
-	$DB_WE->query("SELECT ID FROM ".FILE_TABLE." WHERE Path='$name'");
+	$DB_WE->query("SELECT ID FROM ".FILE_TABLE." WHERE Path='".mysql_real_escape_string($name)."'");
 
 	$isfolder = is_dir($dir."/".$entry) ? true : false;
 

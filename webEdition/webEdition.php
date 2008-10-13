@@ -69,7 +69,7 @@ if(!isset($_REQUEST["we_cmd"][0]) || $_REQUEST["we_cmd"][0] != "edit_include_doc
 	$DB_WE->query("
 		DELETE
 		FROM ".LOCK_TABLE."
-		WHERE UserID='".$_SESSION["user"]["ID"]."'
+		WHERE UserID='".abs($_SESSION["user"]["ID"])."'
 	");
 }
 $DB_WE->query("
