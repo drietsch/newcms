@@ -29,6 +29,8 @@ class rpcPublishDocsCmd extends rpcCmd {
 	function execute() {
 						
 		$db = new DB_WE();
+		
+		protect();
 			
 		$docs = array();
 		
@@ -44,7 +46,7 @@ class rpcPublishDocsCmd extends rpcCmd {
 			foreach($docs as $k=>$v) {
 				if(!empty($v)) {
 					foreach($v as $key=>$val) {
-						$ContentType = f("SELECT ContentType FROM `".$k."` WHERE ID='".$val."'","ContentType",$db);
+						$ContentType = f("SELECT ContentType FROM `".mysql_real_escape_string($k)."` WHERE ID='".abs($val)."'","ContentType",$db);
 						$object=weContentProvider::getInstance($ContentType, $val, $k);
 						we_temporaryDocument::delete($object->ID);
 						$object->initByID($object->ID);
