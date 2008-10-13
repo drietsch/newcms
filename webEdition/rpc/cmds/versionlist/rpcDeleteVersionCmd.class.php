@@ -29,6 +29,8 @@ class rpcDeleteVersionCmd extends rpcCmd {
 		$db = new DB_WE();
 			
 		$ids = array();
+		
+		protect();
 
 		if(isset($_REQUEST["we_cmd"]["deleteVersion"]) && $_REQUEST["we_cmd"]["deleteVersion"]!="") {
 			
