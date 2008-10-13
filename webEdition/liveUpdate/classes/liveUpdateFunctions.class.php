@@ -497,10 +497,10 @@ class liveUpdateFunctions {
 
            if ($isNew) {
 
-               $queries[] = "ALTER TABLE $tableName ADD " . $fieldInfo['Field'] . " " . $fieldInfo['Type'] . " $null $default $extra";
+               $queries[] = "ALTER TABLE $tableName ADD " . mysql_real_escape_string($fieldInfo['Field']) . " " . mysql_real_escape_string($fieldInfo['Type']) . " $null $default $extra";
            } else {
 
-               $queries[] = "ALTER TABLE $tableName CHANGE " . $fieldInfo['Field'] . " " . $fieldInfo['Field'] . " " . $fieldInfo['Type'] . " $null $default $extra";
+               $queries[] = "ALTER TABLE $tableName CHANGE " . mysql_real_escape_string($fieldInfo['Field']) . " " . mysql_real_escape_string($fieldInfo['Field']) . " " . mysql_real_escape_string($fieldInfo['Type']) . " $null $default $extra";
            }
        }
        return $queries;
@@ -532,7 +532,7 @@ class liveUpdateFunctions {
 					break;
 				}
 
-				$queries[] = "ALTER TABLE $tableName ADD " . $index . " ($key)";
+				$queries[] = "ALTER TABLE $tableName ADD " . addslashes($index) . " (".addslashes($key).")";
 			}
 		}
 		return $queries;
