@@ -300,7 +300,7 @@ class liveUpdateFrames {
 				}
 			}
 		
-		
+
 		if ($this->Data['allEntries']) {
 			
 			/*
@@ -311,7 +311,7 @@ class liveUpdateFrames {
 				FROM " . UPDATE_LOG_TABLE . "
 				$condition
 				ORDER BY datum DESC
-				LIMIT " . $_REQUEST['start'] . ", " . $this->Data['amountPerPage'];
+				LIMIT " . abs($_REQUEST['start']) . ", " . abs($this->Data['amountPerPage']);
 			
 			$this->Data['logEntries'] = array();
 			
