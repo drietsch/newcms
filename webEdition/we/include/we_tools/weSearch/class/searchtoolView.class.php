@@ -2513,7 +2513,7 @@ class searchtoolView extends weToolView
 						$whereQuery = "1 " . $where . "";
 						
 						//query for restrict users for FILE_TABLE, VERSIONS_TABLE AND OBJECT_FILES_TABLE
-						$restrictUserQuery = " AND ((" . $_table . ".RestrictOwners='0' OR " . $_table . ".RestrictOwners= '" . $_SESSION["user"]["ID"] . "') OR (" . $_table . ".Owners LIKE '%," . $_SESSION["user"]["ID"] . ",%'))";
+						$restrictUserQuery = " AND ((" . mysql_real_escape_string($_table) . ".RestrictOwners='0' OR " . mysql_real_escape_string($_table) . ".RestrictOwners= '" . abs($_SESSION["user"]["ID"]) . "') OR (" . mysql_real_escape_string($_table) . ".Owners LIKE '%," . abs($_SESSION["user"]["ID"]) . ",%'))";
 						
 						if ($_table == FILE_TABLE) {
 							$whereQuery .= $restrictUserQuery;
@@ -2527,7 +2527,7 @@ class searchtoolView extends weToolView
 						
 						if (defined("OBJECT_TABLE")) {
 							if ($_table == OBJECT_TABLE) {
-								$whereQuery .= "AND ((" . $_table . ".RestrictUsers='0' OR " . $_table . ".RestrictUsers= '" . $_SESSION["user"]["ID"] . "') OR (" . $_table . ".Users LIKE '%," . $_SESSION["user"]["ID"] . ",%')) ";
+								$whereQuery .= "AND ((" . mysql_real_escape_string($_table) . ".RestrictUsers='0' OR " . mysql_real_escape_string($_table) . ".RestrictUsers= '" . abs($_SESSION["user"]["ID"]) . "') OR (" . mysql_real_escape_string($_table) . ".Users LIKE '%," . abs($_SESSION["user"]["ID"]) . ",%')) ";
 							}
 						}
 						
@@ -2557,12 +2557,12 @@ class searchtoolView extends weToolView
 							
 							if (!$isCheckedFileTable && $isCheckedObjFileTable) {
 								$_SESSION['weSearch']['onlyDocs'] = false;
-								$whereQuery .= " AND " . $_table . ".documentTable='" . OBJECT_FILES_TABLE . "' ";
+								$whereQuery .= " AND " . mysql_real_escape_string($_table) . ".documentTable='" . OBJECT_FILES_TABLE . "' ";
 								$_SESSION['weSearch']['ObjectsAndDocs'] = false;
 							}
 							if ($isCheckedFileTable && !$isCheckedObjFileTable) {
 								$_SESSION['weSearch']['onlyObjects'] = false;
-								$whereQuery .= " AND " . $_table . ".documentTable='" . FILE_TABLE . "' ";
+								$whereQuery .= " AND " . mysql_real_escape_string($_table) . ".documentTable='" . FILE_TABLE . "' ";
 								$_SESSION['weSearch']['ObjectsAndDocs'] = false;
 							}
 						}
@@ -2642,12 +2642,12 @@ class searchtoolView extends weToolView
 				$_result[$k]["Description"] = "";
 				if ($_result[$k]["docTable"] == FILE_TABLE && $_result[$k]['Published'] >= $_result[$k]['ModDate'] && $_result[$k]['Published'] != 0) {
 					$DB_WE->query(
-							"SELECT a.ID, c.Dat FROM (" . FILE_TABLE . " a LEFT JOIN " . LINK_TABLE . " b ON (a.ID=b.DID)) LEFT JOIN " . CONTENT_TABLE . " c ON (b.CID=c.ID) WHERE a.ID='" . $_result[$k]["docID"] . "' AND b.Name='Description' AND b.DocumentTable='" . FILE_TABLE . "'");
+							"SELECT a.ID, c.Dat FROM (" . FILE_TABLE . " a LEFT JOIN " . LINK_TABLE . " b ON (a.ID=b.DID)) LEFT JOIN " . CONTENT_TABLE . " c ON (b.CID=c.ID) WHERE a.ID='" . abs($_result[$k]["docID"]) . "' AND b.Name='Description' AND b.DocumentTable='" . FILE_TABLE . "'");
 					while ($DB_WE->next_record()) {
 						$_result[$k]["Description"] = $DB_WE->f('Dat');
 					}
 				} elseif ($_result[$k]["docTable"] == FILE_TABLE) {
-					$query2 = "SELECT DocumentObject  FROM " . TEMPORARY_DOC_TABLE . " WHERE DocumentID = '" . $_result[$k]["docID"] . "' AND DocTable = '" . FILE_TABLE . "' AND Active = '1'";
+					$query2 = "SELECT DocumentObject  FROM " . TEMPORARY_DOC_TABLE . " WHERE DocumentID = '" . abs($_result[$k]["docID"]) . "' AND DocTable = '" . FILE_TABLE . "' AND Active = '1'";
 					$_db2->query($query2);
 					while ($_db2->next_record()) {
 						$tempDoc = unserialize($_db2->f('DocumentObject'));
@@ -2731,7 +2731,7 @@ class searchtoolView extends weToolView
 							$resetDisabled = true;
 						}
 						
-						$query = "SELECT ID,timestamp, version, active FROM " . VERSIONS_TABLE . " WHERE ID='" . $k . "'";
+						$query = "SELECT ID,timestamp, version, active FROM " . VERSIONS_TABLE . " WHERE ID='" . abs($k) . "'";
 						
 						$DB_WE->query($query);
 						while ($DB_WE->next_record()) {
@@ -2745,7 +2745,7 @@ class searchtoolView extends weToolView
 								"javascript:previewVersion('" . $ID . "');");
 						
 						$fileExists = f(
-								"SELECT ID FROM " . $_result[$f]["docTable"] . " WHERE ID= '" . $_result[$f]["docID"] . "' ", 
+								"SELECT ID FROM " . mysql_real_escape_string($_result[$f]["docTable"]) . " WHERE ID= '" . abs($_result[$f]["docID"]) . "' ", 
 								"ID", 
 								$DB_WE);
 						
@@ -2758,7 +2758,7 @@ class searchtoolView extends weToolView
 						if ($_result[$f]['ContentType'] == "objectFile") {
 							
 							$classExists = f(
-									"SELECT ID FROM " . OBJECT_TABLE . " WHERE ID= '" . $_result[$f]["TableID"] . "' ", 
+									"SELECT ID FROM " . OBJECT_TABLE . " WHERE ID= '" . abs($_result[$f]["TableID"]) . "' ", 
 									"ID", 
 									$DB_WE);
 							if ($classExists == "") {
@@ -2792,7 +2792,7 @@ class searchtoolView extends weToolView
 					}
 				}
 				$docExists = f(
-						"SELECT ID FROM " . $_result[$f]["docTable"] . " WHERE ID= '" . $_result[$f]["docID"] . "' ", 
+						"SELECT ID FROM " . mysql_real_escape_string($_result[$f]["docTable"]) . " WHERE ID= '" . abs($_result[$f]["docID"]) . "' ", 
 						"ID", 
 						$DB_WE);
 				
@@ -2886,7 +2886,7 @@ class searchtoolView extends weToolView
 					}
 					$templateText = $GLOBALS['l_weSearch']["no_template"];
 					if ($templateID != "") {
-						$sql = "SELECT ID, Text FROM " . TEMPLATES_TABLE . " WHERE ID = $templateID";
+						$sql = "SELECT ID, Text FROM " . TEMPLATES_TABLE . " WHERE ID = ".abs($templateID)."";
 						$DB_WE->query($sql);
 						while ($DB_WE->next_record()) {
 							$templateText = shortenPath($DB_WE->f('Text'), 20) . " (ID=" . $DB_WE->f('ID') . ")";
@@ -2906,7 +2906,7 @@ class searchtoolView extends weToolView
 					
 					if (weContentProvider::IsBinary($_result[$f]["docID"])) {
 						$DB_WE->query(
-								"SELECT a.ID, c.Dat FROM (" . FILE_TABLE . " a LEFT JOIN " . LINK_TABLE . " b ON (a.ID=b.DID)) LEFT JOIN " . CONTENT_TABLE . " c ON (b.CID=c.ID) WHERE b.DID='" . $_result[$f]["docID"] . "' AND b.Name='" . $_tagName . "' AND b.DocumentTable='" . FILE_TABLE . "'");
+								"SELECT a.ID, c.Dat FROM (" . FILE_TABLE . " a LEFT JOIN " . LINK_TABLE . " b ON (a.ID=b.DID)) LEFT JOIN " . CONTENT_TABLE . " c ON (b.CID=c.ID) WHERE b.DID='" . abs($_result[$f]["docID"]) . "' AND b.Name='" . mysql_real_escape_string($_tagName) . "' AND b.DocumentTable='" . FILE_TABLE . "'");
 						$metafields[$_tagName] = "";
 						while ($DB_WE->next_record()) {
 							$metafields[$_tagName] = shortenPath($DB_WE->f('Dat'), 45);
