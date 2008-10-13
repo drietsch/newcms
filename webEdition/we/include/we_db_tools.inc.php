@@ -51,7 +51,7 @@ function doUpdateQuery($DB_WE, $table, $hash, $where)
 	for ($i = 0; $i < sizeof($tableInfo); $i++) {
 		$fieldName = $tableInfo[$i]["name"];
 		if ($fieldName != "ID") {
-			$sql .= $fieldName . "='" . (isset($hash[$fieldName]) ? addslashes($hash[$fieldName]) : "") . "',";
+			$sql .= $fieldName . "='" . (isset($hash[$fieldName]) ? mysql_real_escape_string($hash[$fieldName]) : "") . "',";
 		}
 	}
 	$sql = ereg_replace("(.+),$", "\\1", $sql) . " $where";
@@ -66,7 +66,7 @@ function doUpdateQuery2($DB_WE, $table, $hash, $where)
 	for ($i = 0; $i < sizeof($tableInfo); $i++) {
 		$fieldName = $tableInfo[$i]["name"];
 		if ($fieldName != "ID" && isset($hash[$fieldName])) {
-			$sql .= $fieldName . "='" . addslashes($hash[$fieldName]) . "',";
+			$sql .= $fieldName . "='" . mysql_real_escape_string($hash[$fieldName]) . "',";
 		}
 	}
 	$sql = ereg_replace("(.+),$", "\\1", $sql) . " $where";
@@ -84,7 +84,7 @@ function doInsetQuery($DB_WE, $table, $hash)
 	for ($i = 0; $i < sizeof($tableInfo); $i++) {
 		$fieldName = $tableInfo[$i]["name"];
 		array_push($fn, $fieldName);
-		$values .= "'" . addslashes(isset($hash[$fieldName . "_autobr"]) ? nl2br($hash[$fieldName]) : $hash[$fieldName]) . "',";
+		$values .= "'" . mysql_real_escape_string(isset($hash[$fieldName . "_autobr"]) ? nl2br($hash[$fieldName]) : $hash[$fieldName]) . "',";
 	}
 	$ti_s = implode(",", $fn);
 	$values = ereg_replace("(.+),$", "\\1", $values);
