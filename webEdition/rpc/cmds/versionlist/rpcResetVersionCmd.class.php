@@ -31,6 +31,8 @@ class rpcResetVersionCmd extends rpcCmd {
 		$db = new DB_WE();
 
 		$id = $_REQUEST["id"];
+		
+		protect();
 
 		if(stristr($id, ',')) {
 			$ids = explode(",", $id);
@@ -57,7 +59,7 @@ class rpcResetVersionCmd extends rpcCmd {
 				$version = $_REQUEST["version"];
 			}
 			else {
-				$version = f("SELECT version FROM " . VERSIONS_TABLE . " WHERE ID='".$id."' ","version",$db);
+				$version = f("SELECT version FROM " . VERSIONS_TABLE . " WHERE ID='".abs($id)."' ","version",$db);
 			}
 			
 			$docID = (isset($_REQUEST["documentID"]) && $_REQUEST["documentID"]!=0) ? $_REQUEST["documentID"] : "";
