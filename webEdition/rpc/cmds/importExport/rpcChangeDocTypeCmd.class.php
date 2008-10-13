@@ -28,7 +28,7 @@ class rpcChangeDocTypeCmd extends rpcCmd {
 		//$categories = "";
 		if (isset($_REQUEST['docType'])) {
 			if ($_REQUEST['docType'] >= 0) {
-				$values = getHash("SELECT * FROM ".DOC_TYPES_TABLE." WHERE ID='".$_REQUEST['docType']."'",$GLOBALS["DB_WE"]);	
+				$values = getHash("SELECT * FROM ".DOC_TYPES_TABLE." WHERE ID='".abs($_REQUEST['docType'])."'",$GLOBALS["DB_WE"]);	
 				
 				$ids_arr = makeArrayFromCSV($values["Templates"]);
 				
@@ -62,7 +62,7 @@ class rpcChangeDocTypeCmd extends rpcCmd {
 				}
 				$_templateName = "";
 				if (isset($values["TemplateID"]) && $values["TemplateID"]>0) {
-					$_templateName = f("SELECT Path FROM " . TEMPLATES_TABLE . " WHERE ID=" . $values["TemplateID"], "Path" ,$GLOBALS["DB_WE"]);
+					$_templateName = f("SELECT Path FROM " . TEMPLATES_TABLE . " WHERE ID=" . abs($values["TemplateID"]), "Path" ,$GLOBALS["DB_WE"]);
 				}
 				$resp->setData("elements",
 						array(

@@ -32,7 +32,7 @@ class rpcCopyNavigationFolderCmd extends rpcCmd {
 			include_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_tools/navigation/class/weNavigation.class.php');
 			
 			$db = new DB_WE();
-			$query = "SELECT * FROM " . NAVIGATION_TABLE . " WHERE Path LIKE '".addslashes($_REQUEST['we_cmd'][2])."/%' ORDER BY Path";
+			$query = "SELECT * FROM " . NAVIGATION_TABLE . " WHERE Path LIKE '".mysql_real_escape_string($_REQUEST['we_cmd'][2])."/%' ORDER BY Path";
 			$db->query($query);
 			$result = $db->getAll();
 			$querySet = "";
@@ -48,10 +48,10 @@ class rpcCopyNavigationFolderCmd extends rpcCmd {
 							break;
 						case "Path" :
 							$path = str_replace($_REQUEST['we_cmd'][2],$_REQUEST['we_cmd'][0],$val);
-							$querySet .= ", '$path'"; 
+							$querySet .= ", '".mysql_real_escape_string($path)."'"; 
 							break;
 						case "ParentID" :
-							$querySet .= ", '".$mapedId[$val]."'";
+							$querySet .= ", '".abs($mapedId[$val])."'";
 							break;
 						default :
 							$querySet .= ", '$val'";

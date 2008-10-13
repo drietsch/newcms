@@ -1087,17 +1087,17 @@ class doclistView {
 					$whereQuery = "1 " . $where . "";
 					
 					if($_table==FILE_TABLE) {
-						$whereQuery .= " AND ((RestrictOwners='0' OR RestrictOwners= '".$_SESSION["user"]["ID"]."') OR (Owners LIKE '%,".$_SESSION["user"]["ID"].",%'))";
+						$whereQuery .= " AND ((RestrictOwners='0' OR RestrictOwners= '".abs($_SESSION["user"]["ID"])."') OR (Owners LIKE '%,".abs($_SESSION["user"]["ID"]).",%'))";
 					}
 					
 					if(defined("OBJECT_FILES_TABLE")) {
 						if($_table==OBJECT_FILES_TABLE) {
-							$whereQuery .= " AND ((RestrictOwners='0' OR RestrictOwners= '".$_SESSION["user"]["ID"]."') OR (Owners LIKE '%,".$_SESSION["user"]["ID"].",%'))";
+							$whereQuery .= " AND ((RestrictOwners='0' OR RestrictOwners= '".abs($_SESSION["user"]["ID"])."') OR (Owners LIKE '%,".abs($_SESSION["user"]["ID"]).",%'))";
 						}
 					}
 					if(defined("OBJECT_TABLE")) {
 						if($_table==OBJECT_TABLE) {
-							$whereQuery .= "AND ((RestrictUsers='0' OR RestrictUsers= '".$_SESSION["user"]["ID"]."') OR (Users LIKE '%,".$_SESSION["user"]["ID"].",%')) ";
+							$whereQuery .= "AND ((RestrictUsers='0' OR RestrictUsers= '".abs($_SESSION["user"]["ID"])."') OR (Users LIKE '%,".abs($_SESSION["user"]["ID"]).",%')) ";
 						}
 					}
 
@@ -1132,12 +1132,12 @@ class doclistView {
 			foreach ( $_result as $k => $v ) {
 				$_result [$k] ["Description"] = "";
 				if ($_result [$k] ["Table"] == FILE_TABLE && $_result [$k] ['Published'] >= $_result [$k] ['ModDate'] && $_result [$k] ['Published'] != 0) {
-					$DB_WE->query ( "SELECT a.ID, c.Dat FROM (" . FILE_TABLE . " a LEFT JOIN " . LINK_TABLE . " b ON (a.ID=b.DID)) LEFT JOIN " . CONTENT_TABLE . " c ON (b.CID=c.ID) WHERE a.ID='" . $_result [$k] ["ID"] . "' AND b.Name='Description' AND b.DocumentTable='" . FILE_TABLE . "'" );
+					$DB_WE->query ( "SELECT a.ID, c.Dat FROM (" . FILE_TABLE . " a LEFT JOIN " . LINK_TABLE . " b ON (a.ID=b.DID)) LEFT JOIN " . CONTENT_TABLE . " c ON (b.CID=c.ID) WHERE a.ID='" . abs($_result [$k] ["ID"]) . "' AND b.Name='Description' AND b.DocumentTable='" . FILE_TABLE . "'" );
 					while ( $DB_WE->next_record () ) {
 						$_result [$k] ["Description"] = $DB_WE->f ( 'Dat' );
 					}
 				} else {
-					$query2 = "SELECT DocumentObject  FROM " . TEMPORARY_DOC_TABLE . " WHERE DocumentID = '" . $_result [$k] ["ID"] . "' AND DocTable = '" . FILE_TABLE . "' AND Active = '1'";
+					$query2 = "SELECT DocumentObject  FROM " . TEMPORARY_DOC_TABLE . " WHERE DocumentID = '" . abs($_result [$k] ["ID"]) . "' AND DocTable = '" . FILE_TABLE . "' AND Active = '1'";
 					$_db2->query ( $query2 );
 					while ( $_db2->next_record () ) {
 						$tempDoc = unserialize ( $_db2->f ( 'DocumentObject' ) );
@@ -1281,7 +1281,7 @@ class doclistView {
 					$_tagName = $_defined_fields [$i] ["tag"];
 					
 					if (weContentProvider::IsBinary ( $_result [$f] ["docID"] )) {
-						$DB_WE->query ( "SELECT a.ID, c.Dat FROM (" . FILE_TABLE . " a LEFT JOIN " . LINK_TABLE . " b ON (a.ID=b.DID)) LEFT JOIN " . CONTENT_TABLE . " c ON (b.CID=c.ID) WHERE b.DID='" . $_result [$f] ["docID"] . "' AND b.Name='" . $_tagName . "' AND b.DocumentTable='" . FILE_TABLE . "'" );
+						$DB_WE->query ( "SELECT a.ID, c.Dat FROM (" . FILE_TABLE . " a LEFT JOIN " . LINK_TABLE . " b ON (a.ID=b.DID)) LEFT JOIN " . CONTENT_TABLE . " c ON (b.CID=c.ID) WHERE b.DID='" . abs($_result [$f] ["docID"]) . "' AND b.Name='" . mysql_real_escape_string($_tagName) . "' AND b.DocumentTable='" . FILE_TABLE . "'" );
 						$metafields [$_tagName] = "";
 						while ( $DB_WE->next_record () ) {
 							$metafields [$_tagName] = shortenPath ( $DB_WE->f ( 'Dat' ), 45 );
