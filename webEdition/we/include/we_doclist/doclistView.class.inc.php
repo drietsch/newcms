@@ -1262,7 +1262,7 @@ class doclistView {
 					}
 					$templateText = $GLOBALS ['l_weSearch'] ["no_template"];
 					if ($templateID != "") {
-						$sql = "SELECT ID, Text FROM " . TEMPLATES_TABLE . " WHERE ID = $templateID";
+						$sql = "SELECT ID, Text FROM " . TEMPLATES_TABLE . " WHERE ID = ".abs($templateID)."";
 						$DB_WE->query ( $sql );
 						while ( $DB_WE->next_record () ) {
 							$templateText = shortenPath ( $DB_WE->f ( 'Text' ), 20 ) . " (ID=" . $DB_WE->f ( 'ID' ) . ")";
