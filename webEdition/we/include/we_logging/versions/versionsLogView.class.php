@@ -251,7 +251,7 @@ class versionsLogView {
 			$out .= $GLOBALS['l_logging']['user'].":";
 			$out .= '</td>';
 			$out .= '<td width="auto">';
-			$out .= f("SELECT Text FROM `".USER_TABLE."` WHERE ID='".$content[$i]['userID']."'","Text", new DB_WE());
+			$out .= f("SELECT Text FROM `".USER_TABLE."` WHERE ID='".abs($content[$i]['userID'])."'","Text", new DB_WE());
 			$out .= '</td>';
 			$out .= '</tr>';
 			$out .= '<tr>';
@@ -320,7 +320,7 @@ class versionsLogView {
 		
 		$db = new DB_WE();
 				
-		$db->query("SELECT data,action FROM `".VERSIONS_TABLE_LOG."` WHERE ID='".$logId."'");
+		$db->query("SELECT data,action FROM `".VERSIONS_TABLE_LOG."` WHERE ID='".abs($logId)."'");
 		while($db->next_record()){
 			$data = $db->f("data");
 			$action = $db->f("action");
