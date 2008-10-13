@@ -232,7 +232,7 @@ class we_linklist
 		if (isset($this->cache[$id])) {
 			$row = $this->cache[$id];
 		} else {
-			$row = getHash("SELECT IsDynamic,Path FROM " . FILE_TABLE . " WHERE ID=$id", $this->db);
+			$row = getHash("SELECT IsDynamic,Path FROM " . FILE_TABLE . " WHERE ID=".abs($id)."", $this->db);
 			$this->cache[$id] = $row;
 		}
 		return (isset($row["Path"]) ? $row["Path"] : '') . ($params ? ("?" . $params) : "");
@@ -319,19 +319,19 @@ class we_linklist
 	function getHrefInt($nr)
 	{
 		$id = $this->getID($nr);
-		return $id ? f("SELECT Path FROM " . FILE_TABLE . " WHERE ID=$id", "Path", $this->db) : "";
+		return $id ? f("SELECT Path FROM " . FILE_TABLE . " WHERE ID=".abs($id)."", "Path", $this->db) : "";
 	}
 
 	function getHrefObj($nr)
 	{
 		$id = $this->getObjID($nr);
-		return $id ? f("SELECT Path FROM " . OBJECT_FILES_TABLE . " WHERE ID=$id", "Path", $this->db) : "";
+		return $id ? f("SELECT Path FROM " . OBJECT_FILES_TABLE . " WHERE ID=".abs($id)."", "Path", $this->db) : "";
 	}
 
 	function getImageSrcInt($nr)
 	{
 		$id = $this->getImageID($nr);
-		return $id ? f("SELECT Path FROM " . FILE_TABLE . " WHERE ID=$id", "Path", $this->db) : "";
+		return $id ? f("SELECT Path FROM " . FILE_TABLE . " WHERE ID=".abs($id)."", "Path", $this->db) : "";
 	}
 
 	function getString()

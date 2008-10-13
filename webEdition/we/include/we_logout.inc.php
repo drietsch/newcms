@@ -26,11 +26,11 @@ include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/" . "we.inc.ph
 $DB_WE->query("
 	DELETE
 	FROM " . LOCK_TABLE . "
-	WHERE UserID='" . $_SESSION["user"]["ID"] . "'");
+	WHERE UserID='" . abs($_SESSION["user"]["ID"]) . "'");
 $DB_WE->query("
 	UPDATE " . USER_TABLE . "
 	SET Ping=0
-	WHERE ID='" . $_SESSION["user"]["ID"] . "'");
+	WHERE ID='" . abs($_SESSION["user"]["ID"]) . "'");
 
 ?>
 <script language="JavaScript" type="text/javascript">
@@ -40,7 +40,7 @@ $DB_WE->query("
 cleanTempFiles(1);
 
 if (isset($_SESSION["prefs"]["userID"])) { //	bugfix 2585, only update prefs, when userId is available
-	doUpdateQuery($DB_WE, PREFS_TABLE, $_SESSION["prefs"], " WHERE userID=" . $_SESSION["prefs"]["userID"]);
+	doUpdateQuery($DB_WE, PREFS_TABLE, $_SESSION["prefs"], " WHERE userID=" . abs($_SESSION["prefs"]["userID"]));
 }
 
 //	getJSCommand

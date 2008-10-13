@@ -932,7 +932,7 @@ class we_import_files
 			
 			// if file exists we have to see if we should create a new one or overwrite it!
 			if ($file_id = f(
-					"SELECT ID FROM " . FILE_TABLE . " WHERE Path='" . $we_doc->Path . "'", 
+					"SELECT ID FROM " . FILE_TABLE . " WHERE Path='" . mysql_real_escape_string($we_doc->Path) . "'", 
 					"ID", 
 					$GLOBALS["DB_WE"])) {
 				if ($this->sameName == "overwrite") {
@@ -943,7 +943,7 @@ class we_import_files
 						$z = 0;
 						$footext = $we_doc->Filename . "_" . $z . $we_doc->Extension;
 						while (f(
-								"SELECT ID FROM " . FILE_TABLE . " WHERE Text='$footext' AND ParentID='" . $this->importToID . "'", 
+								"SELECT ID FROM " . FILE_TABLE . " WHERE Text='".mysql_real_escape_string($footext)."' AND ParentID='" . abs($this->importToID) . "'", 
 								"ID", 
 								$GLOBALS["DB_WE"])) {
 							$z++;

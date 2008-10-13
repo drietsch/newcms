@@ -679,7 +679,7 @@ function initDocument($formname = "we_global_form", $tid = "", $doctype = "", $c
 			$GLOBALS["we_document"][$formname]->initByID($_REQUEST["we_editDocument_ID"], FILE_TABLE);
 		} else {
 			$dt = f(
-					"SELECT ID FROM " . DOC_TYPES_TABLE . " WHERE DocType like '" . $doctype . "'", 
+					"SELECT ID FROM " . DOC_TYPES_TABLE . " WHERE DocType like '" . mysql_real_escape_string($doctype) . "'", 
 					"ID", 
 					$GLOBALS["we_document"][$formname]->DB_WE);
 			$GLOBALS["we_document"][$formname]->changeDoctype($dt);
@@ -949,7 +949,7 @@ function makeIDsFromPathCVS($paths, $table = FILE_TABLE, $prePostKomma = true)
 		$id = f("
 			SELECT ID
 			FROM $table
-			WHERE Path='$path'", "ID", $db);
+			WHERE Path='".mysql_real_escape_string($path)."'", "ID", $db);
 		if ($id)
 			array_push($outArray, $id);
 	}
@@ -1590,7 +1590,7 @@ function makeOwnersSql($useCreatorID = true)
 		we_getAliases($_SESSION["user"]["ID"], $aliases, $GLOBALS["DB_WE"]);
 		$q = $useCreatorID ? "CreatorID IN ('" . implode("','", $aliases) . "') OR " : "";
 		foreach ($aliases as $id)
-			$q .= "Owners like '%,$id,%' OR ";
+			$q .= "Owners like '%,".abs($id).",%' OR ";
 		$groups = array(
 			$_SESSION["user"]["ID"]
 		);
@@ -1900,7 +1900,7 @@ function getPathsFromTable($table = FILE_TABLE, $db = "", $type = FILE_ONLY, $ws
 		$qfoo = " ( ";
 		for ($i = 0; $i < sizeof($wsPaths); $i++)
 			if ((!$limitCSV) || in_workspace($idArr[$i], $limitCSV, FILE_TABLE, $db))
-				$qfoo .= " Path like '" . $wsPaths[$i] . "%' OR ";
+				$qfoo .= " Path like '" . mysql_real_escape_string($wsPaths[$i]) . "%' OR ";
 		if ($qfoo == " ( ")
 			$qfoo = "";
 		$qfoo = ereg_replace('^(.*)OR $', '\1', $qfoo);
@@ -1953,7 +1953,7 @@ function pushChilds(&$arr, $id, $table = FILE_TABLE, $isFolder = "")
 			"
 		SELECT ID
 		FROM $table
-		WHERE ParentID=".abs($id) . (($isFolder != "" || $isFolder == "0") ? (" AND IsFolder='$isFolder'") : ""));
+		WHERE ParentID=".abs($id) . (($isFolder != "" || $isFolder == "0") ? (" AND IsFolder='".mysql_real_escape_string($isFolder)."'") : ""));
 	while ($db->next_record())
 		pushChilds($arr, $db->f("ID"), $table, $isFolder);
 }
@@ -2876,7 +2876,7 @@ function setUserPref($name, $value)
 		$_SESSION['prefs'][$name] = $value;
 		$_db = new DB_WE();
 		$_db->query(
-				'UPDATE ' . PREFS_TABLE . ' SET ' . $name . '="' . mysql_real_escape_string($value) . '" WHERE userId=' . $_SESSION['prefs']['userID']);
+				'UPDATE ' . PREFS_TABLE . ' SET ' . $name . '="' . mysql_real_escape_string($value) . '" WHERE userId=' . abs($_SESSION['prefs']['userID']));
 		return true;
 	}
 	return false;

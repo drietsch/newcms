@@ -88,14 +88,14 @@ if ((!$we_alerttext) && isset($_FILES['we_uploadedFile']) && $_FILES['we_uploade
     $we_doc->Path=$we_doc->getParentPath().(($we_doc->getParentPath() != "/") ? "/" : "").$we_doc->Text;
 
     // if file exists we have to see if we should create a new one or overwrite it!
-    if($file_id = f("SELECT ID FROM ".FILE_TABLE." WHERE Path='".$we_doc->Path."'","ID",$DB_WE)){
+    if($file_id = f("SELECT ID FROM ".FILE_TABLE." WHERE Path='".mysql_real_escape_string($we_doc->Path)."'","ID",$DB_WE)){
 		if($overwrite=="yes"){
 			eval('$we_doc=new '.$we_doc->ClassName.'();');
 			$we_doc->initByID($file_id,FILE_TABLE);
 		}else{
 			$z=0;
 			$footext = $we_doc->Filename."_".$z.$we_doc->Extension;
-			while(f("SELECT ID FROM ".FILE_TABLE." WHERE Text='$footext' AND ParentID='$pid'","ID",$DB_WE)){
+			while(f("SELECT ID FROM ".FILE_TABLE." WHERE Text='".mysql_real_escape_string($footext)."' AND ParentID='$pid'","ID",$DB_WE)){
 				$z++;
 				$footext = $we_doc->Filename."_".$z.$we_doc->Extension;
 			}
