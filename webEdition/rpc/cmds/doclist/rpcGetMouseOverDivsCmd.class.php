@@ -25,6 +25,8 @@ class rpcGetMouseOverDivsCmd extends rpcCmd {
 	function execute() {
 		
 		$resp = new rpcResponse();
+		
+		protect();
 
 		include_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_classes/we_folder.inc.php');
 		include_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_doclist/doclistView.class.inc.php');
