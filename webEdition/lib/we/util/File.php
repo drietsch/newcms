@@ -511,12 +511,19 @@ class we_util_File
 
 	public static function insertIntoCleanUp($path, $date)
 	{
-		$DB_WE = new DB_WE();
-		if (f("SELECT Date FROM " . CLEAN_UP_TABLE . " WHERE Path='$path'", "Date", $DB_WE)) {
-			$DB_WE->query("UPDATE " . CLEAN_UP_TABLE . " SET DATE='$date' WHERE  Path='$path'");
-		} else {
-			$DB_WE->query("INSERT INTO " . CLEAN_UP_TABLE . " (Path,Date) VALUES ('$path','$date')");
+		/*
+		$DB_WE = we_io_DB::sharedAdapter();
+	
+		$dateQuery = $DB_WE->query("SELECT Date FROM " . CLEAN_UP_TABLE . " WHERE Path= ?", $path);
+		$date = $dateQuery->fetchColumn(0);
+		if($date!='') {
+			$DB_WE->query("UPDATE " . CLEAN_UP_TABLE . " SET DATE= ? WHERE  Path= ? ", array($date, $path));
 		}
+		else {
+			$DB_WE->query("INSERT INTO " . CLEAN_UP_TABLE . " (Path,Date) VALUES (?,?)", array($date, $path));
+		}
+		*/
+
 	}
 
 	public static function checkAndMakeFolder($path, $recursive = false)
@@ -589,16 +596,25 @@ class we_util_File
 
 	public static function insertIntoErrorLog($text)
 	{
-		$DB_WE = new DB_WE();
+		/*
+		$DB_WE = we_io_DB::sharedAdapter();
 		$time = time();
-		$DB_WE->query("INSERT INTO " . ERROR_LOG_TABLE . " (Text,Date) VALUES('" . addslashes($text) . "','$time')");
-	
+		$DB_WE->query("INSERT INTO " . ERROR_LOG_TABLE . " (Text,Date) VALUES(?,?)", array($text, $time));
+		*/
 	}
 
 	public static function getContentDirectFromDB($id, $name, $db = "")
 	{
-		$db = $db ? $db : new DB_WE();
-		return f("SELECT " . CONTENT_TABLE . ".Dat as Dat FROM " . LINK_TABLE . "," . CONTENT_TABLE . " WHERE " . LINK_TABLE . ".DID=$id AND " . LINK_TABLE . ".CID=" . CONTENT_TABLE . ".ID AND " . LINK_TABLE . ".Name='$name'", "Dat", $db);
+		/*
+		$db = we_io_DB::sharedAdapter();
+		$query = $db->query("SELECT " . CONTENT_TABLE . ".Dat as Dat FROM " . LINK_TABLE . "," . CONTENT_TABLE . " WHERE " . LINK_TABLE . ".DID=? AND " . LINK_TABLE . ".CID=" . CONTENT_TABLE . ".ID AND " . LINK_TABLE . ".Name=?", array($id, $name));
+		$res = $query->fetchColumn(0);
+		if($res!='') {
+			return true;
+		}
+		return false;
+		*/
+
 	}
 
 	/**
