@@ -28,6 +28,8 @@ class rpcDeleteVersionsWizardCmd extends rpcCmd {
 	function execute() {
 		
 		$resp = new rpcResponse();
+		
+		protect();
 
 		$db = new DB_WE();	
 		
@@ -45,7 +47,7 @@ class rpcDeleteVersionsWizardCmd extends rpcCmd {
 		if(isset($_SESSION['versions']['deleteWizardbinaryPath']) && is_array($_SESSION['versions']['deleteWizardbinaryPath']) && !empty($_SESSION['versions']['deleteWizardbinaryPath'])) {
 			foreach($_SESSION['versions']['deleteWizardbinaryPath'] as $k=>$v) {
 				$binaryPath = $_SERVER["DOCUMENT_ROOT"].$v;
-				$binaryPathUsed = f("SELECT binaryPath FROM " . VERSIONS_TABLE . " WHERE binaryPath='".$v."' LIMIT 1","binaryPath",$db);
+				$binaryPathUsed = f("SELECT binaryPath FROM " . VERSIONS_TABLE . " WHERE binaryPath='".mysql_real_escape_string($v)."' LIMIT 1","binaryPath",$db);
 	
 				if(file_exists($binaryPath) && $binaryPathUsed=="") {
 					@unlink($binaryPath);
@@ -71,33 +73,6 @@ class rpcDeleteVersionsWizardCmd extends rpcCmd {
 		$resp->setData("data",$pb) ;
 	
 		return $resp;
-		
-		
-		
-
-						
-//		$db = new DB_WE();
-//			
-//		$ids = array();
-//
-//		if(isset($_REQUEST["we_cmd"]["deleteVersion"]) && $_REQUEST["we_cmd"]["deleteVersion"]!="") {
-//			
-//			$ids = makeArrayFromCSV($_REQUEST["we_cmd"]["deleteVersion"]);	
-//
-//		}
-//
-//		if(!empty($ids)) {
-//			$_SESSION['versions']['logDeleteIds'] = array();
-//			foreach($ids as $k => $v) {
-//				weVersions::deleteVersion($v);		
-//			}
-//			if(!empty($_SESSION['versions']['logDeleteIds'])) {
-//				$versionslog = new versionsLog();
-//				$versionslog->saveVersionsLog($_SESSION['versions']['logDeleteIds'],WE_LOGGING_VERSIONS_DELETE);
-//			}
-//			unset($_SESSION['versions']['logDeleteIds']);
-//		}
-
 		
 	}
 }
