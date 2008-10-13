@@ -48,9 +48,9 @@ class treePopup{
 	function search($eintrag,$filter){
 		global $DB_WE;
 		if($this->showEntries){
-			$query = "SELECT * from $this->table WHERE ParentID='$eintrag'".(($filter) ? (" AND ($filter)") : "")." ORDER BY Text";
+			$query = "SELECT * from ".mysql_real_escape_string($this->table)." WHERE ParentID='".abs($eintrag)."'".(($filter) ? (" AND ($filter)") : "")." ORDER BY Text";
 		}else{
-			$query = "SELECT * from $this->table WHERE IsFolder=1 AND ParentID='$eintrag'".(($filter) ? (" AND ($filter)") : "")." ORDER BY Text";
+			$query = "SELECT * from ".mysql_real_escape_string($this->table)." WHERE IsFolder=1 AND ParentID='".abs($eintrag)."'".(($filter) ? (" AND ($filter)") : "")." ORDER BY Text";
 		}
 		$DB_WE->query($query);
 		$container = array();
