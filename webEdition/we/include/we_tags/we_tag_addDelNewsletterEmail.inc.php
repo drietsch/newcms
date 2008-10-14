@@ -76,7 +76,7 @@ function we_tag_addDelNewsletterEmail($attribs, $content) {
 			'additional_clp' => '0'
 		);
 		foreach ($_customerFieldPrefs as $name=>$value) {
-			$db->query("INSERT INTO ".NEWSLETTER_PREFS_TABLE."(pref_name,pref_value) VALUES('$name','$value');");
+			$db->query("INSERT INTO ".NEWSLETTER_PREFS_TABLE."(pref_name,pref_value) VALUES('".mysql_real_escape_string($name)."','".mysql_real_escape_string($value)."');");
 		}		
 	}
 	
@@ -166,7 +166,7 @@ function we_tag_addDelNewsletterEmail($attribs, $content) {
 			$lists = "";
 			$emailExistsInAllOfTheLists = true;
 			if($customer) {
-				$__query = "SELECT * FROM " . CUSTOMER_TABLE . " WHERE " . $_customerFieldPrefs['customer_email_field'] . "='" . $f["subscribe_mail"] . "'";
+				$__query = "SELECT * FROM " . CUSTOMER_TABLE . " WHERE " . $_customerFieldPrefs['customer_email_field'] . "='" . mysql_real_escape_string($f["subscribe_mail"]) . "'";
 				$db = new DB_WE();
 				$db->query($__query);
 				if(!$db->next_record()) {
@@ -212,7 +212,7 @@ function we_tag_addDelNewsletterEmail($attribs, $content) {
 			$lists = ereg_replace('^(.*),$','\1',$lists);
 
 			$db = new DB_WE();
-			$db->query("DELETE FROM " . NEWSLETTER_CONFIRM_TABLE . " WHERE LOWER(subscribe_mail) = LOWER('".$f["subscribe_mail"]."')");
+			$db->query("DELETE FROM " . NEWSLETTER_CONFIRM_TABLE . " WHERE LOWER(subscribe_mail) = LOWER('".mysql_real_escape_string($f["subscribe_mail"])."')");
 			
 			$mailid = we_getTagAttribute("mailid",$attribs);
 			$expiredoubleoptin = we_getTagAttribute("expiredoubleoptin",$attribs,1440) * 60;  // in secs
@@ -220,7 +220,7 @@ function we_tag_addDelNewsletterEmail($attribs, $content) {
 			if($mailid){
 
 				$q = "INSERT INTO " . NEWSLETTER_CONFIRM_TABLE . " (confirmID,subscribe_mail,subscribe_html,subscribe_salutation,subscribe_title,subscribe_firstname,subscribe_lastname,lists,expires)
-							VALUES ('$confirmID','".addslashes($f["subscribe_mail"])."','".addslashes($f["subscribe_html"])."','".addslashes($f["subscribe_salutation"])."','".addslashes($f["subscribe_title"])."','".addslashes($f["subscribe_firstname"])."','".addslashes($f["subscribe_lastname"])."','".addslashes($lists)."','".($expiredoubleoptin+time())."')";
+							VALUES ('".abs($confirmID)."','".mysql_real_escape_string($f["subscribe_mail"])."','".mysql_real_escape_string($f["subscribe_html"])."','".mysql_real_escape_string($f["subscribe_salutation"])."','".mysql_real_escape_string($f["subscribe_title"])."','".mysql_real_escape_string($f["subscribe_firstname"])."','".mysql_real_escape_string($f["subscribe_lastname"])."','".mysql_real_escape_string($lists)."','".($expiredoubleoptin+time())."')";
 				$db->query($q);
 
 				$id = we_getTagAttribute("id",$attribs);
@@ -289,7 +289,7 @@ function we_tag_addDelNewsletterEmail($attribs, $content) {
 
 				$placeholderReplaceValue = "";
 				if ($customer) {
-					$db->query("SELECT * FROM ".CUSTOMER_TABLE." WHERE " . $_customerFieldPrefs['customer_email_field'] . "='".$f["subscribe_mail"]."'");
+					$db->query("SELECT * FROM ".CUSTOMER_TABLE." WHERE " . $_customerFieldPrefs['customer_email_field'] . "='".mysql_real_escape_string($f["subscribe_mail"])."'");
 					$db->next_record();
 				}
 				if (is_array($placeholderfields)) {
@@ -326,7 +326,7 @@ function we_tag_addDelNewsletterEmail($attribs, $content) {
 			$emailwritten = 0;
 			if($customer) {
 				include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_exim/backup/weBackupUpdater.class.php");
-				$__query = "SELECT ID FROM " . CUSTOMER_TABLE . " WHERE " . $_customerFieldPrefs['customer_email_field'] . "='" . $f["subscribe_mail"] . "'";
+				$__query = "SELECT ID FROM " . CUSTOMER_TABLE . " WHERE " . $_customerFieldPrefs['customer_email_field'] . "='" . mysql_real_escape_string($f["subscribe_mail"]) . "'";
 				$__db = new DB_WE();
 				$__db->query($__query);
 				if(!$__db->num_rows()) {
@@ -341,14 +341,14 @@ function we_tag_addDelNewsletterEmail($attribs, $content) {
 								$_customerFieldPrefs['customer_html_field'] . "`, " . 
 								" `MemberSince`, `IsFolder`, `Icon`)";
 					
-					$values = "'" . $f["subscribe_mail"] . "'";
-					$values.= ", '" . $GLOBALS["WE_NEWSUBSCRIBER_PASSWORD"] . "'";
-					$values.= ", '" . $f["subscribe_salutation"] . "'";
-					$values.= ", '" . $f["subscribe_title"] . "'";
-					$values.= ", '" . $f["subscribe_firstname"] . "'";
-					$values.= ", '" . $f["subscribe_lastname"] . "'";
-					$values.= ", '" . $f["subscribe_mail"] . "'";
-					$values.= ", '" . $f["subscribe_html"] . "'";
+					$values = "'" . mysql_real_escape_string($f["subscribe_mail"]) . "'";
+					$values.= ", '" . mysql_real_escape_string($GLOBALS["WE_NEWSUBSCRIBER_PASSWORD"]) . "'";
+					$values.= ", '" . mysql_real_escape_string($f["subscribe_salutation"]) . "'";
+					$values.= ", '" . mysql_real_escape_string($f["subscribe_title"]) . "'";
+					$values.= ", '" . mysql_real_escape_string($f["subscribe_firstname"]) . "'";
+					$values.= ", '" . mysql_real_escape_string($f["subscribe_lastname"]) . "'";
+					$values.= ", '" . mysql_real_escape_string($f["subscribe_mail"]) . "'";
+					$values.= ", '" . mysql_real_escape_string($f["subscribe_html"]) . "'";
 					$values.= ", '" . time() . "'";
 					$values.= ", 0";
 					$values.= ", 'customer.gif'";
@@ -384,9 +384,9 @@ function we_tag_addDelNewsletterEmail($attribs, $content) {
 							break;
 					}					 
 
-					$__db->query("SHOW COLUMNS FROM ".CUSTOMER_TABLE." LIKE '$abo'");
+					$__db->query("SHOW COLUMNS FROM ".CUSTOMER_TABLE." LIKE '".mysql_real_escape_string($abo)."'");
 					if($__db->num_rows()<1) {
-						$__db->query("ALTER TABLE " . CUSTOMER_TABLE . " ADD $abo VARCHAR(200) DEFAULT '$__setDefault'");
+						$__db->query("ALTER TABLE " . CUSTOMER_TABLE . " ADD ".mysql_real_escape_string($abo)." VARCHAR(200) DEFAULT '".mysql_real_escape_string($__setDefault)."'");
 						$fieldDefault = array("default" => isset($__customerFields['Newsletter_Ok']['default']) && !empty($__customerFields['Newsletter_Ok']['default']) ? $__customerFields['Newsletter_Ok']['default'] : ",1");
 						$__customerFields[$abo] = $fieldDefault;
 						$updateCustomerFields = true;
@@ -395,12 +395,12 @@ function we_tag_addDelNewsletterEmail($attribs, $content) {
 				}
 				
 				if ($updateCustomerFields) {
-					$__db->query("UPDATE " . CUSTOMER_ADMIN_TABLE . " SET Value='" . serialize($__customerFields) . "' WHERE Name='FieldAdds'");
+					$__db->query("UPDATE " . CUSTOMER_ADMIN_TABLE . " SET Value='" . mysql_real_escape_string(serialize($__customerFields)) . "' WHERE Name='FieldAdds'");
 				}
 				
 				$__set .= $_customerFieldPrefs['customer_html_field']."=" . $f["subscribe_html"]; 
-				$__db->query("UPDATE " . CUSTOMER_TABLE . " SET $__set WHERE " . $_customerFieldPrefs['customer_email_field'] . "='".$f["subscribe_mail"]."'");
-				$__db->query("DELETE FROM " . NEWSLETTER_CONFIRM_TABLE . " WHERE subscribe_mail ='".$f["subscribe_mail"]."'");
+				$__db->query("UPDATE " . CUSTOMER_TABLE . " SET ".mysql_real_escape_string($__set)." WHERE " . $_customerFieldPrefs['customer_email_field'] . "='".mysql_real_escape_string($f["subscribe_mail"])."'");
+				$__db->query("DELETE FROM " . NEWSLETTER_CONFIRM_TABLE . " WHERE subscribe_mail ='".mysql_real_escape_string($f["subscribe_mail"])."'");
 			} else {
 				foreach($paths as $path){
 				
@@ -447,7 +447,7 @@ function we_tag_addDelNewsletterEmail($attribs, $content) {
 				if($emailwritten==0){
 					$GLOBALS["WE_WRITENEWSLETTER_STATUS"] = WE_NEWSLETTER_STATUS_EMAIL_EXISTS;
 				}
-				$db->query("DELETE FROM " . NEWSLETTER_CONFIRM_TABLE . " WHERE subscribe_mail ='".$f["subscribe_mail"]."'");
+				$db->query("DELETE FROM " . NEWSLETTER_CONFIRM_TABLE . " WHERE subscribe_mail ='".mysql_real_escape_string($f["subscribe_mail"])."'");
 			}	
 		}
 	}	
@@ -467,7 +467,7 @@ function we_tag_addDelNewsletterEmail($attribs, $content) {
 
 		$emailExists = false;
 
-		$db->query("DELETE FROM " . NEWSLETTER_CONFIRM_TABLE . " WHERE subscribe_mail ='".$unsubscribe_mail."'");
+		$db->query("DELETE FROM " . NEWSLETTER_CONFIRM_TABLE . " WHERE subscribe_mail ='".mysql_real_escape_string($unsubscribe_mail)."'");
 
 		if ($customer) {
 			$__db = new DB_WE();
@@ -475,7 +475,7 @@ function we_tag_addDelNewsletterEmail($attribs, $content) {
 			$__db->query("SELECT Value FROM " . CUSTOMER_ADMIN_TABLE . " WHERE Name='FieldAdds'");
 			$__customerFields = $__db->next_record() ? unserialize($__db->f('Value')) : "";
 			
-			$__where = " WHERE " .$_customerFieldPrefs['customer_email_field'] . "='" . $unsubscribe_mail . "'";
+			$__where = " WHERE " .$_customerFieldPrefs['customer_email_field'] . "='" . mysql_real_escape_string($unsubscribe_mail) . "'";
 			$__db->query("SELECT * FROM " . CUSTOMER_TABLE . $__where);
 			$__update = "";
 			if ($__db->next_record()) {
@@ -554,7 +554,7 @@ function getNewsletterFields($request,$confirmid,&$errorcode,$mail=""){
 
 	$errorcode = 0;
 	if($confirmid){
-		$_h = getHash("SELECT * FROM " . NEWSLETTER_CONFIRM_TABLE . " WHERE confirmID = '$confirmid' AND subscribe_mail='$mail'", new DB_WE());
+		$_h = getHash("SELECT * FROM " . NEWSLETTER_CONFIRM_TABLE . " WHERE confirmID = '".abs($confirmid)."' AND subscribe_mail='".mysql_real_escape_string($mail)."'", new DB_WE());
 		if(empty($_h)) {
 			$errorcode = WE_NEWSLETTER_STATUS_CONFIR_FAILED;
 		}
