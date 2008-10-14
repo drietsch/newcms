@@ -107,7 +107,7 @@
 				$allowed = true;
 				if($rd->Table != DOC_TYPES_TABLE && $rd->Table != CATEGORY_TABLE){
 					$q = weXMLExIm::queryForAllowed($rd->Table);
-					$id = f('SELECT ID FROM '.$rd->Table.' WHERE ID=\''.$rd->ID.'\' '.$q,'ID',new DB_WE());
+					$id = f('SELECT ID FROM '.mysql_real_escape_string($rd->Table).' WHERE ID=\''.abs($rd->ID).'\' '.$q,'ID',new DB_WE());
 					$allowed = $id ? true : false;
 				}
 				if($rd->Table == FILE_TABLE) return $allowed && we_hasPerm('CAN_SEE_DOCUMENTS');
@@ -236,7 +236,7 @@
 		function getNewOwnerID($id){
 			foreach ($this->Users as $user){
 				if($user['id']==$id){
-					$newid = f('SELECT ID FROM '.USER_TABLE.' WHERE Username=\''.$user['user'].'\'','ID',new DB_WE());
+					$newid = f('SELECT ID FROM '.USER_TABLE.' WHERE Username=\''.mysql_real_escape_string($user['user']).'\'','ID',new DB_WE());
 
 					if($newid){
 						return $newid;

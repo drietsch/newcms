@@ -118,13 +118,13 @@
 						if(is_numeric($value)) {
 							$_path = '';
 							if($value) {
-								$_path = f('SELECT Path FROM ' . NAVIGATION_TABLE . ' WHERE ID=' . $value . ';','Path',$_db);
+								$_path = f('SELECT Path FROM ' . NAVIGATION_TABLE . ' WHERE ID=' . abs($value) . ';','Path',$_db);
 							}
 
 							$this->addToDepArray($level,$value,'weNavigation',NAVIGATION_TABLE);
 							$this->getNavigationRule($value,$level);
 
-							$_db->query('SELECT ID FROM ' . NAVIGATION_TABLE . ' WHERE Path LIKE "' . $_path . '/%"');
+							$_db->query('SELECT ID FROM ' . NAVIGATION_TABLE . ' WHERE Path LIKE "' . mysql_real_escape_string($_path) . '/%"');
 							while ($_db->next_record()) {
 								$this->addToDepArray($level,$_db->f('ID'),'weNavigation',NAVIGATION_TABLE);
 								$this->getNavigationRule($_db->f('ID'),$level);
@@ -139,7 +139,7 @@
 
 		function getNavigationRule($naviid,$level){
 			$_db = new DB_WE();
-			$_db->query('SELECT ID FROM ' . NAVIGATION_RULE_TABLE . ' WHERE NavigationID=' . $naviid . ';');
+			$_db->query('SELECT ID FROM ' . NAVIGATION_RULE_TABLE . ' WHERE NavigationID=' . abs($naviid) . ';');
 			while($_db->next_record()) {
 				$this->addToDepArray($level,$_db->f('ID'),'weNavigationRule',NAVIGATION_RULE_TABLE);
 			}
@@ -153,7 +153,7 @@
 					$_db = new DB_WE();
 					foreach($match[2] as $key=>$value){
 
-						$_id = f('SELECT ID FROM ' . THUMBNAILS_TABLE . ' WHERE Name="' . addslashes($value) . '";','ID',$_db);
+						$_id = f('SELECT ID FROM ' . THUMBNAILS_TABLE . ' WHERE Name="' . mysql_real_escape_string($value) . '";','ID',$_db);
 
 						if($_id) {
 							$this->addToDepArray($level,$_id,'weThumbnail',THUMBNAILS_TABLE);
@@ -216,7 +216,7 @@
 		function addToDepArray($level,$id,$ct="",$table=""){
 				if($ct==""){
 					if($table=="") $table = FILE_TABLE;
-					$ct=f('SELECT ContentType FROM '.$table.' WHERE ID="'.$id.'";','ContentType',new DB_WE());
+					$ct=f('SELECT ContentType FROM '.mysql_real_escape_string($table).' WHERE ID="'.abs($id).'";','ContentType',new DB_WE());
 				}
 				if($ct!=""){
 					$new=array(

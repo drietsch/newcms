@@ -72,7 +72,7 @@
 				$_keys=weTableItem::getTableKey($_table);
 				$_keys_str = implode(',',$_keys);
 
-				$_query =  'SELECT ' . $_keys_str . " FROM  $_table ORDER BY $_keys_str LIMIT $offset , $lines;" ;
+				$_query =  'SELECT ' . mysql_real_escape_string($_keys_str) . " FROM  ".mysql_real_escape_string($_table)." ORDER BY $_keys_str LIMIT ".abs($offset)." ,".abs($lines).";" ;
 				
 				$_db = new DB_WE();
 				$_db->query($_query);
@@ -135,7 +135,7 @@
 					
 				}
 				
-				$_table_end = f("SELECT COUNT(*) AS Count FROM $_table",'Count',$_db);
+				$_table_end = f("SELECT COUNT(*) AS Count FROM ".mysql_real_escape_string($_table)."",'Count',$_db);
 				if($offset>=$_table_end) {
 					$offset = 0;
 				}

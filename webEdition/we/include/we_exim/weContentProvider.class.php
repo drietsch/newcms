@@ -420,8 +420,8 @@
 
 		function isBinary($id){
 			$db=new DB_WE();
-			return	f("SELECT ContentType FROM ".FILE_TABLE." WHERE ID=".$id." AND ContentType='image/*';","ContentType",new DB_WE()) ||
-						f("SELECT ContentType FROM ".FILE_TABLE." WHERE ID=".$id." AND ContentType LIKE 'application/%';","ContentType",new DB_WE());
+			return	f("SELECT ContentType FROM ".FILE_TABLE." WHERE ID=".abs($id)." AND ContentType='image/*';","ContentType",new DB_WE()) ||
+						f("SELECT ContentType FROM ".FILE_TABLE." WHERE ID=".abs($id)." AND ContentType LIKE 'application/%';","ContentType",new DB_WE());
 		}
 
 		function getCDATA($data){

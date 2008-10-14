@@ -359,7 +359,7 @@
 			$out = array();
 			weBackupPreparer::getFileList($list,$_SERVER['DOCUMENT_ROOT'].'/webEdition/site',true,false);
 			foreach ($list as $file) {
-				$ct = f('SELECT ContentType FROM ' . FILE_TABLE . ' WHERE Path="' . str_replace($_SERVER['DOCUMENT_ROOT'].'/webEdition/site' , '' , $file) . '";','ContentType',$DB_WE);
+				$ct = f('SELECT ContentType FROM ' . FILE_TABLE . ' WHERE Path="' . mysql_real_escape_string(str_replace($_SERVER['DOCUMENT_ROOT'].'/webEdition/site' , '' , $file)) . '";','ContentType',$DB_WE);
 				if($ct) {
 					if($ct != 'image/*' && $ct != 'application/*' && $ct != 'application/x-shockwave-flash') {
 						$out[]=$file;
@@ -400,8 +400,8 @@
 			global $DB_WE;
 
 			$tmp_db = new DB_WE;
-			$DB_WE->query("SELECT ID FROM ".FILE_TABLE." WHERE Path='".$path."'");
-			$tmp_db->query("SELECT ID FROM ".TEMPLATES_TABLE." WHERE Path='".$path."'");
+			$DB_WE->query("SELECT ID FROM ".FILE_TABLE." WHERE Path='".mysql_real_escape_string($path)."'");
+			$tmp_db->query("SELECT ID FROM ".TEMPLATES_TABLE." WHERE Path='".mysql_real_escape_string($path)."'");
 			if(($DB_WE->next_record())||($tmp_db->next_record()))
 				return true;
 			else

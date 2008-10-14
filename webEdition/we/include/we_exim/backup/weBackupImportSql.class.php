@@ -83,7 +83,7 @@
 						
 						$data = $_start . substr($data,64);						
 						
-						$GLOBALS['DB_WE']->query('DROP TABLE IF EXISTS ' . $_table);
+						$GLOBALS['DB_WE']->query('DROP TABLE IF EXISTS ' . mysql_real_escape_string($_table));
 						if(!$GLOBALS['DB_WE']->query("$data")) {
 							
 							if($log){

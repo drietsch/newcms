@@ -133,10 +133,10 @@
 							$ws_where = "";
 							if($dir != 0){
 								$workspace=id_to_path($dir, FILE_TABLE, $this->db);
-								$ws_where = " AND (" . FILE_TABLE . ".Path like '$workspace/%' OR " . FILE_TABLE . ".Path='$workspace') ";
+								$ws_where = " AND (" . FILE_TABLE . ".Path like '".mysql_real_escape_string($workspace)."/%' OR " . FILE_TABLE . ".Path='".mysql_real_escape_string($workspace)."') ";
 							}
 
-							$query = 'SELECT distinct ID FROM ' . FILE_TABLE . ' WHERE 1 ' . $ws_where . '  AND tblFile.IsFolder=0 AND tblFile.DocType="'.$doctype.'"'.$cat_sql;
+							$query = 'SELECT distinct ID FROM ' . FILE_TABLE . ' WHERE 1 ' . $ws_where . '  AND tblFile.IsFolder=0 AND tblFile.DocType="'.mysql_real_escape_string($doctype).'"'.$cat_sql;
 
 							$this->db->query($query);
 							while($this->db->next_record()){
@@ -155,7 +155,7 @@
 
 								$where = $this->queryForAllowed(OBJECT_FILES_TABLE);
 
-								$q = "SELECT ID FROM ".OBJECT_FILES_TABLE." WHERE IsFolder=0 AND TableID='".$classname."'".($catss!="" ? " AND Category IN (".$catss.");" : '') . $where .';';
+								$q = "SELECT ID FROM ".OBJECT_FILES_TABLE." WHERE IsFolder=0 AND TableID='".mysql_real_escape_string($classname)."'".($catss!="" ? " AND Category IN (".$catss.");" : '') . $where .';';
 								$this->db->query($q);
 								$selObjs = array();
 								while($this->db->next_record()){
@@ -167,7 +167,7 @@
 
 					$ids=array();
 					foreach($selDocs as $k=>$v){
-						$ct=f("Select ContentType FROM ".FILE_TABLE." WHERE ID=".$v.";","ContentType",$this->db);
+						$ct=f("Select ContentType FROM ".FILE_TABLE." WHERE ID=".abs($v).";","ContentType",$this->db);
 						$this->RefTable->add2(array(
 								"ID"=>$v,
 								"ContentType"=>$ct,
@@ -222,7 +222,7 @@
 				$wsPathArray = id_to_path($ws,$table,$db,false,true);
 				foreach($wsPathArray as $path){
 					if($wsQuery!='') $wsQuery .=' OR ';
-					$wsQuery .= " Path like '$path/%' OR ".weXMLExIm::getQueryParents($path);
+					$wsQuery .= " Path like '".mysql_real_escape_string($path)."/%' OR ".weXMLExIm::getQueryParents($path);
 					while($path != "/" && $path){
 						array_push($parentpaths,$path);
 						$path = dirname($path);
@@ -233,7 +233,7 @@
 				foreach($ac as $cid){
 					$path = id_to_path($cid,OBJECT_TABLE);
 					if($wsQuery!='') $wsQuery .=' OR ';
-					$wsQuery .= " Path like '$path/%' OR Path='$path'";
+					$wsQuery .= " Path like '".mysql_real_escape_string($path)."/%' OR Path='".mysql_real_escape_string($path)."'";
 				}
 			}
 
@@ -249,7 +249,7 @@
 			$allow = $this->queryForAllowed($table);
 			foreach($selIDs as $v){
 				if ($v){
-					$isfolder=f("SELECT IsFolder FROM ".$table." WHERE ID='".$v."'","IsFolder",$db);
+					$isfolder=f("SELECT IsFolder FROM ".mysql_real_escape_string($table)." WHERE ID='".abs($v)."'","IsFolder",$db);
 					if ($isfolder){
 						we_readChilds($v,$tmp,$table,false,$allow);
 						if($with_dirs) $tmp[]=$v;
@@ -259,7 +259,7 @@
 			}
 			if($with_dirs) return $tmp;
 			foreach($tmp as $v){
-				$isfolder=f("SELECT IsFolder FROM ".$table." WHERE ID='".$v."'","IsFolder",new DB_WE());
+				$isfolder=f("SELECT IsFolder FROM ".mysql_real_escape_string($table)." WHERE ID='".abs($v)."'","IsFolder",new DB_WE());
 				if (!$isfolder) $ret[]=$v;
 			}
 			return $ret;

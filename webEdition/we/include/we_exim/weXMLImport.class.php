@@ -85,7 +85,7 @@
 					$object->Table=$this->getTable($object->ClassName);
 
 					if($object->ClassName=="we_docTypes"){
-						$dtid=f("SELECT ID FROM ".DOC_TYPES_TABLE." WHERE DocType='".$object->DocType."'","ID",new DB_WE());
+						$dtid=f("SELECT ID FROM ".DOC_TYPES_TABLE." WHERE DocType='".mysql_real_escape_string($object->DocType)."'","ID",new DB_WE());
 						if($dtid){
 								if(	$this->options["handle_collision"]=="replace"){
 									$object->ID=$dtid;
@@ -101,7 +101,7 @@
 					}
 
 					if($object->ClassName=="weNavigationRule"){
-						$nid=f("SELECT ID FROM ".NAVIGATION_RULE_TABLE." WHERE NavigationName='".$object->NavigationName."'","ID",new DB_WE());
+						$nid=f("SELECT ID FROM ".NAVIGATION_RULE_TABLE." WHERE NavigationName='".mysql_real_escape_string($object->NavigationName)."'","ID",new DB_WE());
 						if($nid){
 								if(	$this->options["handle_collision"]=="replace"){
 									$object->ID=$nid;
@@ -117,7 +117,7 @@
 					}
 
 					if($object->ClassName=="we_thumbnail"){
-						$nid=f("SELECT ID FROM ".THUMBNAILS_TABLE." WHERE Name='".$object->Name."'","ID",new DB_WE());
+						$nid=f("SELECT ID FROM ".THUMBNAILS_TABLE." WHERE Name='".mysql_real_escape_string($object->Name)."'","ID",new DB_WE());
 						if($nid){
 								if(	$this->options["handle_collision"]=="replace"){
 									$object->ID=$nid;
@@ -193,7 +193,7 @@
 								// insert new created folders in ref table
 								foreach($pathids as $pid){
 
-									$h=getHash("SELECT ParentID,Path FROM ".$object->Table." WHERE ID='$pid';",new DB_WE());
+									$h=getHash("SELECT ParentID,Path FROM ".mysql_real_escape_string($object->Table)." WHERE ID='".abs($pid)."';",new DB_WE());
 									if(!$this->RefTable->exists(array("ID"=>$pid,"ContentType"=>"folder"))){
 										$this->RefTable->add2(
 											array_merge(array(	
@@ -267,7 +267,7 @@
 							$match = array();
 							preg_match('(/+[a-zA-Z0-9_\-\.]*)',$object->Path,$match);
 							if(isset($match[0])){
-								$object->TableID = f('SELECT ID FROM '.OBJECT_TABLE.' WHERE Path=\''.$match[0].'\';','ID',new DB_WE());
+								$object->TableID = f('SELECT ID FROM '.OBJECT_TABLE.' WHERE Path=\''.mysql_real_escape_string($match[0]).'\';','ID',new DB_WE());
 							}
 						}
 
@@ -298,9 +298,9 @@
 					else $newname=basename($object->$prop);
 
 					if($newid) $newname=$c."_".$newname;
-					if($object->ClassName=="we_docTypes") $newid=f("SELECT ID FROM ".DOC_TYPES_TABLE." WHERE DocType='".$newname."'","ID",new DB_WE());
-					else if($object->ClassName=="weNavigationRule") $newid=f("SELECT ID FROM ".NAVIGATION_RULE_TABLE." WHERE NavigationName='".$newname."'","ID",new DB_WE());
-					else if($object->ClassName=="we_thumbnail") $newid=f("SELECT ID FROM ".THUMBNAILS_TABLE." WHERE Name='".$newname."'","ID",new DB_WE());
+					if($object->ClassName=="we_docTypes") $newid=f("SELECT ID FROM ".DOC_TYPES_TABLE." WHERE DocType='".mysql_real_escape_string($newname)."'","ID",new DB_WE());
+					else if($object->ClassName=="weNavigationRule") $newid=f("SELECT ID FROM ".NAVIGATION_RULE_TABLE." WHERE NavigationName='".mysql_real_escape_string($newname)."'","ID",new DB_WE());
+					else if($object->ClassName=="we_thumbnail") $newid=f("SELECT ID FROM ".THUMBNAILS_TABLE." WHERE Name='".mysql_real_escape_string($newname)."'","ID",new DB_WE());
 					else{
 						$newid=path_to_id(clearPath(dirname($object->Path)."/".$newname),$object->Table);
 					}
