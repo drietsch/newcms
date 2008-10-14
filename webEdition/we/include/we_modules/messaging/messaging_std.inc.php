@@ -23,7 +23,11 @@
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we.inc.php");
 include_once(WE_MESSAGING_MODULE_DIR . "we_messaging.inc.php");
 
-protect();
+// exit if script called directly
+if (str_replace(dirname($_SERVER['SCRIPT_NAME']),'',$_SERVER['SCRIPT_NAME'])=="/messaging_std.inc.php") {
+	exit();
+}
+
 
 /* Get all values for $key in an array of hashes (e.g. get all ID values) */
 /* params: key, hash */
