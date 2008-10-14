@@ -689,8 +689,8 @@ else {
 						$cacheType = $we_doc->CacheType;
 						$cacheLifeTime = $we_doc->CacheLifeTime;
 					} else {
-						$cacheType = f("SELECT CacheType FROM ".TEMPLATES_TABLE." WHERE ID='".$we_doc->TemplateID."'","CacheType",$GLOBALS["DB_WE"]);
-						$cacheLifeTime = f("SELECT CacheLifeTime FROM ".TEMPLATES_TABLE." WHERE ID='".$we_doc->TemplateID."'","CacheLifeTime",$GLOBALS["DB_WE"]);
+						$cacheType = f("SELECT CacheType FROM ".TEMPLATES_TABLE." WHERE ID='".abs($we_doc->TemplateID)."'","CacheType",$GLOBALS["DB_WE"]);
+						$cacheLifeTime = f("SELECT CacheLifeTime FROM ".TEMPLATES_TABLE." WHERE ID='".abs($we_doc->TemplateID)."'","CacheLifeTime",$GLOBALS["DB_WE"]);
 					}
 					define("CACHING_INSIDE_WEBEDITION", true);
 

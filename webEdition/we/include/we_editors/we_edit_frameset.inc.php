@@ -229,19 +229,19 @@ if(!isset($we_doc->IsClassFolder)) {
 
 		//	#####	Check if user is  still online.
 		$DB_WE2 = new DB_WE;
-		if(f("SELECT ID FROM ".USER_TABLE." WHERE ID='".$_userID."'","ID",$DB_WE2)){
-			$DB_WE2->query("SELECT Ping,ID FROM ".USER_TABLE." WHERE ID='$_userID'");
+		if(f("SELECT ID FROM ".USER_TABLE." WHERE ID='".abs($_userID)."'","ID",$DB_WE2)){
+			$DB_WE2->query("SELECT Ping,ID FROM ".USER_TABLE." WHERE ID='".abs($_userID)."'");
 			if($DB_WE2->next_record()){
 				if($DB_WE2->f("Ping") < (time() - (PING_TIME+PING_TOLERANZ))) {
 					//	#####	user ist not online any more
-					$DB_WE2->query("DELETE FROM " . LOCK_TABLE . " WHERE ID='".$we_doc->ID."' AND tbl='".$we_doc->Table."'");
-					$DB_WE2->query("UPDATE ".USER_TABLE." SET Ping='0' WHERE ID='$_userID'");
+					$DB_WE2->query("DELETE FROM " . LOCK_TABLE . " WHERE ID='".abs($we_doc->ID)."' AND tbl='".mysql_real_escape_string($we_doc->Table)."'");
+					$DB_WE2->query("UPDATE ".USER_TABLE." SET Ping='0' WHERE ID='".abs($_userID)."'");
 				} else {	// file is locked
 					$_filelocked = true;
 				}
 			}
 		}else{
-			$DB_WE2->query("DELETE FROM " . LOCK_TABLE . " WHERE ID='".$we_doc->ID."' AND tbl='".$we_doc->Table."'");
+			$DB_WE2->query("DELETE FROM " . LOCK_TABLE . " WHERE ID='".abs($we_doc->ID)."' AND tbl='".mysql_real_escape_string($we_doc->Table)."'");
 		}
 	} else {		// file can be edited
 		//	#####	Lock the new file

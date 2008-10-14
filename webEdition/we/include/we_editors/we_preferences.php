@@ -1023,11 +1023,11 @@ function remember_value($settingvalue, $settingname) {
 
 							if (isset($_single_recipient[0]) && ($_single_recipient[0] == "#")) {
 								if (isset($_single_recipient[1]) && $_single_recipient[1]) {
-									$DB_WE->query("INSERT INTO " . RECIPIENTS_TABLE . " (Email) VALUES('" . $_single_recipient[1] . "')");
+									$DB_WE->query("INSERT INTO " . RECIPIENTS_TABLE . " (Email) VALUES('" . mysql_real_escape_string($_single_recipient[1]) . "')");
 								}
 							} else {
 								if (isset($_single_recipient[1]) && isset($_single_recipient[0]) && $_single_recipient[1] && $_single_recipient[0]) {
-									$DB_WE->query("UPDATE " . RECIPIENTS_TABLE . " SET Email='" . $_single_recipient[1] . "' WHERE ID=" . $_single_recipient[0]);
+									$DB_WE->query("UPDATE " . RECIPIENTS_TABLE . " SET Email='" . mysql_real_escape_string($_single_recipient[1]) . "' WHERE ID=" . abs($_single_recipient[0]));
 								}
 							}
 						}
@@ -1044,7 +1044,7 @@ function remember_value($settingvalue, $settingname) {
 					$_formmail_deleted = explode(",", $_REQUEST["formmail_deleted"]);
 
 					for ($i = 0; $i < sizeof($_formmail_deleted); $i++) {
-						$DB_WE->query("DELETE FROM " . RECIPIENTS_TABLE . " WHERE ID=" . $_formmail_deleted[$i]);
+						$DB_WE->query("DELETE FROM " . RECIPIENTS_TABLE . " WHERE ID=" . abs($_formmail_deleted[$i]));
 					}
 				}
 				$_update_prefs = true;
@@ -1649,7 +1649,7 @@ $_we_active_integrated_modules = array();
 			 *****************************************************************/
 			case '$_REQUEST["use_jupload"]':
 				$_SESSION['prefs']['use_jupload'] = $settingvalue;
-				$DB_WE->query('UPDATE ' . PREFS_TABLE . ' SET use_jupload="' . $settingvalue . '";');
+				$DB_WE->query('UPDATE ' . PREFS_TABLE . ' SET use_jupload="' . abs($settingvalue) . '";');
 				$_update_prefs = true;
 				break;
 			/*****************************************************************
@@ -2408,7 +2408,7 @@ function save_all_values() {
 	}
 
 	if($_update_prefs) {
-		doUpdateQuery($DB_WE, PREFS_TABLE, $_SESSION["prefs"], (" WHERE userID=" . $_SESSION["prefs"]["userID"]));
+		doUpdateQuery($DB_WE, PREFS_TABLE, $_SESSION["prefs"], (" WHERE userID=" . abs($_SESSION["prefs"]["userID"])));
 	}
 
 
@@ -4472,7 +4472,7 @@ function setColorChooserDisabled(id, disabled) {
 			    array_push($_settings, array("headline" => $l_prefs["pagelogger_dir"], "html" => $_we_tracker_dir, "space" => 200));
 			    
 			    
-			    //  select if hooks were executed
+			    //  select if hooks can be executed
 				$_php_setting = new we_htmlSelect(array("name" => "execute_hooks","class"=>"weSelect"));
 				$_php_setting->addOption(0,$l_prefs["no"]);
 				$_php_setting->addOption(1,$l_prefs["yes"]);

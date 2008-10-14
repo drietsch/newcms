@@ -64,7 +64,7 @@ if (isset($_GET["deletethumbnail"]) && $_GET["deletethumbnail"] != "") {
 		deleteThumbsByThumbID($_GET["deletethumbnail"]);
 
 		// Delete entry in database
-		$DB_WE->query("DELETE FROM " . THUMBNAILS_TABLE . " WHERE ID = '" . $_GET["deletethumbnail"] . "'");
+		$DB_WE->query("DELETE FROM " . THUMBNAILS_TABLE . " WHERE ID = '" . abs($_GET["deletethumbnail"]) . "'");
 
 		$prot = getServerProtocol();
 		$preurl = (isset($_SERVER["HTTP_HOST"]) && $_SERVER["HTTP_HOST"]) ? "$prot://".$_SERVER["HTTP_HOST"] : "";
@@ -138,42 +138,42 @@ function remember_value($settingvalue, $settingname) {
 		switch ($settingname) {
 
 			case '$_REQUEST["thumbnail_name"]':
-				$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET Name = '" . $settingvalue . "' WHERE ID = '" . $_REQUEST["edited_id"] . "'");
+				$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET Name = '" . mysql_real_escape_string($settingvalue) . "' WHERE ID = '" . $_REQUEST["edited_id"] . "'");
 
 				break;
 
 			case '$_REQUEST["thumbnail_width"]':
-				$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET Width = '" . $settingvalue . "' WHERE ID = '" . $_REQUEST["edited_id"] . "'");
+				$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET Width = '" . abs($settingvalue) . "' WHERE ID = '" . abs($_REQUEST["edited_id"]) . "'");
 
 				break;
 
 			case '$_REQUEST["thumbnail_height"]':
-				$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET Height = '" . $settingvalue . "' WHERE ID = '" . $_REQUEST["edited_id"] . "'");
+				$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET Height = '" . abs($settingvalue) . "' WHERE ID = '" . abs($_REQUEST["edited_id"]) . "'");
 
 				break;
 
 			case '$_REQUEST["thumbnail_quality"]':
-				$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET Quality = '" . $settingvalue . "' WHERE ID = '" . $_REQUEST["edited_id"] . "'");
+				$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET Quality = '" . abs($settingvalue) . "' WHERE ID = '" . abs($_REQUEST["edited_id"]) . "'");
 
 				break;
 
 			case '$_REQUEST["Ratio"]':
-				$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET Ratio = '" . $settingvalue . "' WHERE ID = '" . $_REQUEST["edited_id"] . "'");
+				$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET Ratio = '" . abs($settingvalue) . "' WHERE ID = '" . abs($_REQUEST["edited_id"]) . "'");
 
 				break;
 
 			case '$_REQUEST["Maxsize"]':
-				$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET Maxsize = '" . $settingvalue . "' WHERE ID = '" . $_REQUEST["edited_id"] . "'");
+				$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET Maxsize = '" . abs($settingvalue) . "' WHERE ID = '" . abs($_REQUEST["edited_id"]) . "'");
 
 				break;
 
 			case '$_REQUEST["Interlace"]':
-				$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET Interlace = '" . $settingvalue . "' WHERE ID = '" . $_REQUEST["edited_id"] . "'");
+				$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET Interlace = '" . abs . "' WHERE ID = '" . abs($_REQUEST["edited_id"]) . "'");
 
 				break;
 
 			case '$_REQUEST["Format"]':
-				$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET Format = '" . (($settingvalue == "none") ? "" : $settingvalue) . "' WHERE ID = '" . $_REQUEST["edited_id"] . "'");
+				$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET Format = '" . (($settingvalue == "none") ? "" : mysql_real_escape_string($settingvalue)) . "' WHERE ID = '" . abs($_REQUEST["edited_id"]) . "'");
 
 				break;
 
@@ -185,37 +185,37 @@ function remember_value($settingvalue, $settingname) {
 		switch ($settingname) {
 
 			case '$_REQUEST["thumbnail_width"]':
-				$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET Width = '' WHERE ID = '" . $_REQUEST["edited_id"] . "'");
+				$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET Width = '' WHERE ID = '" . abs($_REQUEST["edited_id"]) . "'");
 
 				break;
 
 			case '$_REQUEST["thumbnail_height"]':
-				$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET Height = '' WHERE ID = '" . $_REQUEST["edited_id"] . "'");
+				$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET Height = '' WHERE ID = '" . abs($_REQUEST["edited_id"]) . "'");
 
 				break;
 
 			case '$_REQUEST["thumbnail_quality"]':
-				$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET quality = '' WHERE ID = '" . $_REQUEST["edited_id"] . "'");
+				$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET quality = '' WHERE ID = '" . abs($_REQUEST["edited_id"]) . "'");
 
 				break;
 
 			case '$_REQUEST["Ratio"]':
-				$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET Ratio = '0' WHERE ID = '" . $_REQUEST["edited_id"] . "'");
+				$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET Ratio = '0' WHERE ID = '" . abs($_REQUEST["edited_id"]) . "'");
 
 				break;
 
 			case '$_REQUEST["Maxsize"]':
-				$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET Maxsize = '0' WHERE ID = '" . $_REQUEST["edited_id"] . "'");
+				$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET Maxsize = '0' WHERE ID = '" . abs($_REQUEST["edited_id"]) . "'");
 
 				break;
 
 			case '$_REQUEST["Interlace"]':
-				$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET Interlace = '0' WHERE ID = '" . $_REQUEST["edited_id"] . "'");
+				$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET Interlace = '0' WHERE ID = '" . abs($_REQUEST["edited_id"]) . "'");
 
 				break;
 
 			case '$_REQUEST["Format"]':
-				$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET Format = 'jpg' WHERE ID = '" . $_REQUEST["edited_id"] . "'");
+				$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET Format = 'jpg' WHERE ID = '" . abs($_REQUEST["edited_id"]) . "'");
 
 				break;
 
@@ -257,7 +257,7 @@ function save_all_values() {
 		$_update_prefs = remember_value(isset($_REQUEST["Format"]) ? $_REQUEST["Format"] : null, '$_REQUEST["Format"]');
 
 		// Update saving timestamp
-		$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET Date = '" . time() . "' WHERE ID = '" . $_REQUEST["edited_id"] . "'");
+		$DB_WE->query("UPDATE " . THUMBNAILS_TABLE . " SET Date = '" . time() . "' WHERE ID = '" . abs($_REQUEST["edited_id"]) . "'");
 	}
 
 }
@@ -448,7 +448,7 @@ function build_dialog($selected_setting = "ui") {
 			 * NAME
 			 *****************************************************************/
 
-			$_thumbnail_name = ($_GET["id"] != -1) ? f("SELECT Name FROM " . THUMBNAILS_TABLE . " WHERE ID='" . $_GET["id"] . "'", "Name", $DB_WE) : -1;
+			$_thumbnail_name = ($_GET["id"] != -1) ? f("SELECT Name FROM " . THUMBNAILS_TABLE . " WHERE ID='" . abs($_GET["id"]) . "'", "Name", $DB_WE) : -1;
 
 			$_thumbnail_name_input = htmlTextInput("thumbnail_name", 22, ($_thumbnail_name != -1 ? $_thumbnail_name : ""), 255, ($_thumbnail_name == -1 ? "disabled=\"true\"" : ""), "text", 225);
 
@@ -460,9 +460,9 @@ function build_dialog($selected_setting = "ui") {
 			 *****************************************************************/
 
 			// Create specify thumbnail dimension input
-			$_thumbnail_width = ($_GET["id"] != -1) ? f("SELECT Width FROM " . THUMBNAILS_TABLE . " WHERE ID='" . $_GET["id"] . "'", "Width", $DB_WE) : -1;
-			$_thumbnail_height = ($_GET["id"] != -1) ? f("SELECT Height FROM " . THUMBNAILS_TABLE . " WHERE ID='" . $_GET["id"] . "'", "Height", $DB_WE) : -1;
-			$_thumbnail_quality = ($_GET["id"] != -1) ? f("SELECT Quality FROM " . THUMBNAILS_TABLE . " WHERE ID='" . $_GET["id"] . "'", "Quality", $DB_WE) : -1;
+			$_thumbnail_width = ($_GET["id"] != -1) ? f("SELECT Width FROM " . THUMBNAILS_TABLE . " WHERE ID='" . abs($_GET["id"]) . "'", "Width", $DB_WE) : -1;
+			$_thumbnail_height = ($_GET["id"] != -1) ? f("SELECT Height FROM " . THUMBNAILS_TABLE . " WHERE ID='" . abs($_GET["id"]) . "'", "Height", $DB_WE) : -1;
+			$_thumbnail_quality = ($_GET["id"] != -1) ? f("SELECT Quality FROM " . THUMBNAILS_TABLE . " WHERE ID='" . abs($_GET["id"]) . "'", "Quality", $DB_WE) : -1;
 
 			$_thumbnail_specify_table = new we_htmlTable(array("border"=>"0", "cellpadding"=>"0", "cellspacing"=>"0"), 5, 3);
 
@@ -482,9 +482,9 @@ function build_dialog($selected_setting = "ui") {
 			$_thumbnail_specify_table->setCol(4, 2, array("class" => "defaultfont", "id" => "thumbnail_quality_value_cell"), we_qualitySelect("thumbnail_quality",$_thumbnail_quality));
 
 			// Create checkboxes for options for thumbnails
-			$_thumbnail_ratio = ($_GET["id"] != -1) ? f("SELECT Ratio FROM " . THUMBNAILS_TABLE . " WHERE ID='" . $_GET["id"] . "'", "Ratio", $DB_WE) : -1;
-			$_thumbnail_maximize = ($_GET["id"] != -1) ? f("SELECT Maxsize FROM " . THUMBNAILS_TABLE . " WHERE ID='" . $_GET["id"] . "'", "Maxsize", $DB_WE) : -1;
-			$_thumbnail_interlace = ($_GET["id"] != -1) ? f("SELECT Interlace FROM " . THUMBNAILS_TABLE . " WHERE ID='" . $_GET["id"] . "'", "Interlace", $DB_WE) : -1;
+			$_thumbnail_ratio = ($_GET["id"] != -1) ? f("SELECT Ratio FROM " . THUMBNAILS_TABLE . " WHERE ID='" . abs($_GET["id"]) . "'", "Ratio", $DB_WE) : -1;
+			$_thumbnail_maximize = ($_GET["id"] != -1) ? f("SELECT Maxsize FROM " . THUMBNAILS_TABLE . " WHERE ID='" . abs($_GET["id"]) . "'", "Maxsize", $DB_WE) : -1;
+			$_thumbnail_interlace = ($_GET["id"] != -1) ? f("SELECT Interlace FROM " . THUMBNAILS_TABLE . " WHERE ID='" . abs($_GET["id"]) . "'", "Interlace", $DB_WE) : -1;
 
 			$_thumbnail_option_table = new we_htmlTable(array("border"=>"0", "cellpadding"=>"0", "cellspacing"=>"0"), 5, 1);
 
@@ -507,7 +507,7 @@ function build_dialog($selected_setting = "ui") {
 			 * OUTPUT FORMAT
 			 *****************************************************************/
 
-			$_thumbnail_format = ($_GET["id"] != -1) ? f("SELECT Format FROM " . THUMBNAILS_TABLE . " WHERE ID='" . $_GET["id"] . "'", "Format", $DB_WE) : -1;
+			$_thumbnail_format = ($_GET["id"] != -1) ? f("SELECT Format FROM " . THUMBNAILS_TABLE . " WHERE ID='" . abs($_GET["id"]) . "'", "Format", $DB_WE) : -1;
 
 			// Define available formats
 			$_thumbnails_formats = array("none" => $l_thumbnails["format_original"], "gif" => $l_thumbnails["format_gif"], "jpg" => $l_thumbnails["format_jpg"], "png" => $l_thumbnails["format_png"]);

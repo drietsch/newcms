@@ -334,12 +334,12 @@ if (isset($_REQUEST["ok"]) && isset($_REQUEST["linklist"]) && $_REQUEST["ok"] &&
 		$align = isset($ln["align"]) ? $ln["align"] : "";
 		$alt = isset($ln["alt"]) ? $ln["alt"] : "";
 		$img_title = isset($ln["img_title"]) ? $ln["img_title"] : "";
-		$href_int = (isset($id) && $id) ? f("SELECT Path FROM " . FILE_TABLE . " WHERE ID=$id","Path",$DB_WE) : "";
+		$href_int = (isset($id) && $id) ? f("SELECT Path FROM " . FILE_TABLE . " WHERE ID=".abs($id)."","Path",$DB_WE) : "";
 		if(defined("OBJECT_TABLE")) {
 			$obj_id = isset($ln["obj_id"]) ? $ln["obj_id"] : "";
-			$href_obj =  (isset($obj_id) && $obj_id) ? f("SELECT Path FROM " . OBJECT_FILES_TABLE . " WHERE ID=$obj_id","Path",$DB_WE) : "";
+			$href_obj =  (isset($obj_id) && $obj_id) ? f("SELECT Path FROM " . OBJECT_FILES_TABLE . " WHERE ID=".abs($obj_id)."","Path",$DB_WE) : "";
 		}
-		$src_int = (isset($img_id) && $img_id) ? f("SELECT Path FROM " . FILE_TABLE . " WHERE ID=$img_id","Path",$DB_WE) : "";
+		$src_int = (isset($img_id) && $img_id) ? f("SELECT Path FROM " . FILE_TABLE . " WHERE ID=".abs($img_id)."","Path",$DB_WE) : "";
 		$ctype = isset($ln["ctype"]) ? $ln["ctype"] : "";
 	}
 }

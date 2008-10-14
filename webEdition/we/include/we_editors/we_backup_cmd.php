@@ -401,7 +401,7 @@
 
 							// reload user prefs
 							$_SESSION['prefs'] = getHash("SELECT * from ".PREFS_TABLE,$DB_WE);
-							$exprefs = getHash('SELECT * FROM '.PREFS_TABLE.' WHERE userID='.$_SESSION['user']['ID'],$DB_WE);
+							$exprefs = getHash('SELECT * FROM '.PREFS_TABLE.' WHERE userID='.abs($_SESSION['user']['ID']),$DB_WE);
 							if(is_array($exprefs) && (isset($exprefs['userID']) && $exprefs['userID'] != 0) && sizeof($exprefs)>0){
 								$_SESSION['prefs']=$exprefs;
 							}

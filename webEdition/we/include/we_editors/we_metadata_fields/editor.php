@@ -112,7 +112,7 @@ function save_all_values() {
 		$truncateQuery = "truncate table ".METADATA_TABLE.";";
 		$_insertQuery = array();
 		foreach($_definedFields as $key => $value) {
-			$_insertQuery[] = "insert into ".METADATA_TABLE." 	values('','".$value['tag']."','".$value['type']."','".$value['importFrom']."');";
+			$_insertQuery[] = "insert into ".METADATA_TABLE." 	values('','".mysql_real_escape_string($value['tag'])."','".mysql_real_escape_string($value['type'])."','".mysql_real_escape_string($value['importFrom'])."');";
 		}
 
 		$DB_WE->query($truncateQuery);
