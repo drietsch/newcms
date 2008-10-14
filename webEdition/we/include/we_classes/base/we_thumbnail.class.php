@@ -248,7 +248,7 @@ class we_thumbnail {
 	*/
 	function initByThumbID($thumbID,$imageID,$imageFileName,$imagePath,$imageExtension,$imageWidth,$imageHeight,$imageData=""){
 
-		$_foo = getHash("SELECT * FROM ".THUMBNAILS_TABLE." WHERE ID='$thumbID'",$this->db);
+		$_foo = getHash("SELECT * FROM ".THUMBNAILS_TABLE." WHERE ID='".abs($thumbID)."'",$this->db);
 
 		$this->init(	$thumbID,
 						isset($_foo["Width"]) ? $_foo["Width"] : "",
@@ -288,7 +288,7 @@ class we_thumbnail {
 	*/
 	function initByThumbName($thumbName,$imageID,$imageFileName,$imagePath,$imageExtension,$imageWidth,$imageHeight,$imageData=""){
 
-		$_foo = getHash("SELECT * FROM ".THUMBNAILS_TABLE." WHERE Name='$thumbName'",$this->db);
+		$_foo = getHash("SELECT * FROM ".THUMBNAILS_TABLE." WHERE Name='".mysql_real_escape_string($thumbName)."'",$this->db);
 
 		$this->init(	isset($_foo["ID"]) ? $_foo["ID"] : 0,
 						isset($_foo["Width"]) ? $_foo["Width"] : "",
@@ -330,7 +330,7 @@ class we_thumbnail {
 		if(!$this->_getImageData($getBinary)){
 			return false;
 		}
-		$_foo = getHash("SELECT * FROM ".THUMBNAILS_TABLE." WHERE ID='$thumbID'",$this->db);
+		$_foo = getHash("SELECT * FROM ".THUMBNAILS_TABLE." WHERE ID='".abs($thumbID)."'",$this->db);
 
 		$this->init(	$thumbID,
 						isset($_foo["Width"]) ? $_foo["Width"] : "",
@@ -600,7 +600,7 @@ class we_thumbnail {
 	*/
 	function _getImageData($getBinary=false){
 
-		$this->db->query("SELECT " .LINK_TABLE. ".Name as Name," . CONTENT_TABLE . ".Dat as Dat  FROM " . CONTENT_TABLE . "," . LINK_TABLE . " WHERE " . LINK_TABLE . ".DID='".$this->imageID.
+		$this->db->query("SELECT " .LINK_TABLE. ".Name as Name," . CONTENT_TABLE . ".Dat as Dat  FROM " . CONTENT_TABLE . "," . LINK_TABLE . " WHERE " . LINK_TABLE . ".DID='".abs($this->imageID).
 				"' AND " . LINK_TABLE . ".DocumentTable='tblFile' AND " . CONTENT_TABLE . ".ID=" . LINK_TABLE . ".CID  AND " . CONTENT_TABLE . ".IsBinary=0");
 
 		while($this->db->next_record()){
@@ -611,7 +611,7 @@ class we_thumbnail {
 			}
 		}
 
-		$imgdat = getHash("SELECT ID,Filename,Extension,Path FROM " . FILE_TABLE . " WHERE ID = '".$this->imageID."'",$this->db);
+		$imgdat = getHash("SELECT ID,Filename,Extension,Path FROM " . FILE_TABLE . " WHERE ID = '".abs($this->imageID)."'",$this->db);
 		if(count($imgdat) == 0){
 			return false;
 		}

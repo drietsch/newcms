@@ -336,7 +336,7 @@ class we_rebuild {
 				$bool = $catAnd ? "AND" : "OR";
 				$_foo = makeArrayFromCSV($categories);
 				foreach($_foo as $catID){
-					$_cat_query .= " Category like '%,$catID,%' $bool ";
+					$_cat_query .= " Category like '%,".abs($catID).",%' $bool ";
 				}
 				$_cat_query = ereg_replace('^(.+)'.$bool.' $','\1',$_cat_query);
 				$_cat_query = "(".$_cat_query.")";
@@ -344,7 +344,7 @@ class we_rebuild {
 			if($doctypes){
 				$_foo = makeArrayFromCSV($doctypes);
 				foreach($_foo as $doctypeID){
-					$_doctype_query .= " Doctype = '$doctypeID' OR ";
+					$_doctype_query .= " Doctype = '".mysql_real_escape_string($doctypeID)."' OR ";
 				}
 				$_doctype_query = ereg_replace('^(.+)OR $','\1',$_doctype_query);
 				$_doctype_query = "(".$_doctype_query.")";
@@ -384,14 +384,14 @@ class we_rebuild {
 
 					$_template_query = " TemplateID='".$templateID."' OR ";
 					foreach ($arr["templateIDs"] as $tid) {
-						$_template_query .= " TemplateID='".$tid."' OR ";
+						$_template_query .= " TemplateID='".abs($tid)."' OR ";
 					}
 					// remove last OR
 					$_template_query = substr($_template_query, 0, strlen($_template_query) - 3);
 					$_template_query = '(' . $_template_query . ')';
 
 				} else {
-					$_template_query = "( TemplateID='$templateID' )";
+					$_template_query = "( TemplateID='".abs($templateID)."' )";
 				}
 
 			}
@@ -554,7 +554,7 @@ class we_rebuild {
 	function getFoldersInFolder($folderID){
 		$outArray = array($folderID);
 		$db = new DB_WE();
-		$db->query("SELECT ID FROM ".FILE_TABLE." WHERE ParentID='".$folderID."' AND IsFolder='1'");
+		$db->query("SELECT ID FROM ".FILE_TABLE." WHERE ParentID='".abs($folderID)."' AND IsFolder='1'");
 		while($db->next_record()){
 			$tmpArray = we_rebuild::getFoldersInFolder($db->f("ID"));
 			foreach($tmpArray as $foo){

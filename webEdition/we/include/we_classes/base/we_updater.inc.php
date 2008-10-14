@@ -50,8 +50,8 @@
 						$Owners = ($DB_WE->f("OwnerID") && ($DB_WE->f("OwnerID") != $DB_WE->f("CreatorID"))) ? (",".$DB_WE->f("OwnerID").",") : "";
 						$CreatorID = $DB_WE->f("CreatorID") ? $DB_WE->f("CreatorID") : $_SESSION["user"]["ID"];
 						$ModifierID = $DB_WE->f("ModifierID") ? $DB_WE->f("ModifierID") : $_SESSION["user"]["ID"];
-						$db2->query("UPDATE $table SET CreatorID='$CreatorID' , ModifierID='$ModifierID' , Owners='$Owners' WHERE ID='$id'");
-						$db2->query("DELETE FROM tblOwner WHERE fileID='$id'");
+						$db2->query("UPDATE ".mysql_real_escape_string($table)." SET CreatorID='".abs($CreatorID)."' , ModifierID='".abs($ModifierID)."' , Owners='".mysql_real_escape_string($Owners)."' WHERE ID='".abs($id)."'");
+						$db2->query("DELETE FROM tblOwner WHERE fileID='".abs($id)."'");
 						@set_time_limit(30);
 					}
 				}
@@ -71,9 +71,9 @@
 		$DB_WE->query("SELECT * FROM " . CATEGORY_TABLE);
 		while($DB_WE->next_record()){
 			if(($DB_WE->f("Text")==""))
-				$db2->query("UPDATE " . CATEGORY_TABLE . " SET Text='".$DB_WE->f("Category")."' WHERE ID='".$DB_WE->f("ID")."'");
+				$db2->query("UPDATE " . CATEGORY_TABLE . " SET Text='".mysql_real_escape_string($DB_WE->f("Category"))."' WHERE ID='".abs($DB_WE->f("ID"))."'");
 			if(($DB_WE->f("Path")==""))
-				$db2->query("UPDATE " . CATEGORY_TABLE . " SET Path='/".$DB_WE->f("Category")."' WHERE ID='".$DB_WE->f("ID")."'");
+				$db2->query("UPDATE " . CATEGORY_TABLE . " SET Path='/".mysql_real_escape_string($DB_WE->f("Category"))."' WHERE ID='".abs($DB_WE->f("ID"))."'");
 		}
 
 		if(!$this->isColExist(PREFS_TABLE,"seem_start_file")) $this->addCol(PREFS_TABLE,"seem_start_file","INT");
@@ -108,7 +108,7 @@
 			  $perms_slot["ADMINISTRATOR"]=$pstr["0"];
 			  $perms_slot["PUBLISH"]=$pstr["1"];
 			  if(count($perms_slot)>0){
-				 $db_tmp->query("UPDATE " . USER_TABLE . " SET Permissions='".serialize($perms_slot)."' WHERE ID=".$DB_WE->f("ID"));
+				 $db_tmp->query("UPDATE " . USER_TABLE . " SET Permissions='".mysql_real_escape_string(serialize($perms_slot))."' WHERE ID=".abs($DB_WE->f("ID")));
 			  }
 			}
 	}
@@ -124,14 +124,14 @@
 						$pid = $db->f("ParentID");
 						$path = "/".$db->f("username");
 						while($pid > 0){
-					$db2->query("SELECT username,ParentID FROM " . USER_TABLE . " WHERE ID='$pid'");
+					$db2->query("SELECT username,ParentID FROM " . USER_TABLE . " WHERE ID='".abs($pid)."'");
 					if($db2->next_record()){
 									$path = "/".$db2->f("username").$path;
 									$pid = $db2->f("ParentID");
 					}
 					else $pid=0;
 						}
-						$db2->query("UPDATE " . USER_TABLE . " SET Path='$path' WHERE ID='$id'");
+						$db2->query("UPDATE " . USER_TABLE . " SET Path='".mysql_real_escape_string($path)."' WHERE ID='".abs($id)."'");
 			}
 		}
 		else{
@@ -140,7 +140,7 @@
 						set_time_limit(30);
 						$id = $db->f("ID");
 						$path = "/".$db->f("username");
-						$db2->query("UPDATE " . USER_TABLE . " SET Path='$path' WHERE ID='$id'");
+						$db2->query("UPDATE " . USER_TABLE . " SET Path='".mysql_real_escape_string($path)."' WHERE ID='".abs($id)."'");
 			}
 
 		}
@@ -160,7 +160,7 @@
 			} else {
 				$icon="user.gif";
 			}
-			$db2->query("UPDATE " . USER_TABLE . " SET Icon='$icon' WHERE ID='$id'");
+			$db2->query("UPDATE " . USER_TABLE . " SET Icon='".mysql_real_escape_string($icon)."' WHERE ID='".abs($id)."'");
 		}
 	}
 
@@ -173,7 +173,7 @@
 					$id = $db->f("ID");
 			if($db->f("IsFolder")==1) $icon="usergroup.gif";
 			else $icon="user.gif";
-					$db2->query("UPDATE " . USER_TABLE . " SET Icon='$icon' WHERE ID='$id'");
+					$db2->query("UPDATE " . USER_TABLE . " SET Icon='".mysql_real_escape_string($icon)."' WHERE ID='".abs($id)."'");
 				}
 	}
 
@@ -185,19 +185,19 @@
 			set_time_limit(30);
 			$id = $db->f("ID");
 			$text = $db->f("username");
-			$db2->query("UPDATE " . USER_TABLE . " SET Text='$text' WHERE ID='$id'");
+			$db2->query("UPDATE " . USER_TABLE . " SET Text='".mysql_real_escape_string($text)."' WHERE ID='".abs($id)."'");
 		}
 	}
 
 	function isColExist($tab,$col){
 			global $DB_WE;
-			$DB_WE->query("SHOW COLUMNS FROM ".$tab." LIKE '$col';");
+			$DB_WE->query("SHOW COLUMNS FROM ".mysql_real_escape_string($tab)." LIKE '".mysql_real_escape_string($col)."';");
 			if($DB_WE->next_record()) return true; else return false;
 	}
 
 	function isTabExist($tab){
 			global $DB_WE;
-			$DB_WE->query("SHOW TABLES LIKE '$tab';");
+			$DB_WE->query("SHOW TABLES LIKE '".mysql_real_escape_string($tab)."';");
 			if($DB_WE->next_record()) return true; else return false;
 	}
 
@@ -213,28 +213,28 @@
 			   }
 			   $sql_array=array_merge($cols_sql,$key_sql);
 
-			   $DB_WE->query("CREATE TABLE $tab (".implode(",",$sql_array).")");
+			   $DB_WE->query("CREATE TABLE ".mysql_real_escape_string($tab)." (".implode(",",$sql_array).")");
 	}
 
 	function addCol($tab,$col,$typ,$pos=""){
 			   global $DB_WE;
-			   $DB_WE->query("ALTER TABLE $tab ADD $col $typ".(($pos!="") ? " ".$pos : "").";");
+			   $DB_WE->query("ALTER TABLE ".mysql_real_escape_string($tab)." ADD $col $typ".(($pos!="") ? " ".$pos : "").";");
 	}
 
 	function changeColTyp($tab,$col,$newtyp){
 			   global $DB_WE;
-			   $DB_WE->query("ALTER TABLE $tab CHANGE $col $col $newtyp;");
+			   $DB_WE->query("ALTER TABLE mysql_real_escape_string($tab) CHANGE $col $col $newtyp;");
 	}
 
 	function getColTyp($tab,$col){
 			   global $DB_WE;
-			   $DB_WE->query("SHOW COLUMNS FROM ".$tab." LIKE '$col';");
+			   $DB_WE->query("SHOW COLUMNS FROM ".mysql_real_escape_string($tab)." LIKE '$col';");
 			   if($DB_WE->next_record()) return $DB_WE->f("Type"); else return "";
 	}
 
 	function delCol($tab,$col){
 			   global $DB_WE;
-			   $DB_WE->query("ALTER TABLE $tab DROP $col;");
+			   $DB_WE->query("ALTER TABLE mysql_real_escape_string($tab) DROP $col;");
 	}
 
 	function updateUsers(){
@@ -290,7 +290,7 @@
 		}
 		if($this->isColExist(USER_TABLE,"IsFolder")){
 			$DB_WE->query("SELECT ID FROM " . USER_TABLE . " WHERE Type=1");
-			while($DB_WE->next_record()) $db123->query("UPDATE " . USER_TABLE . " SET IsFolder=1 WHERE ID=".$DB_WE->f("ID"));
+			while($DB_WE->next_record()) $db123->query("UPDATE " . USER_TABLE . " SET IsFolder=1 WHERE ID=".abs($DB_WE->f("ID")));
 		}
 		$this->fix_icon();
 

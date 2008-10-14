@@ -57,7 +57,7 @@
 		
 		function load($id,$loadData=true){
 			$this->ID=$id;
-			$this->db->query("SELECT binaryPath FROM ".VERSIONS_TABLE." WHERE ID='".$id."';");
+			$this->db->query("SELECT binaryPath FROM ".VERSIONS_TABLE." WHERE ID='".abs($id)."';");
 			if($this->db->next_record()){
 				$this->Path=$this->db->f("binaryPath");
 				if($this->Path && $loadData){

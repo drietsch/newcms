@@ -39,7 +39,7 @@ class delFragment extends taskFragment{
 			$filesToDel = makeArrayFromCSV($_SESSION["todel"]);
 			$this->alldata = array();
 			foreach($filesToDel as $id){
-				if(f("SELECT IsFolder FROM ".FILE_TABLE." WHERE ID='$id'","IsFolder",$this->db)){
+				if(f("SELECT IsFolder FROM ".FILE_TABLE." WHERE ID='".abs($id)."'","IsFolder",$this->db)){
 					we_readChilds($id,$this->alldata,FILE_TABLE,false);
 				}
 			}

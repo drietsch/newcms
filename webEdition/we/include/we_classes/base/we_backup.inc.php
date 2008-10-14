@@ -297,8 +297,8 @@ class we_backup {
 
 	function isPathExist($path) {
 		$tmp_db = new DB_WE;
-		$this->backup_db->query("SELECT ID FROM ".FILE_TABLE." WHERE Path='".$path."'");
-		$tmp_db->query("SELECT ID FROM ".TEMPLATES_TABLE." WHERE Path='".$path."'");
+		$this->backup_db->query("SELECT ID FROM ".FILE_TABLE." WHERE Path='".mysql_real_escape_string($path)."'");
+		$tmp_db->query("SELECT ID FROM ".TEMPLATES_TABLE." WHERE Path='".mysql_real_escape_string($path)."'");
 		if(($this->backup_db->next_record())||($tmp_db->next_record()))
 			return true;
 		else
@@ -344,7 +344,7 @@ class we_backup {
 				$contents=addslashes($contents);
 				$contents=str_replace("\n","\\n",$contents);
 				$contents=str_replace("\r","\\r",$contents);
-				$q="INSERT INTO ".BACKUP_TABLE." (Path,Data,IsFolder) VALUES ('".addslashes($path)."','".$contents."',0)";
+				$q="INSERT INTO ".BACKUP_TABLE." (Path,Data,IsFolder) VALUES ('".mysql_real_escape_string($path)."','".mysql_real_escape_string($contents)."',0)";
 				$fh=fopen($this->dumpfilename,"ab");
 				fwrite($fh,$q.";".$nl);
 				fclose($fh);
@@ -374,7 +374,7 @@ class we_backup {
 			$rootdir = substr($rootdir,0,strlen($rootdir)-1);
 		$path = substr($dir,strlen($rootdir),strlen($dir)-strlen($rootdir));
 		if(!$this->isPathExist($path)) {
-			$q="INSERT INTO ".BACKUP_TABLE." (Path,Data,IsFolder) VALUES ('".addslashes($path)."','',1)";
+			$q="INSERT INTO ".BACKUP_TABLE." (Path,Data,IsFolder) VALUES ('".mysql_real_escape_string($path)."','',1)";
 			$fh=fopen($this->dumpfilename,"ab");
 			fwrite($fh,$q.";".$nl);
 			fclose($fh);
@@ -413,9 +413,9 @@ class we_backup {
 
 	function tableDefinition($table, $nl,$noprefix) {
 		$foo = "";
-		$foo .= "DROP TABLE IF EXISTS $noprefix;$nl";
-		$foo .= "CREATE TABLE $noprefix ($nl";
-		$this->backup_db->query("SHOW FIELDS FROM $table");
+		$foo .= "DROP TABLE IF EXISTS ".mysql_real_escape_string($noprefix).";$nl";
+		$foo .= "CREATE TABLE ".mysql_real_escape_string($noprefix)." ($nl";
+		$this->backup_db->query("SHOW FIELDS FROM ".mysql_real_escape_string($table)."");
 		while($this->backup_db->next_record()) {
 			$row = $this->backup_db->Record;
 			$foo .= "   $row[Field] $row[Type]";
@@ -431,7 +431,7 @@ class we_backup {
 			$foo .= ",$nl";
 		}
 		$foo = ereg_replace(",".$nl."$", "", $foo);
-		$this->backup_db->query("SHOW KEYS FROM $table");
+		$this->backup_db->query("SHOW KEYS FROM ".mysql_real_escape_string($table)."");
 		while($this->backup_db->next_record()) {
 			$row = $this->backup_db->Record;
 			$key=$row['Key_name'];
@@ -619,7 +619,7 @@ class we_backup {
 							@fwrite($fh,$nl);
 							$this->backup_step=0;
 							$this->table_end=0;
-							$this->backup_db->query("SELECT COUNT(*) AS Count FROM $table");
+							$this->backup_db->query("SELECT COUNT(*) AS Count FROM ".mysql_real_escape_string($table)."");
 							if($this->backup_db->next_record())
 								$this->table_end=$this->backup_db->f("Count");
 							$fieldnames = "(";
@@ -637,11 +637,11 @@ class we_backup {
 						}
 						$this->partial=false;
 						$limit=$this->backup_steps;
-						$this->backup_db->query("SELECT * FROM $table LIMIT ".$this->backup_step.",".$limit);
+						$this->backup_db->query("SELECT * FROM ".mysql_real_escape_string($table)." LIMIT ".abs($this->backup_step).",".abs($limit));
 						while($this->backup_db->next_record()) {
 							if(strtolower($table)==strtolower(CONTENT_TABLE)) {
 								$db = new DB_WE;
-								$siz = f("SELECT LENGTH(Dat) as Dat FROM ".CONTENT_TABLE." WHERE ID=" .$this->backup_db->f("ID"),"Dat",$db);
+								$siz = f("SELECT LENGTH(Dat) as Dat FROM ".CONTENT_TABLE." WHERE ID=" .abs($this->backup_db->f("ID")),"Dat",$db);
 							}
 							else {
 								$siz = 0;
@@ -1032,7 +1032,7 @@ class we_backup {
 										$buff=str_replace($ctbl.$itbl,$clear_name,$buff);
 										if(($ctbl!="") && (strtolower(substr($buff,0,6))=="create")) {
 											if(defined("OBJECT_X_TABLE") && substr(strtolower($ctbl),0,10)!=strtolower(OBJECT_X_TABLE)) $this->getDiff($buff,$clear_name,$upd);
-											$this->backup_db->query("DROP TABLE IF EXISTS $clear_name;");
+											$this->backup_db->query("DROP TABLE IF EXISTS ".mysql_real_escape_string($clear_name).";");
 											$this->backup_db->query($buff);
 										}
 										if(($itbl!="") && (strtolower(substr($buff,0,6))=="insert")){
@@ -1155,12 +1155,12 @@ class we_backup {
 			}
 		}
 
-		$this->backup_db->query("SHOW TABLES LIKE '".$tab."';");
+		$this->backup_db->query("SHOW TABLES LIKE '".mysql_real_escape_string($tab)."';");
 		if($this->backup_db->next_record()) {
-			$this->backup_db->query("SHOW COLUMNS FROM ".$tab.";");
+			$this->backup_db->query("SHOW COLUMNS FROM ".mysql_real_escape_string($tab).";");
 			while($this->backup_db->next_record()) {
 				if(!in_array(strtolower($this->backup_db->f("Field")),$fnames)) {
-					array_push($fupdate,"ALTER TABLE ".$tab." ADD ".$this->backup_db->f("Field")." ".$this->backup_db->f("Type")." DEFAULT '".$this->backup_db->f("Default")."'".($this->backup_db->f("Null")=="YES" ? " NOT NULL" :"").";");
+					array_push($fupdate,"ALTER TABLE ".mysql_real_escape_string($tab)." ADD ".$this->backup_db->f("Field")." ".$this->backup_db->f("Type")." DEFAULT '".$this->backup_db->f("Default")."'".($this->backup_db->f("Null")=="YES" ? " NOT NULL" :"").";");
 				}
 			}
 		}
@@ -1490,7 +1490,7 @@ class we_backup {
 	function getDownloadFile() {
 		$download_filename= "weBackup_".$_SESSION["user"]["Username"].".sql";
 		if(copy($this->dumpfilename,$_SERVER["DOCUMENT_ROOT"].BACKUP_DIR."download/".$download_filename)) {
-			$this->backup_db->query("INSERT INTO ".CLEAN_UP_TABLE."(Path,Date) Values ('".$_SERVER["DOCUMENT_ROOT"].BACKUP_DIR."download/".$download_filename."','".time()."')");
+			$this->backup_db->query("INSERT INTO ".CLEAN_UP_TABLE."(Path,Date) Values ('".mysql_real_escape_string($_SERVER["DOCUMENT_ROOT"].BACKUP_DIR."download/".$download_filename)."','".time()."')");
 			return $download_filename;
 		}
 		else

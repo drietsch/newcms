@@ -727,8 +727,8 @@
             $db = new DB_WE();
             $query = "
                 SELECT ID
-                FROM " . $tbl . "
-                WHERE Path='" . $docPath . "'
+                FROM " . mysql_real_escape_string($tbl) . "
+                WHERE Path='" . mysql_real_escape_string($docPath) . "'
             ";
             $db->query($query);
 
@@ -1159,7 +1159,7 @@
             $query = "
                 SELECT ContentType
                 FROM " . FILE_TABLE . "
-                WHERE ID='" . $id . "'
+                WHERE ID='" . abs($id) . "'
             ";
             $db->query($query);
 

@@ -57,7 +57,7 @@
 		
 		function load($id,$loadData=true){
 			$this->ID=$id;
-			$this->db->query("SELECT Path FROM ".FILE_TABLE." WHERE ID='".$id."';");
+			$this->db->query("SELECT Path FROM ".FILE_TABLE." WHERE ID='".abs($id)."';");
 			if($this->db->next_record()){
 				$this->Path=$this->db->f("Path");
 				if($this->Path && $loadData){

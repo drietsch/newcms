@@ -32,13 +32,13 @@
 
 		function isColExist($tab,$col){
 			global $DB_WE;
-			$DB_WE->query("SHOW COLUMNS FROM ".$tab." LIKE '$col';");
+			$DB_WE->query("SHOW COLUMNS FROM ".mysql_real_escape_string($tab)." LIKE '$col';");
 			if($DB_WE->next_record()) return true; else return false;
 		}
 	
 		function isTabExist($tab){
 			global $DB_WE;
-			$DB_WE->query("SHOW TABLES LIKE '$tab';");
+			$DB_WE->query("SHOW TABLES LIKE '".mysql_real_escape_string($tab)."';");
 			if($DB_WE->next_record()) return true; else return false;
 		}
 	
@@ -66,35 +66,35 @@
 		
 			}
 
-			return $DB_WE->query("CREATE TABLE $tab (".implode(",",$cols_sql).")$charset_collation;") ? true : false;
+			return $DB_WE->query("CREATE TABLE ".mysql_real_escape_string($tab)." (".implode(",",$cols_sql).")$charset_collation;") ? true : false;
 			
 			
 		}
 	
 		function delTable($tab){
 			   global $DB_WE;
-				$DB_WE->query("DROP TABLE IF EXISTS $tab;");
+				$DB_WE->query("DROP TABLE IF EXISTS ".mysql_real_escape_string($tab).";");
 		}
 	
 		function addCol($tab,$col,$typ,$pos=""){
 			   global $DB_WE;
-			   $DB_WE->query("ALTER TABLE $tab ADD $col $typ".(($pos!="") ? " ".$pos : "").";");
+			   $DB_WE->query("ALTER TABLE ".mysql_real_escape_string($tab)." ADD $col $typ".(($pos!="") ? " ".$pos : "").";");
 		}
 	
 		function changeColTyp($tab,$col,$newtyp){
 			   global $DB_WE;
-			   $DB_WE->query("ALTER TABLE $tab CHANGE $col $col $newtyp;");
+			   $DB_WE->query("ALTER TABLE ".mysql_real_escape_string($tab)." CHANGE $col $col $newtyp;");
 		}
 	
 		function getColTyp($tab,$col){
 			   global $DB_WE;
-			   $DB_WE->query("SHOW COLUMNS FROM ".$tab." LIKE '$col';");
+			   $DB_WE->query("SHOW COLUMNS FROM ".mysql_real_escape_string($tab)." LIKE '$col';");
 			   if($DB_WE->next_record()) return $DB_WE->f("Type"); else return "";
 		}
 	
 		function delCol($tab,$col){
 			   global $DB_WE;
-			   $DB_WE->query("ALTER TABLE $tab DROP $col;");
+			   $DB_WE->query("ALTER TABLE ".mysql_real_escape_string($tab)." DROP $col;");
 		}
 	
 	}

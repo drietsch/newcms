@@ -113,16 +113,16 @@ class we_search_listview extends listviewBase {
 
 		$cat_tail = getCatSQLTail($this->cats,INDEX_TABLE,$this->catOr,$this->DB_WE);
 
-		$dt = ($this->docType) ? f("SELECT ID FROM " . DOC_TYPES_TABLE . " WHERE DocType like '".$this->docType."'","ID",$this->DB_WE) : "";
+		$dt = ($this->docType) ? f("SELECT ID FROM " . DOC_TYPES_TABLE . " WHERE DocType like '".mysql_real_escape_string($this->docType)."'","ID",$this->DB_WE) : "";
 
 		$cl = $this->class;
 
 		if($dt && $cl){
-			$dtcl_query = " AND (" . INDEX_TABLE . ".Doctype='$dt' OR " . INDEX_TABLE . ".ClassID='$cl') ";
+			$dtcl_query = " AND (" . INDEX_TABLE . ".Doctype='".mysql_real_escape_string($dt)."' OR " . INDEX_TABLE . ".ClassID='".abs($cl)."') ";
 		}else if($dt){
-			$dtcl_query = " AND " . INDEX_TABLE . ".Doctype='$dt' ";
+			$dtcl_query = " AND " . INDEX_TABLE . ".Doctype='".mysql_real_escape_string($dt)."' ";
 		}else if($cl){
-			$dtcl_query = " AND " . INDEX_TABLE . ".ClassID='$cl' ";
+			$dtcl_query = " AND " . INDEX_TABLE . ".ClassID='".abs($cl)."' ";
 		}else{
 			$dtcl_query = "";
 		}
@@ -178,7 +178,7 @@ class we_search_listview extends listviewBase {
 			$cond = array();
 			foreach($workspaces as $id) {
 				$workspace=id_to_path($id, FILE_TABLE, $this->DB_WE);
-				array_push($cond, "(" . INDEX_TABLE . ".Workspace like '$workspace/%' OR " . INDEX_TABLE . ".Workspace='$workspace')");
+				array_push($cond, "(" . INDEX_TABLE . ".Workspace like '".mysql_real_escape_string($workspace)."/%' OR " . INDEX_TABLE . ".Workspace='".mysql_real_escape_string($workspace)."')");
 			}
 			$ws_where = " AND (".implode(" OR ", $cond).")";
 		}else{
@@ -196,10 +196,10 @@ class we_search_listview extends listviewBase {
 		$this->anz_all = $this->DB_WE->num_rows();
 
 		if($this->order == "random()"){
-			$q = "SELECT " . INDEX_TABLE . ".Category as Category, " . INDEX_TABLE . ".DID as DID," . INDEX_TABLE . ".OID as OID," . INDEX_TABLE . ".Text as Text," . INDEX_TABLE . ".Workspace as Workspace," . INDEX_TABLE . ".WorkspaceID as WorkspaceID," . INDEX_TABLE . ".Title as Title," . INDEX_TABLE . ".Description as Description," . INDEX_TABLE . ".Path as Path, RAND() as RANDOM FROM " . INDEX_TABLE . " WHERE $bedingung_sql $dtcl_query $cat_tail $ws_where $weDocumentCustomerFilter_tail ORDER BY RANDOM".(($rows > 0) ? (" limit ".$this->start.",".$this->rows) : "");
+			$q = "SELECT " . INDEX_TABLE . ".Category as Category, " . INDEX_TABLE . ".DID as DID," . INDEX_TABLE . ".OID as OID," . INDEX_TABLE . ".Text as Text," . INDEX_TABLE . ".Workspace as Workspace," . INDEX_TABLE . ".WorkspaceID as WorkspaceID," . INDEX_TABLE . ".Title as Title," . INDEX_TABLE . ".Description as Description," . INDEX_TABLE . ".Path as Path, RAND() as RANDOM FROM " . INDEX_TABLE . " WHERE $bedingung_sql $dtcl_query $cat_tail $ws_where $weDocumentCustomerFilter_tail ORDER BY RANDOM".(($rows > 0) ? (" limit ".abs($this->start).",".abs($this->rows)) : "");
 
 		}else{
-			$q = "SELECT " . INDEX_TABLE . ".Category as Category, " . INDEX_TABLE . ".DID as DID," . INDEX_TABLE . ".OID as OID," . INDEX_TABLE . ".Text as Text," . INDEX_TABLE . ".Workspace as Workspace," . INDEX_TABLE . ".WorkspaceID as WorkspaceID," . INDEX_TABLE . ".Title as Title," . INDEX_TABLE . ".Description as Description," . INDEX_TABLE . ".Path as Path, $ranking as ranking FROM " . INDEX_TABLE . " WHERE $bedingung_sql $dtcl_query $cat_tail $ws_where $weDocumentCustomerFilter_tail ORDER BY ranking".($this->order ? (",".$this->order) : "").(($rows > 0) ? (" limit ".$this->start.",".$this->rows) : "");
+			$q = "SELECT " . INDEX_TABLE . ".Category as Category, " . INDEX_TABLE . ".DID as DID," . INDEX_TABLE . ".OID as OID," . INDEX_TABLE . ".Text as Text," . INDEX_TABLE . ".Workspace as Workspace," . INDEX_TABLE . ".WorkspaceID as WorkspaceID," . INDEX_TABLE . ".Title as Title," . INDEX_TABLE . ".Description as Description," . INDEX_TABLE . ".Path as Path, $ranking as ranking FROM " . INDEX_TABLE . " WHERE $bedingung_sql $dtcl_query $cat_tail $ws_where $weDocumentCustomerFilter_tail ORDER BY ranking".($this->order ? (",".$this->order) : "").(($rows > 0) ? (" limit ".abs($this->start).",".abs($this->rows)) : "");
 
 		}
 		$this->DB_WE->query($q);

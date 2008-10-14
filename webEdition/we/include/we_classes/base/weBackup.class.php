@@ -342,9 +342,9 @@ class weBackup extends we_backup{
 						$id=$attributes["ID"];
 						$path=$attributes["Path"];
 						//$this->backup_db->query("SELECT ".FILE_TABLE.".ID AS ID,".FILE_TABLE.".TemplateID AS TemplateID,".TEMPLATES_TABLE.".Path AS TemplatePath FROM ".FILE_TABLE.",".TEMPLATES_TABLE." WHERE ".FILE_TABLE.".TemplateID=".TEMPLATES_TABLE.".ID;");
-						$this->backup_db->query("SELECT ID FROM ".TEMPLATES_TABLE." WHERE Path=".$path.";");
+						$this->backup_db->query("SELECT ID FROM ".TEMPLATES_TABLE." WHERE Path=".mysql_real_escape_string($path).";");
 						if($this->backup_db->next_record()){
-							if($this->backup_db->f("ID")!=$id) $db2->query("UPDATE ".FILE_TABLE." SET TemplateID=".$this->backup_db->f("ID")." WHERE TemplateID=".$id);
+							if($this->backup_db->f("ID")!=$id) $db2->query("UPDATE ".FILE_TABLE." SET TemplateID=".abs($this->backup_db->f("ID"))." WHERE TemplateID=".abs($id));
 						}
 					}
 				}
@@ -459,7 +459,7 @@ class weBackup extends we_backup{
 							$this->backup_step=0;
 							$this->table_end=0;
 
-							$this->table_end = f("SELECT COUNT(*) AS Count FROM $table","Count",$this->backup_db);
+							$this->table_end = f("SELECT COUNT(*) AS Count FROM ".mysql_real_escape_string($table)."","Count",$this->backup_db);
 							/*$this->backup_db->query("SELECT COUNT(*) AS Count FROM $table");
 							if($this->backup_db->next_record()) $this->table_end=$this->backup_db->f("Count");*/
 
@@ -519,7 +519,7 @@ class weBackup extends we_backup{
 		if(!is_array($fields)) return false;
 		// remve $res=array(); from exportTables function
 		$out="<we:info>";
-		$this->backup_db->query("SELECT ".implode(",",$fields)." FROM $table;");
+		$this->backup_db->query("SELECT ".implode(",",$fields)." FROM ".mysql_real_escape_string($table).";");
 		while ($this->backup_db->next_record()) {
 			$out.='<we:map table="'.$this->getDefaultTableName($table).'"';
 			foreach ($fields as $field) {
@@ -687,7 +687,7 @@ class weBackup extends we_backup{
 		$this->getFileList($_SERVER["DOCUMENT_ROOT"].'/webEdition/site',true,false);
 		$out = array();
 		foreach ($this->file_list as $file) {
-			$ct = f('SELECT ContentType FROM ' . FILE_TABLE . ' WHERE Path="' . str_replace($_SERVER['DOCUMENT_ROOT'].'/webEdition/site' , '' , $file) . '";','ContentType',$this->backup_db);
+			$ct = f('SELECT ContentType FROM ' . FILE_TABLE . ' WHERE Path="' . mysql_real_escape_string(str_replace($_SERVER['DOCUMENT_ROOT'].'/webEdition/site' , '' , $file)) . '";','ContentType',$this->backup_db);
 			if($ct) {
 				if($ct != 'image/*' && $ct != 'application/*' && $ct != 'application/x-shockwave-flash') $out[]=$file;
 			} else {
@@ -915,10 +915,10 @@ class weBackup extends we_backup{
 
 				}else if($table==FILE_TABLE && defined("ISP_VERSION") && ISP_VERSION){
 					$_file_sql=$this->getISPWheres("file","NOT LIKE");
-					return "SELECT ID FROM $table WHERE $_file_sql LIMIT ".$this->backup_step.",".$this->backup_steps;
+					return "SELECT ID FROM ".mysql_real_escape_string($table)." WHERE $_file_sql LIMIT ".abs($this->backup_step).",".abs($this->backup_steps);
 				}else{
 					//$keys=weTableItem::getTableKey($table);
-					return "SELECT ".implode(",",$keys)." FROM $table LIMIT ".$this->backup_step.",".$this->backup_steps;
+					return "SELECT ".implode(",",$keys)." FROM ".mysql_real_escape_string($table)." LIMIT ".abs($this->backup_step).",".abs($this->backup_steps);
 				}
 	}
 
@@ -1002,7 +1002,7 @@ class weBackup extends we_backup{
 	}
 
 	function clearTemporaryData($docTable){
-		$this->backup_db->query("DELETE FROM ".TEMPORARY_DOC_TABLE." WHERE DocTable='$docTable';");
+		$this->backup_db->query("DELETE FROM ".TEMPORARY_DOC_TABLE." WHERE DocTable='".mysql_real_escape_string($docTable)."';");
 	}
 
 

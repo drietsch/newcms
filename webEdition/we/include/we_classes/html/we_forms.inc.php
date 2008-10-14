@@ -321,7 +321,7 @@ class we_forms {
 				$foo = getHash("
 						SELECT Path
 						FROM " . FILE_TABLE . "
-						WHERE ID='".$regs[$i][2]."'",$DB_WE);
+						WHERE ID='".abs($regs[$i][2])."'",$DB_WE);
 				if(!$foo["Path"]){
 					$text = eregi_replace('<a [^>]*href="document:'.$regs[$i][2].'"[^>]*>([^<]+)</a>','\1',$text);
 					$text = eregi_replace('<a [^>]*href="document:'.$regs[$i][2].'"[^>]*>','',$text);

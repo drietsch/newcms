@@ -431,7 +431,7 @@ class liveUpdateFunctions {
 
 		$keysOfTable = array();
 
-		$db->query("SHOW INDEX FROM $tableName");
+		$db->query("SHOW INDEX FROM ".mysql_real_escape_string($tableName)."");
 
 		while ($db->next_record()) {
 
@@ -491,10 +491,10 @@ class liveUpdateFunctions {
 
 			if ($isNew) {
 
-				$queries[] = "ALTER TABLE $tableName ADD " . $fieldInfo['Field'] . " " . $fieldInfo['Type'] . " $null $default $extra";
+				$queries[] = "ALTER TABLE ".mysql_real_escape_string($tableName)." ADD " . $fieldInfo['Field'] . " " . $fieldInfo['Type'] . " $null $default $extra";
 			} else {
 
-				$queries[] = "ALTER TABLE $tableName CHANGE " . $fieldInfo['Field'] . " " . $fieldInfo['Field'] . " " . $fieldInfo['Type'] . " $null $default $extra";
+				$queries[] = "ALTER TABLE ".mysql_real_escape_string($tableName)." CHANGE " . $fieldInfo['Field'] . " " . $fieldInfo['Field'] . " " . $fieldInfo['Type'] . " $null $default $extra";
 			}
 		}
 		return $queries;
@@ -526,7 +526,7 @@ class liveUpdateFunctions {
 					break;
 				}
 
-				$queries[] = "ALTER TABLE $tableName ADD " . $index . " ($key)";
+				$queries[] = "ALTER TABLE ".mysql_real_escape_string($tableName)." ADD " . $index . " ($key)";
 			}
 		}
 		return $queries;
@@ -656,7 +656,7 @@ class liveUpdateFunctions {
 						if (isset($_SESSION["DatabaseAction"]) && $_SESSION["DatabaseAction"] == "Install") {
 
 							// 1st drop table,
-							$dropQuery = "DROP TABLE IF EXISTS $tableName";
+							$dropQuery = "DROP TABLE IF EXISTS ".mysql_real_escape_string($tableName)."";
 							$db->query($dropQuery);
 
 							// 2nd reinstall table
@@ -675,10 +675,10 @@ class liveUpdateFunctions {
 							// with existing table
 							$tmpName = '__we_delete_update_temp_table__';
 
-							$db->query("DROP TABLE IF EXISTS $tmpName;"); // delete table if already exists
+							$db->query("DROP TABLE IF EXISTS ".mysql_real_escape_string($tmpName).";"); // delete table if already exists
 
 							// create temptable
-							$tmpQuery = preg_replace($namePattern, "CREATE TABLE $tmpName (", $query);
+							$tmpQuery = preg_replace($namePattern, "CREATE TABLE ".mysql_real_escape_string($tmpName)." (", $query);
 							$db->query(trim($tmpQuery));
 
 							// get information from existing and new table
