@@ -68,11 +68,11 @@ class importFunctions{
 		$GLOBALS["we_doc"]->setParentID($parentID);
 		$GLOBALS["we_doc"]->Path=$GLOBALS["we_doc"]->getParentPath().(($GLOBALS["we_doc"]->getParentPath() != "/") ? "/" : "").$GLOBALS["we_doc"]->Text;
 	    // IF NAME OF OBJECT EXISTS, WE HAVE TO CREATE A NEW NAME
-	    if($file_id = f("SELECT ID FROM " . FILE_TABLE . " WHERE Path='".$GLOBALS["we_doc"]->Path."'","ID",$GLOBALS["DB_WE"])){
+	    if($file_id = f("SELECT ID FROM " . FILE_TABLE . " WHERE Path='".mysql_real_escape_string($GLOBALS["we_doc"]->Path)."'","ID",$GLOBALS["DB_WE"])){
 			if($conflict == 'rename'){
 	    		$z=0;
 				$footext = $GLOBALS["we_doc"]->Filename."_".$z.$GLOBALS["we_doc"]->Extension;
-				while(f("SELECT ID FROM " . FILE_TABLE . " WHERE Text='$footext' AND ParentID='".$GLOBALS["we_doc"]->ParentID."'","ID",$GLOBALS["DB_WE"])){
+				while(f("SELECT ID FROM " . FILE_TABLE . " WHERE Text='".mysql_real_escape_string($footext)."' AND ParentID='".abs($GLOBALS["we_doc"]->ParentID)."'","ID",$GLOBALS["DB_WE"])){
 					$z++;
 					$footext = $GLOBALS["we_doc"]->Filename."_".$z.$GLOBALS["we_doc"]->Extension;
 				}
@@ -143,14 +143,14 @@ class importFunctions{
 			$object->Text = $filename;	
 		    $object->Path=$object->getParentPath().(($object->getParentPath() != "/") ? "/" : "").$object->Text;
 		    // IF NAME OF OBJECT EXISTS, WE HAVE TO CREATE A NEW NAME
-		    if($file_id = f("SELECT ID FROM " . OBJECT_FILES_TABLE . " WHERE Path='".$object->Path."'","ID",$GLOBALS["DB_WE"])){
+		    if($file_id = f("SELECT ID FROM " . OBJECT_FILES_TABLE . " WHERE Path='".mysql_real_escape_string($object->Path)."'","ID",$GLOBALS["DB_WE"])){
 				$name_exists = true;
 				if($conflict == 'replace'){
 					$object->initByID($file_id,OBJECT_FILES_TABLE);
 				} else if($conflict == 'rename') {
 		    		$z=0;
 					$footext = $object->Text."_".$z;
-					while(f("SELECT ID FROM " . OBJECT_FILES_TABLE . " WHERE Text='$footext' AND ParentID='".$object->ParentID."'","ID",$GLOBALS["DB_WE"])){
+					while(f("SELECT ID FROM " . OBJECT_FILES_TABLE . " WHERE Text='".mysql_real_escape_string($footext)."' AND ParentID='".abs($object->ParentID)."'","ID",$GLOBALS["DB_WE"])){
 						$z++;
 						$footext = $object->Text."_".$z;
 					}

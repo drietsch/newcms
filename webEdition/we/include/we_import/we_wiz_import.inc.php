@@ -1099,7 +1099,7 @@ HTS;
 			$ueberschrift=$l_import["template"];
 		}
 		$myid = (isset($v["we_TemplateID"]))? $v["we_TemplateID"] : 0;
-		$path = f("SELECT Path FROM $table WHERE ID='$myid'","Path",$DB_WE);
+		$path = f("SELECT Path FROM ".mysql_real_escape_string($table)." WHERE ID='".abs($myid)."'","Path",$DB_WE);
 		$button = $we_button->create_button("select", "javascript:we_cmd('openDocselector',document.we_form.elements['$idname'].value,'$table','self.frames[\\'wizbody\\'].document.forms[\\'we_form\\'].elements[\\'$idname\\'].value','self.frames[\\'wizbody\\'].document.forms[\\'we_form\\'].elements[\\'$textname\\'].value','opener.top.we_cmd(\'reload_editpage\');','".session_id()."','','text/weTmpl',1)");
 		/***********************************************************************/
 		$yuiSuggest =& weSuggest::getInstance();
@@ -1116,7 +1116,7 @@ HTS;
 		if ($v["docType"] != -1 && count($TPLselect->childs)) {
 			$displayDocType   = "display:block";
 			$displayNoDocType = "display:none";
-			$foo = getHash("SELECT TemplateID,Templates FROM " . DOC_TYPES_TABLE . " WHERE ID ='".$v["docType"]."'", $DB_WE);
+			$foo = getHash("SELECT TemplateID,Templates FROM " . DOC_TYPES_TABLE . " WHERE ID ='".abs($v["docType"])."'", $DB_WE);
 			$ids_arr = makeArrayFromCSV($foo["Templates"]);
 			$paths_arr = id_to_path($foo["Templates"],TEMPLATES_TABLE,"",false,true);
 	
@@ -1458,7 +1458,7 @@ HTS;
 
 		if ($v["import_type"] == "documents") {
 			$sql_select = "SELECT ".CONTENT_TABLE.".Dat as Dat FROM ".CONTENT_TABLE.",".LINK_TABLE." WHERE ".LINK_TABLE.".CID=".CONTENT_TABLE.".ID AND ".
-				LINK_TABLE.".DocumentTable='".substr(TEMPLATES_TABLE, strlen(TBL_PREFIX))."' AND ".LINK_TABLE.".DID='".$v["we_TemplateID"]."' AND ".LINK_TABLE.".Name='completeData'";
+				LINK_TABLE.".DocumentTable='".substr(TEMPLATES_TABLE, strlen(TBL_PREFIX))."' AND ".LINK_TABLE.".DID='".abs($v["we_TemplateID"])."' AND ".LINK_TABLE.".Name='completeData'";
 
 			$templateCode = f($sql_select, "Dat", $db);
 			$tp = new we_tagParser();
@@ -1841,7 +1841,7 @@ HTS;
 		}
 
 		if(isset($v["docType"]) && $v["docType"]!=-1 && isset($_REQUEST["doctypeChanged"]) && $_REQUEST["doctypeChanged"]){
-			$values = getHash("SELECT * FROM ".DOC_TYPES_TABLE." WHERE ID='".$v["docType"]."'",$GLOBALS["DB_WE"]);
+			$values = getHash("SELECT * FROM ".DOC_TYPES_TABLE." WHERE ID='".abs($v["docType"])."'",$GLOBALS["DB_WE"]);
 			$v["store_to_id"] = $values["ParentID"];;
 			$v["store_to_path"] = id_to_path($v["store_to_id"]);
 			$v["we_Extension"] = $values["Extension"];
@@ -2030,7 +2030,7 @@ HTS;
 			$ueberschrift=$l_import["template"];
 		}
 		$myid = (isset($v["we_TemplateID"]))? $v["we_TemplateID"] : 0;
-		$path = f("SELECT Path FROM $table WHERE ID='$myid'","Path",$DB_WE);
+		$path = f("SELECT Path FROM ".mysql_real_escape_string($table)." WHERE ID='".abs($myid)."'","Path",$DB_WE);
 		$button = $we_button->create_button("select", "javascript:we_cmd('openDocselector',document.we_form.elements['$idname'].value,'$table','self.frames[\\'wizbody\\'].document.forms[\\'we_form\\'].elements[\\'$idname\\'].value','self.frames[\\'wizbody\\'].document.forms[\\'we_form\\'].elements[\\'$textname\\'].value','opener.top.we_cmd(\'reload_editpage\');','".session_id()."','','text/weTmpl',1)");
 
 		$yuiSuggest =& weSuggest::getInstance();
@@ -2045,7 +2045,7 @@ HTS;
 		);
 
 		if ($v["docType"] != -1) {
-			$foo = getHash("SELECT TemplateID,Templates FROM ".DOC_TYPES_TABLE." WHERE ID ='".$v["docType"]."'", $DB_WE);
+			$foo = getHash("SELECT TemplateID,Templates FROM ".DOC_TYPES_TABLE." WHERE ID ='".abs($v["docType"])."'", $DB_WE);
 			$ids_arr = makeArrayFromCSV($foo["Templates"]);
 			$paths_arr = id_to_path($foo["Templates"],TEMPLATES_TABLE,"",false,true);
 
@@ -2268,7 +2268,7 @@ HTS;
 
 		if ($v["import_type"] == "documents") {
 			$sql_select = "SELECT " . CONTENT_TABLE . ".Dat as Dat FROM " . CONTENT_TABLE . "," . LINK_TABLE . " WHERE " . LINK_TABLE . ".CID=" . CONTENT_TABLE . ".ID AND ".
-				LINK_TABLE . ".DocumentTable='" . substr(TEMPLATES_TABLE, strlen(TBL_PREFIX)) . "' AND " . LINK_TABLE . ".DID='".$v["we_TemplateID"]."' AND " . LINK_TABLE . ".Name='completeData'";
+				LINK_TABLE . ".DocumentTable='" . substr(TEMPLATES_TABLE, strlen(TBL_PREFIX)) . "' AND " . LINK_TABLE . ".DID='".abs($v["we_TemplateID"])."' AND " . LINK_TABLE . ".Name='completeData'";
 
 			$templateCode = f($sql_select, "Dat", $db);
 			$tp = new we_tagParser();
@@ -2482,7 +2482,7 @@ HTS;
 
 	function formWeChooser($table = FILE_TABLE, $width = "", $rootDirID = 0, $IDName = "ID", $IDValue = "0",$Pathname="Path", $Pathvalue = "/", $cmd = "") {
 		if ($Pathvalue == "") {
-			$Pathvalue = f("SELECT Path FROM $table WHERE ID='" . $IDValue."';", "Path", new DB_WE());
+			$Pathvalue = f("SELECT Path FROM ".mysql_real_escape_string($table)." WHERE ID='" . abs($IDValue)."';", "Path", new DB_WE());
 		}
 
       $we_button = new we_button();
