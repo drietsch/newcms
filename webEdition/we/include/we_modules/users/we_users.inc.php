@@ -114,9 +114,12 @@ class we_user {
 	// Username
 	var $username="";
 
-	// User password
+	// User password (md5 salted)
 	var $passwd="";
-
+	
+	// User password
+	var $clearpasswd="";
+	
 	// User permissions
 	var $Permissions="";
 
@@ -214,7 +217,7 @@ class we_user {
 	function we_user() {
 		$this->ClassName="we_user";
 		$this->Name = "user_".md5(uniqid(rand()));
-		array_push($this->persistent_slots,"ID","Type","ParentID","Salutation","First","Second","Address","HouseNo","City","PLZ","State","Country","Tel_preselection","Telephone","Fax","Fax_preselection","Handy","Email","username","passwd","Text","Path","Permissions","ParentPerms","Description","Alias","Icon","IsFolder","Ping","workSpace","workSpaceDef","workSpaceTmp","workSpaceNav","workSpaceNwl","workSpaceObj","ParentWs","ParentWst","ParentWsn","ParentWso","ParentWsnl","altID", "LoginDenied", "UseSalt");
+		array_push($this->persistent_slots,"ID","Type","ParentID","Salutation","First","Second","Address","HouseNo","City","PLZ","State","Country","Tel_preselection","Telephone","Fax","Fax_preselection","Handy","Email","username","passwd","clearpasswd", "Text","Path","Permissions","ParentPerms","Description","Alias","Icon","IsFolder","Ping","workSpace","workSpaceDef","workSpaceTmp","workSpaceNav","workSpaceNwl","workSpaceObj","ParentWs","ParentWst","ParentWsn","ParentWso","ParentWsnl","altID", "LoginDenied", "UseSalt");
 
 		array_push($this->preference_slots,"sizeOpt","weWidth","weHeight","usePlugin","autostartPlugin","promptPlugin","Language","seem_start_file","seem_start_type","editorSizeOpt","editorWidth","editorHeight","editorFontname","editorFontsize","editorFont","default_tree_count","force_glossary_action","force_glossary_check","cockpit_amount_columns","cockpit_amount_last_documents", "cockpit_rss_feed_url", "use_jupload");
 
@@ -292,6 +295,11 @@ class we_user {
 	function savePersistentSlotsInDB() {
 		$this->ModDate = time();
 		$tableInfo = $this->DB_WE->metadata($this->Table);
+		
+		if ($this->clearpasswd !== '') {
+			$this->passwd = md5($this->clearpasswd . md5($this->username));
+		}
+		
 		if($this->ID) {
 			$updt = "";
 			for($i=0;$i<sizeof($tableInfo);$i++) {
@@ -307,7 +315,9 @@ class we_user {
 					} elseif($fieldName == 'editorFontsize' && $this->Preferences['editorFont'] == '0') {
 						$val = '-1';
 					}
-					$updt .= $fieldName."='".addslashes($val)."',";
+					if ($fieldName !== 'passwd' || $val !== "") {
+						$updt .= $fieldName."='".addslashes($val)."',";
+					}
 				}
 			}
 			$updt = ereg_replace('(.+),$','\1',$updt);
@@ -321,8 +331,10 @@ class we_user {
 				$fieldName = $tableInfo[$i]["name"];
 				eval('$val = isset($this->'.$fieldName.') ? $this->'.$fieldName.' : "" ;');
 				if($fieldName != "ID") {
-					$keys .= $fieldName.",";
-					$vals .= "'".addslashes($val)."',";
+					if ($fieldName !== 'passwd' || $val !== "") {
+						$keys .= $fieldName.",";
+						$vals .= "'".addslashes($val)."',";
+					}
 				}
 			}
 			if($keys) {
@@ -1070,12 +1082,10 @@ function mapPermissions() {
 			foreach($this->persistent_slots as $pkey=>$pval) {
 				$obj=$this->Name."_".$pval;
 				if(isset($_POST[$obj])) {
-					if($pval=="passwd" && $_POST[$obj]!="")
-						eval('$this->'.$pval.'="'.$_POST[$obj].'";');
-					else
-						eval('$this->'.$pval.'="'.$_POST[$obj].'";');
+					$this->$pval = $_POST[$obj];
 				}
 			}
+						
 			if($this->Type==2) {
 				$obj=$this->Name.'_ParentPerms';
 				if(isset($_POST[$obj]))
@@ -1579,7 +1589,7 @@ function mapPermissions() {
 			</script>';
 
 		$_username = ($this->ID) ? htmlFormElementTable('<b class="defaultfont">'.$this->username.'</b>',$GLOBALS['l_users']["username"]) : $this->getUserfield("username","username");
-		$_password = '<input type="hidden" name="'.$this->Name.'_passwd" value="'.$this->passwd.'">' . htmlTextInput('input_pass',20,"","255",'onchange="top.content.setHot()"','password',240);
+		$_password = '<input type="hidden" name="'.$this->Name.'_clearpasswd" value="'.$this->clearpasswd.'">' . htmlTextInput('input_pass',20,"","255",'onchange="top.content.setHot()"','password',240);
 
 
 
@@ -1842,7 +1852,7 @@ function mapPermissions() {
 		if(isset($_SESSION["user"]["ID"]) && $_SESSION["user"]["ID"] && $_SESSION["user"]["ID"]==$this->ID && !we_hasPerm("EDIT_PASSWD"))
 			$_password="****************";
 		else
-			$_password = '<input type="hidden" name="'.$this->Name.'_passwd" value="'.$this->passwd.'">' . htmlTextInput('input_pass',20,"","255",'onchange="top.content.setHot()"','password',240);
+			$_password = '<input type="hidden" name="'.$this->Name.'_clearpasswd" value="'.$this->clearpasswd.'">' . htmlTextInput('input_pass',20,"","255",'onchange="top.content.setHot()"','password',240);
 
 		$this->DB_WE->query("SELECT Path FROM ".USER_TABLE." WHERE ID='".$this->ParentID."'");
 
