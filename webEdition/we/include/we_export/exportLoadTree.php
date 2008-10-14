@@ -67,7 +67,7 @@ if($ws = get_ws($table)) {
 	$ac = getAllowedClasses($DB_WE);
 	foreach($ac as $cid){
 		$path = id_to_path($cid,OBJECT_TABLE);
-		$wsQuery .= " Path like '$path/%' OR Path='$path' OR ";
+		$wsQuery .= " Path like '".mysql_real_escape_string($path)."/%' OR Path='".mysql_real_escape_string($path)."' OR ";
 	}
 }
 
@@ -132,7 +132,7 @@ function getItems($ParentID) {
 		$elem .= ",ContentType";
 	}
 
-	$DB_WE->query("SELECT $elem, abs(text) as Nr, (text REGEXP '^[0-9]') as isNr from $table $where ORDER BY isNr DESC,Nr,Text");
+	$DB_WE->query("SELECT $elem, abs(text) as Nr, (text REGEXP '^[0-9]') as isNr from ".mysql_real_escape_string($table)." $where ORDER BY isNr DESC,Nr,Text");
 
 	while($DB_WE->next_record()) {
 
