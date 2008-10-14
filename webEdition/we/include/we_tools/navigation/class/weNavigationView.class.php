@@ -817,7 +817,7 @@ function processCommands() {
 					}
 
 					if($this->Model->SelectionType == "classname" && $this->Model->TitleField!=""){
-						$_classFields = unserialize(f("SELECT DefaultValues FROM ".OBJECT_TABLE." WHERE ID=".$this->Model->ClassID,"DefaultValues",$this->db));
+						$_classFields = unserialize(f("SELECT DefaultValues FROM ".OBJECT_TABLE." WHERE ID=".abs($this->Model->ClassID),"DefaultValues",$this->db));
 						if (is_array($_classFields) && count($_classFields)>0) {
 							$_fieldsByNamePart = array();
 							foreach ($_classFields as $_key=>$_val) {
@@ -845,16 +845,16 @@ function processCommands() {
 
                 	$_dynamic = '';
                 	if($this->Model->ID && $this->Model->IsFolder){
-                		$_dynamic = f('SELECT Selection FROM '.NAVIGATION_TABLE.' WHERE ID='.$this->Model->ID,'Selection',$this->Model->db);
+                		$_dynamic = f('SELECT Selection FROM '.NAVIGATION_TABLE.' WHERE ID='.abs($this->Model->ID),'Selection',$this->Model->db);
 					}
 
                 	$this->Model->save();
 
 					if($this->Model->IsFolder && $oldpath!='' && $oldpath!='/' && $oldpath!=$this->Model->Path) {
 						$db_tmp = new DB_WE();
-						$this->db->query('SELECT ID FROM ' . NAVIGATION_TABLE . ' WHERE Path LIKE \'' . $oldpath . '%\' AND ID<>\''.$this->Model->ID.'\';');
+						$this->db->query('SELECT ID FROM ' . NAVIGATION_TABLE . ' WHERE Path LIKE \'' . mysql_real_escape_string($oldpath) . '%\' AND ID<>\''.abs($this->Model->ID).'\';');
 						while($this->db->next_record()) {
-							$db_tmp->query('UPDATE ' . NAVIGATION_TABLE . ' SET Path=\'' . $this->Model->evalPath($this->db->f("ID")) . '\' WHERE ID=\'' . $this->db->f("ID") . '\';');
+							$db_tmp->query('UPDATE ' . NAVIGATION_TABLE . ' SET Path=\'' . mysql_real_escape_string($this->Model->evalPath($this->db->f("ID"))) . '\' WHERE ID=\'' . abs($this->db->f("ID")) . '\';');
 						}
 					}
 					if ($newone) {
@@ -953,8 +953,8 @@ function processCommands() {
 				break;
 				case 'move_down' :
 					if($this->Model->reorderDown()){
-						$_parentid = f('SELECT ParentID FROM '.NAVIGATION_TABLE.' WHERE ID='.$this->Model->ID.';','ParentID',$this->db);
-						$_num = f('SELECT MAX(Ordn) as OrdCount FROM '.NAVIGATION_TABLE.' WHERE ParentID='.$_parentid.';','OrdCount',$this->db);
+						$_parentid = f('SELECT ParentID FROM '.NAVIGATION_TABLE.' WHERE ID='.abs($this->Model->ID).';','ParentID',$this->db);
+						$_num = f('SELECT MAX(Ordn) as OrdCount FROM '.NAVIGATION_TABLE.' WHERE ParentID='.abs($_parentid).';','OrdCount',$this->db);
 						print we_htmlElement::jsElement('
 									'.
 									$this->editorBodyForm.'.Ordn.value='.($this->Model->Ordn+1).';' .
@@ -1247,7 +1247,7 @@ function processCommands() {
 		$_items = array();
 		$_db = new DB_WE();
 
-		$_db->query('SELECT ID,Text FROM '.NAVIGATION_TABLE.' WHERE ParentID='.$id.' AND Depended=1 ORDER BY Ordn;');
+		$_db->query('SELECT ID,Text FROM '.NAVIGATION_TABLE.' WHERE ParentID='.abs($id).' AND Depended=1 ORDER BY Ordn;');
 		while($_db->next_record()){
 			$_items[$_db->f('ID')] = $_db->f('Text');
 		}

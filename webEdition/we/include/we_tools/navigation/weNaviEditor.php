@@ -46,12 +46,12 @@ $_wrkNavi = '';
 if (!we_hasPerm('ADMINISTRATOR')) {
 	$_wrkNavi = makeArrayFromCSV(
 			f(
-					'SELECT workSpaceNav FROM ' . USER_TABLE . ' WHERE ID=' . $_SESSION['user']['ID'], 
+					'SELECT workSpaceNav FROM ' . USER_TABLE . ' WHERE ID=' . abs($_SESSION['user']['ID']), 
 					'workSpaceNav', 
 					new DB_WE()));
 	$_condition = array();
 	foreach ($_wrkNavi as $_key => $_value) {
-		$_condition[] = 'Path LIKE "' . id_to_path($_value, NAVIGATION_TABLE) . '/%"';
+		$_condition[] = 'Path LIKE "' . mysql_real_escape_string(id_to_path($_value, NAVIGATION_TABLE)) . '/%"';
 	}
 	$_dirs = array();
 	$_def = null;

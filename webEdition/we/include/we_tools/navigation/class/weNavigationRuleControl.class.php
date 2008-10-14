@@ -66,8 +66,8 @@ class weNavigationRuleControl
 					$query = '
 						SELECT *
 						FROM ' . NAVIGATION_RULE_TABLE . '
-						WHERE NavigationName = "' . $this->NavigationRule->NavigationName . '"
-							AND ID != ' . $this->NavigationRule->ID;
+						WHERE NavigationName = "' . mysql_real_escape_string($this->NavigationRule->NavigationName) . '"
+							AND ID != ' . abs($this->NavigationRule->ID);
 					
 					$db->query($query);
 					if ($db->num_rows()) {

@@ -128,7 +128,7 @@ class weNavigationItem
 			$__id = path_to_id($__path, FILE_TABLE);
 			if ($__id) {
 				$_v = f(
-						'SELECT ID FROM ' . FILE_TABLE . ' WHERE ID=' . $__id . ' AND Published>0', 
+						'SELECT ID FROM ' . FILE_TABLE . ' WHERE ID=' . abs($__id) . ' AND Published>0', 
 						'ID', 
 						new DB_WE());
 				$this->visible = !empty($_v) ? 'true' : 'false';
@@ -1079,7 +1079,7 @@ class weNavigationItems
 		
 		$_ids = array();
 		
-		$query = 'SELECT * FROM ' . NAVIGATION_TABLE . ' WHERE Path LIKE "' . $_path . '" ' . ($id != 0 ? ' OR ID="' . $id . '"' : '') . ' ORDER BY Ordn;';
+		$query = 'SELECT * FROM ' . NAVIGATION_TABLE . ' WHERE Path LIKE "' . mysql_real_escape_string($_path) . '" ' . ($id != 0 ? ' OR ID="' . abs($id) . '"' : '') . ' ORDER BY Ordn;';
 		
 		$_db->query($query);
 		while ($_db->next_record()) {

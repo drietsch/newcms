@@ -48,7 +48,7 @@ class weNavigationTreeDataSource extends weToolTreeDataSource
 		if ($ws = get_ws($table)) {
 			$wsPathArray = id_to_path($ws, $table, $db, false, true);
 			foreach ($wsPathArray as $path) {
-				$_aWsQuery[] = " Path like '$path/%' OR " . weNavigationTreeDataSource::getQueryParents($path);
+				$_aWsQuery[] = " Path like '".mysql_real_escape_string($path)."/%' OR " . weNavigationTreeDataSource::getQueryParents($path);
 				while ($path != "/" && $path != "\\" && $path) {
 					array_push($parentpaths, $path);
 					$path = dirname($path);
@@ -77,7 +77,7 @@ class weNavigationTreeDataSource extends weToolTreeDataSource
 			);
 		}
 		
-		$where = " WHERE $wsQuery ParentID=$ParentID " . $addWhere;
+		$where = " WHERE $wsQuery ParentID=".abs($ParentID)." " . $addWhere;
 		
 		$db->query(
 				"SELECT $elem, abs(text) as Nr, (text REGEXP '^[0-9]') as isNr from $table $where ORDER BY Ordn, isNr DESC,Nr,Text " . ($segment ? "LIMIT $offset,$segment;" : ";"));

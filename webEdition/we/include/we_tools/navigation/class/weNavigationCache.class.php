@@ -53,7 +53,7 @@ class weNavigationCache
 		$_c = 0;
 		while ($_id != 0) {
 			weNavigationCache::cacheNavigation($_id);
-			$_id = f('SELECT ParentID FROM ' . NAVIGATION_TABLE . ' WHERE ID=' . $_id . ';', 'ParentID', new DB_WE());
+			$_id = f('SELECT ParentID FROM ' . NAVIGATION_TABLE . ' WHERE ID=' . abs($_id) . ';', 'ParentID', new DB_WE());
 			$_c++;
 			if ($_c > 99999) {
 				break;

@@ -373,7 +373,7 @@ top.selectFile(top.currentID);
 		$ws_query = getWsQueryForSelector(NAVIGATION_TABLE);
 		$this->db->query("SELECT ".$this->fields.", abs(text) as Nr, (text REGEXP '^[0-9]') as isNr FROM ".
 		$this->table.
-		" WHERE IsFolder=1 AND ParentID='".$this->dir."' ". 
+		" WHERE IsFolder=1 AND ParentID='".abs($this->dir)."' ". 
 		$ws_query .
 		" ORDER BY Ordn, isNr DESC,Nr,Text;");
 	}
@@ -396,7 +396,7 @@ top.clearEntries();
 			$folder->Text=$txt;
 			$folder->Filename=$txt;
 			$folder->Path=$folder->getPath();
-			$this->db->query("SELECT ID,Text FROM ".$this->table." WHERE Path='".$folder->Path."' AND ID != '".$this->we_editDirID."'");
+			$this->db->query("SELECT ID,Text FROM ".mysql_real_escape_string($this->table)." WHERE Path='".mysql_real_escape_string($folder->Path)."' AND ID != '".abs($this->we_editDirID)."'");
 			if($this->db->next_record()){
 				$we_responseText = sprintf($GLOBALS["l_navigation"]["folder_exists"],$folder->Path);
 				print we_message_reporting::getShowMessageCall($we_responseText, WE_MESSAGE_ERROR);
@@ -405,7 +405,7 @@ top.clearEntries();
 					$we_responseText = $GLOBALS["l_navigation"]["wrongtext"];
 					print we_message_reporting::getShowMessageCall($we_responseText, WE_MESSAGE_ERROR);
 				}else{
-					if(f("SELECT Text FROM ".$this->table." WHERE ID='".$this->we_editDirID."'","Text",$this->db) != $txt){
+					if(f("SELECT Text FROM ".mysql_real_escape_string($this->table)." WHERE ID='".abs($this->we_editDirID)."'","Text",$this->db) != $txt){
 						$folder->we_save();
 						print 'var ref;
 if(top.opener.top.updateEntry){

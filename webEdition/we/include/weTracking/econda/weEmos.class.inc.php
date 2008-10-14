@@ -70,7 +70,7 @@ class weEmos{
 				case 'category':
 					if(isset($GLOBALS["we_doc"]->Category) && $GLOBALS["we_doc"]->Category != "") {
 						$catIds = explode(",",$GLOBALS["we_doc"]->Category); 
-						$contentLabel = f("SELECT Path FROM " . CATEGORY_TABLE . " WHERE ID=" . $catIds[1], "Path", $GLOBALS["DB_WE"]);
+						$contentLabel = f("SELECT Path FROM " . CATEGORY_TABLE . " WHERE ID=" . abs($catIds[1]), "Path", $GLOBALS["DB_WE"]);
 						$this->emosHTMLFooter .= '<a name="emos_name" title="content" rel="'.substr($contentLabel,1).'" rev=""></a>';
 					} else {
 						$this->emosHTMLFooter .= '<a name="emos_name" title="content" rel="'.substr($GLOBALS["we_doc"]->Path,1).'" rev=""></a>';

@@ -128,13 +128,13 @@ class weDynList
 			if (!is_numeric($cat)) {
 				$cat = path_to_id($cat, CATEGORY_TABLE);
 			}
-			$_cats[] = '(Category LIKE "%,' . $cat . ',%")';
+			$_cats[] = '(Category LIKE "%,' . mysql_real_escape_string($cat) . ',%")';
 		}
 		
 		$dirpath = clearPath($dirpath . '/');
 		
-		$_query = 'SELECT ' . implode(',', $select) . ' FROM ' . FILE_TABLE . ',' . LINK_TABLE . ', ' . CONTENT_TABLE . ' WHERE (' . FILE_TABLE . '.ID=' . LINK_TABLE . '.DID AND ' . LINK_TABLE . '.CID=' . CONTENT_TABLE . '.ID) ' . ' AND (' . FILE_TABLE . '.IsFolder=0 AND ' . FILE_TABLE . '.Published>0) ' . ($doctype ? ' AND ' . FILE_TABLE . '.DocType=' . $doctype : '') . (count(
-				$_cats) ? (' AND ' . implode(" $catlogic ", $_cats)) : '') . ($dirpath != '/' ? (' AND Path LIKE "' . $dirpath . '%"') : '') . ' ' . ($condition ? (' AND ' . implode(
+		$_query = 'SELECT ' . implode(',', $select) . ' FROM ' . FILE_TABLE . ',' . LINK_TABLE . ', ' . CONTENT_TABLE . ' WHERE (' . FILE_TABLE . '.ID=' . LINK_TABLE . '.DID AND ' . LINK_TABLE . '.CID=' . CONTENT_TABLE . '.ID) ' . ' AND (' . FILE_TABLE . '.IsFolder=0 AND ' . FILE_TABLE . '.Published>0) ' . ($doctype ? ' AND ' . FILE_TABLE . '.DocType=' . mysql_real_escape_string($doctype) : '') . (count(
+				$_cats) ? (' AND ' . implode(" $catlogic ", $_cats)) : '') . ($dirpath != '/' ? (' AND Path LIKE "' . mysql_real_escape_string($dirpath) . '%"') : '') . ' ' . ($condition ? (' AND ' . implode(
 				' AND ', 
 				$condition)) : '') . ' ' . ($order ? (' ORDER BY ' . $order) : '') . ' ' . ' LIMIT ' . $offset . ',' . $count . ';';
 		
@@ -196,7 +196,7 @@ class weDynList
 		$categories = is_array($categories) ? $categories : array();
 		$_cats = array();
 		foreach ($categories as $cat) {
-			$_cats[] = '(OF_Category LIKE "%,' . path_to_id($cat, CATEGORY_TABLE) . ',%")';
+			$_cats[] = '(OF_Category LIKE "%,' . mysql_real_escape_string(path_to_id($cat, CATEGORY_TABLE)) . ',%")';
 		}
 		
 		$_where = array();
@@ -208,7 +208,7 @@ class weDynList
 			$_where[] = implode(' AND ', $condition);
 		}
 		if ($dirpath != '/') {
-			$_where[] = 'OF_Path LIKE "' . $dirpath . '%"';
+			$_where[] = 'OF_Path LIKE "' . mysql_real_escape_string($dirpath) . '%"';
 		}
 		
 		$_query = 'SELECT ' . implode(',', $select) . ' FROM ' . OBJECT_X_TABLE . $classid . ' 
@@ -226,7 +226,7 @@ class weDynList
 	{
 		
 		$_ids = array();
-		$_query = 'SELECT * FROM ' . CATEGORY_TABLE . ' WHERE ParentID=' . $dirid . ' AND IsFolder=0 ' . ' LIMIT 0,' . $count . ';';
+		$_query = 'SELECT * FROM ' . CATEGORY_TABLE . ' WHERE ParentID=' . abs($dirid) . ' AND IsFolder=0 ' . ' LIMIT 0,' . $count . ';';
 		$_fieldset = new DB_WE();
 		$_fieldset->query($_query);
 		
@@ -306,7 +306,7 @@ class weDynList
 		if (!$_id) {
 			$_path = id_to_path($id);
 			$_id = f(
-					'SELECT ID FROM ' . FILE_TABLE . ' WHERE Path LIKE "' . $_path . '%" AND IsFolder=0 AND IsDynamic=1 AND Published<>0;', 
+					'SELECT ID FROM ' . FILE_TABLE . ' WHERE Path LIKE "' . mysql_real_escape_string($_path) . '%" AND IsFolder=0 AND IsDynamic=1 AND Published<>0;', 
 					'ID', 
 					$_db);
 		}
@@ -316,7 +316,7 @@ class weDynList
 	function getWorkspaceFlag($id)
 	{
 		include_once ($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_modules/object/we_object.inc.php');
-		$_clsid = f('SELECT TableID FROM ' . OBJECT_FILES_TABLE . ' WHERE ID=' . $id . ';', 'TableID', new DB_WE());
+		$_clsid = f('SELECT TableID FROM ' . OBJECT_FILES_TABLE . ' WHERE ID=' . abs($id) . ';', 'TableID', new DB_WE());
 		$_cls = new we_object();
 		$_cls->initByID($_clsid, OBJECT_TABLE);
 		
