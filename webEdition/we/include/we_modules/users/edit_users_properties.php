@@ -61,10 +61,9 @@ echo $yuiSuggest->getYuiJsFiles();
 					return false;
 				} else {
 					if (f.input_pass.value != "") {
-						var hash = calcMD5(f.input_pass.value+"<?php print md5($user_object->username); ?>");
-
+						var clearPass = f.input_pass.value;
 						f.input_pass.value = "";
-						eval('f.' + f.obj_name.value + '_passwd.value = hash;');
+						eval('f.' + f.obj_name.value + '_clearpasswd.value = clearPass;');
 					}
 				}
 			}
