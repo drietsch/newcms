@@ -53,7 +53,7 @@ $_title = base64_decode($_REQUEST["we_cmd"][4]);
 $_sObjId = $_REQUEST["we_cmd"][5];
 switch ($_REQUEST["we_cmd"][2]) {
 	case 'delete' :
-		$_sql = "DELETE FROM " . $_table . " WHERE ID = " . $q_Csv;
+		$_sql = "DELETE FROM " . mysql_real_escape_string($_table) . " WHERE ID = " . abs($q_Csv);
 		break;
 	case 'update' :
 		list($q_ID, $q_Title, $q_Text, $q_Priority, $q_Valid, $q_ValidFrom, $q_ValidUntil) = explode(';', $q_Csv);
@@ -66,14 +66,14 @@ switch ($_REQUEST["we_cmd"][2]) {
 		$entText = base64_decode($q_Text);
 		$entText = str_replace("'", '&#039;', $entText);
 		$entText = str_replace('"', '&quot;', $entText);
-		$_sql = "UPDATE " . $_table . " SET
-			Title = '" . $entTitle . "',
-			Text = '" . $entText . "',
-			Priority = '" . $q_Priority . "',
-			Valid = '" . $q_Valid . "',
-			ValidFrom = '" . $q_ValidFrom . "',
-			ValidUntil = '" . $q_ValidUntil . "'
-			WHERE ID = " . $q_ID;
+		$_sql = "UPDATE " . mysql_real_escape_string($_table) . " SET
+			Title = '" . mysql_real_escape_string($entTitle) . "',
+			Text = '" . mysql_real_escape_string($entText) . "',
+			Priority = '" . mysql_real_escape_string($q_Priority) . "',
+			Valid = '" . mysql_real_escape_string($q_Valid) . "',
+			ValidFrom = '" . mysql_real_escape_string($q_ValidFrom) . "',
+			ValidUntil = '" . mysql_real_escape_string($q_ValidUntil) . "'
+			WHERE ID = " . abs($q_ID);
 		break;
 	case 'insert' :
 		list($q_Title, $q_Text, $q_Priority, $q_Valid, $q_ValidFrom, $q_ValidUntil) = explode(';', $q_Csv);
@@ -90,7 +90,7 @@ switch ($_REQUEST["we_cmd"][2]) {
 		$entText = base64_decode($q_Text);
 		$entText = str_replace("'", '&#039;', $entText);
 		$entText = str_replace('"', '&quot;', $entText);
-		$_sql = "INSERT INTO " . $_table . " (
+		$_sql = "INSERT INTO " . mysql_real_escape_string($_table) . " (
 			WidgetName,
 			UserID,
 			CreationDate,
@@ -101,15 +101,15 @@ switch ($_REQUEST["we_cmd"][2]) {
 			ValidFrom,
 			ValidUntil
 		) VALUES (
-			'" . $_title . "',
-			" . $_SESSION['user']['ID'] . ",
+			'" . mysql_real_escape_string($_title) . "',
+			" . abs($_SESSION['user']['ID']) . ",
 			DATE_FORMAT(NOW(), \"%Y-%m-%d\"),
-			'" . $entTitle . "',
-			'" . $entText . "',
-			'" . $q_Priority . "',
-			'" . $q_Valid . "',
-			'" . $q_ValidFrom . "',
-			'" . $q_ValidUntil . "'
+			'" . mysql_real_escape_string($entTitle) . "',
+			'" . mysql_real_escape_string($entText) . "',
+			'" . mysql_real_escape_string($q_Priority) . "',
+			'" . mysql_real_escape_string($q_Valid) . "',
+			'" . mysql_real_escape_string($q_ValidFrom) . "',
+			'" . mysql_real_escape_string($q_ValidUntil) . "'
 		)";
 		break;
 }
@@ -136,14 +136,14 @@ switch ($bSort) {
 }
 
 if (!$bDisplay) {
-	$_sql = "SELECT * FROM " . $_table . " WHERE
-		WidgetName = '" . $_title . "' AND
-		UserID = " . $_SESSION['user']['ID'] . "
+	$_sql = "SELECT * FROM " . mysql_real_escape_string($_table) . " WHERE
+		WidgetName = '" . mysql_real_escape_string($_title) . "' AND
+		UserID = " . abs($_SESSION['user']['ID']) . "
 		ORDER BY " . $q_sort;
 } else {
-	$_sql = "SELECT * FROM " . $_table . " WHERE
-		WidgetName = '" . $_title . "' AND
-		UserID = " . $_SESSION['user']['ID'] . " AND (
+	$_sql = "SELECT * FROM " . mysql_real_escape_string($_table) . " WHERE
+		WidgetName = '" . mysql_real_escape_string($_title) . "' AND
+		UserID = " . abs($_SESSION['user']['ID']) . " AND (
 			Valid = 'always' OR (
 				Valid = 'date' AND ValidFrom <= DATE_FORMAT(NOW(), \"%Y-%m-%d\")
 			) OR (

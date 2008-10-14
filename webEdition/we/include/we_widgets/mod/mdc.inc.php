@@ -36,7 +36,7 @@ if ($_binary{0} && !empty($_csv)) {
 	foreach ($_paths as $_path) {
 		$_where[] = 'Path LIKE "' . $_path . '%" ';
 	}
-	$_query = "SELECT ID,Path,Icon,Text,ContentType FROM " . $_table . ' WHERE (' . implode(' OR ', $_where) . ') AND IsFolder=0' . ((!$ct["image"]) ? ' AND ContentType<>"image/*"' : '') . ';';
+	$_query = "SELECT ID,Path,Icon,Text,ContentType FROM " . mysql_real_escape_string($_table) . ' WHERE (' . implode(' OR ', $_where) . ') AND IsFolder=0' . ((!$ct["image"]) ? ' AND ContentType<>"image/*"' : '') . ';';
 } else 
 	if (!$_binary{0} && !empty($_csv)) {
 		list($folderID, $folderPath) = explode(",", $_csv);
@@ -47,13 +47,13 @@ if ($_binary{0} && !empty($_csv)) {
 			$_categories = array();
 			foreach ($_cats as $_myCat) {
 				$_id = f(
-						'SELECT ID FROM ' . CATEGORY_TABLE . ' WHERE Path="' . base64_decode($_myCat) . '";', 
+						'SELECT ID FROM ' . CATEGORY_TABLE . ' WHERE Path="' . mysql_real_escape_string(base64_decode($_myCat)) . '";', 
 						'ID', 
 						$DB_WE);
-				$_categories[] = 'Category LIKE ",' . $_id . ',"';
+				$_categories[] = 'Category LIKE ",' . mysql_real_escape_string($_id) . ',"';
 			}
 		}
-		$_query = 'SELECT ID,Path,Icon,Text,ContentType FROM ' . $_table . ' WHERE ' . $q_path . (($q_dtTid) ? ' AND ' . $q_dtTid : '') . ((isset(
+		$_query = 'SELECT ID,Path,Icon,Text,ContentType FROM ' . mysql_real_escape_string($_table) . ' WHERE ' . $q_path . (($q_dtTid) ? ' AND ' . $q_dtTid : '') . ((isset(
 				$_categories)) ? ' AND (' . implode(' OR ', $_categories) . ')' : '') . ' AND IsFolder=0;';
 	}
 if (!empty($_csv) && $DB_WE->query($_query)) {

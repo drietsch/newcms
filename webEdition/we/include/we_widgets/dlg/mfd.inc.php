@@ -187,7 +187,7 @@ $content .= '<tr><td>' . getPixel(20, 2) . '</td><td>' . getPixel(254, 2) . '</t
 if (sizeof($users)) {
 	$db = new DB_WE();
 	for ($i = 0; $i < sizeof($users); $i++) {
-		$foo = getHash("SELECT ID,Path,Icon from " . USER_TABLE . " WHERE ID='" . $users[$i] . "'", $db);
+		$foo = getHash("SELECT ID,Path,Icon from " . USER_TABLE . " WHERE ID='" . abs($users[$i]) . "'", $db);
 		$content .= '<tr><td><img src="' . ICON_DIR . $foo["Icon"] . '" width="16" height="18"></td><td class="defaultfont">' . $foo["Path"] . '</td>' . '<td>' . $we_button->create_button(
 				"image:btn_function_trash", 
 				"javascript:delUser('" . $users[$i] . "');") . '</td></tr>' . "\n";

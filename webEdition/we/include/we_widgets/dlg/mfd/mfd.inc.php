@@ -131,7 +131,7 @@ $i = $j = $k = 0;
 while ($j < $iMaxItems) {
 	$_query = "SELECT * FROM " . HISTORY_TABLE . (!empty($_where) ? (' WHERE ' . ((count($_users_where) > 0) ? 'UserName IN (' . implode(
 			',', 
-			$_users_where) . ') AND ' : '') . 'DocumentTable IN(' . implode(',', $_where) . ')') : '') . (($iDate) ? ' AND ModDate >' . $timestamp : '') . ' ORDER BY ModDate DESC LIMIT ' . ($k * $_count) . " , " . $_count . ";";
+			$_users_where) . ') AND ' : '') . 'DocumentTable IN(' . implode(',', $_where) . ')') : '') . (($iDate) ? ' AND ModDate >' . abs($timestamp) : '') . ' ORDER BY ModDate DESC LIMIT ' . abs($k * $_count) . " , " . abs($_count) . ";";
 	$k++;
 	$DB_WE->query($_query);
 	$_db = new DB_WE();
@@ -152,8 +152,8 @@ while ($j < $iMaxItems) {
 			}
 		}
 		$_hash = getHash(
-				"SELECT ID,Path,Icon,Text,ContentType,ModDate,CreatorID,Owners,RestrictOwners FROM " . $_table . " WHERE ID = '" . $DB_WE->f(
-						"DID") . "'" . (!empty($_paths) ? (' AND (' . implode(' OR ', $_paths) . ')') : '') . ";", 
+				"SELECT ID,Path,Icon,Text,ContentType,ModDate,CreatorID,Owners,RestrictOwners FROM " . mysql_real_escape_string($_table) . " WHERE ID = '" . abs($DB_WE->f(
+						"DID")) . "'" . (!empty($_paths) ? (' AND (' . implode(' OR ', $_paths) . ')') : '') . ";", 
 				$_db);
 		if (!empty($_hash)) {
 			$_show = true;

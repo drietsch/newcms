@@ -115,7 +115,7 @@ $pl_db = new stat_db();
 $pl_conn = $pl_db->connect();
 $pl_tables = new stat_tables();
 $pl_tables->build_tables();
-@$result = mysql_query("SELECT websites FROM " . preg_replace("/\s/","",$pl_tables->accounttable). " WHERE account_username = '" . $_userName . "'");
+@$result = mysql_query("SELECT websites FROM " . mysql_real_escape_string(preg_replace("/\s/","",$pl_tables->accounttable)). " WHERE account_username = '" . mysql_real_escape_string($_userName) . "'");
 $pl_object = mysql_fetch_object($result);
 $websites = $pl_object->websites;
 $websites = str_replace("\r", "", $websites);

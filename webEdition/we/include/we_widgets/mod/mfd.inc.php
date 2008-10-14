@@ -129,7 +129,7 @@ $i = $j = $k = 0;
 while ($j < $iMaxItems) {
 	$_query = "SELECT * FROM " . HISTORY_TABLE . (!empty($_where) ? (' WHERE ' . ((count($_users_where) > 0) ? 'UserName IN (' . implode(
 			',', 
-			$_users_where) . ') AND ' : '') . 'DocumentTable IN(' . implode(',', $_where) . ')') : '') . (($iDate) ? ' AND ModDate >' . $timestamp : '') . $_whereSeem . ' ORDER BY ModDate DESC LIMIT ' . ($k * $_count) . " , " . $_count . ";";
+			$_users_where) . ') AND ' : '') . 'DocumentTable IN(' . implode(',', $_where) . ')') : '') . (($iDate) ? ' AND ModDate >' . abs($timestamp) : '') . $_whereSeem . ' ORDER BY ModDate DESC LIMIT ' . ($k * $_count) . " , " . $_count . ";";
 	$k++;
 	$DB_WE->query($_query);
 	$_db = new DB_WE();
@@ -145,13 +145,13 @@ while ($j < $iMaxItems) {
 			if (isset($_ws[$_table])) {
 				$_wsa = makeArrayFromCSV($_ws[$_table]);
 				foreach ($_wsa as $_id) {
-					$_paths[] = 'Path LIKE ("' . id_to_path($_id, $_table) . '%")';
+					$_paths[] = 'Path LIKE ("' . mysql_real_escape_string(id_to_path($_id, $_table)) . '%")';
 				}
 			}
 		}
 		$_hash = getHash(
-				"SELECT ID,Path,Icon,Text,ContentType,ModDate,CreatorID,Owners,RestrictOwners FROM " . $_table . " WHERE ID = '" . $DB_WE->f(
-						"DID") . "'" . (!empty($_paths) ? (' AND (' . implode(' OR ', $_paths) . ')') : '') . ";", 
+				"SELECT ID,Path,Icon,Text,ContentType,ModDate,CreatorID,Owners,RestrictOwners FROM " . mysql_real_escape_string($_table) . " WHERE ID = '" . abs($DB_WE->f(
+						"DID")) . "'" . (!empty($_paths) ? (' AND (' . implode(' OR ', $_paths) . ')') : '') . ";", 
 				$_db);
 		if (!empty($_hash)) {
 			$_show = true;

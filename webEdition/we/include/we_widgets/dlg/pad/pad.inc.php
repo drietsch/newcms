@@ -168,7 +168,7 @@ $_get_prio = 'high';
 $_table = TBL_PREFIX . 'tblwidgetnotepad';
 
 $_sql = "INSERT INTO
-	" . $_table . " 
+	" . mysql_real_escape_string($_table) . " 
 (
 	WidgetName,
 	UserID,
@@ -180,15 +180,15 @@ $_sql = "INSERT INTO
 	ValidFrom,
 	ValidUntil
 ) VALUES (
-	'" . $_title . "',
-	" . $_SESSION['user']['ID'] . ",
+	'" . mysql_real_escape_string($_title) . "',
+	" . abs($_SESSION['user']['ID']) . ",
 	DATE_FORMAT(NOW(), \"%Y-%m-%d\"),
-	'" . $_get_title . "',
-	'" . $_get_text . "',
-	'" . $_get_prio . "',
-	'" . $_get_valid . "',
-	'" . $_get_valid_from . "',
-	'" . $_get_valid_until . "'
+	'" . mysql_real_escape_string($_get_title) . "',
+	'" . mysql_real_escape_string($_get_text) . "',
+	'" . mysql_real_escape_string($_get_prio) . "',
+	'" . mysql_real_escape_string($_get_valid) . "',
+	'" . mysql_real_escape_string($_get_valid_from) . "',
+	'" . mysql_real_escape_string($_get_valid_until) . "'
 )
 ";
 $DB_WE = new DB_WE();
@@ -196,14 +196,14 @@ $DB_WE = new DB_WE();
 
 
 if ($bDisplay) {
-	$_sql = "SELECT * FROM " . $_table . " WHERE 
-	WidgetName = '" . $_title . "' AND 
-	UserID = " . $_SESSION['user']['ID'] . " 
+	$_sql = "SELECT * FROM " . mysql_real_escape_string($_table) . " WHERE 
+	WidgetName = '" . mysql_real_escape_string($_title) . "' AND 
+	UserID = " . abs($_SESSION['user']['ID']) . " 
 	ORDER BY " . $q_sort;
 } else {
-	$_sql = "SELECT * FROM " . $_table . " WHERE 
-	WidgetName = '" . $_title . "' AND 
-	UserID = " . $_SESSION['user']['ID'] . " AND
+	$_sql = "SELECT * FROM " . mysql_real_escape_string($_table) . " WHERE 
+	WidgetName = '" . mysql_real_escape_string($_title) . "' AND 
+	UserID = " . abs($_SESSION['user']['ID']) . " AND
 	(
 		Valid = 'always' OR
 		(

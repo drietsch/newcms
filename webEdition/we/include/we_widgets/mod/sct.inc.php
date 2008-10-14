@@ -36,11 +36,11 @@ if (we_hasPerm("NEW_WEBEDITIONSITE")) {
 		if ($ws) {
 			$b = makeArrayFromCSV($ws);
 			foreach ($b as $k => $v) {
-				$DB_WE->query("SELECT ID,Path FROM " . FILE_TABLE . " WHERE ID='" . $v . "'");
+				$DB_WE->query("SELECT ID,Path FROM " . FILE_TABLE . " WHERE ID='" . abs($v) . "'");
 				while ($DB_WE->next_record())
 					array_push(
 							$paths, 
-							"(ParentPath = '" . $DB_WE->f("Path") . "' || ParentPath like '" . $DB_WE->f("Path") . "/%')");
+							"(ParentPath = '" . mysql_real_escape_string($DB_WE->f("Path")) . "' || ParentPath like '" . mysql_real_escape_string($DB_WE->f("Path")) . "/%')");
 			}
 		}
 		if (is_array($paths) && count($paths) > 0) {
