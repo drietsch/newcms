@@ -80,7 +80,7 @@ function we_tag_saveRegisteredUser($attribs,$content){
 							}
 							if($name != "Text" && $name != "Path" && $name != "Icon"){
 								$names.=$name.",";
-								$values.="'".addslashes($val)."',";
+								$values.="'".mysql_real_escape_string($val)."',";
 							}
 						}
 
@@ -92,10 +92,10 @@ function we_tag_saveRegisteredUser($attribs,$content){
 							$GLOBALS["DB_WE"]->query("INSERT INTO ".CUSTOMER_TABLE."(".$names.") VALUES(".$values.")");
 
 							// User in session speichern
-							$GLOBALS["DB_WE"]->query("SELECT ID FROM ".CUSTOMER_TABLE." WHERE Username='".$_REQUEST["s"]["Username"]."'");
+							$GLOBALS["DB_WE"]->query("SELECT ID FROM ".CUSTOMER_TABLE." WHERE Username='".mysql_real_escape_string($_REQUEST["s"]["Username"])."'");
 							if($GLOBALS["DB_WE"]->next_record()){
 								$uID=$GLOBALS["DB_WE"]->f("ID");
-								$u = getHash("SELECT * from ".CUSTOMER_TABLE." WHERE ID='".$uID."'",$GLOBALS["DB_WE"]);
+								$u = getHash("SELECT * from ".CUSTOMER_TABLE." WHERE ID='".abs($uID)."'",$GLOBALS["DB_WE"]);
 								$_SESSION["webuser"]=$u;
 								$_SESSION["webuser"]["registered"] = true;
 
@@ -108,7 +108,7 @@ function we_tag_saveRegisteredUser($attribs,$content){
 									}
 								}
 								if($memberSinceExists){
-									$GLOBALS["DB_WE"]->query("UPDATE ".CUSTOMER_TABLE." SET MemberSince='".time()."' WHERE ID='".$_SESSION["webuser"]["ID"]."'");
+									$GLOBALS["DB_WE"]->query("UPDATE ".CUSTOMER_TABLE." SET MemberSince='".time()."' WHERE ID='".abs($_SESSION["webuser"]["ID"])."'");
 								}
 								$lastAccessExists=false;
 								for($i=0;$i<sizeof($foo);$i++){
@@ -118,9 +118,9 @@ function we_tag_saveRegisteredUser($attribs,$content){
 									}
 								}
 								if($lastAccessExists){
-									$GLOBALS["DB_WE"]->query("UPDATE ".CUSTOMER_TABLE." SET LastAccess='".time()."' WHERE ID='".$_SESSION["webuser"]["ID"]."'");
+									$GLOBALS["DB_WE"]->query("UPDATE ".CUSTOMER_TABLE." SET LastAccess='".time()."' WHERE ID='".abs($_SESSION["webuser"]["ID"])."'");
 								}
-								$GLOBALS["DB_WE"]->query("UPDATE ".CUSTOMER_TABLE." SET LastLogin='".time()."' WHERE ID='".$_SESSION["webuser"]["ID"]."'");
+								$GLOBALS["DB_WE"]->query("UPDATE ".CUSTOMER_TABLE." SET LastLogin='".time()."' WHERE ID='".abs($_SESSION["webuser"]["ID"])."'");
 								echo '<a name="emos_name" title="register" rel="'.md5($uID).'" rev="0" ></a>';
 
 							}
@@ -171,7 +171,7 @@ function we_tag_saveRegisteredUser($attribs,$content){
 
 					$Username = isset($_REQUEST["s"]["Username"]) ?  $_REQUEST["s"]["Username"] : "";
 
-					$GLOBALS["DB_WE"]->query("SELECT ID FROM ".CUSTOMER_TABLE." WHERE Username='".$Username."' AND ID<> '".$_REQUEST["s"]["ID"]."'");
+					$GLOBALS["DB_WE"]->query("SELECT ID FROM ".CUSTOMER_TABLE." WHERE Username='".mysql_real_escape_string($Username)."' AND ID<> '".abs($_REQUEST["s"]["ID"])."'");
 					if(!$GLOBALS["DB_WE"]->next_record()){ // es existiert kein anderer User mit den neuen Username oder username hat sich nicht geaendert
 						$set_a=array();
 						if(isset($_REQUEST["s"])){
@@ -209,7 +209,7 @@ function we_tag_saveRegisteredUser($attribs,$content){
 
 						if(sizeof($set_a)){
 							$set=implode(",",$set_a);
-							$GLOBALS["DB_WE"]->query("UPDATE ".CUSTOMER_TABLE." SET ".$set." WHERE ID='".$_REQUEST["s"]["ID"]."'");
+							$GLOBALS["DB_WE"]->query("UPDATE ".CUSTOMER_TABLE." SET ".$set." WHERE ID='".abs($_REQUEST["s"]["ID"])."'");
 						}
 
 					}else{
@@ -222,7 +222,7 @@ function we_tag_saveRegisteredUser($attribs,$content){
 					}
 
 					//die neuen daten in die session schreiben
-					$u = getHash("SELECT * from ".CUSTOMER_TABLE." WHERE ID='".$_REQUEST["s"]["ID"]."'",$GLOBALS["DB_WE"]);
+					$u = getHash("SELECT * from ".CUSTOMER_TABLE." WHERE ID='".abs($_REQUEST["s"]["ID"])."'",$GLOBALS["DB_WE"]);
 
 					$_SESSION["webuser"]=$u;
 					$_SESSION["webuser"]["registered"] = true;

@@ -57,7 +57,7 @@ class logging{
 		
 		$content = array();
 		$tableInfo = $this->db->metadata($this->table);
-		$this->db->query("SELECT ID,timestamp,action,userID FROM ".$this->table." ORDER BY timestamp DESC");
+		$this->db->query("SELECT ID,timestamp,action,userID FROM ".mysql_real_escape_string($this->table)." ORDER BY timestamp DESC");
 		$m=0;
 		while($this->db->next_record()){
 			for($i=0;$i<count($tableInfo);$i++){
@@ -82,7 +82,7 @@ class logging{
 			
 				if(isset($this->$val)) {
 					$keys[]='`'.$val.'`'; 
-					$values[]="'".$this->$val."'";
+					$values[]="'".mysql_real_escape_string($this->$val)."'";
 				}
 		}
 		
@@ -92,7 +92,7 @@ class logging{
 
 		if (!empty($keys) && !empty($values)){
 			
-			$query = 'INSERT INTO '.$this->table.' ('.$keys.') VALUES ('.$values.')';
+			$query = 'INSERT INTO '.mysql_real_escape_string($this->table).' ('.$keys.') VALUES ('.$values.')';
 			$this->db->query($query);
 		}
 			

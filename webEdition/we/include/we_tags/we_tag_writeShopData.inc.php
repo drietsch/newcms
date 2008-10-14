@@ -127,7 +127,7 @@ function we_tag_writeShopData($attribs) {
 			}
 
 			$sql = "INSERT INTO " . SHOP_TABLE . " (intOrderID, IntArticleID, IntQuantity, Price, IntCustomerID, DateOrder, DateShipping, DatePayment, strSerial) ";
-			$sql .= "VALUES (" . ($maxOrderID + 1) . ", " . $shoppingItem['id'] . ", '" . $shoppingItem['quantity'] . "', '$preis' , " . $_SESSION["webuser"]["ID"] . ", now(), '00000000000000', '00000000000000', '" . addslashes(serialize($shoppingItem['serial'])) . "')";
+			$sql .= "VALUES (" . abs($maxOrderID + 1) . ", " . abs($shoppingItem['id']) . ", '" . abs($shoppingItem['quantity']) . "', '".mysql_real_escape_string($preis)."' , " . abs($_SESSION["webuser"]["ID"]) . ", now(), '00000000000000', '00000000000000', '" . mysql_real_escape_string(serialize($shoppingItem['serial'])) . "')";
 
 			$DB_WE->connect();
 			if (!$DB_WE->query($sql)) {
@@ -174,7 +174,7 @@ emosBasketPageArray[$articleCount][7]='NULL';
 
 			$cartSql = '
 				UPDATE ' . SHOP_TABLE . '
-				set strSerialOrder=\'' . addslashes(serialize($cartField)) . '\'
+				set strSerialOrder=\'' . mysql_real_escape_string(serialize($cartField)) . '\'
 				WHERE intOrderID="' . ($maxOrderID + 1) . '"
 			';
 
