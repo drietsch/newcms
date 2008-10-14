@@ -49,8 +49,8 @@
 			$checkNameQuery = '
 				SELECT *
 				FROM ' . VALIDATION_SERVICES_TABLE . '
-				WHERE name="' . $validationService->name . '"
-					AND PK_tblvalidationservices != ' . $validationService->id . '
+				WHERE name="' . mysql_real_escape_string($validationService->name) . '"
+					AND PK_tblvalidationservices != ' . abs($validationService->id) . '
 				';
 			
 			$DB_WE->query($checkNameQuery);
@@ -64,14 +64,14 @@
             if($validationService->id != 0){
                 $query = '
                     UPDATE ' . VALIDATION_SERVICES_TABLE . '
-                        SET category="' . $validationService->category . '",name="' . addslashes($validationService->name) . '",host="' . addslashes($validationService->host) . '",path="' . addslashes($validationService->path) . '",method="' . $validationService->method . '",varname="' . addslashes($validationService->varname) . '",checkvia="' . $validationService->checkvia . '",additionalVars="' . addslashes($validationService->additionalVars) . '",ctype="' . addslashes($validationService->ctype) . '",fileEndings="' . addslashes($validationService->fileEndings) . '",active="' . $validationService->active . '"
-                        WHERE PK_tblvalidationservices = ' . $validationService->id;
+                        SET category="' . mysql_real_escape_string($validationService->category). '",name="' . mysql_real_escape_string($validationService->name) . '",host="' . mysql_real_escape_string($validationService->host) . '",path="' . mysql_real_escape_string($validationService->path) . '",method="' . mysql_real_escape_string($validationService->method) . '",varname="' . mysql_real_escape_string($validationService->varname) . '",checkvia="' . mysql_real_escape_string($validationService->checkvia) . '",additionalVars="' . mysql_real_escape_string($validationService->additionalVars) . '",ctype="' . mysql_real_escape_string($validationService->ctype) . '",fileEndings="' . mysql_real_escape_string($validationService->fileEndings) . '",active="' . mysql_real_escape_string($validationService->active) . '"
+                        WHERE PK_tblvalidationservices = ' . abs($validationService->id);
             } else {
             	
                 $query = '
                     INSERT INTO ' . VALIDATION_SERVICES_TABLE . '
                         (category, name, host, path, method, varname, checkvia, additionalVars, ctype, fileEndings, active)
-                        VALUES("' . $validationService->category . '", "' . addslashes($validationService->name) . '", "' . addslashes($validationService->host) . '", "' . addslashes($validationService->path) . '", "' . $validationService->method . '", "' . addslashes($validationService->varname) . '", "' . $validationService->checkvia . '", "' . addslashes($validationService->additionalVars) . '", "' . addslashes($validationService->ctype) . '", "' . addslashes($validationService->fileEndings) . '", "' . $validationService->active . '");
+                        VALUES("' . mysql_real_escape_string($validationService->category) . '", "' . mysql_real_escape_string($validationService->name) . '", "' . mysql_real_escape_string($validationService->host) . '", "' . mysql_real_escape_string($validationService->path) . '", "' . mysql_real_escape_string($validationService->method) . '", "' . mysql_real_escape_string($validationService->varname) . '", "' . mysql_real_escape_string($validationService->checkvia) . '", "' . mysql_real_escape_string($validationService->additionalVars) . '", "' . mysql_real_escape_string($validationService->ctype) . '", "' . mysql_real_escape_string($validationService->fileEndings) . '", "' . mysql_real_escape_string($validationService->active) . '");
                 ';
             }
             
@@ -93,7 +93,7 @@
             if($validationService->id != 0){
                 $query = '
                     DELETE FROM ' . VALIDATION_SERVICES_TABLE . '
-                        WHERE PK_tblvalidationservices = ' . $validationService->id;
+                        WHERE PK_tblvalidationservices = ' . abs($validationService->id);
                 
                 if($DB_WE->query($query)){
                     return true;
@@ -122,7 +122,7 @@
                     $query = '
                         SELECT *
                         FROM ' . VALIDATION_SERVICES_TABLE . '
-                        WHERE fileEndings LIKE "%' . $we_doc->Extension . '%" AND active=1';
+                        WHERE fileEndings LIKE "%' . mysql_real_escape_string($we_doc->Extension) . '%" AND active=1';
                     break;
             }
             
