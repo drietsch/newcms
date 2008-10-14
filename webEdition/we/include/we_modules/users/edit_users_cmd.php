@@ -187,7 +187,7 @@ protect();
 	                    break;
 	                }
 	                if(isset($_REQUEST["oldtab"]))
-	                	$user_object->preserveState($_REQUEST["oldtab"],$_REQUEST["old_perm_branch"]);
+	                	$user_object->preserveState(abs($_REQUEST["oldtab"]),$_REQUEST["old_perm_branch"]);
 
 	                $id = $user_object->ID;
 	                if($user_object->username=="" && $user_object->Type!=2){
@@ -198,14 +198,6 @@ protect();
 	                    break;
 	                }
 
-	                if($user_object->Type==0 && (!isset($user_object->passwd) || strlen($user_object->passwd)<4)){
-
-	                    print '
-	                        <script language="JavaScript" type="text/javascript">
-	                        	' . we_message_reporting::getShowMessageCall($l_global["pass_to_short"], WE_MESSAGE_ERROR) . '
-	                        </script>';
-	                    break;
-	                }
 	    	        if($user_object->Alias==0 && $user_object->Type==2){
 	                    print '
 	                        <script language="JavaScript" type="text/javascript">
