@@ -4952,7 +4952,7 @@ function we_tag_linkToSeeMode($attribs, $content)
 								'target' => '_parent', 
 								'action' => '/webEdition/loginToSuperEasyEditMode.php'
 						), 
-						getHtmlTag(
+								getHtmlTag(
 								'input', 
 								array(
 									
