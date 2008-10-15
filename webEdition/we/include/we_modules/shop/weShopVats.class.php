@@ -8,9 +8,7 @@ class weShopVats {
 
 		if (!isset($GLOBALS['weShopVats']['getAllVats'])) {
 
-			$query = '
-				SELECT *
-				FROM ' . WE_SHOP_VAT_TABLE;
+			$query = 'SELECT * FROM ' . WE_SHOP_VAT_TABLE;
 
 			$GLOBALS['DB_WE']->query($query);
 
@@ -32,12 +30,9 @@ class weShopVats {
 
 	function getShopVATById($id) {
 
-		if (!isset($GLOBALS['weShopVats']['getShopVATById']["$id"])) {
+		if (!isset($GLOBALS['weShopVats']['getShopVATById']["$id"])) {  
 
-			$query = '
-			SELECT *
-			FROM ' . WE_SHOP_VAT_TABLE . '
-			WHERE id=' . addslashes($id);
+			$query = 'SELECT * FROM ' . WE_SHOP_VAT_TABLE . ' WHERE id=' . abs($id);
 
 			$GLOBALS['DB_WE']->query($query);
 
@@ -78,11 +73,7 @@ class weShopVats {
 
 		if (!isset($GLOBALS['weShopVats']['getStandardShopVat'])) {
 
-			$query = '
-				SELECT *
-				FROM ' . WE_SHOP_VAT_TABLE . '
-				WHERE standard=1
-			';
+			$query = 'SELECT * FROM ' . WE_SHOP_VAT_TABLE . ' WHERE standard=1';
 
 			$GLOBALS['DB_WE']->query($query);
 
@@ -110,20 +101,14 @@ class weShopVats {
 		if ($weShopVat->standard == 1) {
 
 			// delete all other standard values
-			$query = '
-				UPDATE ' . WE_SHOP_VAT_TABLE . '
-				SET standard = 0
-				WHERE 1
-			';
+			$query = 'UPDATE ' . WE_SHOP_VAT_TABLE . ' SET standard = 0 WHERE 1';
 			$GLOBALS['DB_WE']->query($query);
 		}
 
 		if ($weShopVat->id == 0) { // insert a new vat
 
-			$query = '
-				INSERT INTO ' . WE_SHOP_VAT_TABLE . '
-				(text, vat, standard)
-				VALUES("' . addslashes($weShopVat->text) . '", "' . addslashes($weShopVat->vat) . '", ' . addslashes($weShopVat->standard) . ')
+			$query = 'INSERT INTO ' . WE_SHOP_VAT_TABLE . ' (text, vat, standard)
+				VALUES("' . mysql_real_escape_string($weShopVat->text) . '", "' . mysql_real_escape_string($weShopVat->vat) . '", ' . mysql_real_escape_string($weShopVat->standard) . ')
 			';
 
 			if ($GLOBALS['DB_WE']->query($query)) {
@@ -132,10 +117,8 @@ class weShopVats {
 
 		} else { // update existing vat
 
-			$query = '
-				UPDATE ' . WE_SHOP_VAT_TABLE . '
-				SET text="' . addslashes($weShopVat->text) . '", vat="' . addslashes($weShopVat->vat) . '", standard=' . addslashes($weShopVat->standard) . '
-				WHERE id=' . addslashes($weShopVat->id) . '
+			$query = 'UPDATE ' . WE_SHOP_VAT_TABLE . ' SET text="' . mysql_real_escape_string($weShopVat->text) . '", vat="' . mysql_real_escape_string($weShopVat->vat) . '", standard=' . mysql_real_escape_string($weShopVat->standard) . '
+				WHERE id=' . abs($weShopVat->id) . '
 			';
 
 			if ($GLOBALS['DB_WE']->query($query)) {
@@ -148,10 +131,7 @@ class weShopVats {
 
 	function deleteVatById($id) {
 
-		$query = '
-			DELETE FROM ' . WE_SHOP_VAT_TABLE . '
-			WHERE id=' . addslashes($id) . '
-		';
+		$query = 'DELETE FROM ' . WE_SHOP_VAT_TABLE . ' WHERE id=' . abs($id);
 		return $GLOBALS['DB_WE']->query($query);
 	}
 }

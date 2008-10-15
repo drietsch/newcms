@@ -116,7 +116,7 @@ class weWorkflowDocumentTask extends weWorkflowBase{
 		$db = new DB_WE();
 
 
-		$db->query("SELECT ID FROM ".WORKFLOW_DOC_TASK_TABLE." WHERE documentStepID ='$workflowDocumentStep' ORDER BY ID");
+		$db->query("SELECT ID FROM ".WORKFLOW_DOC_TASK_TABLE." WHERE documentStepID =".abs($workflowDocumentStep)." ORDER BY ID");
 
 		$docTasks = array();
 
@@ -133,7 +133,7 @@ class weWorkflowDocumentTask extends weWorkflowBase{
 	function __createAllTasks($workflowStepID){
 		$db = new DB_WE();
 
-		$db->query("SELECT ID FROM ".WORKFLOW_TASK_TABLE." WHERE stepID='$workflowStepID' ORDER BY ID");
+		$db->query("SELECT ID FROM ".WORKFLOW_TASK_TABLE." WHERE stepID=".abs($workflowStepID)." ORDER BY ID");
 		$docTasks = array();
 		while ($db->next_record()){
 			$docTasks[] = weWorkflowDocumentTask::__createTask($db->f("ID"));
@@ -149,7 +149,7 @@ class weWorkflowDocumentTask extends weWorkflowBase{
 
 		$db = new DB_WE;
 
-		$db->query("SELECT * FROM ".WORKFLOW_TASK_TABLE." WHERE ID='$WorkflowTask' ORDER BY ID");
+		$db->query("SELECT * FROM ".WORKFLOW_TASK_TABLE." WHERE ID=".abs($WorkflowTask)." ORDER BY ID");
 		if (!$db->next_record()){
 			return false;
 		}

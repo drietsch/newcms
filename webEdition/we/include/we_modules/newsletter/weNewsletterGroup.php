@@ -118,7 +118,7 @@ class weNewsletterGroup extends weNewsletterBase{
 		if(defined("CUSTOMER_TABLE")){
 			$customers=makeArrayFromCSV($this->Customers);
 			foreach($customers as $customer){
-				$customer_mail=f("SELECT ".$this->settings["customer_email_field"]." FROM ".CUSTOMER_TABLE." WHERE ID=".$customer,$this->settings["customer_email_field"],$this->db);
+				$customer_mail=f("SELECT ".$this->settings["customer_email_field"]." FROM ".CUSTOMER_TABLE." WHERE ID=".abs($customer),$this->settings["customer_email_field"],$this->db);
 				if(!$this->check_email($customer_mail)){
 					$malformed=$customer_mail;
 					return $group;
@@ -163,7 +163,7 @@ class weNewsletterGroup extends weNewsletterBase{
 
 		$db = new DB_WE();
 
-		$db->query("SELECT ID FROM ".NEWSLETTER_GROUP_TABLE." WHERE NewsletterID='$newsletterID' ORDER BY ID");
+		$db->query("SELECT ID FROM ".NEWSLETTER_GROUP_TABLE." WHERE NewsletterID=".abs($newsletterID)." ORDER BY ID");
 		$ret = array();
 		while ($db->next_record()){
 			$ret[] = new weNewsletterGroup($db->f("ID"));

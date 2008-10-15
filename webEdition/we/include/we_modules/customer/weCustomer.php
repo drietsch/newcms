@@ -213,7 +213,7 @@ class weCustomer extends weModelBase{
 
 	function getFieldsDbProperties(){
 		$ret=array();
-		$this->db->query("SHOW COLUMNS FROM ".$this->table);
+		$this->db->query("SHOW COLUMNS FROM ".mysql_real_escape_string($this->table));
 		while($this->db->next_record()){
 			$ret[$this->db->f("Field")]=$this->db->Record;
 		}
@@ -239,7 +239,7 @@ class weCustomer extends weModelBase{
 
 	function customerNameExist($name){
 			$db=new DB_WE();
-			return f("SELECT ID FROM ".CUSTOMER_TABLE." WHERE Username='".$name."';","ID",$db);
+			return f("SELECT ID FROM ".CUSTOMER_TABLE." WHERE Username='".mysql_real_escape_string($name)."';","ID",$db);
 	}
 
 	function fieldExist($field){

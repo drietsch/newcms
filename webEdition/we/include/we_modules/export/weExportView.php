@@ -540,9 +540,9 @@ function processCommands() {
 
 						if($this->export->IsFolder && $oldpath!='' && $oldpath!='/' && $oldpath!=$this->export->Path) {
 							$db_tmp = new DB_WE();
-							$this->db->query('SELECT ID FROM ' . EXPORT_TABLE . ' WHERE Path LIKE \'' . $oldpath . '%\' AND ID<>\''.$this->export->ID.'\';'); 
+							$this->db->query('SELECT ID FROM ' . EXPORT_TABLE . ' WHERE Path LIKE \'' . mysql_real_escape_string($oldpath) . '%\' AND ID<>'.abs($this->export->ID).';'); 
 							while($this->db->next_record()) {
-								$db_tmp->query('UPDATE ' . EXPORT_TABLE . ' SET Path=\'' . $this->export->evalPath($this->db->f("ID")) . '\' WHERE ID=\'' . $this->db->f("ID") . '\';');
+								$db_tmp->query('UPDATE ' . EXPORT_TABLE . ' SET Path=\'' . $this->export->evalPath($this->db->f("ID")) . '\' WHERE ID=' . $this->db->f("ID") . ';');
 							}
 						}			
 

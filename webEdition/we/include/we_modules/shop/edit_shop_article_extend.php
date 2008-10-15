@@ -270,7 +270,7 @@ if (isset($daten)){
     /* ********* START PROCESS THE OUTPUT IF OPTED FOR AN OBJECT *********** */
 
     if ($_REQUEST['typ'] == "object"){ //start output object
-      	$orderBy = isset($_REQUEST['orderBy']) ? $_REQUEST['orderBy'] : 'obTitle';
+      	$orderBy = isset($_REQUEST['orderBy']) ? mysql_real_escape_string($_REQUEST['orderBy']) : 'obTitle';
         $entries = 0;
         $count_expression = "";
         $from_expression = "";
@@ -284,12 +284,13 @@ if (isset($daten)){
                     $from_expression .= ", ";
                     $where_expression .= " AND ";
                 }
-                $count_expression .= "COUNT(DISTINCT ".OBJECT_X_TABLE."$clId.OF_ID)";
+                $count_expression .= "COUNT(DISTINCT ".OBJECT_X_TABLE.abs($clId).".OF_ID)";
                 $from_expression .= OBJECT_X_TABLE.$clId;
                 $where_expression .= OBJECT_X_TABLE."$clId.OF_ID !=0";
                 $fe_count++;
             }
       	} else {
+      		$classid=abs($classid);
             $count_expression = "COUNT(".OBJECT_X_TABLE."$classid.OF_ID)";
             $from_expression = OBJECT_X_TABLE.$classid;
             $where_expression = OBJECT_X_TABLE."$classid.OF_ID !=0";
@@ -307,7 +308,7 @@ if (isset($daten)){
         if($entries !=0) {   // Pager: Number of records not empty?
             $topInfo = ($entries>0) ? $entries : $l_shop["noRecord"];
 
-            $classid = $_REQUEST["ViewClass"]; // gets the value from the selectbox;
+            $classid = abs($_REQUEST["ViewClass"]); // gets the value from the selectbox;
 
             $classSelectTable .= '<table cellpadding="2" cellspacing="0" width="600" border="0">
     <tr>
@@ -437,7 +438,7 @@ if (isset($daten)){
 
     }elseif($_REQUEST['typ'] == "document"){  //start output doc
         $orderBy = isset($_REQUEST['orderBy']) ? $_REQUEST['orderBy'] : 'sql';
-        $DB_WE->query("SELECT count(Name) as Anzahl FROM ".LINK_TABLE." WHERE Name ='$dbTitlename'");
+        $DB_WE->query("SELECT count(Name) as Anzahl FROM ".LINK_TABLE." WHERE Name ='".mysql_real_escape_string($dbTitlename)."'");
         while($DB_WE->next_record()){				          // Pager: determine the number of records;
             $entries = $DB_WE->f("Anzahl");
         }

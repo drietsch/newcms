@@ -2801,7 +2801,7 @@ class weNewsletterFrames extends weModuleFrames {
 									');
 									flush();
 								}
-								$this->View->db->query("UPDATE ".NEWSLETTER_TABLE." SET Step='$egc',Offset='$j' WHERE ID=".$this->View->newsletter->ID);
+								$this->View->db->query("UPDATE ".NEWSLETTER_TABLE." SET Step=".abs($egc).",Offset=".abs($j)." WHERE ID=".$this->View->newsletter->ID);
 							}
 			}
 			elseif(!$not_malformed){
@@ -2993,7 +2993,7 @@ class weNewsletterFrames extends weModuleFrames {
 		$placeholderReplaceValue = "";
 		if (is_array($customerInfos) && isset($customerInfos[8]) && isset($customerInfos[9]) && $customerInfos[9]=='customer') {
 			$fromCustomer = true;
-			$this->View->db->query("SELECT * FROM ".CUSTOMER_TABLE." WHERE ID=".$customerInfos[8]);
+			$this->View->db->query("SELECT * FROM ".CUSTOMER_TABLE." WHERE ID=".abs($customerInfos[8]));
 			$this->View->db->next_record();
 		}
 		

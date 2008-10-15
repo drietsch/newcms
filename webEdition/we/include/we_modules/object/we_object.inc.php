@@ -100,7 +100,7 @@ class we_object extends we_document
 		$db = new DB_WE();
 
 		if($this->OldPath && ($this->OldPath != $this->Path)){
-			$fID = f("SELECT ID FROM " . OBJECT_FILES_TABLE . " WHERE Path='".$this->OldPath."'","ID",$this->DB_WE);
+			$fID = f("SELECT ID FROM " . OBJECT_FILES_TABLE . " WHERE Path='".mysql_real_escape_string($this->OldPath)."'","ID",$this->DB_WE);
 			$pID = abs(f("SELECT ID FROM " . OBJECT_FILES_TABLE . " WHERE Path='".str_replace("\\","/",dirname($this->Path))."'","ID",$this->DB_WE));
 			$cf = new we_class_folder();
 			$cf->initByID($fID,OBJECT_FILES_TABLE);
@@ -240,7 +240,7 @@ class we_object extends we_document
 			$this->DefaultCategory = $this->Category;
 			$this->i_savePersistentSlotsToDB();
 
-			$this->ID = (f("SELECT MAX(LAST_INSERT_ID()) as LastID FROM ".$this->Table,"LastID",$this->DB_WE));
+			$this->ID = (f("SELECT MAX(LAST_INSERT_ID()) as LastID FROM ".mysql_real_escape_string($this->Table),"LastID",$this->DB_WE));
 			$ctable = OBJECT_X_TABLE.($this->ID);
 
 			// Charset and Collation
@@ -1289,13 +1289,13 @@ class we_object extends we_document
 		$we_button = new we_button();
 		if($editable){
 			$db = new DB_WE();
-			$classPath = f("SELECT Path FROM " . OBJECT_TABLE . " WHERE ID='$pid'","Path",$db) ;
+			$classPath = f("SELECT Path FROM " . OBJECT_TABLE . " WHERE ID=$pid","Path",$db) ;
 			$textname = 'we_'.$this->Name.'_txt['.$pid.'_path]';
 			$idname = 'we_'.$this->Name."_input[".$ObjectID."default]";
 			$myid = $this->getElement($ObjectID."default","dat");
 
 			$path = $this->getElement("we_object_".$pid."_path");
-			$path = $path ? $path : f("SELECT Path FROM " . OBJECT_FILES_TABLE . " WHERE ID='$myid'","Path",$db);
+			$path = $path ? $path : f("SELECT Path FROM " . OBJECT_FILES_TABLE . " WHERE ID=$myid","Path",$db);
 			$rootDir = f("SELECT ID FROM " . OBJECT_FILES_TABLE . " WHERE Path='$classPath'","ID",$db);
 			$table = OBJECT_FILES_TABLE;
 			
@@ -1336,13 +1336,13 @@ DAMD: der Autocompleter funktioniert hier nicht. Der HTML-Cokde wird dynamisch e
 		$we_button = new we_button();
 
 		$db = new DB_WE();
-		$classPath = f("SELECT Path FROM " . OBJECT_TABLE . " WHERE ID='$pid'","Path",$db) ;
+		$classPath = f("SELECT Path FROM " . OBJECT_TABLE . " WHERE ID=$pid","Path",$db) ;
 		$textname = 'we_'.$this->Name.'_txt['.$name.'_path'.$f.']';
 		$idname = 'we_'.$this->Name."_input[".$name."defaultvalue".$f."]";
 		$myid = $this->getElement($name."defaultvalue".$f,"dat");
 
 		$path = $this->getElement("we_object_".$name."_path");
-		$path = $path ? $path : f("SELECT Path FROM " . OBJECT_FILES_TABLE . " WHERE ID='$myid'","Path",$db);
+		$path = $path ? $path : f("SELECT Path FROM " . OBJECT_FILES_TABLE . " WHERE ID=$myid","Path",$db);
 		$rootDir = f("SELECT ID FROM " . OBJECT_FILES_TABLE . " WHERE Path='$classPath'","ID",$db);
 
 		$table = OBJECT_FILES_TABLE;
@@ -1907,7 +1907,7 @@ DAMD: der Autocompleter funktioniert hier nicht. Der HTML-Cokde wird dynamisch e
 
 	function del_workspace($id){
 
-		$this->DB_WE->query("SELECT ID FROM ".OBJECT_FILES_TABLE." WHERE TableID=".$this->ID." AND (Workspaces like ',".$id.",' OR ExtraWorkspaces like ',".$id.",') LIMIT 0,1");
+		$this->DB_WE->query("SELECT ID FROM ".OBJECT_FILES_TABLE." WHERE TableID=".$this->ID." AND (Workspaces like ',".abs($id).",' OR ExtraWorkspaces like ',".abs($id).",') LIMIT 0,1");
 
 		if($this->DB_WE->next_record()){
 			$GLOBALS['WE_DEL_WORKSPACE_ERROR'] = true;
@@ -2109,7 +2109,7 @@ DAMD: der Autocompleter funktioniert hier nicht. Der HTML-Cokde wird dynamisch e
 	}
 
 	function i_filenameDouble(){
-		return f("SELECT ID FROM ".$this->Table." WHERE ParentID='".$this->ParentID."' AND Text='".$this->Text."' AND ID != '".$this->ID."'","ID",new DB_WE());
+		return f("SELECT ID FROM ".$this->Table." WHERE ParentID='".$this->ParentID."' AND Text='".mysql_affected_rows($this->Text)."' AND ID != '".$this->ID."'","ID",new DB_WE());
 	}
 
 	function i_checkPathDiffAndCreate(){

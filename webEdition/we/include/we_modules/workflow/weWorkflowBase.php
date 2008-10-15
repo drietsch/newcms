@@ -55,7 +55,7 @@ class weWorkflowBase{
 
 	function load(){
 		$tableInfo = $this->db->metadata($this->table);
-		$this->db->query("SELECT * FROM ".$this->table." WHERE ID='".$this->ID."'");
+		$this->db->query("SELECT * FROM ".mysql_real_escape_string($this->table)." WHERE ID=".abs($this->ID));
 		if($this->db->next_record())
 		for($i=0;$i<sizeof($tableInfo);$i++){
 				$fieldName = $tableInfo[$i]["name"];
@@ -78,7 +78,7 @@ class weWorkflowBase{
 
 		if ($this->ID==0){
 
-			$query = 'INSERT INTO '.$this->table.' SET '.$set;
+			$query = 'INSERT INTO '.mysql_real_escape_string($this->table).' SET '.$set;
 			$this->db->query($query);
 			# get ID #
 			$this->db->query("SELECT LAST_INSERT_ID()");
@@ -86,7 +86,7 @@ class weWorkflowBase{
 			$this->ID = $this->db->f(0);
 		}
 		else{
-			$query = 'UPDATE '.$this->table.' SET '.$set.' WHERE '.$where;
+			$query = 'UPDATE '.mysql_real_escape_string($this->table).' SET '.$set.' WHERE '.$where;
 			$this->db->query($query);
 
 		}
@@ -95,7 +95,7 @@ class weWorkflowBase{
 
 	function delete(){
 		if ($this->ID){
-			$this->db->query('DELETE FROM '.$this->table.' WHERE ID="' . $this->ID . '"');
+			$this->db->query('DELETE FROM '.mysql_real_escape_string($this->table).' WHERE ID=' . abs($this->ID));
 			return true;
 		}
 		else return false;
@@ -104,7 +104,7 @@ class weWorkflowBase{
 
 	function sendMessage($userID,$subject,$description){
 		$errs = array();
-		$foo=f("SELECT username FROM ".USER_TABLE." WHERE ID='".$userID."'","username",$this->db);
+		$foo=f("SELECT username FROM ".USER_TABLE." WHERE ID=".abs($userID),"username",$this->db);
 		$rcpts = array($foo); /* user names */
 		$res = msg_new_message($rcpts,$subject,$description,$errs);
 
@@ -113,16 +113,16 @@ class weWorkflowBase{
 	function sendMail($userID,$subject,$description,$contecttype='text/plain'){
 		global $l_workflow;
 		$errs = array();
-		$foo=f("SELECT Email FROM ".USER_TABLE." WHERE ID='".$userID."'","Email",$this->db);
+		$foo=f("SELECT Email FROM ".USER_TABLE." WHERE ID=".abs($userID),"Email",$this->db);
 		if(!empty($foo) && we_check_email($foo)){
-			$this_user=getHash("SELECT First,Second,Email FROM ".USER_TABLE." WHERE ID='".$_SESSION["user"]["ID"]."'",$this->db);
+			$this_user=getHash("SELECT First,Second,Email FROM ".USER_TABLE." WHERE ID=".abs($_SESSION["user"]["ID"]),$this->db);
 			we_mail($foo,correctUml($subject),$description,(isset($this_user["Email"]) && $this_user["Email"]!="" ? $this_user["First"]." ".$this_user["Second"]." <".$this_user["Email"].">":""));
 		}
 	}
 
 	function sendTodo($userID,$subject,$description,$deadline){
 		$errs = array();
-		$foo=f("SELECT username FROM ".USER_TABLE." WHERE ID='".$userID."'","username",$this->db);
+		$foo=f("SELECT username FROM ".USER_TABLE." WHERE ID=".abs($userID),"username",$this->db);
 		$rcpts = array($foo); /* user names */
 		return msg_new_todo($rcpts,$subject,$description,$errs,"html",$deadline);
 

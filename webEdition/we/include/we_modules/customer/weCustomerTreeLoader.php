@@ -66,7 +66,7 @@ class weCustomerTreeLoader{
 		$settings->load();
 
 
-		$where=" WHERE ParentID=$ParentID ".$addWhere;
+		$where=" WHERE ParentID=".abs($ParentID)." ".$addWhere;
 
 		$_formatFields=implode(',',$settings->formatFields);
 		if($_formatFields!=''){
@@ -325,7 +325,7 @@ class weCustomerTreeLoader{
 		}
 
 		if($level==$levelcount){
-			$q="SELECT COUNT(ID) as total ".(count($select) ? ",".implode(",",$select) : "")." FROM ".$table." GROUP BY ".$grp.(count($grouparr) ? ($level!=0 ? ",ID" : "") : "ID").(count($havingarr) ? " HAVING ".implode(" AND ",$havingarr) : "")." ORDER BY ".implode(",",$orderarr).";";
+			$q="SELECT COUNT(ID) as total ".(count($select) ? ",".implode(",",$select) : "")." FROM ".mysql_real_escape_string($table)." GROUP BY ".$grp.(count($grouparr) ? ($level!=0 ? ",ID" : "") : "ID").(count($havingarr) ? " HAVING ".implode(" AND ",$havingarr) : "")." ORDER BY ".implode(",",$orderarr).";";
 			$db->query($q);
 			$total=$db->affected_rows();
 

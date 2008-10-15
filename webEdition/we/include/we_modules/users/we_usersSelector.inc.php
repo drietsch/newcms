@@ -59,7 +59,7 @@ class we_usersSelector extends we_multiSelector{
 	
 	function setDefaultDirAndID($setLastDir){
 		$this->dir = $setLastDir ? (isset($_SESSION["we_fs_lastDir"][$this->table]) ? abs($_SESSION["we_fs_lastDir"][$this->table]) : 0 ) : 0;
-		$foo = getHash("SELECT IsFolder,Text,Path FROM $this->table WHERE ID='".$this->dir."'",$this->db);
+		$foo = getHash("SELECT IsFolder,Text,Path FROM ".mysql_real_escape_string($this->table)." WHERE ID='".$this->dir."'",$this->db);
 		if(isset($foo["IsFolder"]) && $foo["IsFolder"] && $this->dir){
 			$this->values = array("ParentID"=>$this->dir,
 			"Text"=>$foo["Text"],
@@ -124,8 +124,8 @@ class we_usersSelector extends we_multiSelector{
 		//}else{
 		$upath = "";
 		//}
-		$this->db->query("SELECT ".$this->fields." FROM ".
-		$this->table.
+		$this->db->query("SELECT ".mysql_real_escape_string($this->fields)." FROM ".
+		mysql_real_escape_string($this->table).
 		" WHERE ParentID='".$this->dir."'".
 		($upath ? " AND Path LIKE '".$upath."%' " : "").
 		$q.($this->order ? (' ORDER BY '.$this->order) : ''));

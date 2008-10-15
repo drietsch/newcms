@@ -65,9 +65,9 @@ class weVotingTreeLoader{
 
 
 		
-		$where=" WHERE ParentID=$ParentID ".$addWhere .$owners_sql;		
+		$where=" WHERE ParentID=".abs($ParentID) . " " .$addWhere .$owners_sql;		
 		
-		$db->query("SELECT $elem, abs(text) as Nr, (text REGEXP '^[0-9]') as isNr from $table $where ORDER BY isNr DESC,Nr,Text " . ($segment ?  "LIMIT $offset,$segment;" : ";" ));
+		$db->query("SELECT ".mysql_real_escape_string($elem).", abs(text) as Nr, (text REGEXP '^[0-9]') as isNr from ".mysql_real_escape_string($table)." $where ORDER BY isNr DESC,Nr,Text " . ($segment ?  "LIMIT ".abs($offset).",".abs($segment).";" : ";" ));
 		$now = time();
 		
 		while($db->next_record()){
@@ -93,7 +93,7 @@ class weVotingTreeLoader{
 			
 		}
 		
-		$total=f("SELECT COUNT(*) as total FROM $table $where;","total",$db);
+		$total=f("SELECT COUNT(*) as total FROM ".mysql_real_escape_string($table)." $where;","total",$db);
 		$nextoffset=$offset+$segment;
 		if($segment && ($total>$nextoffset)){
 			$items[]=array(

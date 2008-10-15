@@ -57,7 +57,7 @@ class objectsearch extends we_search {
 	function getFields($name="obj_searchField",$size=1,$select="",$Path,$multi="") {
 		global $l_object;
 
-		$objID = f("SELECT ID FROM ".OBJECT_TABLE." WHERE Path='".$Path."'","ID",$GLOBALS["DB_WE"]);
+		$objID = f("SELECT ID FROM ".OBJECT_TABLE." WHERE Path='".mysql_real_escape_string($Path)."'","ID",$GLOBALS["DB_WE"]);
 		$opts = '';
 		$tableInfo =  $GLOBALS["DB_WE"]->metadata(OBJECT_X_TABLE.$objID);
 		$all = "";

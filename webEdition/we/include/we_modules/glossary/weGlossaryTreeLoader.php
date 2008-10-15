@@ -139,7 +139,7 @@ class weGlossaryTreeLoader{
 		
 		$Items = array();
 		
-		$Where = " WHERE Language = '$Language' AND Type = '$Type'";	
+		$Where = " WHERE Language = '.".mysql_real_escape_string($Language)."' AND Type = '".mysql_real_escape_string($Type)."'";	
 				
 		$PrevOffset = $Offset-$Segment;
 		$PrevOffset = ($PrevOffset<0) ? 0 : $PrevOffset;
@@ -178,7 +178,7 @@ class weGlossaryTreeLoader{
 				.	"isNr DESC, "
 				.	"Nr, "
 				.	"Text "
-				.	($Segment ?  "LIMIT $Offset,$Segment" : "");
+				.	($Segment ?  "LIMIT ".abs($Offset).",".abs($Segment) : "");
 				
 		$Db->query($Query);
 		while($Db->next_record()){
@@ -227,7 +227,7 @@ class weGlossaryTreeLoader{
 		 	array_push($Items, $Item);
 		}
 
-		$Total = f("SELECT COUNT(*) as total FROM $Table $Where","total",$Db);
+		$Total = f("SELECT COUNT(*) as total FROM ".mysql_real_escape_string($Table)." $Where","total",$Db);
 		
 		$NextOffset = $Offset + $Segment;
 		if($Segment && ($Total > $NextOffset)){

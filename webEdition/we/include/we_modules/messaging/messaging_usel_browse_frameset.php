@@ -287,7 +287,7 @@ $browser = new we_browserDetect();
           global $entries;
 
           $db_temp=new DB_WE();
-          $db_temp->query("SELECT ID,username,ParentID,Type,Permissions FROM ".USER_TABLE." WHERE  ParentID='".$pid."' ORDER BY username ASC");
+          $db_temp->query("SELECT ID,username,ParentID,Type,Permissions FROM ".USER_TABLE." WHERE  ParentID='".abs($pid)."' ORDER BY username ASC");
           while($db_temp->next_record()){
               $entries[$db_temp->f("ID")]["username"]=$db_temp->f("username");
               $entries[$db_temp->f("ID")]["ParentID"]=$db_temp->f("ParentID");

@@ -203,7 +203,7 @@ class weNewsletterView {
 
 	/* creates the DocumentChoooser field with the "browse"-Button. Clicking on the Button opens the fileselector */
 	function formDocChooser($width = "", $rootDirID = 0, $Pathname = "ParentPath", $Pathvalue = "/", $IDName = "ParentID", $IDValue = "0", $cmd = "") {
-		$Pathvalue = f("SELECT Path FROM ".FILE_TABLE." WHERE ID=" . $IDValue, "Path", $this->db);
+		$Pathvalue = f("SELECT Path FROM ".FILE_TABLE." WHERE ID=" . abs($IDValue), "Path", $this->db);
 
 		$we_button = new we_button();
 	  	$button =  $we_button->create_button("select","javascript:we_cmd('openDocselector',document.we_form.elements['$IDName'].value,'".FILE_TABLE."','document.we_form.elements[\\'$IDName\\'].value','document.we_form.elements[\\'$Pathname\\'].value','".$cmd."','".session_id()."','$rootDirID','',".(we_hasPerm("CAN_SELECT_OTHER_USERS_FILES") ? 0 : 1).")");
@@ -235,7 +235,7 @@ class weNewsletterView {
 
 	function formWeChooser($table = FILE_TABLE, $width = "", $rootDirID = 0, $IDName = "ID", $IDValue = "0",$Pathname="Path", $Pathvalue = "/", $cmd = "", $open_doc="",$acObject=null,$contentType="") {
 		if ($Pathvalue == "") {
-			$Pathvalue = f("SELECT Path FROM $table WHERE ID=" . $IDValue, "Path", $this->db);
+			$Pathvalue = f("SELECT Path FROM ".mysql_real_escape_string($table)." WHERE ID=" . abs($IDValue), "Path", $this->db);
 		}
 		
 		$we_button = new we_button();
@@ -266,7 +266,7 @@ class weNewsletterView {
 	}
 
 	function formWeDocChooser($table=FILE_TABLE,$width="",$rootDirID=0,$IDName="ID",$IDValue="0",$Pathname="Path",$Pathvalue="/",$cmd="",$filter="text/webedition",$acObject=null){
-      if($Pathvalue=="") $Pathvalue=f("SELECT Path FROM $table WHERE ID=".$IDValue,"Path",$this->db);
+      if($Pathvalue=="") $Pathvalue=f("SELECT Path FROM ".mysql_real_escape_string($table)." WHERE ID=".abs($IDValue),"Path",$this->db);
 
 	  $we_button = new we_button();
 	  $button =  $we_button->create_button("select","javascript:we_cmd('openDocselector',document.we_form.elements['$IDName'].value,'$table','document.we_form.elements[\\'$IDName\\'].value','document.we_form.elements[\\'$Pathname\\'].value','".$cmd."','".session_id()."','$rootDirID','$filter',".(we_hasPerm("CAN_SELECT_OTHER_USERS_FILES") ? 0 : 1).")");
@@ -298,7 +298,7 @@ class weNewsletterView {
 	function formNewsletterDirChooser( $width = "", $rootDirID = 0, $IDName = "ID", $IDValue = "0",$Pathname="Path", $Pathvalue = "/", $cmd = "", $acObject=null) {
 		$table = NEWSLETTER_TABLE;
 		if ($Pathvalue == "") {
-			$Pathvalue = f("SELECT Path FROM $table WHERE ID=" . $IDValue, "Path", $this->db);
+			$Pathvalue = f("SELECT Path FROM ".mysql_real_escape_string($table)." WHERE ID=" . abs($IDValue), "Path", $this->db);
 		}
 
 		$we_button = new we_button();
@@ -331,7 +331,7 @@ class weNewsletterView {
 	}
 
 	function getFields($id, $table) {
-		$ClassName = f("SELECT ClassName FROM $table WHERE ID=" . $id, "ClassName", $this->db);
+		$ClassName = f("SELECT ClassName FROM ".mysql_real_escape_string($table)." WHERE ID=" . abs($id), "ClassName", $this->db);
 		$include_path = $_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_classes/";
 
 		if ($table == OBJECT_FILES_TABLE) {
@@ -355,7 +355,7 @@ class weNewsletterView {
 	}
 
 	function getObjectFields() {
-		$ClassName = f("SELECT ClassName FROM ".FILE_TABLE." WHERE ID=" . $id, "ClassName", $this->db);
+		$ClassName = f("SELECT ClassName FROM ".FILE_TABLE." WHERE ID=" . abs($id), "ClassName", $this->db);
 
 		include_once($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_classes/" . $ClassName . ".inc.php");
 
@@ -1547,9 +1547,9 @@ class weNewsletterView {
 						$double = 0;
 
 						if ($newone) {
-							$this->db->query("SELECT COUNT(*) AS Count FROM ".NEWSLETTER_TABLE." WHERE Path='".addslashes($this->newsletter->Path)."'");
+							$this->db->query("SELECT COUNT(*) AS Count FROM ".NEWSLETTER_TABLE." WHERE Path='".mysql_real_escape_string($this->newsletter->Path)."'");
 						} else {
-							$this->db->query("SELECT COUNT(*) AS Count FROM ".NEWSLETTER_TABLE." WHERE Path='".addslashes($this->newsletter->Path)."' AND ID<>".$this->newsletter->ID."");
+							$this->db->query("SELECT COUNT(*) AS Count FROM ".NEWSLETTER_TABLE." WHERE Path='".mysql_real_escape_string($this->newsletter->Path)."' AND ID<>".$this->newsletter->ID."");
 						}
 
 						if ($this->db->next_record()) {
@@ -2425,7 +2425,7 @@ class weNewsletterView {
 		$atts=array();
 		$dbtmp=new DB_WE();
 		if($group)
-			$this->db->query("SELECT LinkID FROM ".NEWSLETTER_BLOCK_TABLE." WHERE NewsletterID=".$this->newsletter->ID." AND Type=".WENBLOCK_ATTACHMENT." AND Groups LIKE '%,".$group.",%'");
+			$this->db->query("SELECT LinkID FROM ".NEWSLETTER_BLOCK_TABLE." WHERE NewsletterID=".$this->newsletter->ID." AND Type=".WENBLOCK_ATTACHMENT." AND Groups LIKE '%,".mysql_real_escape_string($group).",%'");
 		else
 			$this->db->query("SELECT LinkID FROM ".NEWSLETTER_BLOCK_TABLE." WHERE NewsletterID=".$this->newsletter->ID." AND Type=".WENBLOCK_ATTACHMENT.";");
 
@@ -2606,7 +2606,7 @@ class weNewsletterView {
 
 			
 			foreach ($customers as $customer) {
-				$foo = getHash("SELECT * FROM ".CUSTOMER_TABLE." WHERE ID='".$customer."'".($filtersql!="" ?  " AND ($filtersql)": ""),$this->db);
+				$foo = getHash("SELECT * FROM ".CUSTOMER_TABLE." WHERE ID=".abs($customer).($filtersql!="" ?  " AND ($filtersql)": ""),$this->db);
 				if (isset($foo[$this->settings["customer_email_field"]]) && $foo[$this->settings["customer_email_field"]]) {
 					$email = $foo[$this->settings["customer_email_field"]];
 					$htmlmail = (isset($foo[$this->settings["customer_html_field"]]) && $foo[$this->settings["customer_html_field"]]) ? $foo[$this->settings["customer_html_field"]] : "";
@@ -2682,6 +2682,8 @@ class weNewsletterView {
 	}
 
 	function putSetting($name,$value) {
+		$name=mysql_real_escape_string($name);
+		$value=mysql_real_escape_string($value);
 		$db=new DB_WE();
 		$db->query("SELECT pref_value FROM ".NEWSLETTER_PREFS_TABLE." WHERE pref_name='$name';");
 		if(!$db->next_record())
@@ -2694,16 +2696,17 @@ class weNewsletterView {
 		foreach ($this->settings as $key=>$value) {
 			$db->query("SELECT pref_value FROM ".NEWSLETTER_PREFS_TABLE." WHERE pref_name='$key';");
 			if(!$db->next_record()) {
-				$db->query("INSERT INTO ".NEWSLETTER_PREFS_TABLE."(pref_name,pref_value) VALUES('$key','$value');");
+				$db->query("INSERT INTO ".NEWSLETTER_PREFS_TABLE."(pref_name,pref_value) VALUES('$key','".mysql_real_escape_string($value)."');");
 			} else {
-				$db->query("UPDATE ".NEWSLETTER_PREFS_TABLE." SET pref_value='$value' WHERE pref_name='$key' AND pref_name<>'black_list';");
+				$db->query("UPDATE ".NEWSLETTER_PREFS_TABLE." SET pref_value='".mysql_real_escape_string($value)."' WHERE pref_name='$key' AND pref_name<>'black_list';");
 			}
 		}
 	}
 
 	function saveSetting($name,$value) {
 		$db=new DB_WE();
-		$value = addslashes($value);
+		$name = mysql_real_escape_string($name);
+		$value = mysql_real_escape_string($value);
 		$db->query("UPDATE ".NEWSLETTER_PREFS_TABLE." SET pref_value='$value' WHERE pref_name='$name';");
 		if(!$db->affected_rows()){
 			$db->query("INSERT INTO ".NEWSLETTER_PREFS_TABLE." SET pref_name='$name', pref_value='$value';");

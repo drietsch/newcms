@@ -61,7 +61,7 @@ class weExportTreeLoader{
 
 
 		
-		$where=" WHERE ParentID=$ParentID ".$addWhere;
+		$where=" WHERE ParentID=".abs($ParentID)." ".$addWhere;
 
 		$db->query("SELECT $elem, abs(text) as Nr, (text REGEXP '^[0-9]') as isNr from $table $where ORDER BY isNr DESC,Nr,Text " . ($segment ?  "LIMIT $offset,$segment;" : ";" ));
 		

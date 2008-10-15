@@ -29,7 +29,7 @@ function getGroupList($id){
    $ret=array();
    if($id){
     $db_tmp=new DB_WE;
-    $db_tmp->query("SELECT ID,username WHERE ParentID='".$id."' AND Type=1");
+    $db_tmp->query("SELECT ID,username WHERE ParentID=".abs($id)." AND Type=1");
     while($db_tmp->next_record()){
         $ret[$db_tmp->f("ID")]=$db_tmp->f("username");
         $section=array();
@@ -43,7 +43,7 @@ function getGroupList($id){
 function getUserTree($id){
     $ret=array();
     $db_tmp=new DB_WE;
-    $db_tmp->query("SELECT ID,username,Type WHERE ParentID='".$id."'");
+    $db_tmp->query("SELECT ID,username,Type WHERE ParentID=".abs($id));
     while($db_tmp->next_record()){
         $ret[$db_tmp->f("ID")]["name"]=$db_tmp->f("username");
         $ret[$db_tmp->f("ID")]["ParentID"]=$id;
@@ -72,7 +72,7 @@ function isUserInUsers($uid,$users){  // $users can be a csv string or an array
       foreach($aliases as $aid)if(in_array($aid,$users)) return true;
 
 		for($i=0;$i<sizeof($users);$i++){
-			$isGroup = f("SELECT IsFolder FROM ".USER_TABLE." WHERE ID='".$users[$i]."'","IsFolder",$db);
+			$isGroup = f("SELECT IsFolder FROM ".USER_TABLE." WHERE ID=".abs($users[$i]),"IsFolder",$db);
 			if($isGroup){
 				if (isUserInGroup($uid,$users[$i])){
 					return true;
@@ -89,7 +89,7 @@ function isUserInUsers($uid,$users){  // $users can be a csv string or an array
 
 function isUserInGroup($uid,$groupID,$db=""){
 	if(!$db) $db = new DB_WE();
-	$pid = f("SELECT ParentID FROM ".USER_TABLE." WHERE ID='".$uid."'","ParentID",$db);
+	$pid = f("SELECT ParentID FROM ".USER_TABLE." WHERE ID=".abs($uid),"ParentID",$db);
 	if($pid == $groupID){
 		return true;
 	}else if($pid != 0){
@@ -101,7 +101,7 @@ function isUserInGroup($uid,$groupID,$db=""){
 
 function addAllUsersAndGroups($uid,&$arr){
 	$db = new DB_WE();
-	$db->query("SELECT ID,IsFolder FROM ".USER_TABLE." WHERE ParentID='".$uid."'");
+	$db->query("SELECT ID,IsFolder FROM ".USER_TABLE." WHERE ParentID=".abs($uid));
 	while($db->next_record()){
 		array_push($arr,$db->f("ID"));
 		if($db->f("IsFolder")){

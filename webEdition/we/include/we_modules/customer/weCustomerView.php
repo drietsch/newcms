@@ -583,7 +583,7 @@ function processCommands() {
 							break;
 						}
 
-						$exists=f("SELECT ID FROM ".CUSTOMER_TABLE." WHERE Username='".$this->customer->Username."' AND ID<>'".$this->customer->ID."'","ID",$this->db);
+						$exists=f("SELECT ID FROM ".CUSTOMER_TABLE." WHERE Username='".mysql_real_escape_string($this->customer->Username)."' AND ID<>".$this->customer->ID,"ID",$this->db);
 						if($exists){
 							$js = we_message_reporting::getShowMessageCall(sprintf($l_customer["username_exists"],$this->customer->Username), WE_MESSAGE_ERROR);
 							print we_htmlElement::jsElement($js);
@@ -597,7 +597,7 @@ function processCommands() {
 						$this->customer->save();
 
 						$tt="";
-						$ttrow=getHash("SELECT * FROM ".CUSTOMER_TABLE." WHERE ID='".$this->customer->ID."';",$this->db);
+						$ttrow=getHash("SELECT * FROM ".CUSTOMER_TABLE." WHERE ID=".abs($this->customer->ID).";",$this->db);
 						eval('$tt="'.$this->settings->treeTextFormat.'";');
 						$tt=addslashes($tt!="" ? $tt : $this->customer->Text);
 						if ($newone) {
@@ -1078,7 +1078,7 @@ function processCommands() {
 		}
 
 		if($condition!="") $condition=" WHERE ".$condition." ORDER BY Text";
-		$this->db->query("SELECT * FROM ".$this->customer->table.$condition." LIMIT 0,$res_num");
+		$this->db->query("SELECT * FROM ".mysql_real_escape_string($this->customer->table).$condition." LIMIT 0,$res_num");
 
 		$result=array();
 		while($this->db->next_record()){

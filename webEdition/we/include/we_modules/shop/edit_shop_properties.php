@@ -61,7 +61,7 @@ function getOrderCustomerData($orderId, $orderData=false, $customerId=false, $st
 		$query = '
 			SELECT IntCustomerID, strSerialOrder
 			FROM ' . SHOP_TABLE . '
-			WHERE IntOrderID=' . addslashes($orderId)
+			WHERE IntOrderID=' . abs($orderId)
 		;
 
 		$DB_WE->query($query);
@@ -118,9 +118,9 @@ function getFieldFromOrder($bid,$field) {
 	global $DB_WE;
 
 	$query = "
-		SELECT $field
+		SELECT ".mysql_real_escape_string($field)."
 		FROM " . SHOP_TABLE . "
-		WHERE IntOrderID=" . addslashes($_REQUEST['bid']);
+		WHERE IntOrderID=" . abs($_REQUEST['bid']);
 
 	$DB_WE->query($query);
 
@@ -138,8 +138,8 @@ function updateFieldFromOrder($orderId, $fieldname, $value) {
 
 	$upQuery = '
 		UPDATE ' . SHOP_TABLE . '
-		SET ' . $fieldname . '="' . addslashes($value) . '"
-		WHERE IntOrderID=' . addslashes($_REQUEST['bid']);
+		SET ' . mysql_real_escape_string($fieldname) . '="' . mysql_real_escape_string($value) . '"
+		WHERE IntOrderID=' . abs($_REQUEST['bid']);
 
 	if ($DB_WE->query($upQuery)) {
 		return true;
@@ -244,7 +244,7 @@ if (isset($_REQUEST['we_cmd'][0])) {
 				$preis = getFieldFromShoparticle($serialDoc,'price');
 
 				// now insert article to order:
-				$DB_WE->query("SELECT IntOrderID, IntCustomerID, DateOrder, DateShipping, Datepayment,IntPayment_Type FROM ".SHOP_TABLE." WHERE IntOrderID = ".$_REQUEST["bid"]);
+				$DB_WE->query("SELECT IntOrderID, IntCustomerID, DateOrder, DateShipping, Datepayment,IntPayment_Type FROM ".SHOP_TABLE." WHERE IntOrderID = ".abs($_REQUEST["bid"]));
 				$DB_WE->next_record();
 
 				$sql="
@@ -283,7 +283,7 @@ if (isset($_REQUEST['we_cmd'][0])) {
 
 			if ( isset($_REQUEST['searchArticle']) && $_REQUEST['searchArticle'] ) {
 				$query .= '
-					AND ' . CONTENT_TABLE . '.Dat LIKE "%' . addslashes($_REQUEST['searchArticle']) . '%"';
+					AND ' . CONTENT_TABLE . '.Dat LIKE "%' . mysql_real_escape_string($_REQUEST['searchArticle']) . '%"';
 			}
 
 			$DB_WE->query($query);
@@ -295,7 +295,7 @@ if (isset($_REQUEST['we_cmd'][0])) {
 			if (defined('OBJECT_TABLE')) {
 				// now get all shop objects
 				foreach ($classIds as $_classId) {
-
+					$_classId=abs($_classId);
 					$query = '
 						SELECT  ' . OBJECT_X_TABLE . $_classId . '.input_shoptitle as shopTitle, ' . OBJECT_X_TABLE . $_classId . '.OF_ID as objectId
 						FROM ' . OBJECT_X_TABLE . $_classId . ', ' . OBJECT_FILES_TABLE . '
@@ -305,7 +305,7 @@ if (isset($_REQUEST['we_cmd'][0])) {
 
 					if ( isset($_REQUEST['searchArticle']) && $_REQUEST['searchArticle'] ) {
 						$query .= '
-							AND ' . OBJECT_X_TABLE . $_classId . '.input_shoptitle  LIKE "%' . addslashes($_REQUEST['searchArticle']) . '%"';
+							AND ' . OBJECT_X_TABLE . $_classId . '.input_shoptitle  LIKE "%' . mysql_real_escape_string($_REQUEST['searchArticle']) . '%"';
 					}
 
 					$DB_WE->query($query);
@@ -911,18 +911,18 @@ if(isset($_REQUEST["DatePayment"])){
 	$DateOrder_ARR = explode(".", $_REQUEST["DatePayment"]);
 	$DateOrder1 = $DateOrder_ARR[2] . "-" . $DateOrder_ARR[1] . "-" . $DateOrder_ARR[0] . " 00:00:00";
 	
-	$DB_WE->query("update ".SHOP_TABLE." SET DatePayment='". $DateOrder1 . "' where IntOrderID = ".$_REQUEST["bid"]);
+	$DB_WE->query("update ".SHOP_TABLE." SET DatePayment='". $DateOrder1 . "' where IntOrderID = ".abs($_REQUEST["bid"]));
 }
 
 
 if(isset($_REQUEST["article"])){
 	if(isset($_REQUEST["preis"])){
-		$DB_WE->query("update ".SHOP_TABLE." SET Price='" . $_REQUEST["preis"] . "' where IntID = ".$_REQUEST["article"]);
+		$DB_WE->query("update ".SHOP_TABLE." SET Price='" . msql_regcase($_REQUEST["preis"]) . "' where IntID = ".abs($_REQUEST["article"]));
 	}else if(isset($_REQUEST["anzahl"])){
-		$DB_WE->query("update ".SHOP_TABLE." SET IntQuantity='" . $_REQUEST["anzahl"] . "' where IntID = ".$_REQUEST["article"]);
+		$DB_WE->query("update ".SHOP_TABLE." SET IntQuantity='" . abs($_REQUEST["anzahl"]) . "' where IntID = " . abs($_REQUEST["article"]));
 	} else if (isset($_REQUEST['vat'])) {
 
-		$DB_WE->query('SELECT strSerial FROM ' . SHOP_TABLE . ' WHERE IntID = ' . addslashes($_REQUEST["article"]));
+		$DB_WE->query('SELECT strSerial FROM ' . SHOP_TABLE . ' WHERE IntID = ' . mysql_real_escape_string($_REQUEST["article"]));
 
 		if ($DB_WE->num_rows() == 1) {
 
@@ -932,7 +932,7 @@ if(isset($_REQUEST["article"])){
 			$tmpDoc = @unserialize($strSerial);
 			$tmpDoc[WE_SHOP_VAT_FIELD_NAME] = $_REQUEST['vat'];
 
-			$DB_WE->query("update ".SHOP_TABLE." SET strSerial='" . addslashes(serialize($tmpDoc)) . "' where IntID = " . addslashes($_REQUEST["article"]));
+			$DB_WE->query("update ".SHOP_TABLE." SET strSerial='" . mysql_real_escape_string(serialize($tmpDoc)) . "' where IntID = " . abs($_REQUEST["article"]));
 			unset($strSerial);
 			unset($tmpDoc);
 		}
@@ -944,7 +944,7 @@ if(isset($_REQUEST["DateOrder"])){
 	$DateOrder_ARR = explode(".", $_REQUEST["DateOrder"]);
 	$DateOrder1 = $DateOrder_ARR[2] . "-" . $DateOrder_ARR[1] . "-" . $DateOrder_ARR[0] . " 00:00:00";
 					
-	$DB_WE->query("update ".SHOP_TABLE." SET DateOrder='$DateOrder1' where IntOrderID = ".$_REQUEST["bid"]);
+	$DB_WE->query("update ".SHOP_TABLE." SET DateOrder='".mysql_real_escape_string($DateOrder1)."' where IntOrderID = ".abs($_REQUEST["bid"]));
 	$DB_WE->query("SELECT IntOrderID,DateShipping, DATE_FORMAT(DateOrder,'".$da."') as orddate FROM ".SHOP_TABLE." group by IntOrderID order by intID DESC");
     $DB_WE->next_record();
     
@@ -955,7 +955,7 @@ if(isset($_REQUEST["DateShipping"])){ // ist bearbeitet
 	$DateOrder_ARR = explode(".", $_REQUEST["DateShipping"]);
 	$DateOrder1 = $DateOrder_ARR[2] . "-" . $DateOrder_ARR[1] . "-" . $DateOrder_ARR[0] . " 00:00:00";
 	
-	$DB_WE->query("update ".SHOP_TABLE." SET DateShipping='" . $DateOrder1 . "' where IntOrderID = ".$_REQUEST["bid"]);
+	$DB_WE->query("update ".SHOP_TABLE." SET DateShipping='".mysql_real_escape_string( $DateOrder1) . "' where IntOrderID = ".abs($_REQUEST["bid"]));
 	$DB_WE->query("SELECT IntOrderID, DATE_FORMAT(DateOrder,'".$da."') as orddate FROM ".SHOP_TABLE." group by IntOrderID order by intID DESC");
     $DB_WE->next_record();
 }

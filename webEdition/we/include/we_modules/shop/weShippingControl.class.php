@@ -45,11 +45,7 @@ class weShippingControl {
 
 		global $DB_WE;
 
-		$query = '
-			SELECT *
-			FROM ' . ANZEIGE_PREFS_TABLE . '
-			WHERE strDateiname="weShippingControl"
-		';
+		$query = 'SELECT * FROM ' . ANZEIGE_PREFS_TABLE . ' WHERE strDateiname="weShippingControl"';
 
 		$DB_WE->query($query);
 
@@ -116,26 +112,16 @@ class weShippingControl {
 
 		global $DB_WE;
 		// check if already inserted
-		$query = '
-			SELECT *
-			FROM ' . ANZEIGE_PREFS_TABLE . '
-			WHERE strDateiname="weShippingControl"
-		';
+		$query = 'SELECT * FROM ' . ANZEIGE_PREFS_TABLE . ' WHERE strDateiname="weShippingControl"';
 
 		$DB_WE->query($query);
 
 		if ($DB_WE->num_rows() > 0) {
 
-			$query = '
-			UPDATE ' . ANZEIGE_PREFS_TABLE . '
-			set strFelder="' . addslashes(serialize($this)) . '"
-			WHERE strDateiname="weShippingControl"
-			';
+			$query = 'UPDATE ' . ANZEIGE_PREFS_TABLE . ' set strFelder="' . mysql_real_escape_string(serialize($this)) . '" WHERE strDateiname="weShippingControl"';
 
 		} else {
-			$query = '
-			INSERT INTO ' . ANZEIGE_PREFS_TABLE . '
-			(strDateiname, strFelder) VALUES ("weShippingControl", "' . addslashes(serialize($this)) . '")
+			$query = 'INSERT INTO ' . ANZEIGE_PREFS_TABLE . ' (strDateiname, strFelder) VALUES ("weShippingControl", "' . mysql_real_escape_string(serialize($this)) . '")
 			';
 		}
 

@@ -32,7 +32,7 @@
 			$this->wasUpdate = $this->ID ? true : false;
 
 			$this->i_savePersistentSlotsToDB();
-			$ctable = OBJECT_X_TABLE.($this->ID);
+			$ctable = OBJECT_X_TABLE.abs($this->ID);
 
 			if(!$this->wasUpdate){
 				$q = " ID BIGINT NOT NULL AUTO_INCREMENT, ";

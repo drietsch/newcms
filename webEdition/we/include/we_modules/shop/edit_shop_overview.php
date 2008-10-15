@@ -46,8 +46,8 @@ $waehr="&nbsp;".$feldnamen[0];
 $dbPreisname="Preis";
 $numberformat= $feldnamen[2];
 $mwst= (!empty($feldnamen[1]))?(($feldnamen[1]/100)+1):"";
-$year=substr($_REQUEST["mid"],-4);
-$month=str_replace($year,"",$_REQUEST["mid"]);
+$year=abs(substr($_REQUEST["mid"],-4));
+$month=abs(str_replace($year,"",$_REQUEST["mid"]));
 
 $bezahlt = 0;
 $unbezahlt = 0;

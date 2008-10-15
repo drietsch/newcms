@@ -57,7 +57,7 @@ top.clearEntries();
 			$folder->Path=$folder->getPath();
 			$folder->CreatorID=isset($_SESSION["user"]["ID"]) ? $_SESSION["user"]["ID"] : "";
 			$folder->ModifierID=isset($_SESSION["user"]["ID"]) ? $_SESSION["user"]["ID"] : "";
-			$this->db->query("SELECT ID FROM ".$this->table." WHERE Path='".$folder->Path."'");
+			$this->db->query("SELECT ID FROM ".mysql_real_escape_string($this->table)." WHERE Path='".mysql_real_escape_string($folder->Path)."'");
 			if($this->db->next_record()){
 				$we_responseText = sprintf($GLOBALS["l_we_editor"]["folder"]["response_path_exists"],$folder->Path);
 				print we_message_reporting::getShowMessageCall($we_responseText, WE_MESSAGE_ERROR);
@@ -116,7 +116,7 @@ top.clearEntries();
 			$folder->Published=time();
 			$folder->Path=$folder->getPath();
 			$folder->ModifierID=isset($_SESSION["user"]["ID"]) ? $_SESSION["user"]["ID"] : "";
-			$this->db->query("SELECT ID,Text FROM ".$this->table." WHERE Path='".$folder->Path."' AND ID != '".$this->we_editDirID."'");
+			$this->db->query("SELECT ID,Text FROM ".mysql_real_escape_string($this->table)." WHERE Path='".mysql_real_escape_string($folder->Path)."' AND ID != ".abs($this->we_editDirID));
 			if($this->db->next_record()){
 				$we_responseText = sprintf($GLOBALS["l_we_editor"]["folder"]["response_path_exists"],$folder->Path);
 				print we_message_reporting::getShowMessageCall($we_responseText, WE_MESSAGE_ERROR);
@@ -125,7 +125,7 @@ top.clearEntries();
 					$we_responseText = sprintf($GLOBALS["l_we_editor"]["folder"]["we_filename_notValid"],$folder->Path);
 					print we_message_reporting::getShowMessageCall($we_responseText, WE_MESSAGE_ERROR);
 				}else{
-					if(f("SELECT Text FROM ".$this->table." WHERE ID='".$this->we_editDirID."'","Text",$this->db) != $txt){
+					if(f("SELECT Text FROM ".mysql_real_escape_string($this->table)." WHERE ID=".abs($this->we_editDirID),"Text",$this->db) != $txt){
 						$folder->we_save();
 						print 'var ref;
 if(top.opener.top.content.makeNewEntry) ref = top.opener.top.content;
@@ -161,9 +161,9 @@ top.selectFile(top.currentID);
 
 		$ws_query = getWsQueryForSelector(NEWSLETTER_TABLE);
 		
-		$_query = "	SELECT ".$this->fields."
-					FROM ".$this->table."
-					WHERE IsFolder=1 AND ParentID='".$this->dir."'".
+		$_query = "	SELECT ".mysql_real_escape_string($this->fields)."
+					FROM ".mysql_real_escape_string($this->table)."
+					WHERE IsFolder=1 AND ParentID=".abs($this->dir).
 					$ws_query .
 					($this->order ? (' ORDER BY '.$this->order) : '');
 		

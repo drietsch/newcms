@@ -83,7 +83,7 @@
 
 			foreach($_list as $key => $value) {
 
-				$query = "SELECT count(*) as items FROM " . GLOSSARY_TABLE . " WHERE Language = '" . $language . "' AND Type = '" . $key . "'";
+				$query = "SELECT count(*) as items FROM " . GLOSSARY_TABLE . " WHERE Language = '" . mysql_real_escape_string($language) . "' AND Type = '" . $key . "'";
 				$items = f($query, "items", $GLOBALS['DB_WE']);
 
 				$button = $we_button->create_button("new_glossary_" . $key, "javascript:top.opener.top.we_cmd('new_glossary_" . $key . "', '" . $_REQUEST['cmdid'] . "');", true, -1, -1, "", "", !we_hasPerm("NEW_GLOSSARY"));

@@ -1258,7 +1258,7 @@ class weCustomerEIWizard{
 
 						foreach ($filter_fieldname as $k=>$v) {
 								$op=$this->getOperator($filter_operator[$k]);
-								$filterarr[]=($k!=0 ? (" ".$filter_logic[$k]." ") : "").$filter_fieldname[$k]." ".$op." '".$filter_fieldvalue[$k]."'";
+								$filterarr[]=($k!=0 ? (" ".$filter_logic[$k]." ") : "").$filter_fieldname[$k]." ".$op." '".(is_numeric($filter_fieldvalue[$k]) ? $filter_fieldvalue[$k] : mysql_real_escape_string($filter_fieldvalue[$k]))."'";
 						}
 
 						$filtersql=implode(" ",$filterarr);
@@ -1620,13 +1620,13 @@ class weCustomerEIWizard{
 		$tmp=array();
 		foreach($selIDs as $v){
 			if($v){
-				$isfolder=f("SELECT IsFolder FROM ".$table." WHERE ID='".$v."'","IsFolder",$this->db);
+				$isfolder=f("SELECT IsFolder FROM ".mysql_real_escape_string($table)." WHERE ID=".abs($v),"IsFolder",$this->db);
 				if($isfolder) we_readChilds($v,$tmp,$table,false);
 				else	$tmp[]=$v;
 			}
 		}
 		foreach($tmp as $v){
-			$isfolder=f("SELECT IsFolder FROM ".$table." WHERE ID='".$v."'","IsFolder",$this->db);
+			$isfolder=f("SELECT IsFolder FROM ".$table." WHERE ID=".abs($v),"IsFolder",$this->db);
 			if(!$isfolder) $ret[]=$v;
 		}
 		return $ret;
@@ -1769,7 +1769,7 @@ class weCustomerEIWizard{
 
 	function formWeChooser($table = FILE_TABLE, $width = "", $rootDirID = 0, $IDName = "ID", $IDValue = "0",$Pathname="Path", $Pathvalue = "/", $cmd = "") {
 		if ($Pathvalue == "") {
-			$Pathvalue = f("SELECT Path FROM $table WHERE ID='" . $IDValue."';", "Path", $this->db);
+			$Pathvalue = f("SELECT Path FROM ".mysql_real_escape_string($table)." WHERE ID=" . abs($IDValue).";", "Path", $this->db);
 		}
 
       $we_button = new we_button();

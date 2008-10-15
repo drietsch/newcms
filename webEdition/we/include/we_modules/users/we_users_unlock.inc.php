@@ -45,6 +45,6 @@ for ($i=0;$i<sizeof($_ids); $i++) {
 }
 
 foreach ($queries as $table => $ids) {
-	$DB_WE->query("DELETE FROM ".LOCK_TABLE." WHERE  tbl ='" . $table . "' AND ID in (" . implode(", ", $ids) . ") AND UserID='".addslashes($_REQUEST["we_cmd"][2])."'");
+	$DB_WE->query("DELETE FROM ".LOCK_TABLE." WHERE  tbl ='" . mysql_real_escape_string($table) . "' AND ID in (" . implode(", ", $ids) . ") AND UserID=".abs($_REQUEST["we_cmd"][2]));
 }
 ?>UNLOCKED

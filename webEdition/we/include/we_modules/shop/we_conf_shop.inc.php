@@ -301,15 +301,15 @@ class Basket {
 			}
 			
 			
-			$DB_WE->query("SELECT * FROM ".FILE_TABLE." WHERE ID=$id");
+			$DB_WE->query("SELECT * FROM ".FILE_TABLE." WHERE ID=".abs($id));
 			if($DB_WE->next_record()){
 				foreach($DB_WE->Record as $key=>$val){
 					$Record["wedoc_$key"] = $val;
 				}
 			}
 			
-			$Record["WE_PATH"] = f("SELECT Path FROM ".FILE_TABLE." WHERE ID=$id","Path",$DB_WE) . ($variant ? '?' . WE_SHOP_VARIANT_REQUEST . '=' . $variant : '');
-			$Record["WE_TEXT"] = f("SELECT Text FROM ".INDEX_TABLE." WHERE DID=$id","Text",$DB_WE);
+			$Record["WE_PATH"] = f("SELECT Path FROM ".FILE_TABLE." WHERE ID=".abs($id),"Path",$DB_WE) . ($variant ? '?' . WE_SHOP_VARIANT_REQUEST . '=' . $variant : '');
+			$Record["WE_TEXT"] = f("SELECT Text FROM ".INDEX_TABLE." WHERE DID=".abs($id),"Text",$DB_WE);
 			$Record["WE_VARIANT"] = $variant;
 			$Record["WE_ID"] = $id;
 			
@@ -332,7 +332,7 @@ class Basket {
 			
 			include_once(WE_OBJECT_MODULE_DIR."we_listview_object.class.php");
 			
-			$classArray = getHash("SELECT * FROM ".OBJECT_FILES_TABLE." WHERE ID=".$id,$DB_WE);
+			$classArray = getHash("SELECT * FROM ".OBJECT_FILES_TABLE." WHERE ID=".abs($id),$DB_WE);
 			
 			$olv = new we_listview_object("0",1,0,"",0,$classArray["TableID"],"",""," ".OBJECT_X_TABLE.$classArray["TableID"].".ID=".$classArray["ObjectID"]);
 			$olv->next_record();

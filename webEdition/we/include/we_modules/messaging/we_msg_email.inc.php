@@ -50,7 +50,7 @@ class we_msg_email extends we_msg_proto {
 
     function get_email_addr($userid) {
 	$DB2 = new DB_WE();
-	$DB2->query('SELECT Email FROM '.USER_TABLE.' WHERE ID=' . addslashes($userid) . ' LIMIT 1');
+	$DB2->query('SELECT Email FROM '.USER_TABLE.' WHERE ID=' . abs($userid) . ' LIMIT 1');
 	$DB2->next_record();
 
 	return $DB2->f('Email');

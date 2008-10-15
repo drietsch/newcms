@@ -557,7 +557,7 @@ function processCommands() {
 						
 						if($this->voting->IsFolder && $oldpath!='' && $oldpath!='/' && $oldpath!=$this->voting->Path) {
 							$db_tmp = new DB_WE();
-							$this->db->query('SELECT ID FROM ' . VOTING_TABLE . ' WHERE Path LIKE \'' . $oldpath . '%\' AND ID<>\''.$this->voting->ID.'\';'); 
+							$this->db->query('SELECT ID FROM ' . VOTING_TABLE . ' WHERE Path LIKE \'' . mysql_real_escape_string($oldpath) . '%\' AND ID<>\''.abs($this->voting->ID).'\';'); 
 							while($this->db->next_record()) {
 								$db_tmp->query('UPDATE ' . VOTING_TABLE . ' SET Path=\'' . $this->voting->evalPath($this->db->f("ID")) . '\' WHERE ID=\'' . $this->db->f("ID") . '\';');
 							}

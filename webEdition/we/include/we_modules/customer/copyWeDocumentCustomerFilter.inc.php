@@ -61,7 +61,7 @@ class copyWeDocumentCustomerFilterFrag extends taskFragment{
 		// now get all childs of this folder
 		$_query = "
 		SELECT *, ID, ContentType
-		FROM $_table
+		FROM ".mysql_real_escape_string($_table)."
 		WHERE
 			( ContentType = \"folder\" OR ContentType = \"text/webedition\" OR ContentType=\"objectFile\" )
 			AND PATH LIKE \"" . $_theFolder->Path . "/%\"
@@ -169,7 +169,7 @@ if (isset($_REQUEST["startCopy"])) { // start the fragment
 		// now get all childs of this folder
 		$_query = "
 		SELECT *, ID, ContentType
-		FROM $_table
+		FROM ".mysql_real_escape_string($_table)."
 		WHERE
 			( ContentType = \"folder\" OR ContentType = \"text/webedition\" OR ContentType=\"objectFile\" )
 			AND PATH LIKE \"" . $_theFolder->Path . "/%\"

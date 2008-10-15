@@ -227,7 +227,7 @@ if (!$tid) {
 	exit;
 }
 
-$tmplPath = preg_replace('/.tmpl$/i','.php',f("SELECT Path FROM ".TEMPLATES_TABLE." WHERE ID='$tid'","Path",$DB_WE));
+$tmplPath = preg_replace('/.tmpl$/i','.php',f("SELECT Path FROM ".TEMPLATES_TABLE." WHERE ID=".abs($tid),"Path",$DB_WE));
 
 if((!defined("WE_CONTENT_TYPE_SET")) && isset($GLOBALS["we_doc"]->Charset) && $GLOBALS["we_doc"]->Charset){	//	send charset which might be determined in template
 	define("WE_CONTENT_TYPE_SET",1);

@@ -85,9 +85,9 @@ class weNewsletterTreeLoader{
 				);	
 		}		
 		
-		$where=" WHERE $wsQuery ParentID=$ParentID ".$addWhere;		
+		$where=" WHERE $wsQuery ParentID=".abs($ParentID). " ".$addWhere;		
 		
-		$db->query("SELECT $elem, abs(text) as Nr, (text REGEXP '^[0-9]') as isNr from $table $where ORDER BY isNr DESC,Nr,Text " . ($segment ?  "LIMIT $offset,$segment;" : ";" ));
+		$db->query("SELECT ".mysql_real_escape_string($elem).", abs(text) as Nr, (text REGEXP '^[0-9]') as isNr from $table $where ORDER BY isNr DESC,Nr,Text " . ($segment ?  "LIMIT $offset,$segment;" : ";" ));
 		$now = time();
 		
 		while($db->next_record()){

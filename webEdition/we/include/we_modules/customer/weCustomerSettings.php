@@ -150,7 +150,7 @@ class weCustomerSettings{
 
 	function load($tryFromSession=true){
 
-		$this->db->query("SELECT * FROM ".$this->table.";");
+		$this->db->query("SELECT * FROM ".mysql_real_escape_string($this->table).";");
 		while($this->db->next_record()){
 			$this->properties[$this->db->f("Name")]=$this->db->f("Value");
 		}

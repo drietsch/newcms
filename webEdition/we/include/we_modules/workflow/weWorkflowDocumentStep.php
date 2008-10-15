@@ -125,7 +125,7 @@ class weWorkflowDocumentStep extends weWorkflowBase{
 				
 				$this->tasks[$i]->todoID=$this->sendTodo($workflowTask->userID,$l_workflow["todo_subject"],$mess."<p>".$path."</p>",$deadline);
 				if($workflowTask->Mail){					
-					$foo=f("SELECT Email FROM ".USER_TABLE." WHERE ID='".$workflowTask->userID."'","Email",$this->db);
+					$foo=f("SELECT Email FROM ".USER_TABLE." WHERE ID=".abs($workflowTask->userID),"Email",$this->db);
 					$this_user=getHash("SELECT First,Second,Email FROM ".USER_TABLE." WHERE ID='".$_SESSION["user"]["ID"]."'",$this->db);					
 					//if($foo) we_mail($foo,correctUml($l_workflow["todo_next"]),$desc,(isset($this_user["Email"]) && $this_user["Email"]!="" ? "From: ".$this_user["First"]." ".$this_user["Second"]." <".$this_user["Email"].">\n":"")."Content-Type: text/html; charset=iso-8859-1");
 					if($foo) we_mail($foo,correctUml($l_workflow["todo_next"]),$desc,(isset($this_user["Email"]) && $this_user["Email"]!="" ? $this_user["First"]." ".$this_user["Second"]." <".$this_user["Email"].">":""));
@@ -271,7 +271,7 @@ class weWorkflowDocumentStep extends weWorkflowBase{
 		
 		$db = new DB_WE();
 
-		$db->query("SELECT ID FROM ".WORKFLOW_DOC_STEP_TABLE." WHERE workflowDocID='$workflowDocumentID' ORDER BY ID");
+		$db->query("SELECT ID FROM ".WORKFLOW_DOC_STEP_TABLE." WHERE workflowDocID=".abs($workflowDocumentID)." ORDER BY ID");
 		$docSteps = array();
 		while ($db->next_record()){
 			$docSteps[] = new weWorkflowDocumentStep($db->f("ID"));
@@ -286,7 +286,7 @@ class weWorkflowDocumentStep extends weWorkflowBase{
 	function __createAllSteps($workflowID){
 
 		$db = new DB_WE();
-		$db->query("SELECT ID FROM ".WORKFLOW_STEP_TABLE." WHERE workflowID ='$workflowID' ORDER BY ID");
+		$db->query("SELECT ID FROM ".WORKFLOW_STEP_TABLE." WHERE workflowID =".abs($workflowID)." ORDER BY ID");
 		$docSteps = array();
 		while ($db->next_record()){
 			$docSteps[] = weWorkflowDocumentStep::__createStep($db->f("ID"));
@@ -304,7 +304,7 @@ class weWorkflowDocumentStep extends weWorkflowBase{
 		if (is_array($WorkflowStep)) return weWorkflowDocumentStep::__createStepFromHash($WorkflowStep);
 
 		$db = new DB_WE();
-		$db->query("SELECT * FROM ".WORKFLOW_STEP_TABLE." WHERE ID='$WorkflowStep' ORDER BY ID");
+		$db->query("SELECT * FROM ".WORKFLOW_STEP_TABLE." WHERE ID=".abs($WorkflowStep)." ORDER BY ID");
 		if (!$db->next_record()){
 			return false;
 		}

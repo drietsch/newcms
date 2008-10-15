@@ -51,10 +51,10 @@ class weNewsletterBase{
 	 */
 	function load($id=0)
 	{
-		if($id) $this->ID=$id;
+		if($id) $this->ID=abs($id);
 		if ($this->ID){
 			$tableInfo = $this->db->metadata($this->table);
-			$this->db->query("SELECT * FROM ".$this->table." WHERE ID='".$this->ID."'");
+			$this->db->query("SELECT * FROM ".mysql_real_escape_string($this->table)." WHERE ID='".$this->ID."'");
 			if($this->db->next_record())
 			for($i=0;$i<sizeof($tableInfo);$i++){
 				$fieldName = $tableInfo[$i]["name"];
@@ -80,14 +80,14 @@ class weNewsletterBase{
 		$wheres=array();
 		foreach($this->persistents as $val){
 			if($val=="ID") $wheres[]=$val."='".addslashes($this->$val)."'";
-			$sets[]=$val."='".($this->table == NEWSLETTER_BLOCK_TABLE ? $this->$val : addslashes($this->$val))."'";
+			$sets[]=$val."='".($this->table == NEWSLETTER_BLOCK_TABLE ? $this->$val : mysql_real_escape_string($this->$val))."'";
 		}
 		$where=implode(",",$wheres);
 		$set=implode(",",$sets);
 
 	  if ($this->ID==0){
 
-			$query = 'INSERT INTO '.$this->table.' SET '.$set;
+			$query = 'INSERT INTO '.mysql_real_escape_string($this->table).' SET '.$set;
 			$this->db->query($query);
 			# get ID #
 			$this->db->query("SELECT LAST_INSERT_ID()");
@@ -111,7 +111,7 @@ class weNewsletterBase{
 		{
 			return false;
 		}
-	  $this->db->query('DELETE FROM '.$this->table.' WHERE ID="' . $this->ID . '"');
+	  $this->db->query('DELETE FROM '.mysql_real_escape_string($this->table).' WHERE ID="' . $this->ID . '"');
 		return true;
 	}
 

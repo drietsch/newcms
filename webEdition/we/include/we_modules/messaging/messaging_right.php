@@ -27,6 +27,10 @@ htmlTop();
 
 print STYLESHEET;
 
+if (!eregi("^([a-f0-9]){32}$",$_REQUEST['we_transaction'])) {
+	exit();
+}
+
 ?>
   </head>
 

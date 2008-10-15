@@ -143,12 +143,12 @@ function array_ksearch($key, $val, &$arr, $pos = 0) {
 function get_nameline($id, $addr = 'username') {
 	$db2 = new DB_WE();
 	if ($addr == 'username') {
-	    $db2->query("SELECT First, Second, Username FROM ".USER_TABLE." WHERE ID=$id");
+	    $db2->query("SELECT First, Second, Username FROM ".USER_TABLE." WHERE ID=".abs($id));
 	    if ($db2->next_record())
 		return $db2->f('Username') . ((($db2->f('First') == '') && ($db2->f('Second') == '')) ? '' : ' (' . $db2->f('First') . ' ' . $db2->f('Second') . ')');
 
 	} else {
-	    $db2->query("SELECT First, Second, Username, Email FROM ".USER_TABLE." WHERE ID=$id");
+	    $db2->query("SELECT First, Second, Username, Email FROM ".USER_TABLE." WHERE ID=".abs($id));
 	    if ($db2->next_record())
 		return $db2->f('Email') . ' (' . ((($db2->f('First') == '') && ($db2->f('Second') == '')) ? $db2->f('Username') : $db2->f('First') . ' ' . $db2->f('Second')) . ')';
 	}

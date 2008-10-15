@@ -47,8 +47,8 @@ if (!isset($l_shop["lastNo"])){
 }
 
 
-$yid = isset($_REQUEST["ViewYear"]) ? $_REQUEST["ViewYear"] : date("Y");
-$bid = isset($_REQUEST["bid"]) ? $_REQUEST["bid"] : 0;
+$yid = isset($_REQUEST["ViewYear"]) ? abs($_REQUEST["ViewYear"]) : date("Y");
+$bid = isset($_REQUEST["bid"]) ? abs($_REQUEST["bid"]) : 0;
 $cid = f("SELECT IntCustomerID FROM ".SHOP_TABLE." WHERE IntOrderID = ".$bid,"IntCustomerID",$DB_WE);
   $DB_WE->query("SELECT IntOrderID,DATE_FORMAT(DateOrder,'".$l_global["date_format_dateonly_mysql"]."') as orddate FROM ".SHOP_TABLE." group by IntOrderID order by IntID DESC");
     if ($DB_WE->next_record()) {

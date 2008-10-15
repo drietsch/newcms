@@ -484,7 +484,7 @@ foreach($GLOBALS["_we_available_modules"] as $modData){
 				global $entries;
 
 				$db_temp=new DB_WE();
-				$db_temp->query("SELECT ID,username,ParentID,Type,Permissions FROM ".USER_TABLE." WHERE Type=1 AND ParentID='".$pid."' ORDER BY username ASC");
+				$db_temp->query("SELECT ID,username,ParentID,Type,Permissions FROM ".USER_TABLE." WHERE Type=1 AND ParentID=".abs($pid)." ORDER BY username ASC");
 				while($db_temp->next_record()) {
 					$entries[$db_temp->f("ID")]["username"]=$db_temp->f("username");
 					$entries[$db_temp->f("ID")]["ParentID"]=$db_temp->f("ParentID");
@@ -509,7 +509,7 @@ foreach($GLOBALS["_we_available_modules"] as $modData){
 
 					print "startloc=".$startloc.";\n";
 
-					$DB_WE->query("SELECT * FROM ".USER_TABLE." WHERE Path LIKE '$parent_path%' ORDER BY Text ASC");
+					$DB_WE->query("SELECT * FROM ".USER_TABLE." WHERE Path LIKE '".mysql_real_escape_string($parent_path)."%' ORDER BY Text ASC");
 
 					while($DB_WE->next_record()) {
 						if($DB_WE->f("Type")==1) {

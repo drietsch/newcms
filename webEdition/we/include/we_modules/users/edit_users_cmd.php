@@ -223,7 +223,7 @@ protect();
 
 	    	        $foo = array();
 	    	        if(isset($GLOBALS["BIG_USER_MODULE"]) && $GLOBALS["BIG_USER_MODULE"] && $user_object->ID && in_array("busers",$GLOBALS["_pro_modules"])){
-	                    $foo = getHash("SELECT ParentID FROM ".USER_TABLE." WHERE ID=".$user_object->ID,$user_object->DB_WE);
+	                    $foo = getHash("SELECT ParentID FROM ".USER_TABLE." WHERE ID=".abs($user_object->ID),$user_object->DB_WE);
 	                } else {
 	                    $foo["ParentID"]=0;
 	                }
@@ -245,7 +245,7 @@ protect();
 	                			//	Speichere seem_start_file aus SESSION
 	                			$seem_start_file = $_SESSION["save_user_seem_start_file"][$_REQUEST["uid"]];
 	                		}
-	                		$tmp->query("UPDATE ".PREFS_TABLE." SET seem_start_file='" . $seem_start_file . "' WHERE userID=". $_REQUEST["uid"]);
+	                		$tmp->query("UPDATE ".PREFS_TABLE." SET seem_start_file='" . mysql_real_escape_string($seem_start_file) . "' WHERE userID=". abs($_REQUEST["uid"]));
 	   						unset($tmp);
 	   						unset($seem_start_file);
 	   						if (isset($_SESSION["save_user_seem_start_file"][$_REQUEST["uid"]])) {
@@ -372,7 +372,7 @@ protect();
             case "check_user_display":
                 if($_REQUEST["uid"]){
                     if(isset($GLOBALS["BIG_USER_MODULE"]) && $GLOBALS["BIG_USER_MODULE"] && in_array("busers",$GLOBALS["_pro_modules"])){
-                        $foo=getHash("SELECT ParentID FROM ".USER_TABLE." WHERE ID=".$_SESSION["user"]["ID"],$DB_WE);
+                        $foo=getHash("SELECT ParentID FROM ".USER_TABLE." WHERE ID=".abs($_SESSION["user"]["ID"]),$DB_WE);
                     } else {
                         $foo["ParentID"]=0;
                     }
@@ -380,7 +380,7 @@ protect();
                     $mpid = $foo["ParentID"];
 
                     if(isset($GLOBALS["BIG_USER_MODULE"]) && $GLOBALS["BIG_USER_MODULE"] && in_array("busers",$GLOBALS["_pro_modules"])){
-                        $foo = getHash("SELECT ParentID FROM ".USER_TABLE." WHERE ID=".$_REQUEST["uid"],$DB_WE);
+                        $foo = getHash("SELECT ParentID FROM ".USER_TABLE." WHERE ID=".abs($_REQUEST["uid"]),$DB_WE);
                     } else {
                         $foo["ParentID"]=0;
                     }
@@ -402,7 +402,7 @@ protect();
                             $search = false;
                         }
                         if(isset($GLOBALS["BIG_USER_MODULE"]) && $GLOBALS["BIG_USER_MODULE"] && in_array("busers",$GLOBALS["_pro_modules"])){
-                            $foo = getHash("SELECT ParentID FROM ".USER_TABLE." WHERE ID=".$pid,$DB_WE);
+                            $foo = getHash("SELECT ParentID FROM ".USER_TABLE." WHERE ID=".abs($pid),$DB_WE);
                             if(empty($foo)) {
                             	$foo["ParentID"] = 0;
                             }

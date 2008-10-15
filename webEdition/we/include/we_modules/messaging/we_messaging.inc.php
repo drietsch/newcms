@@ -253,7 +253,7 @@ class we_messaging extends we_class {
 
     function check_folders() {
 	/* XXX: Use defines for folder constants, instead of class variables in we_msg_proto.inc.php */
-	$this->DB->query('SELECT count(ID) as c FROM '.MSG_FOLDERS_TABLE.' WHERE UserID=' . $this->userid . ' AND (obj_type=3 OR obj_type=5 OR obj_type=9 OR obj_type=11 OR obj_type=13)');
+	$this->DB->query('SELECT count(ID) as c FROM '.MSG_FOLDERS_TABLE.' WHERE UserID=' . abs($this->userid) . ' AND (obj_type=3 OR obj_type=5 OR obj_type=9 OR obj_type=11 OR obj_type=13)');
 	$this->DB->next_record();
 	if ($this->DB->f('c') < 5) {
 	    return false;
@@ -407,9 +407,9 @@ class we_messaging extends we_class {
 
             //  Check if there are already saved settings for this user in the DB
             if( $this->DB->num_rows($this->DB->query("SELECT * FROM ".MSG_SETTINGS_TABLE." WHERE strKey=\"check_step\" AND UserID=\"" . $this->userid . "\"" ) ) > 0  ){
-                $this->DB->query('UPDATE '.MSG_SETTINGS_TABLE.' SET strVal="' . addslashes($settings['check_step']) . '" WHERE strKey="check_step" AND UserID=' . $this->userid . ' LIMIT 1');
+                $this->DB->query('UPDATE '.MSG_SETTINGS_TABLE.' SET strVal="' . mysql_real_escape_string($settings['check_step']) . '" WHERE strKey="check_step" AND UserID=' . abs($this->userid) . ' LIMIT 1');
             } else {
-                $this->DB->query("INSERT INTO ".MSG_SETTINGS_TABLE." (UserID, strKey, strVal) VALUES('" . $this->userid . "', 'check_step', '" . $settings['check_step'] . "')");
+                $this->DB->query("INSERT INTO ".MSG_SETTINGS_TABLE." (UserID, strKey, strVal) VALUES('" . abs($this->userid) . "', 'check_step', '" . $settings['check_step'] . "')");
             }
 	    }
 
@@ -419,7 +419,7 @@ class we_messaging extends we_class {
     function get_settings() {
 	$settings = array();
 
-	$this->DB->query('SELECT strKey, strVal FROM '.MSG_SETTINGS_TABLE.' WHERE UserID=' . $this->userid);
+	$this->DB->query('SELECT strKey, strVal FROM '.MSG_SETTINGS_TABLE.' WHERE UserID=' . abs($this->userid));
 	while ($this->DB->next_record()){
 	    $settings[$this->DB->f('strKey')] = $this->DB->f('strVal');
 	}
@@ -508,10 +508,10 @@ class we_messaging extends we_class {
     function save_addresses(&$addressbook) {
 	global $l_messaging;
 
-	$this->DB->query('DELETE FROM '.MSG_ADDRBOOK_TABLE.' WHERE UserID=' . $this->userid);
+	$this->DB->query('DELETE FROM '.MSG_ADDRBOOK_TABLE.' WHERE UserID=' . abs($this->userid));
 	foreach ($addressbook as $elem) {
 	    if (!empty($elem))
-		$this->DB->query('INSERT INTO '.MSG_ADDRBOOK_TABLE.' (ID, UserID, strMsgType, strID, strAlias, strFirstname, strSurname) VALUES (NULL, ' . $this->userid . ',"' . addslashes($elem[0]) . '","' . addslashes($elem[1]) .  '","' . addslashes($elem[2]) . '", "", "")');
+		$this->DB->query('INSERT INTO '.MSG_ADDRBOOK_TABLE.' (ID, UserID, strMsgType, strID, strAlias, strFirstname, strSurname) VALUES (NULL, ' . abs($this->userid) . ',"' . mysql_real_escape_string($elem[0]) . '","' . mysql_real_escape_string($elem[1]) .  '","' . mysql_real_escape_string($elem[2]) . '", "", "")');
 	}
 
 	return true;
@@ -546,7 +546,7 @@ class we_messaging extends we_class {
     function &get_addresses() {
 	$ret = array();
 
-	$this->DB->query('SELECT strMsgType, strID, strAlias FROM '.MSG_ADDRBOOK_TABLE.' WHERE UserID=' . $this->userid);
+	$this->DB->query('SELECT strMsgType, strID, strAlias FROM '.MSG_ADDRBOOK_TABLE.' WHERE UserID=' . abs($this->userid));
 	while($this->DB->next_record()) {
 	    $ret[] = array($this->DB->f('strMsgType'), $this->DB->f('strID'), $this->DB->f('strAlias'));
 	}
@@ -665,7 +665,7 @@ class we_messaging extends we_class {
 
     function get_userid($username) {
 	$username = trim($username);
-	$this->DB->query('SELECT ID FROM '.USER_TABLE.' WHERE username="' . addslashes($username) . '"');
+	$this->DB->query('SELECT ID FROM '.USER_TABLE.' WHERE username="' . mysql_real_escape_string($username) . '"');
 	if ($this->DB->next_record())
 	    return $this->DB->f('ID');
 

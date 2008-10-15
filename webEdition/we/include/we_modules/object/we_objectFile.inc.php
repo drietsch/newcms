@@ -258,7 +258,7 @@ class we_objectFile extends we_document
 
 	function setRootDirID($doit=false){
 		if($this->InWebEdition || $doit){
-			$foo = f("SELECT Path FROM " .OBJECT_TABLE . " WHERE ID='".$this->TableID."'","Path",$this->DB_WE);
+			$foo = f("SELECT Path FROM " .OBJECT_TABLE . " WHERE ID=".$this->TableID,"Path",$this->DB_WE);
 			$folder = new we_folder();
 			$folderID = f("SELECT ID FROM " .OBJECT_FILES_TABLE . " WHERE Path='".$foo."'","ID",$this->DB_WE);
 			$this->RootDirPath = $foo;
@@ -805,7 +805,7 @@ class we_objectFile extends we_document
 		$db = new DB_WE();
 		$we_button = new we_button();
 
-		$foo = getHash("SELECT Text,Path FROM " .OBJECT_TABLE . " WHERE ID='$ObjectID'",$db) ;
+		$foo = getHash("SELECT Text,Path FROM " .OBJECT_TABLE . " WHERE ID=".abs($ObjectID),$db) ;
 		$name = isset($foo["Text"]) ? $foo["Text"] : '';
 		$classPath = isset($foo["Path"]) ? $foo["Path"] : '';
 		$pid = f("SELECT ID FROM " . OBJECT_FILES_TABLE . " WHERE Path='$classPath'","ID",$db);
@@ -1517,7 +1517,7 @@ class we_objectFile extends we_document
 				$where = "";
 				foreach($paths as $path){
 					if($path!="/"){
-						$where .= "Path like '$path/%' OR Path = '$path' OR ";
+						$where .= "Path like '".mysql_real_escape_string($path)."/%' OR Path = '".mysql_real_escape_string($path)."' OR ";
 					}
 				}
 				$where = ereg_replace("(.*) OR $",'\1',$where);
@@ -1867,7 +1867,7 @@ class we_objectFile extends we_document
 		while(list($k,$v) = $this->nextElement("")){
 			if(isset($v["dat"])){ $text .= " ".$v["dat"]; }
 		}
-		$text = addslashes(trim(strip_tags($text)));
+		$text = mysql_real_escape_string(trim(strip_tags($text)));
 		if(!$this->DB_WE->query("DELETE FROM " . INDEX_TABLE . " WHERE OID=".$this->ID)) return false;
 		if(!$this->IsSearchable) {
 			return true;
@@ -1885,7 +1885,7 @@ class we_objectFile extends we_document
 				if($w == "0"){
 					$wsPath = "/";
 				}
-				if(!$this->DB_WE->query("INSERT INTO " . INDEX_TABLE . " (OID,Text,BText,Workspace,WorkspaceID,Category,ClassID,Title,Description,Path) VALUES('".$this->ID."','$text','$text','$wsPath','".addslashes($w)."','".addslashes($this->Category)."','".$this->TableID."','".addslashes($this->getElement("Title"))."','".addslashes($this->getElement("Description"))."','".addslashes($this->Text)."')")) return false;
+				if(!$this->DB_WE->query("INSERT INTO " . INDEX_TABLE . " (OID,Text,BText,Workspace,WorkspaceID,Category,ClassID,Title,Description,Path) VALUES(".$this->ID.",'$text','$text','$wsPath','".addslashes($w)."','".mysql_real_escape_string($this->Category)."',".$this->TableID.",'".mysql_real_escape_string($this->getElement("Title"))."','".mysql_real_escape_string($this->getElement("Description"))."','".mysql_real_escape_string($this->Text)."')")) return false;
 			}
 		}
 		return true;
@@ -1893,14 +1893,14 @@ class we_objectFile extends we_document
 
 	function markAsPublished(){
 		$this->Published=time();
-		$this->DB_WE->query("UPDATE " . OBJECT_FILES_TABLE . " SET Published='".$this->Published."' WHERE ID='".$this->ID."'");
-		$this->DB_WE->query("UPDATE ".OBJECT_X_TABLE.$this->TableID." SET OF_Published='".$this->Published."' WHERE OF_ID='".$this->ID."'");
+		$this->DB_WE->query("UPDATE " . OBJECT_FILES_TABLE . " SET Published='".$this->Published."' WHERE ID=".$this->ID);
+		$this->DB_WE->query("UPDATE ".OBJECT_X_TABLE.$this->TableID." SET OF_Published='".$this->Published."' WHERE OF_ID=".$this->ID);
 	}
 
 	function markAsUnPublished(){
 		$this->Published=0;
-		$this->DB_WE->query("UPDATE " . OBJECT_FILES_TABLE . " SET Published='0' WHERE ID='".$this->ID."'");
-		$this->DB_WE->query("UPDATE ".OBJECT_X_TABLE.$this->TableID." SET OF_Published=0 WHERE OF_ID='".$this->ID."'");
+		$this->DB_WE->query("UPDATE " . OBJECT_FILES_TABLE . " SET Published='0' WHERE ID=".$this->ID);
+		$this->DB_WE->query("UPDATE ".OBJECT_X_TABLE.$this->TableID." SET OF_Published=0 WHERE OF_ID=".$this->ID);
 	}
 
 	function i_convertElemFromRequest($type,&$v,$k){
@@ -2075,7 +2075,7 @@ class we_objectFile extends we_document
 	function we_load($from=LOAD_MAID_DB){
 		switch($from){
 			case LOAD_SCHEDULE_DB:
-			$sessDat = unserialize(f("SELECT SerializedData FROM ".SCHEDULE_TABLE." WHERE DID='".$this->ID."' AND ClassName='".$this->ClassName."' AND Was='".SCHEDULE_FROM."'","SerializedData",$this->DB_WE));
+			$sessDat = unserialize(f("SELECT SerializedData FROM ".SCHEDULE_TABLE." WHERE DID=".$this->ID." AND ClassName='".$this->ClassName."' AND Was='".SCHEDULE_FROM."'","SerializedData",$this->DB_WE));
 
 			if($sessDat){
 				$this->i_initSerializedDat($sessDat);
@@ -2216,11 +2216,11 @@ class we_objectFile extends we_document
 		if($this->ID){
 
 			$this->setRootDirID();
-			$oldTableID = f("SELECT TableID FROM " . OBJECT_FILES_TABLE . " WHERE ID='".$this->ID."'","TableID",$this->DB_WE);
+			$oldTableID = f("SELECT TableID FROM " . OBJECT_FILES_TABLE . " WHERE ID=".$this->ID,"TableID",$this->DB_WE);
 			if($oldTableID != $this->TableID){
 				$this->resetParentID();
 			}
-			$this->DB_WE->query("SELECT DefaultValues FROM " .OBJECT_TABLE . " WHERE ID='".$this->TableID."'");
+			$this->DB_WE->query("SELECT DefaultValues FROM " .OBJECT_TABLE . " WHERE ID=".$this->TableID);
 			if($this->DB_WE->next_record()){
 				if($this->DB_WE->f("DefaultValues")){
 					$vals = unserialize($this->DB_WE->f("DefaultValues"));
@@ -2386,7 +2386,7 @@ class we_objectFile extends we_document
 	}
 
 	function i_filenameDouble(){
-		return f("SELECT ID FROM ".$this->Table." WHERE ParentID='".$this->ParentID."' AND Text='".$this->Text."' AND ID!='".$this->ID."'","ID",new DB_WE());
+		return f("SELECT ID FROM ".$this->Table." WHERE ParentID=".$this->ParentID." AND Text='".mysql_real_escape_string($this->Text)."' AND ID!='".$this->ID."'","ID",new DB_WE());
 	}
 
 
@@ -2421,7 +2421,7 @@ class we_objectFile extends we_document
 
 				if(!$this->DB_WE->query("INSERT INTO ".SCHEDULE_TABLE.
 				" (DID,Wann,Was,ClassName,SerializedData,Schedpro,Type,Active)
-						VALUES('".$this->ID."','".$Wann."','".$s["task"]."','".$this->ClassName."','".addslashes(serialize($serializedDoc))."','".addslashes(serialize($s))."','".$s["type"]."','".$s["active"]."')")) return false;
+						VALUES('".$this->ID."','".$Wann."','".$s["task"]."','".$this->ClassName."','".mysql_real_escape_string(serialize($serializedDoc))."','".mysql_real_escape_string(serialize($s))."','".$s["type"]."','".$s["active"]."')")) return false;
 			}
 			return $makeSched;
 		}
@@ -2474,7 +2474,7 @@ class we_objectFile extends we_document
 		if(!$this->isColExist($ctable,"OF_WebUserID")) $this->addCol($ctable,"OF_WebUserID","BIGINT DEFAULT '0' NOT NULL", "AFTER OF_Charset");
 
 		$tableInfo = $this->DB_WE->metadata($ctable);
-		$foo = f("SELECT DefaultValues FROM " .OBJECT_TABLE . " WHERE ID='".$this->TableID."'","DefaultValues",$this->DB_WE);
+		$foo = f("SELECT DefaultValues FROM " .OBJECT_TABLE . " WHERE ID=".$this->TableID,"DefaultValues",$this->DB_WE);
 		if($foo){
 			$defVal = unserialize($foo);
 		}else{
@@ -2549,7 +2549,7 @@ class we_objectFile extends we_document
 		$saveArr = array();
 		$this->saveInSession($saveArr);
 		if(!we_temporaryDocument::save($this->ID, $this->Table, $saveArr, $this->DB_WE)) return false;
-		if($this->ID) $this->DB_WE->query("UPDATE ".OBJECT_X_TABLE.$this->TableID." SET OF_TEXT='".$this->Text."',OF_PATH='".$this->Path."' WHERE OF_ID='".$this->ID."'");
+		if($this->ID) $this->DB_WE->query("UPDATE ".OBJECT_X_TABLE.$this->TableID." SET OF_TEXT='".$this->Text."',OF_PATH='".$this->Path."' WHERE OF_ID=".$this->ID);
 		return $this->i_savePersistentSlotsToDB("Path,Text,ParentID,CreatorID,ModifierID,RestrictOwners,Owners,OwnersReadOnly,Published,ModDate,ObjectID,IsSearchable,Charset");
 	}
 

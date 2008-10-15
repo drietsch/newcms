@@ -158,7 +158,7 @@ class we_format extends we_class {
 	function userid_to_username($id) {
 		global $l_messaging;
 		$db2 = new DB_WE();
-		$db2->query('SELECT username FROM '.USER_TABLE.' WHERE ID=' . addslashes($id));
+		$db2->query('SELECT username FROM '.USER_TABLE.' WHERE ID=' . abs($id));
 		if ($db2->next_record())
 			return $db2->f('username');
 

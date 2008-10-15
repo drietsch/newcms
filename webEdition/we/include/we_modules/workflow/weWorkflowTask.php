@@ -73,7 +73,7 @@ class weWorkflowTask extends weWorkflowBase{
 	{
 		$db = new DB_WE;
 
-		$db->query("SELECT ID FROM ".WORKFLOW_TASK_TABLE." WHERE stepID  ='$stepID' ORDER BY ID");
+		$db->query("SELECT ID FROM ".WORKFLOW_TASK_TABLE." WHERE stepID  =".abs($stepID)." ORDER BY ID");
 
 		$tasks = array();
 

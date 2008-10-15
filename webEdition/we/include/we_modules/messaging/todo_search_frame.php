@@ -27,6 +27,10 @@ include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GL
 protect();
 htmlTop();
 
+if (!eregi("^([a-f0-9]){32}",$_REQUEST['we_transaction'])) {
+	exit();
+}
+
 print STYLESHEET;
 
 $we_button = new we_button();

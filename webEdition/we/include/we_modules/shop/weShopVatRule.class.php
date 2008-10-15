@@ -84,10 +84,7 @@ class weShopVatRule {
 		
 		global $DB_WE;
 		
-		$query = '
-			SELECT *
-			FROM ' . ANZEIGE_PREFS_TABLE . '
-			WHERE strDateiname="weShopVatRule"
+		$query = 'SELECT * FROM ' . ANZEIGE_PREFS_TABLE . ' WHERE strDateiname="weShopVatRule"
 		';
 		
 		$DB_WE->query($query);
@@ -148,27 +145,16 @@ class weShopVatRule {
 		
 		global $DB_WE;
 		// check if already inserted
-		$query = '
-			SELECT *
-			FROM ' . ANZEIGE_PREFS_TABLE . '
-			WHERE strDateiname="weShopVatRule"
-		';
+		$query = 'SELECT * FROM ' . ANZEIGE_PREFS_TABLE . ' WHERE strDateiname="weShopVatRule"';
 		
 		$DB_WE->query($query);
 		
 		if ($DB_WE->num_rows() > 0) {
 			
-			$query = '
-			UPDATE ' . ANZEIGE_PREFS_TABLE . '
-			set strFelder="' . addslashes(serialize($this)) . '"
-			WHERE strDateiname="weShopVatRule"
-			';
+			$query = 'UPDATE ' . ANZEIGE_PREFS_TABLE . ' set strFelder="' . mysql_real_escape_string(serialize($this)) . '" WHERE strDateiname="weShopVatRule"';
 			
 		} else {
-			$query = '
-			INSERT INTO ' . ANZEIGE_PREFS_TABLE . '
-			(strDateiname, strFelder) VALUES ("weShopVatRule", "' . addslashes(serialize($this)) . '")
-			';
+			$query = 'INSERT INTO ' . ANZEIGE_PREFS_TABLE . ' (strDateiname, strFelder) VALUES ("weShopVatRule", "' . mysql_real_escape_string(serialize($this)) . '")';
 		}
 		
 		if ($DB_WE->query($query)) {

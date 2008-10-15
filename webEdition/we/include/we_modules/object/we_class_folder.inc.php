@@ -106,9 +106,9 @@ class we_class_folder extends we_folder
 			$last_pid = 0;
 			for($i=0;$i<$anz;$i++){
 				array_push($p,array_shift($spl));
-				$pa = implode("/",$p);
+				$pa = mysql_real_escape_string(implode("/",$p));
 				if($pa){
-					$pid = f("SELECT ID FROM ".$tblName." WHERE Path='$pa'","ID",new DB_WE());
+					$pid = f("SELECT ID FROM ".mysql_real_escape_string($tblName)." WHERE Path='$pa'","ID",new DB_WE());
 					if(!$pid){
 						$folder = new we_folder();
 						$folder->init();
@@ -232,7 +232,7 @@ class we_class_folder extends we_folder
 		}
 
 		// get Class
-		$classArray = getHash("SELECT * FROM " . OBJECT_TABLE . " WHERE Path='".$this->Path."'",$DB_WE);
+		$classArray = getHash("SELECT * FROM " . OBJECT_TABLE . " WHERE Path='".mysql_real_escape_string($this->Path)."'",$DB_WE);
 
 		$userDefaultWsPath = $this->getUserDefaultWsPath();
 		$this->WorkspacePath = ($this->WorkspacePath != "") ? $this->WorkspacePath : $userDefaultWsPath;
@@ -256,7 +256,7 @@ class we_class_folder extends we_folder
 
 
 		$content=array();
-		$foo = unserialize(f("SELECT DefaultValues FROM "  . OBJECT_TABLE . " WHERE ID='".$classArray["ID"]."'","DefaultValues",$DB_WE));
+		$foo = unserialize(f("SELECT DefaultValues FROM "  . OBJECT_TABLE . " WHERE ID='".abs($classArray["ID"])."'","DefaultValues",$DB_WE));
 
 		$ok = isset($foo["WorkspaceFlag"]) ? $foo["WorkspaceFlag"] : "";
 
@@ -341,21 +341,21 @@ class we_class_folder extends we_folder
 		$strlen = 20;
 
 		// get Class
-		$classArray = getHash("SELECT * FROM " . OBJECT_TABLE . " WHERE Path='".$this->Path."'",$DB_WE);
+		$classArray = getHash("SELECT * FROM " . OBJECT_TABLE . " WHERE Path='".mysql_real_escape_string($this->Path)."'",$DB_WE);
 
 		if(isset($_REQUEST["do"]) && $_REQUEST["do"]=="delete"){
 			foreach(array_keys($_REQUEST) as $f){
 				if(substr($f,0,3)=="weg"){
 					//$this->query("");
-					$DB_WE->query("SELECT OF_ID FROM ". OBJECT_X_TABLE . $classArray["ID"]." where ID=".substr($f,3));
+					$DB_WE->query("SELECT OF_ID FROM ". OBJECT_X_TABLE . abs($classArray["ID"])." where ID=".abs(substr($f,3)));
 					$DB_WE->next_record();
 					$ofid = $DB_WE->f("OF_ID");
 
 					if(checkIfRestrictUserIsAllowed($ofid,OBJECT_FILES_TABLE)){
-						$DB_WE->query("DELETE FROM " . OBJECT_X_TABLE . $classArray["ID"]." where ID=".substr($f,3));
+						$DB_WE->query("DELETE FROM " . OBJECT_X_TABLE . abs($classArray["ID"])." where ID=".abs(substr($f,3)));
 
-						$DB_WE->query("DELETE FROM " . INDEX_TABLE . " where OID=".$ofid);
-						$DB_WE->query("DELETE FROM ".OBJECT_FILES_TABLE." where ID=".$ofid);
+						$DB_WE->query("DELETE FROM " . INDEX_TABLE . " where OID=".abs($ofid));
+						$DB_WE->query("DELETE FROM ".OBJECT_FILES_TABLE." where ID=".abs($ofid));
 						we_temporaryDocument::delete($ofid);
 					}
 				}
@@ -394,12 +394,12 @@ class we_class_folder extends we_folder
 
 		$this->searchclass->searchquery($where." AND OF_ID !=0 ",$fields);
 
-		$DB_WE->query("SELECT DefaultValues FROM " . OBJECT_TABLE . " a,".OBJECT_FILES_TABLE." c WHERE a.Text=c.Text AND c.ID=".$this->ID);
+		$DB_WE->query("SELECT DefaultValues FROM " . OBJECT_TABLE . " a,".OBJECT_FILES_TABLE." c WHERE a.Text=c.Text AND c.ID=".abs($this->ID));
 		$DB_WE->next_record();
 		$DefaultValues = unserialize($DB_WE->f("DefaultValues"));
 
 		$content=array();
-		$foo = unserialize(f("SELECT DefaultValues FROM " . OBJECT_TABLE . " WHERE ID='".$classArray["ID"]."'","DefaultValues",$DB_WE));
+		$foo = unserialize(f("SELECT DefaultValues FROM " . OBJECT_TABLE . " WHERE ID=".abs($classArray["ID"]),"DefaultValues",$DB_WE));
 
 		$ok = isset($foo["WorkspaceFlag"]) ? $foo["WorkspaceFlag"] : "";
 
@@ -553,7 +553,7 @@ class we_class_folder extends we_folder
 			}
 
 			if(isset($this->searchclass->objsearchField) && is_array($this->searchclass->objsearchField) && isset($this->searchclass->objsearchField[$i]) && (substr($this->searchclass->objsearchField[$i],0,4)=="meta" || substr($this->searchclass->objsearchField[$i],0,8)=="checkbox")) {
-				$DB_WE->query("SELECT DefaultValues FROM " . OBJECT_TABLE . " a," . OBJECT_FILES_TABLE . " c WHERE a.Text=c.Text AND c.ID=".$this->ID);
+				$DB_WE->query("SELECT DefaultValues FROM " . OBJECT_TABLE . " a," . OBJECT_FILES_TABLE . " c WHERE a.Text=c.Text AND c.ID=".abs($this->ID));
 				$DB_WE->next_record();
 				$DefaultValues = unserialize($DB_WE->f("DefaultValues"));
 
@@ -580,7 +580,7 @@ class we_class_folder extends we_folder
 				</tr>';
 
 			} elseif(isset($this->searchclass->objsearchField) && is_array($this->searchclass->objsearchField) && isset($this->searchclass->objsearchField[$i]) && substr($this->searchclass->objsearchField[$i],0,4)=="date") {
-				$DB_WE->query("SELECT DefaultValues FROM " . OBJECT_TABLE . " a," . OBJECT_FILES_TABLE . " c WHERE a.Text=c.Text AND c.ID=".$this->ID);
+				$DB_WE->query("SELECT DefaultValues FROM " . OBJECT_TABLE . " a," . OBJECT_FILES_TABLE . " c WHERE a.Text=c.Text AND c.ID=".abs($this->ID));
 				$DB_WE->next_record();
 				$DefaultValues = unserialize($DB_WE->f("DefaultValues"));
 
@@ -851,7 +851,7 @@ class we_class_folder extends we_folder
 		function changeit(f){
 EOF;
 
-			$objID = f("SELECT ID FROM " . OBJECT_TABLE . " WHERE Path='".$this->Path."'","ID",$DB_WE);
+			$objID = f("SELECT ID FROM " . OBJECT_TABLE . " WHERE Path='".mysql_real_escape_string($this->Path)."'","ID",$DB_WE);
 			$tableInfo =  $DB_WE->metadata(OBJECT_X_TABLE.$objID);
 
 			for($i=0;$i<sizeof($tableInfo);$i++){
@@ -947,18 +947,18 @@ EOF;
 		$deletedItems = array();
 
 		// get Class
-		$classArray = getHash("SELECT * FROM " . OBJECT_TABLE . " WHERE Path='".$this->Path."'",$DB_WE);
+		$classArray = getHash("SELECT * FROM " . OBJECT_TABLE . " WHERE Path='".mysql_real_escape_string($this->Path)."'",$DB_WE);
 		foreach(array_keys($_REQUEST) as $f){
 			if(substr($f,0,3)=="weg"){
 				//$this->query("");
-				$DB_WE->query("SELECT OF_ID FROM " . OBJECT_X_TABLE.$classArray["ID"]." WHERE ID=".substr($f,3));
+				$DB_WE->query("SELECT OF_ID FROM " . OBJECT_X_TABLE.abs($classArray["ID"])." WHERE ID=".abs(substr($f,3)));
 				$DB_WE->next_record();
 				$ofid = $DB_WE->f("OF_ID");
 				if(checkIfRestrictUserIsAllowed($ofid,OBJECT_FILES_TABLE)){
 
-					$DB_WE->query("DELETE FROM " . OBJECT_X_TABLE.$classArray["ID"]." WHERE ID=".substr($f,3));
-					$DB_WE->query("DELETE FROM " . INDEX_TABLE . " WHERE OID=".$ofid);
-					$DB_WE->query("DELETE FROM " . OBJECT_FILES_TABLE . " WHERE ID=".$ofid);
+					$DB_WE->query("DELETE FROM " . OBJECT_X_TABLE.abs($classArray["ID"])." WHERE ID=".abs(substr($f,3)));
+					$DB_WE->query("DELETE FROM " . INDEX_TABLE . " WHERE OID=".abs($ofid));
+					$DB_WE->query("DELETE FROM " . OBJECT_FILES_TABLE . " WHERE ID=".abs($ofid));
 
 					$obj = new we_objectFile();
 					$obj->initByID($ofid, OBJECT_FILES_TABLE);
