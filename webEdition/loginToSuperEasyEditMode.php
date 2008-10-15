@@ -33,9 +33,11 @@ while(list($name, $val) = each($_SESSION)){
 	}
 }
 
-if(isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["id"]) && isset($_POST["type"])){
+if(isset($_POST["username"]) && isset($_POST["id"]) && isset($_POST["type"])){
 	
 	$_SESSION["we_set_registered"] = true;
+	
+	$_POST["password"] = $_SESSION["webuser"]["Password"];
 		
 	//	Login
 	include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we.inc.php");
