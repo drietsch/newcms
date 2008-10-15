@@ -48,11 +48,11 @@ protect();
 // Check if we need to create a new thumbnail
 if (isset($_GET["newthumbnail"]) && $_GET["newthumbnail"] != "") {
 	if (we_hasPerm("ADMINISTRATOR")) {
-		$DB_WE->query("INSERT INTO " . THUMBNAILS_TABLE . " (Name) VALUES ('" . $_GET["newthumbnail"] . "')");
+		$DB_WE->query("INSERT INTO " . THUMBNAILS_TABLE . " (Name) VALUES ('" . mysql_real_escape_string($_GET["newthumbnail"]) . "')");
 		$prot = getServerProtocol();
 		$preurl = (isset($_SERVER["HTTP_HOST"]) && $_SERVER["HTTP_HOST"]) ? "$prot://".$_SERVER["HTTP_HOST"] : "";
 
-		header("Location: $preurl/webEdition/we/include/we_editors/we_thumbnails.php?id=" . f("SELECT ID FROM " . THUMBNAILS_TABLE . " WHERE Name = '" . $_GET["newthumbnail"] . "'", "ID", $DB_WE));
+		header("Location: $preurl/webEdition/we/include/we_editors/we_thumbnails.php?id=" . f("SELECT ID FROM " . THUMBNAILS_TABLE . " WHERE Name = '" . mysql_real_escape_string($_GET["newthumbnail"]) . "'", "ID", $DB_WE));
 		exit();
 	}
 }

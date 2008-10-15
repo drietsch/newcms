@@ -149,7 +149,7 @@ if (!is_dir($_SERVER["DOCUMENT_ROOT"].VERSION_DIR)) {
  * CHECK FOR FAILED LOGIN ATTEMPTS
  *****************************************************************************/
 
-$DB_WE->query("SELECT ID FROM ".FAILED_LOGINS_TABLE." WHERE IP='".$_SERVER["REMOTE_ADDR"]."' AND LoginDate > (".(time() - (60 * abs(LOGIN_FAILED_TIME))).")");
+$DB_WE->query("SELECT ID FROM ".FAILED_LOGINS_TABLE." WHERE IP='".mysql_real_escape_string($_SERVER["REMOTE_ADDR"])."' AND LoginDate > (".(time() - (60 * abs(LOGIN_FAILED_TIME))).")");
 
 if ($DB_WE->num_rows() >= LOGIN_FAILED_NR) {
 	htmlTop("webEdition " . WE_VERSION);
@@ -536,7 +536,7 @@ if (isset($_POST["checkLogin"]) && !count($_COOKIE)) {
 		 * CHECK FOR FAILED LOGIN ATTEMPTS
 		 *****************************************************************************/
 
-		$DB_WE->query("SELECT ID FROM ".FAILED_LOGINS_TABLE." WHERE IP='".$_SERVER["REMOTE_ADDR"]."' AND LoginDate > (".(time() - (60 * abs(LOGIN_FAILED_TIME))).")");
+		$DB_WE->query("SELECT ID FROM ".FAILED_LOGINS_TABLE." WHERE IP='".mysql_real_escape_string($_SERVER["REMOTE_ADDR"])."' AND LoginDate > (".(time() - (60 * abs(LOGIN_FAILED_TIME))).")");
 
 		if ($DB_WE->num_rows() >= LOGIN_FAILED_NR) {
 			$_body_javascript =	we_message_reporting::getShowMessageCall(sprintf($l_alert["3timesLoginError"], LOGIN_FAILED_NR,LOGIN_FAILED_TIME), WE_MESSAGE_ERROR);
