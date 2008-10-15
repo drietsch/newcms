@@ -120,10 +120,9 @@ class DB_WE extends DB_Sql
 			/* we already complained in connect() about that. */
 			
 		// check for union This is the fastest check
-		// if union is found in query, then take a closer look
+		// if union is found in query, then take a closer look	
 		if ($allowUnion == false && preg_match('/union/i', $Query_String)) {
-			if (preg_match('/[\s\(`]union[\s\(`]/i', $Query_String)) {
-
+			if (preg_match('/[\s\(`"\']union[\s\(`]/i', $Query_String)) {
 				$queryToCheck = str_replace("\\\"", "", $Query_String);
 				$queryToCheck = str_replace("\\'", "", $queryToCheck);
 
@@ -148,7 +147,7 @@ class DB_WE extends DB_Sql
 					}
 				}
 				
-				if (preg_match('/[\s\(`]union[\s\(`]/i', $Query_String)) {
+				if (preg_match('/[\s\(`=]union[\s\(`]/i', $queryWithoutStrings)) {
 					exit('Bad SQL statement! For security reasons, the UNION operator is not allowed within SQL statements per default! You need to set the second parameter of the query function to true if you want to use the UNION operator!');
 				}
 				
