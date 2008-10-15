@@ -102,12 +102,12 @@ class weHyperlinkDialog extends weDialog{
 				$this->args["fileHref"] = "";
 				$this->args["mailHref"] = "";
 				$this->args["objID"] = abs(substr($this->args["href"],7));
-				$this->args["objHref"] = f("SELECT Path FROM " . OBJECT_FILES_TABLE . " WHERE ID='".$this->args["objID"]."'","Path",$this->db);
+				$this->args["objHref"] = f("SELECT Path FROM " . OBJECT_FILES_TABLE . " WHERE ID='".abs($this->args["objID"])."'","Path",$this->db);
 			}else if(substr($this->args["href"],0,9) == "document:"){
 				$this->args["type"] = "int";
 				$this->args["extHref"] = "";
 				$this->args["fileID"] = abs(substr($this->args["href"],9));
-				$this->args["fileHref"] = f("SELECT Path FROM " . FILE_TABLE . " WHERE ID='".$this->args["fileID"]."'","Path",$this->db);
+				$this->args["fileHref"] = f("SELECT Path FROM " . FILE_TABLE . " WHERE ID='".abs($this->args["fileID"])."'","Path",$this->db);
 				$this->args["mailHref"] = "";
 				$this->args["objID"] = "";
 				$this->args["objHref"] = "";
@@ -150,7 +150,7 @@ class weHyperlinkDialog extends weDialog{
 			$this->args["type"] = "int";
 			$this->args["extHref"] = "";
 			$this->args["fileID"] = $fileID;
-			$this->args["fileHref"] = f("SELECT Path FROM " . FILE_TABLE . " WHERE ID='".$this->args["fileID"]."'","Path",$this->db);
+			$this->args["fileHref"] = f("SELECT Path FROM " . FILE_TABLE . " WHERE ID='".abs($this->args["fileID"])."'","Path",$this->db);
 			$this->args["objID"] = "";
 			$this->args["mailHref"] = "";
 			$this->args["objHref"] = "";
@@ -179,7 +179,7 @@ class weHyperlinkDialog extends weDialog{
 			$this->args["fileHref"] = "";
 			$this->args["mailHref"] = "";
 			$this->args["objID"] = $objID;
-			$this->args["objHref"] = f("SELECT Path FROM " . OBJECT_FILES_TABLE . " WHERE ID='".$this->args["objID"]."'","Path",$this->db);
+			$this->args["objHref"] = f("SELECT Path FROM " . OBJECT_FILES_TABLE . " WHERE ID='".abs($this->args["objID"])."'","Path",$this->db);
 		}
 		$this->args["target"] = $target;
 		$this->args["class"] = $class;

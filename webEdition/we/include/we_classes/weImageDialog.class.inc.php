@@ -156,7 +156,7 @@ class weImageDialog extends weDialog{
 				unset($thumbObj);
 			}else{
 				$this->args["thumbnail"] = "";
-				$this->args["fileSrc"] = f("SELECT Path FROM " . FILE_TABLE . " WHERE ID='".$this->args["fileID"]."'","Path",$this->db);
+				$this->args["fileSrc"] = f("SELECT Path FROM " . FILE_TABLE . " WHERE ID='".abs($this->args["fileID"])."'","Path",$this->db);
 				$this->args["src"] = $this->args["fileSrc"]."?id=".$fileID;
 			}
 			$this->args["ratio"] = "1";
@@ -216,7 +216,7 @@ class weImageDialog extends weDialog{
 						$align = $_REQUEST["wasThumbnailChange"] ? $align : $imgObj->getElement("align");
 						$border = $_REQUEST["wasThumbnailChange"] ? $border : $imgObj->getElement("border");
 						$longdesc = $_REQUEST["wasThumbnailChange"] ? $longdesc : ($imgObj->getElement("longdescid") ? (id_to_path($imgObj->getElement("longdescid"))."?id=".$imgObj->getElement("longdescid")) : $longdesc);
-		 				$alt = $_REQUEST["wasThumbnailChange"] ? $alt : f("SELECT " . CONTENT_TABLE . ".Dat as Dat FROM " . CONTENT_TABLE . "," . LINK_TABLE . " WHERE " . LINK_TABLE . ".CID=" . CONTENT_TABLE . ".ID AND " . LINK_TABLE . ".DocumentTable='" . substr(FILE_TABLE, strlen(TBL_PREFIX)) . "' AND " . LINK_TABLE . ".DID='".$fileID."' AND " . LINK_TABLE . ".Name='alt'","Dat",$this->db);
+		 				$alt = $_REQUEST["wasThumbnailChange"] ? $alt : f("SELECT " . CONTENT_TABLE . ".Dat as Dat FROM " . CONTENT_TABLE . "," . LINK_TABLE . " WHERE " . LINK_TABLE . ".CID=" . CONTENT_TABLE . ".ID AND " . LINK_TABLE . ".DocumentTable='" . substr(FILE_TABLE, strlen(TBL_PREFIX)) . "' AND " . LINK_TABLE . ".DID='".abs($fileID)."' AND " . LINK_TABLE . ".Name='alt'","Dat",$this->db);
 					}
 					$this->initByFileID($fileID,$width,$height,$hspace,$vspace,$border,$alt,$align,$name,$thumbnail,$class,$title,$longdesc);
 					break;

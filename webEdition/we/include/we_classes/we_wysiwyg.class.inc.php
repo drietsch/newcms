@@ -1111,7 +1111,7 @@ class we_wysiwyg{
 
 		if(preg_match_all('/src="document:([^" ]+)/i',$editValue,$regs,PREG_SET_ORDER)){
 			for($i=0;$i<sizeof($regs);$i++){
-				$foo = getHash("SELECT Path FROM " . FILE_TABLE . " WHERE ID='".$regs[$i][1]."'",$GLOBALS["DB_WE"]);
+				$foo = getHash("SELECT Path FROM " . FILE_TABLE . " WHERE ID='".abs($regs[$i][1])."'",$GLOBALS["DB_WE"]);
 				$editValue = eregi_replace('src="document:'.$regs[$i][1],'src="'.$foo["Path"]."?id=".$regs[$i][1],$editValue);
 			}
 		}

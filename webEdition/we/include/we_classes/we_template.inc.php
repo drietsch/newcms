@@ -593,7 +593,7 @@ class we_template extends we_document
 		$textname = 'MasterTemplateNameDummy';
 		$idname = 'we_'.$this->Name.'_MasterTemplateID';
 		$myid = $this->MasterTemplateID ? $this->MasterTemplateID : '';
-		$path = f("SELECT Path FROM $table WHERE ID='$myid'","Path",$this->DB_WE);
+		$path = f("SELECT Path FROM ".mysql_real_escape_string($table)." WHERE ID='".abs($myid)."'","Path",$this->DB_WE);
 		$alerttext=str_replace("'","\\\\\\'",$GLOBALS["l_we_class"]["same_master_template"]);
 		$button = $we_button->create_button("select", "javascript:we_cmd('openDocselector',document.we_form.elements['$idname'].value,'$table','document.we_form.elements[\\'$idname\\'].value','document.we_form.elements[\\'$textname\\'].value','opener._EditorFrame.setEditorIsHot(true);if(currentID==$this->ID){" . we_message_reporting::getShowMessageCall($alerttext, WE_MESSAGE_ERROR) . "opener.document.we_form.elements[\\'$idname\\'].value=\'\';opener.document.we_form.elements[\\'$textname\\'].value=\\'\\';}','".session_id()."','','text/weTmpl',1)");
 		$trashButton = $we_button->create_button("image:btn_function_trash", "javascript:document.we_form.elements['$idname'].value='';document.we_form.elements['$textname'].value='';YAHOO.autocoml.selectorSetValid('yuiAcInputMasterTemplate');_EditorFrame.setEditorIsHot(true);", true, 27, 22);
@@ -620,7 +620,7 @@ class we_template extends we_document
 		if ($this->ID == 0) {
 			return $paths;
 		}
-		$this->DB_WE->query("SELECT ID, Path FROM ".FILE_TABLE." WHERE temp_template_id='".$this->ID."' OR ((temp_template_id = '' OR temp_template_id = 0) AND TemplateID = '".$this->ID."')");
+		$this->DB_WE->query("SELECT ID, Path FROM ".FILE_TABLE." WHERE temp_template_id='".abs($this->ID)."' OR ((temp_template_id = '' OR temp_template_id = 0) AND TemplateID = '".abs($this->ID)."')");
 		while($this->DB_WE->next_record()) {
 			$paths[$this->DB_WE->f('ID')] = $this->DB_WE->f('Path');
 
@@ -830,13 +830,13 @@ class we_template extends we_document
 
 		// Check if the cachetype was changed and delete all
 		// cachefiles of the documents based on this template
-		$this->DB_WE->query("SELECT CacheType FROM ".TEMPLATES_TABLE." WHERE ID = '".$this->ID."'");
+		$this->DB_WE->query("SELECT CacheType FROM ".TEMPLATES_TABLE." WHERE ID = '".abs($this->ID)."'");
 		$OldCacheType = "";
 		while($this->DB_WE->next_record()) {
 			$OldCacheType = $this->DB_WE->f('CacheType');
 		}
 		if($OldCacheType != "" && $OldCacheType != "none" && $OldCacheType != $this->CacheType) {
-			$this->DB_WE->query("SELECT ID FROM ".FILE_TABLE." WHERE temp_template_id='".$this->ID."' OR ((temp_template_id = '' OR temp_template_id = 0) AND TemplateID = '".$this->ID."')");
+			$this->DB_WE->query("SELECT ID FROM ".FILE_TABLE." WHERE temp_template_id='".abs($this->ID)."' OR ((temp_template_id = '' OR temp_template_id = 0) AND TemplateID = '".abs($this->ID)."')");
 			while($this->DB_WE->next_record()) {
 				$cacheDir = weCacheHelper::getDocumentCacheDir($this->DB_WE->f('ID'));
 				weCacheHelper::clearCache($cacheDir);

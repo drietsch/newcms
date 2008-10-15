@@ -101,8 +101,8 @@ class we_fileselector{
 		if($id != ""){
 			// get default Directory
 			$this->db->query("SELECT ".$this->fields. "
-								FROM ".$this->table."
-								WHERE ID='$id'");
+								FROM ".mysql_real_escape_string($this->table)."
+								WHERE ID='".abs($id)."'");
 
 			// getValues of selected Dir
 			if($this->db->next_record()){
@@ -142,7 +142,7 @@ class we_fileselector{
 	function isIDInFolder($ID,$folderID,$db=""){
 		if($folderID==$ID) return true;
 		if(!$db) $db = new DB_WE();
-		$pid = f("SELECT ParentID FROM ".$this->table." WHERE ID='".$ID."'","ParentID",$db);
+		$pid = f("SELECT ParentID FROM ".mysql_real_escape_string($this->table)." WHERE ID='".abs($ID)."'","ParentID",$db);
 		if($pid == $folderID){
 			return true;
 		}else if($pid != 0){
@@ -160,9 +160,9 @@ class we_fileselector{
 
 		$this->db->query(
 			"SELECT ".$this->fields."
-			FROM ". $this->table ."
-			WHERE ParentID='".$this->dir."' " .
-			( ($this->filter != "" ? ($this->table == CATEGORY_TABLE ? "AND IsFolder = '".$this->filter."' " : "AND ContentType = '".$this->filter."' ") : '' ) ).
+			FROM ". mysql_real_escape_string($this->table) ."
+			WHERE ParentID='".abs($this->dir)."' " .
+			( ($this->filter != "" ? ($this->table == CATEGORY_TABLE ? "AND IsFolder = '".mysql_real_escape_string($this->filter)."' " : "AND ContentType = '".mysql_real_escape_string($this->filter)."' ") : '' ) ).
 			( ((defined('ISP_VERSION') && ISP_VERSION) && is_array($_isp_hide_files) && sizeof($_isp_hide_files) > 0) ? "AND Path NOT IN ('" . implode("','", $_isp_hide_files) . "')" : '').
 			($this->order ? (' ORDER BY '.$this->order) : ''));
 		$_SESSION["we_fs_lastDir"][$this->table] = $this->dir;
@@ -351,7 +351,7 @@ function selectFile(id){
 
 	function getFramesetJavaScriptDef(){
 		$startPathQuery = new DB_WE();
-		$startPathQuery->query("SELECT Path FROM ".$this->table." WHERE ID='".$this->dir."'");
+		$startPathQuery->query("SELECT Path FROM ".mysql_real_escape_string($this->table)." WHERE ID='".abs($this->dir)."'");
 		$startPath = $startPathQuery->next_record() ? $startPathQuery->f('Path') : "/";
 
 		return '<script language="JavaScript" type="text/javascript">
@@ -663,7 +663,7 @@ if((!defined("OBJECT_TABLE")) || $this->table != OBJECT_TABLE){
 		$z = 0;
 		while($pid!=0){
 			$c++;
-			$this->db->query("SELECT ID,Text,ParentID FROM $this->table WHERE ID=$pid");
+			$this->db->query("SELECT ID,Text,ParentID FROM ".mysql_real_escape_string($this->table)." WHERE ID=".abs($pid)."");
 			if($this->db->next_record()){
 				$out='<option value="'.$this->db->f("ID").'"'.(($z==0) ? ' selected' : '').'>'.$this->db->f("Text").'</options>'."\n".$out;
 				$z++;
@@ -808,7 +808,7 @@ top.fsheader.clearOptions();
 		$c=0;
 		while($pid!=0){
 			$c++;
-			$this->db->query("SELECT ID,Text,ParentID FROM $this->table WHERE ID=$pid");
+			$this->db->query("SELECT ID,Text,ParentID FROM ".mysql_real_escape_string($this->table)." WHERE ID=".abs($pid)."");
 
 			if($this->db->next_record()){
 				$out = 'top.fsheader.addOption("'.$this->db->f("Text").'",'.$this->db->f("ID").');

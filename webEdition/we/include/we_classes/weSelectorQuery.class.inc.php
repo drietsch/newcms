@@ -90,7 +90,7 @@ class weSelectorQuery {
 					if ($types[$i]=="folder") {
 						$where .= empty($where) ? "WHERE (IsFolder=1" : ($i<1 ? " AND (" : " OR ") . "IsFolder=1";
 					} elseif(isset($typeField) && $typeField != "") {
-						$where .= empty($where) ? "WHERE ($typeField='".$types[$i]."'" : ($i<1 ? " AND (" : " OR ") . "$typeField='".$types[$i]."'";
+						$where .= empty($where) ? "WHERE ($typeField='".mysql_real_escape_string($types[$i])."'" : ($i<1 ? " AND (" : " OR ") . "$typeField='".mysql_real_escape_string($types[$i])."'";
 						$isFolder = 0;
 						$addCT = 1;
 					}
@@ -113,7 +113,7 @@ class weSelectorQuery {
 
 		$order = "ORDER BY " . ($isFolder ? "Path" : "isFolder  ASC, Path") . " ASC ";
 		$fields = implode(", ", $this->fields);
-		$query = "SELECT $fields FROM $table $where $order" . ($limit ? " LIMIT $limit" : "");
+		$query = "SELECT $fields FROM ".mysql_real_escape_string($table)." $where $order" . ($limit ? " LIMIT $limit" : "");
 		$this->db->query($query);
 	}
 	
@@ -157,7 +157,7 @@ class weSelectorQuery {
 					if ($types[$i]=="folder") {
 						$where .= empty($where) ? "WHERE (IsFolder=1" : ($i<1 ? " AND (" : " OR ") . "IsFolder=1";
 					} elseif(isset($typeField) && $typeField != "") {
-						$where .= empty($where) ? "WHERE ($typeField='".$types[$i]."'" : ($i<1 ? " AND (" : " OR ") . "$typeField='".$types[$i]."'";
+						$where .= empty($where) ? "WHERE ($typeField='".mysql_real_escape_string($types[$i])."'" : ($i<1 ? " AND (" : " OR ") . "$typeField='".mysql_real_escape_string($types[$i])."'";
 						$isFolder = 0;
 						$addCT = 1;
 					}
@@ -180,7 +180,7 @@ class weSelectorQuery {
 
 		$order = "ORDER BY " . ($isFolder ? "Path" : "isFolder  ASC, Path") . " ASC ";
 		$fields = implode(", ", $this->fields);
-		$query = "SELECT $fields FROM $table $where $order" . ($limit ? " LIMIT $limit" : "");
+		$query = "SELECT $fields FROM ".mysql_real_escape_string($table)." $where $order" . ($limit ? " LIMIT $limit" : "");
 		$this->db->query($query);
 	}
 	
@@ -217,9 +217,9 @@ class weSelectorQuery {
 		
 		$query = "
 			SELECT " . implode(", ", $this->fields) . "
-			FROM $table
+			FROM ".mysql_real_escape_string($table)."
 			WHERE 
-				ParentID = $id
+				ParentID = ".abs($id)."
 				AND ( IsFolder = 1 
 					  $ctntQuery ) " .
 			(empty($userExtraSQL) ? "" : " " . $userExtraSQL) . "
@@ -254,9 +254,9 @@ class weSelectorQuery {
 		}
 		$query = "
 			SELECT " . implode(", ", $this->fields) . "
-			FROM $table
+			FROM ".mysql_real_escape_string($table)."
 			WHERE 
-				ID = $id
+				ID = ".abs($id)."
 				" .	(empty($userExtraSQL) ? "" : " " . $userExtraSQL);
 		$this->db->query($query);
 		return $this->getResult();
@@ -280,9 +280,9 @@ class weSelectorQuery {
 		}
 		$query = "
 			SELECT " . implode(", ", $this->fields) . "
-			FROM $table
+			FROM ".mysql_real_escape_string($table)."
 			WHERE 
-				Path = '$path'
+				Path = '".mysql_real_escape_string($path)."'
 				" .	(empty($userExtraSQL) ? "" : " " . $userExtraSQL);
 		$this->db->query($query);
 		return $this->getResult();

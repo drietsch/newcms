@@ -174,7 +174,7 @@ class we_root extends we_class
 		if($Path != $this->Path){
 
 			### check if Path exists in db
-			if(f("SELECT Path FROM ".$this->Table." WHERE Path='$Path'","Path",$this->DB_WE)){
+			if(f("SELECT Path FROM ".mysql_real_escape_string($this->Table)." WHERE Path='".mysql_real_escape_string($Path)."'","Path",$this->DB_WE)){
 				$GLOBALS["we_responseText"] = sprintf($GLOBALS["l_we_class"]["response_path_exists"],$Path);
 				return false;
 			}
@@ -390,7 +390,7 @@ class we_root extends we_class
 		$content .= '<tr><td>'.getPixel(20,2).'</td><td>'.getPixel(351,2).'</td><td>'.getPixel(100,2).'</td><td>'.getPixel(26,2).'</td></tr>'."\n";
 		if(sizeof($owners)){
 			for($i=0;$i<sizeof($owners);$i++){
-				$foo = getHash("SELECT ID,Path,Icon from " . USER_TABLE . " WHERE ID='".$owners[$i]."'",$this->DB_WE);
+				$foo = getHash("SELECT ID,Path,Icon from " . USER_TABLE . " WHERE ID='".abs($owners[$i])."'",$this->DB_WE);
 				$content .= '<tr><td><img src="'.ICON_DIR.$foo["Icon"].'" width="16" height="18"></td><td class="defaultfont">'.$foo["Path"].'</td><td>'.
 
 				we_forms::checkboxWithHidden(isset($ownersReadOnly[$owners[$i]]) ? $ownersReadOnly[$owners[$i]] : "", 'we_owners_read_only['.$owners[$i].']', $l_we_class["readOnly"],false,"defaultfont","_EditorFrame.setEditorIsHot(true);",!$canChange).
@@ -542,7 +542,7 @@ class we_root extends we_class
 
 		if ((int)$userid >0)
 		{
-			$username = f("SELECT username FROM " . USER_TABLE . " WHERE ID='$userid'","username",$this->DB_WE);
+			$username = f("SELECT username FROM " . USER_TABLE . " WHERE ID='".abs($userid)."'","username",$this->DB_WE);
 		}
 
 
@@ -627,7 +627,7 @@ class we_root extends we_class
 
 	/* get the Path of the Parent-Object */
 	function getParentPath(){
-		return (!$this->ParentID) ? "/" : f("SELECT Path FROM ".$this->Table." WHERE ID=".$this->ParentID,"Path",$this->DB_WE);
+		return (!$this->ParentID) ? "/" : f("SELECT Path FROM ".mysql_real_escape_string($this->Table)." WHERE ID=".abs($this->ParentID),"Path",$this->DB_WE);
 	}
 
 	function constructPath(){
@@ -636,7 +636,7 @@ class we_root extends we_class
 			$p = "/".$this->Text;
 			$z=0;
 			while($pid && $z < 50){
-				$h = getHash("SELECT ParentID,Text FROM ".$this->Table." WHERE ID='$pid'",$this->DB_WE);
+				$h = getHash("SELECT ParentID,Text FROM ".mysql_real_escape_string($this->Table)." WHERE ID='".abs($pid)."'",$this->DB_WE);
 				$p = "/".$h["Text"].$p;
 				$pid = $h["ParentID"];
 				$z++;
@@ -683,7 +683,7 @@ class we_root extends we_class
 
 	function makeHrefByID($id,$db=""){
 		$db = $db ? $db : new DB_WE;
-		return f("SELECT Path FROM " . FILE_TABLE . " WHERE ID=".$id,"Path",$this->DB_WE);
+		return f("SELECT Path FROM " . FILE_TABLE . " WHERE ID=".abs($id),"Path",$this->DB_WE);
 	}
 
 
@@ -750,7 +750,7 @@ class we_root extends we_class
 	}
 
 	function i_getDefaultFilename(){
-	 	return f("SELECT MAX(ID) as ID FROM ".$this->Table,"ID",$this->DB_WE)+1;
+	 	return f("SELECT MAX(ID) as ID FROM ".mysql_real_escape_string($this->Table),"ID",$this->DB_WE)+1;
 	}
 
 	function we_initSessDat($sessDat){
@@ -891,8 +891,8 @@ class we_root extends we_class
 
 	function i_getContentData($loadBinary=0){
 
-		$this->DB_WE->query("SELECT * FROM " . CONTENT_TABLE . "," . LINK_TABLE . " WHERE " . LINK_TABLE . ".DID='".$this->ID.
-				"' AND " . LINK_TABLE . ".DocumentTable='".substr($this->Table, strlen(TBL_PREFIX)).
+		$this->DB_WE->query("SELECT * FROM " . CONTENT_TABLE . "," . LINK_TABLE . " WHERE " . LINK_TABLE . ".DID='".abs($this->ID).
+				"' AND " . LINK_TABLE . ".DocumentTable='".mysql_real_escape_string(substr($this->Table, strlen(TBL_PREFIX))).
 				"' AND " . CONTENT_TABLE . ".ID=" . LINK_TABLE . ".CID ".
 				($loadBinary ? "" : " AND " . CONTENT_TABLE . ".IsBinary=0"));
 		$filter = array("Name","DID","Ord");
@@ -960,7 +960,7 @@ class we_root extends we_class
 							else $this->DB_WE->query($q);
 							$cid = f("SELECT max(ID) as ID FROM " . CONTENT_TABLE, "ID", $this->DB_WE);
 							$this->elements[$k]["id"]=$cid; // update Object itself
-							$q = "INSERT INTO " . LINK_TABLE . " (DID,CID,Name,Type,DocumentTable) VALUES ('".$this->ID."',$cid,'$k','".$v["type"]."','".substr($this->Table, strlen(TBL_PREFIX))."')";
+							$q = "INSERT INTO " . LINK_TABLE . " (DID,CID,Name,Type,DocumentTable) VALUES ('".abs($this->ID)."',".abs($cid).",'".mysql_real_escape_string($k)."','".mysql_real_escape_string($v["type"])."','".mysql_real_escape_string(substr($this->Table, strlen(TBL_PREFIX)))."')";
 							if(!$this->DB_WE->query($q)) return false;
 						}
 					}
@@ -1073,10 +1073,10 @@ class we_root extends we_class
 
 	function  i_correctDoublePath(){
 		if($this->Filename){
-				if(f("SELECT ID  FROM  " . $this->Table . "  WHERE ID!='".abs($this->ID)."' AND Text='".$this->Filename.(isset($this->Extension)  ?  $this->Extension  : "")."' AND ParentID='".$this->ParentID."'","ID",$this->DB_WE)){
+				if(f("SELECT ID  FROM  " . mysql_real_escape_string($this->Table) . "  WHERE ID!='".abs($this->ID)."' AND Text='".mysql_real_escape_string($this->Filename.(isset($this->Extension)  ?  $this->Extension  : ""))."' AND ParentID='".abs($this->ParentID)."'","ID",$this->DB_WE)){
 					$z=0;
 					$footext = $this->Filename."_".$z.(isset($this->Extension)  ?  $this->Extension  : "");
-					while(f("SELECT ID FROM ".$this->Table." WHERE ID!='".abs($this->ID)."' AND Text='$footext' AND ParentID='".$this->ParentID."'","ID",$this->DB_WE)){
+					while(f("SELECT ID FROM ".mysql_real_escape_string($this->Table)." WHERE ID!='".abs($this->ID)."' AND Text='".mysql_real_escape_string($footext)."' AND ParentID='".mysql_real_escape_string($this->ParentID)."'","ID",$this->DB_WE)){
 						$z++;
 						$footext = $this->Filename."_".$z.(isset($this->Extension)  ?  $this->Extension  : "");
 					}
@@ -1086,10 +1086,10 @@ class we_root extends we_class
 
 				}
 		}else{
-				if(f("SELECT ID  FROM  " . $this->Table . "  WHERE ID!='".abs($this->ID)."' AND Text='".$this->Text."' AND ParentID='".$this->ParentID."'","ID",$this->DB_WE)){
+				if(f("SELECT ID  FROM  " . mysql_real_escape_string($this->Table) . "  WHERE ID!='".abs($this->ID)."' AND Text='".mysql_real_escape_string($this->Text)."' AND ParentID='".abs($this->ParentID)."'","ID",$this->DB_WE)){
 					$z=0;
 					$footext = $this->Text."_".$z;
-					while(f("SELECT ID FROM ".$this->Table." WHERE ID!='".abs($this->ID)."' AND Text='$footext' AND ParentID='".$this->ParentID."'","ID",$this->DB_WE)){
+					while(f("SELECT ID FROM ".mysql_real_escape_string($this->Table)." WHERE ID!='".abs($this->ID)."' AND Text='".mysql_real_escape_string($footext)."' AND ParentID='".abs($this->ParentID)."'","ID",$this->DB_WE)){
 						$z++;
 						$footext = $this->Text."_".$z;
 					}
@@ -1181,7 +1181,7 @@ class we_root extends we_class
 	function isLockedByUser(){
 
 		$DB_WE = new DB_WE();
-		$DB_WE->query("SELECT * FROM " . LOCK_TABLE . " WHERE ID='".$this->ID."' AND tbl='".$this->Table."'");
+		$DB_WE->query("SELECT * FROM " . LOCK_TABLE . " WHERE ID='".abs($this->ID)."' AND tbl='".mysql_real_escape_string($this->Table)."'");
 		$_userId = 0;
 		while($DB_WE->next_record()) {
 			$_userId = $DB_WE->f("UserID");
@@ -1194,14 +1194,14 @@ class we_root extends we_class
 		if ($_SESSION['user']['ID']) { // only if user->id != 0
 
 			$DB_WE = new DB_WE();
-			$DB_WE->query("INSERT INTO " . LOCK_TABLE . " (ID,UserID,tbl) VALUES('".$this->ID."','".$_SESSION["user"]["ID"]."','".$this->Table."')");
+			$DB_WE->query("INSERT INTO " . LOCK_TABLE . " (ID,UserID,tbl) VALUES('".abs($this->ID)."','".abs($_SESSION["user"]["ID"])."','".mysql_real_escape_string($this->Table)."')");
 		}
 	}
 
 	function i_loadNavigationItems() {
 		if($this->Table==FILE_TABLE  && $this->ID && $this->InWebEdition) {
 			$_items = array();
-			$this->DB_WE->query('SELECT Path FROM '.NAVIGATION_TABLE.' WHERE ((Selection="static" AND SelectionType="docLink") OR (IsFolder=1)) AND LinkID="'.$this->ID.'";');
+			$this->DB_WE->query('SELECT Path FROM '.NAVIGATION_TABLE.' WHERE ((Selection="static" AND SelectionType="docLink") OR (IsFolder=1)) AND LinkID="'.abs($this->ID).'";');
 			while($this->DB_WE->next_record()) {
 				$_items[] = $this->DB_WE->f('Path');
 			}
@@ -1217,8 +1217,8 @@ class we_root extends we_class
 	function getNavigationFoldersForDoc() {
 		if($this->Table==FILE_TABLE) {
 			if(isset($this->DocType)) {
-				$where = '((Selection="dynamic") AND (DocTypeID="'.$this->DocType.'" OR FolderID="'.$this->ParentID.'")) OR ';
-				$where .= '(((Selection="static" AND SelectionType="docLink") OR (IsFolder=1 AND FolderSelection="docLink")) AND LinkID="'.$this->ID.'");';
+				$where = '((Selection="dynamic") AND (DocTypeID="'.mysql_real_escape_string($this->DocType).'" OR FolderID="'.abs($this->ParentID).'")) OR ';
+				$where .= '(((Selection="static" AND SelectionType="docLink") OR (IsFolder=1 AND FolderSelection="docLink")) AND LinkID="'.abs($this->ID).'");';
 				$query = 'SELECT ParentID FROM '.NAVIGATION_TABLE.' WHERE '.$where;
 				$this->DB_WE->query($query);
 				$return = array();
@@ -1227,7 +1227,7 @@ class we_root extends we_class
 				}			
 				return $return;
 			} else {
-				$query = 'SELECT ParentID FROM '.NAVIGATION_TABLE.' WHERE ((Selection="static" AND SelectionType="docLink") OR (IsFolder=1 AND FolderSelection="docLink")) AND LinkID="'.$this->ID.'";';
+				$query = 'SELECT ParentID FROM '.NAVIGATION_TABLE.' WHERE ((Selection="static" AND SelectionType="docLink") OR (IsFolder=1 AND FolderSelection="docLink")) AND LinkID="'.abs($this->ID).'";';
 				$this->DB_WE->query($query);
 				$return = array();
 				while ($this->DB_WE->next_record()) {

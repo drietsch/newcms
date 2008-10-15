@@ -450,10 +450,10 @@ top.clearEntries();
 			print we_message_reporting::getShowMessageCall($GLOBALS["l_we_editor"]["category"]["name_komma"], WE_MESSAGE_ERROR);
 		}else{
 			$txt = trim($txt);
-			$parentPath = (!abs($this->dir)) ? "" : f("SELECT Path FROM ".$this->table." WHERE ID=".abs($this->dir),"Path",$this->db);
+			$parentPath = (!abs($this->dir)) ? "" : f("SELECT Path FROM ".mysql_real_escape_string($this->table)." WHERE ID=".abs($this->dir),"Path",$this->db);
 			$Path = $parentPath."/".$txt;
 
-			$this->db->query("SELECT ID FROM ".$this->table." WHERE Path='".addslashes($Path)."'");
+			$this->db->query("SELECT ID FROM ".mysql_real_escape_string($this->table)." WHERE Path='".mysql_real_escape_string($Path)."'");
 			if($this->db->next_record()){
 				if($what==1){
 					$we_responseText = sprintf($GLOBALS["l_we_editor"]["folder"]["response_path_exists"],$Path);
@@ -467,13 +467,13 @@ top.clearEntries();
 					$we_responseText = sprintf($GLOBALS["l_we_editor"]["category"]["we_filename_notValid"],$Path);
 					print we_message_reporting::getShowMessageCall($we_responseText, WE_MESSAGE_ERROR);
 		         }else{
-					$this->db->query("INSERT INTO ".$this->table."
+					$this->db->query("INSERT INTO ".mysql_real_escape_string($this->table)."
 								(Category,ParentID,Text,Path,IsFolder,Icon)
-								VALUES('".addslashes($txt)."',
+								VALUES('".mysql_real_escape_string($txt)."',
 									".abs($this->dir).",
-									'".addslashes($txt)."',
-									'".addslashes($Path)."',".$what.",'".(($what==1) ? 'folder.gif' : 'cat.gif')."')");
-    				$folderID = f("SELECT MAX(LAST_INSERT_ID()) as LastID FROM ".$this->table,"LastID",$this->db);
+									'".mysql_real_escape_string($txt)."',
+									'".mysql_real_escape_string($Path)."',".$what.",'".(($what==1) ? 'folder.gif' : 'cat.gif')."')");
+    				$folderID = f("SELECT MAX(LAST_INSERT_ID()) as LastID FROM ".mysql_real_escape_string($this->table),"LastID",$this->db);
 					print 'top.currentPath = "'.$Path.'";
 top.currentID = "'.$folderID.'";
 top.hot = 1; // this is hot for category edit!!
@@ -517,10 +517,10 @@ top.selectFile(top.currentID);
 	function printDoRenameEntryHTML(){
 		htmlTop();
 protect();
-		$foo = getHash("SELECT IsFolder,Text FROM ".$this->table." WHERE ID=".$this->we_editCatID,$this->db);
+		$foo = getHash("SELECT IsFolder,Text FROM ".mysql_real_escape_string($this->table)." WHERE ID=".abs($this->we_editCatID),$this->db);
 		$IsDir = $foo["IsFolder"];
 		$oldname = $foo["Text"];
-		$what = f("SELECT IsFolder FROM " . CATEGORY_TABLE . " WHERE ID='".$this->we_editCatID."'","IsFolder",$this->db);
+		$what = f("SELECT IsFolder FROM " . CATEGORY_TABLE . " WHERE ID='".abs($this->we_editCatID)."'","IsFolder",$this->db);
 		print '<script>
 top.clearEntries();
 ';
@@ -535,9 +535,9 @@ top.clearEntries();
 		}else if(ereg(",",$txt)){
 			print we_message_reporting::getShowMessageCall($GLOBALS["l_we_editor"]["category"]["name_komma"], WE_MESSAGE_ERROR);
 		}else{
-			$parentPath = (!abs($this->dir)) ? "" : f("SELECT Path FROM ".$this->table." WHERE ID=".abs($this->dir),"Path",$this->db);
+			$parentPath = (!abs($this->dir)) ? "" : f("SELECT Path FROM ".mysql_real_escape_string($this->table)." WHERE ID=".abs($this->dir),"Path",$this->db);
 			$Path = $parentPath."/".$txt;
-			$this->db->query("SELECT ID,Text FROM ".$this->table." WHERE Path='".$Path."' AND ID != '".$this->we_editCatID."'");
+			$this->db->query("SELECT ID,Text FROM ".mysql_real_escape_string($this->table)." WHERE Path='".mysql_real_escape_string($Path)."' AND ID != '".abs($this->we_editCatID)."'");
 			if($this->db->next_record()){
 				if($what==1){
 					$we_responseText = sprintf($GLOBALS["l_we_editor"]["folder"]["response_path_exists"],$Path);
@@ -550,13 +550,13 @@ top.clearEntries();
 					$we_responseText = sprintf($GLOBALS["l_we_editor"]["category"]["we_filename_notValid"],$Path);
 					print we_message_reporting::getShowMessageCall($we_responseText, WE_MESSAGE_ERROR);
 		         }else{
-		         	if(f("SELECT Text FROM ".$this->table." WHERE ID='".$this->we_editCatID."'","Text",$this->db) != $txt){
-						$this->db->query("UPDATE ".$this->table."
-								SET Category='".addslashes($txt)."',
+		         	if(f("SELECT Text FROM ".mysql_real_escape_string($this->table)." WHERE ID='".abs($this->we_editCatID)."'","Text",$this->db) != $txt){
+						$this->db->query("UPDATE ".mysql_real_escape_string($this->table)."
+								SET Category='".mysql_real_escape_string($txt)."',
 								ParentID=".abs($this->dir).",
-								Text='".addslashes($txt)."',
-								Path='".addslashes($Path)."'
-								WHERE ID='".$this->we_editCatID."'");
+								Text='".mysql_real_escape_string($txt)."',
+								Path='".mysql_real_escape_string($Path)."'
+								WHERE ID='".abs($this->we_editCatID)."'");
 						if($IsDir){
 							$this->renameChildrenPath($this->we_editCatID);
 						}
@@ -786,10 +786,10 @@ function setDir(id){
 	function renameChildrenPath($id){
 		$db = new DB_WE();
 		$db2 = new DB_WE();
-		$db->query("SELECT ID,IsFolder,Text FROM ".CATEGORY_TABLE." WHERE ParentID='$id'");
+		$db->query("SELECT ID,IsFolder,Text FROM ".CATEGORY_TABLE." WHERE ParentID='".abs($id)."'");
 		while($db->next_record()){
-			$newPath = f("SELECT Path FROM ".CATEGORY_TABLE. " WHERE ID='$id'","Path",$db2)."/".$db->f("Text");
-			$db2->query("UPDATE ".CATEGORY_TABLE." SET Path='$newPath' WHERE ID='".$db->f("ID")."'");
+			$newPath = f("SELECT Path FROM ".CATEGORY_TABLE. " WHERE ID='".abs($id)."'","Path",$db2)."/".$db->f("Text");
+			$db2->query("UPDATE ".CATEGORY_TABLE." SET Path='".mysql_real_escape_string($newPath)."' WHERE ID='".abs($db->f("ID"))."'");
 			if($db->f("IsFolder")){
 				$this->renameChildrenPath($db->f("ID"));
 			}
@@ -801,10 +801,10 @@ function setDir(id){
 		if($IsDir){
 			return $this->DirInUse($id);
 		}else{
-			$ret = f("SELECT ID FROM " . FILE_TABLE . " WHERE Category like '%,".$id.",%' OR temp_category like '%,".$id.",%'","ID",$db);
+			$ret = f("SELECT ID FROM " . FILE_TABLE . " WHERE Category like '%,".abs($id).",%' OR temp_category like '%,".abs($id).",%'","ID",$db);
 			if($ret) return true;
 			if(defined("OBJECT_TABLE")){
-				$ret = f("SELECT ID FROM " . OBJECT_FILES_TABLE . " WHERE Category like '%,".$id.",%'","ID",$db);
+				$ret = f("SELECT ID FROM " . OBJECT_FILES_TABLE . " WHERE Category like '%,".abs($id).",%'","ID",$db);
 				if($ret) return true;
 			}
 		}
@@ -815,7 +815,7 @@ function setDir(id){
 		$db=new DB_WE();
 		if($this->CatInUse($id,0)) return true;
 
-		$db->query("SELECT ID,IsFolder FROM ".$this->table." WHERE ParentID='$id'");
+		$db->query("SELECT ID,IsFolder FROM ".mysql_real_escape_string($this->table)." WHERE ParentID='".abs($id)."'");
 		while($db->next_record()){
 			if($this->CatInUse($db->f("ID"),$db->f("IsFolder"))) return true;
 		}
@@ -836,7 +836,7 @@ function setDir(id){
 			$catlistNotDeleted = "";
 			$changeToParent=false;
 			foreach ($catsToDel as $id) {
-				$IsDir = f("SELECT IsFolder FROM ".$this->table." WHERE ID=".$this->id,"IsFolder",$this->db);
+				$IsDir = f("SELECT IsFolder FROM ".mysql_real_escape_string($this->table)." WHERE ID=".abs($this->id),"IsFolder",$this->db);
 				if ($this->CatInUse($id,$IsDir)) {
 					$catlistNotDeleted .= id_to_path($id, CATEGORY_TABLE)."\\n";
 				} else {
@@ -866,7 +866,7 @@ function setDir(id){
 			}
 			$this->id = $this->dir;
 			if($this->id){
-				$foo = getHash("SELECT Path,Text FROM " . CATEGORY_TABLE . " WHERE ID='".$this->id."'",$this->db);
+				$foo = getHash("SELECT Path,Text FROM " . CATEGORY_TABLE . " WHERE ID='".abs($this->id)."'",$this->db);
 				$Path = $foo["Path"];
 				$Text = $foo["Text"];
 			}else{
@@ -894,7 +894,7 @@ if(top.currentID && top.fsfooter.document.we_form.fname.value != "")
 
 		return;
 
-		$IsDir = f("SELECT IsFolder FROM ".$this->table." WHERE ID=".$this->id,"IsFolder",$this->db);
+		$IsDir = f("SELECT IsFolder FROM ".mysql_real_escape_string($this->table)." WHERE ID=".abs($this->id),"IsFolder",$this->db);
 		if($this->CatInUse($this->id,$IsDir)){
 
 			print we_htmlElement::jsElement(
@@ -915,7 +915,7 @@ top.clearEntries();
 			$this->id = $this->dir;
 
 			if($this->id){
-				$foo = getHash("SELECT Path,Text FROM " . CATEGORY_TABLE . " WHERE ID='".$this->id."'",$this->db);
+				$foo = getHash("SELECT Path,Text FROM " . CATEGORY_TABLE . " WHERE ID='".abs($this->id)."'",$this->db);
 				$Path = $foo["Path"];
 				$Text = $foo["Text"];
 			}else{
@@ -940,7 +940,7 @@ if(top.currentID && top.fsfooter.document.we_form.fname.value != "")
 
 	function delDir($id){
 		$db = new DB_WE();
-		$db->query("SELECT * FROM ".$this->table." WHERE ParentID='$id'");
+		$db->query("SELECT * FROM ".mysql_real_escape_string($this->table)." WHERE ParentID='".abs($id)."'");
 		while($db->next_record()){
 			if($db->f("IsFolder")){
 				$this->delDir($db->f("ID"));
@@ -951,7 +951,7 @@ if(top.currentID && top.fsfooter.document.we_form.fname.value != "")
 	}
 
 	function delEntry($id){
-		$this->db->query("DELETE FROM ".$this->table." WHERE ID='$id'");
+		$this->db->query("DELETE FROM ".mysql_real_escape_string($this->table)." WHERE ID='".abs($id)."'");
 	}
 
 	function printFooterTable() {
@@ -1071,7 +1071,7 @@ if(top.currentID && top.fsfooter.document.we_form.fname.value != "")
 					$path = $targetPath."/".$category;
 				}
 			}
-			$updateok = $db->query("UPDATE " . CATEGORY_TABLE . " SET Category='".addslashes($category)."', Text='".addslashes($category)."', Path='".$path."', ParentID='".$parentid."', Catfields='".addslashes(serialize($fields))."' WHERE ID='".abs($_POST["catid"])."'");
+			$updateok = $db->query("UPDATE " . CATEGORY_TABLE . " SET Category='".mysql_real_escape_string($category)."', Text='".mysql_real_escape_string($category)."', Path='".mysql_real_escape_string($path)."', ParentID='".abs($parentid)."', Catfields='".mysql_real_escape_string(serialize($fields))."' WHERE ID='".abs($_POST["catid"])."'");
 			if($updateok) {
 				$this->renameChildrenPath(abs($_POST["catid"]));
 			}

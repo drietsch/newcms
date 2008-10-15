@@ -264,10 +264,10 @@ function setDir(id){
 	function renameChildrenPath($id){
 		$db = new DB_WE();
 		$db2 = new DB_WE();
-		$db->query("SELECT ID,IsFolder,Text FROM ".$this->table." WHERE ParentID='$id'");
+		$db->query("SELECT ID,IsFolder,Text FROM ".mysql_real_escape_string($this->table)." WHERE ParentID='".abs($id)."'");
 		while($db->next_record()){
-			$newPath = f("SELECT Path FROM ".$this->table. " WHERE ID='$id'","Path",$db2)."/".$db->f("Text");
-			$db2->query("UPDATE ".$this->table." SET Path='$newPath' WHERE ID='".$db->f("ID")."'");
+			$newPath = f("SELECT Path FROM ".mysql_real_escape_string($this->table). " WHERE ID='".abs($id)."'","Path",$db2)."/".$db->f("Text");
+			$db2->query("UPDATE ".mysql_real_escape_string($this->table)." SET Path='".mysql_real_escape_string($newPath)."' WHERE ID='".abs($db->f("ID"))."'");
 			if($db->f("IsFolder")){
 				$this->renameChildrenPath($db->f("ID"));
 			}
@@ -353,8 +353,8 @@ function setDir(id){
 		$wsQuery = getWsQueryForSelector($this->table, false);
 		
 		$_query = "	SELECT ".$this->fields."
-					FROM ".$this->table."
-					WHERE ParentID='".$this->dir."'".makeOwnersSql().
+					FROM ".mysql_real_escape_string($this->table)."
+					WHERE ParentID='".abs($this->dir)."'".makeOwnersSql().
 					$wsQuery .
 					((defined('ISP_VERSION') && ISP_VERSION && is_array($_isp_hide_files) && sizeof($_isp_hide_files) > 0) ? "AND Path NOT IN ('" . implode("','", $_isp_hide_files) . "')" : '').
 					($this->order ? (' ORDER BY '.$this->order) : '');

@@ -132,7 +132,7 @@ class we_docTypes extends we_class {
 				}
 
 			} else {
-				$Query = "SELECT Language, ParentID FROM " . $this->Table . " WHERE ID = " . $ParentID;
+				$Query = "SELECT Language, ParentID FROM " . mysql_real_escape_string($this->Table) . " WHERE ID = " . abs($ParentID);
 				$this->DB_WE->query($Query);
 
 				while($this->DB_WE->next_record()) {

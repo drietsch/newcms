@@ -157,7 +157,7 @@ class we_folder extends we_root
 				}
 
 			} else {
-				$Query = "SELECT Language, ParentID FROM " . $this->Table . " WHERE ID = " . $ParentID;
+				$Query = "SELECT Language, ParentID FROM " . mysql_real_escape_string($this->Table) . " WHERE ID = " . abs($ParentID);
 				$this->DB_WE->query($Query);
 
 				while($this->DB_WE->next_record()) {
@@ -174,7 +174,7 @@ class we_folder extends we_root
 	}
 
 	function initByPath($path,$tblName=FILE_TABLE,$IsClassFolder=0,$IsNotEditable=0){
-		$id = f("SELECT ID FROM ".$tblName." WHERE Path='$path' AND IsFolder=1","ID",$this->DB_WE);
+		$id = f("SELECT ID FROM ".mysql_real_escape_string($tblName)." WHERE Path='".mysql_real_escape_string($path)."' AND IsFolder=1","ID",$this->DB_WE);
 		if($id != ""){
 			$this->initByID($id);
 		}else{
@@ -189,7 +189,7 @@ class we_folder extends we_root
 				array_push($p,array_shift($spl));
 				$pa = implode("/",$p);
 				if($pa){
-					$pid = f("SELECT ID FROM ".$tblName." WHERE Path='$pa'","ID",new DB_WE());
+					$pid = f("SELECT ID FROM ".mysql_real_escape_string($tblName)." WHERE Path='".mysql_real_escape_string($pa)."'","ID",new DB_WE());
 					if(!$pid){
 						$folder = new we_folder();
 						$folder->we_new();
@@ -246,7 +246,7 @@ class we_folder extends we_root
 				if($this->ID==$pid){
 					return true;
 				}
-				$pid = f("SELECT ParentID FROM ".FILE_TABLE."  WHERE ID='".$pid."'", "ParentID",$db);
+				$pid = f("SELECT ParentID FROM ".FILE_TABLE."  WHERE ID='".abs($pid)."'", "ParentID",$db);
 			}
 		}
 		return false;
@@ -283,39 +283,39 @@ class we_folder extends we_root
 		$language = $this->Language;
 
 		// Change language of published documents first
-		$query = "UPDATE " . $this->Table . " SET Language = '" . $this->Language . "' WHERE Path LIKE '" . $this->Path . "/%' AND ((Published = 0 AND ContentType = 'folder') OR (Published > 0 AND (ContentType = 'text/webEdition' OR ContentType = 'text/html' OR ContentType = 'objectFile')))";
+		$query = "UPDATE " . mysql_real_escape_string($this->Table) . " SET Language = '" . mysql_real_escape_string($this->Language) . "' WHERE Path LIKE '" . mysql_real_escape_string($this->Path) . "/%' AND ((Published = 0 AND ContentType = 'folder') OR (Published > 0 AND (ContentType = 'text/webEdition' OR ContentType = 'text/html' OR ContentType = 'objectFile')))";
 		if(!$DB_WE->query($query)) {
 			return false;
 		}
 
 		// Change Language of unpublished documents
-		$query = "SELECT ID FROM " . $this->Table . " WHERE Path LIKE '" . $this->Path . "/%' AND (ContentType = 'text/webEdition' OR ContentType = 'text/html' OR ContentType = 'objectFile')";
+		$query = "SELECT ID FROM " . mysql_real_escape_string($this->Table) . " WHERE Path LIKE '" . mysql_real_escape_string($this->Path) . "/%' AND (ContentType = 'text/webEdition' OR ContentType = 'text/html' OR ContentType = 'objectFile')";
 
 		if(!$DB_WE->query($query)) {
 			return false;
 		}
 		while($DB_WE->next_record()) {
-			$query = "SELECT DocumentObject FROM " . TEMPORARY_DOC_TABLE . " WHERE DocumentID = " . $DB_WE->f('ID') . " AND Active = 0";
+			$query = "SELECT DocumentObject FROM " . TEMPORARY_DOC_TABLE . " WHERE DocumentID = " . abs($DB_WE->f('ID')) . " AND Active = 0";
 			$DocumentObject = f($query, 'DocumentObject', $DB_WE2);
 			$DocumentObject = unserialize($DocumentObject);
 			$DocumentObject[0]['Language'] = $this->Language;
 			$DocumentObject = serialize($DocumentObject);
 			$DocumentObject = str_replace("'", "\'", $DocumentObject);
 
-			$query = "UPDATE " . TEMPORARY_DOC_TABLE . " SET DocumentObject='".$DocumentObject."' WHERE DocumentID='".$DB_WE->f("ID")."' AND Active = 0";
+			$query = "UPDATE " . TEMPORARY_DOC_TABLE . " SET DocumentObject='".mysql_real_escape_string($DocumentObject)."' WHERE DocumentID='".abs($DB_WE->f("ID"))."' AND Active = 0";
 			if(!$DB_WE2->query($query)) {
 				return false;
 
 			}
 
-			$query = "SELECT DocumentObject FROM " . TEMPORARY_DOC_TABLE . " WHERE DocumentID = " . $DB_WE->f('ID') . " AND Active = 1";
+			$query = "SELECT DocumentObject FROM " . TEMPORARY_DOC_TABLE . " WHERE DocumentID = " . abs($DB_WE->f('ID')) . " AND Active = 1";
 			$DocumentObject = f($query, 'DocumentObject', $DB_WE2);
 			$DocumentObject = unserialize($DocumentObject);
 			$DocumentObject[0]['Language'] = $this->Language;
 			$DocumentObject = serialize($DocumentObject);
 			$DocumentObject = str_replace("'", "\'", $DocumentObject);
 
-			$query = "UPDATE " . TEMPORARY_DOC_TABLE . " SET DocumentObject='".$DocumentObject."' WHERE DocumentID='".$DB_WE->f("ID")."' AND Active = 1";
+			$query = "UPDATE " . TEMPORARY_DOC_TABLE . " SET DocumentObject='".mysql_real_escape_string($DocumentObject)."' WHERE DocumentID='".abs($DB_WE->f("ID"))."' AND Active = 1";
 			if(!$DB_WE2->query($query)) {
 				return false;
 
@@ -329,7 +329,7 @@ class we_folder extends we_root
 		$this->Text = ($this->Table==FILE_TABLE || $this->Table==TEMPLATES_TABLE) ? $this->Filename : $this->Text;
 	}
 	function i_filenameDouble(){
-		return f("SELECT ID FROM ".$this->Table." WHERE Path='".$this->Path."' AND ID != '".$this->ID."'","ID",new DB_WE());
+		return f("SELECT ID FROM ".mysql_real_escape_string($this->Table)." WHERE Path='".mysql_real_escape_string($this->Path)."' AND ID != '".abs($this->ID)."'","ID",new DB_WE());
 	}
 	function i_filenameEmpty(){
 		$fn = ($this->Table==FILE_TABLE || $this->Table==TEMPLATES_TABLE) ? $this->Filename : $this->Text;
@@ -485,7 +485,7 @@ class we_folder extends we_root
 
 	function modifyIndexPath(){
 		$DB_WE = new DB_WE;
-		$DB_WE->query("UPDATE " . INDEX_TABLE . " SET Workspace='".$this->Path.substr($DB_WE->f("Workspace"),strlen($this->OldPath))."' WHERE Workspace like '".$this->OldPath."%'");
+		$DB_WE->query("UPDATE " . INDEX_TABLE . " SET Workspace='".mysql_real_escape_string($this->Path.substr($DB_WE->f("Workspace"),strlen($this->OldPath)))."' WHERE Workspace like '".mysql_real_escape_string($this->OldPath)."%'");
 		/*$DB_WE2 = new DB_WE;
 		$DB_WE->query("SELECT ID,Workspace FROM " . INDEX_TABLE . " WHERE Workspace like '".$this->OldPath."%'");
 		while($DB_WE->next_record()){
@@ -501,8 +501,8 @@ class we_folder extends we_root
 		@ignore_user_abort(true);
 		$DB_WE = new DB_WE;
 		// Update Paths also in Doctype Table
-		$DB_WE->query("UPDATE " . DOC_TYPES_TABLE . " SET ParentPath='".$this->Path."' WHERE ParentID='".$this->ID."'");
-		$DB_WE->query("SELECT * FROM ".$this->Table." WHERE ParentID='".$this->ID."'");
+		$DB_WE->query("UPDATE " . DOC_TYPES_TABLE . " SET ParentPath='".mysql_real_escape_string($this->Path)."' WHERE ParentID='".abs($this->ID)."'");
+		$DB_WE->query("SELECT * FROM ".mysql_real_escape_string($this->Table)." WHERE ParentID='".abs($this->ID)."'");
 		while($DB_WE->next_record()){
 			@set_time_limit(30);
 			if(file_exists($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/".$DB_WE->f("ClassName").".inc.php")){

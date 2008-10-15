@@ -70,11 +70,11 @@ class we_docSelector extends we_dirSelector {
 		        $contentTypes = explode(',',$this->filter);
 		        $filterQuery .= ' AND (  ';
 		        foreach ($contentTypes AS $ct){
-		            $filterQuery .= 'ContentType=\'' . $ct . '\' OR ';
+		            $filterQuery .= 'ContentType=\'' . mysql_real_escape_string($ct) . '\' OR ';
 		        }
 		        $filterQuery .= ' isFolder=1)';
 		    } else {
-		        $filterQuery = " AND (ContentType='".$this->filter."' OR IsFolder=1 ) ";
+		        $filterQuery = " AND (ContentType='".mysql_real_escape_string($this->filter)."' OR IsFolder=1 ) ";
 		    }
 		}
 
@@ -88,7 +88,7 @@ class we_docSelector extends we_dirSelector {
 				$ac = getAllowedClasses($this->db);
 				foreach($ac as $cid){
 					$path = id_to_path($cid,OBJECT_TABLE);
-					$wsQuery .= " Path like '$path/%' OR Path='$path' OR ";
+					$wsQuery .= " Path like '".mysql_real_escape_string($path)."/%' OR Path='".mysql_real_escape_string($path)."' OR ";
 				}
 
 				if($wsQuery){
@@ -102,8 +102,8 @@ class we_docSelector extends we_dirSelector {
 
 		$q = "
 			SELECT ".$this->fields." FROM ".
-			$this->table.
-			" WHERE ParentID='".$this->dir."'".
+			mysql_real_escape_string($this->table).
+			" WHERE ParentID='".abs($this->dir)."'".
 			makeOwnersSql().
 			$wsQuery .
 			$filterQuery . //$publ_q.
@@ -113,7 +113,7 @@ class we_docSelector extends we_dirSelector {
 		$this->db->query($q);
 		if ($this->table==FILE_TABLE) {
 			$titleQuery = new DB_WE();
-			$titleQuery->query("SELECT a.ID, c.Dat FROM (".FILE_TABLE." a LEFT JOIN ".LINK_TABLE." b ON (a.ID=b.DID)) LEFT JOIN ".CONTENT_TABLE." c ON (b.CID=c.ID) WHERE a.ParentID='".$this->dir."' AND b.Name='Title'");
+			$titleQuery->query("SELECT a.ID, c.Dat FROM (".FILE_TABLE." a LEFT JOIN ".LINK_TABLE." b ON (a.ID=b.DID)) LEFT JOIN ".CONTENT_TABLE." c ON (b.CID=c.ID) WHERE a.ParentID='".abs($this->dir)."' AND b.Name='Title'");
 			while ($titleQuery->next_record()) {
 				$this->titles[$titleQuery->f('ID')] = $titleQuery->f('Dat');
 			}
@@ -123,8 +123,8 @@ class we_docSelector extends we_dirSelector {
 				$_path = dirname($_path);
 			}
 			$_db = new DB_WE();
-			$_cid = f("SELECT ID FROM " . OBJECT_TABLE . " WHERE PATH='".addslashes($_path)."'", "ID", $_db);
-			$this->titleName = f("SELECT DefaultTitle FROM " .OBJECT_TABLE . " WHERE ID='".$_cid."'","DefaultTitle", $_db);
+			$_cid = f("SELECT ID FROM " . OBJECT_TABLE . " WHERE PATH='".mysql_real_escape_string($_path)."'", "ID", $_db);
+			$this->titleName = f("SELECT DefaultTitle FROM " .OBJECT_TABLE . " WHERE ID='".abs($_cid)."'","DefaultTitle", $_db);
 			if($this->titleName) {
 				$_db->query("SELECT OF_ID, $this->titleName FROM " . OBJECT_X_TABLE . $_cid . " WHERE OF_ParentID=".abs($this->dir));
 				while ($_db->next_record()) {
@@ -757,12 +757,12 @@ function addEntry(ID,icon,text,isFolder,path,modDate,contentType,published,title
 					';
 			if(isset($result['ContentType']) && !empty($result['ContentType'])) {
 				if ($this->table == FILE_TABLE && $result['ContentType'] != "folder") {
-					$query = $this->db->query("SELECT a.Name, b.Dat FROM " . LINK_TABLE . " a LEFT JOIN " . CONTENT_TABLE . " b on (a.CID = b.ID) WHERE a.DID=".$this->id." AND NOT a.DocumentTable='tblTemplates'");
+					$query = $this->db->query("SELECT a.Name, b.Dat FROM " . LINK_TABLE . " a LEFT JOIN " . CONTENT_TABLE . " b on (a.CID = b.ID) WHERE a.DID=".abs($this->id)." AND NOT a.DocumentTable='tblTemplates'");
 					while ($this->db->next_record()) {
 						$metainfos[$this->db->f('Name')] = $this->db->f('Dat');
 					}
 				} else if (defined("OBJECT_FILES_TABLE") && $this->table == OBJECT_FILES_TABLE && $result['ContentType'] != "folder") {
-					$_fieldnames = getHash("SELECT DefaultDesc,DefaultTitle,DefaultKeywords FROM " .OBJECT_TABLE . " WHERE ID='".$result["TableID"]."'",$this->db);
+					$_fieldnames = getHash("SELECT DefaultDesc,DefaultTitle,DefaultKeywords FROM " .OBJECT_TABLE . " WHERE ID='".abs($result["TableID"])."'",$this->db);
 					$_selFields = "";
 					foreach($_fieldnames as $_key => $_val) {
 						if (!is_numeric($_key)) {
@@ -784,7 +784,7 @@ function addEntry(ID,icon,text,isFolder,path,modDate,contentType,published,title
 					
 					$metainfos = getHash("SELECT " . $_selFields . " FROM " . OBJECT_X_TABLE . $result["TableID"] . " WHERE OF_ID=" . abs($result["ID"]), $this->db);
 				} elseif ($result['ContentType'] == "folder") {
-					$this->db->query("SELECT ID, Text, IsFolder FROM " . $this->table . " WHERE ParentID=".$this->id);
+					$this->db->query("SELECT ID, Text, IsFolder FROM " . mysql_real_escape_string($this->table) . " WHERE ParentID=".abs($this->id));
 					$folderFolders = array();
 					$folderFiles = array();
 					while ($this->db->next_record()) {
@@ -976,7 +976,7 @@ function addEntry(ID,icon,text,isFolder,path,modDate,contentType,published,title
 
 				if ($result['ContentType'] == "text/weTmpl") {
 					if (isset($result['MasterTemplateID']) && !empty($result['MasterTemplateID'])) {
-						$mastertemppath = f("SELECT Text, Path FROM " . $this->table . " WHERE ID='".$result['MasterTemplateID']."'","Path",$this->db);
+						$mastertemppath = f("SELECT Text, Path FROM " . mysql_real_escape_string($this->table) . " WHERE ID='".abs($result['MasterTemplateID'])."'","Path",$this->db);
 						$_previewFields["masterTemplate"]["data"][] = array(
 							"caption" => "ID",
 							"content" => $result['MasterTemplateID']

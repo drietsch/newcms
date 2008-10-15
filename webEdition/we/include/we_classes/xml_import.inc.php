@@ -157,7 +157,7 @@ class XML_Import extends XML_Parser {
 		global $DB_WE;
 		$path = $this->getData($absoluteXPath."/attrib[9]");
 		$parent = $this->nodeName($absoluteXPath);
-		$this->db->query("SELECT ID FROM ".(($parent=="document")? FILE_TABLE : TEMPLATES_TABLE)." WHERE Path='".$path."'");
+		$this->db->query("SELECT ID FROM ".(($parent=="document")? FILE_TABLE : TEMPLATES_TABLE)." WHERE Path='".mysql_real_escape_string($path)."'");
 		return ($this->db->num_rows());
 	}
 
@@ -200,21 +200,21 @@ class XML_Import extends XML_Parser {
 			$ids = implode(",", $val);
 			if ($key == FILE_TABLE || $key == TEMPLATES_TABLE) {
 				$store = $key == FILE_TABLE ?  $this->store_docs : $this->store_templ;
-				if ($ids!="") $this->db->query("UPDATE $key SET ParentID=".$store." WHERE ID IN($ids);");
+				if ($ids!="") $this->db->query("UPDATE $key SET ParentID=".abs($store)." WHERE ID IN($ids);");
 
 				if ($key==FILE_TABLE || $key == TEMPLATES_TABLE) {
 					foreach($val as $k=>$v) {								
 						if ($key == TEMPLATES_TABLE) {
-							$this->db->query("SELECT ID FROM ".FILE_TABLE." WHERE TemplateID=".$k);
+							$this->db->query("SELECT ID FROM ".FILE_TABLE." WHERE TemplateID=".abs($k));
 							while($this->db->next_record()) {
-								$DB_WE->query("UPDATE ".FILE_TABLE." SET TemplateID='$v' WHERE ID='".$this->db->f("ID")."';");
+								$DB_WE->query("UPDATE ".FILE_TABLE." SET TemplateID='".abs($v)."' WHERE ID='".abs($this->db->f("ID"))."';");
 							}
 						}
 
-                        $new_path = f("SELECT Path FROM $key WHERE ID=".$store,"Path",$this->db);
-                        $text = f("SELECT Text FROM $key WHERE ID=".$v,"Text",$this->db);
+                        $new_path = f("SELECT Path FROM $key WHERE ID=".abs($store),"Path",$this->db);
+                        $text = f("SELECT Text FROM $key WHERE ID=".abs($v),"Text",$this->db);
 
-                        $this->db->query("UPDATE $key SET Path='".($new_path!="" ? $new_path : "/").$text."' WHERE ID=$v;");
+                        $this->db->query("UPDATE $key SET Path='".mysql_real_escape_string(($new_path!="" ? $new_path : "/").$text)."' WHERE ID=".abs($v).";");
 					}
 				}
 
