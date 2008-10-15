@@ -4963,14 +4963,6 @@ function we_tag_linkToSeeMode($attribs, $content)
 								)) . getHtmlTag(
 								'input', 
 								array(
-									
-										'type' => 'hidden', 
-										'name' => 'password', 
-										'value' => $_SESSION["webuser"]["Password"], 
-										'xml' => $xml
-								)) . getHtmlTag(
-								'input', 
-								array(
 									'type' => 'hidden', 'name' => 'type', 'value' => $type, 'xml' => $xml
 								)) . getHtmlTag(
 								'input', 
