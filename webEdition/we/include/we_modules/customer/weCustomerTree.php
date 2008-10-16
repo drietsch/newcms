@@ -149,9 +149,9 @@
 
 				if(openstatus && treeData[eintragsIndex].loaded!=1){
 					if(sort!="")
-						'.$this->cmdFrame.'.location="'.$this->frameset.'?pnt=cmd&pid="+id+"&sort="+escape(sort);
+						'.$this->cmdFrame.'.location="'.$this->frameset.'?pnt=cmd&pid="+escape(id)+"&sort="+escape(sort);
 					else
-						'.$this->cmdFrame.'.location="'.$this->frameset.'?pnt=cmd&pid="+id;
+						'.$this->cmdFrame.'.location="'.$this->frameset.'?pnt=cmd&pid="+escape(id);
 				}else{
 					drawTree();
 				}
