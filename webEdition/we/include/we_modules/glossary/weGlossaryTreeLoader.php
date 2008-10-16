@@ -214,12 +214,12 @@ class weGlossaryTreeLoader{
 				
  			foreach($Db->Record as $Key => $Val) {
  				if(!is_numeric($Key)) {
- 					//if(strtolower($Key)=="text") {
- 					//	$Item[strtolower($Key)] = htmlentities($Val);
- 					//}
- 					//else  {
+ 					if(strtolower($Key)=="text") {
+ 						$Item[strtolower($Key)] = htmlspecialchars($Val);
+ 					}
+ 					else  {
  						$Item[strtolower($Key)] = $Val;
- 					//}
+ 					}
  				}
  				
  			}

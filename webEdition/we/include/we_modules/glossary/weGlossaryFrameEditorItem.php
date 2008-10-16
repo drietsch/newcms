@@ -59,7 +59,7 @@
 
 			//$title .= ":&nbsp;" . ($weGlossaryFrames->View->Glossary->ID != 0 ? $weGlossaryFrames->View->Glossary->Text : $GLOBALS['l_glossary']['menu_new']).'<div id="mark" style="display: none;">*</div>';
 
-			return weGlossaryFrameEditorItem::buildHeader($weGlossaryFrames, $we_tabs, $title,($weGlossaryFrames->View->Glossary->ID != 0 ? $weGlossaryFrames->View->Glossary->Text : $GLOBALS['l_glossary']['menu_new']).'<div id="mark" style="display: none;">*</div>');
+			return weGlossaryFrameEditorItem::buildHeader($weGlossaryFrames, $we_tabs, $title,($weGlossaryFrames->View->Glossary->ID != 0 ? htmlspecialchars($weGlossaryFrames->View->Glossary->Text) : $GLOBALS['l_glossary']['menu_new']).'<div id="mark" style="display: none;">*</div>');
 
 		}
 
