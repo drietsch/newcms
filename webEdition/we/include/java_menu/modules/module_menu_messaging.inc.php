@@ -96,11 +96,11 @@ include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/" . $
 
     $we_menu_messaging["000310"]["text"]= $l_javaMenu["messaging"]["help"]."...";
     $we_menu_messaging["000310"]["parent"] = "000300";
-    $we_menu_messaging["000310"]["cmd"] = "help";
+    $we_menu_messaging["000310"]["cmd"] = "help_modules";
     $we_menu_messaging["000310"]["enabled"] = "1";
 
     $we_menu_messaging["000320"]["text"]= $l_javaMenu["messaging"]["info"]."...";
     $we_menu_messaging["000320"]["parent"] = "000300";
-    $we_menu_messaging["000320"]["cmd"] = "info";
+    $we_menu_messaging["000320"]["cmd"] = "info_modules";
     $we_menu_messaging["000320"]["enabled"] = "1";
 ?>

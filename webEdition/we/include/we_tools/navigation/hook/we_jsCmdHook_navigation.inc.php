@@ -38,6 +38,12 @@ include($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_tools/navigation/
 			wind.focus();
 		break;
 		case "tool_navigation_rules":
+			var fo=false;
+			for(var k=jsWindow_count-1;k>-1;k--){
+            	eval("if(jsWindow"+k+"Object.ref=='tool_window_<?php print $metaInfo['name']?>'){ fo=true;wind=jsWindow"+k+"Object.wind}");
+            	if(fo) break;
+		    }
+		    wind.focus();
 			new jsWindow("/webEdition/we/include/we_tools/navigation/edit_navigation_rules_frameset.php","tool_navigation_rules",-1,-1,680,580,true,true,true,true);
 		break;
 		case "tool_navigation_edit_navi":

@@ -122,13 +122,13 @@ $we_menu_glossary["021000"]["enabled"] = "1";
 
 	$we_menu_glossary["022000"]["text"] = $GLOBALS["l_glossary"]["menu_help"]."...";
 	$we_menu_glossary["022000"]["parent"] = "021000";
-	$we_menu_glossary["022000"]["cmd"] = "help_glossary";
+	$we_menu_glossary["022000"]["cmd"] = "help_modules";
 	$we_menu_glossary["022000"]["perm"] = "";
 	$we_menu_glossary["022000"]["enabled"] = "1";
 
 	$we_menu_glossary["023000"]["text"] = $GLOBALS["l_glossary"]["menu_info"]."...";
 	$we_menu_glossary["023000"]["parent"] = "021000";
-	$we_menu_glossary["023000"]["cmd"] = "info";
+	$we_menu_glossary["023000"]["cmd"] = "info_modules";
 	$we_menu_glossary["023000"]["perm"] = "";
 	$we_menu_glossary["023000"]["enabled"] = "1";
 

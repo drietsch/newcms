@@ -67,12 +67,12 @@
 
     $we_menu_export["004100"]["text"]= $l_export["help"]."...";
     $we_menu_export["004100"]["parent"] = "004000";
-    $we_menu_export["004100"]["cmd"] = "help_users";
+    $we_menu_export["004100"]["cmd"] = "help_modules";
     $we_menu_export["004100"]["enabled"] = "1";
 
     $we_menu_export["004200"]["text"]= $l_export["info"]."...";
     $we_menu_export["004200"]["parent"] = "004000";
-    $we_menu_export["004200"]["cmd"] = "info";
+    $we_menu_export["004200"]["cmd"] = "info_modules";
     $we_menu_export["004200"]["enabled"] = "1";
 
 

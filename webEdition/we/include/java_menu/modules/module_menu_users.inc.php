@@ -61,11 +61,11 @@ $we_menu_users["001500"]["enabled"] = "1";
              
 $we_menu_users["001600"]["text"] = $l_javaMenu["users"]["menu_help"]."...";
 $we_menu_users["001600"]["parent"] = "001500";
-$we_menu_users["001600"]["cmd"] = "help_users";
+$we_menu_users["001600"]["cmd"] = "help_modules";
 $we_menu_users["001600"]["enabled"] = "1";
 
 $we_menu_users["001700"]["text"] = $l_javaMenu["users"]["menu_info"]."...";
 $we_menu_users["001700"]["parent"] = "001500";
-$we_menu_users["001700"]["cmd"] = "info";
+$we_menu_users["001700"]["cmd"] = "info_modules";
 $we_menu_users["001700"]["enabled"] = "1";
 ?>

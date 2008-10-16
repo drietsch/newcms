@@ -141,12 +141,12 @@
     
     $we_menu_newsletter["004100"]["text"] = $l_newsletter["help"]."...";
     $we_menu_newsletter["004100"]["parent"] = "004000";
-    $we_menu_newsletter["004100"]["cmd"] = "help_users";
+    $we_menu_newsletter["004100"]["cmd"] = "help_modules";
     $we_menu_newsletter["004100"]["enableadd"] = "1";
     
     $we_menu_newsletter["004200"]["text"] = $l_newsletter["info"]."...";
     $we_menu_newsletter["004200"]["parent"] = "004000";
-    $we_menu_newsletter["004200"]["cmd"] = "info";
+    $we_menu_newsletter["004200"]["cmd"] = "info_modules";
     $we_menu_newsletter["004200"]["enabled"] = "1";
 
 

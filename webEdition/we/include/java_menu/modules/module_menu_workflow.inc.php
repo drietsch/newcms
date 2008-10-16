@@ -65,12 +65,12 @@ include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/" . $
 
     $we_menu_workflow["001600"]["text"]= $l_javaMenu["workflow"]["help"]."...";
     $we_menu_workflow["001600"]["parent"] = "001500";
-    $we_menu_workflow["001600"]["cmd"] = "help_users";
+    $we_menu_workflow["001600"]["cmd"] = "help_modules";
     $we_menu_workflow["001600"]["enabled"] = "1";
     
     $we_menu_workflow["001700"]["text"]= $l_javaMenu["workflow"]["info"]."...";
     $we_menu_workflow["001700"]["parent"] = "001500";
-    $we_menu_workflow["001700"]["cmd"] = "info";
+    $we_menu_workflow["001700"]["cmd"] = "info_modules";
     $we_menu_workflow["001700"]["enabled"] = "1";
 
 ?>

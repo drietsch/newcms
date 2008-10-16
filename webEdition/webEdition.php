@@ -709,6 +709,46 @@ function we_cmd() {
 		case "snippet_shop":
 			alert("Es gibt noch keine URL f�r die Snippets Seite");
 			break;
+		case "help_modules":
+            var fo=false;
+            for(var k=jsWindow_count-1;k>-1;k--){
+              eval("if(jsWindow"+k+"Object.ref=='edit_module'){ fo=true;wind=jsWindow"+k+"Object.wind}");
+              if(fo) break;
+		    }
+		    wind.focus();
+            url="/webEdition/getHelp.php";
+            new jsWindow(url,"help",-1,-1,800,600,true,false,true,true);
+            break;
+        case "info_modules":
+            var fo=false;
+            for(var k=jsWindow_count-1;k>-1;k--){
+              eval("if(jsWindow"+k+"Object.ref=='edit_module'){ fo=true;wind=jsWindow"+k+"Object.wind}");
+              if(fo) break;
+		    }
+		    wind.focus();
+            url="/webEdition/we_cmd.php?we_cmd[0]=info";
+            new jsWindow(url,"info",-1,-1,432,350,true,false,true);
+            break;
+		case "help_tools":
+            var fo=false;
+            for(var k=jsWindow_count-1;k>-1;k--){
+              eval("if(jsWindow"+k+"Object.ref=='tool_window' || jsWindow"+k+"Object.ref=='tool_window_navigation' || jsWindow"+k+"Object.ref=='tool_window_weSearch'){ fo=true;wind=jsWindow"+k+"Object.wind}");
+              if(fo) break;
+		    }
+		    wind.focus();
+            url="/webEdition/getHelp.php";
+            new jsWindow(url,"help",-1,-1,800,600,true,false,true,true);
+            break;
+        case "info_tools":
+            var fo=false;
+            for(var k=jsWindow_count-1;k>-1;k--){
+              eval("if(jsWindow"+k+"Object.ref=='tool_window' || jsWindow"+k+"Object.ref=='tool_window_navigation' || jsWindow"+k+"Object.ref=='tool_window_weSearch'){ fo=true;wind=jsWindow"+k+"Object.wind}");
+              if(fo) break;
+		    }
+		    wind.focus();
+            url="/webEdition/we_cmd.php?we_cmd[0]=info";
+            new jsWindow(url,"info",-1,-1,432,350,true,false,true);
+            break;
 		case "help":
 			<?php if($online_help):?>
 				if(arguments[1])

@@ -94,13 +94,13 @@ $we_menu_weSearch['003000']['enabled'] = '1';
 
 $we_menu_weSearch['003100']['text'] = $GLOBALS['l_weSearch']['menu_help'] . '...';
 $we_menu_weSearch['003100']['parent'] = '003000';
-$we_menu_weSearch['003100']['cmd'] = 'help';
+$we_menu_weSearch['003100']['cmd'] = 'help_tools';
 $we_menu_weSearch['003100']['perm'] = '';
 $we_menu_weSearch['003100']['enabled'] = '1';
 
 $we_menu_weSearch['003200']['text'] = $GLOBALS['l_weSearch']['menu_info'] . '...';
 $we_menu_weSearch['003200']['parent'] = '003000';
-$we_menu_weSearch['003200']['cmd'] = 'info';
+$we_menu_weSearch['003200']['cmd'] = 'info_tools';
 $we_menu_weSearch['003200']['perm'] = '';
 $we_menu_weSearch['003200']['enabled'] = '1';
 

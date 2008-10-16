@@ -131,12 +131,12 @@ include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/" . $
 
 	$we_menu_shop["310000"]["text"] = $l_javaMenu["shop"]["menu_help"]."...";;
 	$we_menu_shop["310000"]["parent"] = "300000";
-	$we_menu_shop["310000"]["cmd"] = "help_shop";
+	$we_menu_shop["310000"]["cmd"] = "help_modules";
 	$we_menu_shop["310000"]["perm"] = "SHOW_HELP";
 	$we_menu_shop["310000"]["enabled"] = "1";
 
     $we_menu_shop["320000"]["text"]= $l_javaMenu["shop"]["menu_info"]."...";
     $we_menu_shop["320000"]["parent"] = "300000";
-    $we_menu_shop["320000"]["cmd"] = "info";
+    $we_menu_shop["320000"]["cmd"] = "info_modules";
     $we_menu_shop["320000"]["enabled"] = "1";
 ?>

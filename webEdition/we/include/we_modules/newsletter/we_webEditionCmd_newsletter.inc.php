@@ -27,6 +27,5 @@
 					eval("if(jsWindow"+k+"Object.ref=='edit_module'){ jsWindow"+k+"Object.wind.content.we_cmd('"+arguments[0]+"');fo=true;wind=jsWindow"+k+"Object.wind}");
 					if(fo) break;
 				}
-				// bugfix WE-356
-				//if(!!wind && arguments[0]!="empty_log") wind.focus();
+				<?php if(isset($GLOBALS['BROWSER']) && $GLOBALS['BROWSER']=='IE') print "wind.focus()"; ?>;
 				break;

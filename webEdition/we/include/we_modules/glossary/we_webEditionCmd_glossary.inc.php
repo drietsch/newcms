@@ -54,6 +54,12 @@ include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GL
         	break;
 
 		case "glossary_settings":
+			var fo=false;
+				for(var k=jsWindow_count-1;k>-1;k--){
+	            	eval("if(jsWindow"+k+"Object.ref=='edit_module'){ fo=true;wind=jsWindow"+k+"Object.wind}");
+	            	if(fo) break;
+			    }
+			   	wind.focus();
 			new jsWindow(url,"edit_glossary_settings",-1,-1,490,250,true,true,true,true);
 			break;
 
@@ -61,24 +67,6 @@ include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GL
 			new jsWindow(url,"edit_glossary_dictionaries",-1,-1,490,250,true,true,true,true);
 			break;
 
-		case "help_glossary":
-			var fo=false;
-			for(var k=jsWindow_count-1;k>-1;k--){
-				eval("if(jsWindow"+k+"Object.ref=='edit_module'){ fo=true;wind=jsWindow"+k+"Object.wind}");
-				if(fo) {
-					break;
-				}
-			}
-			wind.focus();
-<?php if($online_help):?>
-			if(arguments[1]) url="/webEdition/getHelp.php?hid="+arguments[1];
-			else url="/webEdition/getHelp.php";
-			new jsWindow(url,"help",-1,-1,800,600,true,false,true,true);
-<?php else:?>
-			url="/webEdition/noAvailable.php";
-			new jsWindow(url,"help_no_available",-1,-1,380,140,true,false,true);
-<?php endif?>
-			break;
 
 <?php
 	if(sizeof($GLOBALS['weFrontendLanguages'])>0) {

@@ -73,13 +73,13 @@ $we_menu_voting["001100"]["enabled"] = "1";
 
 $we_menu_voting["001200"]["text"] = $GLOBALS["l_voting"]["menu_help"]."...";;
 $we_menu_voting["001200"]["parent"] = "001100";
-$we_menu_voting["001200"]["cmd"] = "help_voting";
+$we_menu_voting["001200"]["cmd"] = "help_modules";
 $we_menu_voting["001200"]["perm"] = "";
 $we_menu_voting["001200"]["enabled"] = "1";
 
 $we_menu_voting["001300"]["text"] = $GLOBALS["l_voting"]["menu_info"]."...";;
 $we_menu_voting["001300"]["parent"] = "001100";
-$we_menu_voting["001300"]["cmd"] = "info";
+$we_menu_voting["001300"]["cmd"] = "info_modules";
 $we_menu_voting["001300"]["perm"] = "";
 $we_menu_voting["001300"]["enabled"] = "1";
 
