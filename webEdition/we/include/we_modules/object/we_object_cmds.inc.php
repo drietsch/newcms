@@ -53,7 +53,7 @@ switch($_REQUEST["we_cmd"][0]) {
 			$check = 1;
 		}
 		$DB_WE->query("UPDATE " . OBJECT_X_TABLE .abs($tableID)." SET OF_ExtraWorkspacesSelected='".mysql_real_escape_string($ews)."' WHERE ID=".abs($oid));
-		$DB_WE->query("UPDATE " .OBJECT_FILES_TABLE. " SET ExtraWorkspacesSelected='".mysql_real_escape_string($ews)."' WHERE ID=".abs($ofID."'");
+		$DB_WE->query("UPDATE " .OBJECT_FILES_TABLE. " SET ExtraWorkspacesSelected='".mysql_real_escape_string($ews)."' WHERE ID=".abs($ofID));
 		$of = new we_objectFile();
 		$of->initByID($ofID,OBJECT_FILES_TABLE);
 		$of->insertAtIndex();
