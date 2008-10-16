@@ -1345,7 +1345,7 @@ function weWysiwyg_getHTMLCode(rootNode, outputRootNode){
 						if(this.booleanAttributes.indexOf(" " + name + " ") > -1){
 							value=name;
 						}else{
-							if (typeof rootNode[a.nodeName] != "undefined" && name != "href" && name != "src") {
+							if (typeof rootNode[a.nodeName] != "undefined" && name != "href" && name != "src" && name.substring(0,2) != "on") {
 								value = rootNode[a.nodeName];
 							} else {
 								value = a.nodeValue;
