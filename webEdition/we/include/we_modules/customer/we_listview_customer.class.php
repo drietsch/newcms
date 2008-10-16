@@ -100,6 +100,7 @@ class we_listview_customer extends listviewBase {
 			$this->DB_WE->Record["WE_TEXT"] = $this->DB_WE->Record["Username"];
 			$this->DB_WE->Record["WE_ID"] = $this->DB_WE->Record["ID"];
 			$this->DB_WE->Record["we_wedoc_lastPath"] = $this->LastDocPath."?we_cid=".$this->DB_WE->Record["ID"];
+			$this->count++;
 			return true;
 		}else if($this->cols && ($this->count < $this->rows)){
 			$this->DB_WE->Record = array();
