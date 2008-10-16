@@ -971,6 +971,9 @@ class we_import_files
 			}
 			$we_doc->setElement("type", $ct, "attrib");
 			$fh = @fopen($tempName, "rb");
+			if($_FILES['we_File']["size"]<=0) {
+				$_FILES['we_File']["size"] = 1;
+			}
 			if ($fh) {
 				$we_fileData = fread($fh, $_FILES['we_File']["size"]);
 				fclose($fh);
