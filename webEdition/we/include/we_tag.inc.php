@@ -1127,7 +1127,7 @@ function we_tag_block($attribs, $content)
 	
 	$names = implode(",", $tp->getNames($tags));
 	
-	if (strpos($content, "<we:object") === false && strpos($content, "<we:metadata") === false) { //	no we:object is used
+	if (strpos($content, "<we:object") === false && strpos($content, "<we:metadata") === false && strpos($content, "<we:listview") === false) { //	no we:object is used
 		//	parse name of we:field
 		$tp->parseTags($tags, $content, '<we_:_ref>', array());
 	} else { //	we:object is used
