@@ -391,7 +391,8 @@ class we_root extends we_class
 		if(sizeof($owners)){
 			for($i=0;$i<sizeof($owners);$i++){
 				$foo = getHash("SELECT ID,Path,Icon from " . USER_TABLE . " WHERE ID='".abs($owners[$i])."'",$this->DB_WE);
-				$content .= '<tr><td><img src="'.ICON_DIR.$foo["Icon"].'" width="16" height="18"></td><td class="defaultfont">'.$foo["Path"].'</td><td>'.
+				$icon = isset($foo["Icon"]) ? ICON_DIR.$foo["Icon"] : ICON_DIR."user.gif";
+				$content .= '<tr><td><img src="'.$icon.'" width="16" height="18"></td><td class="defaultfont">'.isset($foo["Path"]) ? $foo["Path"] : "".'</td><td>'.
 
 				we_forms::checkboxWithHidden(isset($ownersReadOnly[$owners[$i]]) ? $ownersReadOnly[$owners[$i]] : "", 'we_owners_read_only['.$owners[$i].']', $l_we_class["readOnly"],false,"defaultfont","_EditorFrame.setEditorIsHot(true);",!$canChange).
 
