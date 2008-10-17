@@ -148,10 +148,15 @@
 				treeData[eintragsIndex].open=openstatus;
 
 				if(openstatus && treeData[eintragsIndex].loaded!=1){
+				
+					id = escape(id);
+					sort = escape(sort);
+					id = id.replace(/\+/g,"%2B");
+					sort = sort.replace(/\+/g,"%2B");
 					if(sort!="")
-						'.$this->cmdFrame.'.location="'.$this->frameset.'?pnt=cmd&pid="+escape(id)+"&sort="+escape(sort);
+						'.$this->cmdFrame.'.location="'.$this->frameset.'?pnt=cmd&pid="+id+"&sort="+sort;
 					else
-						'.$this->cmdFrame.'.location="'.$this->frameset.'?pnt=cmd&pid="+escape(id);
+						'.$this->cmdFrame.'.location="'.$this->frameset.'?pnt=cmd&pid="+id;
 				}else{
 					drawTree();
 				}
