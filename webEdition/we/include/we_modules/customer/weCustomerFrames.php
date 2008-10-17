@@ -125,7 +125,7 @@ class weCustomerFrames extends weModuleFrames {
 		if($include_no_sort) $sort->addOption($l_customer["no_sort"],$l_customer["no_sort"]);
 
 		foreach($sort_names as $k=>$v){
-			$sort->addOption($v,$v);
+			$sort->addOption(htmlspecialchars($v),htmlspecialchars($v));
 		}
 
 
