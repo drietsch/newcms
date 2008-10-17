@@ -312,7 +312,7 @@ class weCustomerTreeLoader{
 								"id"=>$db->f("ID"),
 								"parentid"=>str_replace("\'", "*****quot*****", $gname),
 								"path"=>"",
-								"text"=>trim($tt)!="" ? $tt : $db->f("Text"),
+								"text"=>htmlspecialchars(trim($tt)!="" ? $tt : $db->f("Text")),
 								"icon"=>$db->f("Icon"),
 								"isfolder"=>$db->f("IsFolder"),
 								"typ"=>"item",
