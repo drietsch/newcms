@@ -296,7 +296,7 @@
 					'bgcolor' => '#ffffff',
 				);
 
-				$link = '<a href="javascript://" onclick="'.$weGlossaryFrames->topFrame.'.resize.right.editor.edbody.location=\''.$weGlossaryFrames->frameset.'?pnt=edbody&cmd=edit_glossary_' . $Type . '&cmdid=' . $Search->getField('ID') . '&tabnr=\'+'.$weGlossaryFrames->topFrame.'.activ_tab;">' . $Search->getField('Text') . '</a>';
+				$link = '<a href="javascript://" onclick="'.$weGlossaryFrames->topFrame.'.resize.right.editor.edbody.location=\''.$weGlossaryFrames->frameset.'?pnt=edbody&cmd=edit_glossary_' . $Type . '&cmdid=' . $Search->getField('ID') . '&tabnr=\'+'.$weGlossaryFrames->topFrame.'.activ_tab;">' . htmlspecialchars($Search->getField('Text')) . '</a>';
 				$temp[2] = array(
 					'dat' => $link,
 					'height' => 25,
@@ -310,7 +310,7 @@
 					case 'abbreviation':
 					case 'acronym':
 						$temp[3] = array(
-							'dat' => ($Search->getField('Title')!="" ? $Search->getField('Title') : "-"),
+							'dat' => ($Search->getField('Title')!="" ? htmlspecialchars($Search->getField('Title')) : "-"),
 							'height' => 25,
 							'align' => 'left',
 							'bgcolor' => '#ffffff',
