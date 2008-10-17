@@ -122,7 +122,7 @@ class searchtoolTreeDataSource extends weToolTreeDataSource
 				
 				global $l_weSearch;
 
-				$_text = searchtool::getLangText($db->f('Path'), $db->f('Text'));
+				$_text = htmlspecialchars(searchtool::getLangText($db->f('Path'), $db->f('Text')));
 			
 				$typ['text'] = $_text;
 				
