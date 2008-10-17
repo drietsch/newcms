@@ -333,7 +333,8 @@ $l_prefs["tab_versions"] = 'Versioning'; // TRANSLATE
 	 */
 
 	$l_prefs["db_connect"] = "Tietokannan<br>yhteystyyppi";
-
+	$l_prefs["db_set_charset"] = "Connection charset"; // TRANSLATE
+	
 	/**
 	 * HTTP AUTHENTICATION
 	 */

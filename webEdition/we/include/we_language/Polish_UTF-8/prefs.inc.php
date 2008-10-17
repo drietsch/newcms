@@ -325,7 +325,8 @@ $l_prefs["tab_modules"] = 'Moduły';
 	 */
 
 	$l_prefs["db_connect"] = "Rodzaj połączeń <br>bazą danych";
-
+	$l_prefs["db_set_charset"] = "Connection charset"; // TRANSLATE
+	
 	/**
 	 * HTTP AUTHENTICATION
 	 */

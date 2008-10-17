@@ -333,6 +333,7 @@ $l_prefs["tab_versions"] = 'Versionierung';
 	 */
 
 	$l_prefs["db_connect"] = "Art der Datenbank-<br>verbindungen";
+	$l_prefs["db_set_charset"] = "Verbindungszeichensatz";
 
 	/**
 	 * HTTP AUTHENTICATION

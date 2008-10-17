@@ -237,7 +237,8 @@ $l_prefs["tab_modules"] = 'Модули';
 	 */
 
 	$l_prefs["db_connect"] = "Тип соединений<br>базы данных";
-
+	$l_prefs["db_set_charset"] = "Connection charset"; // TRANSLATE
+	
 	/**
 	 * HTTP AUTHENTICATION
 	 */
