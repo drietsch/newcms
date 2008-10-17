@@ -1082,7 +1082,7 @@ function processCommands() {
 
 		$result=array();
 		while($this->db->next_record()){
-			$result[$this->db->f("ID")]= $this->db->f("Username") . " (" . $this->db->f("Forename") . " " . $this->db->f("Surname") . ")" ;
+			$result[$this->db->f("ID")]= htmlspecialchars($this->db->f("Username") . " (" . $this->db->f("Forename") . " " . $this->db->f("Surname") . ")") ;
 		}
 
  		return $result;
