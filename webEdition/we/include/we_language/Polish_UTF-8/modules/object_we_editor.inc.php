@@ -33,7 +33,7 @@ $l_we_editor["object"]["response_unpublish_ok"] = "Wycofano klasę '%s' !";
 $l_we_editor["object"]["response_save_notok"] = "Błąd przy zapisywaniu klasy '%s'!";
 $l_we_editor["object"]["response_path_exists"] = "Nie można zapisać klasy '%s', ponieważ w tym miejscu znajduje sę inna klasa bądź katalog!";
 $l_we_editor["object"]["filename_empty"] = "Nie podano nazwy dla klasy!";
-$l_we_editor["object"]["we_filename_notValid"] = "Podana nazwa klasy jest nieprawidłowa!\\nDozwolone znaki to litery od a do z (wielkie i małe) , cyfry, znak podkreślenia (_), minus (-) i kropka (.)."; 
+$l_we_editor["object"]["we_filename_notValid"] = "Invalid class name or automatic name\\nValid characters are alpha-numeric, upper and lower case, as well as underscore, hyphen and dot (a-z, A-Z, 0-9, _, -, .)"; //TRANSLATE
 $l_we_editor["object"]["we_filename_notAllowed"] = "Wprowadzono niedozwoloną nazwę klasy!";
 $l_we_editor["object"]["response_save_noperms_to_create_folders"] = "Nie można było zapisać klasy, ponieważ nie posiadasz wystarczających uprawnień do tworzenia nowych katalogów (%s)!";
 

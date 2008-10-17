@@ -35,7 +35,7 @@ $l_we_editor["object"]["response_unpublish_ok"] = "Die Klasse '%s' wurde erfolgr
 $l_we_editor["object"]["response_save_notok"] = "Fehler beim Speichern der Klasse '%s'!";
 $l_we_editor["object"]["response_path_exists"] = "Die Klasse '%s' konnte nicht gespeichert werden, da es bereits eine andere Klasse oder Verzeichnis an dieser Stelle gibt!";
 $l_we_editor["object"]["filename_empty"] = "Sie haben noch keinen Namen für die Klasse eingegeben!";
-$l_we_editor["object"]["we_filename_notValid"] = "Der eingegebene Klassenname ist nicht gültig!\\nErlaubte Zeichen sind Buchstaben von a bis z (Groß- oder Kleinschreibung), Zahlen, Unterstrich (_), Minus (-) und Punkt (.).";
+$l_we_editor["object"]["we_filename_notValid"] = "Der eingegebene Klassenname oder der Automatische Name ist nicht gültig!\\nErlaubte Zeichen sind Buchstaben von a bis z (Groß- oder Kleinschreibung), Zahlen, Unterstrich (_), Minus (-) und Punkt (.).";
 $l_we_editor["object"]["we_filename_notAllowed"] = "Der eingegebene Klassenname ist nicht erlaubt!";
 $l_we_editor["object"]["response_save_noperms_to_create_folders"] = "Die Klasse konnte nicht gespeichert werden, da Sie nicht die notwendigen Rechte besitzen neue Verzeichnisse (%s) anzulegen!";
 

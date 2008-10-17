@@ -2101,7 +2101,21 @@ DAMD: der Autocompleter funktioniert hier nicht. Der HTML-Cokde wird dynamisch e
 	}
 
 	function i_filenameNotValid(){
-		return eregi('[^a-z0-9\._\-]',$this->Text);
+		$defTextValid = false;
+		foreach($this->elements as $k=>$v) {
+			if(is_string($k) && substr($k, 0, 12)=='DefaultText_') {
+				$end = substr($k, 12, strlen($k));
+				if(isset($_REQUEST['textwert_'.$end])) {
+					if(isset($v['dat']) && $v['dat']!='') {
+						if(eregi('[^a-z0-9\._\-]',$v['dat'])) {
+							$defTextValid = true;
+							break;
+						}
+					}
+				}
+			}
+		}
+		return (eregi('[^a-z0-9\._\-]',$this->Text) || $defTextValid);
 	}
 
 	function i_filenameNotAllowed(){

@@ -33,7 +33,7 @@ $l_we_editor["object"]["response_unpublish_ok"] = "La classe '%s' a été depubl
 $l_we_editor["object"]["response_save_notok"] = "Erreur en enregistrant la classe '%s'!";
 $l_we_editor["object"]["response_path_exists"] = "La classe '%s' ne peut pas être enregistrée, parce qu'il y a déjà une autre classe ou répertoire a cet endroit!";
 $l_we_editor["object"]["filename_empty"] = "Vous n'avez pas encore saisi un nom à la classe!";
-$l_we_editor["object"]["we_filename_notValid"] = "Le nom de la classe indiqué n'est pas valide!\\nPermis sont les lettres de a à z (minuscule et majuscule), les nombre, le soulignage (_), le signe moins (-), le signe plus (-) et le point (.)."; 
+$l_we_editor["object"]["we_filename_notValid"] = "Invalid class name or automatic name\\nValid characters are alpha-numeric, upper and lower case, as well as underscore, hyphen and dot (a-z, A-Z, 0-9, _, -, .)"; //TRANSLATE
 $l_we_editor["object"]["we_filename_notAllowed"] = "Le nom de classe indiqué n'est pas permis!";
 $l_we_editor["object"]["response_save_noperms_to_create_folders"] = "La classe n'a pas pus être enregistrée, parce que vous n'avez pas les droits nécessaires pour créer des nouveaux répertoires (%s)!";
 

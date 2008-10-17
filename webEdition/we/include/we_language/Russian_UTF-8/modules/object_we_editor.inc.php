@@ -33,7 +33,7 @@ $l_we_editor["object"]["response_unpublish_ok"] = "Класс '%s' успешн�
 $l_we_editor["object"]["response_save_notok"] = "Ошибка при сохранении класса '%s'!";
 $l_we_editor["object"]["response_path_exists"] = "Класс '%s' не сохранен по указанному пути, так как это местоположение занято другим документом или директорией!";
 $l_we_editor["object"]["filename_empty"] = "Не введено имя для данного класса!";
-$l_we_editor["object"]["we_filename_notValid"] = "Недействительное имя класса\\nДопустимыми являются большие и малые буквы латинского алфавита, цифры, тире, нижняя черта и точка (a-z, A-Z, 0-9, _, -, .)"; 
+$l_we_editor["object"]["we_filename_notValid"] = "Invalid class name or automatic name\\nValid characters are alpha-numeric, upper and lower case, as well as underscore, hyphen and dot (a-z, A-Z, 0-9, _, -, .)"; //TRANSLATE
 $l_we_editor["object"]["we_filename_notAllowed"] = "Введенное имя класса недопустимо!";
 $l_we_editor["object"]["response_save_noperms_to_create_folders"] = "Класс не сохранен, так как у Вас нет соответствующих полномочий на создание новых директорий (%s)!";
 

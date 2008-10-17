@@ -33,7 +33,7 @@ $l_we_editor["object"]["response_unpublish_ok"] = "Luokka '%s' on poistettu julk
 $l_we_editor["object"]["response_save_notok"] = "Virhe luokkaa tallennettaessa '%s'!";
 $l_we_editor["object"]["response_path_exists"] = "Luokkaa '%s' ei voitu tallentaa, koska toinen dokumentti tai hakemisto on jo olemassa samassa kohteessa!";
 $l_we_editor["object"]["filename_empty"] = "Luokalle ei ole annettu nimeä!";
-$l_we_editor["object"]["we_filename_notValid"] = "Virheellinen luokan nimi\\nSallitut kirjaimet ovat alfa-numeerisia , isot ja pienet kirjaimet, alaviiva, tavuviiva ja piste (a-z, A-Z, 0-9, _, -, .)"; 
+$l_we_editor["object"]["we_filename_notValid"] = "Invalid class name or automatic name\\nValid characters are alpha-numeric, upper and lower case, as well as underscore, hyphen and dot (a-z, A-Z, 0-9, _, -, .)"; //TRANSLATE
 $l_we_editor["object"]["we_filename_notAllowed"] = "Luokan nimi ei ole sallittu!";
 $l_we_editor["object"]["response_save_noperms_to_create_folders"] = "Luokkaa ei voitu tallentaa, koska sinulla ei ole riittäviä oikeuksia tehdä hakemistoja (%s)!";
 

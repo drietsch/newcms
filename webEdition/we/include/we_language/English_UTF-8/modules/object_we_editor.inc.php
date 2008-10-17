@@ -33,7 +33,7 @@ $l_we_editor["object"]["response_unpublish_ok"] = "The class '%s' was successful
 $l_we_editor["object"]["response_save_notok"] = "Error while saving class '%s'!";
 $l_we_editor["object"]["response_path_exists"] = "The class '%s' could not be saved, because another document or directory exists in the same location!";
 $l_we_editor["object"]["filename_empty"] = "No name entered for this class!";
-$l_we_editor["object"]["we_filename_notValid"] = "Invalid class name\\nValid characters are alpha-numeric, upper and lower case, as well as underscore, hyphen and dot (a-z, A-Z, 0-9, _, -, .)"; 
+$l_we_editor["object"]["we_filename_notValid"] = "Invalid class name or automatic name\\nValid characters are alpha-numeric, upper and lower case, as well as underscore, hyphen and dot (a-z, A-Z, 0-9, _, -, .)";
 $l_we_editor["object"]["we_filename_notAllowed"] = "The class name you have entered is not allowed!";
 $l_we_editor["object"]["response_save_noperms_to_create_folders"] = "The class could not be saved, because you do not have the neccessary rights to create folders (%s)!";
 

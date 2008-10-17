@@ -33,7 +33,7 @@ $l_we_editor["object"]["response_unpublish_ok"] = "¡La clase '%s' fue despublic
 $l_we_editor["object"]["response_save_notok"] = "Error al salvar la clase '%s'!";
 $l_we_editor["object"]["response_path_exists"] = "¡La clase '%s' no podrá ser salvada, porque otra clase o directorio existen en la misma posición!";
 $l_we_editor["object"]["filename_empty"] = "Ningún nombre ha sido entrado para esta clase!";
-$l_we_editor["object"]["we_filename_notValid"] = "Nombre de clase no válido!\\nLos carácteres permitidos son alpha-númericos, minúscula o mayúscula, subrayado, guión y punto (a-z, A-Z, 0-9, _, -, .)."; 
+$l_we_editor["object"]["we_filename_notValid"] = "Invalid class name or automatic name\\nValid characters are alpha-numeric, upper and lower case, as well as underscore, hyphen and dot (a-z, A-Z, 0-9, _, -, .)"; //TRANSLATE
 $l_we_editor["object"]["we_filename_notAllowed"] = "El nombre de clase que Ud ha entrado no está permitido";
 $l_we_editor["object"]["response_save_noperms_to_create_folders"] = "La clase no puede ser salvada porque UD no tiene los permisos necesarios para crear carpetas (%s)!";
 
