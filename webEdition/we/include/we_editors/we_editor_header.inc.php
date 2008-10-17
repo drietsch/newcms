@@ -177,7 +177,8 @@ function we_setPath(path, text) {
 	// update document-tab
 	_EditorFrame.initEditorFrameData({\"EditorDocumentText\":text,\"EditorDocumentPath\":path});
 
-
+	path = path.replace(/</g,'&lt;');
+    path = path.replace(/>/g,'&gt;');
 	path = '<b><font color=\'#006699\'>'+path+'</font></b>';
 	if(document.getElementById) {
 		var div = document.getElementById('h_path');

@@ -1024,7 +1024,8 @@ function EditorFrame(ref, elementId) {
 	}
 
 	this.updateEditorTab = function() {
-
+		this.EditorDocumentText = this.EditorDocumentText.replace(/</g,"&lt;");
+		this.EditorDocumentText = this.EditorDocumentText.replace(/>/g,"&gt;");
 		top.weMultiTabs.setText(this.FrameId, this.EditorDocumentText);
 		top.weMultiTabs.setTitle(this.FrameId, this.EditorDocumentPath);
 		if (this.EditorType == "model") {

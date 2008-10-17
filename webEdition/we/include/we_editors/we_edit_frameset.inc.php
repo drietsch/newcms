@@ -294,7 +294,7 @@ if(!isset($we_doc->elements['data']['dat'])){
 			_EditorFrame.initEditorFrameData(
 				{
 					"EditorType":"model",
-					"EditorDocumentText":"<?php print $we_doc->Text; ?>",
+					"EditorDocumentText":"<?php print htmlspecialchars($we_doc->Text); ?>",
 					"EditorDocumentPath":"<?php print $we_doc->Path; ?>",
 					"EditorEditorTable":"<?php print $we_doc->Table; ?>",
 					"EditorDocumentId":"<?php print $we_doc->ID; ?>",
