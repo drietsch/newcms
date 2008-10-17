@@ -935,7 +935,7 @@ function addEntry(ID,icon,text,isFolder,path,modDate,contentType,published,title
 					if ($_content !== "") {
 						$_previewFields["attributes"]["data"][] = array(
 							"caption" => $GLOBALS['l_we_class']["Title"],
-							"content" => $_content
+							"content" => htmlspecialchars($_content)
 						);
 					}
 					$_content = (isset($metainfos['name']) ? $metainfos['name'] : '');
@@ -949,7 +949,7 @@ function addEntry(ID,icon,text,isFolder,path,modDate,contentType,published,title
 					if ($_content !== "") {
 						$_previewFields["attributes"]["data"][] = array(
 							"caption" => $GLOBALS['l_we_class']["alt"],
-							"content" => $_content
+							"content" => htmlspecialchars($_content)
 						);
 					}
 				}
