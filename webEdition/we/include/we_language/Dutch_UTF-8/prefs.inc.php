@@ -329,6 +329,7 @@ $l_prefs["tab_versions"] = 'Versioning';
 	 */
 
 	$l_prefs["db_connect"] = "Type database<br>connecties";
+	$l_prefs["db_set_charset"] = "Connection charset"; // TRANSLATE
 
 	/**
 	 * HTTP AUTHENTICATION
