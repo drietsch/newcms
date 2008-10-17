@@ -105,7 +105,7 @@ class weCustomerTreeLoader{
 				if(!is_numeric($k)) $fileds[strtolower($k)]=$v;
 			}
 
-			$fileds["text"] = trim($tt)!="" ? $tt : $db->f("Text");
+			$fileds["text"] = htmlspecialchars(trim($tt)!="" ? $tt : $db->f("Text"));
 			$items[]=array_merge($fileds,$typ);
 
 		}
