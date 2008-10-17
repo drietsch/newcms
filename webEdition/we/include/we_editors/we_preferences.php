@@ -111,6 +111,8 @@ $global_config[] = array('define("WE_NEW_FOLDER_MOD",', '// File permissions whe
 // pageLogger Dir
 $global_config[] = array('define("WE_TRACKER_DIR",', '// Directory in which pageLogger is installed' . "\n" . 'define("WE_TRACKER_DIR", "");');
 
+$global_config[] = array('define("DB_SET_CHARSET",', '// connection charset to db' . "\n" . 'define("DB_SET_CHARSET", "");');
+
 
 $global_config[] = array('define("SAFARI_WYSIWYG",', '// Flag if beta wysiwyg for safari should be used' . "\n" . 'define("SAFARI_WYSIWYG", false);');
 
@@ -1123,6 +1125,15 @@ $_we_active_integrated_modules = array();
 					}
 				}
 
+				$_update_prefs = true;
+				break;
+
+			case '$_REQUEST["db_set_charset"]':
+				$_file = &$GLOBALS['config_files']['conf_global']['content'];
+
+				if (!defined('DB_SET_CHARSET') || $settingvalue != DB_SET_CHARSET) {
+					$_file = weConfParser::changeSourceCode("define", $_file, 'DB_SET_CHARSET', $settingvalue);
+				}
 				$_update_prefs = true;
 				break;
 
@@ -2252,6 +2263,7 @@ function save_all_values() {
 	if (we_hasPerm("ADMINISTRATOR")) {
 		$_update_prefs = remember_value(isset($_REQUEST["we_php_default"]) ? $_REQUEST["we_php_default"] : null, '$_REQUEST["we_php_default"]') || $_update_prefs;
 		$_update_prefs = remember_value(isset($_REQUEST["db_connect"]) ? $_REQUEST["db_connect"] : null, '$_REQUEST["db_connect"]') || $_update_prefs;
+		$_update_prefs = remember_value(isset($_REQUEST["db_set_charset"]) ? $_REQUEST["db_set_charset"] : null, '$_REQUEST["db_set_charset"]') || $_update_prefs;
 		$_update_prefs = remember_value(isset($_REQUEST["thumbnail_dir"]) ? $_REQUEST["thumbnail_dir"] : null, '$_REQUEST["thumbnail_dir"]') || $_update_prefs;
         $_update_prefs = remember_value(isset($_REQUEST["we_tracker_dir"]) ? $_REQUEST["we_tracker_dir"] : null, '$_REQUEST["we_tracker_dir"]') || $_update_prefs;
 		$_update_prefs = remember_value(isset($_REQUEST["execute_hooks"]) ? $_REQUEST["execute_hooks"] : null, '$_REQUEST["execute_hooks"]') || $_update_prefs;
@@ -4394,7 +4406,28 @@ function setColorChooserDisabled(id, disabled) {
 						$_db_connect->selectOption($i);
 					}
 				}
-				array_push($_settings, array("headline" => $l_prefs["db_connect"], "html" => $_db_connect->getHtmlCode(), "space" => 200));
+				array_push($_settings, array("headline" => $l_prefs["db_connect"], "html" => $_db_connect->getHtmlCode(), "space" => 200, "noline" => 1));
+				
+				// Build db charset select box
+				$_db_set_charset = new we_htmlSelect(array("name" => "db_set_charset", "class" => "weSelect"));
+				
+				$GLOBALS['DB_WE']->query("SHOW CHARACTER SET");
+				
+				$charsets = array("");
+				while ($GLOBALS['DB_WE']->next_record()) {
+					$charsets[] = $GLOBALS['DB_WE']->f('Charset');
+				}
+				sort($charsets);
+				foreach ($charsets as $charset) {
+					$_db_set_charset->addOption($charset, $charset);
+				}
+				
+				if (defined('DB_SET_CHARSET')) {
+					$_db_set_charset->selectOption(DB_SET_CHARSET);
+				}
+				
+				
+				array_push($_settings, array("headline" => $l_prefs['db_set_charset'], "html" => $_db_set_charset->getHtmlCode(), "space" => 200));
 
 				$jUploadDisabled = !file_exists($_SERVER['DOCUMENT_ROOT'] . '/webEdition/jupload/jupload.jar');
 				
