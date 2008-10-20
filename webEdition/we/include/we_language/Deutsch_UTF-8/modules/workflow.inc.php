@@ -112,7 +112,7 @@ $l_workflow["save_changed_workflow"] = "Der Workflow wurde geändert.\\nMöchten
 $l_workflow["delete_question"]="Alle Daten des Workflows werden gelöscht!\\nTrotzdem fortfahren?";
 $l_workflow["nothing_to_delete"]="Es gibt nichts zu löschen!";
 
-$l_workflow["user_empty"]="Für die %s. Stufe wurden keine Beutzer definiert!";
+$l_workflow["user_empty"]="Für die %s. Stufe wurden keine Benutzer definiert!";
 $l_workflow["folders_empty"]="Für den Workflow wurde kein Verzeichnis definiert!";
 $l_workflow["objects_empty"]="Für den Workflow wurde keine Klasse definiert!";
 $l_workflow["doctype_empty"]="Für den Workflow wurde kein Dokument-Typ oder Kategorie definiert!";
