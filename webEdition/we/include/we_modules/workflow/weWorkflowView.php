@@ -1022,7 +1022,7 @@ class weWorkflowView extends weWorkflowBase{
 						if($newone) print 'top.content.makeNewEntry("workflow_folder",'.$this->workflowDef->ID.',0,"'.$this->workflowDef->Text.'",true,"folder","weWorkflowDef","'.$this->workflowDef->Status.'");';
 						else print 'top.content.updateEntry('.$this->workflowDef->ID.',0,"'.$this->workflowDef->Text.'","'.$this->workflowDef->Status.'");';
 						print $childs;
-						print 'top.content.resize.right.editor.edheader.document.getElementById("headrow").innerHTML="' . we_htmlElement::htmlB($l_workflow['workflow']. ': ' . $this->workflowDef->Text).'";';
+						print 'top.content.resize.right.editor.edheader.document.getElementById("headrow").innerHTML="' . we_htmlElement::htmlB($l_workflow['workflow']. ': ' . htmlspecialchars($this->workflowDef->Text)).'";';
 						print we_message_reporting::getShowMessageCall($l_workflow["save_ok"], WE_MESSAGE_NOTICE);
 						print '</script>';
 					}

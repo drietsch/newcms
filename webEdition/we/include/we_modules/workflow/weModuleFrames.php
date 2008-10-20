@@ -84,8 +84,9 @@ class weModuleFrames{
 	var ai = 1;
         while (ai <= nf.laenge) {
 		fr.write(zweigEintrag);
-
-                if (nf[ai].typ == 'file') {
+		nf[ai].text = nf[ai].text.replace(/</g,"&lt;");
+		nf[ai].text = nf[ai].text.replace(/>/g,"&gt;");
+        if (nf[ai].typ == 'file') {
 			if(ai == nf.laenge) fr.write("&nbsp;&nbsp;<IMG SRC=<?php print TREE_IMAGE_DIR; ?>kreuzungend.gif WIDTH=19 HEIGHT=18 align=absmiddle BORDER=0>");
 			else fr.write("&nbsp;&nbsp;<IMG SRC=<?php print TREE_IMAGE_DIR; ?>kreuzung.gif WIDTH=19 HEIGHT=18 align=absmiddle BORDER=0>");
 			if(nf[ai].name != -1){

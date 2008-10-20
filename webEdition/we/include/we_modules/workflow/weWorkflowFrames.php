@@ -69,10 +69,10 @@ class weWorkflowFrames extends weModuleFrames{
 		while($this->db->next_record()){
 			$this->View->workflowDef=new weWorkflow();
 			$this->View->workflowDef->load($this->db->f("ID"));
-			$out.="  menuDaten.add(new dirEntry('folder','".$this->View->workflowDef->ID."','0','".addslashes($this->View->workflowDef->Text)."',false,'folder','workflowDef','".$this->View->workflowDef->Status."'));\n";
+			$out.="  menuDaten.add(new dirEntry('folder','".$this->View->workflowDef->ID."','0','".htmlspecialchars(addslashes($this->View->workflowDef->Text))."',false,'folder','workflowDef','".$this->View->workflowDef->Status."'));\n";
 
 			foreach($this->View->workflowDef->documents as $k=>$v){
-				$out.="  menuDaten.add(new urlEntry('".$v["Icon"]."','".$v["ID"]."','".$this->View->workflowDef->ID."','".addslashes($v["Text"])."','file','".FILE_TABLE."',1));\n";
+				$out.="  menuDaten.add(new urlEntry('".$v["Icon"]."','".$v["ID"]."','".$this->View->workflowDef->ID."','".htmlspecialchars(addslashes($v["Text"]))."','file','".FILE_TABLE."',1));\n";
 			}
 		}
 
@@ -147,7 +147,7 @@ class weWorkflowFrames extends weModuleFrames{
    ' . $tab_header . '
    </head>
    <body bgcolor="white" background="'.IMAGE_DIR.'backgrounds/header_with_black_line.gif" marginwidth="0" marginheight="0" leftmargin="0" topmargin="0" onload="setFrameSize()", onresize="setFrameSize()">
-		<div id="main" >' . getPixel(100,3) . '<div style="margin:0px;padding-left:10px;" id="headrow"><nobr><b>'.str_replace(" ","&nbsp;",$textPre).':&nbsp;</b><span id="h_path" class="header_small"><b id="titlePath">'.str_replace(" ","&nbsp;",$textPost).'</b></span></nobr></div>' . getPixel(100,3) .
+		<div id="main" >' . getPixel(100,3) . '<div style="margin:0px;padding-left:10px;" id="headrow"><nobr><b>'.htmlspecialchars(str_replace(" ","&nbsp;",$textPre)).':&nbsp;</b><span id="h_path" class="header_small"><b id="titlePath">'.htmlspecialchars(str_replace(" ","&nbsp;",$textPost)).'</b></span></nobr></div>' . getPixel(100,3) .
 			$we_tabs->getHTML() .
 			'</div>' . we_htmlElement::jsElement('document.getElementById("tab_'.$page.'").className="tabActive";') . '
 	</body>';
