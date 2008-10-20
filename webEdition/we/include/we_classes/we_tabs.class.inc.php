@@ -170,6 +170,10 @@ function allowed_change_edit_page() {
 
 function setTitlePath(){
 	if(titleElem = document.getElementById('titlePath')) {
+		titlePathName = titlePathName.replace(/</g,"&lt;");
+		titlePathName = titlePathName.replace(/>/g,"&gt;");
+		titlePathGroup = titlePathGroup.replace(/</g,"&lt;");
+		titlePathGroup = titlePathGroup.replace(/>/g,"&gt;");
 		titleElem.innerHTML = titlePathGroup + ((titlePathGroup == "/" || titlePathName=="") ? "" : "/") + titlePathName;
 	}
 }
