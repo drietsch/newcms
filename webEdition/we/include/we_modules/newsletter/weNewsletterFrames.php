@@ -141,7 +141,7 @@ class weNewsletterFrames extends weModuleFrames {
 		$tabBody = $we_tabs->getJS();
 
 		$body=we_htmlElement::htmlBody(array("bgcolor"=>"white","background"=>IMAGE_DIR."backgrounds/header_with_black_line.gif","marginwidth"=>"0","marginheight"=>"0","leftmargin"=>"0", "topmargin"=>"0", "onload"=>"setFrameSize()", "onresize"=>"setFrameSize()"),
-			'<div id="main" >' . getPixel(100,3) . '<div style="margin:0px;padding-left:10px;" id="headrow"><nobr><b>'.htmlspecialchars(str_replace(" ","&nbsp;",$textPre)).':&nbsp;</b><span id="h_path" class="header_small"><b id="titlePath">'.htmlspecialchars(str_replace(" ","&nbsp;",$textPost)).'</b></span></nobr></div>' . getPixel(100,3) .
+			'<div id="main" >' . getPixel(100,3) . '<div style="margin:0px;padding-left:10px;" id="headrow"><nobr><b>'.htmlspecialchars($textPre).':&nbsp;</b><span id="h_path" class="header_small"><b id="titlePath">'.htmlspecialchars($textPost).'</b></span></nobr></div>' . getPixel(100,3) .
 			$we_tabs->getHTML() .
 			'</div>'
 		);
