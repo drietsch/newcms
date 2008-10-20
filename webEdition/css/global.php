@@ -31,12 +31,15 @@ include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/conf/we_conf.inc.
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_browser_check.inc.php");
 
 if (isset($_REQUEST["WE_LANGUAGE"]) && $_REQUEST["WE_LANGUAGE"] != "") {
+	$_REQUEST["WE_LANGUAGE"] = str_replace(".", "", $_REQUEST["WE_LANGUAGE"]);
 	$GLOBALS["WE_LANGUAGE"] = $_REQUEST["WE_LANGUAGE"];
 } else {
 	$GLOBALS["WE_LANGUAGE"] = WE_LANGUAGE;
 }
 
-include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GLOBALS["WE_LANGUAGE"]."/css/css.inc.php");
+if(!@include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GLOBALS["WE_LANGUAGE"]."/css/css.inc.php")) {
+	exit("Could not include language file!");
+}
 
 ?>
 
