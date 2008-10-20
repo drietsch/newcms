@@ -2032,7 +2032,7 @@ class weNewsletterView {
 
 		if($this->newsletter->ParentID)
 			$this->newsletter->Path=f("SELECT Path FROM ". NEWSLETTER_TABLE . " WHERE ID=".$this->newsletter->ParentID,"Path",$this->db)."/".$this->newsletter->Text;
-		else
+		elseif(!$this->newsletter->filenameNotValid($this->newsletter->Text))
 			$this->newsletter->Path="/".$this->newsletter->Text;
 
 		if (isset($_REQUEST["page"])) {
