@@ -254,7 +254,7 @@ if (sizeof($allVats) > 0) {
 		$vatTable .= '
 	<tr>
 		<td>' . $_weShopVat->id . '</td>
-		<td>' . $_weShopVat->text . '</td>
+		<td>' . htmlspecialchars($_weShopVat->text) . '</td>
 		<td>' . $_weShopVat->vat . '%</td>
 		<td>' . ($_weShopVat->standard ? $GLOBALS["l_global"]["yes"] : $GLOBALS["l_global"]["no"]) . '</td>
 		<td>' . $we_button->create_button('image:btn_edit_edit', 'javascript:we_cmd(\'edit\',\'' . $_weShopVat->id . '\');') . '</td>
