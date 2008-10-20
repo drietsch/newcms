@@ -563,7 +563,7 @@
 						$open_new=false;
 					}
 
-					if($fh_temp) {
+					if(isset($fh_temp) && $fh_temp) {
 						if((substr($line,0,2) != "<?") && (substr($line,0,11) != "<webEdition") && (substr($line,0,12) != "</webEdition")){
 
 							$buff.=$line;
