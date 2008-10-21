@@ -267,17 +267,22 @@ class we_binaryDocument extends we_document
 			$filetype .= substr($this->Extension,1);
 		}
 
-		$md = $GLOBALS["l_metadata"]["supported_types"].": ";
-
-		if(count($_mdtypes) > 0) {
-			$_mdTypesTxt = implode(", ", $_mdtypes);
+		if ($_SESSION["we_mode"] == "seem") {
+			$md = "";
 		} else {
-			$_mdTypesTxt = $GLOBALS["l_metadata"]["none"];
+			$md = $GLOBALS["l_metadata"]["supported_types"].": ";
+	
+			if(count($_mdtypes) > 0) {
+				$_mdTypesTxt = implode(", ", $_mdtypes);
+			} else {
+				$_mdTypesTxt = $GLOBALS["l_metadata"]["none"];
+			}
+	
+			$md .= '<a href="javascript:parent.frames[0].setActiveTab(\'tab_2\');we_cmd(\'switch_edit_page\',2,\''.$GLOBALS['we_transaction'].'\');">';
+			$md.= $_mdTypesTxt;
+			$md .= '</a>';
 		}
-
-		$md .= '<a href="javascript:parent.frames[0].setActiveTab(\'tab_2\');we_cmd(\'switch_edit_page\',2,\''.$GLOBALS['we_transaction'].'\');">';
-		$md.= $_mdTypesTxt;
-		$md .= '</a>';
+		
 		$foo = '<table cellpadding="0" cellspacing="0" border="0" width="500">
 		';
 			$foo .= '<tr style="vertical-align:top;">
