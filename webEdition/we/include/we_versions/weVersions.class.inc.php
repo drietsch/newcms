@@ -1233,7 +1233,12 @@ class weVersions {
 						if($document["IsDynamic"]) {
 							$this->writePreviewDynFile($document['ID'], $siteFile, $_SERVER["DOCUMENT_ROOT"].$binaryPath, $documentObj);
 						}
-						elseif(file_exists($siteFile)) {
+						elseif(file_exists($siteFile) && 
+							$document["ContentType"]!='image/*' && 
+							$document["ContentType"]!='application/x-shockwave-flash' && 
+							$document["ContentType"]!='video/quicktime' && 
+							$document["ContentType"]!='application/*' && 
+							$document["ContentType"]!='application/*') {
 							ob_start();
 							include($siteFile);
 							$contents = ob_get_contents();
@@ -1246,8 +1251,10 @@ class weVersions {
 									header("Location: " . $_SERVER['DOCUMENT_ROOT'].$location);
 								}
 							}
-							//copy($siteFile,$_SERVER["DOCUMENT_ROOT"].$binaryPath);
-						}								
+						}
+						else {
+							copy($siteFile,$_SERVER["DOCUMENT_ROOT"].$binaryPath);								
+						}
 						
 					}
 		
