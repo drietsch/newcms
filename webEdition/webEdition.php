@@ -505,7 +505,7 @@ function we_cmd() {
 			break;
 		
 		case "versions_preview":
-			new jsWindow(url,"version_preview",-1,-1,1000,750,true,true,true,true);
+			new jsWindow(url,"version_preview",-1,-1,1000,750,true,false,true,false);
 			break;
 		case "versions_wizard":
 			new jsWindow(url,"versions_wizard",-1,-1,600,620,true,false,true);
