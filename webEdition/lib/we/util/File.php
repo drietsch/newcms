@@ -24,7 +24,11 @@
 /**
  * static class for various common filesystem operations
  * this is a merge of the old weFile class and the old we_live_tools.inc.php Script of webEdition 5.1.x and older
- */
+ *
+ * @todo check if needed and if, then complete it and DON'T use old stuff like DB and other
+ * */
+
+
 class we_util_File
 {
 
