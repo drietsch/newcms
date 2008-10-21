@@ -163,10 +163,10 @@ $contentOld = "";
 $contentDiff = "";
 
 if(!$isObj) {
-	$contentNew = '<iframe name="previewNew" src="'.$fileNew.'" width="100%" height="100%" frameborder="no" border="0"></iframe>';
+	$contentNew = '<iframe  name="previewNew" src="'.$fileNew.'" width="980" height="680" frameborder="no" border="0"></iframe>';
 }
 if(!empty($oldDoc) && !$isObj) {
-	$contentOld = '<iframe name="previewOld" src="'.$fileOld.'" width="100%" height="100%" frameborder="no" border="0"></iframe>';
+	$contentOld = '<iframe name="previewOld" src="'.$fileOld.'" width="980" height="680" frameborder="no" border="0"></iframe>';
 }
 
 $_versions_time_days = new we_htmlSelect(array(
@@ -205,7 +205,7 @@ $contentDiff = '<div style="margin-left:25px;" id="top">'.$GLOBALS['l_versions']
 					<br/><strong>'.$GLOBALS['l_versions']["documentID"].':</strong> '.$newDoc["documentID"].'
 					<br/><strong>'.$GLOBALS['l_versions']["path"].':</strong> '.$newDoc["Path"].'
 			</div>
-			<table cellpadding="5" cellspacing="0" border="0" width="95%" style="background-color:#F5F5F5;margin:15px 15px 15px 25px;border:1px solid #B8B8B7;">
+			<table cellpadding="5" cellspacing="0" border="0" width="95%" style="background-color:#F5F5F5;margin:15px 15px 15px 25px;border-left:1px solid #B8B8B7;border-right:1px solid #B8B8B7;">
 			<tr>
 			<td style="border-bottom:1px solid #B8B8B7;background-color:#BCBBBB;">'.getPixel(30,15).'	
 			</td>
@@ -266,7 +266,7 @@ $contentDiff .= '</table>';
  
 //elements
 
-$contentDiff .= '<table cellpadding="5" cellspacing="0" border="0" width="95%" style="background-color:#F5F5F5;margin:15px 15px 15px 25px;border:1px solid #B8B8B7;">
+$contentDiff .= '<table cellpadding="5" cellspacing="0" border="0" width="95%" style="background-color:#F5F5F5;margin:15px 15px 15px 25px;border-left:1px solid #B8B8B7;border-right:1px solid #B8B8B7;">
 		<tr>
 		<td align="left" colspan="3" style="padding:5px;background-color:#BCBBBB;" class="defaultfont"><strong>'.$GLOBALS['l_versions']['contentElementsMod'].'</strong></td>';
 
@@ -339,7 +339,7 @@ $contentDiff .= '</tr>';
 $contentDiff .= '</table>';
 
 	//scheduler
-	$contentDiff .= '<table cellpadding="5" cellspacing="0" border="0" width="95%" style="background-color:#F5F5F5;margin:15px 15px 15px 25px;border:1px solid #B8B8B7;">
+	$contentDiff .= '<table cellpadding="5" cellspacing="0" border="0" width="95%" style="background-color:#F5F5F5;margin:15px 15px 15px 25px;border-left:1px solid #B8B8B7;border-right:1px solid #B8B8B7;">
 
 			<tr>
 			<td align="left" colspan="3" style="padding:5px;background-color:#BCBBBB;" class="defaultfont"><strong>'.$GLOBALS['l_versions']['schedulerMod'].'</strong></td>';
@@ -355,7 +355,7 @@ $contentDiff .= '</table>';
 		
 		if(empty($newDocScheduler) && empty($oldDocScheduler)) {
 			$contentDiff .= '<tr>';
-			$contentDiff .= '<td>-</td>';
+			$contentDiff .= '<td style="border-bottom:1px solid #B8B8B7;">-</td>';
 			$contentDiff .= '</tr>';
 		}
 		elseif(empty($newDocScheduler) && !empty($oldDocScheduler)) {
@@ -467,7 +467,7 @@ $contentDiff .= '</table>';
 	
 	
 	//customfilter
-	$contentDiff .= '<table cellpadding="5" cellspacing="0" border="0" width="95%" style="background-color:#F5F5F5;margin:15px 15px 15px 25px;border:1px solid #B8B8B7;">
+	$contentDiff .= '<table cellpadding="5" cellspacing="0" border="0" width="95%" style="background-color:#F5F5F5;margin:15px 15px 15px 25px;border-left:1px solid #B8B8B7;border-right:1px solid #B8B8B7;">
 			<tr>
 			<td align="left" colspan="3" style="padding:5px;background-color:#BCBBBB;" class="defaultfont"><strong>'.$GLOBALS['l_versions']['customerMod'].'</strong></td>';
 
@@ -482,7 +482,7 @@ $contentDiff .= '</table>';
 
 		if(empty($newCustomFilter) && empty($oldCustomFilter)) {
 				$contentDiff .= '<tr>';
-				$contentDiff .= '<td>-</td>';
+				$contentDiff .= '<td style="border-bottom:1px solid #B8B8B7;">-</td>';
 				$contentDiff .= '</tr>';
 		}
 		elseif(empty($newCustomFilter) && !empty($oldCustomFilter)) {
@@ -603,6 +603,9 @@ function toggle(id){
 	var elem = document.getElementById(id);
 	if(elem.style.visibility == "hidden") elem.style.visibility = "visible";
 	else elem.style.visibility = "hidden";
+	if(elem.style.left == "-9999px") elem.style.left = "0px";
+	else elem.style.left = "-9999px";
+
 }
 
 function previewVersion(ID, newID) {
@@ -637,20 +640,20 @@ td {font-size:9px;}
 <div id="mytabs">
 <?php print $tabsBody;?>
 </div>
-	<div id="content" style="margin: 0px; width: 100%;height: 90%;">
-		<div id="tab1" style="visibility:visible;top:30px;left:0px;height:90%;width: 100%;">
+	<div id="content" style="margin: 0px; width: 980px;height: 90%;">
+		<div id="tab1" style="visibility:visible;top:30px;left:0px;height:680px;width: 980px;">
 
 				<?php print $_tab_1?>
 
 			
 		</div>
-		<div id="tab2" style="position:absolute;visibility:hidden;top:30px;left:0px;height:90%;overflow:auto;width: 100%;">
+		<div id="tab2" style="position:absolute;visibility:hidden;top:30px;left:-9999px;height:680px;overflow:auto;width: 980px;">
 
 				<?php print $_tab_2?>
 		
 		
 		</div>
-		<div id="tab3" style="position:absolute;visibility:hidden;top:30px;left:0px;height:90%;overflow:auto;width: 100%;">
+		<div id="tab3" style="position:absolute;visibility:hidden;top:30px;left:-9999px;height:680px;overflow:auto;width: 980px;">
 
 				<?php print $_tab_3?>
 			
