@@ -553,7 +553,7 @@ function we_cmd() {
 					<?php print we_message_reporting::getShowMessageCall($GLOBALS["l_alert"]["no_perms_action"], WE_MESSAGE_ERROR); ?>
 				} else if (window.confirm("<?php print $l_alert['delete_single']['confirm_delete'];?>")) {
 					url2 = url.replace(/we_cmd\[0\]=delete_single_document_question/g, "we_cmd[0]=delete_single_document");
-					submit_we_form(top.weEditorFrameController.getActiveDocumentReference().frames["2"], self.load, url2 + "&we_cmd[2]=" + top.weEditorFrameController.getActiveEditorFrame().getEditorEditorTable());
+					submit_we_form(top.weEditorFrameController.getActiveDocumentReference().frames["3"], self.load, url2 + "&we_cmd[2]=" + top.weEditorFrameController.getActiveEditorFrame().getEditorEditorTable());
 				}
 			} else {
 				<?php print we_message_reporting::getShowMessageCall($GLOBALS["l_global"]["no_document_opened"], WE_MESSAGE_ERROR); ?>
@@ -597,7 +597,7 @@ function we_cmd() {
 				if(!hasPerm) {
 					<?php print we_message_reporting::getShowMessageCall($GLOBALS["l_alert"]["no_perms_action"], WE_MESSAGE_ERROR); ?>
 				} else {
-					submit_we_form(top.weEditorFrameController.getActiveDocumentReference().frames["2"], self.load, url + "&we_cmd[2]=" + top.weEditorFrameController.getActiveEditorFrame().getEditorEditorTable());
+					submit_we_form(top.weEditorFrameController.getActiveDocumentReference().frames["3"], self.load, url + "&we_cmd[2]=" + top.weEditorFrameController.getActiveEditorFrame().getEditorEditorTable());
 				}
 			} else {
 				<?php print we_message_reporting::getShowMessageCall($GLOBALS["l_global"]["no_document_opened"], WE_MESSAGE_ERROR); ?>
