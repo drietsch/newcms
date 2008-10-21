@@ -153,7 +153,7 @@ $DB_WE->query("SELECT strFelder from ".ANZEIGE_PREFS_TABLE." where strDateiname 
 	$DB_WE->next_record();
 	$feldnamen = explode("|",$DB_WE->f("strFelder"));
 
-		$waehr="&nbsp;".$feldnamen[0];
+		$waehr="&nbsp;".htmlspecialchars($feldnamen[0]);
 		$dbTitlename="shoptitle";
 		$dbPreisname="price";
 		$numberformat= $feldnamen[2];

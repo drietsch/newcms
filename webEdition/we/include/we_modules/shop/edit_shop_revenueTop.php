@@ -185,7 +185,7 @@ $query = 'SELECT strFelder from '.ANZEIGE_PREFS_TABLE.' where strDateiname = "sh
 	$DB_WE->next_record();
 
 $feldnamen = explode("|",$DB_WE->f("strFelder"));
-	$waehr = "&nbsp;".$feldnamen[0];
+	$waehr = "&nbsp;".htmlspecialchars($feldnamen[0]);
 	$numberformat = $feldnamen[2];
 	$classid = (isset($feldnamen[3]) ? $feldnamen[3] : '');
 	$defaultVat = !empty($feldnamen[1]) ? ($feldnamen[1]) : 0;

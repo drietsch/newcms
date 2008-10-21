@@ -42,7 +42,7 @@ $DB_WE->query("SELECT strFelder from ".ANZEIGE_PREFS_TABLE." where strDateiname 
 	$DB_WE->next_record();
 	$feldnamen = explode("|",$DB_WE->f("strFelder"));
 
-$waehr="&nbsp;".$feldnamen[0];
+$waehr="&nbsp;".htmlspecialchars($feldnamen[0]);
 $dbPreisname="Preis";
 $numberformat= $feldnamen[2];
 $mwst= (!empty($feldnamen[1]))?(($feldnamen[1]/100)+1):"";

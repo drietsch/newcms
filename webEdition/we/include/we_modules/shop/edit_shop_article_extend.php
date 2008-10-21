@@ -178,7 +178,7 @@ $we_button = new we_button();
 $DB_WE->query("SELECT strFelder from ".ANZEIGE_PREFS_TABLE." where strDateiname = 'shop_pref'");
 $DB_WE->next_record();
 $feldnamen = explode("|",$DB_WE->f("strFelder"));
-$waehr="&nbsp;".$feldnamen[0];
+$waehr="&nbsp;".htmlspecialchars($feldnamen[0]);
 $dbTitlename="shoptitle";
 $dbPreisname="Preis";
 $numberformat= $feldnamen[2];
