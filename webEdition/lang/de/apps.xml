@@ -119,7 +119,7 @@
 			<tuv xml:lang="de"><seg>Der Name der Haupttabelle ist nicht gültig!</seg></tuv>
 		</tu>
 		<tu tuid="The model class exists!">
-			<tuv xml:lang="de"><seg>Die Modellasse existiert bereits!</seg></tuv>
+			<tuv xml:lang="de"><seg>Die Model-Klasse existiert bereits!</seg></tuv>
 		</tu>
 		<tu tuid="The maintable exists!">
 			<tuv xml:lang="de"><seg>Die Tabelle existiert bereits!</seg></tuv>
