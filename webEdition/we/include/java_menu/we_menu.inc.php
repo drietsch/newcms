@@ -749,7 +749,7 @@ if(we_hasPerm("ADMINISTRATOR")) {
 
 }
 	// Extras > econda
-	$we_menu["4163000"]["text"] = $l_javaMenu["econda"] . "";
+	$we_menu["4163000"]["text"] = $l_javaMenu["econda"] . "...";
 	$we_menu["4163000"]["parent"] = "4000000";
 	$we_menu["4163000"]["cmd"] = "setEconda";
 	$we_menu["4163000"]["enabled"] = "1";
