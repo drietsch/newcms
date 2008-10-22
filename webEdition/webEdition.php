@@ -1264,7 +1264,7 @@ function we_cmd() {
 			return 0;
 			break;
 		case "setEconda":
-			new jsWindow(cmsurl+"Econdasettings","setEconda",-1,-1,500,400,true,false,true);
+			new jsWindow(cmsurl+"Econdasettings","setEconda",-1,-1,540,410,true,false,true);
 			break;
 		<?php
 		pWebEdition_JSwe_cmds();
