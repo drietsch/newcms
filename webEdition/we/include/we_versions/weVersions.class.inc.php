@@ -1610,7 +1610,7 @@ class weVersions {
    /**
 	* @abstract save version-entry in DB which is marked as deleted
 	*/
-	function setVersionOnDelete($docID, $docTable) {
+	function setVersionOnDelete($docID, $docTable,$ct) {
 		
 		if(isset($_SESSION["user"]["ID"])) {
 			$lastEntry = $this->getLastEntry($docID, $docTable);
@@ -1637,7 +1637,7 @@ class weVersions {
 			
 			$doDelete = true;
 			//preferences
-			if(!$this->CheckPreferencesCtypes($lastEntry['ContentType'])) {
+			if(!$this->CheckPreferencesCtypes($ct)) {
 				$doDelete = false;
 			}
 			

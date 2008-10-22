@@ -371,7 +371,7 @@ function deleteEntry($id, $table, $delR = true)
 				$version->saveVersion($object);
 			}
 			
-			$version->setVersionOnDelete($id, $table);
+			$version->setVersionOnDelete($id, $table,$row['ContentType']);
 		}
 		
 		$hook = new weHook($object, 'delete');
