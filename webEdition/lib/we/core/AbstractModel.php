@@ -239,7 +239,7 @@ class we_core_AbstractModel extends we_core_AbstractObject
 		$slots = $this->_persistentSlots;
 		foreach ($slots as $slot) {
 			if (isset($fields[$slot]) && isset($this->$slot)) {
-				$this->$slot = $fields[$slot];
+				$this->$slot = trim($fields[$slot]);
 			}
 		}
 	}
