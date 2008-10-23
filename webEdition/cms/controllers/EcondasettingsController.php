@@ -84,11 +84,12 @@ class EcondasettingsController extends Zend_Controller_Action
 		   				$this->view->assign("econdaFileName",(defined("WE_ECONDA_FILE") ? WE_ECONDA_FILE : $translate->_("File not uploaded jet.")));
 		   				$this->view->assign("msg",$translate->_("EcondaFileUploadError"));
 		   				$this->view->assign("prio",4);
-		   			} elseif ($_FILES['emosfile']['type'] != "application/x-javascript"){
+/*		   			} elseif ($_FILES['emosfile']['type'] != "application/x-javascript" || $_FILES['emosfile']['type'] != "text/javascript"){
 		   				// wrong data type
 		   				$this->view->assign("econdaFileName",(defined("WE_ECONDA_FILE") ? WE_ECONDA_FILE : $translate->_("File not uploaded jet.")));
 		   				$this->view->assign("msg",$translate->_("EcondaNoJsFile"));
 		   				$this->view->assign("prio",4);
+*/
 		   			} else {
 		   				// file uploded
 						$we_File = TMP_DIR."/".md5(uniqid(rand(),'-1'));
