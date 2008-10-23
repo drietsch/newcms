@@ -40,8 +40,8 @@ class weEmos{
 	
 	function __construct(){
 		
-		$this->emosJsFooter = $GLOBALS["weEconda"]["JS"];
-		$this->emosHTMLFooter = $GLOBALS["weEconda"]["HTML"];
+		$this->emosJsFooter = isset($GLOBALS["weEconda"]) && isset($GLOBALS["weEconda"]["JS"]) ? $GLOBALS["weEconda"]["JS"] : "";
+		$this->emosHTMLFooter = isset($GLOBALS["weEconda"]) && isset($GLOBALS["weEconda"]["HTML"]) ? $GLOBALS["weEconda"]["HTML"] : "";
 /*
 		if (isset($GLOBALS["we_doc"]) && isset($GLOBALS["we_doc"]["Language"])) {
 			$this->emosHTMLFooter .= '<a name="emos_name" title="langid" rel="'.substr($GLOBALS["we_doc"]["Language"],0,2).'" rev=""></a>'."\n";	
