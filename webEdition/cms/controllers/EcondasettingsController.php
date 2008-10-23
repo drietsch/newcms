@@ -67,6 +67,7 @@ class EcondasettingsController extends Zend_Controller_Action
 				// do if file is uploaded or settings are changed 
 				
    				include_once($GLOBALS['__WE_BASE_PATH__']."/we/include/we_defines.inc.php");
+   				include_once($GLOBALS['__WE_BASE_PATH__']."/we/include/we_global.inc.php");
    				include_once($GLOBALS['__WE_BASE_PATH__']."/we/include/we_classes/we_textContentDocument.inc.php");
    				
 				if (!defined('WE_ECONDA_STAT') || WE_ECONDA_STAT != $activateEconda) {
@@ -84,7 +85,7 @@ class EcondasettingsController extends Zend_Controller_Action
 		   				$this->view->assign("econdaFileName",(defined("WE_ECONDA_FILE") ? WE_ECONDA_FILE : $translate->_("File not uploaded jet.")));
 		   				$this->view->assign("msg",$translate->_("EcondaFileUploadError"));
 		   				$this->view->assign("prio",4);
-/*		   			} elseif ($_FILES['emosfile']['type'] != "application/x-javascript" || $_FILES['emosfile']['type'] != "text/javascript"){
+/*		   			} elseif ($_FILES['emosfile']['type'] != "application/x-javascript" || _FILES['emosfile']['type'] != "application/x-js" || $_FILES['emosfile']['type'] != "text/javascript"){
 		   				// wrong data type
 		   				$this->view->assign("econdaFileName",(defined("WE_ECONDA_FILE") ? WE_ECONDA_FILE : $translate->_("File not uploaded jet.")));
 		   				$this->view->assign("msg",$translate->_("EcondaNoJsFile"));
@@ -94,6 +95,7 @@ class EcondasettingsController extends Zend_Controller_Action
 		   				// file uploded
 						$we_File = TMP_DIR."/".md5(uniqid(rand(),'-1'));
 						move_uploaded_file($_FILES["emosfile"]["tmp_name"],$we_File);
+						
 		   				$we_doc = new we_textDocument();
 		   				
 						if (defined('WE_ECONDA_ID')) {	
@@ -107,7 +109,6 @@ class EcondasettingsController extends Zend_Controller_Action
 							$we_doc->we_new();
 							
 						}
-						
 						// overwrite allways filename
 						$we_doc->Filename = preg_replace("/[^A-Za-z0-9._-]/", "", $_FILES["emosfile"]["name"]);
 						$we_doc->Filename = eregi_replace('^(.+)\..+$',"\\1",$we_doc->Filename);
@@ -120,10 +121,9 @@ class EcondasettingsController extends Zend_Controller_Action
 						$we_doc->Text = $we_doc->Filename.$we_doc->Extension;
 						$we_doc->Path = $we_doc->getPath();
 						$we_doc->DocChanged = true;						
-						$we_doc->setElement("dat", file_get_contents($we_File));
-						@unlink($we_File);						
+						$we_doc->setElement("data", file_get_contents($we_File));
 						$we_doc->we_save();
-						
+						@unlink($we_File);						
 						// set econda conf_global
 						weConfParser::setGlobalPref('WE_ECONDA_ID',$we_doc->ID);
 						weConfParser::setGlobalPref('WE_ECONDA_PATH',$we_doc->Path);
