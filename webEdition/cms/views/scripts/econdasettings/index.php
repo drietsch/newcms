@@ -101,7 +101,7 @@ if (we_core_Permissions::hasPerm("ADMINISTRATOR")) {
 	$label = new we_ui_controls_Label();
 	$label->setText($translate->_('Upload ECONDA JS file'));
 	$form->addElement($label);
-	$form->addHTML("<input type='file' size='46' style='width:504px;' accept='text/javascript' name='emosfile'>");
+	$form->addHTML("<input type='file' size='46' style='width:445px;' accept='text/javascript' name='emosfile'>");
 	$form->addHTML("<br />");
 	$form->addHTML("<br />");
 	
