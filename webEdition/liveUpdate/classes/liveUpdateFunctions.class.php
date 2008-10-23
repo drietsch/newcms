@@ -578,10 +578,18 @@ class liveUpdateFunctions {
 
 		} else {
 			$content = $this->getFileContent($path);
-			$success = $this->executeUpdateQuery($content);
+			$queries = explode("/* query separator */",$content);
+			//$success = $this->executeUpdateQuery($content);
+			$success = true;
+			foreach($queries as $query) {
+				$success = $this->executeUpdateQuery($query);
+				if(!$success) $success = false;
+			}
+			
 		}
 		return $success;
 	}
+	
 
 	/**
 	 * updates the database with given dump.
