@@ -1127,7 +1127,7 @@ class weVersions {
 					}
 					else {
 						$entry = $this->makePersistentEntry($fieldName, $status, $document, $documentObj);
-						$vals[] = "'".mysql_real_escape_string($entry)."'";
+						$vals[] = "'".$entry."'";
 					}	
 				}
 			}
@@ -1152,7 +1152,7 @@ class weVersions {
 		}
 					
 		$this->CheckPreferencesTime($document["ID"], $document["Table"]);
-				
+
 	}	
 	
 	
@@ -1165,7 +1165,7 @@ class weVersions {
 			
 		$entry = "";			
 		$db = new DB_WE();
-		
+
 		switch($fieldName) {
 			case "documentID":
 				$entry = $document["ID"];
@@ -1217,7 +1217,7 @@ class weVersions {
 			case "binaryPath":
 				$binaryPath =  "";
 		
-					$binaryPath = f("SELECT binaryPath FROM " . VERSIONS_TABLE . " WHERE binaryPath!='' AND version<'".abs($this->version)."' AND documentTable='".mysql_real_escape_string($document['Table'])."' AND documentID='".abs($document['ID'])."'  ORDER BY version DESC limit 1 ","binaryPath",$db);
+					//$binaryPath = f("SELECT binaryPath FROM " . VERSIONS_TABLE . " WHERE binaryPath!='' AND version<'".abs($this->version)."' AND documentTable='".mysql_real_escape_string($document['Table'])."' AND documentID='".abs($document['ID'])."'  ORDER BY version DESC limit 1 ","binaryPath",$db);
 							
 					if($document["ContentType"]=="objectFile") {
 						$binaryPath = "";
@@ -1225,33 +1225,43 @@ class weVersions {
 					else {	
 						$documentPath = substr($document["Path"], 1); 
 						$siteFile = $_SERVER["DOCUMENT_ROOT"].SITE_DIR.$documentPath;
-						
+
 						$vers = $this->getVersion();
+						if($document["Extension"]==".php") {
+							$document["Extension"] = ".html";
+						}
 						$versionName = $document["ID"]."_".$document["Table"]."_".$vers.$document["Extension"];
 						$binaryPath = VERSION_DIR.$versionName;
 
 						if($document["IsDynamic"]) {
 							$this->writePreviewDynFile($document['ID'], $siteFile, $_SERVER["DOCUMENT_ROOT"].$binaryPath, $documentObj);
 						}
-						elseif(file_exists($siteFile) && 
+						/*elseif(file_exists($siteFile) && 
 							$document["ContentType"]!='image/*' && 
 							$document["ContentType"]!='application/x-shockwave-flash' && 
 							$document["ContentType"]!='video/quicktime' && 
 							$document["ContentType"]!='application/*' && 
 							$document["ContentType"]!='application/*') {
+							
 							ob_start();
 							include($siteFile);
+
 							$contents = ob_get_contents();
 							ob_end_clean();
+
 							saveFile($_SERVER["DOCUMENT_ROOT"].$binaryPath,$contents);
-							if(!(isset($_REQUEST['cmd']) && $_REQUEST['cmd']=='ResetVersion')) {
+							if(isset($_REQUEST['we_cmd'][0]) && $_REQUEST['we_cmd'][0]=='switch_edit_page' && isset($_REQUEST['we_cmd'][2])) {
 								$editPageNr = isset($_SESSION['EditPageNr']) ? $_SESSION['EditPageNr'] : '';
 								if($editPageNr!='') {
-									$location = '/webEdition/we_cmd.php?we_cmd[0]=switch_edit_page&we_cmd[1]='.abs($editPageNr).'';
-									header("Location: " . $_SERVER['DOCUMENT_ROOT'].$location);
+									$we_transaction = $_REQUEST['we_cmd'][2];
+									$locationPath = '/webEdition/we_cmd.php?we_cmd[0]=switch_edit_page&we_cmd[1]='.$editPageNr.'&we_cmd[2]='.$we_transaction;
+									$port = (defined("HTTP_PORT")) ? (":".HTTP_PORT) : "";
+									$prot = getServerProtocol();
+									$location = $prot."://".SERVER_NAME.$port.$locationPath;
+									header("Location: " . $location);
 								}
 							}
-						}
+						}*/
 						else {
 							copy($siteFile,$_SERVER["DOCUMENT_ROOT"].$binaryPath);								
 						}
