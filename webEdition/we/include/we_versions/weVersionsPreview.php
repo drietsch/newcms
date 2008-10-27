@@ -209,10 +209,10 @@ $contentDiff = '<div style="margin-left:25px;" id="top">'.$GLOBALS['l_versions']
 			<tr>
 			<td style="border-bottom:1px solid #B8B8B7;background-color:#BCBBBB;">'.getPixel(30,15).'	
 			</td>
-	  		<td class="defaultfont" align="center" style="border-bottom:1px solid #B8B8B7;background-color:#BCBBBB;"><strong>'.$GLOBALS['l_versions']['VersionNew'].'</strong></td>';
+	  		<td class="defaultfont" align="left" style="border-bottom:1px solid #B8B8B7;background-color:#BCBBBB;"><strong>'.$GLOBALS['l_versions']['VersionNew'].'</strong></td>';
 
 if(!empty($oldDoc)) {
-	 $contentDiff .= '<td class="defaultfont" align="center" style="border-left:1px solid #B8B8B7;background-color:#BCBBBB;border-bottom:1px solid #B8B8B7;"><strong>'.$GLOBALS['l_versions']['VersionOld'].'</strong></td>';
+	 $contentDiff .= '<td class="defaultfont" align="left" style="border-left:1px solid #B8B8B7;background-color:#BCBBBB;border-bottom:1px solid #B8B8B7;"><strong>'.$GLOBALS['l_versions']['VersionOld'].'</strong></td>';
 }
 $contentDiff .= '</tr>';
 
