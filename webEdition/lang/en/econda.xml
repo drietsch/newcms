@@ -35,7 +35,7 @@
 			<tuv xml:lang="en"><seg>The selected file is not a JavaScript file.</seg></tuv>
 		</tu>
 		<tu tuid="EcondaDialogInfo">
-			<tuv xml:lang="en"><seg><a href="http://www.econda.de/" target="_blank">econda</a> is the leading provider for web controlling solutions and webEdition technology partner.  The econda Shop Monitor makes online-shop analytics accessible, comprehensible and indispensable for optimally informed marketing and business decisions. Register now for a free 14-day trial! More information regarding the installation can be found in the <a href="http://documentation.webedition.de/en" target="_blank">webEdition online documentation</a>.</seg></tuv>
+			<tuv xml:lang="en"><seg><a href="http://webedition.de/en/econda" target="_blank">econda</a> is the leading provider for web controlling solutions and webEdition technology partner.  The econda Shop Monitor makes online-shop analytics accessible, comprehensible and indispensable for optimally informed marketing and business decisions. <a href="http://webedition.de/en/econda-form" target="_blank">Register now</a> for a free 14-day trial! More information regarding the installation can be found in the <a href="http://documentation.webedition.de/200810241003219195" target="_blank">webEdition online documentation</a>.</seg></tuv>
 		</tu>
 		<tu tuid="EcondaDialogNoperm">
 			<tuv xml:lang="en"><seg>You need administrator permissions to change the econda settings.</seg></tuv>
