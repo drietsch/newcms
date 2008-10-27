@@ -499,10 +499,10 @@ class searchtoolView extends weToolView
 	function getSearchJS($whichSearch)
 	{
 		
-		$h = ($GLOBALS['BROWSER'] == "IE" ? 150 : 160);
+		$h = ($GLOBALS['BROWSER'] == "IE" ? 155 : 170);
 		if ($whichSearch == "AdvSearch") {
 			
-			$h = ($GLOBALS['BROWSER'] == "IE" ? 90 : 110);
+			$h = ($GLOBALS['BROWSER'] == "IE" ? 125 : 140);
 		}
 		
 		$addinputRows = "";
@@ -510,7 +510,7 @@ class searchtoolView extends weToolView
 		//add height of each input row to calculate the scrollContent-height
 		if ($whichSearch == "AdvSearch") {
 			$addinputRows = 'for(i=1;i<newID;i++) {
-        scrollheight = scrollheight + 28;
+        //scrollheight = scrollheight + 28;
        }';
 		}
 		
@@ -953,7 +953,7 @@ class searchtoolView extends weToolView
     rows++;
     
     var scrollContent = document.getElementById("scrollContent_' . $whichSearch . '");
-    scrollContent.style.height = scrollContent.offsetHeight - 28 +"px";
+    //scrollContent.style.height = scrollContent.offsetHeight - 28 +"px";
     
     if(elem){
      var newRow = document.createElement("TR");
@@ -986,7 +986,7 @@ class searchtoolView extends weToolView
  
    function delRow(id) {
     var scrollContent = document.getElementById("scrollContent_' . $whichSearch . '");
-    scrollContent.style.height = scrollContent.offsetHeight + 28 +"px";
+    //scrollContent.style.height = scrollContent.offsetHeight + 28 +"px";
     
     var elem = document.getElementById("filterTableAdvSearch");
     if(elem){
@@ -1594,7 +1594,7 @@ class searchtoolView extends weToolView
 	     
 	    },
 	    failure: function(o) {
-	     //alert("Failure");
+	     alert("Failure");
 	    }
 	 }
 	
@@ -2574,6 +2574,7 @@ class searchtoolView extends weToolView
 				}
 				
 				$thisObj->searchclass->selectFromTempTable($_searchstart, $_anzahl, $_order);
+
 				while ($thisObj->searchclass->next_record()) {
 					
 					if (isset($thisObj->searchclass->Record['VersionID']) && $thisObj->searchclass->Record['VersionID'] != 0) {
@@ -2586,8 +2587,8 @@ class searchtoolView extends weToolView
 						);
 					
 					}
-					if (!isset(
-							$saveArrayIds[$thisObj->searchclass->Record['ContentType']][$thisObj->searchclass->Record['docID']])) {
+					elseif (!isset(
+						$saveArrayIds[$thisObj->searchclass->Record['ContentType']][$thisObj->searchclass->Record['docID']])) {
 						$saveArrayIds[$thisObj->searchclass->Record['ContentType']][$thisObj->searchclass->Record['docID']] = $thisObj->searchclass->Record['docID'];
 						
 						$_result[] = array_merge(array(
@@ -2597,10 +2598,10 @@ class searchtoolView extends weToolView
 						), $thisObj->searchclass->Record);
 					}
 				}
-				
+
 				foreach ($versionsFound as $k => $v) {
 					foreach ($_result as $key => $val) {
-						if (isset($_result[$key]['docID']) && $_result[$key]['docID'] == $v[1] && isset(
+						if (isset($_result[$key]['foundInVersions']) && isset($_result[$key]['docID']) && $_result[$key]['docID'] == $v[1] && isset(
 								$_result[$key]['ContentType']) && $_result[$key]['ContentType'] == $v[0]) {
 							if ($_result[$key]['foundInVersions'] != "") {
 								$_result[$key]['foundInVersions'] .= ",";
@@ -2698,7 +2699,7 @@ class searchtoolView extends weToolView
 		for ($f = 0; $f < $resultCount; $f++) {
 			$fontColor = "black";
 			$showPubCheckbox = true;
-			if (isset($_result[$f]["Published"]) && isset($_result[$f]["VersionID"]) && !$_result[$f]["VersionID"]) {
+			if (isset($_result[$f]["Published"])) {
 				$published = ((($_result[$f]["Published"] != 0) && ($_result[$f]["Published"] < $_result[$f]["ModDate"]) && ($_result[$f]["ContentType"] == "text/html" || $_result[$f]["ContentType"] == "text/webedition" || $_result[$f]["ContentType"] == "objectFile")) ? -1 : $_result[$f]["Published"]);
 				if ($_result[$f]["ContentType"] == "text/html" || $_result[$f]["ContentType"] == "objectFile" || $_result[$f]["ContentType"] == "text/webedition") {
 					if ($published == 0) {
@@ -2768,8 +2769,8 @@ class searchtoolView extends weToolView
 						}
 						
 						$content[$f][0]["version"][$k] = "";
-						$content[$f][1]["version"][$k] = $GLOBALS['l_versions']["version"] . " " . $version . " <br/><span style='font-weight:100;color:red;'>" . $classNotExistsText . "</span>";
-						$content[$f][2]["version"][$k] = "<div style='margin-bottom:5px;float:left;'>" . we_forms::radiobutton(
+						$content[$f][1]["version"][$k] = "<span style='margin-left:5px;'>".$GLOBALS['l_versions']["version"] . " " . $version . "</span> <br/><span style='font-weight:100;color:red;margin-left:10px;'>" . $classNotExistsText . "</span>";
+						$content[$f][2]["version"][$k] = "<div style='margin-bottom:5px;margin-left:5px;float:left;'>" . we_forms::radiobutton(
 								$ID, 
 								0, 
 								"resetVersion[" . $_result[$f]["ID"] . "_" . $_result[$f]["Table"] . "]", 
@@ -2778,9 +2779,10 @@ class searchtoolView extends weToolView
 								"defaultfont", 
 								"", 
 								$resetDisabled) . "</div><div style='float:left;margin-left:30px;'>" . $previewButton . "</div>";
-						$content[$f][3]["version"][$k] = date("d.m.Y", $timestamp);
+						$content[$f][3]["version"][$k] = "<span style='margin-left:5px;'>".date("d.m.Y", $timestamp)."</span>";
 						$content[$f][4]["version"][$k] = "";
-						$content[$f][5]["version"][$k] = ($_result[$f]["ContentType"] == "text/webedition" || $_result[$f]["ContentType"] == "text/html" || $_result[$f]["ContentType"] == "objectFile") ? we_forms::checkbox(
+						$content[$f][5]["version"][$k] = "<div style='margin-left:5px;'>";
+						$content[$f][5]["version"][$k] .= ($_result[$f]["ContentType"] == "text/webedition" || $_result[$f]["ContentType"] == "text/html" || $_result[$f]["ContentType"] == "objectFile") ? we_forms::checkbox(
 								$ID, 
 								0, 
 								"publishVersion_" . $ID, 
@@ -2788,6 +2790,7 @@ class searchtoolView extends weToolView
 								false, 
 								"middlefont", 
 								"") : "";
+						$content[$f][5]["version"][$k] .= "</div>";
 					
 					}
 				}
@@ -2795,7 +2798,7 @@ class searchtoolView extends weToolView
 						"SELECT ID FROM " . mysql_real_escape_string($_result[$f]["docTable"]) . " WHERE ID= '" . abs($_result[$f]["docID"]) . "' ", 
 						"ID", 
 						$DB_WE);
-				
+
 				$publishCheckbox = (!$showPubCheckbox) ? (($_result[$f]["ContentType"] == "text/webedition" || $_result[$f]["ContentType"] == "text/html" || $_result[$f]["ContentType"] == "objectFile") && we_hasPerm(
 						'PUBLISH') && $docExists != "") ? we_forms::checkbox(
 						$_result[$f]["docID"] . "_" . $_result[$f]["docTable"], 
@@ -2805,12 +2808,12 @@ class searchtoolView extends weToolView
 						false, 
 						"middlefont", 
 						"") : getPixel(20, 10) : '';
-						
+
 				if (eregi('_UTF-8', $GLOBALS['WE_LANGUAGE'])) {
 					$_result[$f]["SiteTitle"] = utf8_encode($_result[$f]["SiteTitle"]);
 				}
 				
-				$content[$f][0]["dat"] = $publishCheckbox;
+				$content[$f][0]["dat"] = getPixel(20,1).$publishCheckbox;
 				$content[$f][1]["dat"] = '<img src="' . ICON_DIR . $Icon . '" border="0" width="16" height="18" />';
 				$content[$f][2]["dat"] = '<a href="javascript:openToEdit(\'' . $_result[$f]["docTable"] . '\',\'' . $_result[$f]["docID"] . '\',\'' . $_result[$f]["ContentType"] . '\')" style="text-decoration:none;color:' . $fontColor . ';"  title="' . $_result[$f]["Text"] . '"><u>' . shortenPath(
 						$_result[$f]["Text"], 
