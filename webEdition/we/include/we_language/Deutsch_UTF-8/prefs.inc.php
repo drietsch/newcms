@@ -358,7 +358,7 @@ $l_prefs["tab_versions"] = 'Versionierung';
 	 * HOOKS
 	 */
 	$l_prefs["hooks"] = "Hooks";
-	$l_prefs["hooks_information"] = "Die Verwendung von Hooks ermöglicht die Ausführung von beliebigem php-Code während dem Speichern, Parken, Veröffentlichen und Löschen jeglicher Inhaltstypen in webEdition.<br/>
+	$l_prefs["hooks_information"] = "Die Verwendung von Hooks ermöglicht die Ausführung von beliebigem PHP-Code während dem Speichern, Parken, Veröffentlichen und Löschen jeglicher Inhaltstypen in webEdition.<br/>
 	Nähere Infos finden Sie in der Online-Dokumentation.<br/><br/>Möchten Sie die Ausführung von Hooks zulassen?";
 	
 	

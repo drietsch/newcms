@@ -347,7 +347,7 @@ $l_prefs["tab_modules"] = 'Moduły';
 	 * HOOKS
 	 */
 	$l_prefs["hooks"] = "Hooks"; //TRANSLATE
-	$l_prefs["hooks_information"] = "The use of hooks allows for the execution of arbitrary any php code during storing, publishing, unpublishing and deleting of any content type in webEdition.<br/>
+	$l_prefs["hooks_information"] = "The use of hooks allows for the execution of arbitrary any PHP code during storing, publishing, unpublishing and deleting of any content type in webEdition.<br/>
 	Further information can be found in the online documentation.<br/><br/>Allow execution of hooks?"; //TRANSLATE
 
 /*****************************************************************************
