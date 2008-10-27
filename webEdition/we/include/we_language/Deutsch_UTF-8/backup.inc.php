@@ -209,7 +209,7 @@ $l_backup['temporary_info'] = 'Noch nicht veröffentlichte Dokumente und Objekte
 $l_backup['export_info'] = 'Daten des Export Moduls.';
 $l_backup['glossary_info'] = 'Daten des Glossars.';
 $l_backup['versions_info'] = 'Daten der Versionierung.';
-$l_backup['versions_binarys_info'] = 'Achtung! Diese Option kann sehr zeit- und speicherintensiv sein da der Ordner "'.VERSION_DIR.'" unter Umständen sehr groß sein kann. Daher wird empfohlen diesen Ordner manuell zu sichern.';
+$l_backup['versions_binarys_info'] = 'Achtung! Diese Option kann sehr zeit- und speicherintensiv sein da der Ordner /webEdition/we/versions/ unter Umständen sehr groß sein kann. Daher wird empfohlen diesen Ordner manuell zu sichern.';
 
 $l_backup["export_voting_data"] = "Votingdaten sichern";
 $l_backup["import_voting_data"] = "Votingdaten wiederherstellen";

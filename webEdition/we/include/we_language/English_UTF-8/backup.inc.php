@@ -204,7 +204,7 @@ $l_backup['temporary_info'] = 'Data from unpublished documents and objects.';
 $l_backup['export_info'] = 'Data from the export module.';
 $l_backup['glossary_info'] = 'Data from the glossary.';
 $l_backup['versions_info'] = 'Data from Versioning.';
-$l_backup['versions_binarys_info'] = 'This option could take some time and memory because the folder "'.VERSION_DIR.'" could be very large. It is recommended to save this folder manually.';
+$l_backup['versions_binarys_info'] = 'This option could take some time and memory because the folder /webEdition/we/versions/ could be very large. It is recommended to save this folder manually.';
 
 
 $l_backup["import_voting_data"] = "Restore voting data";

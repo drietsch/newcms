@@ -204,7 +204,7 @@ $l_backup['temporary_info'] = 'Datos de documentos y objetos no publicados.';
 $l_backup['export_info'] = 'Datos del Módulo Exportación.';
 $l_backup['glossary_info'] = 'Data from the glossary.'; // TRANSLATE
 $l_backup['versions_info'] = 'Data from Versioning.'; // TRANSLATE
-$l_backup['versions_binarys_info'] = 'This option could take some time and memory because the folder "'.VERSION_DIR.'" could be very large. It is recommended to save this folder manually.'; // TRANSLATE
+$l_backup['versions_binarys_info'] = 'This option could take some time and memory because the folder /webEdition/we/versions/ could be very large. It is recommended to save this folder manually.'; // TRANSLATE
 
 
 $l_backup["import_voting_data"] = "Restaurar datos de la votación";

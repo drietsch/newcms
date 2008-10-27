@@ -203,7 +203,8 @@ $l_backup['settings_info'] = 'Préférences du logiciel webEdition.';
 $l_backup['temporary_info'] = 'Données des document et objects non publié.';
 $l_backup['export_info'] = 'Données du modul d\'export.';
 $l_backup['glossary_info'] = 'Data from the glossary.'; // TRANSLATE
-
+$l_backup['versions_info'] = 'Data from Versioning.';
+$l_backup['versions_binarys_info'] = 'This option could take some time and memory because the folder /webEdition/we/versions/ could be very large. It is recommended to save this folder manually.';
 
 $l_backup["import_voting_data"] = "Restaure des données de vote";
 $l_backup["export_voting_data"] = "Exporter des données de vote";
