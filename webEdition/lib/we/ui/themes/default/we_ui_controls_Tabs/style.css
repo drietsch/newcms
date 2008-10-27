@@ -1,0 +1,91 @@
+/**
+ * webEdition SDK
+ *
+ * This source is part of the webEdition SDK. The webEdition SDK is
+ * free software; you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License
+ * the Free Software Foundation; either version 3 of the License, or
+ * any later version.
+ *
+ * The GNU Lesser General Public License can be found at
+ * http://www.gnu.org/licenses/lgpl-3.0.html.
+ * A copy is found in the textfile 
+ * webEdition/licenses/webEditionSDK/License.txt
+ *
+ *
+ * @category   we
+ * @package    we_ui
+ * @subpackage we_ui_themes
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.gnu.org/licenses/lgpl-3.0.html  LGPL
+ */
+ 
+.we_ui_controls_Tabs_Container {	
+	margin: 0px; 
+	padding: 0;	
+	border: 0px;	
+	background-image:url(/webEdition/images/multiTabs/tabsBG_border.gif);
+	position:relative;
+	width:100%;
+	float:left;
+	z-index:1;
+	font-family: verdana, arial, helvetica;
+	font-size: 10px ! important;
+}
+.we_ui_controls_Tabs_Container td {	
+	font-family: verdana, arial, helvetica;
+	font-size: 10px ! important;
+	color: #000;
+}
+
+.we_ui_controls_Tab_Normal {		
+	float:left;
+	height:21px;
+	background-image:url(/webEdition/images/multiTabs/tabsBG_normal.gif);	
+	background-repeat: repeat-x;
+	cursor:pointer;
+	position:relative;
+	z-index:1;
+	padding: 0px 14px 0px 15px;
+}
+.we_ui_controls_Tab_Active {	
+	float:left;
+	height:21px;
+	background-image:url(/webEdition/images/multiTabs/tabsBG_active2.gif);	
+	background-repeat: repeat-x;		
+	cursor:pointer;
+	position:relative;
+	vertical-align:middle;
+	z-index:1;
+	padding: 0px 14px 0px 15px;
+}
+.we_ui_controls_Tab_Active_Bottomline {	
+	float:left;
+	height:21px;
+	background-image:url(/webEdition/images/multiTabs/tabsBG_active.gif);	
+	background-repeat: repeat-x;		
+	cursor:pointer;
+	position:relative;
+	z-index:1;
+	vertical-align:middle;
+	padding: 0px 14px 0px 15px;
+}
+.we_ui_controls_Tab_Disabled {	
+	float:left;
+	height:21px;
+	background-image:url(/webEdition/images/multiTabs/tabsBG_active.gif);	
+	background-repeat: repeat-x;	
+	cursor:default;
+	position:relative;
+	z-index:1;
+	vertical-align:middle;
+	padding: 0px 14px 0px 15px;
+}
+.we_ui_controls_Tab_Disabled td {	
+	color: #AAA;
+}
+.we_ui_controls_Tab_ImageBorder {
+	position:absolute;
+	top:0px;
+	right:0px;
+}	
