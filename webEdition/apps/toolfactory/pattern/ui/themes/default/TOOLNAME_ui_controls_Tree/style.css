@@ -1,0 +1,7 @@
+.{$TOOLNAME}_item {
+	display: block;
+	height: 18px;
+	padding-left: 20px;
+	background: transparent url(../shared/icons/small/{$TOOLNAME}.gif)
+		0 0px no-repeat;
+}
