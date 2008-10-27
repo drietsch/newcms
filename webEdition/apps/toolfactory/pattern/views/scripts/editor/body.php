@@ -31,6 +31,13 @@ $row->addElement($input);
 $row->addElement(_setupDirChooser($this, $translate->_('Folder'), 'ParentID', 'ParentPath'));
 <?php } ?>
 
+<?php if(!$TABLEEXISTS) { ?>
+$info = new we_ui_layout_NoteDiv();
+$info->setType("info");
+$info->setStyle("margin:30px;");
+$info->addHTML($translate->_('custom_app_hint'));
+<?php } ?>
+
 $table = new we_ui_layout_HeadlineIconTable();
 $table->setId('tab_1');
 $table->setMarginLeft(30);
@@ -38,6 +45,9 @@ $table->setRows(array($row));
 
 // create div for content of property tab
 $propertyTab = new we_ui_layout_Div(array('id'=>'idPropertyTab'));
+<?php if(!$TABLEEXISTS) { ?>
+$propertyTab->addElement($info);
+<?php } ?>
 $propertyTab->addElement($table);
 if($activTab!="idPropertyTab") {
 	$propertyTab->setHidden(true);
@@ -164,7 +174,7 @@ $htmlPage->addJSFile('/webEdition/js/we_showMessage.js');
 
 echo $htmlPage->getHTML();
 
-
+<?php if($TABLEEXISTS) { ?>
 function _setupDirChooser($view, $title, $IDName = 'ID', $PathName = 'Path') {
 	
 	$translate = we_core_Local::addTranslation('apps.xml');
@@ -209,3 +219,4 @@ function _setupDirChooser($view, $title, $IDName = 'ID', $PathName = 'Path') {
 
 	return $layoutTable;
 }
+<?php } ?>
