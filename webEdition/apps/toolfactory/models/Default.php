@@ -288,6 +288,7 @@ class toolfactory_models_Default extends we_app_Model
 			$replaceString = substr($_newname, $length); 
 			$_newname = str_replace($replaceString,$this->getNewFileName($replaceString,$TOOLNAME,$CLASSNAME),$_newname);
 
+
 			if($this->shouldInclude($_newname)) {
 
 				$_ext = substr($_file,-4);
@@ -358,7 +359,7 @@ class toolfactory_models_Default extends we_app_Model
 				}
 			}
 		}
-		
+
 		if($this->makeTable) {
 			$_sqlDumpFile = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['__WE_APP_URL__'] . '/' . $TOOLNAME . '/' . $TOOLNAME . '.sql';
 			$_sqlDump = file($_sqlDumpFile);
@@ -385,8 +386,8 @@ class toolfactory_models_Default extends we_app_Model
 		
 		$_dn = dirname($file);
 		$_bn = basename($file);
-		
-		if($_bn!=$this->Text . '.sql' && $_bn!='permission.conf.php' && $_bn!='backup.conf.php' && $_dn!=$GLOBALS['__WE_APP_URL__'] . $this->Text . '/tags' && $_dn!=$GLOBALS['__WE_APP_URL__'] . $this->Text . '/service/cmds' && $_dn!=$GLOBALS['__WE_APP_URL__'] . $this->Text . '/service/views/json' && $_dn!=$GLOBALS['__WE_APP_URL__'] . $this->Text . '/service/views/text') {
+
+		if($_bn!=$this->Text . '.sql' && $_bn!='permission.conf.php' && $_bn!='backup.conf.php' && $_dn!=$_SERVER['DOCUMENT_ROOT'].$GLOBALS['__WE_APP_URL__'] . '/' .$this->Text . '/tags' && $_dn!=$_SERVER['DOCUMENT_ROOT'].$GLOBALS['__WE_APP_URL__'] . '/' .$this->Text . '/service/cmds' && $_dn!=$_SERVER['DOCUMENT_ROOT'].$GLOBALS['__WE_APP_URL__'] . '/' .$this->Text . '/service/views/json' && $_dn!=$_SERVER['DOCUMENT_ROOT'].$GLOBALS['__WE_APP_URL__'] . '/' .$this->Text . '/service/views/text') {
 			return true;
 		}
 		
@@ -396,16 +397,16 @@ class toolfactory_models_Default extends we_app_Model
 		if($this->makeBackup && $_bn=='backup.conf.php') {
 			return true;
 		}
-		
-		if($this->makeTags && ($_dn==$GLOBALS['__WE_APP_URL__'] . $this->Text . '/tags')) {
+
+		if($this->makeTags && ($_dn==$_SERVER['DOCUMENT_ROOT'].$GLOBALS['__WE_APP_URL__'] . '/' .$this->Text . '/tags')) {
 			return true;
 		}
 		
-		if($this->makeServices && ($_dn==$GLOBALS['__WE_APP_URL__'] . $this->Text . '/service/cmds' || $_dn==$GLOBALS['__WE_APP_URL__'] . $this->Text . '/service/views')) {
+		if($this->makeServices && ($_dn==$_SERVER['DOCUMENT_ROOT'].$GLOBALS['__WE_APP_URL__'] . '/' .$this->Text . '/service/cmds' || $_dn==$_SERVER['DOCUMENT_ROOT'].$GLOBALS['__WE_APP_URL__'] . '/' .$this->Text . '/service/views')) {
 			return true;
 		}
 		
-		if($this->makeServices && ($_dn==$GLOBALS['__WE_APP_URL__'] . $this->Text . '/service/views/text' || $_dn==$GLOBALS['__WE_APP_URL__'] . $this->Text . '/service/views/json')) {
+		if($this->makeServices && ($_dn==$_SERVER['DOCUMENT_ROOT'].$GLOBALS['__WE_APP_URL__'] . '/' .$this->Text . '/service/views/text' || $_dn==$_SERVER['DOCUMENT_ROOT'].$GLOBALS['__WE_APP_URL__'] . '/' .$this->Text . '/service/views/json')) {
 			return true;
 		}
 		
@@ -433,7 +434,7 @@ class toolfactory_models_Default extends we_app_Model
 	 * @return boolean
 	 */
 	function classnameNotValid() {
-		if(eregi('[^a-z0-9\-]',$this->classname) || is_numeric(substr($this->classname, 0 , 1))) {
+		if(eregi('[^a-z0-9]',$this->classname) || is_numeric(substr($this->classname, 0 , 1))) {
 			return true;
 		}
 		return false;
@@ -446,7 +447,7 @@ class toolfactory_models_Default extends we_app_Model
 	 * @return boolean
 	 */
 	function maintablenameNotValid() {
-		return eregi('[^a-z0-9_\-]',$this->maintable);
+		return eregi('[^a-z0-9_-]',$this->maintable);
 	}
 	
 	/**
