@@ -34,6 +34,7 @@ $l_backup["settings"] = "Przywracanie ustawień";
 $l_backup["rebuild"] = "Automatyczny Rebuild";
 $l_backup["select_upload_file"] = "Załaduj z lokalnego pliku";
 $l_backup["select_server_file"] = "Wybierz plik kopii zapasowej.";
+$l_backup["charset_warning"] = "If you encounter problems when restoring a backup, please ensure that the target system uses the same character set as the source system. This applies both to the character set of the database (collation) as well as for the character set of the user interface language!"; // TRANSLATE
 $l_backup["finished_success"] = "Import zapasowej kopii danych został ukończony.";
 $l_backup["finished_fail"] = "Import zapasowej kopii danych nie został ukończony.";
 $l_backup["question_taketime"] = "Eksport potrwa trochę czasu.";

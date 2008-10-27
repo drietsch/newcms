@@ -34,6 +34,7 @@ $l_backup["settings"] = "Restaurar preferencias";
 $l_backup["rebuild"] = "Reconstrucción automática";
 $l_backup["select_upload_file"] = "Cargar importación desde archivo local";
 $l_backup["select_server_file"] = "Escoja en esta lista el archivo de reserva que Ud desea importar.";
+$l_backup["charset_warning"] = "If you encounter problems when restoring a backup, please ensure that the target system uses the same character set as the source system. This applies both to the character set of the database (collation) as well as for the character set of the user interface language!"; // TRANSLATE
 $l_backup["finished_success"] = "La importación del data de reserva ha finalizado exitosamente.";
 $l_backup["finished_fail"] = "La importación del data de reserva no ha finalizado exitosamente";
 $l_backup["question_taketime"] = "La exportación puede tomar algún tiempo.";
