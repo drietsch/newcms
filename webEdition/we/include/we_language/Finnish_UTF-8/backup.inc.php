@@ -34,6 +34,7 @@ $l_backup["settings"] = "Palauta asetukset";
 $l_backup["rebuild"] = "Automaattinen uudelleenrakennus";
 $l_backup["select_upload_file"] = "Läheta tuotava tiedosto työasemalta";
 $l_backup["select_server_file"] = "Valitse tuotava varmistustiedosto tältä listalta.";
+$l_backup["charset_warning"] = "If you encounter problems when you restore a backup, please ensure that the target system has setup the same character set as the source system. This applies both to the character set of the database (collation), as well as for the character set of the user interface language!"; // TRANSLATE
 $l_backup["finished_success"] = "Varmistuksen palautus on suoritettu onnistuneesti.";
 $l_backup["finished_fail"] = "Varmistuksen palautus ei onnistunut.";
 $l_backup["question_taketime"] = "Vienti saattaa viedä aikaa.";
