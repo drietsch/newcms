@@ -30,7 +30,9 @@
 	            	eval("if(jsWindow"+k+"Object.ref=='edit_module'){ fo=true;wind=jsWindow"+k+"Object.wind}");
 	            	if(fo) break;
 			    }
-			   	wind.focus();
+			   	if(typeof(wind) != "undefined") {
+			    	wind.focus();
+			    }
 				new jsWindow(url,"defaultbanner",-1,-1,500,220,true,false,true,true);
 				break;
 			case "banner_code":

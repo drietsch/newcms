@@ -55,11 +55,13 @@ include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GL
 
 		case "glossary_settings":
 			var fo=false;
-				for(var k=jsWindow_count-1;k>-1;k--){
-	            	eval("if(jsWindow"+k+"Object.ref=='edit_module'){ fo=true;wind=jsWindow"+k+"Object.wind}");
-	            	if(fo) break;
-			    }
-			   	wind.focus();
+			for(var k=jsWindow_count-1;k>-1;k--){
+	            eval("if(jsWindow"+k+"Object.ref=='edit_module'){ fo=true;wind=jsWindow"+k+"Object.wind}");
+	        	if(fo) break;
+			}
+			if(typeof(wind) != "undefined") {
+			    wind.focus();
+			}
 			new jsWindow(url,"edit_glossary_settings",-1,-1,490,250,true,true,true,true);
 			break;
 
