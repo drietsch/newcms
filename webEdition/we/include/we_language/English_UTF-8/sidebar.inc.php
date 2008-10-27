@@ -65,6 +65,10 @@ $l_sidebar["default"][5]["text"] = 'These are entire web sites including example
 $l_sidebar["default"][5]["link"] = 'http://demo.en.webedition.info/';
 $l_sidebar["default"][5]["icon"] = 'demopages.gif';
 
+$l_sidebar["default"][6] = array();
+$l_sidebar["default"][6]["headline"] = 'Econda';
+$l_sidebar["default"][6]["text"] = '<a href="http://webedition.de/en/econda" target="_blank">econda</a> is the leading provider for web controlling solutions and webEdition technology partner.  The econda Shop Monitor makes online-shop analytics accessible, comprehensible and indispensable for optimally informed marketing and business decisions. <a href="http://webedition.de/en/econda-form" target="_blank">Register now</a> for a free 14-day trial! More information regarding the installation can be found in the <a href="http://documentation.webedition.de/200810241003219195" target="_blank">webEdition online documentation</a>.';
+
 // Only shown on the default sidebar page if user has administrator perms
 $l_sidebar["admin"] = array();
 

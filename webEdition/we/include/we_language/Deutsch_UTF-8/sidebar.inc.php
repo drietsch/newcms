@@ -71,6 +71,10 @@ $l_sidebar["default"][6]["text"] = 'Hierbei handelt es sich um vollständige Web
 $l_sidebar["default"][6]["link"] = 'http://demo.webedition.de/';
 $l_sidebar["default"][6]["icon"] = 'demopages.gif';
 
+$l_sidebar["default"][7] = array();
+$l_sidebar["default"][7]["headline"] = 'Econda';
+$l_sidebar["default"][7]["text"] = '<a href="http://webedition.de/de/econda" target="_blank">econda</a> ist der führende Anbieter  für erfolgreiches Web Controlling und Technologiepartner von webEdition. econda Lösungen sind auf die Bedürfnisse und Ziele von Online-Versandhändlern zugeschnitten und liefern in Echtzeit Entscheidungsgrundlagen für dauerhafte Umsatzsteigerung. Dabei steht das econda Team seinen Kunden mit Web-Analytics-Expertise aus hunderten Projekten beratend zur Seite. Testen Sie econda Monitor <a href="http://webedition.de/de/econda-formular" target="_blank">14 Tage kostenlos</a> und unverbindlich! Weitere informationen zur Installation finden Sie in der <a href="http://documentation.webedition.de/200810150921145860" target="_blank">webEdition Online-Dokumentation</a>.';
+
 // Only shown on the default sidebar page if user has administrator perms
 $l_sidebar["admin"] = array();
 
