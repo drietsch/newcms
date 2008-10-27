@@ -1,3 +1,3 @@
 <?php
-define("WE_VERSION", "5.9.0.3");
+define("WE_VERSION", "5.9.0.4");
 ?>
