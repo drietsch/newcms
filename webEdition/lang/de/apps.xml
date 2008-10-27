@@ -196,5 +196,8 @@
 		<tu tuid="This entry cannot be deleted. Probably there is no appropriate data record in the data base or the data base does not exist. In this case you must implement the data retention.">
 			<tuv xml:lang="de"><seg>Dieser Eintrag kann nicht gelöscht werden. Wahrscheinlich existiert kein entsprechender Datensatz in der Datenbank oder die Datenbank existiert nicht da es sich um eine Custom-Applikation handelt. In diesem Fall müssen Sie die Datenhaltung selbst implementieren.</seg></tuv>
 		</tu>
+		<tu tuid="custom_app_hint">
+			<tuv xml:lang="de"><seg>Es handelt sich hierbei um eine Applikation, für die noch keine Datenhaltung implementiert worden ist. Demzufolge sind die beiden Einträge im Baum Fake-Einträge, die aus der Session kommen. Dies ist in der Tree-Basisklasse <i>we_ui_controls_Tree</i> in der Funktion <i>doCustom()</i> implementiert.<br/>Wenn Sie Ihre eigene Datenhaltung implementieren, müssen Sie diese Funktion in der abgeleiteten Tree-Klasse dieser Applikationen überschreiben.<br/>Weitere Informationen erhalten Sie in der Online-Dokumentation.</seg></tuv>
+		</tu>
 	</body>
 </tmx>
