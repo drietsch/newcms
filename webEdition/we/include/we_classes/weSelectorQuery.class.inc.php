@@ -298,7 +298,7 @@ class weSelectorQuery {
 		$result = array();
 		while ($this->db->next_record()) {
 			foreach ($this->fields as $val) {
-				$result[$i][$val] = $this->db->f($val);
+				$result[$i][$val] = htmlspecialchars_decode($this->db->f($val));
 			}
 			$i++;
 		}
