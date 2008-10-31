@@ -636,6 +636,11 @@ class searchtoolsearch extends we_search
 		return $where;
 	
 	}
+	
+	function getTblName($table) {
+		
+    	return substr($table, strlen(TBL_PREFIX), strlen($table));
+  	}
 
 	function searchContent($keyword, $table)
 	{
@@ -648,7 +653,7 @@ class searchtoolsearch extends we_search
 		if ($table == FILE_TABLE || $table == TEMPLATES_TABLE) {
 			
 			$query = "SELECT a.Name, b.Dat, a.DID FROM " . LINK_TABLE . " a LEFT JOIN " . CONTENT_TABLE . " b on (a.CID = b.ID) WHERE b.Dat LIKE '%" . mysql_real_escape_string(
-					trim($keyword)) . "%' AND a.DocumentTable='" . mysql_real_escape_string($table) . "'";
+					trim($keyword)) . "%' AND a.DocumentTable='" . mysql_real_escape_string($this->getTblName($table)) . "'";
 			$_db2->query($query);
 			while ($_db2->next_record()) {
 				$contents[] = $_db2->f('DID');
@@ -656,7 +661,7 @@ class searchtoolsearch extends we_search
 			
 			if ($table == FILE_TABLE) {
 				$query2 = "SELECT DocumentID, DocumentObject  FROM " . TEMPORARY_DOC_TABLE . " WHERE DocumentObject LIKE '%" . mysql_real_escape_string(
-						trim($keyword)) . "%' AND DocTable = '" . mysql_real_escape_string($table) . "' AND Active = '1'";
+						trim($keyword)) . "%' AND DocTable = '" . mysql_real_escape_string($this->getTblName($table)) . "' AND Active = '1'";
 				$_db2->query($query2);
 				while ($_db2->next_record()) {
 					$contents[] = $_db2->f('DocumentID');
@@ -834,7 +839,7 @@ class searchtoolsearch extends we_search
 			
 			if ($this->table == TEMPLATES_TABLE) {
 				$query = "INSERT INTO `" . SEARCH_TEMP_TABLE . "` SELECT '',ID,'" . TEMPLATES_TABLE . "',Text,Path,ParentID,IsFolder,'','',ContentType,'',CreationDate,CreatorID,ModDate,'',Extension,'','' FROM `" . TEMPLATES_TABLE . "` " . $this->where . "  ";
-				$this->query($query);
+				$this->query($query);error_log($query);
 			}
 			
 			if (defined("OBJECT_FILES_TABLE") && $this->table == OBJECT_FILES_TABLE) {
