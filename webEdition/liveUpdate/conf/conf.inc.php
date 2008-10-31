@@ -24,8 +24,6 @@
  * Liveupdate are set
  */
 
-$_REQUEST["betaVersion"] = 5903;
-
 // include files -> mainly stored in the application
 define('LIVEUPDATE_LANGUAGE', $GLOBALS['WE_LANGUAGE']);
 //define('LIVEUPDATE_LANGUAGE_DIR', $_SERVER['DOCUMENT_ROOT'] . '/webEdition/liveUpdate/includes/language/' . LIVEUPDATE_LANGUAGE . '/');
