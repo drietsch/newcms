@@ -101,11 +101,11 @@ switch ($_REQUEST["we_cmd"][2]) {
 			ValidFrom,
 			ValidUntil
 		) VALUES (
-			'" . mysql_real_escape_string($_title) . "',
+			'" . ($_title) . "',
 			" . abs($_SESSION['user']['ID']) . ",
 			DATE_FORMAT(NOW(), \"%Y-%m-%d\"),
-			'" . mysql_real_escape_string($entTitle) . "',
-			'" . mysql_real_escape_string($entText) . "',
+			'" . ($entTitle) . "',
+			'" . ($entText) . "',
 			'" . mysql_real_escape_string($q_Priority) . "',
 			'" . mysql_real_escape_string($q_Valid) . "',
 			'" . mysql_real_escape_string($q_ValidFrom) . "',
