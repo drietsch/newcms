@@ -234,7 +234,7 @@ class weNavigationView {
 					break;
 					
 					case "tool_navigation_reset_customer_filter":
-						if(confirm("M�chten Sie wirklich alle Kundenfilter zur�cksetzen?")) {
+						if(confirm("'.$GLOBALS["l_navigation"]["reset_customerfilter_question"].'")) {
 							we_cmd("tool_navigation_do_reset_customer_filter");
 						}
 					break;
