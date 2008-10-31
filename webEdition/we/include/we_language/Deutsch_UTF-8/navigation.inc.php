@@ -202,4 +202,5 @@ $l_navigation['selected_customers'] = 'Nur folgende Kunden können auf den Eintr
 $l_navigation['useDocumentFilter'] = 'Filtereinstellungen des Dokuments bzw. Objekts verwenden';
 $l_navigation['reset_customer_filter'] = 'Alle Kundenfilter zurücksetzen';
 $l_navigation['reset_customerfilter_done_message'] = 'Die Kundenfilter wurden erfolgreich zurückgesetzt!';
+$l_navigation['reset_customerfilter_question'] = 'Möchten Sie wirklich alle Kundenfilter zurücksetzen?';
 ?>

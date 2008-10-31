@@ -201,5 +201,6 @@ $l_navigation['selected_customers'] = 'Alleen de volgende klanten hebben toegang
 $l_navigation['useDocumentFilter'] = 'Use filter settings of document/object'; // TRANSLATE
 $l_navigation['reset_customer_filter'] = 'Reset all customer filters'; // TRANSLATE
 $l_navigation['reset_customerfilter_done_message'] = 'The cusomer filters were successfully reset!'; // TRANSLATE
+$l_navigation['reset_customerfilter_question'] = 'Do you realy want to reset all customer filters'; // TRANSLATE
 
 ?>

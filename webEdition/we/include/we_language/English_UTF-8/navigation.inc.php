@@ -202,5 +202,6 @@ $l_navigation['selected_customers'] = 'Only folowing customers can access the it
 $l_navigation['useDocumentFilter'] = 'Use filter settings of document/object';
 $l_navigation['reset_customer_filter'] = 'Reset all customer filters';
 $l_navigation['reset_customerfilter_done_message'] = 'The cusomer filters were successfully reset!';
+$l_navigation['reset_customerfilter_question'] = 'Do you realy want to reset all customer filters';
 
 ?>
