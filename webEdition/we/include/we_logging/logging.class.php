@@ -82,7 +82,7 @@ class logging{
 			
 				if(isset($this->$val)) {
 					$keys[]='`'.$val.'`'; 
-					$values[]="'".mysql_real_escape_string($this->$val)."'";
+					$values[]="'".($this->$val)."'";
 				}
 		}
 		
