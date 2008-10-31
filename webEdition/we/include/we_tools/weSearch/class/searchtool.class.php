@@ -186,10 +186,7 @@ class searchtool extends weToolModel
 	}
 	
 	function filenameNotValid($text) {
-		if (eregi('_UTF-8', $GLOBALS['WE_LANGUAGE'])) {
-			$text = utf8_decode($text);
-		}
-		return eregi('[^a-zäöü0-9._-]', $text);
+		return eregi('[^a-z0-9._-]', $text);
 	}
 
 	function getLangText($path, $text)
@@ -206,7 +203,7 @@ class searchtool extends weToolModel
 			case '/Vordefinierte Suchanfragen/Objekte' :
 				$_text = $GLOBALS['l_weSearch']['objekte'];
 				break;
-			case '/Vordefinierte Suchanfragen/Dokumente/Unveröffentlichte Dokumente' :
+			case substr($path, 0, 43)=='/Vordefinierte Suchanfragen/Dokumente/Unver' :
 				$_text = $GLOBALS['l_weSearch']['unveroeffentlicheDokumente'];
 				break;
 			case '/Vordefinierte Suchanfragen/Dokumente/Statische Dokumente' :
@@ -215,7 +212,7 @@ class searchtool extends weToolModel
 			case '/Vordefinierte Suchanfragen/Dokumente/Dynamische Dokumente' :
 				$_text = $GLOBALS['l_weSearch']['dynamischeDokumente'];
 				break;
-			case '/Vordefinierte Suchanfragen/Objekte/Unveröffentlichte Objekte' :
+			case substr($path, 0, 41)=='/Vordefinierte Suchanfragen/Objekte/Unver' :
 				$_text = $GLOBALS['l_weSearch']['unveroeffentlicheObjekte'];
 				break;
 			case '/Eigene Suchanfragen' :
@@ -230,17 +227,14 @@ class searchtool extends weToolModel
 			case '/Versionen/Objekte' :
 				$_text = $GLOBALS['l_weSearch']['objekte'];
 				break;
-			case '/Versionen/Dokumente/gelöschte Dokumente' :
+			case substr($path, 0, 24)=='/Versionen/Dokumente/gel' :
 				$_text = $GLOBALS['l_weSearch']['geloeschteDokumente'];
 				break;
-			case '/Versionen/Objekte/gelöschte Objekte' :
+			case substr($path, 0, 22)=='/Versionen/Objekte/gel' :
 				$_text = $GLOBALS['l_weSearch']['geloeschteObjekte'];
 				break;
 			default:
 				$_text = $_text;
-				if (eregi('_UTF-8', $GLOBALS['WE_LANGUAGE'])) {
-					$_text = utf8_encode($_text);
-				}
 		}
 		
 		return $_text;
