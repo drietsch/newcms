@@ -5,22 +5,22 @@
 	</header>
 	<body>
 		<tu tuid="toolfactory">
-			<tuv xml:lang="de"><seg>Applikationsverwaltung</seg></tuv>
+			<tuv xml:lang="de"><seg>Anwendungsverwaltung</seg></tuv>
 		</tu>
 		<tu tuid="The user is allowed to create new items in toolfactory">
-			<tuv xml:lang="de"><seg>Der Benutzer darf Applikationsverwaltung erstellen</seg></tuv>
+			<tuv xml:lang="de"><seg>Der Benutzer darf Anwendungsverwaltung erstellen</seg></tuv>
 		</tu>
 		<tu tuid="The user is allowed to delete items from toolfactory">
-			<tuv xml:lang="de"><seg>Der Benutzer darf Applikationsverwaltung löschen</seg></tuv>
+			<tuv xml:lang="de"><seg>Der Benutzer darf Anwendungsverwaltung löschen</seg></tuv>
 		</tu>
 		<tu tuid="The user is allowed to edit items toolfactory">
-			<tuv xml:lang="de"><seg>Der Benutzer darf Applikationsverwaltung bearbeiten</seg></tuv>
+			<tuv xml:lang="de"><seg>Der Benutzer darf Anwendungsverwaltung bearbeiten</seg></tuv>
 		</tu>
 		<tu tuid="Restore toolfactory data">
-			<tuv xml:lang="de"><seg>Der Benutzer darf Applikationsverwaltung bearbeiten</seg></tuv>
+			<tuv xml:lang="de"><seg>Der Benutzer darf Anwendungsverwaltung bearbeiten</seg></tuv>
 		</tu>
 		<tu tuid="Save toolfactory data">
-			<tuv xml:lang="de"><seg>Die Daten des Tools Applikationsverwaltung sichern</seg></tuv>
+			<tuv xml:lang="de"><seg>Die Daten des Tools Anwendungsverwaltung sichern</seg></tuv>
 		</tu>
 		<tu tuid="Name of the model class">
 			<tuv xml:lang="de"><seg>Name der Model-Klasse</seg></tuv>
@@ -80,7 +80,7 @@
 			<tuv xml:lang="de"><seg>Backup-Tabelle</seg></tuv>
 		</tu>
 		<tu tuid="The application '%s' has been succesfully saved. Please restart webEdition!">
-			<tuv xml:lang="de"><seg>Die Applikation '%s' wurde erfolgreich gespeichert. Bitte starten Sie webEdition neu!</seg></tuv>
+			<tuv xml:lang="de"><seg>Die Anwendung '%s' wurde erfolgreich gespeichert. Bitte starten Sie webEdition neu!</seg></tuv>
 		</tu>
 	</body>
 </tmx>

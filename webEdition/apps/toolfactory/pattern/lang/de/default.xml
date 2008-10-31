@@ -17,10 +17,10 @@
 			<tuv xml:lang="de"><seg>Der Benutzer darf {$TOOLNAMELANG}-Einträge bearbeiten</seg></tuv>
 		</tu>
 		<tu tuid="Restore {$TOOLNAME} data">
-			<tuv xml:lang="de"><seg>Die Daten der Applikation {$TOOLNAMELANG} wiederherstellen</seg></tuv>
+			<tuv xml:lang="de"><seg>Die Daten der Anwendung {$TOOLNAMELANG} wiederherstellen</seg></tuv>
 		</tu>
 		<tu tuid="Save {$TOOLNAME} data">
-			<tuv xml:lang="de"><seg>Die Daten der Applikation {$TOOLNAMELANG} sichern</seg></tuv>
+			<tuv xml:lang="de"><seg>Die Daten der Anwendung {$TOOLNAMELANG} sichern</seg></tuv>
 		</tu>
 	</body>
 </tmx>
