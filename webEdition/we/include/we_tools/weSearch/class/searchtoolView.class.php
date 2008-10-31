@@ -253,18 +253,12 @@ class searchtoolView extends weToolView
 					}
 					$this->Model->search_tables_advSearch = serialize($this->Model->search_tables_advSearch);
 
-					if (eregi('_UTF-8', $GLOBALS['WE_LANGUAGE'])) {
-						$this->Model->Text = utf8_decode($this->Model->Text);
-						$this->Model->Path = utf8_decode($this->Model->Path);
-					}
+
 
 					if ($this->Model->save()) {
 						$this->Model->updateChildPaths($oldpath);
 				
-						if (eregi('_UTF-8', $GLOBALS['WE_LANGUAGE'])) {
-							$this->Model->Text = utf8_encode($this->Model->Text);
-							$this->Model->Path = utf8_encode($this->Model->Path);
-						}
+
 						
 						if ($newone) {
 							$js = '
@@ -305,10 +299,7 @@ class searchtoolView extends weToolView
       ');
 					}
 					
-					if (eregi('_UTF-8', $GLOBALS['WE_LANGUAGE'])) {
-						$this->Model->Text = utf8_decode($this->Model->Text);
-						$this->Model->Path = utf8_decode($this->Model->Path);
-					}
+	
 					
 					print $js;
 					$this->Model->searchDocSearch = unserialize($this->Model->searchDocSearch);
