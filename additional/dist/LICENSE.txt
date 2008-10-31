@@ -1,63 +1,8 @@
-1. Principles
+2008-11-03
 
-living-e AG (hereinafter referred to a "Licensor") as the manufacturer of the software webEdition grants the purchaser of a valid end user License a simple, non-exclusive personal right of use to the licensed software subject to the following provisions.
+webEdition Version 6.0.0.0
+2008 (c) by Living-e AG
 
-2. Scope of the right of use
+webEdition is a web content management system licensed under the GPL
 
-2.1 Subject to provisions to the contrary agreed in individual cases, the licensee shall be entitled to use the software for one Website on one Internet domain. The version "webEdition THREE", or "webEdition Xpress3" entitles the purchaser to use the software on three websites, the version "webEdition FIVE" or "webEdition Xpress5" on five websites, the version "webEdition Xpress10" for ten websites and the version "webEdition Xpress20" for twenty Websites in each case on single Internet domain, i.e. in total for the respective number of domains. The rights of use to additional modules are governed accordingly.
-
-2.2 Website in this context is a unit of files that are available for retrieval via the Internet, intranet or a local network and server environment from a specific Internet domain (Second-level domain), and which are related in terms of their content.
-
-2.3 The routing of further domains to the domain of the website or a corresponding link with the index file shall not require any further License, provided that the context of the website remains intact. The automatic routing of further domains to subdomains (Third-level domains), subdirectories or files (excepting the index file in the root directory) or a corresponding link, that from the outside gives the impression that there is a separate website at the other domain, gives rise to a separate website requiring a License, unless otherwise agreed with the licensor.
-
-2.4 The licensee may prepare backup copies of the software as necessary. The manual and other written accompanying or training documents provided by the licensor on webEdition may not be copied or duplicated with the exception of exceptions outlined in the German Copyright Act (UrhG).
-
-2.5 The licensee is only permitted to let or hire out webEdition within the framework of the provisions of para. 4.
-
-2.6 The licensee shall be entitled to enhance or modify the source codes of webEdition in order to use the modified program either for its own purposes or for those of a customer according to para. 4. In doing so, patent rights or copyright comments may not be removed.
-
-2.7 In order to use our software, it is necessary to register the licensee (name and address) and the supported domain in our licensing database and provide an Internet connection for releasing the software following installation, and for installing modules as well as updates and upgrades. A registration number is required to release the software, which may be conferred individually for each licensee, for the entire licensing package or for the customer in general.
-
-3. Assignment of the License to third parties
-
-3.1 The licensee is entitled to assign in its entirety the License for an installed Internet domain to a third party. The legal requirements for such an assignment are that:
-
-3.1.1 The License has been paid in full,
-
-3.1.2 The licensor has been notified of the name and complete postal address of the third party, including postal code, town, street, house number and the email address of the purchaser.
-
-3.1.3 The third party agrees to this License agreement,
-
-3.1.4 The third party has his registered office in a state in which copyright would have been exhausted upon a data carrier being surrendered to the licensor, or upon surrender of a data carrier the statutory requirements (§ 69 c para. 3 UrhG) are given. Exhaustion of copyright occurs upon sale in the EU or the European Economic Area (EEA), in all countries of the EU or of the European Economic Area (EEA).
-
-3.2 A License once sold may only be utilised if the seller notifies the licensor of the sale as well as the name and address of the purchaser. Following notification, the rights of the previous licensee shall expire. Notification must be effected in writing (e-mail, fax or letter). If the requirements outlined in para. 3.1 are met, the licensor shall change its control database and shall replace the name and other details of the seller with the details of the purchaser. If and to the extent that the License had so far been registered under a collective registration number for the seller, a new registration number will be allocated for the purchaser.
-
-3.3 Following the assignment of the License, the seller shall be obliged to delete any and all copies of the software that were not surrendered to the purchaser. This obligation shall also extend to backups of the entire system (Images) in the event of the restoration of the system.
-
-3.4 The partial sale of individual Licenses from License packages shall only be possible if this has been determined upon sale or if the licensor subsequently agrees.
-
-4. Assignment of rights of use ("Agency model")
-
-4.1 The licensee may assign the rights of use granted by the licensor for an installed Internet domain to a third party (customer) for a limited or unlimited period of time, provided that such assignment takes place within the framework of a contractual relationship, the main purpose of which is not the assignment of webEdition (e.g. within the scope of a web design agreement with the customer).
-
-4.2 Such assignment requires that the license fee be paid in full in advance.
-
-4.3 The licensee is not permitted to surrender any data carriers given to him in fulfilment of the License agreement relating to the assigned License to the customer or to furnish him with or provide copies with the exception of the executable files installed on the server. The customer or the licensee may, however, prepare any backup copies necessary for server backup purposes.
-
-4.4 The provisions of para. 4.1 to 4.3 do not apply to holders of a "Developer License". This License only allows personal use. The "Developer Bundle" only entitles the holder to assign use to a single customer per double License. The second License may only be used for personal purposes.
-
-5. Update and upgrade Licenses
-
-Update und upgrade Licenses are only valid in connection with the basic License for which they have been granted. They shall expire as soon as the basic License expires. Updates and upgrades may only be sold or surrendered in accordance with the provisions of para. 3 and 4.
-
-6. Term, termination for good cause
-
-6.1 Provided that no term is specified, the License shall be indefinite.
-
-6.2 The licensor may terminate the License for good cause. Good cause shall in particular include a serious breach of the limits of the rights of use granted, unauthorized circulation or public disclosure of copies of the software or any other prohibited form of distribution.
-
-7. Demo versions
-
-7.1 Downloading or purchasing a demo version shall not result in a License being purchased in the sense of a right of use under copyright law. The right of use is only granted revocable for testing purposes within the scope of the provisions relevant to the demo version.
-
-7.2 Modification of the source code and the circumvention of technical restrictions of the demo version are prohibited.
+see webEdition/license folder for license informations

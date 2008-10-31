@@ -1,3 +1,9 @@
+SYSTEM REQUIREMENTS
+
+PHP 5.2 or newer
+MySQL Server Version 4.1 or newer
+Please set "session.auto_start" to false in your PHP configuration
+
 INSTALLATION
 
 1. unzip the archive webEdition_{VERSION}.zip and upload its 
