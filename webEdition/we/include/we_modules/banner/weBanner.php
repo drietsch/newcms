@@ -344,7 +344,7 @@ class weBanner extends weBannerBase{
 		}
 		if(!$nocount){
 			$db->query("INSERT INTO ".BANNER_VIEWS_TABLE." (ID,Timestamp,IP,Referer,DID,Page) VALUES(".abs($id).",".time().",'".mysql_real_escape_string($_SERVER["REMOTE_ADDR"])."','".addslashes($referer ? $referer : (isset($_SERVER["HTTP_REFERER"]) ? $_SERVER["HTTP_REFERER"] :  ""))."',".abs($did).",'".addslashes($page)."')");
-			$db->query("UPDATE ".BANNER_TABLE." SET views=views+1 WHERE ID='$id'");
+			$db->query("UPDATE ".BANNER_TABLE." SET views=views+1 WHERE ID='".abs($id)."'");
 		}
 
 		$attsImage['xml'] = $xml ? "true" : "false";
