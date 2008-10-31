@@ -57,26 +57,6 @@ $_table->addRow(2);
 $_table->setCol($_actRow++,0,array(	"width"   => $_widthTotal,
 							"colspan" => 3), getPixel($_widthTotal,15));
 
-//	3rd Licensed to
-//	convert LICENCE if needed
-$_we_licence = WE_LIZENZ;
-if ( $GLOBALS['WE_LANGUAGE'] == 'Deutsch_UTF-8' ) {
-	if ( function_exists("iconv") ) {
-		$_we_licence = iconv("ISO-8859-1", "UTF-8", WE_LIZENZ);
-	} else {
-		$_we_licence = utf8_encode(WE_LIZENZ);
-	}
-}
-$_table->setCol($_actRow,0,array(	"width" => $_space), getPixel($_space,1));
-$_table->setCol($_actRow,1,array(	"width" => $_middlePart,
-							"class" => "small"), $l_global["licensed_to"] . ":&nbsp;" . $_we_licence);
-$_table->setCol($_actRow++,2,array(	"width" => $_space), getPixel($_space,1));
-
-
-//	Second row with spaceholder
-$_table->setCol($_actRow++,0,array(	"width"   => $_widthTotal,
-							"colspan" => 3), getPixel($_widthTotal,15));
-
 //	3rd Version
 $_table->setCol($_actRow,0,array(	"width" => $_space), getPixel($_space,1));
 $we_version = ereg_replace('^(.*)\.0$','\1',WE_VERSION);
