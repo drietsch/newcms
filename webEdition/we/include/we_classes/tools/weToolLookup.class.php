@@ -83,8 +83,6 @@
 				}
 			}
 			if($addInternTools) {
-				include ($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_language/' . $lang . '/searchtool.inc.php');
-				include ($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_language/' . $lang . '/navigation.inc.php');
 				
 				$internToolDir = $_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_tools/';
 				$internTools = array('weSearch', 'navigation');
@@ -94,7 +92,7 @@
 					if(file_exists($_metaFile)) {
 						include($_metaFile);
 						if(isset($metaInfo)) {
-							$metaInfo['text'] = ${'l_' . $metaInfo['name']}[$metaInfo['name']];
+							$metaInfo['text'] = $metaInfo['name'];
 							$_tools[] = $metaInfo;
 							unset($metaInfo);
 						}
