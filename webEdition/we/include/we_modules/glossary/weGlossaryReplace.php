@@ -184,6 +184,9 @@
 		 * @return string
 		 */
 		function doReplaceWords($src, $replacements = array()) {
+			if ($src === "") {
+				return "";
+			}
 			@set_time_limit(0);
 			if(sizeof($replacements)>0) {
 				foreach($replacements as $k => $rep) {
@@ -193,7 +196,7 @@
 					}
 				}
 				
-				$return =  ereg_replace("^ ", "", str_replace(" $", "", preg_replace(array_keys($replacements), $replacements, " " . $src . " ")));
+				$return =  ereg_replace("^ ", "", str_replace(" $", "", preg_replace(array_keys($replacements), $replacements, $src)));
 
 				return stripslashes($return);
 			} else {
