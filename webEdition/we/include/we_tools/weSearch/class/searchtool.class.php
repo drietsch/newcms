@@ -164,7 +164,7 @@ class searchtool extends weToolModel
 	{
 		
 		parent::weToolModel(SUCHE_TABLE);
-		
+
 		if ($weSearchID) {
 			$this->ID = $weSearchID;
 			$this->load($weSearchID);
@@ -191,52 +191,54 @@ class searchtool extends weToolModel
 
 	function getLangText($path, $text)
 	{
-		
+
 		$_text = $text;
-		switch ($path) {
-			case '/Vordefinierte Suchanfragen' :
-				$_text = $GLOBALS['l_weSearch']['vordefinierteSuchanfragen'];
-				break;
-			case '/Vordefinierte Suchanfragen/Dokumente' :
-				$_text = $GLOBALS['l_weSearch']['dokumente'];
-				break;
-			case '/Vordefinierte Suchanfragen/Objekte' :
-				$_text = $GLOBALS['l_weSearch']['objekte'];
-				break;
-			case substr($path, 0, 43)=='/Vordefinierte Suchanfragen/Dokumente/Unver' :
-				$_text = $GLOBALS['l_weSearch']['unveroeffentlicheDokumente'];
-				break;
-			case '/Vordefinierte Suchanfragen/Dokumente/Statische Dokumente' :
-				$_text = $GLOBALS['l_weSearch']['statischeDokumente'];
-				break;
-			case '/Vordefinierte Suchanfragen/Dokumente/Dynamische Dokumente' :
-				$_text = $GLOBALS['l_weSearch']['dynamischeDokumente'];
-				break;
-			case substr($path, 0, 41)=='/Vordefinierte Suchanfragen/Objekte/Unver' :
-				$_text = $GLOBALS['l_weSearch']['unveroeffentlicheObjekte'];
-				break;
-			case '/Eigene Suchanfragen' :
-				$_text = $GLOBALS['l_weSearch']['eigeneSuchanfragen'];
-				break;
-			case '/Versionen' :
-				$_text = $GLOBALS['l_weSearch']['versionen'];
-				break;
-			case '/Versionen/Dokumente' :
-				$_text = $GLOBALS['l_weSearch']['dokumente'];
-				break;
-			case '/Versionen/Objekte' :
-				$_text = $GLOBALS['l_weSearch']['objekte'];
-				break;
-			case substr($path, 0, 24)=='/Versionen/Dokumente/gel' :
-				$_text = $GLOBALS['l_weSearch']['geloeschteDokumente'];
-				break;
-			case substr($path, 0, 22)=='/Versionen/Objekte/gel' :
-				$_text = $GLOBALS['l_weSearch']['geloeschteObjekte'];
-				break;
-			default:
-				$_text = $_text;
+		if($_text!='') {
+			switch ($path) {
+				case '/Vordefinierte Suchanfragen' :
+					$_text = $GLOBALS['l_weSearch']['vordefinierteSuchanfragen'];
+					break;
+				case '/Vordefinierte Suchanfragen/Dokumente' :
+					$_text = $GLOBALS['l_weSearch']['dokumente'];
+					break;
+				case '/Vordefinierte Suchanfragen/Objekte' :
+					$_text = $GLOBALS['l_weSearch']['objekte'];
+					break;
+				case substr($path, 0, 43)=='/Vordefinierte Suchanfragen/Dokumente/Unver' :
+					$_text = $GLOBALS['l_weSearch']['unveroeffentlicheDokumente'];
+					break;
+				case '/Vordefinierte Suchanfragen/Dokumente/Statische Dokumente' :
+					$_text = $GLOBALS['l_weSearch']['statischeDokumente'];
+					break;
+				case '/Vordefinierte Suchanfragen/Dokumente/Dynamische Dokumente' :
+					$_text = $GLOBALS['l_weSearch']['dynamischeDokumente'];
+					break;
+				case substr($path, 0, 41)=='/Vordefinierte Suchanfragen/Objekte/Unver' :
+					$_text = $GLOBALS['l_weSearch']['unveroeffentlicheObjekte'];
+					break;
+				case '/Eigene Suchanfragen' :
+					$_text = $GLOBALS['l_weSearch']['eigeneSuchanfragen'];
+					break;
+				case '/Versionen' :
+					$_text = $GLOBALS['l_weSearch']['versionen'];
+					break;
+				case '/Versionen/Dokumente' :
+					$_text = $GLOBALS['l_weSearch']['dokumente'];
+					break;
+				case '/Versionen/Objekte' :
+					$_text = $GLOBALS['l_weSearch']['objekte'];
+					break;
+				case substr($path, 0, 24)=='/Versionen/Dokumente/gel' :
+					$_text = $GLOBALS['l_weSearch']['geloeschteDokumente'];
+					break;
+				case substr($path, 0, 22)=='/Versionen/Objekte/gel' :
+					$_text = $GLOBALS['l_weSearch']['geloeschteObjekte'];
+					break;
+				default:
+					$_text = $text;
+			}
 		}
-		
+
 		return $_text;
 	
 	}
