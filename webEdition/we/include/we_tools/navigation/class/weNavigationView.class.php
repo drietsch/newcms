@@ -22,7 +22,7 @@
 
 /* the parent class of storagable webEdition classes */
 include_once($_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we.inc.php');
-include_once($_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we_language/'.$GLOBALS['WE_LANGUAGE'].'/navigation.inc.php');
+//include($_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we_language/'.$GLOBALS['WE_LANGUAGE'].'/navigation.inc.php');
 include_once($_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we_language/'.$GLOBALS['WE_LANGUAGE'].'/copy_folder.inc.php');
 include_once($_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we_tools/navigation/class/weNavigation.class.php');
 
@@ -91,6 +91,7 @@ class weNavigationView {
 	}
 
 	function getJSTop(){
+		
 		global $l_navigation;
 		$js='
 			var activ_tab = "1";
