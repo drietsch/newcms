@@ -19,8 +19,6 @@
  * @license    http://www.gnu.org/copyleft/gpl.html  GPL
  */
 
-protect();
-
 switch ($_REQUEST["we_cmd"][0]) {
 	case "edit_banner_ifthere":
 	case "edit_banner":
