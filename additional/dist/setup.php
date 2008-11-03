@@ -9,8 +9,7 @@
  * example:		http://yourdomain/setup.php?debug
  * 				http://yourdomain/setup.php?phpinfo
  * (c) 2008 by Living-E AG
- * @author Alexander Lindenstruth
- * @version 0.1
+ * @version 6.0.0.0
  */
 
 // some utility features:
@@ -175,6 +174,7 @@ function step_requirements() {
 	} else {
 		$output.=tpl_ok("Cookie test");
 	}
+	$output .= "</ul>";
 	return $output;
 }
 
