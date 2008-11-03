@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<!DOCTYPE tmx SYSTEM "tmx14.dtd">
+<tmx version="1.4">
+	<header creationtoolversion="1.0" datatype="plaintext" segtype="sentence" adminlang="de-de" srclang="de-de" o-tmf="Undefined" creationtool="text edit" >
+	</header>
+	<body>
+		<tu tuid="Econda Settings">
+			<tuv xml:lang="de"><seg>econda Einstellungen</seg></tuv>
+		</tu>
+		<tu tuid="activate ECONDA">
+			<tuv xml:lang="de"><seg>econda aktivieren</seg></tuv>
+		</tu>
+		<tu tuid="Upload ECONDA JS file">
+			<tuv xml:lang="de"><seg>econda JavaScript-Datei hochladen</seg></tuv>
+		</tu>
+		<tu tuid="Directory">
+			<tuv xml:lang="de"><seg>Verzeichnis</seg></tuv>
+		</tu>
+		<tu tuid="Please select the ECONDA JS file for upload.">
+			<tuv xml:lang="de"><seg>Bitte wählen Sie die econda JavaScript-Datei aus.</seg></tuv>
+		</tu>
+		<tu tuid="The file upload was successfull.">
+			<tuv xml:lang="de"><seg>Die JavaScript-Datei wurde erfolgreich hochgeladen.</seg></tuv>
+		</tu>
+		<tu tuid="File not uploaded jet.">
+			<tuv xml:lang="de"><seg>JavaScript-Datei wurde noch nicht hochgeladen.</seg></tuv>
+		</tu>
+		<tu tuid="ECONDA settings safed.">
+			<tuv xml:lang="de"><seg>econda Einstellungen gespeichert.</seg></tuv>
+		</tu>
+		<tu tuid="EcondaFileUploadError">
+			<tuv xml:lang="de"><seg>Bei der Übertragung der Datei ist ein Fehler aufgetreten. Versuchen Sie es bitte erneut.</seg></tuv>
+		</tu>
+		<tu tuid="EcondaNoJsFile">
+			<tuv xml:lang="de"><seg>Die ausgewählte Datei ist keine JavaScriptdatei.</seg></tuv>
+		</tu>
+		<tu tuid="EcondaDialogInfo">
+			<tuv xml:lang="de"><seg><a href="http://webedition.de/de/econda" target="_blank">econda</a> ist der führende Anbieter  für erfolgreiches Web Controlling und Technologiepartner von webEdition. econda Lösungen sind auf die Bedürfnisse und Ziele von Online-Versandhändlern zugeschnitten und liefern in Echtzeit Entscheidungsgrundlagen für dauerhafte Umsatzsteigerung. Dabei steht das econda Team seinen Kunden mit Web-Analytics-Expertise aus hunderten Projekten beratend zur Seite. Testen Sie econda Monitor <a href="http://webedition.de/de/econda-formular" target="_blank">14 Tage kostenlos</a> und unverbindlich! Weitere informationen zur Installation finden Sie in der <a href="http://documentation.webedition.de/200810150921145860" target="_blank">webEdition Online-Dokumentation</a>.</seg></tuv>
+		</tu>
+		<tu tuid="EcondaDialogNoperm">
+			<tuv xml:lang="de"><seg>Sie benötigen Administrator-Rechte, um die econda Einstellungen zu verändern.</seg></tuv>
+		</tu>
+		<tu tuid="EcondaDialogNoJS">
+			<tuv xml:lang="de"><seg>Die econda Datei muss eine JavaScript-Datei sein.</seg></tuv>
+		</tu>
+	</body>
+</tmx>

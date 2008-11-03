@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topic SYSTEM "http://docs.oasis-open.org/dita/v1.0.1/dtd/topic.dtd">
+<topic id="topic_52EC37D9C7A34C07B8A1808A4CD3E552">
+	<title>Übersicht über Dokumente</title>
+	<shortdesc>Mit diesem Quelltext können Sie eine Übersicht über Dokumente erstellen.</shortdesc>
+	<prolog>
+		<author>living-e AG</author>
+	</prolog>
+	<body>
+		<p>
+			<codeblock>
+				<![CDATA[
+<we:listview type="document">
+  <we:ifFound>
+    <ul>
+      <we:repeat>
+        <li><we:field name="Title" alt="we_path" hyperlink="true" /></li>
+      </we:repeat>
+    </ul>
+  </we:ifFound>
+</we:listview>
+				]]>
+			</codeblock>
+		</p>
+	</body>
+</topic>
