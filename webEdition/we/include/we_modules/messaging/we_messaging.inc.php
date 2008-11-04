@@ -727,71 +727,80 @@ class we_messaging extends we_class {
     }
 
     function get_fc_data($id, $sortitem, $searchterm, $usecache = 1) {
-	$sortfield = isset($this->si2sf[$sortitem]) ? $this->si2sf[$sortitem] : "";
-	if ($id == '' && empty($searchterm) && $usecache) {
-	    $this->cont_from_folder = 0;
-	    if (!empty($sortfield)) {
-		$this->sortfield = $sortfield;
-		$this->sort_set();
-		$this->save_sortstuff($this->Folder_ID, array_key_by_val($sortfield, $this->sf2sh), $this->sortorder);
-	    }
-	} else {
-	    $this->selected_set = array();
-	    $this->last_id = -1;
-	    $search_cond = array();
-
-	    if ($id != '') {
-		$this->cont_from_folder = 1;
-		$this->Folder_ID = $id;
-		if ($this->search_folder_ids[0] == -1) {
-		    $this->search_folder_ids = array($id);
-		}
-	    }
-
-	    if (!empty($searchterm) && !empty($this->search_fields)) {
-		$this->Folder_ID = -1;
-		$s_hash = array();
-
-		foreach ($this->search_folder_ids as $sfolder) {
-		    $cn = $this->available_folders[array_ksearch('ID', $sfolder, $this->available_folders)]['ClassName'];
-		    if (isset($s_hash[$cn]) && is_array($s_hash[$cn]))
-			array_push($s_hash[$cn], $sfolder);
-		    else
-			$s_hash[$cn] = array("$sfolder");
-		}
-
-		foreach ($s_hash as $m_key => $m_val) {
-		    $arr = array('searchterm' => $searchterm,
-				 'search_fields' => $this->search_fields,
-				 'search_folder_ids' => $m_val,
-				 'start_id' => $this->last_id);
-		    $this->selected_set = array_merge($this->selected_set, $this->used_msgobjs[$m_key]->get_msg_set($arr));
-		    $this->update_last_id();
-		}
-	    } else {
-/*		if (empty($sortfield))
-		    $this->init_sortstuff($id, '');
-		else
-		    $this->save_sortstuff($id, array_key_by_val($sortfield, $this->sf2sh), $this->sortorder);*/
-
-//		$this->ids_selected = array();
-
-//		echo "ID=$id<br>\n";
-		if(array_ksearch('ID', $id, $this->available_folders) != "-1"){
-		    $o   = $this->used_msgobjs[$this->available_folders[array_ksearch('ID', $id, $this->available_folders)]['ClassName']];
+		$sortfield = isset($this->si2sf[$sortitem]) ? $this->si2sf[$sortitem] : "";
+		if ($id == '' && empty($searchterm) && $usecache) {
+	    	$this->cont_from_folder = 0;
+	    	if (!empty($sortfield)) {
+				$this->sortfield = $sortfield;
+				$this->sort_set();
+				$this->save_sortstuff($this->Folder_ID, array_key_by_val($sortfield, $this->sf2sh), $this->sortorder);
+	    	}
 		} else {
-		    $o = null;
+	    	$this->selected_set = array();
+	    	$this->last_id = -1;
+	    	$search_cond = array();
+
+	    	if ($id != '') {
+				$this->cont_from_folder = 1;
+				$this->Folder_ID = $id;
+				if ($this->search_folder_ids[0] == -1) {
+				    $this->search_folder_ids = array($id);
+				}
+		    }
+
+		    if (!empty($searchterm) && !empty($this->search_fields)) {
+				$this->Folder_ID = -1;
+				$s_hash = array();
+				if ($id==''){
+					foreach ($this->available_folders as $afolder) {
+					    $cn = $afolder['ClassName'];
+					    if (isset($s_hash[$cn]) && is_array($s_hash[$cn]))
+						array_push($s_hash[$cn], $afolder['ID']);
+					    else
+						$s_hash[$cn] = array($afolder['ID']);
+
+					}
+				} else {
+					foreach ($this->search_folder_ids as $sfolder) {
+					    $cn = $this->available_folders[array_ksearch('ID', $sfolder, $this->available_folders)]['ClassName'];
+					    if (isset($s_hash[$cn]) && is_array($s_hash[$cn]))
+						array_push($s_hash[$cn], $sfolder);
+					    else
+						$s_hash[$cn] = array("$sfolder");
+					}
+				}
+				foreach ($s_hash as $m_key => $m_val) {
+				    $arr = array('searchterm' => $searchterm,
+						 'search_fields' => $this->search_fields,
+						 'search_folder_ids' => $m_val,
+						 'start_id' => $this->last_id);
+				    $this->selected_set = array_merge($this->selected_set, $this->used_msgobjs[$m_key]->get_msg_set($arr));
+				    $this->update_last_id();
+				}
+		    } else {
+				/*		if (empty($sortfield))
+						    $this->init_sortstuff($id, '');
+						else
+						    $this->save_sortstuff($id, array_key_by_val($sortfield, $this->sf2sh), $this->sortorder);*/
+				
+				//		$this->ids_selected = array();
+				
+				//		echo "ID=$id<br>\n";
+				if(array_ksearch('ID', $id, $this->available_folders) != "-1"){
+				    $o   = $this->used_msgobjs[$this->available_folders[array_ksearch('ID', $id, $this->available_folders)]['ClassName']];
+				} else {
+				    $o = null;
+				}
+				$arr = array('folder_id' => $id, 'last_id' => $this->last_id);
+				$this->selected_set = isset($o)? $o->get_msg_set($arr) : array();
+				$this->update_last_id();
+		
+				$this->last_sortfield = (isset($o) && isset($this->sf2sh[$o->get_sortfield()])) ? $this->sf2sh[$o->get_sortfield()] : "";
+				$this->sortfield = $this->last_sortfield;
+				$this->sortorder = isset($o) ? $o->get_sortorder() : "";
+			}
+
 		}
-		$arr = array('folder_id' => $id, 'last_id' => $this->last_id);
-		$this->selected_set = isset($o)? $o->get_msg_set($arr) : array();
-		$this->update_last_id();
-
-		$this->last_sortfield = (isset($o) && isset($this->sf2sh[$o->get_sortfield()])) ? $this->sf2sh[$o->get_sortfield()] : "";
-		$this->sortfield = $this->last_sortfield;
-		$this->sortorder = isset($o) ? $o->get_sortorder() : "";
-	    }
-
-	}
     }
 
     /* Message-Data for the messaging_message_view Frame */
