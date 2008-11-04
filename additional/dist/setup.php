@@ -121,8 +121,8 @@ function step_requirements() {
 	global $errors;
 	$output = "Checking if all system requirements are met. Some additional tests are performed as they are needed for webEdition to be fully functional but are not essential to run webEdition.<br /><br /><b>Basic Requirements:</b><ul style=\"list-style-position:outside;\">";
 	$errors = false;
-	if(PHP_VERSION < "5.1") {
-		$output.=tpl_error("PHP Version 5.1 or newer required!");
+	if(PHP_VERSION < "5.2") {
+		$output.=tpl_error("PHP Version 5.2 or newer required!");
 		$errors = true;
 	} else {
 		$output.=tpl_ok("Your PHP Version is up to date (Version ".PHP_VERSION.")");
