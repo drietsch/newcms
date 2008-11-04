@@ -32,7 +32,7 @@
 			<tuv xml:lang="de"><seg>Bei der Übertragung der Datei ist ein Fehler aufgetreten. Versuchen Sie es bitte erneut.</seg></tuv>
 		</tu>
 		<tu tuid="EcondaNoJsFile">
-			<tuv xml:lang="de"><seg>Die ausgewählte Datei ist keine Javascriptdatei.</seg></tuv>
+			<tuv xml:lang="de"><seg>Die ausgewählte Datei ist keine Javascript-Datei.</seg></tuv>
 		</tu>
 		<tu tuid="EcondaDialogInfo">
 			<tuv xml:lang="de"><seg><a href="http://webedition.de/de/econda" target="_blank">econda</a> ist der führende Anbieter  für erfolgreiches Web Controlling und Technologiepartner von webEdition. econda Lösungen sind auf die Bedürfnisse und Ziele von Online-Versandhändlern zugeschnitten und liefern in Echtzeit Entscheidungsgrundlagen für dauerhafte Umsatzsteigerung. Dabei steht das econda Team seinen Kunden mit Web-Analytics-Expertise aus hunderten Projekten beratend zur Seite. Testen Sie econda Monitor <a href="http://webedition.de/de/econda-formular" target="_blank">14 Tage kostenlos</a> und unverbindlich! Weitere informationen zur Installation finden Sie in der <a href="http://documentation.webedition.de/200810150921145860" target="_blank">webEdition Online-Dokumentation</a>.</seg></tuv>
