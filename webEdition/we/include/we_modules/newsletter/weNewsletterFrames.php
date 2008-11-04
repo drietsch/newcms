@@ -680,14 +680,14 @@ class weNewsletterFrames extends weModuleFrames {
 			}
 		}
 
-		$deselect = $we_button->create_button("reset", "javascript:document.we_form.global_mailing_list.value=''");
+		$deselect = $we_button->create_button("image:btn_function_trash", "javascript:document.we_form.global_mailing_list.value=''");
 
-		$gml_table=new we_htmlTable(array("border"=>"0","cellpadding"=>"0","cellspacing"=>"0"),5,1);
+		$gml_table=new we_htmlTable(array("border"=>"0","cellpadding"=>"0","cellspacing"=>"0","width"=>"538"),4,2);
 		$gml_table->setCol(0,0,array("class"=>"defaultfont"),$l_newsletter["global_mailing_list"]);
 		$gml_table->setCol(1,0,array(),getPixel(5,5));
-		$gml_table->setCol(2,0,array(),$this->View->formFileChooser("420","global_mailing_list",$settings["global_mailing_list"]));
+		$gml_table->setCol(2,0,array(),$this->View->formFileChooser("380","global_mailing_list",$settings["global_mailing_list"]));
+		$gml_table->setCol(2,1,array('align'=>'right'),$deselect);
 		$gml_table->setCol(3,0,array(),getPixel(5,5));
-		$gml_table->setCol(4,0,array('align'=>'right'),$deselect);
 
 		$body=we_htmlElement::htmlBody(array("class"=>"weDialogBody"),
 							we_htmlElement::htmlForm(array("name"=>"we_form"),
