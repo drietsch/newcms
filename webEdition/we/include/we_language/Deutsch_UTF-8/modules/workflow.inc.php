@@ -59,7 +59,7 @@ $l_workflow["delete_nok"] = "Der Workflow konnte nicht gelöscht werden!";
 $l_workflow["name"] = "Name";
 $l_workflow["type"] = "Typ";
 $l_workflow["type_dir"] = "Verzeichnisbasiert";
-$l_workflow["type_doctype"] = "DocumentType/Category basiert";
+$l_workflow["type_doctype"] = "Document-Typ/Kategorie basiert";
 $l_workflow["type_object"] = "Objektbasiert";
 
 $l_workflow["dirs"] = "Verzeichnisse";
