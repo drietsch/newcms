@@ -590,7 +590,7 @@ $we_menu["3000000"]["parent"] = "0000000";
 		$we_menu["3020000"]["cmd"] = "we_tracker";
 		$we_menu["3020000"]["perm"] = "";
 		$we_menu["3020000"]["enabled"] = "1";
-		$we_menu["3030000"]["parent"] = "3000000"; // separator
+		//$we_menu["3030000"]["parent"] = "3000000"; // separator
 	}
 
 	// Modules > not installed modules
@@ -604,12 +604,14 @@ $we_menu["3000000"]["parent"] = "0000000";
 		$we_menu["3050000"]["parent"] = "3000000"; // separator
 	}
 
+	/* bugfix WE-550
 	// Modules > moduleinstallation
 	$we_menu["3060000"]["text"] = $l_javaMenu["module_installation"] . "...";
 	$we_menu["3060000"]["parent"] = "3000000";
 	$we_menu["3060000"]["cmd"] = "moduleinstallation";
     $we_menu["3060000"]["perm"] = "ADMINISTRATOR";
 	$we_menu["3060000"]["enabled"] = "1";
+	*/
 
 
 // Extras
@@ -685,7 +687,7 @@ $we_menu["4000000"]["enabled"] = "1";
 	$we_menu["4033000"]["perm"] = "EDIT_KATEGORIE || ADMINISTRATOR";
 	$we_menu["4033000"]["enabled"] = "1";
 
-	$we_menu["4040000"]["parent"] = "4000000"; // separator
+	$we_menu["4033300"]["parent"] = "4000000"; // separator
 
 	// Extras > Tools
 	
