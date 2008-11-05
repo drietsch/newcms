@@ -47,8 +47,6 @@ class we_ui_layout_DivTest extends PHPUnit_Framework_TestCase
 	public function testgetHTML()
 	{
 		$this->assertEquals($this->we_ui_layout_Div->getHTML(), '<div id="id1"></div>');
-	
 	}
-
 }
 
