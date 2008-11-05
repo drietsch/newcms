@@ -41,7 +41,9 @@ if(isset($_REQUEST["cmd"]) && $_REQUEST["cmd"]=="save_last") {
 
 	function drawNewFolder() {
 		for(var i=0; i<top.allentries.length;i++){
-			top.fsbody.document.getElementById(top.allentries[i]).style.backgroundColor = 'white';
+			if(elem = top.fsbody.document.getElementById(top.allentries[i])){
+				elem.style.backgroundColor = 'white';
+			}
 		}
 		drawDir(top.currentDir,"new_folder");
 	}
