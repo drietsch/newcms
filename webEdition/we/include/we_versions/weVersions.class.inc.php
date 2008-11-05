@@ -842,7 +842,7 @@ class weVersions {
 	* @return array of version-records of one document / object
 	*/
 	function loadVersionsOfId($id, $table, $where="") {
-		
+
 		$versionArr = array();
 		$versionArray = array();
 		$db = new DB_WE();
@@ -1227,41 +1227,37 @@ class weVersions {
 						$siteFile = $_SERVER["DOCUMENT_ROOT"].SITE_DIR.$documentPath;
 
 						$vers = $this->getVersion();
-						if($document["Extension"]==".php") {
-							$document["Extension"] = ".html";
-						}
+
 						$versionName = $document["ID"]."_".$document["Table"]."_".$vers.$document["Extension"];
 						$binaryPath = VERSION_DIR.$versionName;
 
 						if($document["IsDynamic"]) {
 							$this->writePreviewDynFile($document['ID'], $siteFile, $_SERVER["DOCUMENT_ROOT"].$binaryPath, $documentObj);
-						}
-						/*elseif(file_exists($siteFile) && 
-							$document["ContentType"]!='image/*' && 
-							$document["ContentType"]!='application/x-shockwave-flash' && 
-							$document["ContentType"]!='video/quicktime' && 
-							$document["ContentType"]!='application/*' && 
-							$document["ContentType"]!='application/*') {
-							
-							ob_start();
-							include($siteFile);
+						}	
+						elseif(file_exists($siteFile) && $document["Extension"]==".php" && ($document["ContentType"]=='text/webedition' || $document["ContentType"]=='text/html')) {
 
+							ob_start();
+							ob_flush();
+							flush();
+							@include($siteFile);
 							$contents = ob_get_contents();
 							ob_end_clean();
-
+							
 							saveFile($_SERVER["DOCUMENT_ROOT"].$binaryPath,$contents);
-							if(isset($_REQUEST['we_cmd'][0]) && $_REQUEST['we_cmd'][0]=='switch_edit_page' && isset($_REQUEST['we_cmd'][2])) {
-								$editPageNr = isset($_SESSION['EditPageNr']) ? $_SESSION['EditPageNr'] : '';
-								if($editPageNr!='') {
-									$we_transaction = $_REQUEST['we_cmd'][2];
-									$locationPath = '/webEdition/we_cmd.php?we_cmd[0]=switch_edit_page&we_cmd[1]='.$editPageNr.'&we_cmd[2]='.$we_transaction;
-									$port = (defined("HTTP_PORT")) ? (":".HTTP_PORT) : "";
-									$prot = getServerProtocol();
-									$location = $prot."://".SERVER_NAME.$port.$locationPath;
-									header("Location: " . $location);
-								}
-							}
-						}*/
+
+							/*
+							$editPageNr = isset($_SESSION['EditPageNr']) ? $_SESSION['EditPageNr'] : 0;
+
+							$we_transaction = isset($_REQUEST['we_cmd'][2]) ? $_REQUEST['we_cmd'][2] : $GLOBALS['we_transaction'];
+							$locationPath = WE_SERVER_REQUEST_URI;
+							$port = (defined("HTTP_PORT")) ? (":".HTTP_PORT) : "";
+
+							$prot = getServerProtocol();
+							$location = $prot."://".SERVER_NAME.$port.$locationPath;
+							header("Location: " . $location);
+							*/
+							
+						}
 						else {
 							copy($siteFile,$_SERVER["DOCUMENT_ROOT"].$binaryPath);								
 						}
