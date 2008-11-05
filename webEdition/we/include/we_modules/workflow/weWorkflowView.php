@@ -549,7 +549,7 @@ class weWorkflowView extends weWorkflowBase{
 				var args = "";
 				var url = "<?php print WEBEDITION_DIR; ?>we_cmd.php?"; for(var i = 0; i < arguments.length; i++){ url += "we_cmd["+i+"]="+escape(arguments[i]); if(i < (arguments.length - 1)){ url += "&"; }}
 				if(hot == "1") {
-					if(confirm("<?php print $l_workflow["save_changed_workflow"]?>")) {
+					if(confirm("<?php print $l_workflow['save_changed_workflow']?>")) {
 						arguments[0] = "save_workflow";
 					} else {
 						top.content.usetHot();
@@ -659,7 +659,7 @@ class weWorkflowView extends weWorkflowBase{
 						break;
 					case "openObjselector":
 						url = "/webEdition/we_cmd.php?we_cmd[0]=openDocselector&we_cmd[8]=object&we_cmd[1]=&we_cmd[2]=<?php print (defined("OBJECT_TABLE") ? OBJECT_TABLE :""); ?>&we_cmd[5]="+arguments[5]+"&we_cmd[9]=1";
-						new jsWindow(url,"we_objectselector",-1,-1,650,400,true,true,true);
+						new jsWindow(url,"we_objectselector",-1,-1,<?php echo WINDOW_DOCSELECTOR_WIDTH . ',' . WINDOW_DOCSELECTOR_HEIGHT; ?>,true,true,true);
 						break;
 					case "add_cat":
 					case "del_cat":
