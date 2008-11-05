@@ -48,7 +48,7 @@ $we_button = new we_button();
       if((top.currentID!="")&&(document.forms["we_form"].elements["fname"].value!="")){
        if(document.forms["we_form"].elements["fname"].value!=top.currentName) top.currentID=top.sitepath+top.rootDir+top.currentDir+"/"+document.forms["we_form"].elements["fname"].value;
        url="we_sselector_editFile.php?id="+top.currentID;
-       new jsWindow(url,"we_fseditFile",-1,-1,600,500,true,false,true);
+       new jsWindow(url,"we_fseditFile",-1,-1,600,500,true,false,true,true);
       }
       else {
       	<?php print we_message_reporting::getShowMessageCall( $l_fileselector["edit_file_nok"], WE_MESSAGE_ERROR); ?>

@@ -62,10 +62,15 @@ $buttons = $we_button->position_yes_no_cancel(
 										null,
 										$we_button->create_button("cancel", "javascript:self.close();")
 											);
-$content='<textarea name="editFile" style="width:540px;height:380px;overflow: auto;">'.htmlspecialchars($we_fileData).'</textarea>';
+$content='<textarea name="editFile" id="editFile" style="width:540px;height:380px;overflow: auto;">'.htmlspecialchars($we_fileData).'</textarea>';
 
 ?>
 <script language="JavaScript" type="text/javascript"><!--
+	function setSize(){
+		var ta = document.getElementById("editFile");
+		ta.style.width=document.body.offsetWidth-60;
+		ta.style.height=document.body.offsetHeight-118;
+	}
 <?php if(isset($we_alerttext)): ?>
 <?php print we_message_reporting::getShowMessageCall($we_alerttext, WE_MESSAGE_ERROR); ?>
 self.close();
@@ -78,7 +83,7 @@ self.focus();
 //-->
 </script>
 </head>
-<body class="weDialogBody"><center>
+<body class="weDialogBody" onresize="setSize()" style="width:100%; height:100%"><center>
 <form method="post">
    <input type="hidden" name="cmd" value="save">
    <?php print htmlDialogLayout($content,$l_global["edit_file"].": <span class=\"weMultiIconBoxHeadline\">".ereg_replace(str_replace("\\","/",dirname($_REQUEST["id"]))."/","",$_REQUEST["id"]),$buttons)."</span>"; ?>

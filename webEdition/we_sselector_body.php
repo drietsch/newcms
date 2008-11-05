@@ -108,7 +108,7 @@ function doScrollTo(){
 }
 
 function setScrollTo(){
-   parent.scrollToVal=<?php if($GLOBALS["BROWSER"] == "IE"): ?>document.body.scrollTop<?php else: ?>pageYOffset<?php endif ?>;
+   parent.scrollToVal=<?php if($GLOBALS["BROWSER"] == "IE"): ?>document.body.scrollTop;<?php else: ?>pageYOffset;<?php endif ?>
 }
 
 function keypressed(e) {
