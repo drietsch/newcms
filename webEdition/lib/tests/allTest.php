@@ -44,6 +44,8 @@ require_once 'webEdition/lib/tests/we_ui_layout_ButtonTableYesNoTest.php';
 
 require_once 'webEdition/lib/tests/we_ui_layout_DivTest.php';
 
+require_once 'webEdition/lib/tests/we_ui_layout_NoteDivTest.php';
+
 require_once 'webEdition/lib/tests/we_ui_layout_FormTest.php';
 
 require_once 'webEdition/lib/tests/we_ui_layout_FramesetTest.php';
@@ -118,6 +120,8 @@ class allTest extends PHPUnit_Framework_TestSuite
 		$this->addTestSuite('we_ui_layout_ButtonTableYesNoTest');
 		
 		$this->addTestSuite('we_ui_layout_DivTest');
+		
+		$this->addTestSuite('we_ui_layout_NoteDivTest');
 		
 		$this->addTestSuite('we_ui_layout_FormTest');
 		
