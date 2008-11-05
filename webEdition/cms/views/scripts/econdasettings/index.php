@@ -22,7 +22,8 @@
 // alerts a message and exits when a user is not logged in or when the session is expired
 we_core_Permissions::protect();
 
-$translate = we_core_Local::addTranslation('econda.xml');
+$translate  = we_core_Local::addTranslation('default.xml');
+we_core_Local::addTranslation('econda.xml');
 
 $htmlPage = we_ui_dialog_OkCancelDialog::getInstance();
 $htmlPage->addJSFile('/webEdition/js/windows.js');
@@ -74,7 +75,7 @@ if (we_core_Permissions::hasPerm("ADMINISTRATOR")) {
 	$form->addElement($label);
 	$ac = new we_ui_controls_ACFileSelector();
 	$ac->setId("emos");
-	$ac->setButtonText('Select');
+	$ac->setButtonText($translate->_('Select'));
 	$ac->setButtonTitle('Select');
 	$ac->setFolderIdName("econdaParentId");
 	$ac->setFolderIdValue($this->econdaParentId);
