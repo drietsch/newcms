@@ -132,7 +132,7 @@ function checkSupportedBrowser() {
 }
 
 /*****************************************************************************
- * CREATE TMP, FRAGMENTS AND VERSIONS FOLDER
+ * CREATE EMPTY FOLDERS
  *****************************************************************************/
 if (!is_dir(TMP_DIR)) {
 	createLocalFolder(TMP_DIR);
@@ -142,7 +142,19 @@ if (!is_dir(FRAGMENT_LOCATION)) {
 	createLocalFolder(FRAGMENT_LOCATION);
 }
 if (!is_dir($_SERVER["DOCUMENT_ROOT"].VERSION_DIR)) {
-	createLocalFolder($_SERVER["DOCUMENT_ROOT"], VERSION_DIR);
+	createLocalFolder($_SERVER["DOCUMENT_ROOT"] . VERSION_DIR);
+}
+if (!is_dir($_SERVER["DOCUMENT_ROOT"].BACKUP_DIR)) {
+	createLocalFolder($_SERVER["DOCUMENT_ROOT"] . BACKUP_DIR);
+}
+if (!is_dir($_SERVER["DOCUMENT_ROOT"].BACKUP_DIR."tmp/")) {
+	createLocalFolder($_SERVER["DOCUMENT_ROOT"].BACKUP_DIR."tmp/");
+}
+if (!is_dir($_SERVER["DOCUMENT_ROOT"].BACKUP_DIR."download/")) {
+	createLocalFolder($_SERVER["DOCUMENT_ROOT"].BACKUP_DIR."download/");
+}
+if (!is_dir($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/weTagWizard/we_tags/custom_tags/')) {
+	createLocalFolder($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/weTagWizard/we_tags/custom_tags/');
 }
 
 /*****************************************************************************
