@@ -55,9 +55,24 @@ self.dialog = eval("opener." + self.name + "_Object");
 		parent::__construct($properties);
 	}
 	
+	/**
+	 * set headline
+	 * 
+	 * @param string $headline
+	 */
 	public function setHeadline($headline)
 	{
 		$this->_headline = $headline;
 	}
 
+	/**
+	 * retrieve headline
+	 * 
+	 * @return string
+	 */
+	public function getHeadline()
+	{
+		return $this->_headline;
+	}
+	
 }

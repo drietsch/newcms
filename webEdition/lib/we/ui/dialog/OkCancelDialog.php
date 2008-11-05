@@ -199,6 +199,11 @@ class we_ui_dialog_OkCancelDialog extends we_ui_layout_Dialog
 		$this->_message = $message;
 	}
 	
+	/**
+	 * set topClose
+	 * 
+	 * @param boolean $close
+	 */
 	public function setTopClose($close)
 	{
 		$this->_topClose = $close;
@@ -232,11 +237,6 @@ class we_ui_dialog_OkCancelDialog extends we_ui_layout_Dialog
 	public function setEncodeMessage($encodeMessage)
 	{
 		$this->_encodeMessage = $encodeMessage;
-	}
-
-	public function addHeadline($headline)
-	{
-		$this->_bodyHTML .= $this->_bodyHTML;
 	}
 }
 
