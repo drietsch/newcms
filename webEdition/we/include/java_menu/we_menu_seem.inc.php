@@ -567,6 +567,7 @@ $we_menu["4000000"]["enabled"] = "1";
 	
 	$we_menu["4123000"]["parent"] = "4000000"; // separator
 
+	/*
 	// Extras > Search
 	$we_menu["4124000"]["text"] = $l_javaMenu["search"] . "...";
 	$we_menu["4124000"]["parent"] = "4000000";
@@ -575,6 +576,7 @@ $we_menu["4000000"]["enabled"] = "1";
 	$we_menu["4124000"]["enabled"] = "1";
 
     $we_menu["4126000"]["parent"] = "4000000"; // separator
+	*/
 
 	// Extras > Thumbnails
 	$we_menu["4130000"]["text"] = $l_javaMenu["thumbnails"] . "...";
@@ -642,7 +644,7 @@ if(we_hasPerm("ADMINISTRATOR")) {
 		}
 	}
 
-	$we_menu["4185000"]["parent"] = "4180000"; // separator
+	//$we_menu["4185000"]["parent"] = "4180000"; // separator
 
 	// order all modules
 	$buyableModules = weModuleInfo::getNoneIntegratedModules();
