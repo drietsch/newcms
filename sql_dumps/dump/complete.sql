@@ -737,9 +737,9 @@ CREATE TABLE tblWebUser (
   PRIMARY KEY  (ID)
 ) TYPE=MyISAM;
 /* query separator */
-INSERT INTO tblWebUser VALUES (1,'admin','admin','','','living-e','AG','Amalienstrasse 81-87','76133 Karlsruhe','Baden-Württemberg','Deutschland','','','','','',0,'1144395493','1144397956','1144397956',0,'/admin',0,'customer.gif','admin','','','Administratoren');
+INSERT INTO tblWebUser VALUES (1,'admin','admin','','','living-e','AG','Amalienstrasse 81-87','76133 Karlsruhe','Baden-Württemberg','Deutschland','','','','','',1,'1144395493','1144397956','1144397956',0,'/admin',0,'customer.gif','admin','','','Administratoren');
 /* query separator */
-INSERT INTO tblWebUser VALUES (2,'customer','customer','','','web','user','webland','universe','Saarland','','','','','','',0,'0','0','0',0,'/customer',0,'customer.gif','customer','','','Kunden');
+INSERT INTO tblWebUser VALUES (2,'customer','customer','','','web','user','webland','universe','Saarland','','','','','','',0,'0','0','0',0,'/customer',1,'customer.gif','customer','','','Kunden');
 /* query separator */
 CREATE TABLE tblWorkflowDef (
   ID int(11) NOT NULL auto_increment,
