@@ -318,18 +318,16 @@ $contentDiff .= '</tr>';
 			}
 			*/
 
-			if(!stristr($GLOBALS['WE_LANGUAGE'], '_UTF-8') === FALSE) {
-				$newVal = utf8_encode($newVal);
-			}
+
 			
 			$contentDiff .= '<tr>';
 			$contentDiff .= '<td width="33%" style="'.$mark.'"><strong>'.$name.'</strong></td>';
-			$contentDiff .= '<td width="33%" style="'.$mark.'">'.$newVal.'</td>';
+            $contentDiff .= '<td width="33%" style="'.$mark.'">'.htmlspecialchars($newVal).'</td>';
 			if($oldVersion) {
 				if(!stristr($GLOBALS['WE_LANGUAGE'], '_UTF-8') === FALSE) {
 					$oldVal = utf8_encode($oldVal);
 				}
-				$contentDiff .= '<td width="33%" style="'.$mark.'border-left:1px solid #B8B8B7;">'.$oldVal.'</td>';
+				$contentDiff .= '<td width="33%" style="'.$mark.'border-left:1px solid #B8B8B7;">'.htmlspecialchars($oldVal).'</td>';
 			}
 			$contentDiff .= '</tr>';
 			
