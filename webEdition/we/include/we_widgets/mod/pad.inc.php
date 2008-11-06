@@ -51,6 +51,8 @@ $bValid = $_sInitProps{4};
 $q_Csv = $_REQUEST["we_cmd"][1];
 $_title = base64_decode($_REQUEST["we_cmd"][4]);
 $_sObjId = $_REQUEST["we_cmd"][5];
+
+
 switch ($_REQUEST["we_cmd"][2]) {
 	case 'delete' :
 		$_sql = "DELETE FROM " . mysql_real_escape_string($_table) . " WHERE ID = " . abs($q_Csv);
@@ -67,8 +69,8 @@ switch ($_REQUEST["we_cmd"][2]) {
 		$entText = str_replace("'", '&#039;', $entText);
 		$entText = str_replace('"', '&quot;', $entText);
 		$_sql = "UPDATE " . mysql_real_escape_string($_table) . " SET
-			Title = '" . mysql_real_escape_string($entTitle) . "',
-			Text = '" . mysql_real_escape_string($entText) . "',
+			Title = '" . mysql_real_escape_string($_REQUEST['we_cmd'][7]) . "',
+			Text = '" . mysql_real_escape_string($_REQUEST['we_cmd'][8]) . "',
 			Priority = '" . mysql_real_escape_string($q_Priority) . "',
 			Valid = '" . mysql_real_escape_string($q_Valid) . "',
 			ValidFrom = '" . mysql_real_escape_string($q_ValidFrom) . "',
@@ -104,8 +106,8 @@ switch ($_REQUEST["we_cmd"][2]) {
 			'" . ($_title) . "',
 			" . abs($_SESSION['user']['ID']) . ",
 			DATE_FORMAT(NOW(), \"%Y-%m-%d\"),
-			'" . ($entTitle) . "',
-			'" . ($entText) . "',
+			'" . mysql_real_escape_string($_REQUEST['we_cmd'][7]) . "',
+			'" . mysql_real_escape_string($_REQUEST['we_cmd'][8]) . "',
 			'" . mysql_real_escape_string($q_Priority) . "',
 			'" . mysql_real_escape_string($q_Valid) . "',
 			'" . mysql_real_escape_string($q_ValidFrom) . "',
@@ -561,7 +563,7 @@ print
 							return false;
 						}
 						var q_ID=gel(_id+'_ID').value;
-						parent.rpc(_ttlB64Esc.concat(','+_sInitProps),(q_ID+';'+escape(csv)),'update','',_ttlB64Esc,_sObjId,'pad/pad');
+						parent.rpc(_ttlB64Esc.concat(','+_sInitProps),(q_ID+';'+escape(csv)),'update','',_ttlB64Esc,_sObjId,'pad/pad',escape(q_curr['Title']),escape(q_curr['Text']));
 					}else{
 						" . we_message_reporting::getShowMessageCall(
 										$l_cockpit['note_not_modified'], 
@@ -596,7 +598,7 @@ print
 										WE_MESSAGE_NOTICE) . "
 							return false;
 						}
-						parent.rpc(_ttlB64Esc.concat(','+_sInitProps),escape(csv),'insert','',_ttlB64Esc,_sObjId,'pad/pad');
+						parent.rpc(_ttlB64Esc.concat(','+_sInitProps),escape(csv),'insert','',_ttlB64Esc,_sObjId,'pad/pad',escape(q_curr['Title']),escape(q_curr['Text']));
 					}else{
 						" . we_message_reporting::getShowMessageCall(
 										$l_cockpit['title_empty'], 
