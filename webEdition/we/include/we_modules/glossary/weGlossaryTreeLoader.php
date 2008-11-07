@@ -139,7 +139,7 @@ class weGlossaryTreeLoader{
 		
 		$Items = array();
 		
-		$Where = " WHERE Language = '.".mysql_real_escape_string($Language)."' AND Type = '".mysql_real_escape_string($Type)."'";	
+		$Where = " WHERE Language = '".mysql_real_escape_string($Language)."' AND Type = '".mysql_real_escape_string($Type)."'";	
 				
 		$PrevOffset = $Offset-$Segment;
 		$PrevOffset = ($PrevOffset<0) ? 0 : $PrevOffset;

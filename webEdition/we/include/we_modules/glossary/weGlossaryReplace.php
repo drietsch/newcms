@@ -196,8 +196,11 @@
 					}
 				}
 				
-				$return =  ereg_replace("^ ", "", str_replace(" $", "", preg_replace(array_keys($replacements), $replacements, $src)));
-
+				// add spaces before and after and replace the words
+				$src = preg_replace(array_keys($replacements), $replacements, " $src ");
+				// remove added spaces
+				$return = preg_replace("/^ (.+) $/", "$1", $src);
+				// remove added slashes
 				return stripslashes($return);
 			} else {
 				
