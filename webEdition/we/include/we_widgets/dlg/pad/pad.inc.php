@@ -57,7 +57,7 @@ switch ($bSort) {
 		$q_sort = 'CreationDate,Title';
 		break;
 	case 1 :
-		// nach Priorit�t
+		// nach Priorität
 		$out_bSort = 'nach Priorit�t';
 		$q_sort = 'Priority, Title';
 		break;
@@ -237,51 +237,7 @@ while ($DB_WE->next_record()) {
 
 $pad .= '</table>';
 
-/*$we_button = new we_button();
-$pad .= '<div style="background-color:#CFCFCF;">';
-$pad .= $we_button->create_button("image:btn_add_field","javascript:void(0);",false,-1,-1);
-$pad .= '</div>';
 
-$pad .= '<form action="#" method="get">
-<table cellspacing="0" cellpadding="0" style="border-collapse: collapse"><tr>
- <td><input type="text" name="date" id="f_date" readonly="1" /></td>
- <td>'.we_htmlElement::htmlImg(array("src"=>IMAGE_DIR."pd/date_selector.gif","id"=>"f_trigger","width"=>20,"height"=>14,"title"=>"Date selector")).'</td>
-</table>
-</form>
-
-<script type="text/javascript">
-Calendar.setup({
-	inputField:"f_date",
-	ifFormat:"%B %e, %Y",
-	button:"f_trigger",
-	align:"Tl",
-	singleClick:true
-});
-</script>';
-
-
-$pad .= '
-	<link rel="stylesheet" type="text/css" media="all" href="'.JS_DIR.'jscalendar/calendar-win2k-cold-1.css" title="win2k-cold-1" />
-  <script type="text/javascript" src="'.JS_DIR.'jscalendar/calendar.js"></script>
-  <script type="text/javascript" src="'.JS_DIR.'jscalendar/lang/calendar-de.js"></script>
-  <script type="text/javascript" src="'.JS_DIR.'jscalendar/calendar-setup.js"></script>
-
-<table cellspacing="0" cellpadding="0" style="border-collapse: collapse"><tr>
- <td><input type="text" name="date" id="f_date" readonly="1" /></td>
- <td><img src="'.JS_DIR.'jscalendar/img.gif" id="f_trigger" title="Date selector"></td>
-</table>
-
-
-<script type="text/javascript">
-Calendar.setup({
-	inputField:"f_date",
-	ifFormat:"%B %e, %Y",
-	button:"f_trigger",
-	align:"Tl",
-	singleClick:true
-});
-</script>';
-*/
 print "hello";
 //$ifr = "<iframe allowtransparency=\"true\" src=\"".WEBEDITION_DIR."we/include/we_widgets/mod/pad1.inc.php\"\" id=\"\" style=\"width:430px;height:100px\" scrolling=\"auto\" marginheight=\"0\" marginwidth=\"0\" frameborder=\"0\"></iframe>\n";
 print 
