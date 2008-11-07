@@ -138,6 +138,7 @@ $l_alert["import_we_dirs"] = "Yrität tuoda webEdition hakemistosta!\\nHakemisto
 $l_alert["wrong_file"]["image/*"] = "Valitsemasi tiedosto ei ole kuva!";
 $l_alert["wrong_file"]["application/x-shockwave-flash"] = "Valitsemasi tiedosto ei ole Flash -tiedosto!";
 $l_alert["wrong_file"]["video/quicktime"] = "Valitsemasi tiedosto ei ole Quicktime -tiedosto!";
+$l_alert["wrong_file"]["text/css"] = "The file could not be stored. Either it is not a CSS file or your disk space is exhausted!"; // TRANSLATE
 $l_alert["no_file_selected"] = "Tuontitiedostoa ei ole valittu!";
 $l_alert["browser_crashed"] = "Ikkunaa ei voitu avata koska selaimessa tapahtui virhe! Tallenna työt ja käynnistä selain uudelleen.";
 $l_alert["copy_folders_no_id"] = "Tallenna nykyinen hakemisto ensin!";

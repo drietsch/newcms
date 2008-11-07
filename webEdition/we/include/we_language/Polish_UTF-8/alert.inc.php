@@ -138,6 +138,7 @@ Te katalogi są chronione i z tego powodu nie można z nich importować!";
 $l_alert["wrong_file"]["image/*"] = "Nie można dodać pliku. Albo nie jest to obrazek, albo wyczerpało się miejsce na dysku (Webspace)!";
 $l_alert["wrong_file"]["application/x-shockwave-flash"] = "Nie można dodać pliku. Albo nie jest to animacja Flash-Movie albo wyczerpało się miejsce na dysku twardym!";
 $l_alert["wrong_file"]["video/quicktime"] = "Nie można dodać pliku. Albo nie jest to plik Quicktime-Movie albo wyczerpało się miejsce na dysku twardym!";
+$l_alert["wrong_file"]["text/css"] = "The file could not be stored. Either it is not a CSS file or your disk space is exhausted!"; // TRANSLATE
 $l_alert["no_file_selected"] = "Nie wybrano plików do załadowania!";
 $l_alert["browser_crashed"] = "Nie można otworzyć okna, ponieważ przeglądarka spowodowała błąd!  Zapisz swoją pracę i uruchom ponownie przeglądarkę.";
 $l_alert["copy_folders_no_id"] = "Należy najpierw zapisać aktualny katalog!";

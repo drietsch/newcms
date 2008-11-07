@@ -138,6 +138,7 @@ $l_alert["import_we_dirs"] = "Ud está tratando de importar desde un directorio 
 $l_alert["wrong_file"]["image/*"] = "El archivo no pudo ser guardado. Este archivo no es una imagen o su espacio web está agotado!";
 $l_alert["wrong_file"]["application/x-shockwave-flash"] = "El archivo no pudo ser guardado. Este archivo no es una película Flash o no hay espacio suficiente en su disco duro!";
 $l_alert["wrong_file"]["video/quicktime"] = "El archivo no pudo ser guardado. Este archivo no es una película Quicktime o no hay espacio suficiente en su disco duro!";
+$l_alert["wrong_file"]["text/css"] = "The file could not be stored. Either it is not a CSS file or your disk space is exhausted!"; // TRANSLATE
 $l_alert["no_file_selected"] = "Ningún archivo ha sido selecionado para cargar!";
 $l_alert["browser_crashed"] = "La ventana no pudo ser abierta por un error con su navegador!  Por favor, salve su trabajo y reinicie el navegador.";
 $l_alert["copy_folders_no_id"] = "Por favor, salve el directorio actual primero!";

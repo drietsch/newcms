@@ -138,6 +138,7 @@ $l_alert["import_we_dirs"] = "You are trying to import from a webEdition directo
 $l_alert["wrong_file"]["image/*"] = "The file could not be stored. Either it is not an image or your webspace is exhausted!";
 $l_alert["wrong_file"]["application/x-shockwave-flash"] = "The file could not be stored. Either it is not a Flash movie or your disk space is exhausted!";
 $l_alert["wrong_file"]["video/quicktime"] = "The file could not be stored. Either it is not a Quicktime movie or your disk space is exhausted!";
+$l_alert["wrong_file"]["text/css"] = "The file could not be stored. Either it is not a CSS file or your disk space is exhausted!";
 $l_alert["no_file_selected"] = "No file has been choosen for upload!";
 $l_alert["browser_crashed"] = "The window could not be opened because of an error with your browser!  Please save your work and restart the browser.";
 $l_alert["copy_folders_no_id"] = "Please save the current directory first!";

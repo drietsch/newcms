@@ -141,6 +141,7 @@ $l_alert["import_we_dirs"] = "Sie versuchen einen Import von einem, mit webEditi
 $l_alert["wrong_file"]["image/*"] = "Die Datei konnte nicht angelegt werden. Entweder handelt es sich nicht um eine Grafik oder es steht nicht ausreichend Speicherplatz (Webspace) zur Verfügung!";
 $l_alert["wrong_file"]["application/x-shockwave-flash"] = "Die Datei konnte nicht angelegt werden. Entweder handelt es sich um keinen Flash-Datei oder ihr Speicherplatz (Festplatte) ist erschöpft!";
 $l_alert["wrong_file"]["video/quicktime"] = "Die Datei konnte nicht angelegt werden. Entweder handelt es sich um keinen Quicktime-Datei oder ihr Speicherplatz (Festplatte) ist erschöpft!";
+$l_alert["wrong_file"]["text/css"] = "Die Datei konnte nicht angelegt werden. Entweder handelt es sich um keine CSS-Datei oder ihr Speicherplatz (Festplatte) ist erschöpft!";
 $l_alert["no_file_selected"] = "Sie haben keine Datei zum Hochladen ausgewählt!";
 $l_alert["browser_crashed"] = "Das Fenster konnte nicht geöffnet werden, da Ihr Browser einen Fehler verursacht hat!  Bitte sichern Sie Ihre Arbeit und starten Ihren Browser neu.";
 $l_alert["copy_folders_no_id"] = "Das aktuelle Verzeichnis muß zuerst gespeichert werden!";

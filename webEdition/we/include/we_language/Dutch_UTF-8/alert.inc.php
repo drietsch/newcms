@@ -137,6 +137,7 @@ $l_alert["import_we_dirs"] = "U probeert vanuit een webEdition directory te impo
 $l_alert["wrong_file"]["image/*"] = "Het bestand kon niet opgeslagen worden. Of het is geen afbeelding of uw server is vol!";
 $l_alert["wrong_file"]["application/x-shockwave-flash"] = "Het bestand kon niet opgeslagen worden. Of het is geen Flash film of uw schijf is vol!";
 $l_alert["wrong_file"]["video/quicktime"] = "Het bestand kon niet opgeslagen worden. Of het is geen Quicktime film of uw schijf is vol!";
+$l_alert["wrong_file"]["text/css"] = "The file could not be stored. Either it is not a CSS file or your disk space is exhausted!"; // TRANSLATE
 $l_alert["no_file_selected"] = "Er is geen bestand gekozen voor upload!";
 $l_alert["browser_crashed"] = "Het venster kon niet geopend worden vanwege een fout in uw browser!  Sla a.u.b. uw werk op en herstart de browser.";
 $l_alert["copy_folders_no_id"] = "Bewaar a.u.b. eerst de huidige directory!";

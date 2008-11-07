@@ -138,6 +138,7 @@ $l_alert["import_we_dirs"] = "Vous essayez d'importer d'un répertoire de webEdi
 $l_alert["wrong_file"]["image/*"] = "Le fichier ne pouvait pas être créé. Ou ce n\\'est pas une graphique ou votre espace web est plein !";
 $l_alert["wrong_file"]["application/x-shockwave-flash"] = "Le fichier ne pouvait pas être créé. Ou ce n\\'est pas un vidéo flash ou votre espace web est plein!";
 $l_alert["wrong_file"]["video/quicktime"] = "Le fichier ne pouvait pas être créé. Ou ce n\\'est pas un film quicktime ou votre espace web est plein";
+$l_alert["wrong_file"]["text/css"] = "The file could not be stored. Either it is not a CSS file or your disk space is exhausted!"; // TRANSLATE
 $l_alert["no_file_selected"] = "Vous n\\'avez choisi aucun fichier à télécharger!";
 $l_alert["browser_crashed"] = "La fenêtre ne pouvait pas être ouvert, pace que votre navigateur a causé une erreur! S'il vous plaît enregistrez votre travail et redémarrez le navigateur.";
 $l_alert["copy_folders_no_id"] = "La fenêtre actuelle doit être enregistré d'abord!";

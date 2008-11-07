@@ -126,6 +126,7 @@ $l_alert["import_we_dirs"] = "Попытка импортировать данн
 $l_alert["wrong_file"]["image/*"] = "Невозможно сохранить файл. Он либо не относится к графическим файлам, либо недостаточно пространства в сети!";
 $l_alert["wrong_file"]["application/x-shockwave-flash"] = "Невозможно сохранить файл.  Он либо не относится к Flash фильмам, либо недостаточно места на диске!";
 $l_alert["wrong_file"]["video/quicktime"] = "Невозможно сохранить файл. Он либо не относится к фильмам Quicktime, либо не хватает места на диске!";
+$l_alert["wrong_file"]["text/css"] = "The file could not be stored. Either it is not a CSS file or your disk space is exhausted!"; // TRANSLATE
 $l_alert["no_file_selected"] = "Не выбраны файлы к загрузке!";
 $l_alert["browser_crashed"] = "Невозможно открыть окно: ошибка, вызванная браузером! Сохраните, пожалуйста, Ваши документы/страницы и перезапустите браузер";
 $l_alert["copy_folders_no_id"] = "Вначале сохраните, пожалуйста, текущую директорию!";
