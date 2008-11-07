@@ -363,7 +363,7 @@ function build_dialog($selected_setting = "ui") {
 							} else if (in_array(thumbnail_names, name)) {
 								" . we_message_reporting::getShowMessageCall($l_alert["thumbnail_exists"], WE_MESSAGE_ERROR) . "
 							} else {
-								self.location = '" . WEBEDITION_DIR . "we/include/we_editors/we_thumbnails.php?newthumbnail=' + name;
+								self.location = '" . WEBEDITION_DIR . "we/include/we_editors/we_thumbnails.php?newthumbnail=' + escape(name);
 							}
 						}
 					}
