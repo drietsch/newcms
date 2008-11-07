@@ -282,7 +282,7 @@ print we_htmlElement::jsElement("", array("src" => JS_DIR . "keyListener.js"));
 						if (top.opener.top.header) {
 							top.opener.top.header.location.reload();
 						}
-						self.location = "<?php print WEBEDITION_DIR; ?>we_cmd.php?we_cmd[0]=newDocType&we_cmd[1]="+name;
+						self.location = "<?php print WEBEDITION_DIR; ?>we_cmd.php?we_cmd[0]=newDocType&we_cmd[1]="+escape(name);
 					}
 				}
 				break;
