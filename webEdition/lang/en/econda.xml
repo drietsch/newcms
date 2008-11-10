@@ -43,5 +43,8 @@
 		<tu tuid="EcondaDialogNoJS">
 			<tuv xml:lang="en"><seg>The econda file has to be a Javascript file.</seg></tuv>
 		</tu>
+		<tu tuid="ECONDA File">
+			<tuv xml:lang="en"><seg>ECONDA file.</seg></tuv>
+		</tu>
 	</body>
 </tmx>
