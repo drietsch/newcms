@@ -39,9 +39,12 @@
 		</tu>
 		<tu tuid="EcondaDialogNoperm">
 			<tuv xml:lang="de"><seg>Sie benötigen Administrator-Rechte, um die econda Einstellungen zu verändern.</seg></tuv>
-		</tu>
+		</tu> 
 		<tu tuid="EcondaDialogNoJS">
 			<tuv xml:lang="de"><seg>Die econda Datei muss eine Javascript-Datei sein.</seg></tuv>
+		</tu>
+		<tu tuid="ECONDA File">
+			<tuv xml:lang="de"><seg>ECONDA Datei.</seg></tuv>
 		</tu>
 	</body>
 </tmx>
