@@ -3533,6 +3533,10 @@ function we_tag_ifDoctype($attribs, $content)
 	return false;
 }
 
+function we_tag_ifNotDoctype($attribs,$content){
+	return !we_tag_ifDoctype($attribs,$content);
+}
+
 function we_tag_ifEditmode($attribs, $content)
 {
 	global $we_editmode, $WE_MAIN_EDITMODE, $we_doc, $WE_MAIN_DOC;
