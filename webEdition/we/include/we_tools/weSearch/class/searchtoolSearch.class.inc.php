@@ -839,7 +839,7 @@ class searchtoolsearch extends we_search
 			
 			if ($this->table == TEMPLATES_TABLE) {
 				$query = "INSERT INTO `" . SEARCH_TEMP_TABLE . "` SELECT '',ID,'" . TEMPLATES_TABLE . "',Text,Path,ParentID,IsFolder,'','',ContentType,'',CreationDate,CreatorID,ModDate,'',Extension,'','' FROM `" . TEMPLATES_TABLE . "` " . $this->where . "  ";
-				$this->query($query);error_log($query);
+				$this->query($query);
 			}
 			
 			if (defined("OBJECT_FILES_TABLE") && $this->table == OBJECT_FILES_TABLE) {
