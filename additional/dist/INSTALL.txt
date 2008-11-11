@@ -10,6 +10,7 @@ INSTALLATION
    contents to your web server directly into the DOCUMENT_ROOT
 2. check all file permissions. The webserver has to have write 
    access to the DOCUMENT ROOT and the webEdition directory.
+   You can do that with a ftp application, i.e. filezilla.
    IMPORTANT: do not use a 0777 file mask on a shared hosting 
    environment!!!
 3. start your favourite web browser (please check our browser 
