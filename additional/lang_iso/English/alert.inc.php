@@ -1,13 +1,24 @@
 <?php
 
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2007 living-e AG                                |
-// +----------------------------------------------------------------------+
-//
+/**
+ * webEdition CMS
+ *
+ * This source is part of webEdition CMS. webEdition CMS is
+ * free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * any later version.
+ *
+ * The GNU General Public License can be found at
+ * http://www.gnu.org/copyleft/gpl.html.
+ * A copy is found in the textfile
+ * webEdition/licenses/webEditionCMS/License.txt
+ *
+ * @category   webEdition
+ * @package    webEdition_language
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.gnu.org/copyleft/gpl.html  GPL
+ */
 
 /**
  * Language file: alert.inc.php
@@ -127,6 +138,7 @@ $l_alert["import_we_dirs"] = "You are trying to import from a webEdition directo
 $l_alert["wrong_file"]["image/*"] = "The file could not be stored. Either it is not an image or your webspace is exhausted!";
 $l_alert["wrong_file"]["application/x-shockwave-flash"] = "The file could not be stored. Either it is not a Flash movie or your disk space is exhausted!";
 $l_alert["wrong_file"]["video/quicktime"] = "The file could not be stored. Either it is not a Quicktime movie or your disk space is exhausted!";
+$l_alert["wrong_file"]["text/css"] = "The file could not be stored. Either it is not a CSS file or your disk space is exhausted!";
 $l_alert["no_file_selected"] = "No file has been choosen for upload!";
 $l_alert["browser_crashed"] = "The window could not be opened because of an error with your browser!  Please save your work and restart the browser.";
 $l_alert["copy_folders_no_id"] = "Please save the current directory first!";

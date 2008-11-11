@@ -1,22 +1,42 @@
 <?php
+/**
+ * webEdition CMS
+ *
+ * This source is part of webEdition CMS. webEdition CMS is
+ * free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * any later version.
+ *
+ * The GNU General Public License can be found at
+ * http://www.gnu.org/copyleft/gpl.html.
+ * A copy is found in the textfile
+ * webEdition/licenses/webEditionCMS/License.txt
+ *
+ * @category   webEdition
+ * @package    webEdition_language
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.gnu.org/copyleft/gpl.html  GPL
+ */
 
 $GLOBALS['l_versions'] = array(
 	'version' 						=> 'Version',
 	'versions' 						=> 'Versionen',
 	'versions_log' 					=> 'Versions-Log',
+	'versions_wizard' 				=> 'Versions-Wizard',
 	'versioning' 					=> 'Versionierung',
 	'user' 							=> 'Benutzer',
 	'modDate' 						=> 'Änderungsdatum',
 	'path' 							=> 'Pfad',
-	'Suche' 						=> 'Suche',
+	'weSearch' 						=> 'Suche',
 	'eintraege_pro_seite'			=> 'Einträge pro Seite',
 	'eintraege'						=> 'Einträge',
 	'printPage'						=> 'Diese Seite drucken',
 	'allModsIn' 					=> 'Änderungen an',
 	'modTime' 						=> 'Erstellungsdatum',
 	'modUser' 						=> 'Änderung von Benutzer',
-	'mark' 							=> 'alle<br/>markieren',
-	'notMark' 						=> 'alle<br/>entfernen',
+	'mark' 							=> 'alle markieren',
+	'notMark' 						=> 'alle entfernen',
 	'notChecked'					=> 'Es sind keine Versionen ausgewählt.',
 	'notCheckedContentType'			=> 'Es wurde noch kein Inhaltstyp ausgewählt.',
 	'notCheckedDate'				=> 'Es wurde noch kein Datum ausgewählt.',
@@ -88,8 +108,8 @@ $GLOBALS['l_versions'] = array(
 	'_blackList'					=> 'Blacklist',
 	'_whiteList'					=> 'Whitelist',
 	'_filter'						=> 'Filter',
-	'fromScheduler' 				=> '--Vom Scheduler ausgeführt!--',
-	'fromImport'					=> '--Vom Import ausgeführt!--',
+	'fromScheduler' 				=> 'Vom Scheduler ausgeführt',
+	'fromImport'					=> 'Vom Import ausgeführt',
 	'resetFromVersion' 				=> 'Wiederhergestellt aus Version ',
 	'VersionNew'					=> 'gewählte Version',
 	'VersionOld'					=> 'Vergleichsversion',
@@ -105,16 +125,22 @@ $GLOBALS['l_versions'] = array(
 	'task_5'						=> 'Kategorien ändern',
 	'task_6'						=> 'Verzeichnis ändern',
 	'type'							=> 'Typ',
+	'type_0'						=> 'Einmal',
+	'type_1'						=> 'Stündlich',
+	'type_2'						=> 'Täglich',
+	'type_3'						=> 'Wöchentlich',
+	'type_4'						=> 'Monatlich',
+	'type_5'						=> 'Jährlich',
 	'months'						=> 'Monate',
 	'day'							=> 'Tag',
 	'days'							=> 'Tage',
 	'weekdays'						=> 'Wochentage',
 	'time'							=> 'Zeitpunkt',
-	'clocktime'							=> 'Uhrzeit',
+	'clocktime'						=> 'Uhrzeit',
 	'CategoryIDs'					=> 'Kategorien',
 	'DoctypeID'						=> 'Doctype',
 	'active'						=> 'aktiv',
-	'doctypeAll'					=> 'alle Doctypes',
+	'doctypeAll'					=> 'Standardwerte übernehmen',
 	'delete_versions'				=> 'Versionen löschen',
 	'txt_delete_versions'			=> 'löschen',
 	'delete_versions'				=> 'Versionen löschen',

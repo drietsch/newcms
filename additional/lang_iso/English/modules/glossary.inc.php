@@ -1,13 +1,24 @@
 <?php
 
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2005 living-e AG                   |
-// +----------------------------------------------------------------------+
-//
+/**
+ * webEdition CMS
+ *
+ * This source is part of webEdition CMS. webEdition CMS is
+ * free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * any later version.
+ *
+ * The GNU General Public License can be found at
+ * http://www.gnu.org/copyleft/gpl.html.
+ * A copy is found in the textfile
+ * webEdition/licenses/webEditionCMS/License.txt
+ *
+ * @category   webEdition
+ * @package    webEdition_language
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.gnu.org/copyleft/gpl.html  GPL
+ */
 
 /**
  * Language file: glossary.inc.php
@@ -39,8 +50,8 @@ $l_glossary['hint_exception'] = "The following entries will be excluded during t
 $l_glossary['show_extended_linkoptions'] = "show advanced link options";
 $l_glossary['hide_extended_linkoptions'] = "hide advanced link options";
 
-$l_glossary['check_successful'] = "The glossary check has finished succesfully.";
-$l_glossary['check_successful_and_publish'] = "The glossary check has finished succesfully.<br />The document could now be published.";
+$l_glossary['check_successful'] = "The glossary check has been finished succesfully.";
+$l_glossary['check_successful_and_publish'] = "The glossary check has been finished succesfully.<br />The document could now be published.";
 $l_glossary['glossary_check'] = "Glossary check";
 $l_glossary['checking'] = "processing the glossary check...";
 $l_glossary['download'] = "Loading dictionaries...";
@@ -152,7 +163,8 @@ $l_glossary['popup_location'] = 'Location';
 $l_glossary['popup_toolbar'] = 'Toolbar';
 
 $l_glossary['linkprops_desc'] = 'Here you could change the additional link properties.';
-$l_glossary['text_notValid'] = "Invalid text entry.\\nInvalid characters are used.";
+$l_glossary['text_notValid'] = "Invalid text entry.\\nInvalid characters are $, | and \\\\.";
+$l_glossary['title_notValid'] = "Invalid title entry.\\nInvalid characters are $, | and \\\\.";
 
 $l_glossary['enable_replacement'] = 'Activate automatic grlossary replacement';
 $l_glossary['enabe_dictionary_check'] = 'Activate glossary check when publishing documents/objects';

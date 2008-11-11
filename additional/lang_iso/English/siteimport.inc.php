@@ -1,13 +1,24 @@
 <?php
 
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2007 living-e AG                                |
-// +----------------------------------------------------------------------+
-//
+/**
+ * webEdition CMS
+ *
+ * This source is part of webEdition CMS. webEdition CMS is
+ * free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * any later version.
+ *
+ * The GNU General Public License can be found at
+ * http://www.gnu.org/copyleft/gpl.html.
+ * A copy is found in the textfile
+ * webEdition/licenses/webEditionCMS/License.txt
+ *
+ * @category   webEdition
+ * @package    webEdition_language
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.gnu.org/copyleft/gpl.html  GPL
+ */
 
 
 /**
@@ -33,7 +44,7 @@ $GLOBALS["l_siteimport"]["depth"] = "Depth";
 $GLOBALS["l_siteimport"]["maxSize"] = "Maximum file size in MB";
 $GLOBALS["l_siteimport"]["nolimit"] = "No limit";
 $GLOBALS["l_siteimport"]["importingFile"] = "Importing file";
-$GLOBALS["l_siteimport"]["importFinished"] = "Web site import has finished successfully!";
+$GLOBALS["l_siteimport"]["importFinished"] = "Web site import was successful!";
 $GLOBALS["l_siteimport"]["dirs_headline"] = "Directories";
 $GLOBALS["l_siteimport"]["limits"] = "Limits";
 

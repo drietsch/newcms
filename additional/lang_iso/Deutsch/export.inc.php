@@ -1,13 +1,24 @@
 <?php
 
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2007 living-e AG                                |
-// +----------------------------------------------------------------------+
-//
+/**
+ * webEdition CMS
+ *
+ * This source is part of webEdition CMS. webEdition CMS is
+ * free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * any later version.
+ *
+ * The GNU General Public License can be found at
+ * http://www.gnu.org/copyleft/gpl.html.
+ * A copy is found in the textfile
+ * webEdition/licenses/webEditionCMS/License.txt
+ *
+ * @category   webEdition
+ * @package    webEdition_language
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.gnu.org/copyleft/gpl.html  GPL
+ */
 
 
 /**
@@ -165,7 +176,7 @@ $l_export['weNavigation'] = 'Navigation';
 $l_export['weNavigationRule'] = 'Navigation-Regel';
 $l_export['weThumbnail'] = 'Miniaturansichten';
 $l_export['handle_thumbnails'] = 'Miniaturansichten';
-$l_export['navigation_hint'] = 'Um Navigationseinträge zu exportieren muss auch die Vorlage, auf welcher die Navigation ausgegeben wird, exportiert werden!';
+$l_export['navigation_hint'] = 'Dokument-Typen, Kategorien und Navigation werden nur abhängig von Ihren ausgewählten Dokumenten und Vorlagen exportiert. Der Export der Navigation erfordert daher den Export einer Vorlage mit einem darauf basierenden Dokument, in dem die Navigation verwendet wird.';
 
 
 ?>

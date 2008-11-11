@@ -1,13 +1,24 @@
 <?php
 
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2007 living-e AG                                |
-// +----------------------------------------------------------------------+
-//
+/**
+ * webEdition CMS
+ *
+ * This source is part of webEdition CMS. webEdition CMS is
+ * free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * any later version.
+ *
+ * The GNU General Public License can be found at
+ * http://www.gnu.org/copyleft/gpl.html.
+ * A copy is found in the textfile
+ * webEdition/licenses/webEditionCMS/License.txt
+ *
+ * @category   webEdition
+ * @package    webEdition_language
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.gnu.org/copyleft/gpl.html  GPL
+ */
 
 /**
  * Language file: newsletter.inc.php
@@ -117,6 +128,7 @@ $l_newsletter["log_sending"] = "Logbucheinträge erstellen, wenn E-Mails gesendet
 $l_newsletter["default_sender"] = "Standard-Absender";
 $l_newsletter["default_reply"] = "Standard-Antwortadresse";
 $l_newsletter["default_htmlmail"] = "Das Standard-E-Mail-Format ist HTML";
+$l_newsletter["isEmbedImages"] = "Bilder in HTML-E-Mails einbetten.";
 $l_newsletter["ask_to_preserve"] = "Die letzte Newsletter-Kampagne wurde noch nicht vollständig abgearbeitet!<br>Wenn Sie den Newsletter jetzt speichern, können Sie die letzte Kampagne nicht mehr fortsetzten!<br>Wollen Sie fortfahren?";
 $l_newsletter["log_save_newsletter"] = "Der Newsletter wurde gespeichert.";
 $l_newsletter["log_start_send"] = "Starte die Newsletter-Kampagne.";

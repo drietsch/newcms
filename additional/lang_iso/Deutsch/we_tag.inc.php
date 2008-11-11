@@ -1,4 +1,24 @@
 <?php
+/**
+ * webEdition CMS
+ *
+ * This source is part of webEdition CMS. webEdition CMS is
+ * free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * any later version.
+ *
+ * The GNU General Public License can be found at
+ * http://www.gnu.org/copyleft/gpl.html.
+ * A copy is found in the textfile
+ * webEdition/licenses/webEditionCMS/License.txt
+ *
+ * @category   webEdition
+ * @package    webEdition_language
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.gnu.org/copyleft/gpl.html  GPL
+ */
+
 $l_we_tag['a']['description'] = "Das we:a-Tag erzeugt ein HTML-Link-Tag, das auf ein webEdition-internes Dokument mit der unten angegebenen ID verweist. Der gesamte Inhalt zwischen Start- und Endtag wird verlinkt.";
 $l_we_tag['a']['defaultvalue'] = "";
 $l_we_tag['addDelNewsletterEmail']['description'] = "Dieses Tag erzeugt, schreibt oder entfernt eine Email aus der Newsletter-Empf&auml;nger-Liste. Die Empf&auml;nger-Listen werden als CSV-Datei gespeichert und k&ouml;nnen dann beim Versand im Newslettermodul verwendet werden.";

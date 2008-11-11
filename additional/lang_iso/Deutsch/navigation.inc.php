@@ -1,13 +1,24 @@
 <?php
 
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2005 living-e AG                   |
-// +----------------------------------------------------------------------+
-//
+/**
+ * webEdition CMS
+ *
+ * This source is part of webEdition CMS. webEdition CMS is
+ * free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * any later version.
+ *
+ * The GNU General Public License can be found at
+ * http://www.gnu.org/copyleft/gpl.html.
+ * A copy is found in the textfile
+ * webEdition/licenses/webEditionCMS/License.txt
+ *
+ * @category   webEdition
+ * @package    webEdition_language
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.gnu.org/copyleft/gpl.html  GPL
+ */
 
 /**
  * Language file: navigation.inc.php
@@ -44,6 +55,7 @@ $l_navigation['preview_code'] = 'Vorschau - Quellcode';
 $l_navigation['navigation'] = 'Navigation';
 $l_navigation['group'] = 'Ordner';
 $l_navigation['name'] = 'Name';
+$l_navigation['display'] = 'Darstellung';
 $l_navigation['newFolder'] = 'Neuer Ordner';
 $l_navigation['save_group_ok'] = 'Der Ordner wurde gespeichert.';
 $l_navigation['save_ok'] = 'Die Navigation wurde gespeichert.';
@@ -190,4 +202,5 @@ $l_navigation['selected_customers'] = 'Nur folgende Kunden können auf den Eintra
 $l_navigation['useDocumentFilter'] = 'Filtereinstellungen des Dokuments bzw. Objekts verwenden';
 $l_navigation['reset_customer_filter'] = 'Alle Kundenfilter zurücksetzen';
 $l_navigation['reset_customerfilter_done_message'] = 'Die Kundenfilter wurden erfolgreich zurückgesetzt!';
+$l_navigation['reset_customerfilter_question'] = 'Möchten Sie wirklich alle Kundenfilter zurücksetzen?';
 ?>

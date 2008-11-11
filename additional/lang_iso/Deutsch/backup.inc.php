@@ -1,13 +1,24 @@
 <?php
 
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2007 living-e AG                                |
-// +----------------------------------------------------------------------+
-//
+/**
+ * webEdition CMS
+ *
+ * This source is part of webEdition CMS. webEdition CMS is
+ * free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * any later version.
+ *
+ * The GNU General Public License can be found at
+ * http://www.gnu.org/copyleft/gpl.html.
+ * A copy is found in the textfile
+ * webEdition/licenses/webEditionCMS/License.txt
+ *
+ * @category   webEdition
+ * @package    webEdition_language
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.gnu.org/copyleft/gpl.html  GPL
+ */
 
 /**
  * Language file: backup.inc.php
@@ -28,6 +39,7 @@ $l_backup["settings"] = "Einstellungen wiederherstellen";
 $l_backup["rebuild"] = "Automatischer Rebuild";
 $l_backup["select_upload_file"] = "Wiederherstellung aus lokaler Datei hochladen";
 $l_backup["select_server_file"] = "Wählen Sie die gewünschte Backup-Datei aus.";
+$l_backup["charset_warning"] = "Sollte es Probleme beim Wiederherstellen eines Backups geben, achten Sie bitte darauf, dass im Zielsystem derselbe Zeichensatz (Charset) wie im Quellsystem verwendet wird. Dies gilt sowohl für den Zeichensatz der Datenbank (collation) als auch für den Zeichensatz der verwendeten Oberflächensprache!";
 $l_backup["finished_success"] = "Der Import der Backup-Daten wurde erfolgreich beendet.";
 $l_backup["finished_fail"] = "Der Import der Backup-Daten wurde nicht erfolgreich beendet.";
 $l_backup["question_taketime"] = "Der Export dauert einige Zeit.";
@@ -197,7 +209,7 @@ $l_backup['temporary_info'] = 'Noch nicht veröffentlichte Dokumente und Objekte 
 $l_backup['export_info'] = 'Daten des Export Moduls.';
 $l_backup['glossary_info'] = 'Daten des Glossars.';
 $l_backup['versions_info'] = 'Daten der Versionierung.';
-$l_backup['versions_binarys_info'] = 'Achtung! Diese Option kann sehr zeit- und speicherintensiv sein da der Ordner "'.VERSION_DIR.'" unter Umständen sehr groß sein kann. Daher wird empfohlen diesen Ordner manuell zu sichern.';
+$l_backup['versions_binarys_info'] = 'Achtung! Diese Option kann sehr zeit- und speicherintensiv sein da der Ordner /webEdition/we/versions/ unter Umständen sehr groß sein kann. Daher wird empfohlen diesen Ordner manuell zu sichern.';
 
 $l_backup["export_voting_data"] = "Votingdaten sichern";
 $l_backup["import_voting_data"] = "Votingdaten wiederherstellen";

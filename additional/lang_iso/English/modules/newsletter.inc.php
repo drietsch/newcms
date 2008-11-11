@@ -1,13 +1,24 @@
 <?php
 
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2007 living-e AG                                |
-// +----------------------------------------------------------------------+
-//
+/**
+ * webEdition CMS
+ *
+ * This source is part of webEdition CMS. webEdition CMS is
+ * free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * any later version.
+ *
+ * The GNU General Public License can be found at
+ * http://www.gnu.org/copyleft/gpl.html.
+ * A copy is found in the textfile
+ * webEdition/licenses/webEditionCMS/License.txt
+ *
+ * @category   webEdition
+ * @package    webEdition_language
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.gnu.org/copyleft/gpl.html  GPL
+ */
 
 /**
  * Language file: newsletter.inc.php
@@ -117,6 +128,7 @@ $l_newsletter["log_sending"] = "Create a logbook entry when sending E-mail.";
 $l_newsletter["default_sender"] = "Default sender";
 $l_newsletter["default_reply"] = "Default reply";
 $l_newsletter["default_htmlmail"] = "The default E-mail format is HTML.";
+$l_newsletter["isEmbedImages"] = "Embed images";
 $l_newsletter["ask_to_preserve"] = "The previous newsletter campaign was not successfully completed!<br>If you save the newsletter now, you will not be able to continue the campaign!<br>Do you want to proceed?";
 $l_newsletter["log_save_newsletter"] = "The newsletter has been saved.";
 $l_newsletter["log_start_send"] = "Start the newsletter campaign.";

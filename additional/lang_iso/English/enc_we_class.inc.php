@@ -1,13 +1,24 @@
 <?php
 
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2005 living-e AG                   |
-// +----------------------------------------------------------------------+
-//
+/**
+ * webEdition CMS
+ *
+ * This source is part of webEdition CMS. webEdition CMS is
+ * free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * any later version.
+ *
+ * The GNU General Public License can be found at
+ * http://www.gnu.org/copyleft/gpl.html.
+ * A copy is found in the textfile
+ * webEdition/licenses/webEditionCMS/License.txt
+ *
+ * @category   webEdition
+ * @package    webEdition_language
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.gnu.org/copyleft/gpl.html  GPL
+ */
 
 $l_we_class["properties"] = "Properties";
 $l_we_class["path"] = "Path";
@@ -27,6 +38,7 @@ $l_we_class["template"] = "Template";
 $l_we_class["no_template"] = "No template";
 $l_we_class["IsDynamic"] = "Generate dynamic page";
 $l_we_class["IsSearchable"] = "Is searchable?";
+$l_we_class["InGlossar"] = "Not allowed for automatic glossary replacement"; //TRANSLATE
 $l_we_class["metainfo"] = "Meta tags";
 $l_we_class["Title"] = "Title";
 $l_we_class["Keywords"] = "Keywords";

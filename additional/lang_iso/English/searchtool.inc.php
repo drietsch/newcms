@@ -1,8 +1,28 @@
 <?php
-$GLOBALS['l_weSearch']['save_group_ok'] = $l_tools['save_group_ok'];
-$GLOBALS['l_weSearch']['save_ok'] = $l_tools['save_ok'];
-$GLOBALS['l_weSearch']['save_group_failed'] = $l_tools['save_group_failed'];
-$GLOBALS['l_weSearch']['save_failed'] = $l_tools['save_failed'];
+/**
+ * webEdition CMS
+ *
+ * This source is part of webEdition CMS. webEdition CMS is
+ * free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * any later version.
+ *
+ * The GNU General Public License can be found at
+ * http://www.gnu.org/copyleft/gpl.html.
+ * A copy is found in the textfile
+ * webEdition/licenses/webEditionCMS/License.txt
+ *
+ * @category   webEdition
+ * @package    webEdition_language
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.gnu.org/copyleft/gpl.html  GPL
+ */
+
+$GLOBALS['l_weSearch']['save_group_ok'] = 'The group has been succesfully saved';
+$GLOBALS['l_weSearch']['save_ok'] = 'The entry has been succesfully saved.';
+$GLOBALS['l_weSearch']['save_group_failed'] = 'The group could not be saved.';
+$GLOBALS['l_weSearch']['save_failed'] = 'The entry could not be saved.';
 $l_weSearch['weSearch'] = 'Search';
 $GLOBALS['l_weSearch']['weSearch'] = 'Search';
 $GLOBALS['l_weSearch']['perm_group_title'] = $GLOBALS['l_weSearch']['weSearch'];
@@ -99,7 +119,6 @@ $GLOBALS['l_weSearch']['<='] = 'less equal (<=)';
 $GLOBALS['l_weSearch']['>='] = 'greater equal (>=)';
 $GLOBALS['l_weSearch']['>'] = 'greater then (>)';
 
-
 $GLOBALS['l_weSearch']['jeder'] = 'show all';
 $GLOBALS['l_weSearch']['geparkt'] = 'unpublished';
 $GLOBALS['l_weSearch']['veroeffentlicht'] = 'published';
@@ -111,11 +130,9 @@ $GLOBALS['l_weSearch']['statisch'] = 'static';
 $GLOBALS['l_weSearch']['deleted'] = 'deleted';
 
 
-
 $GLOBALS['l_weSearch']['onlyTitle'] = "In Title";
 $GLOBALS['l_weSearch']['onlyFilename'] = "In Filename";
 $GLOBALS['l_weSearch']['Content'] = "In complete Content";
-
 
 
 //result columns
@@ -155,6 +172,5 @@ $GLOBALS['l_weSearch']['idDiv'] = 'ID';
 $GLOBALS['l_weSearch']['publish_docs'] = 'Do you want to publish the market documents?';
 $GLOBALS['l_weSearch']['notChecked'] = 'No documents are selected.';
 $GLOBALS['l_weSearch']['publishOK'] = 'Documents were published.';
-
 
 ?>

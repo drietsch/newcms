@@ -1,13 +1,24 @@
 <?php
 
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2007 living-e AG                                |
-// +----------------------------------------------------------------------+
-//
+/**
+ * webEdition CMS
+ *
+ * This source is part of webEdition CMS. webEdition CMS is
+ * free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * any later version.
+ *
+ * The GNU General Public License can be found at
+ * http://www.gnu.org/copyleft/gpl.html.
+ * A copy is found in the textfile
+ * webEdition/licenses/webEditionCMS/License.txt
+ *
+ * @category   webEdition
+ * @package    webEdition_language
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.gnu.org/copyleft/gpl.html  GPL
+ */
 
 
 $l_workflow["new_workflow"]="Neuer Workflow";
@@ -48,7 +59,7 @@ $l_workflow["delete_nok"] = "Der Workflow konnte nicht gelöscht werden!";
 $l_workflow["name"] = "Name";
 $l_workflow["type"] = "Typ";
 $l_workflow["type_dir"] = "Verzeichnisbasiert";
-$l_workflow["type_doctype"] = "DocumentType/Category basiert";
+$l_workflow["type_doctype"] = "Document-Typ/Kategorie basiert";
 $l_workflow["type_object"] = "Objektbasiert";
 
 $l_workflow["dirs"] = "Verzeichnisse";
@@ -101,7 +112,7 @@ $l_workflow["save_changed_workflow"] = "Der Workflow wurde geändert.\\nMöchten S
 $l_workflow["delete_question"]="Alle Daten des Workflows werden gelöscht!\\nTrotzdem fortfahren?";
 $l_workflow["nothing_to_delete"]="Es gibt nichts zu löschen!";
 
-$l_workflow["user_empty"]="Für die %s. Stufe wurden keine Beutzer definiert!";
+$l_workflow["user_empty"]="Für die %s. Stufe wurden keine Benutzer definiert!";
 $l_workflow["folders_empty"]="Für den Workflow wurde kein Verzeichnis definiert!";
 $l_workflow["objects_empty"]="Für den Workflow wurde keine Klasse definiert!";
 $l_workflow["doctype_empty"]="Für den Workflow wurde kein Dokument-Typ oder Kategorie definiert!";

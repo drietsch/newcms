@@ -1,8 +1,28 @@
 <?php
-$GLOBALS['l_weSearch']['save_group_ok'] = $l_tools['save_group_ok'];
-$GLOBALS['l_weSearch']['save_ok'] = $l_tools['save_ok'];
-$GLOBALS['l_weSearch']['save_group_failed'] = $l_tools['save_group_failed'];
-$GLOBALS['l_weSearch']['save_failed'] = $l_tools['save_failed'];
+/**
+ * webEdition CMS
+ *
+ * This source is part of webEdition CMS. webEdition CMS is
+ * free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * any later version.
+ *
+ * The GNU General Public License can be found at
+ * http://www.gnu.org/copyleft/gpl.html.
+ * A copy is found in the textfile
+ * webEdition/licenses/webEditionCMS/License.txt
+ *
+ * @category   webEdition
+ * @package    webEdition_language
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.gnu.org/copyleft/gpl.html  GPL
+ */
+
+$GLOBALS['l_weSearch']['save_group_ok'] = 'Der Ordner wurde gespeichert.';
+$GLOBALS['l_weSearch']['save_ok'] = 'Die Eintrag wurde gespeichert.';
+$GLOBALS['l_weSearch']['save_group_failed'] = 'Der Ordner kann nicht gespeichert werden.';
+$GLOBALS['l_weSearch']['save_failed'] = 'Die Eintrag kann nicht gespeichert werden.';
 $l_weSearch['weSearch'] = 'Suche';
 $GLOBALS['l_weSearch']['weSearch'] = 'Suche';
 $GLOBALS['l_weSearch']['perm_group_title'] = $GLOBALS['l_weSearch']['weSearch'];

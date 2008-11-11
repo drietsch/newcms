@@ -1,13 +1,24 @@
 <?php
 
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2007 living-e AG                                |
-// +----------------------------------------------------------------------+
-//
+/**
+ * webEdition CMS
+ *
+ * This source is part of webEdition CMS. webEdition CMS is
+ * free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * any later version.
+ *
+ * The GNU General Public License can be found at
+ * http://www.gnu.org/copyleft/gpl.html.
+ * A copy is found in the textfile
+ * webEdition/licenses/webEditionCMS/License.txt
+ *
+ * @category   webEdition
+ * @package    webEdition_language
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.gnu.org/copyleft/gpl.html  GPL
+ */
 
 /**
  * Language file: prefs.inc.php
@@ -322,7 +333,8 @@ $l_prefs["tab_versions"] = 'Versioning';
 	 */
 
 	$l_prefs["db_connect"] = "Type of database<br>connections";
-
+	$l_prefs["db_set_charset"] = "Connection charset";
+	
 	/**
 	 * HTTP AUTHENTICATION
 	 */
@@ -338,6 +350,13 @@ $l_prefs["tab_versions"] = 'Versioning';
 	$l_prefs["thumbnail_dir"] = "Thumbnail directory";
 
 	$l_prefs["pagelogger_dir"] = "pageLogger directory";
+	
+	/**
+	 * HOOKS
+	 */
+	$l_prefs["hooks"] = "Hooks"; //TRANSLATE
+	$l_prefs["hooks_information"] = "The use of hooks allows for the execution of arbitrary any PHP code during storing, publishing, unpublishing and deleting of any content type in webEdition.<br/>
+	Further information can be found in the online documentation.<br/><br/>Allow execution of hooks?"; 
 
 /*****************************************************************************
  * ERROR HANDLING
@@ -513,5 +532,20 @@ $l_prefs["tab_versions"] = 'Versioning';
 	$l_prefs["versioning_create"] = "Create Version";
 	$l_prefs["versions_create_publishing"] = "only when publishing";
 	$l_prefs["versions_create_always"] = "always";
+	
+	$l_prefs['use_jeditor'] = "Use";
+	$l_prefs["editor_font_colors"] = 'Specify font colors';
+	$l_prefs["editor_normal_font_color"] = 'Default';
+	$l_prefs["editor_we_tag_font_color"] = 'webEdition tags';
+	$l_prefs["editor_we_attribute_font_color"] = 'webEdition attributes';
+	$l_prefs["editor_html_tag_font_color"] = 'HTML tags';
+	$l_prefs["editor_html_attribute_font_color"] = 'HTML attributes';
+	$l_prefs["editor_pi_tag_font_color"] = 'PHP code';
+	$l_prefs["editor_comment_font_color"] = 'Comments';
+	$l_prefs["jeditor"] = 'Java source editor';
+	
+	
+	$l_prefs["juplod_not_installed"] = 'JUpload is not installed!';
+	
 
 ?>

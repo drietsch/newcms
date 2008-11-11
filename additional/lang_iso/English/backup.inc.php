@@ -1,13 +1,24 @@
 <?php
 
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2005 living-e AG                   |
-// +----------------------------------------------------------------------+
-//
+/**
+ * webEdition CMS
+ *
+ * This source is part of webEdition CMS. webEdition CMS is
+ * free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * any later version.
+ *
+ * The GNU General Public License can be found at
+ * http://www.gnu.org/copyleft/gpl.html.
+ * A copy is found in the textfile
+ * webEdition/licenses/webEditionCMS/License.txt
+ *
+ * @category   webEdition
+ * @package    webEdition_language
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.gnu.org/copyleft/gpl.html  GPL
+ */
 
 $l_backup["save_not_checked"] = "You have not choosen where to save the backup file!";
 $l_backup["wizard_title"] = "Restore Backup Wizard";
@@ -23,7 +34,8 @@ $l_backup["settings"] = "Restore preferences";
 $l_backup["rebuild"] = "Automatic rebuild";
 $l_backup["select_upload_file"] = "Upload import from local file";
 $l_backup["select_server_file"] = "Choose the backup file you want to import from this list.";
-$l_backup["finished_success"] = "The import of backup data has finished successfully.";
+$l_backup["charset_warning"] = "If you encounter problems when restoring a backup, please ensure that the target system uses the same character set as the source system. This applies both to the character set of the database (collation) as well as for the character set of the user interface language!";
+$l_backup["finished_success"] = "The import of backup data was successful.";
 $l_backup["finished_fail"] = "The import of backup data has not finished successfully.";
 $l_backup["question_taketime"] = "Export can take some time.";
 $l_backup["question_wait"] = "Please wait!";
@@ -42,8 +54,8 @@ $l_backup["cannot_send_backup"] = "Unable to execute backup.";
 $l_backup["finish"] = "The backup was successfully created and is ready to download.";
 $l_backup["finish_error"] = " Error: Unable to execute backup.";
 $l_backup["finish_warning"] = "Warning: Backup completed, however some files may not be complete!";
-$l_backup["export_step1"] = "Step 1 of 2 - Export parameters";
-$l_backup["export_step2"] = "Step 2 of 2 - Export complete";
+$l_backup["export_step1"] = "Step 1 of 2 - Backup parameters";
+$l_backup["export_step2"] = "Step 2 of 2 - Backup complete";
 $l_backup["unspecified_error"] = "An unknown error occurred!";
 $l_backup["export_users_data"] = "Save user data";
 $l_backup["import_users_data"] = "Restore user data";
@@ -192,7 +204,7 @@ $l_backup['temporary_info'] = 'Data from unpublished documents and objects.';
 $l_backup['export_info'] = 'Data from the export module.';
 $l_backup['glossary_info'] = 'Data from the glossary.';
 $l_backup['versions_info'] = 'Data from Versioning.';
-$l_backup['versions_binarys_info'] = 'This option could take some time and memory because the folder "'.VERSION_DIR.'" could be very large. It is recommended to save this folder manually.';
+$l_backup['versions_binarys_info'] = 'This option could take some time and memory because the folder /webEdition/we/versions/ could be very large. It is recommended to save this folder manually.';
 
 
 $l_backup["import_voting_data"] = "Restore voting data";

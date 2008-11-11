@@ -1,13 +1,24 @@
 <?php
 
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or later                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2005 living-e AG                   |
-// +----------------------------------------------------------------------+
-//
+/**
+ * webEdition CMS
+ *
+ * This source is part of webEdition CMS. webEdition CMS is
+ * free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * any later version.
+ *
+ * The GNU General Public License can be found at
+ * http://www.gnu.org/copyleft/gpl.html.
+ * A copy is found in the textfile
+ * webEdition/licenses/webEditionCMS/License.txt
+ *
+ * @category   webEdition
+ * @package    webEdition_language
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.gnu.org/copyleft/gpl.html  GPL
+ */
 
 /**
  * Language file: navigation.inc.php
@@ -44,6 +55,7 @@ $l_navigation['navigation'] = 'Navigation';
 $l_navigation['group'] = 'Folder';
 $l_navigation['name'] = 'Name';
 $l_navigation['newFolder'] = 'New folder';
+$l_navigation['display'] = 'Display';
 $l_navigation['save_group_ok'] = 'The folder was saved.';
 $l_navigation['save_ok'] = 'The navigation was saved.';
 
@@ -190,5 +202,6 @@ $l_navigation['selected_customers'] = 'Only folowing customers can access the it
 $l_navigation['useDocumentFilter'] = 'Use filter settings of document/object';
 $l_navigation['reset_customer_filter'] = 'Reset all customer filters';
 $l_navigation['reset_customerfilter_done_message'] = 'The cusomer filters were successfully reset!';
+$l_navigation['reset_customerfilter_question'] = 'Do you realy want to reset all customer filters';
 
 ?>

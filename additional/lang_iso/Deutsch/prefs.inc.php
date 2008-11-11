@@ -1,13 +1,24 @@
 <?php
 
-// +----------------------------------------------------------------------+
-// | webEdition                                                           |
-// +----------------------------------------------------------------------+
-// | PHP version 4.1.0 or greater                                         |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 2000 - 2007 living-e AG                                |
-// +----------------------------------------------------------------------+
-//
+/**
+ * webEdition CMS
+ *
+ * This source is part of webEdition CMS. webEdition CMS is
+ * free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * any later version.
+ *
+ * The GNU General Public License can be found at
+ * http://www.gnu.org/copyleft/gpl.html.
+ * A copy is found in the textfile
+ * webEdition/licenses/webEditionCMS/License.txt
+ *
+ * @category   webEdition
+ * @package    webEdition_language
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.gnu.org/copyleft/gpl.html  GPL
+ */
 
 
 /**
@@ -322,6 +333,7 @@ $l_prefs["tab_versions"] = 'Versionierung';
 	 */
 
 	$l_prefs["db_connect"] = "Art der Datenbank-<br>verbindungen";
+	$l_prefs["db_set_charset"] = "Verbindungszeichensatz";
 
 	/**
 	 * HTTP AUTHENTICATION
@@ -333,12 +345,23 @@ $l_prefs["tab_versions"] = 'Versionierung';
 	$l_prefs["authpass"] = "Kennwort";
 
 	/**
- 	* THUMBNAIL DIR
- 	*/
+ 	 * THUMBNAIL DIR
+ 	 */
 	$l_prefs["thumbnail_dir"]="Verzeichnis für Miniaturansichten";
 
+	/**
+	 * PAGELOGGER DIR
+	 */
 	$l_prefs["pagelogger_dir"] = "pageLogger-Verzeichnis";
-
+	
+	/**
+	 * HOOKS
+	 */
+	$l_prefs["hooks"] = "Hooks";
+	$l_prefs["hooks_information"] = "Die Verwendung von Hooks ermöglicht die Ausführung von beliebigem PHP-Code während dem Speichern, Parken, Veröffentlichen und Löschen jeglicher Inhaltstypen in webEdition.<br/>
+	Nähere Infos finden Sie in der Online-Dokumentation.<br/><br/>Möchten Sie die Ausführung von Hooks zulassen?";
+	
+	
 /*****************************************************************************
  * ERROR HANDLING
  *****************************************************************************/
@@ -515,7 +538,6 @@ $l_prefs["tab_versions"] = 'Versionierung';
 	$l_prefs["versions_create_always"] = "immer";
 	
 	
-//########### NEU
 	$l_prefs['use_jeditor'] = "Benutzen";
 	$l_prefs["editor_font_colors"] = 'Schriftfarben spezifizieren';
 	$l_prefs["editor_normal_font_color"] = 'Standard';
@@ -526,6 +548,8 @@ $l_prefs["tab_versions"] = 'Versionierung';
 	$l_prefs["editor_pi_tag_font_color"] = 'PHP Code';
 	$l_prefs["editor_comment_font_color"] = 'Kommentare';
 	$l_prefs["jeditor"] = 'Java Quelltext Editor';
+	
+	$l_prefs["juplod_not_installed"] = 'JUpload ist nicht installiert!';
 	
 
 ?>
