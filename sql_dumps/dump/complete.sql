@@ -651,7 +651,7 @@ CREATE TABLE tblUser (
   Address varchar(255) NOT NULL default '',
   HouseNo varchar(11) NOT NULL default '',
   City varchar(255) NOT NULL default '',
-  PLZ int(11) NOT NULL default '0',
+  PLZ varchar(32) NOT NULL default '',
   State varchar(255) NOT NULL default '',
   Country varchar(255) NOT NULL default '',
   Tel_preselection varchar(11) NOT NULL default '',
