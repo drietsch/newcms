@@ -1,0 +1,44 @@
+/**
+ * webEdition SDK
+ *
+ * This source is part of the webEdition SDK. The webEdition SDK is
+ * free software; you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License
+ * the Free Software Foundation; either version 3 of the License, or
+ * any later version.
+ *
+ * The GNU Lesser General Public License can be found at
+ * http://www.gnu.org/licenses/lgpl-3.0.html.
+ * A copy is found in the textfile 
+ * webEdition/licenses/webEditionSDK/License.txt
+ *
+ *
+ * @category   we
+ * @package    we_ui
+ * @subpackage we_ui_themes
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.gnu.org/licenses/lgpl-3.0.html  LGPL
+ */
+ 
+.we_ui_controls_MessageConsoleHeaderText {
+	font-size: 10px;
+	background-color: white; 
+	border: 1px solid #cdcdcd; 
+	padding: 2px 4px 2px 4px; 
+	margin: 3px 10px 0 0;
+}
+
+.we_ui_controls_MessageConsoleHeaderIconNormal {
+	padding: 1px;
+	margin: 0px;
+	border: none;
+}
+
+.we_ui_controls_MessageConsoleHeaderIconOver {
+	margin: 0px;
+	border-bottom:	#000000 solid 1px;
+	border-left:	#CCCCCC solid 1px;
+	border-right:	#000000 solid 1px;
+	border-top:		#CCCCCC solid 1px;
+	cursor:pointer;
+}
