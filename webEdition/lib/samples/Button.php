@@ -182,16 +182,13 @@ $htmlPage->addHTML('<div><a href="javascript:we_ui_controls_Button.show(&quot;'.
 $htmlPage->addHTML("<br/><br/>");
 
 $htmlPage->addHTML("<br/>submit form<br/><br/>");
-$htmlPage->addHTML('<form name="myForm" action="'.$_SERVER['PHP_SELF'].'" method="post" onSubmit="alert(\'onSubmit do something\');">');
+$htmlPage->addHTML('<form name="myForm" action="" method="post" onSubmit="alert(\'onSubmit do something\');">');
 $inp = new we_ui_controls_TextField(array('name'=>'test', 'value'=>'default', 'width'=>100));
 $htmlPage->addElement($inp);
 $htmlPage->addHTML("<br/><br/>");
 $htmlPage->addElement($buttonSubmitForm);
 $htmlPage->addHTML('</form>');
-if(isset($_REQUEST['test'])) {
-	$htmlPage->addHTML($_REQUEST['test']);
-	$_REQUEST['test']="";
-}
+
 $htmlPage->addHTML('<div><a href="javascript:we_ui_controls_Button.setDisabled(&quot;'.$buttonSubmitForm->getId().'&quot;, true);">disable</a></div>');
 $htmlPage->addHTML('<div><a href="javascript:we_ui_controls_Button.setDisabled(&quot;'.$buttonSubmitForm->getId().'&quot;, false);">enable</a></div>');
 $htmlPage->addHTML('<div><a href="javascript:we_ui_controls_Button.hide(&quot;'.$buttonSubmitForm->getId().'&quot;);">hide</a></div>');
