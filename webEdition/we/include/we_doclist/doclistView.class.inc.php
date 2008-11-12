@@ -698,7 +698,8 @@ class doclistView {
 	
 	 var ajaxCallbackPublishDocs = {
 	    success: function(o) {
-	    
+	    ' . we_message_reporting::getShowMessageCall($GLOBALS['l_weSearch']['publishOK'], WE_MESSAGE_NOTICE) . '
+	     
 	     	// reload current document => reload all open Editors on demand
 
 			var _usedEditors =  top.weEditorFrameController.getEditorsInUse();
@@ -716,9 +717,9 @@ class doclistView {
 
 			//reload tree
 			top.we_cmd("load", top.treeData.table ,0);
+			
 			document.getElementById("resetBusy").innerHTML = "";
-	     	' . we_message_reporting::getShowMessageCall($GLOBALS['l_weSearch']['publishOK'], WE_MESSAGE_NOTICE) . '
-	     
+
 	    },
 	    failure: function(o) {
 	     alert("Failure");
