@@ -22,6 +22,7 @@
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_versions/weVersions.class.inc.php");
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_logging/versions/versionsLog.class.php");
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/we_progressBar.inc.php");
+include_once($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/we_language/" . $GLOBALS["WE_LANGUAGE"] . "/versions.inc.php");
 
 class rpcDeleteVersionsWizardCmd extends rpcCmd {
 	
@@ -65,6 +66,7 @@ class rpcDeleteVersionsWizardCmd extends rpcCmd {
 		
 		$WE_PB = new we_progressBar(100,0,true);
 		$WE_PB->setStudLen(200);
+		
 		$WE_PB->addText($GLOBALS['l_versions']['deleteDateVersionsOK'],0,"pb1");
 		$js = $WE_PB->getJSCode();
 		$pb = $WE_PB->getHTML();
