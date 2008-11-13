@@ -2578,7 +2578,7 @@ class searchtoolView extends weToolView
 						);
 					
 					}
-					elseif (!isset(
+					if (!isset(
 						$saveArrayIds[$thisObj->searchclass->Record['ContentType']][$thisObj->searchclass->Record['docID']])) {
 						$saveArrayIds[$thisObj->searchclass->Record['ContentType']][$thisObj->searchclass->Record['docID']] = $thisObj->searchclass->Record['docID'];
 						
@@ -2711,7 +2711,7 @@ class searchtoolView extends weToolView
 					$_result[$f]["foundInVersions"]) : "";
 			
 			if ($view == 0) {
-				
+
 				if (is_array($foundInVersions) && !empty($foundInVersions)) {
 					
 					rsort($foundInVersions);
