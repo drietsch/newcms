@@ -1574,11 +1574,19 @@ class weVersions {
 		$isdyn = !isset($GLOBALS["WE_IS_DYN"]) ? 'notSet' : $GLOBALS["WE_IS_DYN"];
 
 		if($includepath!='' && file_exists($includepath)) {
-			ob_start();
-			include($includepath);
-			$contents = ob_get_contents();
-    		ob_end_clean();
-    		
+			
+ 			$_opt = getHttpOption();
+ 			if($_opt=="none") {
+ 				ob_start();
+				include($includepath);
+				$contents = ob_get_contents();
+	    		ob_end_clean();
+ 			}
+ 			else {
+ 				$path = substr($we_doc->Path, 1);
+				$location = SITE_DIR.$path;
+	    		$contents = getHTTP(SERVER_NAME, $location);
+ 			}
 		}
 		else {
 			ob_start();
