@@ -81,6 +81,7 @@ $GLOBALS['l_versions'] = array(
 	'IsClassFolder' 				=> 'Classfolder',
 	'IsNotEditable'					=> 'Not editable',
 	'Charset'						=> 'Charset',
+	'InGlossar'						=> 'Not allowed for automatic glossary replacement',
 	'documentElements'				=> 'Content',
 	'CreatorID'						=> 'Main creator',
 	'Text'							=> 'Name',

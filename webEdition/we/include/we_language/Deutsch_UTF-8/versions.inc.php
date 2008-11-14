@@ -81,6 +81,7 @@ $GLOBALS['l_versions'] = array(
 	'IsClassFolder' 				=> 'Klassenverzeichnis',
 	'IsNotEditable'					=> 'Nicht editierbar',
 	'Charset'						=> 'Zeichensatz',
+	'InGlossar'						=> 'Von Glossarersetzung nicht berücksichtigen',
 	'documentElements'				=> 'Inhalt',
 	'CreatorID'						=> 'Hauptbesitzer',
 	'Text'							=> 'Name',
