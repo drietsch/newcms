@@ -1260,7 +1260,17 @@ class weVersions {
 							
 						}
 						else {
-							copy($siteFile,$_SERVER["DOCUMENT_ROOT"].$binaryPath);								
+							if(isset($document['TemplatePath']) && $document['TemplatePath']!="" && $document['ContentType']=="text/webedition") {
+								$includeTemplate = preg_replace('/.tmpl$/i','.php', $document['TemplatePath']);
+								ob_start();
+								include($includeTemplate);
+								$contents = ob_get_contents();
+								ob_end_clean();
+								saveFile($_SERVER["DOCUMENT_ROOT"].$binaryPath,$contents);
+							}
+							else {
+								copy($siteFile,$_SERVER["DOCUMENT_ROOT"].$binaryPath);	
+							}					
 						}
 						
 					}
