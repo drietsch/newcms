@@ -89,7 +89,7 @@ class we_ui_dialog_OkCancelDialog extends we_ui_layout_Dialog
 		$this->addCSSFile(we_ui_layout_Themes::computeCSSURL(__CLASS__));
 		
 		// add needed JS Files
-		$this->addJSFile(we_ui_abstract_AbstractElement::computeJSURL(__CLASS__));
+		//$this->addJSFile(we_ui_abstract_AbstractElement::computeJSURL(__CLASS__));
 	}
 
 	/*
