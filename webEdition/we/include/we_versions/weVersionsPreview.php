@@ -321,7 +321,9 @@ $contentDiff .= '</tr>';
 			if($newVal!=getPixel(1,1)) {
 				$newVal = htmlspecialchars($newVal);
 			}
-			
+			if(!stristr($GLOBALS['WE_LANGUAGE'], '_UTF-8') === FALSE) {
+				$newVal = utf8_encode($newVal);
+			}
 			$contentDiff .= '<tr>';
 			$contentDiff .= '<td width="33%" style="'.$mark.'"><strong>'.$name.'</strong></td>';
             $contentDiff .= '<td width="33%" style="'.$mark.'">'.$newVal.'</td>';
