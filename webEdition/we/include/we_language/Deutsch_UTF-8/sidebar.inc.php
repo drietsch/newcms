@@ -40,7 +40,7 @@ $l_sidebar["default"][0]["text"] = 'webEdition ist nun erfolgreich installiert, 
 $l_sidebar["default"][1] = array();
 $l_sidebar["default"][1]["headline"] = 'Handbücher';
 $l_sidebar["default"][1]["text"] = 'Hier finden Sie grundlegende Informationen zu Bedienung und Aufbau von webEdition.';
-$l_sidebar["default"][1]["link"] = 'http://www.living-e.com/webEdition/manual/';
+$l_sidebar["default"][1]["link"] = 'http://www.webedition.de/de/Dokumentation/index.php';
 $l_sidebar["default"][1]["icon"] = 'documentation.gif';
 
 $l_sidebar["default"][2] = array();

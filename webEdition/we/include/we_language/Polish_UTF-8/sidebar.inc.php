@@ -40,7 +40,7 @@ $l_sidebar["default"][0]["text"] = 'webEdition is installed successfully, but co
 $l_sidebar["default"][1] = array();
 $l_sidebar["default"][1]["headline"] = 'Manuals';
 $l_sidebar["default"][1]["text"] = 'here you find basic information about the operation and structure of webEdition'; // TRANSLATE
-$l_sidebar["default"][1]["link"] = 'http://www.living-e.com/webEdition/manual/'; // TRANSLATE
+$l_sidebar["default"][1]["link"] = 'http://www.webedition.de/en/Dokumentation/index.php'; // TRANSLATE
 $l_sidebar["default"][1]["icon"] = 'documentation.gif'; // TRANSLATE
 
 $l_sidebar["default"][2] = array();
