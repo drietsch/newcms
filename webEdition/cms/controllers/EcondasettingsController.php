@@ -32,7 +32,7 @@ class EcondasettingsController extends Zend_Controller_Action
 		
 		// assign variables for the view
 		if (we_core_Permissions::hasPerm("ADMINISTRATOR")) {
-			$this->view->assign("activateEconda",(defined("WE_ECONDA_STAT") ? WE_ECONDA_STAT : 1));
+			$this->view->assign("activateEconda",(defined("WE_ECONDA_STAT") ? WE_ECONDA_STAT : 0));
 			$this->view->assign("econdaParentId",(defined("WE_ECONDA_PARENT_ID") ? WE_ECONDA_PARENT_ID : 0));
 			$this->view->assign("econdaParentPath",(defined("WE_ECONDA_PARENT_PATH") ? WE_ECONDA_PARENT_PATH : "/"));
 			$this->view->assign("econdaFileName",(defined("WE_ECONDA_FILE") ? WE_ECONDA_FILE : $translate->_("File not uploaded jet.")));
