@@ -1237,6 +1237,7 @@ class weVersions {
 						elseif(file_exists($siteFile) && $document["Extension"]==".php" && ($document["ContentType"]=='text/webedition' || $document["ContentType"]=='text/html')) {
 
 							ob_start();
+							//if there is a header(location... don't execute it
 							ob_flush();
 							flush();
 							@include($siteFile);
@@ -1558,35 +1559,51 @@ class weVersions {
 	function getDocContent($we_doc, $includepath="") {
 
 		$contents = "";
+		
 		$requestBackup = $_REQUEST;
 		$docBackup = $GLOBALS["we_doc"];
-		//$_REQUEST = "";
+		
 		$GLOBALS["getDocContentVersioning"] = true;
+		
 		$glob = "";
 		foreach($GLOBALS as $k=>$v){
 			if((!ereg('^[0-9]',$k)) && (!eregi('[^a-z0-9_]',$k)) && $k != "FROM_WE_SHOW_DOC" && $k != "we_doc" && $k != "we_transaction" && $k != "GLOBALS" && $k != "HTTP_ENV_VARS" && $k != "HTTP_POST_VARS" && $k != "HTTP_GET_VARS" && $k != "HTTP_COOKIE_VARS" && $k != "HTTP_SERVER_VARS" && $k != "HTTP_POST_FILES" && $k != "HTTP_SESSION_VARS" && $k != "_GET" && $k != "_POST" && $k != "_REQUEST" && $k != "_SERVER" && $k != "_FILES" && $k != "_SESSION" && $k != "_ENV" && $k != "_COOKIE" && $k!="") $glob .= '$'.$k.",";
 		}
 		$glob = ereg_replace('(.*),$','\1',$glob);
 		eval('global '.$glob.';');
-
-		//$GLOBALS["we_doc"] = $we_doc;
 		
 		$isdyn = !isset($GLOBALS["WE_IS_DYN"]) ? 'notSet' : $GLOBALS["WE_IS_DYN"];
 
+		//usually the site file always exists
 		if($includepath!='' && file_exists($includepath)) {
 			
+ 			/*
  			$_opt = getHttpOption();
  			if($_opt=="none") {
- 				ob_start();
-				include($includepath);
-				$contents = ob_get_contents();
-	    		ob_end_clean();
- 			}
- 			else {
  				$path = substr($we_doc->Path, 1);
 				$location = SITE_DIR.$path;
 	    		$contents = getHTTP(SERVER_NAME, $location);
- 			}
+			*/
+
+			ob_start();
+			@include($includepath);
+	    	ob_end_clean();
+	    	
+	    	$_REQUEST = $requestBackup;
+	    	
+	    	$glob = "";
+			foreach($GLOBALS as $k=>$v){
+				if((!ereg('^[0-9]',$k)) && (!eregi('[^a-z0-9_]',$k)) && $k != "FROM_WE_SHOW_DOC" && $k != "we_doc" && $k != "we_transaction" && $k != "GLOBALS" && $k != "HTTP_ENV_VARS" && $k != "HTTP_POST_VARS" && $k != "HTTP_GET_VARS" && $k != "HTTP_COOKIE_VARS" && $k != "HTTP_SERVER_VARS" && $k != "HTTP_POST_FILES" && $k != "HTTP_SESSION_VARS" && $k != "_GET" && $k != "_POST" && $k != "_REQUEST" && $k != "_SERVER" && $k != "_FILES" && $k != "_SESSION" && $k != "_ENV" && $k != "_COOKIE" && $k!="") $glob .= '$'.$k.",";
+			}
+			$glob = ereg_replace('(.*),$','\1',$glob);
+			eval('global '.$glob.';');
+			
+			
+			ob_start();
+			@include($includepath);
+			$contents = ob_get_contents();
+	    	ob_end_clean();
+
 		}
 		else {
 			ob_start();
@@ -1597,7 +1614,7 @@ class weVersions {
 			$_REQUEST["we_cmd"] = array();
 			$_REQUEST["we_cmd"][1] = $we_doc->ID;
 			$FROM_WE_SHOW_DOC = true;
-			include($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/" . "we_showDocument.inc.php");
+			@include($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/" . "we_showDocument.inc.php");
 			$contents = ob_get_contents();
     		ob_end_clean();
 		}
