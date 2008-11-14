@@ -47,5 +47,6 @@ CREATE TABLE `tblversions` (
   `fromScheduler` tinyint(1) NOT NULL,
   `fromImport` tinyint(1) NOT NULL,
   `resetFromVersion` bigint(20) NOT NULL,
+  `InGlossar` tinyint(1) NOT NULL,
   PRIMARY KEY  (`ID`)
 ) TYPE=MyISAM ;
