@@ -781,7 +781,8 @@ class weVersions {
 			'ExtraWorkspacesSelected' => 22,
 			'Templates' => 23,
 			'ExtraTemplates' => 24,
-			'Charset' => 25
+			'Charset' => 25,
+			'InGlossar' => 26
 		);	
 		
 		
@@ -1996,6 +1997,9 @@ class weVersions {
 			$v = id_to_path($v, TEMPLATES_TABLE);
 		}
 		if($k=="IsSearchable") {
+			$v = ($v==1) ? $GLOBALS['l_versions']['activ'] : $GLOBALS['l_versions']['notactiv'];
+		}
+		if($k=="InGlossar") {
 			$v = ($v==1) ? $GLOBALS['l_versions']['activ'] : $GLOBALS['l_versions']['notactiv'];
 		}
 		if($k=="IsDynamic") {
