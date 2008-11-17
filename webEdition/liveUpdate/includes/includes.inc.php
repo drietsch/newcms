@@ -32,5 +32,14 @@ require_once(LIVEUPDATE_DIR . 'conf/conf.inc.php');
 require_once(LIVEUPDATE_DIR . 'includes/define.inc.php');
 include_once(LIVEUPDATE_LANGUAGE_DIR . 'liveUpdate.inc.php');
 
+if(is_readable(LIVEUPDATE_DIR . 'updateClient/liveUpdateFunctionsServer.class.php')) {
+	require_once(LIVEUPDATE_DIR . 'updateClient/liveUpdateFunctionsServer.class.php');
+}
+if(is_readable(LIVEUPDATE_DIR . 'updateClient/liveUpdateResponseServer.class.php')) {
+	require_once(LIVEUPDATE_DIR . 'updateClient/liveUpdateResponseServer.class.php');
+}
+if(is_readable(LIVEUPDATE_DIR . 'updateClient/liveUpdateServer.class.php')) {
+	require_once(LIVEUPDATE_DIR . 'updateClient/liveUpdateServer.class.php');
+}
 
 ?>
