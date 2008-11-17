@@ -76,7 +76,7 @@ switch ($BROWSER) {
 			if (isset($FF) && $FF < 3) {
 				$tabDummy = '<div class="hidden" id="tabDummy" title="" name="" ondblclick=";" onclick="top.weMultiTabs.selectFrame(this)"><nobr><span class="spacer">&nbsp;<img src="/webEdition/images/pixel.gif" width="16" height="16" id="###loadId###" title="" class="status">&nbsp;</span><span id="###tabTextId###" class="text"></span><span class="spacer"><img src="/webEdition/images/pixel.gif" width="5" height="16" id="###modId###" class="status"><img src="/webEdition/images/multiTabs/close.gif" id="###closeId###" border="0" vspace="0" hspace="0" onclick="top.weMultiTabs.onCloseTab(this)" onmouseover="this.src=\'/webEdition/images/multiTabs/closeOver.gif\'" onmouseout="this.src=\'/webEdition/images/multiTabs/close.gif\'" class="close">&nbsp;</span><img src="/webEdition/images/multiTabs/tabBorder.gif" height="21" style="vertical-align:bottom;"></nobr></div>';
 			} else {
-				$tabContainerMargin = "-1";
+				$tabContainerMargin = "0";
 			}
 			$tabBorder = "border:0px;";
 		} elseif ($SYSTEM == "X11") {
