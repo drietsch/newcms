@@ -42,7 +42,7 @@ $_credits .= "Slavko Tomcic, Andreas Frey, Bj&ouml;rn B&ouml;ttle, Herbert Hohn,
 $_table = new we_htmlTable( array(	"border"      => 0,
 									"cellpadding" => 0,
 									"cellspacing" => 0,
-									"style"  => "background-image:url(" . IMAGE_DIR . "info/info.jpg);background-repeat: no-repeat;background-color:#EBEBEB" ),
+									"style"  => "background-image:url(" . IMAGE_DIR . "info/info.jpg?we=".str_replace(".","",WE_VERSION).");background-repeat: no-repeat;background-color:#EBEBEB" ),
 									8,
 									3);
 
