@@ -1059,7 +1059,7 @@ class we_object extends we_document
 
 			$content .= 	'<tr valign="top">'
 						.	'<td  width="100" class="weMultiIconBoxHeadlineThin">'.$GLOBALS["l_object"]["max_objects"].'</td>'
-						.	'<td  width="100" class="defaultfont">'.$this->htmlTextInput("we_".$this->Name."_multiobject[".$name."max]",5,$this->getElement($name."max","dat"),3,'onChange="_EditorFrame.setEditorIsHot(true);we_cmd(\'reload_entry_at_class\',\''.$GLOBALS['we_transaction'].'\',\''.($identifier).'\');"',"text",50).' ('.$GLOBALS["l_object"]["no_maximum"].')</td>'
+						.	'<td class="defaultfont"><nobr>'.$this->htmlTextInput("we_".$this->Name."_multiobject[".$name."max]",5,$this->getElement($name."max","dat"),3,'onChange="_EditorFrame.setEditorIsHot(true);we_cmd(\'reload_entry_at_class\',\''.$GLOBALS['we_transaction'].'\',\''.($identifier).'\');"',"text",50).' ('.$GLOBALS["l_object"]["no_maximum"].')</nobr></td>'
 						. 	'</tr>';
 
 			$content .= '<tr valign="top"><td  width="100" class="weMultiIconBoxHeadlineThin">'.$GLOBALS["l_object"]["default"].'</td>';
