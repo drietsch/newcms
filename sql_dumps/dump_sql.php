@@ -3,7 +3,7 @@
  * reads all sql files of the current directory and writes them into one single file
  * for easier import into a database server
  * 
- * @author Alexander Lindenstruth
+ * (c) 2008 by Living-E AG
  */
 
 if(!defined("BASEPATH")) define("BASEPATH",dirname(__FILE__));
