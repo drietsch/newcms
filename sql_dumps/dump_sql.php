@@ -23,11 +23,11 @@ function getfiles() {
 }
 
 function dieWithError($text = "") {
-	die('<font class="error"><b>FEHLER:</b> '.$text.'</font></body></html>');
+	die('<font class="error"><b>ERROR:</b> '.$text.'</font></body></html>');
 }
 
 function dieWithWarning($text = "") {
-	die('<font class="warning"><b>WARNUNG:</b> '.$text.'</font></body></html>');
+	die('<font class="warning"><b>WARNING:</b> '.$text.'</font></body></html>');
 }
 
 ?>
@@ -67,17 +67,17 @@ function dieWithWarning($text = "") {
 
 $files = getfiles();
 if(empty($files)) {
-	dieWithError('Keine Quelldateien gefunden im Verzeichnis <pre>'.BASEPATH.'</pre>');
+	dieWithError('No source files found in directory <pre>'.BASEPATH.'</pre>');
 }
 
 $outfile = OUTPATH.'/'.OUTFILE;
 
 if(file_exists($outfile) && (!isset($_REQUEST["verified"]) ||  $_REQUEST["verified"] != "yes")) {
-	dieWithWarning('Die Zieldatei <pre>'.$outfile.'</pre> existiert bereits. <a href="?verified=yes">Hier klicken</a>, um die Datei neu zu erstellen ...');
+	dieWithWarning('Target file <pre>'.$outfile.'</pre> already exists. <a href="?verified=yes">Click here</a>, to recreate this file ...');
 }
 
 if(is_file($outfile) && !is_writable($outfile)) {
-	dieWithError('Die Zieldatei <pre>'.$outfile.'</pre> ist nicht beschreibbar.');
+	dieWithError('Target file <pre>'.$outfile.'</pre> is not writable.');
 }
 
 if(file_exists($outfile) && $_REQUEST["verified"] == "yes") {
@@ -87,7 +87,10 @@ if(file_exists($outfile) && $_REQUEST["verified"] == "yes") {
 echo '<div class="list">';
 foreach($files as $entry) {
 	$tmpcontent = file_get_contents(BASEPATH."/".$entry);
-	if(!file_put_contents($outfile,$tmpcontent."\n/* query separator */\n",FILE_APPEND)) {
+	// query separator for webEdition sql dump, not needed for pageLogger:
+	//$queryseparator = "\n/* query separator */\n";
+	$queryseparator = "";
+	if(!file_put_contents($outfile,$tmpcontent.$queryseparator,FILE_APPEND)) {
 		echo('<font class="error">'.$entry.'</font> FAILED.<br />');
 	} else {
 		echo(''.$entry.' written.<br />');
