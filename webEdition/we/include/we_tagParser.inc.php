@@ -1342,6 +1342,11 @@ $GLOBALS["lv"] = new we_catListview("' . $name . '", $we_rows, $we_offset, $we_l
 																"listview")));
 									}
 		$php .= '$lv = clone($GLOBALS["lv"]); // for backwards compatibility
+		//prevent error if $GLOBALS["we_lv_array"] is no array
+		if (!isset($GLOBALS["we_lv_array"]) || !is_array($GLOBALS["we_lv_array"])) {
+			$GLOBALS["we_lv_array"] = array();
+		}
+		
 if(is_array($GLOBALS["we_lv_array"])) array_push($GLOBALS["we_lv_array"],clone($GLOBALS["lv"]));
 
 ?>
