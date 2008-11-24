@@ -682,7 +682,7 @@ else {
 		default:
 			if($we_include = $we_doc->editor()) {  // object does not handle html-output, so we need to include a template( return value)
 				$we_doc->saveInSession($_SESSION["we_data"][$we_transaction]); // save the changed object in session
-				if(substr(strtolower($we_include),0,strlen($_SERVER["DOCUMENT_ROOT"])) == strtolower($_SERVER["DOCUMENT_ROOT"])) {
+				if(isset($_SERVER["DOCUMENT_ROOT"]) && $_SERVER["DOCUMENT_ROOT"]!="" && substr(strtolower($we_include),0,strlen($_SERVER["DOCUMENT_ROOT"])) == strtolower($_SERVER["DOCUMENT_ROOT"])) {
 					// check if the template uses the document cache
 					// if is so, the output must be evaled
 					if($we_doc->ContentType == "text/weTmpl") {
