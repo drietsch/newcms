@@ -14,17 +14,11 @@
  * webEdition/licenses/webEditionCMS/License.txt
  *
  * @category   webEdition
- * @package    webEdition_toolfactory
+ * @package    webEdition_cms
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.gnu.org/copyleft/gpl.html  GPL
+ * @todo       new command controller
  */
 
-
-class IndexController extends Zend_Controller_Action {  
-      
-    function indexAction() {  
-	   	$this->view = new we_ui_view_DialogView();
-		$this->view->setScriptPath('views/scripts');
-		echo $this->view->render('index/index.php');
-    }  
-}  
+echo "the new command controller is not programmed jet.";
+?>
