@@ -28,12 +28,6 @@ $controller = Zend_Controller_Front::getInstance();
 // set path fpr controller directory
 $controller->setControllerDirectory('./controllers');
 
-// set some app specific parameter
-//$controller->setParam('cmsDir',dirname($_SERVER['SCRIPT_NAME']));
-//$controller->setParam('cmsPath',dirname($_SERVER['SCRIPT_FILENAME']));
-//$controller->setParam('cmsName', 'toolfactory');
-
-
 // disables automatic view rendering
 $controller->setParam('noViewRenderer', true);
 
