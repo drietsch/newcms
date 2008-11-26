@@ -1018,7 +1018,8 @@ if(isset($weTagListviewCache)) {
 					if("' . $path . '"){
 						$foo = "' . $path . '";
 					}else if("' . $id . '"){
-						$__id__ = ' . $id . ';$GLOBALS["DB_WE"]->query("SELECT Path,IsDynamic FROM ".FILE_TABLE." WHERE ID=".abs($__id__));
+						$__id__ = ' . ($id==""?'""':$id) . ';
+						$GLOBALS["DB_WE"]->query("SELECT Path,IsDynamic FROM ".FILE_TABLE." WHERE ID=".abs($__id__));
 						$GLOBALS["DB_WE"]->next_record();
 						$foo = $GLOBALS["DB_WE"]->f("Path");
 					}elseif("' . $name . '"){
