@@ -46,8 +46,8 @@ if($we_editmode) {
 		print STYLESHEET;
 
 		$we_button = new we_button();
-		
-		$_useJavaEditor = $_SESSION["prefs"]['use_jeditor'];
+
+		$_useJavaEditor = ($_SESSION["prefs"]['use_jeditor'] && !$_SESSION['weShowAltMenu']) ;
 	?>
 
 	<script language="JavaScript" type="text/javascript">
