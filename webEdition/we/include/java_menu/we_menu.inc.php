@@ -709,14 +709,14 @@ $we_menu["4000000"]["enabled"] = "1";
 			$we_menu["404" . sprintf("%04d", $_k)]["text"] = $_tool['text'] . "...";
 			$we_menu["404" . sprintf("%04d", $_k)]["parent"] = "4000000";
 			$we_menu["404" . sprintf("%04d", $_k)]["cmd"] = 'tool_' . $_tool['name'] . '_edit';
-			$we_menu["404" . sprintf("%04d", $_k)]["perm"] = $_tool['startpermission'];
+			$we_menu["404" . sprintf("%04d", $_k)]["perm"] = $_tool['startpermission']." || ADMINISTRATOR";
 			$we_menu["404" . sprintf("%04d", $_k)]["enabled"] = "1";
 		}
 		else {
 			$we_menu["405" . sprintf("%04d", $_k)]["text"] = $_tool['text'] . "...";
 			$we_menu["405" . sprintf("%04d", $_k)]["parent"] = "4000000";
 			$we_menu["405" . sprintf("%04d", $_k)]["cmd"] = 'tool_' . $_tool['name'] . '_edit';
-			$we_menu["405" . sprintf("%04d", $_k)]["perm"] = $_tool['startpermission'];
+			$we_menu["405" . sprintf("%04d", $_k)]["perm"] = $_tool['startpermission']." || ADMINISTRATOR";
 			$we_menu["405" . sprintf("%04d", $_k)]["enabled"] = "1";
 		}
 	}
