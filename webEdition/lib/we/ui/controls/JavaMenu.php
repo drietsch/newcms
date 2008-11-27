@@ -72,6 +72,13 @@ class we_ui_controls_JavaMenu extends we_ui_abstract_AbstractElement
 		
 		$out = '';
 		
+		$out = '<script language="JavaScript" type="text/javascript"><!--
+				function menuaction(cmd) {
+					weCmdController.fire({cmdName: cmd})
+				}
+			//-->
+			</script>';
+		
 		if (!$showAltMenu) {
 			$out .= '
 				<div id="divForSelectMenu"></div>
@@ -146,7 +153,7 @@ class we_ui_controls_JavaMenu extends we_ui_abstract_AbstractElement
 		
 		$out .= '
 			<div id="divWithSelectMenu">
-			<table cellpadding="2" cellspacing="0" border="0">
+			<table cellpadding="2" cellspacing="0" border="0" style="margin-top:5px;">
 				<tr>
 					<td><form></td>';
 		for ($i = 0; $i < sizeof($menus); $i++) {
@@ -167,8 +174,7 @@ class we_ui_controls_JavaMenu extends we_ui_abstract_AbstractElement
 			// Only script elements work: look at https://bugzilla.mozilla.org/show_bug.cgi?id=60724 for details
 			
 			if ( !navigator.javaEnabled() ) {
-				document.getElementById("divForSelectMenu").innerHTML = document.getElementById("divWithSelectMenu").innerHTML;
-				
+				//document.getElementById("divForSelectMenu").innerHTML = document.getElementById("divWithSelectMenu").innerHTML;
 			}
 			</script>' : '') . '
 			</form>';
