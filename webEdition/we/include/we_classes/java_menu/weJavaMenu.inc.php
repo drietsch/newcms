@@ -227,8 +227,7 @@ class weJavaMenu {
 			// Only script elements work: look at https://bugzilla.mozilla.org/show_bug.cgi?id=60724 for details
 			
 			if ( !navigator.javaEnabled() ) {
-				document.getElementById("divForSelectMenu").innerHTML = document.getElementById("divWithSelectMenu").innerHTML;
-				
+				//document.getElementById("divForSelectMenu").innerHTML = document.getElementById("divWithSelectMenu").innerHTML;
 			}
 			</script>'
 					: '' ) . '
