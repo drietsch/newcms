@@ -93,12 +93,15 @@ if ( !isset($_REQUEST["SEEM_edit_include"]) ) { // there is only a menu when not
 					changeImage(null,"busy",(foo ? "busy_icon" : "empty_icon"));
 				}
 			}
-
+			
 			var appletTrys = 0;
+			
+			checkApplet();
+			
 			function checkApplet() {
 				<?php
 
-					if ( ($GLOBALS["BROWSER"] != "NN6")  && ( !(isset($_REQUEST["showAltMenu"]) && $_REQUEST["showAltMenu"]) ) ) { ?>
+					if (  ( !(isset($_REQUEST["showAltMenu"]) && $_REQUEST["showAltMenu"]) )) { ?>
 
 				try {
 					if(!document.weJavaMenuApplet.getBgImage) {
