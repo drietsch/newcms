@@ -895,7 +895,7 @@ class weVersions {
 		
 		if(isset($_SESSION["user"]["ID"])) {
 			$_SESSION["Versions"]['fromImport'] = 0;
-			
+
 			//import
 			if(isset($_REQUEST["jupl"]) && $_REQUEST["jupl"]){
 				$_SESSION["Versions"]['fromImport'] = 1;
@@ -1049,110 +1049,113 @@ class weVersions {
 	*/
 	function saveVersion($document, $status = "saved") {
 		
-		$documentObj = "";
-		$db = new DB_WE();
-		if(is_object($document)) {
-			$documentObj = $document;
-			$document = $this->objectToArray($document);
-		}
-		
-		if(isset($document["documentCustomerFilter"]) && is_object($document["documentCustomerFilter"])) {
-			$document["documentCustomerFilter"] = $this->objectToArray($document["documentCustomerFilter"]);
-		}
-		
-		$writeVersion = true;
-		
-		//preferences
-		if(!$this->CheckPreferencesCtypes($document["ContentType"])) {
-			$writeVersion = false;
-		}
-
-		if((isset($_REQUEST["we_cmd"][0]) && $_REQUEST["we_cmd"][0]=="save_document")) {
-			if(isset($_REQUEST["we_cmd"][5]) && $_REQUEST["we_cmd"][5]) {
-				$status = "published";
+		if(isset($_SESSION["user"]["ID"])) {
+			$documentObj = "";
+			$db = new DB_WE();
+			if(is_object($document)) {
+				$documentObj = $document;
+				$document = $this->objectToArray($document);
 			}
-		}
-		
-		if($document["ContentType"]!="objectFile" && $document["ContentType"]!="text/webedition" && $document["ContentType"]!="text/html") {
-			$status = "saved";
-		}
-		
-		if($this->IsScheduler()) {
-			if($status != "unpublished" && $status != "deleted") {
-				$status = "published";
+			
+			if(isset($document["documentCustomerFilter"]) && is_object($document["documentCustomerFilter"])) {
+				$document["documentCustomerFilter"] = $this->objectToArray($document["documentCustomerFilter"]);
 			}
-		}
-		
-		if(isset($_SESSION['versions']['doPublish']) && $_SESSION['versions']['doPublish']) {
-			$status = "published";
-		}
-		
-		if($document["ContentType"]=="objectFile" || $document["ContentType"]=="text/webedition" || $document["ContentType"]=="text/html") {
-			if((defined("VERSIONS_CREATE") && VERSIONS_CREATE) && $status != "published" && isset($_REQUEST["we_cmd"][5]) && !$_REQUEST["we_cmd"][5]) {
+			
+			$writeVersion = true;
+			
+			//preferences
+			if(!$this->CheckPreferencesCtypes($document["ContentType"])) {
 				$writeVersion = false;
 			}
-		}
-
-		//look if there were made changes
-		if(isset($_SESSION['versions']['versionToCompare'][$document["ID"].'_'.$document["Table"]]) && $_SESSION['versions']['versionToCompare'][$document["ID"].'_'.$document["Table"]]!='') {
-			
-			$lastEntry = unserialize($_SESSION['versions']['versionToCompare'][$document["ID"].'_'.$document["Table"]]);
-			$lastEntry = $this->objectToArray($lastEntry);
-			
-			$diffExists = array();
-			if(is_array($document) && is_array($lastEntry)) {
-				$diffExists = $this->array_diff_values($document, $lastEntry);
-			}
-			$lastEntry = $this->getLastEntry($document["ID"],$document["Table"]);
-		
-			if((($status=='published' || $status=='saved') && isset($lastEntry['status']) && $status==$lastEntry['status']) && empty($diffExists) && $this->versionsExist($document["ID"],$document["ContentType"])) {
-				$writeVersion = false;
-			}
-		}
-
-		if($writeVersion) {
-			$mods = true;
-			$tblversionsFields = $this->getFieldsFromTable(VERSIONS_TABLE);
-			
-			$keys = array();
-			$vals = array();
 	
-			for($i=0;$i<count($tblversionsFields);$i++){
-				
-				$fieldName = $tblversionsFields[$i];
-				if($fieldName!="ID") {
-					$keys[] = $fieldName;
-				
-					if(isset($document[$fieldName])) {
-						$vals[] = "'".mysql_real_escape_string($document[$fieldName])."'";
-					}
-					else {
-						$entry = $this->makePersistentEntry($fieldName, $status, $document, $documentObj);
-						$vals[] = "'".$entry."'";
-					}	
+			if((isset($_REQUEST["we_cmd"][0]) && $_REQUEST["we_cmd"][0]=="save_document")) {
+				if(isset($_REQUEST["we_cmd"][5]) && $_REQUEST["we_cmd"][5]) {
+					$status = "published";
 				}
 			}
 			
-			if(!empty($keys) && !empty($vals) && $mods){
-							
-				$theKeys = "(". makeCSVFromArray($keys) .")";
-				$theValues = "VALUES(". makeCSVFromArray($vals) .")";
-				
-				$q = "INSERT INTO ".VERSIONS_TABLE." ".$theKeys ." ". $theValues."";
-				$db->query($q);
-			
-				$vers = $this->version;
-				if(isset($document["version"])) {
-					$vers = $document["version"];
-				}
-				$q2 = "UPDATE ".VERSIONS_TABLE." SET active = '0' WHERE documentID = '".abs($document["ID"])."' AND documentTable = '".mysql_real_escape_string($document["Table"])."' AND version != '".abs($vers)."'";
-				$db->query($q2);	
-				
-				$_SESSION['versions']['versionToCompare'][$document["ID"].'_'.$document["Table"]] = serialize($documentObj);
+			if($document["ContentType"]!="objectFile" && $document["ContentType"]!="text/webedition" && $document["ContentType"]!="text/html") {
+				$status = "saved";
 			}
-		}
+			
+			if($this->IsScheduler()) {
+				if($status != "unpublished" && $status != "deleted") {
+					$status = "published";
+				}
+			}
+			
+			if(isset($_SESSION['versions']['doPublish']) && $_SESSION['versions']['doPublish']) {
+				$status = "published";
+			}
+			
+			if($document["ContentType"]=="objectFile" || $document["ContentType"]=="text/webedition" || $document["ContentType"]=="text/html") {
+				if((defined("VERSIONS_CREATE") && VERSIONS_CREATE) && $status != "published" && isset($_REQUEST["we_cmd"][5]) && !$_REQUEST["we_cmd"][5]) {
+					$writeVersion = false;
+				}
+			}
+	
+			//look if there were made changes
+			if(isset($_SESSION['versions']['versionToCompare'][$document["ID"].'_'.$document["Table"]]) && $_SESSION['versions']['versionToCompare'][$document["ID"].'_'.$document["Table"]]!='') {
+				
+				$lastEntry = unserialize($_SESSION['versions']['versionToCompare'][$document["ID"].'_'.$document["Table"]]);
+				$lastEntry = $this->objectToArray($lastEntry);
+				
+				$diffExists = array();
+				if(is_array($document) && is_array($lastEntry)) {
+					$diffExists = $this->array_diff_values($document, $lastEntry);
+				}
+				$lastEntry = $this->getLastEntry($document["ID"],$document["Table"]);
+			
+				if((($status=='published' || $status=='saved') && isset($lastEntry['status']) && $status==$lastEntry['status']) && empty($diffExists) && $this->versionsExist($document["ID"],$document["ContentType"])) {
+					$writeVersion = false;
+				}
+			}
+	
+			if($writeVersion) {
+				$mods = true;
+				$tblversionsFields = $this->getFieldsFromTable(VERSIONS_TABLE);
+				
+				$keys = array();
+				$vals = array();
+		
+				for($i=0;$i<count($tblversionsFields);$i++){
 					
-		$this->CheckPreferencesTime($document["ID"], $document["Table"]);
+					$fieldName = $tblversionsFields[$i];
+					if($fieldName!="ID") {
+						$keys[] = $fieldName;
+					
+						if(isset($document[$fieldName])) {
+							$vals[] = "'".mysql_real_escape_string($document[$fieldName])."'";
+						}
+						else {
+							$entry = $this->makePersistentEntry($fieldName, $status, $document, $documentObj);
+							$vals[] = "'".$entry."'";
+						}	
+					}
+				}
+				
+				if(!empty($keys) && !empty($vals) && $mods){
+								
+					$theKeys = "(". makeCSVFromArray($keys) .")";
+					$theValues = "VALUES(". makeCSVFromArray($vals) .")";
+					
+					$q = "INSERT INTO ".VERSIONS_TABLE." ".$theKeys ." ". $theValues."";
+					$db->query($q);
+				
+					$vers = $this->version;
+					if(isset($document["version"])) {
+						$vers = $document["version"];
+					}
+					$q2 = "UPDATE ".VERSIONS_TABLE." SET active = '0' WHERE documentID = '".abs($document["ID"])."' AND documentTable = '".mysql_real_escape_string($document["Table"])."' AND version != '".abs($vers)."'";
+					$db->query($q2);	
+					
+					$_SESSION['versions']['versionToCompare'][$document["ID"].'_'.$document["Table"]] = serialize($documentObj);
+				}
+			}
+						
+			$this->CheckPreferencesTime($document["ID"], $document["Table"]);
+			
+		}
 
 	}	
 	
@@ -1261,7 +1264,7 @@ class weVersions {
 							
 						}
 						else {
-							if(isset($document['TemplatePath']) && $document['TemplatePath']!="" && $document['ContentType']=="text/webedition") {
+							if(isset($document['TemplatePath']) && $document['TemplatePath']!="" && substr($document['TemplatePath'], -18)!="/we_noTmpl.inc.php" && $document['ContentType']=="text/webedition") {
 								$includeTemplate = preg_replace('/.tmpl$/i','.php', $document['TemplatePath']);
 								ob_start();
 								include($includeTemplate);
@@ -1418,7 +1421,7 @@ class weVersions {
 				}
 			break;
 			case "modifierID":
-				$modifierID = $_SESSION["user"]["ID"];
+				$modifierID = (isset($_SESSION["user"]["ID"])) ? $_SESSION["user"]["ID"] : '';
 				$entry = $modifierID;
 			break;
 			case "IP":
@@ -1713,39 +1716,41 @@ class weVersions {
 	*/
 	function deleteVersion($ID="", $where="") {
 		
-		$db = new DB_WE();
-		
-		
-		if($ID!="") {
-			$w = "ID = '" . abs($ID) . "'";
+		if(isset($_SESSION["user"]["ID"])) {
+			$db = new DB_WE();
+			
+			
+			if($ID!="") {
+				$w = "ID = '" . abs($ID) . "'";
+			}
+			elseif($where!="") {
+				$w = $where;
+			}
+			
+			$query = "SELECT ID,documentID,version,Text,ContentType,documentTable,Path,binaryPath FROM " . VERSIONS_TABLE . " WHERE ".$w." LIMIT 1";
+	
+			$db->query($query);
+			$binaryPath = "";
+			while ($db->next_record()) {
+				$binaryPath = $db->f('binaryPath');	
+				$_SESSION['versions']['logDeleteIds'][$db->f('ID')]['Text'] = $db->f('Text');	
+				$_SESSION['versions']['logDeleteIds'][$db->f('ID')]['ContentType'] = $db->f('ContentType');	
+				$_SESSION['versions']['logDeleteIds'][$db->f('ID')]['Path'] = $db->f('Path');		
+				$_SESSION['versions']['logDeleteIds'][$db->f('ID')]['Version'] = $db->f('version');	
+				$_SESSION['versions']['logDeleteIds'][$db->f('ID')]['documentID'] = $db->f('documentID');					
+			}
+			
+			$filePath = $_SERVER["DOCUMENT_ROOT"].$binaryPath;
+			$binaryPathUsed = f("SELECT binaryPath FROM " . VERSIONS_TABLE . " WHERE ID!='".abs($ID)."' AND binaryPath='".mysql_real_escape_string($binaryPath)."' LIMIT 1","binaryPath",$db);
+	
+			if(file_exists($filePath) && $binaryPathUsed=="") {
+				@unlink($filePath);
+			}
+			
+			$query = "DELETE FROM ".VERSIONS_TABLE." WHERE ".$w." ;";
+			
+			$db->query($query);
 		}
-		elseif($where!="") {
-			$w = $where;
-		}
-		
-		$query = "SELECT ID,documentID,version,Text,ContentType,documentTable,Path,binaryPath FROM " . VERSIONS_TABLE . " WHERE ".$w." LIMIT 1";
-
-		$db->query($query);
-		$binaryPath = "";
-		while ($db->next_record()) {
-			$binaryPath = $db->f('binaryPath');	
-			$_SESSION['versions']['logDeleteIds'][$db->f('ID')]['Text'] = $db->f('Text');	
-			$_SESSION['versions']['logDeleteIds'][$db->f('ID')]['ContentType'] = $db->f('ContentType');	
-			$_SESSION['versions']['logDeleteIds'][$db->f('ID')]['Path'] = $db->f('Path');		
-			$_SESSION['versions']['logDeleteIds'][$db->f('ID')]['Version'] = $db->f('version');	
-			$_SESSION['versions']['logDeleteIds'][$db->f('ID')]['documentID'] = $db->f('documentID');					
-		}
-		
-		$filePath = $_SERVER["DOCUMENT_ROOT"].$binaryPath;
-		$binaryPathUsed = f("SELECT binaryPath FROM " . VERSIONS_TABLE . " WHERE ID!='".abs($ID)."' AND binaryPath='".mysql_real_escape_string($binaryPath)."' LIMIT 1","binaryPath",$db);
-
-		if(file_exists($filePath) && $binaryPathUsed=="") {
-			@unlink($filePath);
-		}
-		
-		$query = "DELETE FROM ".VERSIONS_TABLE." WHERE ".$w." ;";
-		
-		$db->query($query);
 	}
 	
 	 /**
@@ -1756,214 +1761,216 @@ class weVersions {
 		$db = new DB_WE();
 		$db2 = new DB_WE();
 		
-		$resetArray = array();
-		$tblFields = array();
-		$tableInfo = $db->metadata(VERSIONS_TABLE);
-
-		if(isset($_REQUEST["we_transaction"])) {
-			$we_transaction = $_REQUEST["we_transaction"];
-		}
-		else {
-			$we_transaction = $GLOBALS["we_transaction"];
-		}
-		
-		
-		for($i=0;$i<sizeof($tableInfo);$i++){
-			$tblFields[] = $tableInfo[$i]["name"];
-		}
-		
-		
-		$query = "SELECT * FROM " . VERSIONS_TABLE . " WHERE ID='".abs($ID)."'  ";
-
-		$db->query($query);
-
-		if($db->next_record()) {
-			foreach($tblFields as $k => $v) {
-				$resetArray[$v] = $db->f("".$v."");
-			}
-		}
-
-		if(is_array($resetArray) && !empty($resetArray)) {
-			if(file_exists($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_modules/object/".$resetArray["ClassName"].".inc.php")){
-				include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_modules/object/".$resetArray["ClassName"].".inc.php");
-			}
-			elseif(file_exists($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/".$resetArray["ClassName"].".inc.php")){
-				include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/".$resetArray["ClassName"].".inc.php");
-			}
-				
-			$resetDoc = new $resetArray["ClassName"]();
+		if(isset($_SESSION["user"]["ID"])) {
+			$resetArray = array();
+			$tblFields = array();
+			$tableInfo = $db->metadata(VERSIONS_TABLE);
 	
-			foreach($resetArray as $k=>$v) {
+			if(isset($_REQUEST["we_transaction"])) {
+				$we_transaction = $_REQUEST["we_transaction"];
+			}
+			else {
+				$we_transaction = $GLOBALS["we_transaction"];
+			}
+			
+			
+			for($i=0;$i<sizeof($tableInfo);$i++){
+				$tblFields[] = $tableInfo[$i]["name"];
+			}
+			
+			
+			$query = "SELECT * FROM " . VERSIONS_TABLE . " WHERE ID='".abs($ID)."'  ";
+	
+			$db->query($query);
+	
+			if($db->next_record()) {
+				foreach($tblFields as $k => $v) {
+					$resetArray[$v] = $db->f("".$v."");
+				}
+			}
+	
+			if(is_array($resetArray) && !empty($resetArray)) {
+				if(file_exists($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_modules/object/".$resetArray["ClassName"].".inc.php")){
+					include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_modules/object/".$resetArray["ClassName"].".inc.php");
+				}
+				elseif(file_exists($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/".$resetArray["ClassName"].".inc.php")){
+					include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/".$resetArray["ClassName"].".inc.php");
+				}
+					
+				$resetDoc = new $resetArray["ClassName"]();
 		
-				if(isset($resetDoc->$k)) {
-					if($k!="ID") {
-						$resetDoc->$k = $v;
-					}	
-				}
-				elseif($k=="documentID") {
-					$resetDoc->ID = $v;
-				}
-				elseif($k=="documentElements") {
-					if($v!="") {
-						$docElements = unserialize(html_entity_decode(urldecode($v), ENT_QUOTES));
-						$resetDoc->elements = $docElements;
+				foreach($resetArray as $k=>$v) {
+			
+					if(isset($resetDoc->$k)) {
+						if($k!="ID") {
+							$resetDoc->$k = $v;
+						}	
 					}
-				}
-				elseif($k=="documentScheduler") {
-					if($v!="") {
-						$docElements = unserialize(html_entity_decode(urldecode($v), ENT_QUOTES));
-						$resetDoc->schedArr = $docElements;
+					elseif($k=="documentID") {
+						$resetDoc->ID = $v;
 					}
-				}
-				elseif($k=="documentCustomFilter") {
-					if($v!="") {
-						$docElements = unserialize(html_entity_decode(urldecode($v), ENT_QUOTES));
-						$resetDoc->documentCustomerFilter = new weDocumentCustomerFilter();
-						foreach($docElements as $k => $v) {
-							if(isset($resetDoc->documentCustomerFilter->$k)) {
-								if($v!="" || !empty($v)) {
-									$resetDoc->documentCustomerFilter->$k = $v;
+					elseif($k=="documentElements") {
+						if($v!="") {
+							$docElements = unserialize(html_entity_decode(urldecode($v), ENT_QUOTES));
+							$resetDoc->elements = $docElements;
+						}
+					}
+					elseif($k=="documentScheduler") {
+						if($v!="") {
+							$docElements = unserialize(html_entity_decode(urldecode($v), ENT_QUOTES));
+							$resetDoc->schedArr = $docElements;
+						}
+					}
+					elseif($k=="documentCustomFilter") {
+						if($v!="") {
+							$docElements = unserialize(html_entity_decode(urldecode($v), ENT_QUOTES));
+							$resetDoc->documentCustomerFilter = new weDocumentCustomerFilter();
+							foreach($docElements as $k => $v) {
+								if(isset($resetDoc->documentCustomerFilter->$k)) {
+									if($v!="" || !empty($v)) {
+										$resetDoc->documentCustomerFilter->$k = $v;
+									}
 								}
 							}
 						}
 					}
 				}
-			}
-
-			if($resetDoc->ContentType=="image/*") {
-				$lastBinaryPath = f("SELECT binaryPath FROM " . VERSIONS_TABLE . " WHERE documentID='".$resetArray["documentID"]."' AND documentTable='".$resetArray["documentTable"]."' AND version <='".$version."' AND binaryPath !='' ORDER BY version DESC LIMIT 1","binaryPath",$db);
-				$resetDoc->elements["data"]["dat"] = $_SERVER["DOCUMENT_ROOT"].$lastBinaryPath;
-			}
-			
-			$resetDoc->EditPageNr = $_SESSION['EditPageNr'];
-
-			$existsInFileTable = f("SELECT ID FROM " . mysql_real_escape_string($resetArray["documentTable"]) . " WHERE ID='".abs($resetDoc->ID)."' ","ID",$db);
-			//if document was deleted
-			
-			if(empty($existsInFileTable)) {
-				//save this id and contenttype to turn the id for the versions
-				$oldId = $resetDoc->ID;
-				$oldCt = $resetDoc->ContentType;
-				$resetDoc->ID = 0;
-				$lastEntryVersion = f("SELECT version FROM " . VERSIONS_TABLE . " WHERE documentID='".abs($resetArray["documentID"])."' AND documentTable='".mysql_real_escape_string($resetArray["documentTable"])."' ORDER BY version DESC LIMIT 1","version",$db);				
-				$resetDoc->version = $lastEntryVersion + 1;
-			}
-			
-			if($resetArray["ParentID"]!=0) {
-				//if folder was deleted
-				$existsPath = f("SELECT Path FROM " . mysql_real_escape_string($resetArray["documentTable"]) . " WHERE ID='".abs($resetArray["ParentID"])."' AND IsFolder='1' ","Path",$db);
-			
-				if(empty($existsPath)) {
-					// create old folder if it does not exists
 	
-					$folders = explode("/", $resetArray["Path"]);
-					foreach($folders as $k => $v) {
-						if($k!=0 && $k!=(count($folders)-1)) {
-							
-							
-							include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/"."we_classes/we_folder.inc.php");
-							
-							$parentID = (isset($_SESSION['versions']['lastPathID'])) ? $_SESSION['versions']['lastPathID'] : 0;
-							
-							$folder= new we_folder();
-							$folder->we_new();
-							$folder->setParentID($parentID);
-							$folder->Table=$resetArray["documentTable"];
-							$folder->Text=$v;
-							$folder->CreationDate=time();
-							$folder->ModDate=time();
-							$folder->Filename=$v;
-							$folder->Published=time();
-							$folder->Path=$folder->getPath();
-							$folder->CreatorID=isset($_SESSION["user"]["ID"]) ? $_SESSION["user"]["ID"] : "";
-							$folder->ModifierID=isset($_SESSION["user"]["ID"]) ? $_SESSION["user"]["ID"] : "";
-							$existsFolderPathID = f("SELECT ID FROM " . mysql_real_escape_string($resetArray["documentTable"]) . " WHERE Path='".mysql_real_escape_string($folder->Path)."' AND IsFolder='1' ","ID",$db);
-							if(empty($existsFolderPathID)) {
-								$folder->we_save();
-								$_SESSION['versions']['lastPathID'] = $folder->ID;
-							}
-							else {
-								$_SESSION['versions']['lastPathID'] = $existsFolderPathID;
-							}						
-						}
-					}
-					
-					$resetDoc->ID = 0;
-					$resetDoc->ParentID = $_SESSION['versions']['lastPathID'];
-					$resetDoc->Path = $resetArray["Path"];
-					
-				}
-			}
-			
-			$existsFile = f("SELECT COUNT(*) as Count FROM " . mysql_real_escape_string($resetArray["documentTable"]) . " WHERE ID!= '".abs($resetArray["documentID"])."' AND Path= '".mysql_real_escape_string($resetDoc->Path)."' ","Count",$db);
-			
-			$doPark = false;
-			if(!empty($existsFile)) {
-				$resetDoc->Path = str_replace($resetDoc->Text, "_".$resetArray["documentID"]."_".$resetDoc->Text, $resetDoc->Path);
-				$resetDoc->Text = "_".$resetArray["documentID"]."_".$resetDoc->Text;
-				if(isset($resetDoc->Filename) && $resetDoc->Filename!="") {
-					$resetDoc->Filename = "_".$resetArray["documentID"]."_".$resetDoc->Filename;
-					$publish = 0;
-					$doPark = true;
+				if($resetDoc->ContentType=="image/*") {
+					$lastBinaryPath = f("SELECT binaryPath FROM " . VERSIONS_TABLE . " WHERE documentID='".$resetArray["documentID"]."' AND documentTable='".$resetArray["documentTable"]."' AND version <='".$version."' AND binaryPath !='' ORDER BY version DESC LIMIT 1","binaryPath",$db);
+					$resetDoc->elements["data"]["dat"] = $_SERVER["DOCUMENT_ROOT"].$lastBinaryPath;
 				}
 				
-			}
-			
-			if((isset($_SESSION['versions']['lastPathID']))) {
-				unset($_SESSION['versions']['lastPathID']);
-			}
-			
-			$resetDoc->resetFromVersion = $version;
-			
-			$resetDoc->saveInSession($_SESSION["we_data"][$we_transaction]);
+				$resetDoc->EditPageNr = $_SESSION['EditPageNr'];
 	
-			$GLOBALS['we_doc'] = $resetDoc;
-			
-			
-			if(defined("WORKFLOW_TABLE")) {
-				include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_modules/workflow/"."weWorkflowUtility.php");
-			}
-			include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/we_temporaryDocument.inc.php");
-
-			we_temporaryDocument::delete($resetDoc->ID);
-			//$resetDoc->initByID($resetDoc->ID);
-			$resetDoc->ModDate = time();
-			$resetDoc->Published = $resetArray["timestamp"];
-			
-			$wasPublished = f("SELECT status FROM ".VERSIONS_TABLE." WHERE documentID= '".abs($resetArray["documentID"])."' AND documentTable= '".mysql_real_escape_string($resetArray["documentTable"])."' and status='published' ORDER BY version DESC LIMIT 1 ","status",$db);
-			$publishedDoc = $_SERVER["DOCUMENT_ROOT"].$resetDoc->Path;
-			$publishedDocExists = true;
-			if($resetArray["ContentType"]!="objectFile") {
-				$publishedDocExists = file_exists($publishedDoc);
-			}
-			if($doPark || $wasPublished=="" || !$publishedDocExists) {
-				$resetDoc->Published = 0;
-			}
-			if($publish) {
-				$_SESSION['versions']['doPublish'] = true;
-			}
-			$resetDoc->we_save();
-			if($publish) {
-				unset($_SESSION['versions']['doPublish']);
-				$resetDoc->we_publish();
-			}
-			
-			if(defined("WORKFLOW_TABLE") && $resetDoc->ContentType == "text/webedition") {
-				if(weWorkflowUtility::inWorkflow($resetDoc->ID,$resetDoc->Table)){
-					weWorkflowUtility::removeDocFromWorkflow($resetDoc->ID,$resetDoc->Table,$_SESSION["user"]["ID"],"");
+				$existsInFileTable = f("SELECT ID FROM " . mysql_real_escape_string($resetArray["documentTable"]) . " WHERE ID='".abs($resetDoc->ID)."' ","ID",$db);
+				//if document was deleted
+				
+				if(empty($existsInFileTable)) {
+					//save this id and contenttype to turn the id for the versions
+					$oldId = $resetDoc->ID;
+					$oldCt = $resetDoc->ContentType;
+					$resetDoc->ID = 0;
+					$lastEntryVersion = f("SELECT version FROM " . VERSIONS_TABLE . " WHERE documentID='".abs($resetArray["documentID"])."' AND documentTable='".mysql_real_escape_string($resetArray["documentTable"])."' ORDER BY version DESC LIMIT 1","version",$db);				
+					$resetDoc->version = $lastEntryVersion + 1;
 				}
-			}
-			
-			$_SESSION['versions']['logResetIds'][$resetArray['ID']]['Text'] = $resetArray['Text'];
-			$_SESSION['versions']['logResetIds'][$resetArray['ID']]['ContentType'] = $resetArray['ContentType'];
-			$_SESSION['versions']['logResetIds'][$resetArray['ID']]['Path'] = $resetArray['Path'];	
-			$_SESSION['versions']['logResetIds'][$resetArray['ID']]['Version'] = $resetArray['version'];
-			$_SESSION['versions']['logResetIds'][$resetArray['ID']]['documentID'] = $resetArray['documentID'];	
-
-			//update versions if id or path were changed
-			if(empty($existsInFileTable)) {
-				$q = "UPDATE ".VERSIONS_TABLE." SET documentID = '".abs($resetDoc->ID)."',ParentID = '".abs($resetDoc->ParentID)."',active = '0' WHERE documentID = '".abs($oldId)."' AND ContentType = '".mysql_real_escape_string($oldCt)."'";
-				$db->query($q);
+				
+				if($resetArray["ParentID"]!=0) {
+					//if folder was deleted
+					$existsPath = f("SELECT Path FROM " . mysql_real_escape_string($resetArray["documentTable"]) . " WHERE ID='".abs($resetArray["ParentID"])."' AND IsFolder='1' ","Path",$db);
+				
+					if(empty($existsPath)) {
+						// create old folder if it does not exists
+		
+						$folders = explode("/", $resetArray["Path"]);
+						foreach($folders as $k => $v) {
+							if($k!=0 && $k!=(count($folders)-1)) {
+								
+								
+								include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/"."we_classes/we_folder.inc.php");
+								
+								$parentID = (isset($_SESSION['versions']['lastPathID'])) ? $_SESSION['versions']['lastPathID'] : 0;
+								
+								$folder= new we_folder();
+								$folder->we_new();
+								$folder->setParentID($parentID);
+								$folder->Table=$resetArray["documentTable"];
+								$folder->Text=$v;
+								$folder->CreationDate=time();
+								$folder->ModDate=time();
+								$folder->Filename=$v;
+								$folder->Published=time();
+								$folder->Path=$folder->getPath();
+								$folder->CreatorID=isset($_SESSION["user"]["ID"]) ? $_SESSION["user"]["ID"] : "";
+								$folder->ModifierID=isset($_SESSION["user"]["ID"]) ? $_SESSION["user"]["ID"] : "";
+								$existsFolderPathID = f("SELECT ID FROM " . mysql_real_escape_string($resetArray["documentTable"]) . " WHERE Path='".mysql_real_escape_string($folder->Path)."' AND IsFolder='1' ","ID",$db);
+								if(empty($existsFolderPathID)) {
+									$folder->we_save();
+									$_SESSION['versions']['lastPathID'] = $folder->ID;
+								}
+								else {
+									$_SESSION['versions']['lastPathID'] = $existsFolderPathID;
+								}						
+							}
+						}
+						
+						$resetDoc->ID = 0;
+						$resetDoc->ParentID = $_SESSION['versions']['lastPathID'];
+						$resetDoc->Path = $resetArray["Path"];
+						
+					}
+				}
+				
+				$existsFile = f("SELECT COUNT(*) as Count FROM " . mysql_real_escape_string($resetArray["documentTable"]) . " WHERE ID!= '".abs($resetArray["documentID"])."' AND Path= '".mysql_real_escape_string($resetDoc->Path)."' ","Count",$db);
+				
+				$doPark = false;
+				if(!empty($existsFile)) {
+					$resetDoc->Path = str_replace($resetDoc->Text, "_".$resetArray["documentID"]."_".$resetDoc->Text, $resetDoc->Path);
+					$resetDoc->Text = "_".$resetArray["documentID"]."_".$resetDoc->Text;
+					if(isset($resetDoc->Filename) && $resetDoc->Filename!="") {
+						$resetDoc->Filename = "_".$resetArray["documentID"]."_".$resetDoc->Filename;
+						$publish = 0;
+						$doPark = true;
+					}
+					
+				}
+				
+				if((isset($_SESSION['versions']['lastPathID']))) {
+					unset($_SESSION['versions']['lastPathID']);
+				}
+				
+				$resetDoc->resetFromVersion = $version;
+				
+				$resetDoc->saveInSession($_SESSION["we_data"][$we_transaction]);
+		
+				$GLOBALS['we_doc'] = $resetDoc;
+				
+				
+				if(defined("WORKFLOW_TABLE")) {
+					include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_modules/workflow/"."weWorkflowUtility.php");
+				}
+				include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/we_temporaryDocument.inc.php");
+	
+				we_temporaryDocument::delete($resetDoc->ID);
+				//$resetDoc->initByID($resetDoc->ID);
+				$resetDoc->ModDate = time();
+				$resetDoc->Published = $resetArray["timestamp"];
+				
+				$wasPublished = f("SELECT status FROM ".VERSIONS_TABLE." WHERE documentID= '".abs($resetArray["documentID"])."' AND documentTable= '".mysql_real_escape_string($resetArray["documentTable"])."' and status='published' ORDER BY version DESC LIMIT 1 ","status",$db);
+				$publishedDoc = $_SERVER["DOCUMENT_ROOT"].$resetDoc->Path;
+				$publishedDocExists = true;
+				if($resetArray["ContentType"]!="objectFile") {
+					$publishedDocExists = file_exists($publishedDoc);
+				}
+				if($doPark || $wasPublished=="" || !$publishedDocExists) {
+					$resetDoc->Published = 0;
+				}
+				if($publish) {
+					$_SESSION['versions']['doPublish'] = true;
+				}
+				$resetDoc->we_save();
+				if($publish) {
+					unset($_SESSION['versions']['doPublish']);
+					$resetDoc->we_publish();
+				}
+				
+				if(defined("WORKFLOW_TABLE") && $resetDoc->ContentType == "text/webedition") {
+					if(weWorkflowUtility::inWorkflow($resetDoc->ID,$resetDoc->Table)){
+						weWorkflowUtility::removeDocFromWorkflow($resetDoc->ID,$resetDoc->Table,$_SESSION["user"]["ID"],"");
+					}
+				}
+				
+				$_SESSION['versions']['logResetIds'][$resetArray['ID']]['Text'] = $resetArray['Text'];
+				$_SESSION['versions']['logResetIds'][$resetArray['ID']]['ContentType'] = $resetArray['ContentType'];
+				$_SESSION['versions']['logResetIds'][$resetArray['ID']]['Path'] = $resetArray['Path'];	
+				$_SESSION['versions']['logResetIds'][$resetArray['ID']]['Version'] = $resetArray['version'];
+				$_SESSION['versions']['logResetIds'][$resetArray['ID']]['documentID'] = $resetArray['documentID'];	
+	
+				//update versions if id or path were changed
+				if(empty($existsInFileTable)) {
+					$q = "UPDATE ".VERSIONS_TABLE." SET documentID = '".abs($resetDoc->ID)."',ParentID = '".abs($resetDoc->ParentID)."',active = '0' WHERE documentID = '".abs($oldId)."' AND ContentType = '".mysql_real_escape_string($oldCt)."'";
+					$db->query($q);
+				}
 			}
 		}
 	}
