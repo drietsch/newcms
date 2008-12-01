@@ -116,7 +116,7 @@ if ( !isset($_REQUEST["SEEM_edit_include"]) ) { // there is only a menu when not
 
 			function checkAndLoadAltMenu() {
 				if (appletTrys < 10) {
-					setTimeout("checkApplet()",200);
+					setTimeout("checkApplet()",300);
 				} else {
 					document.location = "headermenu.php?showAltMenu=true";
 				}
