@@ -37,7 +37,7 @@ $_logoPart = 140;
 $_leftPart = $_middlePart - $_logoPart;
 
 $_credits = "webEdition Team:<br>Holger Meyer, Damjan Denic, Thomas Kneip, Alexander Lindenstruth, Dirk Einecke, Axel Regnet, Stefan Oberrecht, Florian Mertin, Anna Baumann, Benny Johnson, Tatjana Hermann, Michael Weiss<br><br>Thanks:<br>";
-$_credits .= "Slavko Tomcic, Andreas Frey, Bj&ouml;rn B&ouml;ttle, Herbert Hohn, Christoph L&uuml;tjen, Severin Kurpiers, Florian Wittke, Wolfgang Kemna, Guido Polko, Vukasin Toroman, Peter Tepass&eacute;, Christoph Schlierkamp, Andreas Roth, Oliver Krahnen, Jochen Nees, Angela D&uuml;rrmann, Jessica Holzapfel, Rebecca Dreher, Tamara Lander, Niall Davis, Philip Moore, Kari Vatanen, Joni Eskelinen, Jasper van den Ham, Jorg Tiemens";
+$_credits .= "Slavko Tomcic, Andreas Frey, Bj&ouml;rn B&ouml;ttle, Elad Messing, Heike Debaets, Herbert Hohn, Christoph L&uuml;tjen, Severin Kurpiers, Michael Scheurer, Florian Wittke, Wolfgang Kemna, Guido Polko, Vukasin Toroman, Peter Tepass&eacute;, Christoph Schlierkamp, Andreas Roth, Oliver Krahnen, Jochen Nees, Angela D&uuml;rrmann, Jessica Holzapfel, Rebecca Dreher, Tamara Lander, Niall Davis, Philip Moore, Kari Vatanen, Joni Eskelinen, Jasper van den Ham, Jorg Tiemens";
 
 $_table = new we_htmlTable( array(	"border"      => 0,
 									"cellpadding" => 0,
