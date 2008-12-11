@@ -101,16 +101,17 @@ if ( !isset($_REQUEST["SEEM_edit_include"]) ) { // there is only a menu when not
 			function checkApplet() {
 				<?php
 
-					if (  ( !(isset($_REQUEST["showAltMenu"]) && $_REQUEST["showAltMenu"]) )) { ?>
+				if((!(isset($_REQUEST["showAltMenu"]) && $_REQUEST["showAltMenu"]))) { ?>
 
 				try {
-					if(!document.weJavaMenuApplet.getBgImage) {
+					if(document.weJavaMenuApplet.getBgImage()=="") {
 						checkAndLoadAltMenu();
 					}
 				} catch (e) {
 					checkAndLoadAltMenu();
 				}
 				appletTrys += 1;
+				
 				<?php } ?>
 			}
 
