@@ -91,13 +91,13 @@ if (defined("WE_WEBUSER_LANGUAGE")) {
 } else 
 	$sid = "";
 	//set new sessionID from dw-extension
-	if((isset($_REQUEST["weSessionId"]) && $_REQUEST["weSessionId"]!="" && isset($_REQUEST["cns"]) && $_REQUEST["cns"]=='dw')) {
+	if((isset($_SESSION["user"]["ID"]) && isset($_REQUEST["weSessionId"]) && $_REQUEST["weSessionId"]!="" && isset($_REQUEST["cns"]) && $_REQUEST["cns"]=='dw')) {
 		$sid = strip_tags($_REQUEST["weSessionId"]);
 		$sid = htmlspecialchars($sid);
 		session_id($sid);
 		@session_start();
 	}
-	if(!session_id()){
+	if(!session_id() && !isset($GLOBALS['FROM_WE_SHOW_DOC'])){
 		@session_start();
 	}
 	if (isset($_SESSION["prefs"]["Language"]) && $_SESSION["prefs"]["Language"] != "") {
