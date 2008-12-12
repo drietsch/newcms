@@ -682,7 +682,8 @@ else {
 		default:
 			if($we_include = $we_doc->editor()) {  // object does not handle html-output, so we need to include a template( return value)
 				$we_doc->saveInSession($_SESSION["we_data"][$we_transaction]); // save the changed object in session
-				if(isset($_SERVER["DOCUMENT_ROOT"]) && $_SERVER["DOCUMENT_ROOT"]!="" && substr(strtolower($we_include),0,strlen($_SERVER["DOCUMENT_ROOT"])) == strtolower($_SERVER["DOCUMENT_ROOT"])) {
+				$_serverDocRoot = $_SERVER["DOCUMENT_ROOT"];
+				if($_serverDocRoot!="" && substr(strtolower($we_include),0,strlen($_SERVER["DOCUMENT_ROOT"])) == strtolower($_SERVER["DOCUMENT_ROOT"])) {
 					// check if the template uses the document cache
 					// if is so, the output must be evaled
 					if($we_doc->ContentType == "text/weTmpl") {
@@ -766,9 +767,12 @@ else {
 
 				} else {
 				    //  These files were edited only in source-code mode, so no seeMode is needed.
-					include($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/".$we_include);
+					if (preg_match('#^/webEdition/we/#',$we_include)) {
+						include($_SERVER["DOCUMENT_ROOT"].$we_include);
+					} else {
+						include($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/".$we_include);
+					}
 					print $_insertReloadFooter;
-
 				}
 				$we_doc->saveInSession($_SESSION["we_data"][$we_transaction]); // save the changed object in session
 				if(isset($we_file_to_delete_after_include)){
