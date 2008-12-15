@@ -195,13 +195,19 @@
 						unset($replacements[$k]);	
 					}
 				}
-				
-				// add spaces before and after and replace the words
-				$src = preg_replace(array_keys($replacements), $replacements, "$src");
-				// remove added spaces
-				$return = preg_replace("/^ (.+) $/", "$1", $src);
-				// remove added slashes
-				return stripslashes($return);
+				$src2 = preg_replace(array_keys($replacements), $replacements, " $src ");
+
+				if(trim($src)!=trim($src2) && trim($src2)!='') {
+					// add spaces before and after and replace the words
+					$src = preg_replace(array_keys($replacements), $replacements, " $src ");
+					// remove added spaces
+					$return = preg_replace("/^ (.+) $/", "$1", $src);
+					// remove added slashes
+					return stripslashes($return);
+				}
+				else {
+					return $src;
+				}
 			} else {
 				
 				return $src;
