@@ -1,0 +1,8 @@
+2008-11-03
+
+webEdition Version 6.0.0.1
+2008 (c) by Living-e AG
+
+webEdition is a web content management system licensed under the GPL
+
+see webEdition/license folder for license informations
