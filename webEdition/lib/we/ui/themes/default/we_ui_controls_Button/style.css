@@ -1,0 +1,167 @@
+/**
+ * webEdition SDK
+ *
+ * This source is part of the webEdition SDK. The webEdition SDK is
+ * free software; you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License
+ * the Free Software Foundation; either version 3 of the License, or
+ * any later version.
+ *
+ * The GNU Lesser General Public License can be found at
+ * http://www.gnu.org/licenses/lgpl-3.0.html.
+ * A copy is found in the textfile 
+ * webEdition/licenses/webEditionSDK/License.txt
+ *
+ *
+ * @category   we
+ * @package    we_ui
+ * @subpackage we_ui_themes
+ * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
+ * @license    http://www.gnu.org/licenses/lgpl-3.0.html  LGPL
+ */
+ 
+.we_ui_controls_Button {
+	cursor: pointer;
+	position:relative;
+	clear:left;
+}
+
+.we_ui_controls_Clicked_Button {
+	cursor: default;
+	position:relative;
+	clear:left;
+}
+
+.we_ui_controls_Disabled_Button {
+	cursor: default;
+	position:relative;
+	clear:left;
+}
+
+.we_ui_controls_Button td {
+	-moz-user-select: none ! important;
+	font-family: verdana, arial, helvetica;
+	font-size: 10px ! important;
+	color: black ! important;
+}
+
+.we_ui_controls_Disabled_Button td {
+	-moz-user-select: none ! important;
+	font-family: verdana, arial, helvetica;
+	font-size: 10px ! important;
+	color: black ! important;
+}
+
+.we_ui_controls_Clicked_Button td {
+	-moz-user-select: none ! important;
+	font-family: verdana, arial, helvetica;
+	font-size: 10px ! important;
+	color: black ! important;
+}
+
+.we_ui_controls_Button,.we_ui_controls_Button_Left,.we_ui_controls_Button_Middle,.we_ui_controls_Button_Right,.we_ui_controls_Clicked_Button,.we_ui_controls_Clicked_Button_Left,.we_ui_controls_Clicked_Button_Middle,.we_ui_controls_Clicked_Button_Right,.we_ui_controls_Disabled_Button,.we_ui_controls_Disabled_Button_Left,.weBtnMiddleDisabled,.we_ui_controls_Disabled_Button_Right
+	{
+	-moz-user-select: none ! important;
+	-khtml-user-select: none ! important;
+}
+
+.we_ui_controls_Button,.we_ui_controls_Disabled_Button,.we_ui_controls_Clicked_Button
+	{
+	width: auto;
+	background-color: transparent ! important;
+}
+
+.we_ui_controls_Button_Left,.we_ui_controls_Disabled_Button_Left,.we_ui_controls_Clicked_Button_Left
+	{
+	width: 11px ! important;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	left: 0px;
+	background-position: top left;
+	background-position: top left;
+}
+
+.we_ui_controls_Button_Middle,.weBtnMiddleDisabled,.we_ui_controls_Clicked_Button_Middle
+	{
+	width: auto;
+	background-position: top;
+	position: absolute;
+	top: 0px;
+	top: 0px;
+	left: 0px;
+	left: 0px;
+}
+
+.we_ui_controls_Button_Right,.we_ui_controls_Disabled_Button_Right,.we_ui_controls_Clicked_Button_Right
+	{
+	width: 12px ! important;
+	background-position: top right;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
+
+.we_ui_controls_Button_Left {
+	background-image: url(btn_normal_left.gif);
+}
+
+.we_ui_controls_Button_Left,.we_ui_controls_Button_Middle,.we_ui_controls_Button_Right,.we_ui_controls_Disabled_Button_Middle,.we_ui_controls_Clicked_Button_Middle,.we_ui_controls_Clicked_Button_Right,.we_ui_controls_Disabled_Button_Right,.we_ui_controls_Disabled_Button_Left,.we_ui_controls_Clicked_Button_Left
+	{
+	border: 0px ! important;
+	margin: 0px ! important;
+	padding: 0px ! important;
+}
+
+.we_ui_controls_Button_Middle,.we_ui_controls_Clicked_Button_Middle,.we_ui_controls_Disabled_Button_Middle
+	{
+	background-repeat: repeat-x;
+	text-align: center;
+	padding-top: 0px ! important;
+}
+
+.we_ui_controls_Button_Middle {
+	background-image: url(btn_normal_middle.gif);
+}
+
+.we_ui_controls_Button_Right {
+	background-image: url(btn_normal_right.gif);
+}
+
+.we_ui_controls_Clicked_Button_Left {
+	background-image: url(btn_clicked_left.gif);
+}
+
+.we_ui_controls_Clicked_Button_Middle {
+	background-image: url(btn_clicked_middle.gif);
+}
+
+.we_ui_controls_Clicked_Button_Right {
+	background-image: url(btn_clicked_right.gif);
+}
+
+.we_ui_controls_Disabled_Button_Left {
+	background-image: url(btn_disabled_left.gif);
+}
+
+.we_ui_controls_Disabled_Button_Middle {
+	background-image: url(btn_disabled_middle.gif);
+}
+
+.we_ui_controls_Disabled_Button_Right {
+	background-image: url(btn_disabled_right.gif);
+}
+
+.we_ui_controls_Button_InnerTable {
+	margin: 0px auto 0px auto;
+	height: 100%;
+}
+
+.we_ui_controls_Disabled_Button_InnerTable {
+	margin: 0px auto 0px auto;
+	height: 100%;
+	cursor: default;
+	filter: Alpha(opacity = 50);
+	-moz-opacity: 0.5;
+	opacity: 0.5;
+}
