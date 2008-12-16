@@ -89,7 +89,8 @@ foreach($files as $entry) {
 	$tmpcontent = file_get_contents(BASEPATH."/".$entry);
 	// query separator for webEdition sql dump, not needed for pageLogger:
 	//$queryseparator = "\n/* query separator */\n";
-	$queryseparator = "";
+	$queryseparator = "/* query separator */\n";
+	//$queryseparator = "";
 	if(!file_put_contents($outfile,$tmpcontent.$queryseparator,FILE_APPEND)) {
 		echo('<font class="error">'.$entry.'</font> FAILED.<br />');
 	} else {
