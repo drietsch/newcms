@@ -370,7 +370,7 @@ class weWorkflowView extends weWorkflowBase{
 
 				$foo=f("SELECT Path FROM ".USER_TABLE." WHERE ID=".abs($tv->userID),"Path",$this->db);
 				
-				$button = $we_button->create_button("select", "javascript:top.content.setHot();we_cmd('browse_users','document.we_form.".$this->uid."_task_".$counter."_".$counter1."_userid.value','document.we_form.".$this->uid."_task_".$counter."_".$counter1."_usertext.value','*',document.we_form.".$this->uid."_task_".$counter."_".$counter1."_userid.value);");
+				$button = $we_button->create_button("select", "javascript:top.content.setHot();we_cmd('browse_users','document.we_form.".$this->uid."_task_".$counter."_".$counter1."_userid.value','document.we_form.".$this->uid."_task_".$counter."_".$counter1."_usertext.value','',document.we_form.".$this->uid."_task_".$counter."_".$counter1."_userid.value);");
 				
 				$yuiSuggest->setAcId("User_".$counter."_".$counter1);
 				$yuiSuggest->setContentType("0,1");
