@@ -403,16 +403,18 @@ function selectFile(id){
 			$frameRef = strpos($this->JSTextName,".document.")>0 ? substr($this->JSTextName,0,strpos($this->JSTextName,".document.")+1) : "";
 			$out .= 'opener.'.$this->JSTextName.'= currentID ? currentPath : "";
 					if((!!opener.parent) && (!!opener.parent.frames[0]) && (!!opener.parent.frames[0].setPathGroup)) {
-						switch(currentType){
-							case "noalias":
-								setTabsCurPath = "@"+currentText;									
-								break;
-							default:
-								setTabsCurPath = currentPath;								
-						}
-						if(getEntry(currentID).isFolder) opener.parent.frames[0].setPathGroup(setTabsCurPath);
-						else opener.parent.frames[0].setPathName(setTabsCurPath);
-						opener.parent.frames[0].setTitlePath();
+							if(currentType!="")	{
+								switch(currentType){
+									case "noalias":
+										setTabsCurPath = "@"+currentText;									
+										break;
+									default:
+										setTabsCurPath = currentPath;								
+								}
+								if(getEntry(currentID).isFolder) opener.parent.frames[0].setPathGroup(setTabsCurPath);
+								else opener.parent.frames[0].setPathName(setTabsCurPath);
+								opener.parent.frames[0].setTitlePath();
+							}
 					}
 					if(!!opener.'.$frameRef.'YAHOO && !!opener.'.$frameRef.'YAHOO.autocoml) {  opener.'.$frameRef.'YAHOO.autocoml.selectorSetValid(opener.'.str_replace('.value','.id',$this->JSTextName).'); } 
 					';			
