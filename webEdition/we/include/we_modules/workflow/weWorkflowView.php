@@ -548,14 +548,13 @@ class weWorkflowView extends weWorkflowBase{
 			function we_cmd(){
 				var args = "";
 				var url = "<?php print WEBEDITION_DIR; ?>we_cmd.php?"; for(var i = 0; i < arguments.length; i++){ url += "we_cmd["+i+"]="+escape(arguments[i]); if(i < (arguments.length - 1)){ url += "&"; }}
-				if(hot == "1") {
+				if(hot == "1" && arguments[0]!="save_workflow") {
 					var hotConfirmMsg = confirm("<?php print $l_workflow['save_changed_workflow']?>");
 					if(hotConfirmMsg==true) {
 						arguments[0] = "save_workflow";
 						top.content.usetHot();
 					} else {
 						top.content.setHot();
-						return;
 					}
 				}
 				switch (arguments[0]){
