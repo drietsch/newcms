@@ -59,7 +59,7 @@ class we_util_Path
 	static function path2Id($path, $dbTable, $db = NULL)
 	{
 		if (is_null($db)) {
-			$db = we_io_DB::getAdapter();
+			$db = we_io_DB::sharedAdapter();
 		}
 		return abs($db->fetchOne('SELECT ID FROM ' . addslashes($dbTable) . ' WHERE Path = ?', $path));
 	}
@@ -74,6 +74,10 @@ class we_util_Path
 	 */
 	static function pathExists($path, $dbTable, $db = NULL)
 	{
+		if (is_null($db)) {
+			$db = we_io_DB::sharedAdapter();
+		}
+		
 		$id = we_util_Path::path2Id($path, $dbTable, $db);
 		return $id != 0;
 	}
