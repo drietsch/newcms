@@ -734,7 +734,7 @@ class weBackupWizard{
 							we_htmlelement::htmlHidden(array("name"=>"MAX_FILE_SIZE","value"=>$maxsize)).
 							we_htmlelement::htmlInput(array("type"=>"hidden","name"=>"operation_mode","value"=>"import")).
 							we_multiIconBox::getJS().
-							we_multiIconBox::getHTML("backup_options", "100%", $parts, 30, "", 6,$l_backup["recover_option"], "<b>".$l_backup["recover_option"]."</b>",false,$l_backup["step3"])
+							we_multiIconBox::getHTML("backup_options", "100%", $parts, 30, "", 7,$l_backup["recover_option"], "<b>".$l_backup["recover_option"]."</b>",false,$l_backup["step3"])
 						)
 					)
 		);
