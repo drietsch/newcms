@@ -243,7 +243,10 @@ class weSelectorQuery {
 			default:
 				$useCreatorID = true;
 		}
-		$userExtraSQL = $useExtraSQL ? $this->getUserExtraQuery($table, $useCreatorID) : "";	
+		$userExtraSQL = "";
+		if($table!=BANNER_TABLE) {
+			$userExtraSQL = $useExtraSQL ? $this->getUserExtraQuery($table, $useCreatorID) : "";	
+		}
 		
 		$this->addQueryField("Text");
 		$this->addQueryField("ParentID");
