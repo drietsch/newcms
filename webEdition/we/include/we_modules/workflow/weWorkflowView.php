@@ -549,10 +549,13 @@ class weWorkflowView extends weWorkflowBase{
 				var args = "";
 				var url = "<?php print WEBEDITION_DIR; ?>we_cmd.php?"; for(var i = 0; i < arguments.length; i++){ url += "we_cmd["+i+"]="+escape(arguments[i]); if(i < (arguments.length - 1)){ url += "&"; }}
 				if(hot == "1") {
-					if(confirm("<?php print $l_workflow['save_changed_workflow']?>")) {
+					var hotConfirmMsg = confirm("<?php print $l_workflow['save_changed_workflow']?>");
+					if(hotConfirmMsg==true) {
 						arguments[0] = "save_workflow";
-					} else {
 						top.content.usetHot();
+					} else {
+						top.content.setHot();
+						return;
 					}
 				}
 				switch (arguments[0]){
@@ -588,7 +591,8 @@ class weWorkflowView extends weWorkflowBase{
 							chk=top.content.resize.right.editor.edbody.checkData();
 							if(!chk) return;
 							num=top.content.resize.right.editor.edbody.getNumOfDocs();
-							if(num>0) if(!confirm("<?php print $l_workflow["save_question"]?>")) return;
+							if(num>0) 
+								if(!confirm("<?php print $l_workflow["save_question"]?>")) return;
 						}
 						else { <?php print we_message_reporting::getShowMessageCall($l_workflow["nothing_to_save"], WE_MESSAGE_ERROR); ?> }
 						top.content.resize.right.editor.edbody.document.we_form.wcmd.value=arguments[0];
