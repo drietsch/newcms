@@ -303,8 +303,8 @@ if (isset($_POST["checkLogin"]) && !count($_COOKIE)) {
 
 	print we_htmlElement::htmlBody(array("bgcolor" => "#FFFFFF"), $_layout->getHtmlCode()) . "</html>";
 
-} else if(!$DB_WE->connect()) {
-	$_error = we_htmlElement::htmlB($l_start["no_db_connction"]);
+} else if(!$DB_WE->connect() || $DB_WE->Error=="No database selected") {
+	$_error = we_htmlElement::htmlB($l_start["no_db_connection"]);
 
 	$_error_count = 0;
 	$tmp = ini_get("session.save_path");

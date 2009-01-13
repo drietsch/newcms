@@ -44,4 +44,5 @@ $l_start["browser_firefox_version"] = "vanaf versie 1.0";
 $l_start["browser_safari"] = "Safari"; 
 $l_start["browser_safari_version"] = "vanaf versie 1.1";
 $l_start["ignore_browser"] = "Als u webEdition toch wilt opstarten, klik dan hier ...";
+$l_start["no_db_connection"] = "The database connection can not be established."; //TRANSLATE
 ?>

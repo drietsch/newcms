@@ -45,4 +45,5 @@ $l_start["browser_firefox_version"] = "Начиная с 1.0 версии";
 $l_start["browser_safari"] = "Safari";
 $l_start["browser_safari_version"] = "Начиная с 1.1 версии";
 $l_start["ignore_browser"] = "Если Вы все же хотите запустить систему webEdition, нажмите здесь ...";
+$l_start["no_db_connection"] = "The database connection can not be established."; //TRANSLATE
 ?>

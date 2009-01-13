@@ -44,4 +44,5 @@ $l_start["browser_firefox_version"] = "starting version 1.0";
 $l_start["browser_safari"] = "Safari";
 $l_start["browser_safari_version"] = "starting version 1.1";
 $l_start["ignore_browser"] = "If you want to start webEdition anyway, click here ...";
+$l_start["no_db_connection"] = "The database connection can not be established.";
 ?>
