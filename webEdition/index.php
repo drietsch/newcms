@@ -444,7 +444,7 @@ if (isset($_POST["checkLogin"]) && !count($_COOKIE)) {
 	$GLOBALS["loginpage"] = ($login == 2) ? false : true;
 	include($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/"."we_templates/we_info.inc.php");
 
-	$dialogtable = '<table cellpadding="0" cellspacing="0" border="0" style="width:818px;">
+	$dialogtable = '<noscript style="color:#fff;">Please activate Javascript!<br/><br/></noscript><table cellpadding="0" cellspacing="0" border="0" style="width:818px;">
 	<tr style="height:10px;">
 		<td style="width:260px;background-color:#386AAB;"></td>
 		<td rowspan="2" style="width:430px;">'.$_loginTable.'</td>
@@ -506,7 +506,7 @@ if (isset($_POST["checkLogin"]) && !count($_COOKIE)) {
 	/*************************************************************************
 	 * GENERATE NEEDED JAVASCRIPTS
 	 *************************************************************************/
-
+error_log2($_REQUEST);
 	if ($login == 2) {
 		$_body_javascript = "";
 
