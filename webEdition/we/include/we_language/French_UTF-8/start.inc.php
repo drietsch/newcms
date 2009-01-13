@@ -45,4 +45,5 @@ $l_start["browser_safari"] = "Safari"; // TRANSLATE
 $l_start["browser_safari_version"] = "dès la Version 1.1";
 $l_start["ignore_browser"] = "Si vous voulez tout de même démarré webEdition, cliquez ici ...";
 $l_start["no_db_connection"] = "The database connection can not be established."; //TRANSLATE
+$l_start["cookies_disabled"] = "Cookies are deactivated."; //TRANSLATE
 ?>

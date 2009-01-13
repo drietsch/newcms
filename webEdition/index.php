@@ -274,7 +274,7 @@ print "</head>";
  *****************************************************************************/
 
 if (isset($_POST["checkLogin"]) && !count($_COOKIE)) {
-	$_error = we_htmlElement::htmlB($l_start["coockies_disabled"]);
+	$_error = we_htmlElement::htmlB($l_start["cookies_disabled"]);
 
 	$_error_count = 0;
 	$tmp = ini_get("session.save_path");
