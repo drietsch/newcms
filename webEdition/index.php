@@ -506,7 +506,7 @@ if (isset($_POST["checkLogin"]) && !count($_COOKIE)) {
 	/*************************************************************************
 	 * GENERATE NEEDED JAVASCRIPTS
 	 *************************************************************************/
-error_log2($_REQUEST);
+
 	if ($login == 2) {
 		$_body_javascript = "";
 
