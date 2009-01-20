@@ -162,7 +162,7 @@ class weNewsletterView {
 	function getHiddensMailingPage() {
 		$out = "";
 
-		$fields_names = array("fieldname","operator","fieldvalue","logic");
+		$fields_names = array("fieldname","operator","fieldvalue","logic","hours","minutes");
 		foreach ($this->newsletter->groups as $g=>$group) {
 				if (is_array($group->aFilter)) {
 					$out.=$this->htmlHidden("filter_".$g,count($group->aFilter));
@@ -579,6 +579,8 @@ class weNewsletterView {
 						eval("top.opener.top.we_cmd(" + args + ")");
 				}
 			}
+			
+			
 		');
 	}
 
@@ -1314,6 +1316,7 @@ class weNewsletterView {
 						//delete_all_enabled = switch_button_state("delete_all", "delete_all_enabled", "enabled");
 					}
 			}
+	
 
 		');
 		//$js.=we_htmlElement::jsElement($we_button->create_state_changer(false));
@@ -1452,6 +1455,8 @@ class weNewsletterView {
 				    	include_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/we/include/we_classes/weSelectorQuery.class.inc.php');
 				    	$weAcQuery = new weSelectorQuery();
 						$newone = false;
+						
+						
 
 						if($this->newsletter->filenameNotValid()){
 							print we_htmlElement::jsElement(
@@ -2055,7 +2060,7 @@ class weNewsletterView {
 			$this->newsletter->addGroup();
 		}
 
-		$fields_names = array("fieldname","operator","fieldvalue","logic");
+		$fields_names = array("fieldname","operator","fieldvalue","logic","hours","minutes");
 
 		foreach ($this->newsletter->groups as $gkey=>$gval) {
 			// persistens

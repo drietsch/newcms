@@ -873,14 +873,34 @@ class weNewsletterFrames extends weModuleFrames {
 
 		$operators=array("0"=>"=","1"=>"<>","2"=>"<","3"=>"<=","4"=>">","5"=>">=","7"=>$l_newsletter["operator"]['contains'],"8"=>$l_newsletter["operator"]['startWith'],"9"=>$l_newsletter["operator"]['endsWith'],"6"=>"LIKE",);
 		$logic=array("AND"=>$l_newsletter["logic"]['and'],"OR"=>$l_newsletter["logic"]['or']);
+		$hours=array();
+		for($i=0;$i<24;$i++) {
+			if ($i <= 9) {
+				$hours[] = "0" . $i;
+			}
+			else {
+				$hours[] = $i;
+			}
+		}
+		$minutes=array();
+		for($i=0;$i<60;$i++) {
+			if($i % 5 == 0) {
+				if ($i <= 9) {
+					$minutes[] = "0" . $i;
+				}
+				else {
+					$minutes[] = $i;
+				}
+			}
+		}
 
-		$table=new we_htmlTable(array("border"=>"0","cellpadding"=>"0","cellspacing"=>"0"),1,3);
-		$colspan="3";
+		$table=new we_htmlTable(array("border"=>"0","cellpadding"=>"0","cellspacing"=>"0"),1,7);
+		$colspan="7";
 		$table->setCol(0,0,((count($this->View->newsletter->groups[$group]->aFilter) && is_array($this->View->newsletter->groups[$group]->aFilter)) ? array("colspan"=>$colspan) : array()),
 			we_forms::checkbox(((count($this->View->newsletter->groups[$group]->aFilter) && is_array($this->View->newsletter->groups[$group]->aFilter)) ? "1" : "0"), ((count($this->View->newsletter->groups[$group]->aFilter) && is_array($this->View->newsletter->groups[$group]->aFilter)) ? true : false),"filtercheck_$group", $l_newsletter["filter"],false,"defaultfont","if(document.we_form.filtercheck_$group.checked) we_cmd('add_filter',$group); else we_cmd('del_all_filters',$group);")
 		);
 
-
+		$k=0;
 		$c=1;
 		if (is_array($this->View->newsletter->groups[$group]->aFilter)) {
 			foreach ($this->View->newsletter->groups[$group]->aFilter as $k=>$v) {
@@ -891,9 +911,19 @@ class weNewsletterFrames extends weModuleFrames {
 				}
 
 				$table->addRow();
-				$table->setCol($c,0,array(),htmlSelect("filter_fieldname_".$group."_".$k,$custfields,1,$v["fieldname"],false,'onChange="top.content.hot=1;"',"value","170"));
+				$table->setCol($c,0,array(),htmlSelect("filter_fieldname_".$group."_".$k,$custfields,1,$v["fieldname"],false,'onChange="top.content.hot=1;changeFieldValue(this.val,\'filter_fieldvalue_'.$group.'_'.$k.'\');"',"value","170"));
 				$table->setCol($c,1,array(),htmlSelect("filter_operator_".$group."_".$k,$operators,1,$v["operator"],false,'onChange="top.content.hot=1;"',"value","80"));
-				$table->setCol($c,2,array(),htmlTextInput("filter_fieldvalue_".$group."_".$k,16,$v["fieldvalue"],"",'onKeyUp="top.content.hot=1;"',"text","200"));
+				if($v['fieldname'] == "MemberSince" || $v['fieldname'] == "LastLogin" || $v['fieldname'] == "LastAccess") {
+					$table->setCol($c,2,array("id"=>"td_value_fields_".$group."_".$k.""),$this->getDateSelector("", "filter_fieldvalue_".$group."_".$k."", "_from_".$group."_".$k."", isset($v["fieldvalue"]) && $v["fieldvalue"]!="" ? !stristr($v["fieldvalue"],".") ? @date("d.m.Y", $v["fieldvalue"]) : $v["fieldvalue"] : ""));
+					$table->setCol($c,3,array(),htmlSelect("filter_hours_".$group."_".$k,$hours,1, isset($v["hours"]) ? $v["hours"] : "", false, 'onChange="top.content.hot=1;"'));
+					$table->setCol($c,4,array("class"=>"defaultfont"),"&nbsp;h :");
+					$table->setCol($c,5,array(),htmlSelect("filter_minutes_".$group."_".$k,$minutes,1,isset($v["minutes"]) ? $v["minutes"] : "", false, 'onChange="top.content.hot=1;"'));
+					$table->setCol($c,6,array("class"=>"defaultfont"),"&nbsp;m");
+				}
+				else {
+					$table->setCol($c,2,array("colspan"=>$colspan,"id"=>"td_value_fields_".$group."_".$k.""),htmlTextInput("filter_fieldvalue_".$group."_".$k,16,isset($v["fieldvalue"]) ? $v["fieldvalue"] : "","",'onKeyUp="top.content.hot=1;"',"text","200"));
+				}				
+
 				$c++;
 			}
 		}
@@ -910,9 +940,51 @@ class weNewsletterFrames extends weModuleFrames {
 			$table->addRow();
 			$table->setCol($c,0,array("colspan"=>$colspan),$we_button->create_button_table(array($plus,$trash)));
 		}
+		
+		$js =we_htmlElement::jsElement("calendarSetup(".$group.",".$k.");");
 
 		return $this->View->htmlHidden("filter_".$group,count($this->View->newsletter->groups[$group]->aFilter)).
-					$table->getHtmlCode();
+					$table->getHtmlCode().$js;
+	}
+	
+function getDateSelector($_label, $_name, $_btn, $value)
+	{
+		$we_button = new we_button();
+		$btnDatePicker = $we_button->create_button(
+				"image:date_picker", 
+				"javascript:", 
+				null, 
+				null, 
+				null, 
+				null, 
+				null, 
+				null, 
+				false, 
+				$_btn);
+		$oSelector = new we_htmlTable(
+				array(
+					"cellpadding" => "0", "cellspacing" => "0", "border" => "0", "id" => $_name . "_cell"
+				), 
+				1, 
+				5);
+		$oSelector->setCol(
+				0, 
+				2, 
+				null, 
+				htmlTextInput(
+						$name = $_name, 
+						$size = 55, 
+						$value, 
+						$maxlength = 10, 
+						$attribs = 'id="' . $_name . '" class="wetextinput" readonly="1"', 
+						$type = "text", 
+						$width = 100));
+		$oSelector->setCol(0, 3, null, "&nbsp;");
+		$oSelector->setCol(0, 4, null, we_htmlElement::htmlA(array(
+			"href" => "#"
+		), $btnDatePicker));
+		
+		return $oSelector->getHTMLCode();
 	}
 
 	/**
@@ -1308,6 +1380,18 @@ class weNewsletterFrames extends weModuleFrames {
 		}
 
 		$js = $this->View->getJSProperty();
+		
+		$js .= we_htmlElement::jsElement("", array(
+			"src" => JS_DIR . "jscalendar/calendar.js"
+		)) . we_htmlElement::jsElement(
+				"", 
+				array(
+					
+						"src" => WEBEDITION_DIR . "we/include/we_language/" . $GLOBALS["WE_LANGUAGE"] . "/calendar.js"
+				)) . we_htmlElement::jsElement("", array(
+			"src" => JS_DIR . "jscalendar/calendar-setup.js"
+		));
+		
 		$js .=we_htmlElement::jsElement( '
 					if (top.content.get_focus) {
 						self.focus();
@@ -1382,12 +1466,49 @@ class weNewsletterFrames extends weModuleFrames {
 								//alert(status);
 						}
 					}
+
+			function calendarSetup(group, x){
+		    for(i=0;i<=x;i++) {
+		     if(document.getElementById("date_picker_from_"+group+"_"+i+"") != null) {
+		      Calendar.setup({inputField:"filter_fieldvalue_"+group+"_"+i+"",ifFormat:"%d.%m.%Y",button:"date_picker_from_"+group+"_"+i+"",align:"Tl",singleClick:true});
+		     }
+		    }
+		   }
+		   
+		  function changeFieldValue(val,valueField) {
+
+
+		  	top.content.hot=1;
+			document.we_form.ncmd.value=arguments[0];
+			document.we_form.ngroup.value=arguments[1];
+			
+			if(val=="MemberSince" || val=="LastLogin" || val=="LastAccess") {
+				document.getElementById(valueField).value = "";
+			}
+			submitForm();
+		   
+		   	
+		   }
+				
 		');
+		
+		
+		
 		
 		$css = we_htmlElement::cssElement("
 	.markNotValid { background: #FFCCCC }
 	.markValid { background: #FFFFFF }
 ");
+		$css .= we_htmlElement::linkElement(
+				array(
+					
+						"rel" => "stylesheet", 
+						"type" => "text/css", 
+						"href" => JS_DIR . "jscalendar/skins/aqua/theme.css", 
+						"title" => "Aqua"
+				));
+		
+		
 		$out=$this->View->getHiddens();
 		$out.=$this->View->newsletterHiddens();
 		$out.=$this->View->getHiddensProperty();

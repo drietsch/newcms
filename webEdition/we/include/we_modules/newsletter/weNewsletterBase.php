@@ -80,7 +80,29 @@ class weNewsletterBase{
 		$wheres=array();
 		foreach($this->persistents as $val){
 			if($val=="ID") $wheres[]=$val."='".addslashes($this->$val)."'";
+			if($val=="Filter") {
+				$value = unserialize($this->$val);
+				if(is_array($value)) {
+					foreach($value as $c=>$v) {
+						if(isset($value[$c]['fieldname']) && ($value[$c]['fieldname']=="MemberSince" || $value[$c]['fieldname']=="LastAccess" || $value[$c]['fieldname']=="LastLogin")) {
+							if(isset($value[$c]['fieldvalue']) && $value[$c]['fieldvalue']!="") {
+								$date = explode(".", $value[$c]['fieldvalue']);
+								$day = $date[0];
+								$month = $date[1];
+								$year = $date[2];
+								$hour = $value[$c]['hours'];
+								$minute = $value[$c]['minutes'];
+								$timestamp = mktime($hour, $minute, 0, $month, $day, $year);
+								$value[$c]['fieldvalue'] = $timestamp;
+								$this->$val = serialize($value);
+							}
+						}
+					}
+				}
+			}
+
 			$sets[]=$val."='".($this->table == NEWSLETTER_BLOCK_TABLE ? $this->$val : mysql_real_escape_string($this->$val))."'";
+			
 		}
 		$where=implode(",",$wheres);
 		$set=implode(",",$sets);

@@ -140,8 +140,8 @@ class weNewsletterGroup extends weNewsletterBase{
 	  return 0;
 	}
 
-	function addFilter($name="",$operator=0,$value=""){
-		$this->aFilter[]=array("fieldname"=>"","operator"=>"","fieldvalue"=>"","logic"=>"");
+	function addFilter($name="",$operator=0,$value="",$hour="", $minute=""){
+		$this->aFilter[]=array("fieldname"=>"","operator"=>"","fieldvalue"=>"","logic"=>"","hours"=>"","minutes"=>"");
 	}
 
 	function delFilter(){
