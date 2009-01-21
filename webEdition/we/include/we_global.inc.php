@@ -1162,7 +1162,7 @@ function getHTTP($server, $url, $port = "", $username = "", $password = "")
 {
 	
 	$_opt = getHttpOption();
-	
+
 	if ($_opt == 'fopen') {
 		
 		if (!$port) {
@@ -1172,6 +1172,9 @@ function getHTTP($server, $url, $port = "", $username = "", $password = "")
 		$foo = "http://" . (($username && $password) ? "$username:$password@" : "") . $server . ":" . $port . $url;
 		$page = "Server Error: Failed opening URL: $foo";
 		$fh = @fopen($foo, "rb");
+		if(!$fh) {
+			$fh = fopen($_SERVER['DOCUMENT_ROOT'].$url, "rb");
+		}
 		if ($fh) {
 			$page = "";
 			while (!feof($fh))

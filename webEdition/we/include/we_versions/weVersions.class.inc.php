@@ -1573,7 +1573,7 @@ class weVersions {
 	function getDocContent($we_doc, $includepath="") {
 
 		$contents = "";
-		
+		set_time_limit(0);
 		$requestBackup = $_REQUEST;
 		$docBackup = $GLOBALS["we_doc"];
 		
@@ -1591,32 +1591,36 @@ class weVersions {
 		//usually the site file always exists
 		if($includepath!='' && file_exists($includepath)) {
 			
- 			/*
  			$_opt = getHttpOption();
- 			if($_opt=="none") {
+ 			if($_opt!="none") {
  				$path = substr($we_doc->Path, 1);
 				$location = SITE_DIR.$path;
 	    		$contents = getHTTP(SERVER_NAME, $location);
-			*/
-
-			ob_start();
-			@include($includepath);
-	    	ob_end_clean();
-	    	
-	    	$_REQUEST = $requestBackup;
-	    	
-	    	$glob = "";
-			foreach($GLOBALS as $k=>$v){
-				if((!ereg('^[0-9]',$k)) && (!eregi('[^a-z0-9_]',$k)) && $k != "FROM_WE_SHOW_DOC" && $k != "we_doc" && $k != "we_transaction" && $k != "GLOBALS" && $k != "HTTP_ENV_VARS" && $k != "HTTP_POST_VARS" && $k != "HTTP_GET_VARS" && $k != "HTTP_COOKIE_VARS" && $k != "HTTP_SERVER_VARS" && $k != "HTTP_POST_FILES" && $k != "HTTP_SESSION_VARS" && $k != "_GET" && $k != "_POST" && $k != "_REQUEST" && $k != "_SERVER" && $k != "_FILES" && $k != "_SESSION" && $k != "_ENV" && $k != "_COOKIE" && $k!="") $glob .= '$'.$k.",";
+	    		
+				if ( ini_get("short_open_tag") == 1) {
+	                $contents = str_replace("<?xml",'<?php print "<?xml"; ?>',$contents);
+	            }
+ 			}
+			else {
+				ob_start();
+				@include($includepath);
+		    	ob_end_clean();
+		    	
+		    	$_REQUEST = $requestBackup;
+		    	
+		    	$glob = "";
+				foreach($GLOBALS as $k=>$v){
+					if((!ereg('^[0-9]',$k)) && (!eregi('[^a-z0-9_]',$k)) && $k != "FROM_WE_SHOW_DOC" && $k != "we_doc" && $k != "we_transaction" && $k != "GLOBALS" && $k != "HTTP_ENV_VARS" && $k != "HTTP_POST_VARS" && $k != "HTTP_GET_VARS" && $k != "HTTP_COOKIE_VARS" && $k != "HTTP_SERVER_VARS" && $k != "HTTP_POST_FILES" && $k != "HTTP_SESSION_VARS" && $k != "_GET" && $k != "_POST" && $k != "_REQUEST" && $k != "_SERVER" && $k != "_FILES" && $k != "_SESSION" && $k != "_ENV" && $k != "_COOKIE" && $k!="") $glob .= '$'.$k.",";
+				}
+				$glob = ereg_replace('(.*),$','\1',$glob);
+				eval('global '.$glob.';');
+				
+				
+				ob_start();
+				@include($includepath);
+				$contents = ob_get_contents();
+		    	ob_end_clean();
 			}
-			$glob = ereg_replace('(.*),$','\1',$glob);
-			eval('global '.$glob.';');
-			
-			
-			ob_start();
-			@include($includepath);
-			$contents = ob_get_contents();
-	    	ob_end_clean();
 
 		}
 		else {
