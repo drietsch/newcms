@@ -1239,14 +1239,20 @@ class weVersions {
 							$this->writePreviewDynFile($document['ID'], $siteFile, $_SERVER["DOCUMENT_ROOT"].$binaryPath, $documentObj);
 						}	
 						elseif(file_exists($siteFile) && $document["Extension"]==".php" && ($document["ContentType"]=='text/webedition' || $document["ContentType"]=='text/html')) {
-
-							ob_start();
-							//if there is a header(location... don't execute it
-							ob_flush();
-							flush();
-							@include($siteFile);
-							$contents = ob_get_contents();
-							ob_end_clean();
+ 			
+							$contents = "";
+							if (function_exists('file_get_contents')) {
+								$contents = file_get_contents($siteFile);
+							}
+							else {
+								ob_start();
+								//if there is a header(location... don't execute it
+								ob_flush();
+								flush();
+								@include($siteFile);
+								$contents = ob_get_contents();
+								ob_end_clean();
+							}
 							
 							saveFile($_SERVER["DOCUMENT_ROOT"].$binaryPath,$contents);
 
