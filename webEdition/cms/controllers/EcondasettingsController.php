@@ -29,13 +29,17 @@ class EcondasettingsController extends Zend_Controller_Action
     	$translate = we_core_Local::addTranslation('econda.xml');
 	   	$this->view = new we_ui_view_DialogView();
 		$this->view->setScriptPath('views/scripts');
-		
 		// assign variables for the view
 		if (we_core_Permissions::hasPerm("ADMINISTRATOR")) {
+			$uploadedFileExists = 0;
+			if (defined("WE_ECONDA_PARENT_PATH") && defined("WE_ECONDA_FILE")) {
+				$uploadedFileExists = file_exists($_SERVER['DOCUMENT_ROOT'] . WE_ECONDA_PARENT_PATH . WE_ECONDA_FILE);
+			}
+			
 			$this->view->assign("activateEconda",(defined("WE_ECONDA_STAT") ? WE_ECONDA_STAT : 0));
 			$this->view->assign("econdaParentId",(defined("WE_ECONDA_PARENT_ID") ? WE_ECONDA_PARENT_ID : 0));
 			$this->view->assign("econdaParentPath",(defined("WE_ECONDA_PARENT_PATH") ? WE_ECONDA_PARENT_PATH : "/"));
-			$this->view->assign("econdaFileName",(defined("WE_ECONDA_FILE") ? WE_ECONDA_FILE : $translate->_("File not uploaded jet.")));
+			$this->view->assign("econdaFileName",($uploadedFileExists ? WE_ECONDA_FILE : $translate->_("File not uploaded jet.")));
 		} else {
 			$this->view->assign("msg",$translate->_("EcondaDialogNoperm"));	
 		}
