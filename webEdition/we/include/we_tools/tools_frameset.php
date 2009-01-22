@@ -28,11 +28,6 @@ include($_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we_language/'.$GLOBALS
 
 protect();
 
-// include autoload function
-include_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/lib/we/core/autoload.php');
-
-Zend_Loader::loadClass('we_core_Local');
-
 
 		
 $title = 'webEdition ';
@@ -45,6 +40,9 @@ if(isset($_REQUEST['tool'])) {
 		$title .= $l_tools['tools']. ' - '.$GLOBALS['l_navigation']['navigation'];
 	}
 	else {
+		// include autoload function
+		include_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/lib/we/core/autoload.php');
+		Zend_Loader::loadClass('we_core_Local');
 		$translate = we_core_Local::addTranslation('apps.xml');
 		we_core_Local::addTranslation('default.xml', $tool);
 		$title .= $translate->_('Applications'). ' - '.$translate->_($tool);
