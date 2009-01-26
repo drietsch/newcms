@@ -245,7 +245,7 @@ print STYLESHEET;
 
 	function spellcheck() {
 		retry = 0;
-		if(document.spellchecker.isReady) {
+		if(document.spellchecker.isReady()) {
 			document.getElementById("statusText").innerHTML = "<?php print $l_spellchecker['checking'];?>";
 			var text = getTextOnly(orginal);
 			document.spellchecker.check(text);
@@ -263,7 +263,7 @@ print STYLESHEET;
 
 
 	function findNext() {
-			if(document.spellchecker.isReady) {
+			if(document.spellchecker.isReady()) {
 
 				if(document.spellchecker.isReady()) {
 
@@ -336,7 +336,7 @@ print STYLESHEET;
 	}
 
 	function changeWord() {
-		if(document.spellchecker.isReady) {
+		if(document.spellchecker.isReady()) {
 			editPanel.innerHTML = orginal;
 			editPanel.innerHTML = replaceWord(editPanel.innerHTML,found,document.we_form.search.value);
 			orginal = editPanel.innerHTML;

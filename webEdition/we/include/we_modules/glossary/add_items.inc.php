@@ -233,7 +233,7 @@ if($_REQUEST["we_cmd"][1] == 'frameset') {
 
 	function spellcheck() {
 		retry = 0;
-		if(document.spellchecker.isReady) {
+		if(document.spellchecker.isReady()) {
 			top.frames.glossarycheck.document.getElementById("statusText").innerHTML = "<?php print $GLOBALS['l_glossary']['checking'];?>...";
 			var text = getTextOnly(orginal);
 			document.spellchecker.check(text);
@@ -251,7 +251,7 @@ if($_REQUEST["we_cmd"][1] == 'frameset') {
 
 
 	function findNext() {
-		if(document.spellchecker.isReady) {
+		if(document.spellchecker.isReady()) {
 			if(document.spellchecker.isReady()) {
 				if(document.spellchecker.nextSuggestion()) {
 					temp = document.spellchecker.getMisspelledWord();
