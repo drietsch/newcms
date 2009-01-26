@@ -65,6 +65,16 @@ include_once ($GLOBALS['__WE_BASE_PATH__'] . DIRECTORY_SEPARATOR . 'we' . DIRECT
  * @return void
  */
 function __autoload($class_name)
-{
-	Zend_Loader::loadClass($class_name);
+{	
+	$file = str_replace('_', '/', $class_name);
+	$paths = explode(PATH_SEPARATOR, ini_get('include_path'));
+
+ 	foreach($paths as $path) {
+        $exists = file_exists($path . '/' . $file . '.php');
+        if ($exists) {
+            Zend_Loader::loadClass($class_name);
+            return; 
+        } 
+    }
+
 }
