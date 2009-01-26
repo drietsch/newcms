@@ -21,7 +21,7 @@
  */
 
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GLOBALS["WE_LANGUAGE"]."/cache.inc.php");
-include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/weTree.inc.php");
+
    /**
 	* @return void
 	* @desc prints the functions needed for the tree.
