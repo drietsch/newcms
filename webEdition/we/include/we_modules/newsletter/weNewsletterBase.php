@@ -86,13 +86,18 @@ class weNewsletterBase{
 					foreach($value as $c=>$v) {
 						if(isset($value[$c]['fieldname']) && ($value[$c]['fieldname']=="MemberSince" || $value[$c]['fieldname']=="LastAccess" || $value[$c]['fieldname']=="LastLogin")) {
 							if(isset($value[$c]['fieldvalue']) && $value[$c]['fieldvalue']!="") {
-								$date = explode(".", $value[$c]['fieldvalue']);
-								$day = $date[0];
-								$month = $date[1];
-								$year = $date[2];
-								$hour = $value[$c]['hours'];
-								$minute = $value[$c]['minutes'];
-								$timestamp = mktime($hour, $minute, 0, $month, $day, $year);
+								if(stristr($value[$c]['fieldvalue'], '.')) {
+									$date = explode(".", $value[$c]['fieldvalue']);
+									$day = $date[0];
+									$month = $date[1];
+									$year = $date[2];
+									$hour = $value[$c]['hours'];
+									$minute = $value[$c]['minutes'];
+									$timestamp = mktime($hour, $minute, 0, $month, $day, $year);
+								}
+								else {
+									$timestamp = $value[$c]['fieldvalue'];
+								}
 								$value[$c]['fieldvalue'] = $timestamp;
 								$this->$val = serialize($value);
 							}
