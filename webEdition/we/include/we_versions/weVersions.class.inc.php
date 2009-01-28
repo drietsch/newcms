@@ -892,7 +892,7 @@ class weVersions {
 	* 3. if document / object is saved, published or unpublished
 	*/
 	function save($docObj, $status = "saved") {
-		
+
 		if(isset($_SESSION["user"]["ID"])) {
 			$_SESSION["Versions"]['fromImport'] = 0;
 
@@ -920,7 +920,7 @@ class weVersions {
 				$this->saveVersion($docObj);
 			}
 			else {
-				if((isset($_REQUEST["we_cmd"][0]) && ($_REQUEST["we_cmd"][0]=="save_document" || $_REQUEST["we_cmd"][0]=="unpublish" || $_REQUEST["we_cmd"][0]=="revert_published")) 
+				if((isset($_SESSION["Versions"]['fromScheduler']) && $_SESSION["Versions"]['fromScheduler']) || (isset($_REQUEST["we_cmd"][0]) && ($_REQUEST["we_cmd"][0]=="save_document" || $_REQUEST["we_cmd"][0]=="unpublish" || $_REQUEST["we_cmd"][0]=="revert_published")) 
 					|| (isset($_REQUEST["cmd"]) && ($_REQUEST["cmd"]=="ResetVersion" || $_REQUEST["cmd"]=="PublishDocs" || $_REQUEST["cmd"]=="ResetVersionsWizard")) 
 					|| (isset($_REQUEST["type"]) && $_REQUEST["type"]=="reset_versions")
 					|| (isset($_SESSION['versions']['initialVersions']) && $_SESSION['versions']['initialVersions'])){
@@ -1469,7 +1469,7 @@ class weVersions {
 		if(isset($_SESSION["Versions"]['fromScheduler'])) {
 			$fromScheduler = $_SESSION["Versions"]['fromScheduler'];
 		}
-		
+
 		return $fromScheduler;
 	}
 		
