@@ -378,7 +378,10 @@ class we_textContentDocument extends we_textDocument{
 		if($saveinMainDB) {
 			$this->rewriteNavigation();
 		}
-		
+		if(isset($_SESSION["Versions"]['fromScheduler']) && $_SESSION["Versions"]['fromScheduler'] && ($this->ContentType=="text/webedition" || $this->ContentType=="text/html")) {
+			$version = new weVersions();
+			$version->save($this, "published");
+		}
 		/* hook */
 		$hook = new weHook($this, 'publish');
 		$hook->executeHook();
