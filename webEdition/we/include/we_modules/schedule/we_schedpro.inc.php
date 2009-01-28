@@ -416,7 +416,7 @@ $this->getSpacerRowHTML().
 			if($s["type"] != SCHEDULE_TYPE_ONCE){
 				$nextWann = we_schedpro::getNextTimestamp($s,$now);
 				if($nextWann){
-					$DB_WE->query("UPDATE ".SCHEDULE_TABLE." SET Wann='".$nextWann."' WHERE DID=".abs($id)."' AND ClassName!='we_objectFile' AND Type='".$s["type"]."' AND Was='".$s["task"]."'");
+					$DB_WE->query("UPDATE ".SCHEDULE_TABLE." SET Wann='".$nextWann."' WHERE DID='".abs($id)."' AND ClassName!='we_objectFile' AND Type='".$s["type"]."' AND Was='".$s["task"]."'");
 				}
 			}
 			
