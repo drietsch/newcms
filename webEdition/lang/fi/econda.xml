@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<!DOCTYPE tmx SYSTEM "tmx14.dtd">
+<tmx version="1.4">
+	<header creationtoolversion="1.0" datatype="plaintext" segtype="sentence" adminlang="en-us" srclang="en-us" o-tmf="Undefined" creationtool="text edit" >
+	</header>
+	<body>
+		<tu tuid="Econda Settings">
+			<tuv xml:lang="fi"><seg>econda Settings</seg></tuv>
+		</tu>
+		<tu tuid="activate ECONDA">
+			<tuv xml:lang="fi"><seg>Activate econda</seg></tuv>
+		</tu>
+		<tu tuid="Upload ECONDA JS file">
+			<tuv xml:lang="fi"><seg>Upload econda Javascript file</seg></tuv>
+		</tu>
+		<tu tuid="Directory">
+			<tuv xml:lang="fi"><seg>Directory</seg></tuv>
+		</tu>
+		<tu tuid="Please select the ECONDA JS file for upload.">
+			<tuv xml:lang="fi"><seg>Please select the econda Javascript file for upload.</seg></tuv>
+		</tu>
+		<tu tuid="The file upload was successfull.">
+			<tuv xml:lang="fi"><seg>The file was uploaded successfully.</seg></tuv>
+		</tu>
+		<tu tuid="File not uploaded jet.">
+			<tuv xml:lang="fi"><seg>File not uploaded yet.</seg></tuv>
+		</tu>
+		<tu tuid="ECONDA settings safed.">
+			<tuv xml:lang="fi"><seg>econda settings saved.</seg></tuv>
+		</tu>
+		<tu tuid="EcondaFileUploadError">
+			<tuv xml:lang="fi"><seg>An error ocurred during file transmission. Please try again.</seg></tuv>
+		</tu>
+		<tu tuid="EcondaNoJsFile">
+			<tuv xml:lang="fi"><seg>The selected file is not a Javascript file.</seg></tuv>
+		</tu>
+		<tu tuid="EcondaDialogInfo">
+			<tuv xml:lang="fi"><seg><a href="http://webedition.de/en/econda" target="_blank">econda</a> is the leading provider for web controlling solutions and webEdition technology partner.  The econda Shop Monitor makes online-shop analytics accessible, comprehensible and indispensable for optimally informed marketing and business decisions. <a href="http://webedition.de/en/econda-form" target="_blank">Register now</a> for a free 14-day trial! More information regarding the installation can be found in the <a href="http://documentation.webedition.de/200810241003219195" target="_blank">webEdition online documentation</a>.</seg></tuv>
+		</tu>
+		<tu tuid="EcondaDialogNoperm">
+			<tuv xml:lang="fi"><seg>You need administrator permissions to change the econda settings.</seg></tuv>
+		</tu>
+		<tu tuid="EcondaDialogNoJS">
+			<tuv xml:lang="fi"><seg>The econda file has to be a Javascript file.</seg></tuv>
+		</tu>
+		<tu tuid="ECONDA File">
+			<tuv xml:lang="fi"><seg>ECONDA file.</seg></tuv>
+		</tu>
+	</body>
+</tmx>
