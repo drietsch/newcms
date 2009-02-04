@@ -30,7 +30,7 @@ if (!isset($l_backup)) {
 	include($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GLOBALS["WE_LANGUAGE"]."/backup.inc.php");
 }
 
-$l_alert["notice"] = "Mededeling";
+$l_alert["notice"] = "Notice";
 $l_alert["warning"] = "Waarschuwing";
 $l_alert["error"] = "Fout";
 
@@ -64,6 +64,7 @@ $l_alert["doctype_hochkomma"] = "Ongeldige naam! Ongeldige karakters zijn de ' (
 $l_alert["thumbnail_hochkomma"] = "Ongeldige naam! Ongeldige karakters zijn de ' (apostrof) en de , (komma)!";
 $l_alert["can_not_open_file"] = "Het bestand %s kon niet geopend worden!";
 $l_alert["no_perms_title"] = "Geen toestemming!";
+$l_alert["no_perms_action"] = "You don't have the permission to perform this action."; // TRANSLATE
 $l_alert["access_denied"] = "Toegang geweigerd!";
 $l_alert["no_perms"] = "Neem a.u.b. contact op met de eigenaar (%s) of een admin<br>als u toegang nodig hebt!";
 $l_alert["temporaere_no_access"] = "Toegang niet mogelijk!";
@@ -84,8 +85,8 @@ $l_alert["delete_nok_error"] = "Het bestand '%s' kan niet verwijderd worden.";
 $l_alert["delete_nok_file"] = "Het bestand '%s' kan niet verwijderd worden.\\nHet is mogelijk beveiligd tegen schrijven. ";
 $l_alert["delete_nok_folder"] = "De directory '%s' kan niet verwijderd worden.\\nHet is mogelijk beveiligd tegen schrijven.";
 $l_alert["delete_nok_noexist"] = "Bestand '%s' bestaat niet!";
-$l_alert["noResourceTitle"] = "No Item!";
-$l_alert["noResource"] = "The document or directory does not exist!";
+$l_alert["noResourceTitle"] = "No Item!"; // TRANSLATE
+$l_alert["noResource"] = "The document or directory does not exist!"; // TRANSLATE
 $l_alert["move_exit_open_docs_question"] = "Voordat documenten verplaatst kunnen worden, moeten ze eerst gesloten worden. Alle niet bewaarde wijzigingen zullen verloren gaan tijdens het proces. Het volgende document wordt afgesloten:\\n\\n";
 $l_alert["move_exit_open_docs_continue"] = 'Doorgaan?';
 $l_alert["move"] = "Geselecteerde items verplaatsen?\\nWilt u verder gaan?";
@@ -148,7 +149,7 @@ $l_alert['navigation']['last_document'] = 'U wijzigt het laatste document.';
 $l_alert['navigation']['first_document'] = 'U wijzigt het eerste document.';
 $l_alert['navigation']['doc_not_found'] = 'Kon geen bijpassend document vinden.';
 $l_alert['navigation']['no_entry'] = 'Geen invoer gevonden in geschiedenis.';
-$l_alert['navigation']['no_open_document'] = 'Er is geen geopend document.'; 
+$l_alert['navigation']['no_open_document'] = 'Er is geen geopend document.';
 $l_alert['delete_single']['confirm_delete'] = 'Dit document verwijderen?';
 $l_alert['delete_single']['no_delete'] = 'Dit document kon niet verwijderd worden.';
 $l_alert['delete_single']['return_to_start'] = 'Het document is verwijderd. \\nTerug naar seeModus startdocument.';
@@ -168,21 +169,20 @@ $l_alert['delete_workspace_object_r'] = "De directory %s kon niet verwijderd wor
 
 $l_alert['field_contains_incorrect_chars'] = "Een veld (van het type %s) bevat ongeldige karakters.";
 $l_alert['field_input_contains_incorrect_length'] = "De maximale lengte van een veld met het type \'Text input\' is 255 karakters. Indien u meer karakters nodig hebt, maak dan gebruik van het veld met het type \'Textarea\'.";
-$l_alert['field_int_contains_incorrect_length'] = "De maximale lengte van een veld met het type \'Integer\' is 10 karakters."; 
+$l_alert['field_int_contains_incorrect_length'] = "De maximale lengte van een veld met het type \'Integer\' is 10 karakters.";
 $l_alert['field_int_value_to_height'] = "De maximale waarde van een veld met het type \'Integer\' is 2147483647.";
 
 
 $l_alert["we_filename_notValid"] = "Ongeldige bestandsnaam\\nGeldige karakters zijn alfa-numeriek, boven- en onderkast, evenals de underscore, koppelteken en punt (a-z, A-Z, 0-9, _, -, .)";
-$l_alert['error_fields_value_not_valid'] = 'Invalid entries in input fields!';
 
-$l_alert["login_denied_for_user"] = "The user cannot login. The user access is disabled.";
-$l_alert["no_perm_to_delete_single_document"] = "You have not the needed permissions to delete the active document.";
+$l_alert["login_denied_for_user"] = "The user cannot login. The user access is disabled."; // TRANSLATE
+$l_alert["no_perm_to_delete_single_document"] = "You have not the needed permissions to delete the active document."; // TRANSLATE
 
-$l_confim["applyWeDocumentCustomerFiltersDocument"] = "The document has been moved to a folder with divergent customer account policies. Should the settings of the folder be transmitted to this document?";
-$l_confim["applyWeDocumentCustomerFiltersFolder"]   = "The directory has been moved to a folder with divergent customers account policies. Should the settings be adopted for this directory and all subelements? ";
+$l_confim["applyWeDocumentCustomerFiltersDocument"] = "The document has been moved to a folder with divergent customer account policies. Should the settings of the folder be transmitted to this document?"; // TRANSLATE
+$l_confim["applyWeDocumentCustomerFiltersFolder"]   = "The directory has been moved to a folder with divergent customers account policies. Should the settings be adopted for this directory and all subelements? "; // TRANSLATE
 
-$l_alert['field_in_tab_notvalid_pre'] = "The settings could not be saved, because the following fields contain invalid values:"; // translate
-$l_alert['field_in_tab_notvalid'] = ' - field %s on tab %s';
-$l_alert['field_in_tab_notvalid_post'] = 'Correct the fields before saving the settings.'; 
-$l_alert['discard_changed_data'] = 'There are unsaved changes that will be discarded. Are you sure?';
+$l_alert['field_in_tab_notvalid_pre'] = "The settings could not be saved, because the following fields contain invalid values:"; // TRANSLATE
+$l_alert['field_in_tab_notvalid'] = ' - field %s on tab %s'; // TRANSLATE
+$l_alert['field_in_tab_notvalid_post'] = 'Correct the fields before saving the settings.'; // TRANSLATE 
+$l_alert['discard_changed_data'] = 'There are unsaved changes that will be discarded. Are you sure?'; // TRANSLATE
 ?>

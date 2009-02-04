@@ -24,10 +24,10 @@
 /**
  * Language file: tree.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 $l_tree["edit_statustext"] = "Wijzig";
 $l_tree["select_statustext"] = "Selecteer";
-$l_tree["open_statustext"] = "Open"; 
+$l_tree["open_statustext"] = "Open"; // TRANSLATE
 $l_tree["close_statustext"] = "Sluit";
 ?>

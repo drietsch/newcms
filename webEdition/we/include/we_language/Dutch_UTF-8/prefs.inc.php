@@ -23,7 +23,7 @@
 /**
  * Language file: prefs.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 
 /*****************************************************************************
@@ -50,18 +50,18 @@ $l_prefs["saved_successfully"] = "Voorkeuren zijn bewaard";
 $l_prefs["tab_ui"] = "Gebruikers-interface";
 $l_prefs["tab_glossary"] = "Verklarende woordenlijst";
 $l_prefs["tab_extensions"] = "Bestands-extensies";
-$l_prefs["tab_editor"] = 'Editor';
+$l_prefs["tab_editor"] = 'Editor'; // TRANSLATE
 $l_prefs["tab_formmail"] = 'Mailformulier';
 $l_prefs["formmail_recipients"] = 'Mailformulier ontvangers';
 $l_prefs["tab_proxy"] = 'Proxy-Server';
 $l_prefs["tab_advanced"] = 'Geavanceerd';
 $l_prefs["tab_system"] = 'Systeem';
 $l_prefs["tab_error_handling"] = 'Fout afhandeling';
-$l_prefs["tab_cockpit"] = 'Cockpit';
-$l_prefs["tab_cache"] = 'Cache';
+$l_prefs["tab_cockpit"] = 'Cockpit'; // TRANSLATE
+$l_prefs["tab_cache"] = 'Cache'; // TRANSLATE
 $l_prefs["tab_language"] = 'Talen';
-$l_prefs["tab_modules"] = 'Modules';
-$l_prefs["tab_versions"] = 'Versioning';
+$l_prefs["tab_modules"] = 'Modules'; // TRANSLATE
+$l_prefs["tab_versions"] = 'Versioning'; // TRANSLATE
 
 /*****************************************************************************
  * USER INTERFACE
@@ -80,20 +80,20 @@ $l_prefs["tab_versions"] = 'Versioning';
 	$l_prefs["seem"] = "seeModus";
 	$l_prefs["seem_deactivate"] = "Deactiveer seeMode";
 	$l_prefs["seem_startdocument"] = "seeMode startdocument";
-	$l_prefs["seem_start_type_document"] = "Document";
-	$l_prefs["seem_start_type_object"] = "Object"; 
-	$l_prefs["seem_start_type_cockpit"] = "Cockpit";
+	$l_prefs["seem_start_type_document"] = "Document"; // TRANSLATE
+	$l_prefs["seem_start_type_object"] = "Object"; // TRANSLATE
+	$l_prefs["seem_start_type_cockpit"] = "Cockpit"; // TRANSLATE
 	$l_prefs["question_change_to_seem_start"] = "Wilt u het geselecteerde document wijzigen?";
 
 
 	/**
 	 * Sidebar
 	 */
-	$l_prefs["sidebar"] = "Sidebar";
+	$l_prefs["sidebar"] = "Sidebar"; // TRANSLATE
 	$l_prefs["sidebar_deactivate"] = "deactivateer";
 	$l_prefs["sidebar_show_on_startup"] = "toon bij opstarten";
 	$l_prefs["sidebar_width"] = "Breedte in pixels";
-	$l_prefs["sidebar_document"] = "Document";
+	$l_prefs["sidebar_document"] = "Document"; // TRANSLATE
 
 
 	/**
@@ -157,14 +157,14 @@ $l_prefs["tab_versions"] = 'Versioning';
 	 * Cache Type
 	 */
 	$l_prefs["cache_information"] = "Stel vooraf de waarden van de velden \"Caching Type\" en \"Cache levensduur in seconden\" voor nieuwe sjablonen hier in.<br /><br />Let er wel op dat deze instellingen alleen de voorkeur zijn voor de velden.";
-	$l_prefs["cache_navigation_information"] = "Voer hier de standaard waarden in voor de &lt;we:navigation&gt;. De waarde kan overcshreven worden door het attribuut \"cachelifetime\" van de &lt;we:navigation&gt; tag."; 
+	$l_prefs["cache_navigation_information"] = "Voer hier de standaard waarden in voor de &lt;we:navigation&gt;. De waarde kan overcshreven worden door het attribuut \"cachelifetime\" van de &lt;we:navigation&gt; tag.";
 	
-	$l_prefs["cache_presettings"] = "Vooraf instellen"; 
-	$l_prefs["cache_type"] = "Caching Type"; 
+	$l_prefs["cache_presettings"] = "Vooraf instellen";
+	$l_prefs["cache_type"] = "Caching Type"; // TRANSLATE
 	$l_prefs["cache_type_none"] = "Caching uitgeschakeld";
-	$l_prefs["cache_type_full"] = "Volledige cache"; 
-	$l_prefs["cache_type_document"] = "Document cache"; 
-	$l_prefs["cache_type_wetag"] = "we:Tag cache"; 
+	$l_prefs["cache_type_full"] = "Volledige cache";
+	$l_prefs["cache_type_document"] = "Document cache"; // TRANSLATE
+	$l_prefs["cache_type_wetag"] = "we:Tag cache"; // TRANSLATE
 
 	/**
 	 * Cache Life Time
@@ -174,13 +174,13 @@ $l_prefs["tab_versions"] = 'Versioning';
 	$l_prefs['cache_lifetimes'] = array();
 	$l_prefs['cache_lifetimes'][0] = "";
 	$l_prefs['cache_lifetimes'][60] = "1 minuut";
-	$l_prefs['cache_lifetimes'][300] = "5 minuten"; 
-	$l_prefs['cache_lifetimes'][600] = "10 minuten"; 
+	$l_prefs['cache_lifetimes'][300] = "5 minuten";
+	$l_prefs['cache_lifetimes'][600] = "10 minuten";
 	$l_prefs['cache_lifetimes'][1800] = "30 minuten";
-	$l_prefs['cache_lifetimes'][3600] = "1 uur"; 
-	$l_prefs['cache_lifetimes'][21600] = "6 uur"; 
-	$l_prefs['cache_lifetimes'][43200] = "12 uur"; 
-	$l_prefs['cache_lifetimes'][86400] = "1 dag"; 
+	$l_prefs['cache_lifetimes'][3600] = "1 uur";
+	$l_prefs['cache_lifetimes'][21600] = "6 uur";
+	$l_prefs['cache_lifetimes'][43200] = "12 uur";
+	$l_prefs['cache_lifetimes'][86400] = "1 dag";
 
 	$l_prefs['delete_cache_after'] = 'Cache legen na';
 	$l_prefs['delete_cache_add'] = 'Nieuwe invoer toevoegen';
@@ -214,7 +214,7 @@ $l_prefs["tab_versions"] = 'Versioning';
 	 * EDITOR PLUGIN
 	 */
 
-	$l_prefs["editor_plugin"] = 'Editor PlugIn'; 
+	$l_prefs["editor_plugin"] = 'Editor PlugIn'; // TRANSLATE
 	$l_prefs["use_it"] = "Gebruik";
 	$l_prefs["start_automatic"] = "Start automatisch";
 	$l_prefs["ask_at_start"] = 'Vraag bij opstart welke<br>editor er gebruikt moet worden';
@@ -248,38 +248,42 @@ $l_prefs["tab_versions"] = 'Versioning';
 
 	$l_prefs["formmail_information"] = "Voer a.u.b. alle E-mail adressen in, welke formulieren moeten ontvangen verstuurd door de formmail functie (&lt;we:form type=\"formmail\" ..&gt;).<br><br>Als u geen E-Mail adres invoert, kunt u geen formulieren verzenden met de formmail functie!";
 
-	$l_prefs["formmail_log"] = "Formmail log"; 
+	$l_prefs["formmail_log"] = "Formmail log"; // TRANSLATE
 	$l_prefs['log_is_empty'] = "De log is leeg!";
 	$l_prefs['ip_address'] = "IP adres";
 	$l_prefs['blocked_until'] = "Geblokkeerd tot";
 	$l_prefs['unblock'] = "Deblokkeer";
 	$l_prefs['clear_log_question'] = "Weet u zeker dat u de log wilt wissen?";
-	$l_prefs['clear_block_entry_question'] = "Weet u zeker dat u de IP %s wilt deblokkeren?"; 
+	$l_prefs['clear_block_entry_question'] = "Weet u zeker dat u de IP %s wilt deblokkeren?";
 	$l_prefs["forever"] = "Altijd";
 	$l_prefs["yes"] = "ja";
 	$l_prefs["no"] = "nee";
-	$l_prefs["on"] = "aan"; 
-	$l_prefs["off"] = "uit"; 
+	$l_prefs["on"] = "aan";
+	$l_prefs["off"] = "uit";
 	$l_prefs["formmailConfirm"] = "Formmail bevestigings functie";
 	$l_prefs["logFormmailRequests"] = "Log formmail aanvragen";
-	$l_prefs["deleteEntriesOlder"] = "Verwijder invoeren ouder dan"; 
+	$l_prefs["deleteEntriesOlder"] = "Verwijder invoeren ouder dan";
 	$l_prefs["blockFormmail"] = "Beperk formmail aanvragen";
-	$l_prefs["formmailSpan"] = "Binnen een tijdspanne van"; 
+	$l_prefs["formmailSpan"] = "Binnen een tijdspanne van";
 	$l_prefs["formmailTrials"] = "Aanvragen toegestaan";
 	$l_prefs["blockFor"] = "Blokkeer voor";
-	$l_prefs["formmailViaWeDoc"] = "Call formmail via webEdition-Dokument.";
+	$l_prefs["formmailViaWeDoc"] = "Call formmail via webEdition-Dokument."; // TRANSLATE
 	$l_prefs["never"] = "nooit";
-	$l_prefs["1_day"] = "1 dag"; 
+	$l_prefs["1_day"] = "1 dag";
 	$l_prefs["more_days"] = "%s dagen";
-	$l_prefs["1_week"] = "1 week";
-	$l_prefs["more_weeks"] = "%s weken"; 
-	$l_prefs["1_year"] = "1 year";
-	$l_prefs["more_years"] = "%s years";
+	$l_prefs["1_week"] = "1 week"; // TRANSLATE
+	$l_prefs["more_weeks"] = "%s weken";
+	$l_prefs["1_year"] = "1 year"; // TRANSLATE
+	$l_prefs["more_years"] = "%s years"; // TRANSLATE
 	$l_prefs["1_minute"] = "1 minuut";
-	$l_prefs["more_minutes"] = "%s minuten"; 
-	$l_prefs["1_hour"] = "1 uur"; 
-	$l_prefs["more_hours"] = "%s uren"; 
-	$l_prefs["ever"] = "altijd"; 
+	$l_prefs["more_minutes"] = "%s minuten";
+	$l_prefs["1_hour"] = "1 uur";
+	$l_prefs["more_hours"] = "%s uren";
+	$l_prefs["ever"] = "altijd";
+
+
+
+
 
 /*****************************************************************************
  * PROXY SERVER
@@ -330,7 +334,7 @@ $l_prefs["tab_versions"] = 'Versioning';
 
 	$l_prefs["db_connect"] = "Type database<br>connecties";
 	$l_prefs["db_set_charset"] = "Connection charset"; // TRANSLATE
-
+	
 	/**
 	 * HTTP AUTHENTICATION
 	 */
@@ -350,9 +354,9 @@ $l_prefs["tab_versions"] = 'Versioning';
 	/**
 	 * HOOKS
 	 */
-	$l_prefs["hooks"] = "Hooks"; //TRANSLATE
+	$l_prefs["hooks"] = "Hooks"; // TRANSLATE //TRANSLATE
 	$l_prefs["hooks_information"] = "The use of hooks allows for the execution of arbitrary any PHP code during storing, publishing, unpublishing and deleting of any content type in webEdition.<br/>
-	Further information can be found in the online documentation.<br/><br/>Allow execution of hooks?"; //TRANSLATE
+	Further information can be found in the online documentation.<br/><br/>Allow execution of hooks?"; 
 
 /*****************************************************************************
  * ERROR HANDLING
@@ -422,11 +426,11 @@ $l_prefs["tab_versions"] = 'Versioning';
 /*****************************************************************************
  * BACKUP
  *****************************************************************************/
-	$l_prefs["backup"] = "Backup";
+	$l_prefs["backup"] = "Backup"; // TRANSLATE
 	$l_prefs["backup_slow"] = "Langzaam";
 	$l_prefs["backup_fast"] = "Snel";
 	$l_prefs["performance"] = "Hier kunt u een gewenst prestatie niveau instellen. Het prestatie niveau moet bij het server systeem passen. Als het systeem beperkte hulpmiddelen bevat (geheugen, timeout etc.) kies dan een langzaam niveau, zoniet kies dan een snel niveau.";
-	$l_prefs["backup_auto"]="Auto";
+	$l_prefs["backup_auto"]="Auto"; // TRANSLATE
 
 /*****************************************************************************
  * Validation
@@ -434,7 +438,7 @@ $l_prefs["tab_versions"] = 'Versioning';
 	$l_prefs['validation']='Validatie';
 	$l_prefs['xhtml_default'] = 'Standaard waarde voor het attribuut <em>xml</em> in we:Tags';
 	$l_prefs['xhtml_debug_explanation'] = 'De XHTML debugging ondersteunt u in het ontwikkelen van een geldige xhtml web-site. De output van elke we:Tag wordt gecontroleerd op geldigheid en verkeerd geplaatste attributen kunnen verplaatst of verwijderd worden. Let op: Dit kan enige tijd duren. Daarom zou u xhtml debugging alleen moeten activeren tijdens het ontwikkelen van uw web-site.';
-	$l_prefs['xhtml_debug_headline'] = 'XHTML debugging';
+	$l_prefs['xhtml_debug_headline'] = 'XHTML debugging'; // TRANSLATE
 	$l_prefs['xhtml_debug_html'] = 'Activeer XHTML debugging';
 	$l_prefs['xhtml_remove_wrong'] = 'Verwijder ongeldige attributen';
 	$l_prefs['xhtml_show_wrong_headline'] = 'Notificatie van ongeldige attributen';
@@ -479,8 +483,8 @@ $l_prefs["tab_versions"] = 'Versioning';
 	$l_prefs["message_reporting"]["information"] = "U kunt hier instellen of u een melding wilt ontvangen voor webEdition handelingen als bewaren, publiceren of verwijderen.";
 	
 	$l_prefs["message_reporting"]["headline"] = "Notificaties";
-	$l_prefs["message_reporting"]["show_notices"] = "Toon meldingen"; 
-	$l_prefs["message_reporting"]["show_warnings"] = "Toon waarschuwingen"; 
+	$l_prefs["message_reporting"]["show_notices"] = "Toon meldingen";
+	$l_prefs["message_reporting"]["show_warnings"] = "Toon waarschuwingen";
 	$l_prefs["message_reporting"]["show_errors"] = "Toon fouten";
 
 
@@ -489,55 +493,59 @@ $l_prefs["tab_versions"] = 'Versioning';
  *****************************************************************************/
 	$l_prefs["module_activation"]["information"] = "Hier kunt u uw modules activeren of deactiveren als u ze niet nodig heeft.<br /><br />Het deactiveren van modules verbetert de prestaties van webEdition.";
 	
-	$l_prefs["module_activation"]["headline"] = "Module activatie"; 
+	$l_prefs["module_activation"]["headline"] = "Module activatie";
 
 /*****************************************************************************
  * Email settings
  *****************************************************************************/
 	
-	$l_prefs["mailer_information"] = "Stel in of webEdition emails moet verwerken via de geïntegreerde PHP functie of dat er gebruikt gemaakt moet worden van een aparte SMTP server.<br /><br />Indien u gebruik maakt van een SMTP mail server, is de kans kleiner dat berichten als \"Spam\" worden gezien."; 
+	$l_prefs["mailer_information"] = "Stel in of webEdition emails moet verwerken via de geïntegreerde PHP functie of dat er gebruikt gemaakt moet worden van een aparte SMTP server.<br /><br />Indien u gebruik maakt van een SMTP mail server, is de kans kleiner dat berichten als \"Spam\" worden gezien.";
 	
-	$l_prefs["mailer_type"] = "Mailer type";
-	$l_prefs["mailer_php"] = "Gebruik php mail() functie"; 
-	$l_prefs["mailer_smtp"] = "Gebruik SMTP server"; 
+	$l_prefs["mailer_type"] = "Mailer type"; // TRANSLATE
+	$l_prefs["mailer_php"] = "Gebruik php mail() functie";
+	$l_prefs["mailer_smtp"] = "Gebruik SMTP server";
 	$l_prefs["email"] = "Email";
 	$l_prefs["tab_email"] = "Email";
-	$l_prefs["smtp_auth"] = "Authenticatie"; 
-	$l_prefs["smtp_server"] = "SMTP server";
-	$l_prefs["smtp_port"] = "SMTP poort"; 
-	$l_prefs["smtp_username"] = "Gebruikersnaam"; 
-	$l_prefs["smtp_password"] = "Wachtwoord"; 
-	$l_prefs["smtp_halo"] = "SMTP halo"; 
-	$l_prefs["smtp_timeout"] = "SMTP timeout"; 
+	$l_prefs["smtp_auth"] = "Authenticatie";
+	$l_prefs["smtp_server"] = "SMTP server"; // TRANSLATE
+	$l_prefs["smtp_port"] = "SMTP poort";
+	$l_prefs["smtp_username"] = "Gebruikersnaam";
+	$l_prefs["smtp_password"] = "Wachtwoord";
+	$l_prefs["smtp_halo"] = "SMTP halo"; // TRANSLATE
+	$l_prefs["smtp_timeout"] = "SMTP timeout"; // TRANSLATE
+	
 /*****************************************************************************
  * Versions settings
  *****************************************************************************/
 
-	$l_prefs["versioning"] = "Versioning"; //TRANSLATE
-	$l_prefs["version_all"] = "all"; //TRANSLATE
-	$l_prefs["versioning_activate_text"] = "Activate versioning for some or all content types."; //TRANSLATE
-	$l_prefs["versioning_time_text"] = "If you specify a time period, only versions are saved which are created in this time until today. Older versions will be deleted."; //TRANSLATE
-	$l_prefs["versioning_time"] = "Time period"; //TRANSLATE
-	$l_prefs["versioning_anzahl_text"] = "Number of versions which will be created for each document or object."; //TRANSLATE
-	$l_prefs["versioning_anzahl"] = "Number"; //TRANSLATE
-	$l_prefs["versioning_wizard_text"] = "Open the Version-Wizard to delete or reset versions."; //TRANSLATE
-	$l_prefs["versioning_wizard"] = "Open Versions-Wizard"; //TRANSLATE
-	$l_prefs["ContentType"] = "Content Type"; //TRANSLATE
-	$l_prefs["versioning_create_text"] = "Determine which actions provoke new versions. Either if you publish or if you save, unpublish, delete or import files, too."; //TRANSLATE
-	$l_prefs["versioning_create"] = "Create Version"; //TRANSLATE
-	$l_prefs["versions_create_publishing"] = "only when publishing"; //TRANSLATE
-	$l_prefs["versions_create_always"] = "always"; //TRANSLATE
-
-	$l_prefs['use_jeditor'] = "Use"; //TRANSLATE
-	$l_prefs["editor_font_colors"] = 'Specify font colors'; //TRANSLATE
-	$l_prefs["editor_normal_font_color"] = 'Default'; //TRANSLATE
-	$l_prefs["editor_we_tag_font_color"] = 'webEdition tags'; //TRANSLATE
-	$l_prefs["editor_we_attribute_font_color"] = 'webEdition attributes'; //TRANSLATE
-	$l_prefs["editor_html_tag_font_color"] = 'HTML tags'; //TRANSLATE
-	$l_prefs["editor_html_attribute_font_color"] = 'HTML attributes'; //TRANSLATE
-	$l_prefs["editor_pi_tag_font_color"] = 'PHP code'; //TRANSLATE
-	$l_prefs["editor_comment_font_color"] = 'Comments'; //TRANSLATE
-	$l_prefs["jeditor"] = 'Java source editor'; //TRANSLATE
+	$l_prefs["versioning"] = "Versioning"; // TRANSLATE
+	$l_prefs["version_all"] = "all"; // TRANSLATE
+	$l_prefs["versioning_activate_text"] = "Activate versioning for some or all content types."; // TRANSLATE
+	$l_prefs["versioning_time_text"] = "If you specify a time period, only versions are saved which are created in this time until today. Older versions will be deleted."; // TRANSLATE
+	$l_prefs["versioning_time"] = "Time period"; // TRANSLATE
+	$l_prefs["versioning_anzahl_text"] = "Number of versions which will be created for each document or object."; // TRANSLATE
+	$l_prefs["versioning_anzahl"] = "Number"; // TRANSLATE
+	$l_prefs["versioning_wizard_text"] = "Open the Version-Wizard to delete or reset versions."; // TRANSLATE
+	$l_prefs["versioning_wizard"] = "Open Versions-Wizard"; // TRANSLATE
+	$l_prefs["ContentType"] = "Content Type"; // TRANSLATE
+	$l_prefs["versioning_create_text"] = "Determine which actions provoke new versions. Either if you publish or if you save, unpublish, delete or import files, too."; // TRANSLATE
+	$l_prefs["versioning_create"] = "Create Version"; // TRANSLATE
+	$l_prefs["versions_create_publishing"] = "only when publishing"; // TRANSLATE
+	$l_prefs["versions_create_always"] = "always"; // TRANSLATE
 	
-	$l_prefs["juplod_not_installed"] = 'JUpload is not installed!'; //TRANSLATE
+	$l_prefs['use_jeditor'] = "Use"; // TRANSLATE
+	$l_prefs["editor_font_colors"] = 'Specify font colors'; // TRANSLATE
+	$l_prefs["editor_normal_font_color"] = 'Default'; // TRANSLATE
+	$l_prefs["editor_we_tag_font_color"] = 'webEdition tags'; // TRANSLATE
+	$l_prefs["editor_we_attribute_font_color"] = 'webEdition attributes'; // TRANSLATE
+	$l_prefs["editor_html_tag_font_color"] = 'HTML tags'; // TRANSLATE
+	$l_prefs["editor_html_attribute_font_color"] = 'HTML attributes'; // TRANSLATE
+	$l_prefs["editor_pi_tag_font_color"] = 'PHP code'; // TRANSLATE
+	$l_prefs["editor_comment_font_color"] = 'Comments'; // TRANSLATE
+	$l_prefs["jeditor"] = 'Java source editor'; // TRANSLATE
+	
+	
+	$l_prefs["juplod_not_installed"] = 'JUpload is not installed!'; // TRANSLATE
+	
+
 ?>

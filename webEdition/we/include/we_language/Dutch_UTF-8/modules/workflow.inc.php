@@ -24,15 +24,15 @@
 /**
  * Language file: workflow.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 
 $l_workflow["new_workflow"] = "Nieuwe workflow";
-$l_workflow["workflow"] = "Workflow";
+$l_workflow["workflow"] = "Workflow"; // TRANSLATE
 
 $l_workflow["doc_in_wf_warning"] = "Het document bevindt zich in de workflow!";
 $l_workflow["message"] = "Bericht";
-$l_workflow["in_workflow"] = "Document in workflow";
+$l_workflow["in_workflow"] = "Document in workflow"; // TRANSLATE
 $l_workflow["decline_workflow"] = "Document afwijzen";
 $l_workflow["pass_workflow"] = "Document doorsturen";
 
@@ -54,7 +54,7 @@ $l_workflow[FILE_TABLE]["decline_workflow_notok"] = "Het document kan niet door 
 
 $l_workflow["no_wf_defined"] = "Geen workflow gedefinieerd voor dit document!";
 
-$l_workflow["document"] = "Document";
+$l_workflow["document"] = "Document"; // TRANSLATE
 
 $l_workflow["del_last_step"] = "Kan laatste seriële stap niet verwijderen!";
 $l_workflow["del_last_task"] = "Kan laatste parallele stap niet verwijderen!";
@@ -63,13 +63,13 @@ $l_workflow["delete_ok"] = "Workflow is verwijderd.";
 $l_workflow["delete_nok"] = "Verwijderen mislukt!";
 
 $l_workflow["name"] = "Naam";
-$l_workflow["type"] = "Type";
+$l_workflow["type"] = "Type"; // TRANSLATE
 $l_workflow["type_dir"] = "Directory-gebaseerd";
 $l_workflow["type_doctype"] = "Document type/Categorie-gebaseerd";
 $l_workflow["type_object"] = "Object-gebaseerd";
 
-$l_workflow["dirs"] = "Directories"; 
-$l_workflow["doctype"] = "Document type"; 
+$l_workflow["dirs"] = "Directories"; // TRANSLATE
+$l_workflow["doctype"] = "Document type"; // TRANSLATE
 $l_workflow["categories"] = "Categorieën";
 $l_workflow["classes"] = "Classen";
 
@@ -88,7 +88,7 @@ $l_workflow["and"] = " en ";
 $l_workflow["or"] = " of ";
 
 $l_workflow["waiting_on_approval"] = "Wacht op goedkeuring van %s.";
-$l_workflow["status"] = "Status"; 
+$l_workflow["status"] = "Status"; // TRANSLATE
 $l_workflow["step_from"] = "Stap %s van %s";
 
 $l_workflow["step_time"] = "Tijd per stap";
@@ -113,7 +113,7 @@ $l_workflow["delete_task"] = "Verwijder parallele stap.";
 
 $l_workflow["save_question"] = "Alle documenten die zich bevinden in de workflow worden verwijderd uit de workflow.\\nWeet u zeker dat u door wilt gaan?";
 $l_workflow["nothing_to_save"] = "Er is niks om te bewaren!";
-$l_workflow["save_changed_workflow"] = "Workflow has been changed.\\nDo you want to save your changes?";
+$l_workflow["save_changed_workflow"] = "Workflow has been changed.\\nDo you want to save your changes?"; // TRANSLATE
 
 $l_workflow["delete_question"] = "Alle workflow data wordt verwijderd!\\nWeet u zeker dat u door wilt gaan?";
 $l_workflow["nothing_to_delete"] = "Er is niks om te verwijderen!";
@@ -127,7 +127,7 @@ $l_workflow["name_empty"] = "Deanam is niet gedefinieerd voor de workflow!";
 $l_workflow["cannot_find_active_step"] = "Kan actieve stap niet vinden!";
 
 $l_workflow["no_perms"] = "Geen toestemming!";
-$l_workflow["plan"] = "(plan)";
+$l_workflow["plan"] = "(plan)"; // TRANSLATE
 
 $l_workflow["todo_returned"] = "Het document is terug gekeerd uit het werkschema.";
 
@@ -155,9 +155,9 @@ $l_workflow["log_question_text"] = "Kies optie:";
 $l_workflow["log_remove_doc"] = "Document is verwijderd uit de workflow.";
 $l_workflow["action"] = "Actie";
 
-$l_workflow[FILE_TABLE]["messagePath"] = "Document";
+$l_workflow[FILE_TABLE]["messagePath"] = "Document"; // TRANSLATE
 if(defined("OBJECT_FILES_TABLE")){
-	$l_workflow[OBJECT_FILES_TABLE]["messagePath"] = "Object"; 
+	$l_workflow[OBJECT_FILES_TABLE]["messagePath"] = "Object"; // TRANSLATE
 }
 $l_workflow["auto_approved"] = "Document is automatisch goedgekeurd.";
 $l_workflow["auto_declined"] = "Document is automatisch afgewezen.";

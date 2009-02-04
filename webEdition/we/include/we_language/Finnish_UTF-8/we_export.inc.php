@@ -20,10 +20,11 @@
  * @license    http://www.gnu.org/copyleft/gpl.html  GPL
  */
 
+
 /**
  * Language file: we_export.inc.php
  * Provides language strings.
- * Language: Finnish
+ * Language: English
  */
 $l_export['title'] = 'Vientivelho';
 $l_export['selection_type'] = 'Määritä valinta';

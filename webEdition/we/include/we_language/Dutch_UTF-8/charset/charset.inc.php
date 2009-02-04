@@ -24,7 +24,7 @@
 /**
  * Language file: charset.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 
 /*	To complete the localisation kit, it is necceessary to have the possibility
@@ -33,7 +33,7 @@
  */
  
 //	This is for the charset of webEdition itself.
-$_language["charset"] = "UTF-8";
+$_language["charset"] = "UTF-8"; // TRANSLATE
 
 $_charset["error"]["no_charset_tag"] = "Geen we:charset-tag in sjabloon";
 $_charset["error"]["no_charset_available"] = "--geen--";
@@ -56,7 +56,7 @@ $_charset["titles"]["baltic"]           = "Baltisch";					// ISO-8859-13
 $_charset["titles"]["keltic"]           = "Keltisch";					// ISO-8859-14
 $_charset["titles"]["extended_european"] = "Europees (uitgebreid)";   // ISO-8859-15
 
-$_charset["titles"]["unicode"]          = "Unicode";				// UTF-8
-$_charset["titles"]["windows_1251"]     = "Windows-1251"; 		// Windows-1251
-$_charset["titles"]["windows_1252"]     = "Windows-1252"; 		// Windows-1251
+$_charset["titles"]["unicode"]          = "Unicode"; // TRANSLATE				// UTF-8
+$_charset["titles"]["windows_1251"]     = "Windows-1251"; // TRANSLATE		// Windows-1251
+$_charset["titles"]["windows_1252"]     = "Windows-1252"; // TRANSLATE		// Windows-1251
 ?>

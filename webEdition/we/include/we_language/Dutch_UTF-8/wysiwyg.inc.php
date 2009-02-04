@@ -23,7 +23,7 @@
 /**
  * Language file: wysiwyg.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 include_once(dirname(__FILE__)."/enc_".basename(__FILE__));
 include_once(dirname(__FILE__)."/enc_wysiwyg_js.inc.php");
@@ -45,5 +45,5 @@ $GLOBALS["l_wysiwyg"]["h6"] = "Kop 6";
 $GLOBALS["l_wysiwyg"]["pre"] = "Opgemaakt";
 $GLOBALS["l_wysiwyg"]["address"] = "Adresseer";
 
-$GLOBALS['l_wysiwyg']['spellcheck'] = 'Spellingscontrole'; 
+$GLOBALS['l_wysiwyg']['spellcheck'] = 'Spellingscontrole';
 ?>

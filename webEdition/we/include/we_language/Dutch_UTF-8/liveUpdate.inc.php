@@ -21,10 +21,10 @@
  */
 
 $l_liveUpdate['tabs']['register'] = 'Registratie';
-$l_liveUpdate['tabs']['update'] = 'Bijwerken'; 
+$l_liveUpdate['tabs']['update'] = 'Bijwerken';
 $l_liveUpdate['tabs']['upgrade'] = 'webEdition 4';
-$l_liveUpdate['tabs']['modules'] = 'Modules'; 
-$l_liveUpdate['tabs']['updatelog'] = 'Log'; 
+$l_liveUpdate['tabs']['modules'] = 'Modules'; // TRANSLATE
+$l_liveUpdate['tabs']['updatelog'] = 'Log'; // TRANSLATE
 $l_liveUpdate['tabs']['languages'] = 'Talen';
 $l_liveUpdate['tabs']['connect'] = 'Test verbinding';
 $l_liveUpdate['tabs']['nextVersion'] = 'Volgende versie';
@@ -37,13 +37,13 @@ $l_liveUpdate['register']['description'] = 'registreer webEdition en ontdek de c
 $l_liveUpdate['update']['headline'] = 'Zoek naar nieuwe versie';
 $l_liveUpdate['update']['actualVersion'] = 'Huidige versie';
 $l_liveUpdate['update']['lastUpdate'] = 'Laatste installatie';
-$l_liveUpdate['update']['neverUpdated'] = '-'; 
+$l_liveUpdate['update']['neverUpdated'] = '-'; // TRANSLATE
 $l_liveUpdate['update']['lookForUpdate'] = 'Zoek naar update';
 
 
-$l_liveUpdate['upgrade']['headline'] = 'Bijwerken naar webEdition 5'; 
-$l_liveUpdate['upgrade']['actualVersion'] = 'Huidige versie'; 
-$l_liveUpdate['upgrade']['lookForUpdate'] = 'Installeer webEdition 5'; 
+$l_liveUpdate['upgrade']['headline'] = 'Bijwerken naar webEdition 5';
+$l_liveUpdate['upgrade']['actualVersion'] = 'Huidige versie';
+$l_liveUpdate['upgrade']['lookForUpdate'] = 'Installeer webEdition 5';
 
 
 $l_liveUpdate['modules']['headline'] = 'Installatie van modules';
@@ -69,14 +69,14 @@ $l_liveUpdate['connect']['connectionSuccessError'] = 'De verbinding met de updat
 $l_liveUpdate['connect']['connectionError'] = 'Het is op dit moment niet mogelijk om te verbinden met de update server.';
 $l_liveUpdate['connect']['connectionErrorJs'] = 'Het is niet mogelijk een verbinding te maken met de update server.';
 $l_liveUpdate['connect']["connectionInfo"] = "Verbindings informatie";
-$l_liveUpdate['connect']["availableConnectionTypes"] = "Beschikbare verbindings types"; 
+$l_liveUpdate['connect']["availableConnectionTypes"] = "Beschikbare verbindings types";
 $l_liveUpdate['connect']["connectionType"] = "Gebruikte connectie type";
-$l_liveUpdate['connect']["proxyHost"] = "Proxy host"; 
+$l_liveUpdate['connect']["proxyHost"] = "Proxy host"; // TRANSLATE
 $l_liveUpdate['connect']["proxyPort"] = "Proxy poort";
-$l_liveUpdate['connect']["hostName"] = "Hostnaam"; 
-$l_liveUpdate['connect']["addressResolution"] = "Adres resolutie"; 
-$l_liveUpdate['connect']["updateServer"] = "Update server";
-$l_liveUpdate['connect']["ipResolutionTest"] = "IP resolutie test"; 
+$l_liveUpdate['connect']["hostName"] = "Hostnaam";
+$l_liveUpdate['connect']["addressResolution"] = "Adres resolutie";
+$l_liveUpdate['connect']["updateServer"] = "Update server"; // TRANSLATE
+$l_liveUpdate['connect']["ipResolutionTest"] = "IP resolutie test";
 $l_liveUpdate['connect']["dnsResolutionTest"] = "DNS resolutie test";
 $l_liveUpdate['connect']["succeeded"] = "voltooid";
 $l_liveUpdate['connect']["failed"] = "mislukt";
@@ -88,7 +88,7 @@ $l_liveUpdate['state']['descriptionTrue'] = 'De update server heeft het verzoek 
 $l_liveUpdate['state']['descriptionError'] = 'De update server kon het verzoek niet afronden. De volgende fout is opgetreden.';
 
 
-$l_liveUpdate['updatelog']['headline'] = 'Update Log'; 
+$l_liveUpdate['updatelog']['headline'] = 'Update Log'; // TRANSLATE
 $l_liveUpdate['updatelog']['logIsEmpty'] = 'De update log is leeg';
 $l_liveUpdate['updatelog']['date'] = 'Datum / tijd';
 $l_liveUpdate['updatelog']['action'] = 'Actie';
@@ -99,6 +99,6 @@ $l_liveUpdate['updatelog']['noEntriesMatchFilter'] = 'Er zijn geen invoeren gevo
 $l_liveUpdate['updatelog']['legendMessages'] = 'Berichten';
 $l_liveUpdate['updatelog']['legendNotices'] = 'Meldingen';
 $l_liveUpdate['updatelog']['legendErrors'] = 'Fouten';
-$l_liveUpdate['updatelog']['confirmDelete'] = 'Wilt u echt alle geselecteerde invoeren verwijderen?'
+$l_liveUpdate['updatelog']['confirmDelete'] = 'Do you really want to delete all selected entries?'
 
 ?>

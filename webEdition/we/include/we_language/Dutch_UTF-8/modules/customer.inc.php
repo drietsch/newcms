@@ -24,7 +24,7 @@
 /**
  * Language file: customer.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 
 $l_customer["menu_customer"] = "Klant";
@@ -32,8 +32,8 @@ $l_customer["menu_new"] = "Nieuw";
 $l_customer["menu_save"] = "Bewaar";
 $l_customer["menu_delete"] = "Verwijder";
 $l_customer["menu_exit"] = "Eind";
-$l_customer["menu_info"] = "Info"; 
-$l_customer["menu_help"] = "Help"; 
+$l_customer["menu_info"] = "Info"; // TRANSLATE
+$l_customer["menu_help"] = "Help"; // TRANSLATE
 
 $l_customer["menu_admin"] = "Administratie";
 
@@ -55,7 +55,7 @@ $l_customer["second_name"] = "Naam";
 $l_customer["username"] = "Gebruikers naam";
 $l_customer["password"] = "Wachtwoord";
 
-$l_customer["login"] = "Login";
+$l_customer["login"] = "Login"; // TRANSLATE
 $l_customer["login_denied"] = "Toegang geweigerd";
 
 $l_customer["permissions"] = "Rechten";
@@ -86,7 +86,7 @@ $l_customer["sort"] = "Sorteer";
 $l_customer["branch"] = "Weergave";
 
 $l_customer["field_name"] = "Naam";
-$l_customer["field_type"] = "Type";
+$l_customer["field_type"] = "Type"; // TRANSLATE
 $l_customer["field_default"] = "Standaard";
 $l_customer["add_mail"] = "Voer E-mail in";
 $l_customer["edit_mail"] = "Wijzig E-mail";
@@ -176,19 +176,19 @@ $l_customer["import_step5"] = "Export finished";
 $l_customer["file_format"] = "Bestandsformaat";
 $l_customer["export_to"] = "Exporteer naar";
 
-$l_customer["export_to_server"] = "Server";
-$l_customer["export_to_ftp"] = "FTP"; 
+$l_customer["export_to_server"] = "Server"; // TRANSLATE
+$l_customer["export_to_ftp"] = "FTP"; // TRANSLATE
 $l_customer["export_to_local"] = "Lokaal";
 
-$l_customer["ftp_host"] = "Host"; 
+$l_customer["ftp_host"] = "Host"; // TRANSLATE
 $l_customer["ftp_username"] = "Gebruikersnaam";
 $l_customer["ftp_password"] = "Wachtwoord";
 
 $l_customer["filename"] = "Bestandsnaam";
 $l_customer["path"] = "Pad";
 
-$l_customer["xml_format"] = "XML"; 
-$l_customer["csv_format"] = "CSV"; 
+$l_customer["xml_format"] = "XML"; // TRANSLATE
+$l_customer["csv_format"] = "CSV"; // TRANSLATE
 
 $l_customer["csv_delimiter"] = "Scheidingsteken";
 $l_customer["csv_enclose"] = "Insluiten";
@@ -200,7 +200,7 @@ $l_customer["csv_fieldnames"] = "Eerste rij bevat veldnaam";
 $l_customer["generic_export"] = "Generieke export";
 $l_customer["gxml_export"] = "Generieke-XML export";
 $l_customer["txt_gxml_export"] = "Exporteer naar \"fleet\" XML bestand, zoals bijv. phpMyAdmin deed. De velden uit de data set worden ingedeeld naar de webEdition velden.";
-$l_customer["csv_export"] = "CSV export"; 
+$l_customer["csv_export"] = "CSV export"; // TRANSLATE
 $l_customer["txt_csv_export"] = "Exporteer naar CSV bestand (Comma Separated Values) of een ander geselecteerd tekst formaat (Bijv. *.txt). De velden uit de data set worden ingedeeld naar de webEdition velden.";
 $l_customer["csv_params"] = "CSV bestands instellingen";
 
@@ -218,7 +218,7 @@ $l_customer["mac"] = "Mac formaat";
 $l_customer["comma"] = ", {komma}";
 $l_customer["semicolon"] = "; {punt komma}";
 $l_customer["colon"] = ": {dubbele punt}";
-$l_customer["tab"] = "\\t {tab}"; 
+$l_customer["tab"] = "\\t {tab}"; // TRANSLATE
 $l_customer["space"] = "  {spatie}";
 $l_customer["double_quote"] = "\" {dubbele aanhalingstekens}";
 $l_customer["single_quote"] = "' {enkel aanhalingsteken}";
@@ -237,7 +237,7 @@ $l_customer["download_failed"] = "Of het gekozen bestand bestaat niet of u bent 
 $l_customer["generic_import"] = "Generieke import";
 $l_customer["gxml_import"] = "Generieke XML import";
 $l_customer["txt_gxml_import"] = "Importeer \"platte\" XML bestanden, zoals aangeleverd door phpMyAdmin. De dataset velden moeten toegewezen worden aan de klant dataset velden.";
-$l_customer["csv_import"] = "CSV import"; 
+$l_customer["csv_import"] = "CSV import"; // TRANSLATE
 $l_customer["txt_csv_import"] = "Importeer CSV bestanden (Comma Separated Values) of aangepaste tekstformaten (bijv. *.txt). De dataset velden zijn toegekend aan de klant velden.";
 $l_customer["source_file"] = "Bron bestand";
 
@@ -245,7 +245,7 @@ $l_customer["server_import"] = "Importeer bestand van server";
 $l_customer["upload_import"] = "Importeer bestand van lokale harde schijf.";
 $l_customer["file_uploaded"] = "Het bestand is ge-upload.";
 
-$l_customer["num_data_sets"] = "Datasets:"; 
+$l_customer["num_data_sets"] = "Datasets:"; // TRANSLATE
 $l_customer["to"] = "naar";
 $l_customer["well_formed"] = "Het XML document is well-formed.";
 $l_customer["select_elements"] = "Kies a.u.b. de te importeren datasets.";
@@ -264,10 +264,10 @@ $l_customer["we_description"] = "Omschrijving";
 $l_customer["we_keywords"] = "Trefwoorden";
 
 $l_customer["pfx"] = "Voorvoegsel";
-$l_customer["pfx_doc"] = "Document"; 
-$l_customer["pfx_obj"] = "Object"; 
+$l_customer["pfx_doc"] = "Document"; // TRANSLATE
+$l_customer["pfx_obj"] = "Object"; // TRANSLATE
 $l_customer["rcd_fld"] = "Dataset veld";
-$l_customer["auto"] = "Auto"; 
+$l_customer["auto"] = "Auto"; // TRANSLATE
 $l_customer["asgnd"] = "Toegekend";
 
 $l_customer["remark_csv"] = "U kunt CSV bestanden (Comma Separated Values) of aangepaste tekst formaten importeren (bijv. *.txt). De veld scheider (bijv. , ; tab, spatie) and tekst scheider (= welke de tekst invoer omvat) kunnen vooraf ingesteld worden bj het importeren van deze bestands formaten.";

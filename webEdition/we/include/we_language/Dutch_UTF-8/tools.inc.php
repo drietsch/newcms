@@ -28,7 +28,7 @@
 
 $l_tools = array();
 
-$l_tools['tools'] = 'Tools'; // TRANSLATE
+$l_tools['tools'] = 'Tools';
 $l_tools['no_perms'] = 'You do not have the permission to select this option.'; // TRANSLATE
 $l_tools['no_tablename'] = 'The tablename is missing.'; // TRANSLATE
 $l_tools['delete_alert'] = 'Delete Entry/Group.\\nAre you sure?'; // TRANSLATE
@@ -48,10 +48,10 @@ $l_tools['menu_export'] = 'Export'; // TRANSLATE
 $l_tools['menu_import'] = 'Import'; // TRANSLATE
 
 $l_tools['menu_new_entry'] = 'New Entry'; // TRANSLATE
-$l_tools['menu_new_group'] = 'New Group'; // TRANSLATE
+$l_tools['menu_new_group'] = 'New Group';
 
 $l_tools['properties'] = 'Properties'; // TRANSLATE
-$l_tools['group'] = 'Group'; // TRANSLATE
+$l_tools['group'] = 'Group';
 $l_tools['entry'] = 'Entry'; // TRANSLATE
 $l_tools['name'] = 'Name'; // TRANSLATE
 $l_tools['general'] = 'General'; // TRANSLATE
@@ -75,7 +75,7 @@ $l_tools['cls_exists'] = 'The model class exists!'; // TRANSLATE
 $l_tools['tbl_exists'] = 'The maintable exists!'; // TRANSLATE
 $l_tools['folder_path_exists'] = 'The name of the path exists.'; // TRANSLATE
 $l_tools['navigation_deleted'] = 'The entry/group has been succesfully deleted.'; // TRANSLATE
-$l_tools['group_deleted'] = 'The group has been succesfully deleted.'; // TRANSLATE
+$l_tools['group_deleted'] = 'The group has been succesfully deleted.';
 
 $l_tools['exit_doc_question'] = 'The document has been changed.<br>Would you like to save your changes?'; // TRANSLATE
 

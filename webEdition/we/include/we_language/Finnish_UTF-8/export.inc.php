@@ -176,6 +176,6 @@ $l_export['weNavigationRule'] = 'Navigointisääntö';
 $l_export['weThumbnail'] = 'Pikkukuvat';
 $l_export['handle_thumbnails'] = 'Pikkukuvat';
 
-$l_export['navigation_hint'] = 'To export the navigation entries, the template on which the navigation is displayed has also to be exported!'; // TRANSLATE
+$l_export['navigation_hint'] = 'To export the navigation entries, the template on which the navigation is displayed has also to be exported!';
 
 ?>

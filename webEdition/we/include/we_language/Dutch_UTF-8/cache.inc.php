@@ -24,12 +24,12 @@
 /**
  * Language file: enc_we_class.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 
-$l_we_cache["cache"] = "Caching";
+$l_we_cache["cache"] = "Caching"; // TRANSLATE
 $l_we_cache["cache_lifetime"] = "Cache lifetime in seconden";
-$l_we_cache["cache_type"] = "Caching type";
+$l_we_cache["cache_type"] = "Caching type"; // TRANSLATE
 $l_we_cache["cache_type_none"] = "Geen caching (Caching gedeactiveerd)";
 $l_we_cache["cache_type_wetag"] = "we:Tag cache (we:Tags worde gecached)";
 $l_we_cache["cache_type_document"] = "Document cache (ingevoegde documenten hebben eigen cache instellingen)";

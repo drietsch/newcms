@@ -24,7 +24,7 @@
 /**
  * Language file: buttons.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 
 $l_button["btn_add_field"]["alt"] = "Voeg veld toe";
@@ -65,7 +65,8 @@ $l_button["btn_function_trash"]["alt"] = "Verwijder";
 $l_button["btn_function_view"]["alt"] = "Toon";
 
 $l_button["btn_select_image"]["alt"] = "Selecteer afbeelding";
-$l_button["btn_help"]["alt"] = "Help";
+$l_button["btn_help"]["alt"] = "Help"; // TRANSLATE
 
-$l_button["btn_open_sidebar"]["alt"] = "Open sidebar";
+$l_button["btn_open_sidebar"]["alt"] = "Open sidebar"; // TRANSLATE
+
 ?>

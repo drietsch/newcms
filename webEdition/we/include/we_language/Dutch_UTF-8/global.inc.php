@@ -24,7 +24,7 @@
 /**
  * Language file: global.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 include_once(dirname(__FILE__)."/enc_".basename(__FILE__));
 
@@ -38,7 +38,7 @@ $GLOBALS["l_global"]["max_file_size"] = "Maximale bestandsgrootte (in bytes)";
 $GLOBALS["l_global"]["default"] = "Standaard";
 $GLOBALS["l_global"]["values"] = "Waardes";
 $GLOBALS["l_global"]["name"] = "Naam";
-$GLOBALS["l_global"]["type"] = "Type";
+$GLOBALS["l_global"]["type"] = "Type"; // TRANSLATE
 $GLOBALS["l_global"]["attributes"] = "Attributen";
 $GLOBALS["l_global"]["formmailerror"] = "Het mailformulier was niet voorgelegd om de volgende reden:";
 $GLOBALS["l_global"]["email_notallfields"] = "U heeft niet alle vereiste velden ingevuld!";
@@ -70,14 +70,14 @@ $GLOBALS["l_global"]["save_temporaryTable"] = "Bewaar tijdelijke documenten opni
 $GLOBALS["l_global"]["save_mainTable"] = "Bewaar hoofd database-tabel opnieuw";
 $GLOBALS["l_global"]["add_workspace"] = "Voeg werkgebied toe";
 $GLOBALS["l_global"]["folder_not_editable"] = "Deze directory kan niet gekozen worden!";
-$GLOBALS["l_global"]["modules"] = "Modules"; 
+$GLOBALS["l_global"]["modules"] = "Modules"; // TRANSLATE
 $GLOBALS["l_global"]["modules_and_tools"] = "Modules en Tools";
 $GLOBALS["l_global"]["center"] = "Centreer";
 $GLOBALS["l_global"]["jswin"] = "Pop-up venster";
-$GLOBALS["l_global"]["open"] = "Open";
+$GLOBALS["l_global"]["open"] = "Open"; // TRANSLATE
 $GLOBALS["l_global"]["posx"] = "x positie";
 $GLOBALS["l_global"]["posy"] = "y positie";
-$GLOBALS["l_global"]["status"] = "Status"; 
+$GLOBALS["l_global"]["status"] = "Status"; // TRANSLATE
 $GLOBALS["l_global"]["scrollbars"] = "Scroll balken";
 $GLOBALS["l_global"]["menubar"] = "Menu balk";
 $GLOBALS["l_global"]["toolbar"] = "Gereedschappen balk";
@@ -89,22 +89,22 @@ $GLOBALS["l_global"]["required_field"] = "Vereist veld";
 $GLOBALS["l_global"]["from"] = "Van";
 $GLOBALS["l_global"]["to"] = "Naar";
 $GLOBALS["l_global"]["search"]="Zoek";
-$GLOBALS["l_global"]["in"]="in"; 
+$GLOBALS["l_global"]["in"]="in"; // TRANSLATE
 $GLOBALS["l_global"]["we_rebuild_at_save"] = "Automatisch heropbouwen";
 $GLOBALS["l_global"]["we_publish_at_save"] = "Publiceren na bewaren";
 $GLOBALS["l_global"]["we_new_doc_after_save"] = "Nieuw document na bewaren";
-$GLOBALS["l_global"]["we_new_folder_after_save"] = "New folder after saving";
-$GLOBALS["l_global"]["we_new_entry_after_save"] = "New entry after saving";
-$GLOBALS["l_global"]["wrapcheck"] = "Wrapping"; 
+$GLOBALS["l_global"]["we_new_folder_after_save"] = "New folder after saving"; // TRANSLATE
+$GLOBALS["l_global"]["we_new_entry_after_save"] = "New entry after saving"; // TRANSLATE
+$GLOBALS["l_global"]["wrapcheck"] = "Wrapping"; // TRANSLATE
 $GLOBALS["l_global"]["static_docs"] = "Statische documenten";
 $GLOBALS["l_global"]["save_templates_before"] = "Bewaar sjablonen vooraf";
 $GLOBALS["l_global"]["specify_docs"] = "Documenten met de volgende criteria";
 $GLOBALS["l_global"]["object_docs"] = "Alle objecten";
 $GLOBALS["l_global"]["all_docs"] = "Alle documenten";
 $GLOBALS["l_global"]["ask_for_editor"] = "Vraag naar editor";
-$GLOBALS["l_global"]["cockpit"] = "Cockpit";
+$GLOBALS["l_global"]["cockpit"] = "Cockpit"; // TRANSLATE
 $GLOBALS["l_global"]["introduction"] = "Introductie";
-$GLOBALS["l_global"]["doctypes"] = "Document types"; 
+$GLOBALS["l_global"]["doctypes"] = "Document types"; // TRANSLATE
 $GLOBALS["l_global"]["content"] = "Inhoud";
 $GLOBALS["l_global"]["site_not_exist"] = "Pagina bestaat niet!";
 $GLOBALS["l_global"]["site_not_published"] = "Pagina is nog niet gepubliceerd!";
@@ -133,8 +133,8 @@ $GLOBALS["l_global"]["showall"] = "Toon alles";
 $GLOBALS["l_global"]["noborder"] = "Geen rand";
 $GLOBALS["l_global"]["border"] = "Rand";
 $GLOBALS["l_global"]["align"] = "Uitlijning";
-$GLOBALS["l_global"]["hspace"] = "Hspace"; 
-$GLOBALS["l_global"]["vspace"] = "Vspace"; 
+$GLOBALS["l_global"]["hspace"] = "Hspace"; // TRANSLATE
+$GLOBALS["l_global"]["vspace"] = "Vspace"; // TRANSLATE
 $GLOBALS["l_global"]["exactfit"] = "Exact passend";
 $GLOBALS["l_global"]["select_color"] = "Selecteer kleur";
 $GLOBALS["l_global"]["changeUsername"] = "Wijzig gebruikersnaam";
@@ -160,9 +160,9 @@ $GLOBALS["l_global"]["docs_saved"] = "Documenten succesvol bewaard!";
 $GLOBALS["l_global"]["preview"] = "Voorvertoning";
 $GLOBALS["l_global"]["close"] = "Sluit venster";
 $GLOBALS["l_global"]["loginok"] =  "<strong>Login ok! Even geduld a.u.b.!</strong><br>webEdition opent in een nieuw venster. Wanneer dit venster niet opent, zorg er dan voor dat u geen pop-up vensters blokkeert in uw browser!";
-$GLOBALS["l_global"]["apple"] = "APPLE"; 
-$GLOBALS["l_global"]["shift"] = "SHIFT"; 
-$GLOBALS["l_global"]["ctrl"] = "CTRL"; 
+$GLOBALS["l_global"]["apple"] = "APPLE";
+$GLOBALS["l_global"]["shift"] = "SHIFT"; // TRANSLATE
+$GLOBALS["l_global"]["ctrl"] = "CTRL"; // TRANSLATE
 $GLOBALS["l_global"]["required_fields"] = "Vereiste velden";
 $GLOBALS["l_global"]["no_file_uploaded"] = "<p class=\"defaultfont\">Op dit moment wordt er geen document ge-upload.</p>";
 $GLOBALS["l_global"]["openCloseBox"] = "Open/Sluit";
@@ -173,6 +173,6 @@ $GLOBALS["l_global"]["unlocking_document"] = "Document ontgrendelen";
 $GLOBALS["l_global"]["variant_field"] = "Variant veld";
 $GLOBALS["l_global"]["redirect_to_login_failed"] = "Klik a.u.b. op de volgende koppeling, indien u niet doorgestuurd word binnen 30 seconden ";
 $GLOBALS["l_global"]["redirect_to_login_name"] = "webEdition inlog";
-$GLOBALS["l_global"]["untitled"] = "Untitled";
+$GLOBALS["l_global"]["untitled"] = "Untitled"; // TRANSLATE
 $GLOBALS["l_global"]["no_document_opened"] = "There is no document opened!"; // TRANSLATE
 ?>

@@ -24,7 +24,7 @@
 /**
  * Language file: rebuild.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 $GLOBALS["l_rebuild"]["rebuild_documents"] = "Herbouw - documenten";
 $GLOBALS["l_rebuild"]["rebuild_maintable"] = "Bewaar hoofd tabel opnieuw";
@@ -43,7 +43,7 @@ $GLOBALS["l_rebuild"]["txt_rebuild_all"] = "Met deze optie worden alle documente
 $GLOBALS["l_rebuild"]["txt_rebuild_templates"] = "Met deze optie worden alle sjablonen herschreven.";
 $GLOBALS["l_rebuild"]["txt_rebuild_filter"] = "Hier kunt u aangeven welke statische webEdition pagina's herschreven moeten worden. Wanneer u geen criteria selecteert worden alle statische webEdition pagina's herschreven.";
 $GLOBALS["l_rebuild"]["rebuild"] = "Heropbouwen";
-$GLOBALS["l_rebuild"]["dirs"] = "Directories"; 
+$GLOBALS["l_rebuild"]["dirs"] = "Directories"; // TRANSLATE
 $GLOBALS["l_rebuild"]["thumbdirs"] = "Voor afbeeldingen in de volgende directories";
 $GLOBALS["l_rebuild"]["thumbnails"] = "Genereer thumbnails";
 $GLOBALS["l_rebuild"]["documents"] = "Documenten en sjablonen";
@@ -53,15 +53,15 @@ $GLOBALS["l_rebuild"]["nothing_to_rebuild"] = "Er zijn geen documenten die voldo
 $GLOBALS["l_rebuild"]["no_thumbs_selected"] = "Kies a.u.b. tenminste één thumbnail!";
 $GLOBALS["l_rebuild"]["savingDocument"] = "Bewaren van document: ";
 $GLOBALS["l_rebuild"]["navigation"] = "Navigatie";
-$GLOBALS["l_rebuild"]["rebuild_navigation"] = "Herbouw - Navigatie"; 
+$GLOBALS["l_rebuild"]["rebuild_navigation"] = "Herbouw - Navigatie";
 $GLOBALS["l_rebuild"]["txt_rebuild_navigation"] = "Hier kunt u de navigatie cache herschrijven.";
 $GLOBALS["l_rebuild"]["rebuildStaticAfterNaviCheck"] = 'Herbouw statische documenten achteraf.';
-$GLOBALS["l_rebuild"]["rebuildStaticAfterNaviHint"] = 'Bij het herbouwen van statische navigatie invoeren is tevens het herbouwen van de bijbehorende documenten noodzakelijk.'; 
+$GLOBALS["l_rebuild"]["rebuildStaticAfterNaviHint"] = 'Bij het herbouwen van statische navigatie invoeren is tevens het herbouwen van de bijbehorende documenten noodzakelijk.';
 $GLOBALS["l_rebuild"]["metadata"] = 'Meta data fields'; // TRANSLATE
-$GLOBALS["l_rebuild"]["txt_rebuild_metadata"] = 'To import the meta data of your images subsequently, choose this option.';  // TRANSLATE
+$GLOBALS["l_rebuild"]["txt_rebuild_metadata"] = 'To import the meta data of your images subsequently, choose this option.'; // TRANSLATE  // TRANSLATE
 $GLOBALS["l_rebuild"]["rebuild_metadata"] = 'Rebuild - meta data fields'; // TRANSLATE
 $GLOBALS["l_rebuild"]["onlyEmpty"] = 'Import only empty meta data fields'; // TRANSLATE
-$GLOBALS["l_rebuild"]["expl_rebuild_metadata"] = 'Select the meta data fields you want to import. To import only fields which already have no content, select the option "Import only empty meta data fields".'; // TRANSLATE
-$GLOBALS["l_rebuild"]["noFieldsChecked"] = "Al least one meta data field must be selected!"; // TRANSLATE
+$GLOBALS["l_rebuild"]["expl_rebuild_metadata"] = 'Select the meta data fields you want to import. To import only fields which already have no content, select the option "Import only empty meta data fields".'; // TRANSLATE // TRANSLATE
+$GLOBALS["l_rebuild"]["noFieldsChecked"] = "Al least one meta data field must be selected!"; // TRANSLATE // TRANSLATE
 
 ?>

@@ -24,13 +24,13 @@
 /**
  * Language file: unicode_wysiwyg_js.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 
-$GLOBALS["l_wysiwyg"]["mozilla_paste"] = "Vanwege veiligheidsredenen zijn de 'kopieer', 'knip' en 'plak' menu functies in de Mozilla browser niet beschikbaar. Gebruik de toetsenbord commando's CTRL-C, CTRL-X en CTRL-V voor PC's of APPLE-C, APPLE-X EN APPLE-V op Macintosh computers!"; 
+$GLOBALS["l_wysiwyg"]["mozilla_paste"] = "Vanwege veiligheidsredenen zijn de 'kopieer', 'knip' en 'plak' menu functies in de Mozilla browser niet beschikbaar. Gebruik de toetsenbord commando's CTRL-C, CTRL-X en CTRL-V voor PC's of APPLE-C, APPLE-X EN APPLE-V op Macintosh computers!";
 $GLOBALS["l_wysiwyg"]["selection_invalid"] = "De selectie is ongeldig!";
 
-$GLOBALS["l_wysiwyg"]["cut2"] = "Knip"; 
+$GLOBALS["l_wysiwyg"]["cut2"] = "Knip";
 $GLOBALS["l_wysiwyg"]["copy2"] = "Kopiëer";
 $GLOBALS["l_wysiwyg"]["paste2"] = "Plak";
 $GLOBALS["l_wysiwyg"]["inserttable"] = "Voeg tabel in";

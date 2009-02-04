@@ -40,7 +40,7 @@ $l_sidebar["default"][0]["text"] = 'webEdition on nyt asennettu mutta toistaisek
 $l_sidebar["default"][1] = array();
 $l_sidebar["default"][1]["headline"] = 'Manuals';
 $l_sidebar["default"][1]["text"] = 'täältä löydät tietoa webEditionin toiminnasta ja rakenteesta';
-$l_sidebar["default"][1]["link"] = 'http://www.webedition.de/en/Dokumentation/index.php'; // TRANSLATE
+$l_sidebar["default"][1]["link"] = 'http://www.webedition.de/en/Dokumentation/index.php';
 $l_sidebar["default"][1]["icon"] = 'documentation.gif'; // TRANSLATE
 
 $l_sidebar["default"][2] = array();
@@ -64,6 +64,10 @@ $l_sidebar["default"][5]["headline"] = 'Demo web site';
 $l_sidebar["default"][5]["text"] = 'Nämä esimerkkisivut sisältävät täydellisen esimerkin perussivuista. Voi täysin vapaasti tuoda täältä osia omiin sivustoihisi ja muokata niitä haluamallasi tavalla.';
 $l_sidebar["default"][5]["link"] = 'http://demo.en.webedition.info/'; // TRANSLATE
 $l_sidebar["default"][5]["icon"] = 'demopages.gif'; // TRANSLATE
+
+$l_sidebar["default"][6] = array();
+$l_sidebar["default"][6]["headline"] = 'Econda';
+$l_sidebar["default"][6]["text"] = '<a href="http://webedition.de/en/econda" target="_blank">econda</a> is the leading provider for web controlling solutions and webEdition technology partner.  The econda Shop Monitor makes online-shop analytics accessible, comprehensible and indispensable for optimally informed marketing and business decisions. <a href="http://webedition.de/en/econda-form" target="_blank">Register now</a> for a free 14-day trial! More information regarding the installation can be found in the <a href="http://documentation.webedition.de/200810241003219195" target="_blank">webEdition online documentation</a>.'; // TRANSLATE
 
 // Only shown on the default sidebar page if user has administrator perms
 $l_sidebar["admin"] = array();

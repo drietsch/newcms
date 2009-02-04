@@ -24,21 +24,21 @@
 /**
  * Language file: contenttypes.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
-$l_contentTypes["all_Types"] = "Alle bestanden";
-$l_contentTypes["text/xml"] = "XML bestand";
-$l_contentTypes["text/html"] = "HTML pagina";
-$l_contentTypes["text/plain"] = "Tekst pagina";
-$l_contentTypes["text/webedition"] = "webEdition pagina";
-$l_contentTypes["image/*"] = "Afbeelding";
-$l_contentTypes["text/weTmpl"] = "webEdition sjabloon";
-$l_contentTypes["text/css"] = "Stylesheet";
-$l_contentTypes["text/js"] = "JavaScript";
-$l_contentTypes["application/x-shockwave-flash"] = "Flash film";
-$l_contentTypes["application/*"] = "Binair document";
-$l_contentTypes["folder"] = "Directorie";
-$l_contentTypes["object"] = "Class";
-$l_contentTypes["objectFile"] = "Object";
-$l_contentTypes["video/quicktime"] = "Quicktime film";
+$GLOBALS['l_contentTypes']["all_Types"] = "All files"; // TRANSLATE
+$GLOBALS['l_contentTypes']["text/xml"] = "XML file"; // TRANSLATE
+$GLOBALS['l_contentTypes']["text/html"] = "HTML page"; // TRANSLATE
+$GLOBALS['l_contentTypes']["text/plain"] = "Text page"; // TRANSLATE
+$GLOBALS['l_contentTypes']["text/webedition"] = "webEdition page"; // TRANSLATE
+$GLOBALS['l_contentTypes']["image/*"] = "Image"; // TRANSLATE
+$GLOBALS['l_contentTypes']["text/weTmpl"] = "webEdition template"; // TRANSLATE
+$GLOBALS['l_contentTypes']["text/css"] = "Style sheet"; // TRANSLATE
+$GLOBALS['l_contentTypes']["text/js"] = "JavaScript"; // TRANSLATE
+$GLOBALS['l_contentTypes']["application/x-shockwave-flash"] = "Flash movie"; // TRANSLATE
+$GLOBALS['l_contentTypes']["application/*"] = "Binary document"; // TRANSLATE
+$GLOBALS['l_contentTypes']["folder"] = "Directory"; // TRANSLATE
+$GLOBALS['l_contentTypes']["object"] = "Class"; // TRANSLATE
+$GLOBALS['l_contentTypes']["objectFile"] = "Object"; // TRANSLATE
+$GLOBALS['l_contentTypes']["video/quicktime"] = "Quicktime movie"; // TRANSLATE
 ?>

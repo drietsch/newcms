@@ -20,13 +20,13 @@
  * @license    http://www.gnu.org/copyleft/gpl.html  GPL
  */
 
-$l_contentTypes["objectFile"] = "Object"; 
-$l_contentTypes["object"] = "Class"; 
+$l_contentTypes["objectFile"] = "Object"; // TRANSLATE
+$l_contentTypes["object"] = "Class"; // TRANSLATE
 
 $l_object["attributes"] = "Attributen";
 $l_object["objectname"] = "Object naam";
 $l_object["objectpath"] = "Object pad";
-$l_object["class"] = "Class"; 
+$l_object["class"] = "Class"; // TRANSLATE
 $l_object["classname"] = "Classnaam";
 $l_object["class_id"] = "ID van de class";
 $l_object["default"] = "Default Value";
@@ -40,19 +40,19 @@ $l_object["rootdir"] = "Werkgebied";
 
 $l_object["no_root_ws_select"] = "De root directory kan niet gekozen worden!";
 
-$l_object["objectFile_field"] = "Object"; 
-$l_object["multiObjectFile_field"] = "Multi object"; 
-$l_object["checkbox_field"] = "Checkbox"; 
+$l_object["objectFile_field"] = "Object"; // TRANSLATE
+$l_object["multiObjectFile_field"] = "Multi object"; // TRANSLATE
+$l_object["checkbox_field"] = "Checkbox"; // TRANSLATE
 $l_object["meta_field"] = "Selecteer";
 $l_object["input_field"] = "Tekst invoer";
-$l_object["int_field"] = "Integer"; 
-$l_object["float_field"] = "Float"; 
+$l_object["int_field"] = "Integer"; // TRANSLATE
+$l_object["float_field"] = "Float"; // TRANSLATE
 $l_object["date_field"] = "Datum";
 $l_object["textarea_field"] = "Tekst area";
 $l_object["img_field"] = "Afbeelding";
 $l_object["binary_field"] = "Binair document";
 $l_object["link_field"] = "Koppeling";
-$l_object["href_field"] = "Href"; 
+$l_object["href_field"] = "Href"; // TRANSLATE
 $l_object["shopVat_field"] = "BTW veld";
 
 $l_object["we_new_doc_after_save"] = "Nieuw Object na bewaren";
@@ -63,7 +63,7 @@ $l_object["fieldNameNotValid"] = "Ongeldige vled naam\\nGeldige karakters zijn a
 $l_object["fieldNameNotTitleDesc"] = "De veldnamen Titel en Omschrijving zijn niet toegestaan!";
 $l_object["fieldNameEmpty"] = "De veldnaam is leeg!";
 $l_object["length"] = "Lengte";
-$l_object["type"] = "Type"; 
+$l_object["type"] = "Type"; // TRANSLATE
 $l_object["default"] = "Standaard";
 $l_object["max_objects"] = "max. Objecten";
 $l_object["no_maximum"] = "niks invullen bij geen limiet";

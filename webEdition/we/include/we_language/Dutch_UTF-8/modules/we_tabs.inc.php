@@ -30,7 +30,7 @@ $l_tabs["module"]["properties"] = "Eigenschappen";
 /**************************************************************************
  * For Module User
  *************************************************************************/
-$l_tabs["module"]["data"] = "Data";
+$l_tabs["module"]["data"] = "Data"; // TRANSLATE
 $l_tabs["module"]["permissions"] = "Rechten";
 $l_tabs["module"]["workspace"] = "Werkgebied";
 $l_tabs["module"]["preferences"] = "Voorkeuren";

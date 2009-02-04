@@ -23,9 +23,9 @@
 /**
  * Language file: start.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
-$l_start["we_homepage"] = 'http://www.webedition.biz/'; 
+$l_start["we_homepage"] = 'http://www.webedition.biz/'; // TRANSLATE
 
 $l_start["phpini_problems"] = 'Er is een probleem opgetreden met de sessie instellingen in uw php.ini-bestand%s!';
 $l_start["tmp_path"] = "De variable <b>session.bewaar_pad</b> is ingesteld op '%s'. Deze directory bestaat niet op uw server!";
@@ -37,13 +37,11 @@ $l_start["solution_more"] = "Wanneer u uw eigen server draait, wijzig dan a.u.b.
 $l_start["cannot_start_we"] = "webEdition kan niet opgestart worden.";
 $l_start["browser_not_supported"] = "Uw browser wordt niet ondersteunt door webEdition!";
 $l_start["browser_supported"] = "webEdition ondersteunt de volgende browsers:";
-$l_start["browser_ie"] = "Internet Explorer"; 
+$l_start["browser_ie"] = "Internet Explorer"; // TRANSLATE
 $l_start["browser_ie_version"] = "vanaf versie 5.5";
-$l_start["browser_firefox"] = "Firefox"; 
+$l_start["browser_firefox"] = "Firefox"; // TRANSLATE
 $l_start["browser_firefox_version"] = "vanaf versie 1.0";
-$l_start["browser_safari"] = "Safari"; 
+$l_start["browser_safari"] = "Safari"; // TRANSLATE
 $l_start["browser_safari_version"] = "vanaf versie 1.1";
 $l_start["ignore_browser"] = "Als u webEdition toch wilt opstarten, klik dan hier ...";
-$l_start["no_db_connection"] = "The database connection can not be established."; //TRANSLATE
-$l_start["cookies_disabled"] = "Cookies are deactivated."; //TRANSLATE
 ?>

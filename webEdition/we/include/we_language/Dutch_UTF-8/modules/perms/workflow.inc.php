@@ -24,10 +24,10 @@
 /**
  * Language file: workflow.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 
-$l_perm["workflow"]["perm_group_title"] = "Workflow Module";
+$l_perm["workflow"]["perm_group_title"] = "Workflow Module"; // TRANSLATE
 
 $l_perm["workflow"]["NEW_WORKFLOW"] = "De gebruiker is bevoegd om nieuwe workflows aan te maken.";
 $l_perm["workflow"]["DELETE_WORKFLOW"] = "De gebruiker is bevoegd om workflows te verwijderen.";

@@ -23,7 +23,7 @@
 /**
  * Language file: module_information.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 
 $l_javaMenu["module_information"]["users"]["text"] = "Gebruikers Beheer";
@@ -42,7 +42,7 @@ $l_javaMenu["module_information"]["shop"]["text"] = "Winkel";
 $l_javaMenu["module_information"]["shop"]["text_short"] = "Winkel";
 $l_javaMenu["module_information"]["shop"]["not_installed"] = "Sorry, maar u heeft de webEdition Winkel Module nog niet geinstalleerd. De winkel module geeft u de mogelijkheid om met gebruik van we:tags uw eigen winkel(koppelteken verwijderd) systeem op te zetten binnen webEdition.<br>U vindt de module en meer informatie onder: %s";
 
-$l_javaMenu["module_information"]["editor"]["text"] = "Editor PlugIn";
+$l_javaMenu["module_information"]["editor"]["text"] = "Editor PlugIn"; // TRANSLATE
 $l_javaMenu["module_information"]["editor"]["text_short"] = "Editor PlugIn";
 $l_javaMenu["module_information"]["editor"]["not_installed"] = "Indien u de Editor PlugIn aangeschaft heeft, kunt u deze activeren in het hoofd menu in het <a href=\"javascript:opener.top.we_cmd('openPreferences');\">Opties => Voorkeuren</a> menu. De installatie start automatisch bij het openen van de Sjablonen =>Wijzig weergave naar &quot;edit&quot;.<br>Voor meer informatie over de Editor PlugIn, zie: %s";
 
@@ -54,8 +54,8 @@ $l_javaMenu["module_information"]["messaging"]["text"] = "Taak/Berichten Module"
 $l_javaMenu["module_information"]["messaging"]["text_short"] = "Berichten";
 $l_javaMenu["module_information"]["messaging"]["not_installed"] = "Sorry, maar u heeft de webEdition Taak/Berichten Module nog niet geinstalleerd. U vindt de module en meer informatie onder: %s";
 
-$l_javaMenu["module_information"]["workflow"]["text"] = "Workflow Module";
-$l_javaMenu["module_information"]["workflow"]["text_short"] = "Workflow";
+$l_javaMenu["module_information"]["workflow"]["text"] = "Workflow Module"; // TRANSLATE
+$l_javaMenu["module_information"]["workflow"]["text_short"] = "Workflow"; // TRANSLATE
 $l_javaMenu["module_information"]["workflow"]["not_installed"] = "Sorry, maar u heeft de webEdition Workflow Module nog niet geinstalleerd. U vindt de module en meer informatie onder: %s";
 
 $l_javaMenu["module_information"]["newsletter"]["text"] = "Nieuwsbrief Module";
@@ -63,7 +63,7 @@ $l_javaMenu["module_information"]["newsletter"]["text_short"] = "Nieuwsbrief";
 $l_javaMenu["module_information"]["newsletter"]["not_installed"] = "Sorry, maar u heeft de webEdition Nieuwsbrief Module nog niet geinstalleerd. U vindt de module en meer informatie onder: %s";
 
 $l_javaMenu["module_information"]["banner"]["text"] = "Banner/Statistieken Module";
-$l_javaMenu["module_information"]["banner"]["text_short"] = "Banner";
+$l_javaMenu["module_information"]["banner"]["text_short"] = "Banner"; // TRANSLATE
 $l_javaMenu["module_information"]["banner"]["not_installed"] = "Sorry, maar u heeft de webEdition Banner/Statistieken Module nog niet geinstalleerd. U vindt de module en meer informatie onder: %s";
 
 $l_javaMenu["module_information"]["export"]["text"] = "Exporteer Module";
@@ -78,7 +78,7 @@ $l_javaMenu["module_information"]["glossary"]["text"] = "Verklarende woordenlijs
 $l_javaMenu["module_information"]["glossary"]["text_short"] = "Verklarende woordenlijst";
 $l_javaMenu["module_information"]["glossary"]["not_installed"] = "Sorry, maar u heeft de webEdition Verklarende woordenlijst Module nog niet geinstalleerd. U vindt de module en meer informatie onder: %s";
 
-$l_javaMenu["module_information"]["spellchecker"]["text"] = "Spellingscontrole"; 
+$l_javaMenu["module_information"]["spellchecker"]["text"] = "Spellingscontrole";
 $l_javaMenu["module_information"]["spellchecker"]["text_short"] = "Spellingscontrole";
 $l_javaMenu["module_information"]["spellchecker"]["not_installed"] = "Sorry, maar u heeft de webEdition spellingscontrole Module nog niet geinstalleerd. U vindt de module en meer informatie onder: %s";
 

@@ -55,6 +55,7 @@ $l_navigation['navigation'] = 'Navigaatio';
 $l_navigation['group'] = 'Kansio';
 $l_navigation['name'] = 'Nimi';
 $l_navigation['newFolder'] = 'Uusi kansio';
+$l_navigation['display'] = 'Display'; // TRANSLATE
 $l_navigation['save_group_ok'] = 'Kansio tallennettiin.';
 $l_navigation['save_ok'] = 'Navigaatio tallennettiin.';
 

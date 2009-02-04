@@ -24,7 +24,7 @@
 /**
  * Language file: siteimport.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 
 $GLOBALS["l_siteimport"]["siteimport"] = "Website import";
@@ -45,7 +45,7 @@ $GLOBALS["l_siteimport"]["maxSize"] = "Maximale bestands grootte in MB";
 $GLOBALS["l_siteimport"]["nolimit"] = "Geen limiet";
 $GLOBALS["l_siteimport"]["importingFile"] = "Bezig met importeren van bestand";
 $GLOBALS["l_siteimport"]["importFinished"] = "Website import is succesvol beïndigd!";
-$GLOBALS["l_siteimport"]["dirs_headline"] = "Directories";
+$GLOBALS["l_siteimport"]["dirs_headline"] = "Directories"; // TRANSLATE
 $GLOBALS["l_siteimport"]["limits"] = "Grenzen";
 
 $GLOBALS["l_siteimport"]["fieldName"] = "Veld naam";

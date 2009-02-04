@@ -48,10 +48,10 @@ $l_tools['menu_export'] = 'Export'; // TRANSLATE
 $l_tools['menu_import'] = 'Import'; // TRANSLATE
 
 $l_tools['menu_new_entry'] = 'New Entry'; // TRANSLATE
-$l_tools['menu_new_group'] = 'New Group'; // TRANSLATE
+$l_tools['menu_new_group'] = 'New Group';
 
 $l_tools['properties'] = 'Properties'; // TRANSLATE
-$l_tools['group'] = 'Group'; // TRANSLATE
+$l_tools['group'] = 'Group';
 $l_tools['entry'] = 'Entry'; // TRANSLATE
 $l_tools['name'] = 'Name'; // TRANSLATE
 $l_tools['general'] = 'General'; // TRANSLATE

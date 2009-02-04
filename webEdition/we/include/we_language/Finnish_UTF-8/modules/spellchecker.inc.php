@@ -19,6 +19,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html  GPL
  */
 
+
 $l_spellchecker = array();
 
 $l_spellchecker['spellchecker'] = 'Spellchecker';

@@ -23,7 +23,7 @@
 /**
  * Language file: shop.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 
 $l_shop["user_saved_ok"] = "Gebruiker '%s' is succesvol bewaard.";
@@ -44,8 +44,8 @@ $l_shop["username"] = "Gebruikersnaam";
 $l_shop["password"] = "Wachtwoord";
 
 $l_shop["workspace_specify"] = "Specificeer werkgebied ";
-$l_shop["permissions"] = "Privileges";
-$l_shop["user_permissions"] = "Editor"; 
+$l_shop["permissions"] = "Privileges"; // TRANSLATE
+$l_shop["user_permissions"] = "Editor"; // TRANSLATE
 $l_shop["admin_permissions"] = "Beheerder";
 
 $l_shop["password_alert"] = "Het wachtwoord moet minimaal 4 karakters bevatten.";
@@ -76,7 +76,7 @@ $l_shop["anzahl"] = "Bestel kwantiteit";
 $l_shop["umsatzgesamt"] = "Verkoop totaal";
 $l_shop["Artikel"] = "Onderdeel";
 $l_shop["Anzahl"] = "Kwantiteit";
-$l_shop["variant"] = "Variant";
+$l_shop["variant"] = "Variant"; // TRANSLATE
 $l_shop["customField"] = "Aangepast veld";
 $l_shop["customFieldDesc"] = "Invoeren als: <i>name1=wert1;name2=wert2; ... </i>";
 $l_shop["Titel"] = "Titel";
@@ -134,8 +134,8 @@ $l_shop["selYear"] = "Selectie";
 // shop_extend
 $l_shop["ArtList"] = "Lijst van alle artikelen";
 $l_shop["ArtName"] = "Artikelnaam";
-$l_shop["ArtID"] = "ID"; 
-$l_shop["docType"] = "Type"; 
+$l_shop["ArtID"] = "ID"; // TRANSLATE
+$l_shop["docType"] = "Type"; // TRANSLATE
 $l_shop["artCreate"] = "Aangemaakt op";
 $l_shop["artCreateAlt"] = "Sorteer op datum aangemaakt";
 $l_shop["artMod"] = "Laatst bijgewerkt";
@@ -159,14 +159,14 @@ $l_shop["currPage"] = "Pagina";
 
 $l_shop["noRecord"] = "Geen veld gevonden!";
 $l_shop["artNPay"] = "Hangende";
-$l_shop["isObj"] = "Object"; 
-$l_shop["isDoc"] = "Document";
-$l_shop["classID"] = "Class-ID"; 
+$l_shop["isObj"] = "Object"; // TRANSLATE
+$l_shop["isDoc"] = "Document"; // TRANSLATE
+$l_shop["classID"] = "Class-ID"; // TRANSLATE
 $l_shop["classIDext"] = "* Winkel-Object-ID [ID,ID,ID ..]";
-$l_shop["paypal"] = "PayPal";
-$l_shop["saferpay"] = "Saferpay";
+$l_shop["paypal"] = "PayPal"; // TRANSLATE
+$l_shop["saferpay"] = "Saferpay"; // TRANSLATE
 $l_shop["lc"] = "Land code";
-$l_shop["paypalLcTxt"] = "* (ISO)"; 
+$l_shop["paypalLcTxt"] = "* (ISO)"; // TRANSLATE
 $l_shop["paypalbusiness"] = "Zakelijk";
 $l_shop["paypalbTxt"] = "* PayPal Email";
 
@@ -179,7 +179,7 @@ $l_shop["saferpayID"] = "Rekening-ID";
 $l_shop["saferpayIDTxt"] = "* Serie-nr";
 $l_shop["saferpayNo"] = "Nee";
 $l_shop["saferpayYes"] = "Ja";
-$l_shop["saferpayLcTxt"] = "* en, de, fr, it"; 
+$l_shop["saferpayLcTxt"] = "* en, de, fr, it"; // TRANSLATE
 $l_shop["saferpaybusiness"] = "Winkel eigenaar";
 $l_shop["saferpaybTxt"] = "* Aankondigings email";
 $l_shop["saferpayAllowCollect"] = "Verzamelen toestaan?";
@@ -188,7 +188,7 @@ $l_shop["saferpayDelivery"] = "Additioneel formulier?";
 $l_shop["saferpayDeliveryTxt"] = "* Voor Afleveradres";
 $l_shop["saferpayUnotify"] = "Bevestiging";
 $l_shop["saferpayUnotifyTxt"] = "* Bevestigings email naar klant";
-$l_shop["saferpayProviderset"] = "Providerset"; 
+$l_shop["saferpayProviderset"] = "Providerset"; // TRANSLATE
 $l_shop["saferpayProvidersetTxt"] = "* komma-gescheiden!";
 $l_shop["saferpayCMDPath"] = "exec-pad";
 $l_shop["saferpayCMDPathTxt"] = "* Bijv. /usr/local/bin/";
@@ -208,10 +208,10 @@ $l_shop["fieldZip"] = "Postcode";
 $l_shop["fieldCity"] = "Stad";
 $l_shop["fieldEmail"] = "Email";
 $l_shop["SelectAll"]= "Alle";
-$l_shop["plzh"] = "wildcard"; 
+$l_shop["plzh"] = "wildcard"; // TRANSLATE
 $l_shop["lastOrder"] = "Laatste bestelling - Nr.: %s, %s";
 $l_shop["orderNo"] = "No.: %s vom %s"; // TRANSLATE
-$l_shop["sl"] = "-"; 
+$l_shop["sl"] = "-"; // TRANSLATE
 $l_shop["treeYear"] = "Jaar";
 
 
@@ -224,7 +224,7 @@ $l_shop['vat']['delete_error'] = 'Kon BTW niet verwijderen.';
 $l_shop['vat']['new_vat_name'] = 'Nieuwe BTW';
 $l_shop['vat']['js_confirm_delete'] = 'Weet u zeker dat u de geselecteerde BTW wilt verwijderen?';
 
-$l_shop['vat']['vat_form_id'] = 'Id'; 
+$l_shop['vat']['vat_form_id'] = 'Id'; // TRANSLATE
 $l_shop['vat']['vat_form_name'] = 'Naam';
 $l_shop['vat']['vat_form_vat'] = 'BTW waarde';
 $l_shop['vat']['vat_form_standard'] = 'Standaard';
@@ -305,9 +305,9 @@ $l_shop['field_value'] = 'Waarde';
 $l_shop['field_empty_js_alert'] = 'De veldnaam mag niet leeg zijn';
 
 $l_shop['edit_article_variants'] = 'Wijzig winkel artikel varianten';
-$l_shop['new_entry'] = 'Nieuwe invoer'; 
+$l_shop['new_entry'] = 'Nieuwe invoer';
 
-$l_paypal['head_title']    = 'Betaling verwerken'; 
+$l_paypal['head_title']    = 'Betaling verwerken';
 $l_paypal['redirect_auto'] = 'Wacht a.u.b. tot uw betaling is verwerkt. U wordt binnen enkele seconden doorgestuurd naar PayPal.';
 $l_paypal['redirect_man']  = 'Indien u niet automatisch doorgestuurd wordt binnen 5 seconden, klik dan op de "PayPal" knop.';
 ?>

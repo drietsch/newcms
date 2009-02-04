@@ -215,7 +215,6 @@ $l_javaMenu["metadata"] = "Metadata fields"; // TRANSLATE
 $l_javaMenu["navigation"] = "Navigaatio";
 $l_javaMenu["change_username"] = "Vaihda käyttäjänimeä";
 $l_javaMenu["change_password"] = "Vaihda salasanaa";
-$l_javaMenu["econda"] = "Econda";
 
 $l_javaMenu["formmail_recipients"] = "Formmail vastaanottajat";
 $l_javaMenu["proxy_server"] = "Proxy-palvelin";
@@ -223,7 +222,7 @@ $l_javaMenu["unpublished_pages"] = "Julkaisemattomat sivut";
 $l_javaMenu["preferences"] = "Asetukset";
 $l_javaMenu["versioning"] = "Version-Wizard"; // TRANSLATE
 $l_javaMenu["versioning_log"] = "Version-Log"; // TRANSLATE
-
+$l_javaMenu["econda"] = "Econda"; // TRANSLATE
 
 ##################################
 ###### End Menu Bearbeiten #######

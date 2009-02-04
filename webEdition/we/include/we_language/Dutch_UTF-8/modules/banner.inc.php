@@ -24,7 +24,7 @@
 /**
  * Language file: banner.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 
 $l_banner["save_changed_banner"] = "The Banner has been changed.\\nDo you want to save your changes?"; // TRANSLATE
@@ -51,9 +51,9 @@ $l_banner["defaultbanner"] = "Standaard banner";
 $l_banner["default"] = "Standaard";
 $l_banner["preview"] = "Voorvertoning";
 $l_banner["pages"] = "Paginas";
-$l_banner["dirs"] = "Directories"; 
+$l_banner["dirs"] = "Directories"; // TRANSLATE
 $l_banner["categories"] = "Categorieën";
-$l_banner["doctypes"] = "Document types"; 
+$l_banner["doctypes"] = "Document types"; // TRANSLATE
 $l_banner["ext_url"] = "Externe URL";
 $l_banner["int_url"] = "Interne URL";
 $l_banner["image"] = "Afbeelding";
@@ -64,7 +64,7 @@ $l_banner["group_empty"] = "De groepsnaam is leeg!";
 $l_banner["group_path_exists"] = "De groepsnaam bestaat al!";
 $l_banner["new_group_name"] = "nieuwe groep";
 $l_banner["we_filename_notValid"] = "De groepsnaam is niet geldig!";
-$l_banner["banner"] = "Banner";
+$l_banner["banner"] = "Banner"; // TRANSLATE
 $l_banner["name"] = "Naam";
 $l_banner["no_perms"] = "U bent niet bevoegd om deze taak uit te voeren!";
 $l_banner["delete_question"]="Alle banner data wordt verwijderd!\\nWilt u doorgaan?";
@@ -85,8 +85,8 @@ $l_banner["delete"]="Verwijder";
 $l_banner["quit"]="Sluit";
 $l_banner["options"]="Opties";
 $l_banner["settings"]="Instellingen";
-$l_banner["help"]="Help"; 
-$l_banner["info"]="Info";
+$l_banner["help"]="Help"; // TRANSLATE
+$l_banner["info"]="Info"; // TRANSLATE
 
 $l_banner["customers"]="Klanten";
 $l_banner["weight"]="Gewicht";
@@ -101,7 +101,7 @@ $l_banner["bannercode"] = "Maak bannercode aan";
 $l_banner["bannercode_ext"] = "Maak bannercode aan voor externe Web paginas";
 $l_banner["getscript"] = "Verkrijg script";
 $l_banner["clickscript"] = "Klik script";
-$l_banner["type"] = "Type"; 
+$l_banner["type"] = "Type"; // TRANSLATE
 $l_banner["width"] = "Breedte";
 $l_banner["height"] = "Hoogte";
 $l_banner["target"] = "Doel";

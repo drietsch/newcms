@@ -24,7 +24,7 @@
 /**
  * Language file: enc_wysiwyg.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 
 /*****************************************************************************
@@ -87,7 +87,7 @@ $GLOBALS["l_wysiwyg"]["italic"] = "Cursief";
 $GLOBALS["l_wysiwyg"]["bold"] = "Vet";
 $GLOBALS["l_wysiwyg"]["fullscreen"] = "Open editor in volledig scherm";
 $GLOBALS["l_wysiwyg"]["edit_source"] = "Wijzig broncode";
-$GLOBALS["l_wysiwyg"]["fullscreen_editor"] = "Volledige scherm editor"; 
+$GLOBALS["l_wysiwyg"]["fullscreen_editor"] = "Volledige scherm editor";
 $GLOBALS["l_wysiwyg"]["table_props"] = "Tabel eigenschappen";
 $GLOBALS["l_wysiwyg"]["insert_table"] = "Voeg tabel toe";
 $GLOBALS["l_wysiwyg"]["edit_stylesheet"] = "Wijzig stylesheet";
@@ -96,7 +96,7 @@ $GLOBALS["l_wysiwyg"]["edit_stylesheet"] = "Wijzig stylesheet";
  * THE REST
  *****************************************************************************/
 
-$GLOBALS["l_wysiwyg"]["url"] = "URL"; 
+$GLOBALS["l_wysiwyg"]["url"] = "URL"; // TRANSLATE
 $GLOBALS["l_wysiwyg"]["image_url"] = "Afbeeldings URL";
 $GLOBALS["l_wysiwyg"]["width"] = "Breedte";
 $GLOBALS["l_wysiwyg"]["height"] = "Hoogte";
@@ -115,7 +115,7 @@ $GLOBALS["l_wysiwyg"]["cellpadding"] = "Cel padding";
 $GLOBALS["l_wysiwyg"]["rows"] = "Rijen";
 $GLOBALS["l_wysiwyg"]["cols"] = "Kolommen";
 $GLOBALS["l_wysiwyg"]["edit_table"] = "Wijzig tabel";
-$GLOBALS["l_wysiwyg"]["colspan"] = "Colspan"; 
+$GLOBALS["l_wysiwyg"]["colspan"] = "Colspan"; // TRANSLATE
 $GLOBALS["l_wysiwyg"]["halignment"] = "Horiz. uitlijnen"; // has to be short !!
 $GLOBALS["l_wysiwyg"]["valignment"] = "Vert. uitlijnen";  // has to be short !!
 $GLOBALS["l_wysiwyg"]["color"] = "Color";
@@ -123,7 +123,7 @@ $GLOBALS["l_wysiwyg"]["choosecolor"] = "Kies kleur";
 $GLOBALS["l_wysiwyg"]["parent_class"] = "Hoofdgebied";
 $GLOBALS["l_wysiwyg"]["region_class"] = "Alleen selectie";
 $GLOBALS["l_wysiwyg"]["edit_classname"] = "Wijzig stylesheet class naam";
-$GLOBALS["l_wysiwyg"]["emaillink"] = "E-Mail"; 
+$GLOBALS["l_wysiwyg"]["emaillink"] = "E-Mail"; // TRANSLATE
 $GLOBALS["l_wysiwyg"]["clean_word"] = "Leeg MS Word code";
 $GLOBALS["l_wysiwyg"]["addcaption"] = "Voeg onderschrift toe";
 $GLOBALS["l_wysiwyg"]["removecaption"] = "Verwijder onderschrift";
@@ -135,7 +135,7 @@ $GLOBALS["l_wysiwyg"]["noshade"] = "Geen schaduw";
 $GLOBALS["l_wysiwyg"]["strikethrough"] = "Haal door";
 
 $GLOBALS["l_wysiwyg"]["nothumb"] = "geen thumbnail";
-$GLOBALS["l_wysiwyg"]["thumbnail"] = "Thumbnail"; 
+$GLOBALS["l_wysiwyg"]["thumbnail"] = "Thumbnail"; // TRANSLATE
 
 $GLOBALS["l_wysiwyg"]["acronym"] = "Acroniem";
 $GLOBALS["l_wysiwyg"]["acronym_title"] = "Wijzig Acroniem";

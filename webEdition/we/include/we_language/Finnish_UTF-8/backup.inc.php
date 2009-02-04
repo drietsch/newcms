@@ -203,8 +203,9 @@ $l_backup['settings_info'] = 'webEdition -järjestelmän asetukset.';
 $l_backup['temporary_info'] = 'Tiedot julkaisemittomista dokumenteista ja objekteista.';
 $l_backup['export_info'] = 'Tiedot vientimoduulista.';
 $l_backup['glossary_info'] = 'Data from the glossary.'; // TRANSLATE
-$l_backup['versions_info'] = 'Data from Versioning.';
-$l_backup['versions_binarys_info'] = 'This option could take some time and memory because the folder /webEdition/we/versions/ could be very large. It is recommended to save this folder manually.';
+$l_backup['versions_info'] = 'Data from Versioning.'; // TRANSLATE
+$l_backup['versions_binarys_info'] = 'This option could take some time and memory because the folder /webEdition/we/versions/ could be very large. It is recommended to save this folder manually.'; // TRANSLATE
+
 
 $l_backup["import_voting_data"] = "Palauta äänestyksen data";
 $l_backup["export_voting_data"] = "Tallenna äänestyksen data";

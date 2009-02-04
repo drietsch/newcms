@@ -24,11 +24,11 @@
 /**
  * Language file: object_classfoldersearch.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 
-$l_object_classfoldersearch["AB"] = "Workspace"; 
-$l_object_classfoldersearch["META"] = "Meta-Info"; 
+$l_object_classfoldersearch["AB"] = "Workspace"; // TRANSLATE
+$l_object_classfoldersearch["META"] = "Meta-Info"; // TRANSLATE
 $l_object_classfoldersearch["FELDER"] = "Velden";
 
 $l_object_classfoldersearch["Verzeichnis"] = "Directorie";
@@ -43,7 +43,7 @@ $l_object_classfoldersearch["wirklichveroeffentlichen"] = "Hiermee publiceert u 
 $l_object_classfoldersearch["wirklichparken"] = "Hiermee depubliceert u de geselecteerde objecten! Weet u het zeker?";
 
 $l_object_classfoldersearch["zeige"] = "Toon";
-$l_object_classfoldersearch["Objekt"] = "Object"; 
+$l_object_classfoldersearch["Objekt"] = "Object"; // TRANSLATE
 $l_object_classfoldersearch["Arbeitsbereiche"] = "Werkgebied";
 $l_object_classfoldersearch["xtraArbeitsbereiche"] = "Extra werkgebieden";
 $l_object_classfoldersearch["Veroeffentlicht"] = "Gepubliceerd";

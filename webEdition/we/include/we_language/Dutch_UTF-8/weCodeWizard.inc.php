@@ -21,12 +21,12 @@
  */
 
 
-$l_weCodeWizard["snippets"] = "Snippets";
+$l_weCodeWizard["snippets"] = "Snippets"; // TRANSLATE
 $l_weCodeWizard["standard_snippets"] = "Standaard";
-$l_weCodeWizard["custom_snippets"] = "Aangepast"; 
+$l_weCodeWizard["custom_snippets"] = "Aangepast";
 
 // Names of the Folders
-$l_weCodeWizard['information']['forms']['foldername'] = "Formulieren"; 
-$l_weCodeWizard['information']['overviews']['foldername'] = "Overzichten"; 
+$l_weCodeWizard['information']['forms']['foldername'] = "Formulieren";
+$l_weCodeWizard['information']['overviews']['foldername'] = "Overzichten";
 
 ?>

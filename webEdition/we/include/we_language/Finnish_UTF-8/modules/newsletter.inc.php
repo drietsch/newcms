@@ -128,6 +128,7 @@ $l_newsletter["log_sending"] = "Kirjoita lokiin sähköpostia lähetettäessä."
 $l_newsletter["default_sender"] = "Lähettäjän oletusosoite";
 $l_newsletter["default_reply"] = "Vastaajan oletusosoite";
 $l_newsletter["default_htmlmail"] = "Sähköposti oletustyyppi on HTML.";
+$l_newsletter["isEmbedImages"] = "Embed images"; // TRANSLATE
 $l_newsletter["ask_to_preserve"] = "Edellinen uutiskirjeen lähetys ei onnistunu!<br>Jos tallennat uutiskirjeen, et voi jatkaa uutiskirjeen lähetystä!<br>Haluatko jatkaa?";
 $l_newsletter["log_save_newsletter"] = "Uutiskirje on tallennettu.";
 $l_newsletter["log_start_send"] = "Aloita uutiskirjeen lähetys.";

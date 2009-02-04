@@ -32,8 +32,8 @@ $l_voting['menu_new'] = 'Nieuw';
 $l_voting['menu_save'] = 'Bewaar';
 $l_voting['menu_delete'] = 'Verwijder';
 $l_voting['menu_exit'] = 'Sluit';
-$l_voting['menu_info'] = 'Info'; 
-$l_voting['menu_help'] = 'Help'; 
+$l_voting['menu_info'] = 'Info'; // TRANSLATE
+$l_voting['menu_help'] = 'Help'; // TRANSLATE
 $l_voting['headline'] = 'Namen en achternamen';
 
 
@@ -57,14 +57,14 @@ $l_voting['answer_empty'] = 'Eén of meer antwoorden zijn leeg, voer a.u.b een a
 $l_voting['invalid_score'] = 'De uitslag moet een nummer zijn, probeer het a.u.b opnieuw!';
 
 $l_voting['headline_revote'] = 'Controle over herstemming';
-$l_voting['headline_help'] = 'Help'; 
+$l_voting['headline_help'] = 'Help'; // TRANSLATE
 
 $l_voting['inquiry'] = 'Onderzoek';
 
 $l_voting['browser_vote'] = 'Browser kan niet opnieuw stemmen voor';
 $l_voting['one_hour'] = '1 uur';
-$l_voting['feethteen_minutes'] = '15 min.'; 
-$l_voting['thirthty_minutes'] = '30 min.'; 
+$l_voting['feethteen_minutes'] = '15 min.'; // TRANSLATE
+$l_voting['thirthty_minutes'] = '30 min.'; // TRANSLATE
 $l_voting['one_day'] = '1 dag';
 $l_voting['never'] = '--nooit--';
 $l_voting['always'] = '--altijd--';
@@ -118,13 +118,13 @@ $l_voting['options'] = 'Opties';
 $l_voting['control'] = 'Controleer';
 $l_voting['data_deleted_info'] = 'De gegevens zijn verwijderd!';
 $l_voting['time'] = 'Tijd';
-$l_voting['ip'] = 'IP'; 
-$l_voting['user_agent'] = 'User-agent'; 
-$l_voting['cookie'] = 'Cookie'; 
+$l_voting['ip'] = 'IP'; // TRANSLATE
+$l_voting['user_agent'] = 'User-agent'; // TRANSLATE
+$l_voting['cookie'] = 'Cookie'; // TRANSLATE
 $l_voting['delete_ipdata_question'] = 'U wilt alle opgeslagen IP gegevens verwijderen. Weet u dit zeker?';
 $l_voting['delete_log_question'] = 'U wilt alle Stemmings Log Invoeren verwijderen.  Weet u dit zeker?';
 $l_voting['delete_ipdata_text'] = 'De opgeslagen gegevens beslaan %s Bytes van het geheugen. Verwijder deze d.m.v. de knop \Verwijder\'. Neem in overweging dat alle opgeslagen IP gegevens verwijderd worden waardoor de stemming herhaald kan worden.';
-$l_voting['status'] = 'Status';
+$l_voting['status'] = 'Status'; // TRANSLATE
 $l_voting['log_success'] = 'Gelukt';
 $l_voting['log_error'] = 'Fout';
 $l_voting['log_error_active'] = 'Fout: niet actief';

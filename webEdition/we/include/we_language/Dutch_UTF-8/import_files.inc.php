@@ -24,7 +24,7 @@
 /**
  * Language file: import_files.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 $GLOBALS["l_import_files"]["destination_dir"] = "Doel directorie";
 $GLOBALS["l_import_files"]["file"] = "Bestand";
@@ -55,16 +55,16 @@ $GLOBALS["l_import_files"]["root_dir_1"] = "U heeft de hoofd directory van de we
 $GLOBALS["l_import_files"]["root_dir_2"] = "U heeft de hoofd directory van de web server gespecificeerd als de doel directory. Weet u zeker dat u direct wilt importeren naar de hoofd directory?";
 $GLOBALS["l_import_files"]["root_dir_3"] = "U heeft de hoofd directory van de web server gespecificeerd als de bron directory zowel als de doel directory. Weet u zeker dat u alle content van de hoofd directory wilt importeren naar de hoofd directory?";
 
-$GLOBALS["l_import_files"]["thumbnails"] = "Thumbnails";
+$GLOBALS["l_import_files"]["thumbnails"] = "Thumbnails"; // TRANSLATE
 $GLOBALS["l_import_files"]["make_thumbs"] = "Maak<br>Thumbnails aan";
 $GLOBALS["l_import_files"]["image_options_open"] = "Toon afbeeldings functies";
 $GLOBALS["l_import_files"]["image_options_close"] = "Verberg afbeeldings functies";
 $GLOBALS["l_import_files"]["add_description_nogdlib"] = "De GD Bibliotheek moet geïnstalleerd worden op uw server om de afbeeldings functies goed te laten functioneren.!";
 
-$GLOBALS["l_import_files"]["noFiles"] = "Er bevinden zich geen bestanden in de opgegeven bron directory welke correspondeert met de opgegeven importeer instellingen!"; 
+$GLOBALS["l_import_files"]["noFiles"] = "Er bevinden zich geen bestanden in de opgegeven bron directory welke correspondeert met de opgegeven importeer instellingen!";
 $GLOBALS["l_import_files"]["emptyDir"] = "De bron directory is leeg!";
 
-$GLOBALS["l_import_files"]["metadata"] = "Meta data";
-$GLOBALS["l_import_files"]["import_metadata"] = "Import meta data from file";
+$GLOBALS["l_import_files"]["metadata"] = "Meta data"; // TRANSLATE
+$GLOBALS["l_import_files"]["import_metadata"] = "Import meta data from file"; // TRANSLATE
 
 ?>

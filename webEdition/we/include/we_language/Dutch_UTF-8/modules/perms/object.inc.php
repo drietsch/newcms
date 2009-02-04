@@ -24,10 +24,10 @@
 /**
  * Language file: object.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 
-$l_perm["object"]["perm_group_title"] = "DB/Object Module";
+$l_perm["object"]["perm_group_title"] = "DB/Object Module"; // TRANSLATE
 
 $l_perm["object"]["CAN_SEE_OBJECTFILES"] = "De gebruiker is bevoegd om objecten te bekijken.";
 $l_perm["object"]["NEW_OBJECTFILE"] = "De gebruiker is bevoegd om objecten aan te maken.";

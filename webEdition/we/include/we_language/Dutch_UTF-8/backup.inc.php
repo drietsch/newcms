@@ -147,9 +147,9 @@ $l_backup["import_options"] = "Selecteer de data die hersteld moet worden.";
 $l_backup["extern_exp"] = "Deze optie kan enige tijd in beslag nemen en kan leiden tot systeem gerelateerde fouten.";
 $l_backup["unselect_dep2"] = "U heeft '%s' gedeselecteerd. De volgende opties worden automatisch gedeselecteerd.";
 $l_backup["unselect_dep3"] = "Deze opties kunnen opnieuw geselecteerd worden.";
-$l_backup["gzip"] = "gzip";
-$l_backup["zip"] = "zip";
-$l_backup["bzip"] = "bzip";
+$l_backup["gzip"] = "gzip"; // TRANSLATE
+$l_backup["zip"] = "zip"; // TRANSLATE
+$l_backup["bzip"] = "bzip"; // TRANSLATE
 $l_backup["none"] = "geen";
 $l_backup["cannot_split_file"] = "Kan bestand '%s' niet voorbereiden op herstel!";
 $l_backup["cannot_split_file_ziped"] = "Het bestand is gecomprimeerd met een niet ondersteunde compressie methode.";
@@ -172,16 +172,16 @@ $l_backup["import_configuration_data"]="Herstel configuratie";
 $l_backup["import_export_data"] = "Herstel export data";
 $l_backup["export_export_data"] = "Bewaar export data";
 
-$l_backup["export_versions_data"] = "Save version data";
-$l_backup["export_versions_binarys_data"] = "Save Version-Binary-Files";
-$l_backup["import_versions_data"] = "Restore version data";
-$l_backup["import_versions_binarys_data"] = "Restore Version-Binary-Files";
+$l_backup["export_versions_data"] = "Save version data"; // TRANSLATE
+$l_backup["export_versions_binarys_data"] = "Save Version-Binary-Files"; // TRANSLATE
+$l_backup["import_versions_data"] = "Restore version data"; // TRANSLATE
+$l_backup["import_versions_binarys_data"] = "Restore Version-Binary-Files"; // TRANSLATE
 
-$l_backup["export_versions_dep"] = "You have selected the option 'Save version data'. The version data need the documents, objects and version-binary-files and because of that, 'Save documents and templates', 'Save object and classes' and 'Save Version-Binary-Files' has been automatically selected.";
-$l_backup["import_versions_dep"] = "You have selected the option 'Restore version data'. The version data need the documents data, object data an version-binary-files and because of that, 'Restore documents and templates', 'Restore objects and classes and 'Restore Version-Binary-Files' has been automatically selected.";
+$l_backup["export_versions_dep"] = "You have selected the option 'Save version data'. The version data need the documents, objects and version-binary-files and because of that, 'Save documents and templates', 'Save object and classes' and 'Save Version-Binary-Files' has been automatically selected."; // TRANSLATE
+$l_backup["import_versions_dep"] = "You have selected the option 'Restore version data'. The version data need the documents data, object data an version-binary-files and because of that, 'Restore documents and templates', 'Restore objects and classes and 'Restore Version-Binary-Files' has been automatically selected."; // TRANSLATE
 
-$l_backup["export_versions_binarys_dep"] = "You have selected the option 'Save Version-Binary-Files'. The Version-Binary-Files need the documents, objects and version data and because of that, 'Save documents and templates', 'Save object and classes' and 'Save version data' has been automatically selected.";
-$l_backup["import_versions_binarys_dep"] = "You have selected the option 'Restore Version-Binary-Files'. The Version-Binary-Files need the documents data, object data an version data and because of that, 'Restore documents and templates', 'Restore objects and classes and 'Restore version data' has been automatically selected.";
+$l_backup["export_versions_binarys_dep"] = "You have selected the option 'Save Version-Binary-Files'. The Version-Binary-Files need the documents, objects and version data and because of that, 'Save documents and templates', 'Save object and classes' and 'Save version data' has been automatically selected."; // TRANSLATE
+$l_backup["import_versions_binarys_dep"] = "You have selected the option 'Restore Version-Binary-Files'. The Version-Binary-Files need the documents data, object data an version data and because of that, 'Restore documents and templates', 'Restore objects and classes and 'Restore version data' has been automatically selected."; // TRANSLATE
 
 $l_backup["del_backup_confirm"] = "Wilt u het geselecteerde backup bestand verwijderen?";
 $l_backup["name_notok"] = "De bestandsnaam is niet juist!";
@@ -202,9 +202,9 @@ $l_backup['schedule_info'] = 'Planner data vanuit de Planner module .';
 $l_backup['settings_info'] = 'webEdition applicatie instellingen.';
 $l_backup['temporary_info'] = 'Gegevens vanuit ongepubliceerde documenten en objecten.';
 $l_backup['export_info'] = 'Gegevens vanuit de Export module.';
-$l_backup['glossary_info'] = 'Data from the glossary.';
-$l_backup['versions_info'] = 'Data from Versioning.';
-$l_backup['versions_binarys_info'] = 'This option could take some time and memory because the folder /webEdition/we/versions/ could be very large. It is recommended to save this folder manually.';
+$l_backup['glossary_info'] = 'Data from the glossary.'; // TRANSLATE
+$l_backup['versions_info'] = 'Data from Versioning.'; // TRANSLATE
+$l_backup['versions_binarys_info'] = 'This option could take some time and memory because the folder /webEdition/we/versions/ could be very large. It is recommended to save this folder manually.'; // TRANSLATE
 
 
 $l_backup["import_voting_data"] = "Herstel onderzoeksgegevens";
@@ -230,7 +230,7 @@ $l_backup['recover_option'] = 'Importeer opties';
 
 $l_backup['no_resource'] = 'Kritieke fout: Er zijn niet genoeg onderdelen om de backup af te ronden!';
 $l_backup['error_compressing_backup'] = 'Er is een fout opgetreden tijdens het comprimeren van de backup, waardoor de backup niet kon worden afgerond!';
-$l_backup['error_timeout'] = 'Er is een timeout opgetreden tijdens het aanmaken van de backup, waardoor de backup niet kon worden afgerond!'; 
+$l_backup['error_timeout'] = 'Er is een timeout opgetreden tijdens het aanmaken van de backup, waardoor de backup niet kon worden afgerond!';
 
 $l_backup["export_spellchecker_data"] = "Bewaar gegevens spellingscontrole";
 $l_backup["import_spellchecker_data"] = "Herstel gegevens spellingscontrole";
@@ -239,8 +239,8 @@ $l_backup['spellchecker_info'] = 'Gegevens voor spellingscontrole: instellingen,
 $l_backup["import_banner_data"] = "Herstel banner data";
 $l_backup["export_banner_data"] = "Bewaar banner data";
 
-$l_backup["export_glossary_data"] = "Save glossary data";
-$l_backup["import_glossary_data"] = "Restore glossary data";
+$l_backup["export_glossary_data"] = "Save glossary data"; // TRANSLATE
+$l_backup["import_glossary_data"] = "Restore glossary data"; // TRANSLATE
 
 $l_backup["protect"] = "Bescherm backup bestand";
 $l_backup["protect_txt"] = "Het backup bestand wordt beschermd tegen onbevoegde download met additionele php code. Deze bescherming vereist additionele schijfruimte voor het importeren!";
@@ -248,8 +248,9 @@ $l_backup["protect_txt"] = "Het backup bestand wordt beschermd tegen onbevoegde 
 $l_backup["recover_backup_unsaved_changes"] = "Enkele geopende bestanden bevatten niet bewaarde wijzigingen. Controleer deze a.u.b. voordat u verder gaat.";
 $l_backup["file_not_readable"] = "Het backup bestand is niet leesbaar. Controleer a.u.b. de rechten van het bestand.";
 
-$l_backup["tools_import_desc"] = "Here you can restore webEdition tools data. Please select the desired tools from the list.";
-$l_backup["tools_export_desc"] = "Here you can save webEdition tools data. Please select the desired tools from the list.";
+$l_backup["tools_import_desc"] = "Here you can restore webEdition tools data. Please select the desired tools from the list."; // TRANSLATE
+$l_backup["tools_export_desc"] = "Here you can save webEdition tools data. Please select the desired tools from the list."; // TRANSLATE
 
-$l_backup['ftp_hint'] = "Attention! Use the Binary mode for the download by FTP if the backup file is zip compressed! A download in ASCII 	mode destroys the file, so that it cannot be recovered!"; // translate
+$l_backup['ftp_hint'] = "Attention! Use the Binary mode for the download by FTP if the backup file is zip compressed! A download in ASCII 	mode destroys the file, so that it cannot be recovered!"; // TRANSLATE
+
 ?>

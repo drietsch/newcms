@@ -24,7 +24,7 @@
 /**
  * Language file: we_editor.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 $l_we_editor["doubble_field_alert"] = "Het veld '%s' bestaat al! Een veldnaam moet uniek zijn!";
 $l_we_editor["variantNameInvalid"] = "De naam van een artikel variant mag niet leeg zijn!";
@@ -89,7 +89,7 @@ $l_we_editor["text/css"]["we_filename_notValid"] = $l_we_editor["text/webedition
 $l_we_editor["text/css"]["we_filename_notAllowed"] = $l_we_editor["text/webedition"]["we_filename_notAllowed"];
 $l_we_editor["text/css"]["response_save_noperms_to_create_folders"] = $l_we_editor["text/webedition"]["response_save_noperms_to_create_folders"];
 
-$l_we_editor["text/js"]["response_save_ok"] = "Het JavaScript '%s'is succesvol bewaard!";
+$l_we_editor["text/js"]["response_save_ok"] = "The JavaScript '%s' has been successfully saved!";
 $l_we_editor["text/js"]["response_publish_ok"] = "Het JavaScript'%s' is succesvol gepubliceerd!";
 $l_we_editor["text/js"]["response_unpublish_ok"] = "Het JavaScript '%s' is succesvol gedepubliceerd!";
 $l_we_editor["text/js"]["response_save_notok"] = "Fout tijdens het bewaren van JavaScript '%s'!";
@@ -99,7 +99,7 @@ $l_we_editor["text/js"]["we_filename_notValid"] = $l_we_editor["text/webedition"
 $l_we_editor["text/js"]["we_filename_notAllowed"] = $l_we_editor["text/webedition"]["we_filename_notAllowed"];
 $l_we_editor["text/js"]["response_save_noperms_to_create_folders"] = $l_we_editor["text/webedition"]["response_save_noperms_to_create_folders"];
 
-$l_we_editor["text/plain"]["response_save_ok"] = "Het tekst bestand '%s' is succesvol bewaard!";
+$l_we_editor["text/plain"]["response_save_ok"] = "The text file '%s' has been successfully saved!";
 $l_we_editor["text/plain"]["response_publish_ok"] = "Het tekst bestand '%s' is succesvol gepubliceerd!";
 $l_we_editor["text/plain"]["response_unpublish_ok"] = "Het tekst bestand '%s' is succesvol gedepubliceerd!";
 $l_we_editor["text/plain"]["response_save_notok"] = "Fout tijdens het bewaren van tekst bestand '%s'!";
@@ -109,17 +109,17 @@ $l_we_editor["text/plain"]["we_filename_notValid"] = $l_we_editor["text/webediti
 $l_we_editor["text/plain"]["we_filename_notAllowed"] = $l_we_editor["text/webedition"]["we_filename_notAllowed"];
 $l_we_editor["text/plain"]["response_save_noperms_to_create_folders"] = $l_we_editor["text/webedition"]["response_save_noperms_to_create_folders"];
 
-$l_we_editor["text/xml"]["response_save_ok"] = "Het XML bestand '%s' is succesvol bewaard!";
+$l_we_editor["text/xml"]["response_save_ok"] = "The XML file '%s' has been successfully saved!";
 $l_we_editor["text/xml"]["response_publish_ok"] = "Het XML bestand '%s' is succesvol gepubliceerd!";
-$l_we_editor["text/xml"]["response_unpublish_ok"] = "Het XML bestand '%s' is succesvol gedepubliceerd!"; 
+$l_we_editor["text/xml"]["response_unpublish_ok"] = "Het XML bestand '%s' is succesvol gedepubliceerd!";
 $l_we_editor["text/xml"]["response_save_notok"] = "Fout tijdens opslaan van XML bestand '%s'!";
-$l_we_editor["text/xml"]["response_path_exists"] = "Het XML bestand '%s' kon niet bewaard worden omdat een ander document of directory zich op dezelfde locatie bevind!"; 
+$l_we_editor["text/xml"]["response_path_exists"] = "Het XML bestand '%s' kon niet bewaard worden omdat een ander document of directory zich op dezelfde locatie bevind!";
 $l_we_editor["text/xml"]["filename_empty"] = $l_we_editor["text/webedition"]["filename_empty"];
 $l_we_editor["text/xml"]["we_filename_notValid"] = $l_we_editor["text/webedition"]["we_filename_notValid"];
 $l_we_editor["text/xml"]["we_filename_notAllowed"] = $l_we_editor["text/webedition"]["we_filename_notAllowed"];
 $l_we_editor["text/xml"]["response_save_noperms_to_create_folders"] = $l_we_editor["text/webedition"]["response_save_noperms_to_create_folders"];
 
-$l_we_editor["folder"]["response_save_ok"] = "De directory '%s' is succesvol bewaard!";
+$l_we_editor["folder"]["response_save_ok"] = "The directory '%s' has been successfully saved!";
 $l_we_editor["folder"]["response_publish_ok"] = "De directory '%s' is succesvol gepubliceerd!";
 $l_we_editor["folder"]["response_unpublish_ok"] = "De directory '%s' is succesvol gedepubliceerd!";
 $l_we_editor["folder"]["response_save_notok"] = "Fout tijdens het bewaren van directory '%s'!";
@@ -139,7 +139,7 @@ $l_we_editor["image/*"]["we_filename_notValid"] = $l_we_editor["text/webedition"
 $l_we_editor["image/*"]["we_filename_notAllowed"] = $l_we_editor["text/webedition"]["we_filename_notAllowed"];
 $l_we_editor["image/*"]["response_save_noperms_to_create_folders"] = $l_we_editor["text/webedition"]["response_save_noperms_to_create_folders"];
 
-$l_we_editor["application/*"]["response_save_ok"] = "Het document '%s' is succesvol bewaard!";
+$l_we_editor["application/*"]["response_save_ok"] = "The document '%s' has been successfully saved!";
 $l_we_editor["application/*"]["response_publish_ok"] = "Het document '%s' is succesvol gepubliceerd!";
 $l_we_editor["application/*"]["response_unpublish_ok"] = "Het document '%s' is succesvol gedepubliceerd!";
 $l_we_editor["application/*"]["response_save_notok"] = "Fout tijdens het bewaren van document '%s'!";
@@ -148,7 +148,7 @@ $l_we_editor["application/*"]["filename_empty"] = $l_we_editor["text/webedition"
 $l_we_editor["application/*"]["we_filename_notValid"] = $l_we_editor["text/webedition"]["we_filename_notValid"];
 $l_we_editor["application/*"]["we_filename_notAllowed"] = $l_we_editor["text/webedition"]["we_filename_notAllowed"];
 $l_we_editor["application/*"]["response_save_noperms_to_create_folders"] = $l_we_editor["text/webedition"]["response_save_noperms_to_create_folders"];
-$l_we_editor["application/*"]["we_description_missing"] = "Voer a.u.b. een omschrijving in het 'Omschrijving' veld!";
+$l_we_editor["application/*"]["we_description_missing"] = "Please enter a desription in the 'Desription' field!";
 $l_we_editor["application/*"]["response_save_wrongExtension"] =  "Fout tijdens het bewaren van '%s' \\nDe bestands extensie '%s' is niet geldig voor andere bestanden!\\nMaak hier a.u.b. een HTML pagina voor aan!";
 
 $l_we_editor["application/x-shockwave-flash"]["response_save_ok"] = "De Flash film '%s' is succesvol bewaard!";
@@ -161,7 +161,7 @@ $l_we_editor["application/x-shockwave-flash"]["we_filename_notValid"] = $l_we_ed
 $l_we_editor["application/x-shockwave-flash"]["we_filename_notAllowed"] = $l_we_editor["text/webedition"]["we_filename_notAllowed"];
 $l_we_editor["application/x-shockwave-flash"]["response_save_noperms_to_create_folders"] = $l_we_editor["text/webedition"]["response_save_noperms_to_create_folders"];
 
-$l_we_editor["video/quicktime"]["response_save_ok"] = "De Quicktime film '%s' is succesvol bewaard!";
+$l_we_editor["video/quicktime"]["response_save_ok"] = "The Quicktime movie '%s' has been successfully saved!";
 $l_we_editor["video/quicktime"]["response_publish_ok"] = "De Quicktime film '%s' is succesvol gepubliceerd!";
 $l_we_editor["video/quicktime"]["response_unpublish_ok"] = "De Quicktime film '%s' is succesvol gedepubliceerd!";
 $l_we_editor["video/quicktime"]["response_save_notok"] = "Fout tijdens het bewaren van Quicktime film '%s'!";

@@ -29,7 +29,7 @@ $l_validation['available_services'] = 'Bestaande diensten';
 $l_validation['category'] = 'Categorie';
 $l_validation['service_name'] = 'Naam van de dienst';
 $l_validation['service'] = 'Dienst';
-$l_validation['host'] = 'Host';
+$l_validation['host'] = 'Host'; // TRANSLATE
 $l_validation['path'] = 'Pad';
 $l_validation['ctype'] = 'Soort inhoud';
 $l_validation['desc']['ctype'] = 'Kenmerk voor de doel server bij het bepalen van het soort aangeboden bestand (tekst/html of tekst/css)';
@@ -54,9 +54,9 @@ $l_validation['adjust_service'] = 'Stel validatie dienst in';
 $l_validation['art_custom'] = 'Vrije diensten';
 $l_validation['art_default'] = 'Vooraf gedefinieerde diensten';
 
-$l_validation['category_xhtml'] = '(X)HTML';
+$l_validation['category_xhtml'] = '(X)HTML'; // TRANSLATE
 $l_validation['category_links'] = 'Koppelingen';
-$l_validation['category_css'] = 'Cascading Style Sheets';
+$l_validation['category_css'] = 'Cascading Style Sheets'; // TRANSLATE
 $l_validation['category_accessibility'] = 'Toegankelijkheid';
 
 

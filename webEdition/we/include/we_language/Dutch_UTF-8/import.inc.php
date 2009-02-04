@@ -24,12 +24,12 @@
 /**
  * Language file: import.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 $l_import['title'] = 'Importeer Hulp';
-$l_import['wxml_import'] = 'webEdition XML import'; 
+$l_import['wxml_import'] = 'webEdition XML import'; // TRANSLATE
 $l_import['gxml_import'] = 'Generieke XML import';
-$l_import['csv_import'] = 'CSV import'; 
+$l_import['csv_import'] = 'CSV import'; // TRANSLATE
 $l_import['import'] = 'Bezig met importeren';
 $l_import['none'] = '-- geen --';
 $l_import['any'] = '-- geen --';
@@ -112,9 +112,9 @@ $l_import['gxml'] = 'Generiek XML';
 $l_import['data_import'] = 'Importeer data';
 $l_import['documents'] = 'Documenten';
 $l_import['objects'] = 'Objecten';
-$l_import['type'] = 'Type'; 
+$l_import['type'] = 'Type'; // TRANSLATE
 $l_import['template'] = 'Sjabloon';
-$l_import['class'] = 'Class'; 
+$l_import['class'] = 'Class'; // TRANSLATE
 $l_import['categories'] = 'Categorieën';
 $l_import['isDynamic'] = 'Genereer pagina dynamisch';
 $l_import['extension'] = 'Extensie';
@@ -131,8 +131,8 @@ $l_import['name'] = 'Naam';
 $l_import['auto'] = 'Automatisch';
 $l_import['asgnd'] = 'Toegekend';
 $l_import['pfx'] = 'Voorvoegsel';
-$l_import['pfx_doc'] = 'Document'; 
-$l_import['pfx_obj'] = 'Object';
+$l_import['pfx_doc'] = 'Document'; // TRANSLATE
+$l_import['pfx_obj'] = 'Object'; // TRANSLATE
 $l_import['rcd_fld'] = 'Dataset veld';
 $l_import['import_settings'] = 'Import instellingen';
 $l_import['xml_valid_1'] = 'Het XML bestand is geldig en bevat';
@@ -143,9 +143,9 @@ $l_import['not_well_formed'] = 'Het XML document is niet goed gevormd en kan nie
 $l_import['missing_child_node'] = 'Het XML document is goed gevormd, maar bevat geen XML nodes en kan daardoor niet geïmporteerd worden.';
 $l_import['select_elements'] = 'Kies a.u.b. de te importeren datasets.';
 $l_import['num_elements'] = 'Kies a.u.b. het aantal datasets van 1 tot ';
-$l_import['xml_invalid'] = ''; 
+$l_import['xml_invalid'] = ''; // TRANSLATE
 $l_import['option_select'] = 'Selectie..';
-$l_import['num_data_sets'] = 'Datasets:'; 
+$l_import['num_data_sets'] = 'Datasets:'; // TRANSLATE
 $l_import['to'] = 'tot';
 $l_import['assign_record_fields'] = 'Ken data velden toe';
 $l_import['we_fields'] = 'webEdition velden';
@@ -162,7 +162,7 @@ $l_import['field_delimiter'] = 'Scheidingsteken';
 $l_import['comma'] = ', {komma}';
 $l_import['semicolon'] = '; {punt komma}';
 $l_import['colon'] = ': {dubbele punt}';
-$l_import['tab'] = "\\t {tab}"; 
+$l_import['tab'] = "\\t {tab}"; // TRANSLATE
 $l_import['space'] = '  {spatie}';
 $l_import['text_delimiter'] = 'Tekst scheiding';
 $l_import['double_quote'] = '" {dubbele quote}';
@@ -191,13 +191,13 @@ $l_import['handle_document_options'] = 'Documenten';
 $l_import['handle_template_options'] = 'Sjablonen';
 $l_import['handle_object_options'] = 'Objecten';
 $l_import['handle_class_options'] = 'Classen';
-$l_import["handle_doctype_options"] = "Doctype"; 
+$l_import["handle_doctype_options"] = "Doctype"; // TRANSLATE
 $l_import["handle_category_options"] = "Categorie";
-$l_import['log'] = 'Details'; 
+$l_import['log'] = 'Details'; // TRANSLATE
 $l_import['start_import'] = 'Begin import';
 $l_import['prepare'] = 'Bereid voor...';
 $l_import['update_links'] = 'Werk koppelingen bij...';
-$l_import['doctype'] = 'Document-Type';
+$l_import['doctype'] = 'Document-Type'; // TRANSLATE
 $l_import['category'] = 'Categorie';
 $l_import['end_import'] = 'Importeren voltooid';
 
@@ -224,7 +224,7 @@ $l_import['import_navigation'] = 'Importeer navigatie';
 $l_import['weNavigation'] = 'Navigatie';
 $l_import['navigation_desc'] = 'Selecteer de directorie waar de navigatie geïmporteerd word.';
 $l_import['weNavigationRule'] = 'Navigatie regel';
-$l_import['weThumbnail'] = 'Thumbnail'; 
+$l_import['weThumbnail'] = 'Thumbnail'; // TRANSLATE
 $l_import['import_thumbnails'] = 'Importeer thumbnails';
 $l_import['rebuild'] = 'Herbouw';
 $l_import['rebuild_txt'] = 'Automatisch herbouwen';

@@ -24,11 +24,11 @@
 /**
  * Language file: workflow.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 
-$l_button["in_workflow"]["value"] = "In workflow"; 
-$l_button["in_workflow"]["alt"] = "In workflow"; 
+$l_button["in_workflow"]["value"] = "In workflow"; // TRANSLATE
+$l_button["in_workflow"]["alt"] = "In workflow"; // TRANSLATE
 $l_button["in_workflow"]["width"] = 92;
 
 $l_button["decline"]["value"] = "Decline";

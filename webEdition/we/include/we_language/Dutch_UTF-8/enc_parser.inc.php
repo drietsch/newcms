@@ -23,9 +23,9 @@
 /**
  * Language file: enc_parser.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
-$GLOBALS["l_parser"]["delete"] = "Delete";  // TRANSLATE
+$GLOBALS["l_parser"]["delete"] = "Delete"; // TRANSLATE
 $GLOBALS["l_parser"]["wrong_type"] = "Waarde van \"type\" is ongeldig!";
 $GLOBALS["l_parser"]["error_in_template"] = "sjabloon fout!";
 $GLOBALS["l_parser"]["start_endtag_missing"] = "Eén of meerdere <code>&lt;we:%s&gt;</code> tags missen een begin of eind tag!";
@@ -34,7 +34,7 @@ $GLOBALS["l_parser"]["else_start"] = "Er is een <code>&lt;we:else/&gt;</code> ta
 $GLOBALS["l_parser"]["else_end"] = "Er is een <code>&lt;we:else/&gt;</code> tag zonder <code>&lt;/we:if...&gt;</code> een eind tag!";
 $GLOBALS["l_parser"]["attrib_missing"] = "Het attribuut '%s' van de tag <code>&lt;we:%s&gt;</code> ontbreekt of is leeg!";
 $GLOBALS["l_parser"]["attrib_missing2"] = "Het attribuut '%s' van de tag <code>&lt;we:%s&gt;</code> ontbreekt!";
-$GLOBALS["l_parser"]["missing_open_tag"] = "<code>&lt;%s&gt;</code>: De openings tag ontbreekt."; 
+$GLOBALS["l_parser"]["missing_open_tag"] = "<code>&lt;%s&gt;</code>: De openings tag ontbreekt.";
 $GLOBALS["l_parser"]["missing_close_tag"] = "<code>&lt;%s&gt;</code>: De sluit tag ontbreekt.";
 $GLOBALS["l_parser"]["name_empty"] = "De naam van de tag <code>&lt;we:%s&gt;</code> is leeg!";
 $GLOBALS["l_parser"]["invalid_chars"] =  "De naam van de tag <code>&lt;we:%s&gt;</code> bevat ongeldige karakters. Alleen alphabetische karakters, nummers, '-' en '_' zijn toegestaan!";

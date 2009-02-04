@@ -24,7 +24,7 @@
 /**
  * Language file: messaging.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 
 $l_messaging['done'] = "Klaar";
@@ -32,7 +32,7 @@ $l_messaging['new_messages'] = "Nieuwe berichten";
 $l_messaging['new_tasks'] = "Nieuwe taken";
 
 $l_messaging['wintitle'] = "Berichten Systeem - Taak";
-$l_messaging['updatestatus'] = "Update status";
+$l_messaging['updatestatus'] = "Update status"; // TRANSLATE
 $l_messaging["search_todos"] = "Zoek taken";
 $l_messaging['Mitteilungen'] = "Berichten";
 $l_messaging['Gesendet'] = "Verstuurd";
@@ -46,7 +46,7 @@ $l_messaging['type_message'] = "Bericht";
 $l_messaging['userid_not_found'] = "Gebruikers ID niet gevonden";
 $l_messaging['username_not_found'] = 'Gebruikersnaam niet gevonden.';
 
-$l_messaging["save_changed_folder"] = "De map is gewijzigd.\\nWilt u de wijziging bewaren?"; 
+$l_messaging["save_changed_folder"] = "De map is gewijzigd.\\nWilt u de wijziging bewaren?";
 
 $l_messaging['no_inbox_folder'] = 'Geen inbox map.';
 $l_messaging['no_done_folder'] = 'Map "Gedaan"niet gedefinieerd voor deze gebruiker!';
@@ -59,7 +59,7 @@ $l_messaging['parent_folder'] = 'Hoofdmap';
 
 $l_messaging['update_successful'] = 'Update succesvol.';
 $l_messaging['error_occured'] = 'Er is een fout opgetreden.';
-$l_messaging['type'] = 'Type'; 
+$l_messaging['type'] = 'Type'; // TRANSLATE
 $l_messaging['cant_paste'] = 'U kunt niet plakken naar deze map!';
 $l_messaging['src_class_ne_trgt_class'] = 'Bron class is anders dan doel classe!';
 $l_messaging['no_selection'] = 'Geen bericht geselecteerd!';
@@ -88,8 +88,8 @@ $l_messaging['current_assignee'] = 'Toegekend aan';
 $l_messaging['subject'] = 'Onderwerp';
 $l_messaging['sender'] = 'Verzender';
 $l_messaging['content'] = 'Inhoud';
-$l_messaging['deadline'] = 'Deadline'; 
-$l_messaging['status'] = 'Status';
+$l_messaging['deadline'] = 'Deadline'; // TRANSLATE
+$l_messaging['status'] = 'Status'; // TRANSLATE
 $l_messaging['priority'] = 'Prioriteit';
 $l_messaging['comment'] = 'Commentaar';
 $l_messaging['message'] = 'Bericht';

@@ -24,7 +24,7 @@
 /**
  * Language file: users.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 $l_users["user_same"] = "De eigenaar kan niet verwijderd worden!";
 $l_users["grant_owners_ok"] = "Eigenaren zijn succesvol gewijzigd!";
@@ -85,7 +85,7 @@ $l_users["country"] = "land";
 $l_users["tel_pre"] = "Telefoon kerncijfer";
 $l_users["fax_pre"] = "Fax kerncijfer";
 $l_users["telephone"] = "Telefoon";
-$l_users["fax"] = "Fax"; 
+$l_users["fax"] = "Fax"; // TRANSLATE
 $l_users["mobile"] = "Mobiel";
 $l_users["email"] = "Email";
 $l_users["general_data"] = "Algemene data";
@@ -99,17 +99,17 @@ $l_users["geaendert_von"] = "Gewijzigd door";
 $l_users["geaendert_am"] = "Gewijzigd bij";
 $l_users["angelegt_am"] = "Opgezet bij";
 $l_users["angelegt_von"] = "Opgezet door";
-$l_users["status"] = "Status"; 
+$l_users["status"] = "Status"; // TRANSLATE
 $l_users["value"] = " Waarde ";
 $l_users["gesperrt"] = "Beperkt";
-$l_users["freigegeben"] = "open";
+$l_users["freigegeben"] = "open"; // TRANSLATE
 $l_users["gelöscht"] = "verwijder";
 $l_users["ohne"] = "zonder";
 $l_users["user"] = "Gebruiker";
 $l_users["usertyp"] = "Type gebruiker";
-$l_users["search"] = "Search"; // TRANSLATE
-$l_users["search_results"] = "Zoek resultaat";
-$l_users["search_for"] = "Search for"; // TRANSLATE
+$l_users["search"] = "Search";
+$l_users["search_result"] = "Ergebnis"; // TRANSLATE
+$l_users["search_for"] = "Search for";
 $l_users["inherit"] = "Verkrijg rechten van hoofd groep.";
 $l_users["inherit_ws"] = "Verkrijg documenten werkgebied van hoofd groep.";
 $l_users["inherit_wst"] = "Verkrijg sjabloon werkgebied van hoofd groep.";
@@ -131,7 +131,7 @@ $l_users["delete_user_same"] = "U kunt niet uw eigen account verwijderen.";
 $l_users["delete_group_user_same"] = "U kunt niet uw eigen groep verwijderen.";
 
 $l_users["login_denied"] = "Login denied"; // TRANSLATE
-$l_users["workspaceFieldError"] = "FOUT: Ongeldige workspace invoer!"; 
-$l_users["noGroupError"] = "FOUT: Ongeldige invoer in field groep!"; 
+$l_users["workspaceFieldError"] = "FOUT: Ongeldige workspace invoer!";
+$l_users["noGroupError"] = "FOUT: Ongeldige invoer in field groep!";
 
 ?>

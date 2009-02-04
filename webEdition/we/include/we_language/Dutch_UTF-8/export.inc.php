@@ -24,7 +24,7 @@
 /**
  * Language file: export.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 $l_export["save_changed_export"] = "Export has been changed.\\nDo you want to save your changes?"; // TRANSLATE
 $l_export["auto_selection"] = "Automatische selectie";
@@ -49,7 +49,7 @@ $l_export["download"] = "Klik dan hier a.u.b.";
 $l_export["download_failed"] = "Of het gekozen bestand bestaat niet, of u heeft niet de juiste rechten om het te downloaden.";
 $l_export["file_format"] = "Bestandsformaat";
 $l_export["export_to"] = "Exporteer naar";
-$l_export["export_to_server"] = "Server";
+$l_export["export_to_server"] = "Server"; // TRANSLATE
 $l_export["export_to_local"] = "Lokale harde schijf";
 $l_export["cdata"] = "Codering";
 $l_export["export_xml_cdata"] = "Voeg CDATA secties toe";
@@ -61,8 +61,8 @@ $l_export["classname"] = "Objecten of classen";
 $l_export["dir"] = "Directorie";
 $l_export["categories"] = "Categorieën";
 $l_export["wizard_title"] = "Exporteer Hulp";
-$l_export["xml_format"] = "XML";
-$l_export["csv_format"] = "CSV";
+$l_export["xml_format"] = "XML"; // TRANSLATE
+$l_export["csv_format"] = "CSV"; // TRANSLATE
 $l_export["csv_delimiter"] = "Baken af";
 $l_export["csv_enclose"] = "Omsluit karakter";
 $l_export["csv_escape"] = "Verwijder karakter";
@@ -76,7 +76,7 @@ $l_export["generic_export"] = "Generieke export";
 $l_export["title"] = "Exporteer Hulp";
 $l_export["gxml_export"] = "Generieke XML export";
 $l_export["txt_gxml_export"] = "Exporteer webEdition documenten en objecten naar een \"plat\" XML bestand (3 niveau).";
-$l_export["csv_export"] = "CSV export";
+$l_export["csv_export"] = "CSV export"; // TRANSLATE
 $l_export["txt_csv_export"] = "Exporteer webEdition objecten naar een CSV bestand (komma gescheiden waardes).";
 $l_export["csv_params"] = "Instellingen";
 $l_export["error"] = "Het exporteer proces was niet succesvol!";
@@ -88,12 +88,12 @@ $l_export["error_download_failed"] = "Het downloaden van het export bestand is m
 $l_export["comma"] = ", {komma}";
 $l_export["semicolon"] = "; {punt komma}";
 $l_export["colon"] = ": {dubbele punt}";
-$l_export["tab"] = "\\t {tab}";
+$l_export["tab"] = "\\t {tab}"; // TRANSLATE
 $l_export["space"] = "  {spatie}";
 $l_export["double_quote"] = "\" {dubbele aanhalingstekens}";
 $l_export["single_quote"] = "' {enkele aanhalingsteken}";
-$l_export['we_export'] = 'webEdition export';
-$l_export['wxml_export'] = 'webEdition XML export';
+$l_export['we_export'] = 'webEdition export'; // TRANSLATE
+$l_export['wxml_export'] = 'webEdition XML export'; // TRANSLATE
 $l_export['txt_wxml_export'] = 'Exporteren van webEdition documenten, sjablonen, objecten en classen volgens de webEdition specifieke DTD (document type definitie).';
 
 $l_export['options'] = 'Opties';
@@ -105,17 +105,17 @@ $l_export['handle_document_linked'] = 'Exporteer gekoppelde documenten';
 $l_export['handle_object_options'] = 'Objecten';
 $l_export['handle_def_classes'] = 'Exporteer standaard classes';
 $l_export['handle_object_includes'] = 'Exporteer ingevoegde objecten';
-$l_export['handle_classes_options'] = 'Classes';
+$l_export['handle_classes_options'] = 'Classes'; // TRANSLATE
 $l_export['handle_class_defs'] = 'Standaard waarde';
 $l_export['handle_object_embeds'] = 'Exporteer embedded objecten';
 $l_export['handle_doctype_options'] = 'Doctypes/<br>Categoriën/<br>Navigatie';
-$l_export['handle_doctypes'] = 'Doctypes'; 
+$l_export['handle_doctypes'] = 'Doctypes'; // TRANSLATE
 $l_export['handle_categorys'] = 'Categoriën';
 $l_export['export_depth'] = 'Exporteer diepte';
 $l_export['to_level'] = 'naar niveau';
 $l_export['select_export'] ='Om een invoer te exporteren, markeer a.u.b. het refererende check box in de boom structuur. Belangrijk: Alle gemarkeerde onderdelen uit alle takken worden gexporteerd en wanneer u een directory exporteert worden alle documenten binnen deze directory ook gexporteerd!';
 $l_export['templates'] = 'Sjablonen';
-$l_export['classes'] = 'Classes';
+$l_export['classes'] = 'Classes'; // TRANSLATE
 
 $l_export['nothing_to_delete'] = 'Er is niks om te verwijderen.';
 $l_export['nothing_to_save'] = 'Er is niks om te bewaren!';
@@ -132,10 +132,10 @@ $l_export['save_to'] = 'Bewaar naar:';
 $l_export['selection'] = 'Selectie';
 $l_export['save_ok'] = 'Export is bewaard.';
 $l_export['save_group_ok'] = 'Groep is bewaard.';
-$l_export['log'] = 'Details';
+$l_export['log'] = 'Details'; // TRANSLATE
 $l_export['start_export'] = 'Begin export';
 $l_export['prepare'] = 'Bereid export voor...';
-$l_export['doctype'] = 'Document-Type';
+$l_export['doctype'] = 'Document-Type'; // TRANSLATE
 $l_export['category'] = 'Categorie';
 $l_export['end_export'] = 'Export voltooid';
 $l_export['newFolder'] = "Nieuwe Groep";
@@ -160,8 +160,8 @@ $l_export['txt_exportdeep_options'] = 'De export diepte definieert het niveau vo
 $l_export['name_empty'] = 'De naam kan niet leeg zijn!';
 $l_export['name_exists'] = 'De naam bestaat al!';
 
-$l_export['help'] = 'Help'; 
-$l_export['info'] = 'Info';
+$l_export['help'] = 'Help'; // TRANSLATE
+$l_export['info'] = 'Info'; // TRANSLATE
 $l_export['path_nok'] = 'Het pad is niet correct!';
 
 $l_export['must_save'] = "De export is gewijzigd.\\nU moet de export data bewaren voordat u kunt exporteren!";
@@ -173,9 +173,9 @@ $l_export['weBinary'] = 'Bestand';
 $l_export['handle_navigation'] = 'Navigatie';
 $l_export['weNavigation'] = 'Navigatie';
 $l_export['weNavigationRule'] = 'Navigatie regel';
-$l_export['weThumbnail'] = 'Thumbnails'; 
-$l_export['handle_thumbnails'] = 'Thumbnails'; 
+$l_export['weThumbnail'] = 'Thumbnails'; // TRANSLATE
+$l_export['handle_thumbnails'] = 'Thumbnails'; // TRANSLATE
 
-$l_export['navigation_hint'] = 'To export the navigation entries, the template on which the navigation is displayed has also to be exported!'; // TRANSLATE
+$l_export['navigation_hint'] = 'To export the navigation entries, the template on which the navigation is displayed has also to be exported!';
 
 ?>

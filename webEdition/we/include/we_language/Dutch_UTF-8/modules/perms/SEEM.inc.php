@@ -24,10 +24,10 @@
 /**
  * Language file: SEEM.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 
-$l_perm["seem"]["perm_group_title"] = "seeMode";
+$l_perm["seem"]["perm_group_title"] = "seeMode"; // TRANSLATE
 
 $l_perm["seem"]["CAN_SEE_MENUE"] = "De gebruiker is bevoegd om om het menu te zien.";
 $l_perm["seem"]["CAN_WORK_NORMAL_MODE"] = "De gebruiker is bevoegd om buiten de seeModus te werken.";

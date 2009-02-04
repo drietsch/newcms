@@ -33,7 +33,7 @@ $l_we_editor["object"]["response_unpublish_ok"] = "De class '%s' is succesvol ge
 $l_we_editor["object"]["response_save_notok"] = "Fout tijdens het bewaren van class '%s'!";
 $l_we_editor["object"]["response_path_exists"] = "De class '%s' kon niet bewaard worden, omdat er al een ander document of directory bestaat op dezelfde locatie!";
 $l_we_editor["object"]["filename_empty"] = "Er is geen naam opgegeven voor deze class!";
-$l_we_editor["object"]["we_filename_notValid"] = "Invalid class name or automatic name\\nValid characters are alpha-numeric, upper and lower case, as well as underscore, hyphen and dot (a-z, A-Z, 0-9, _, -, .)"; //TRANSLATE 
+$l_we_editor["object"]["we_filename_notValid"] = "Invalid class name or automatic name\\nValid characters are alpha-numeric, upper and lower case, as well as underscore, hyphen and dot (a-z, A-Z, 0-9, _, -, .)"; // TRANSLATE
 $l_we_editor["object"]["we_filename_notAllowed"] = "De classnaam die u heeft opgegeven is niet toegestaan!";
 $l_we_editor["object"]["response_save_noperms_to_create_folders"] = "De class kon niet bewaard worden, omdat u niet de vereiste rechten heeft om mappen (%s) aan te maken!";
 

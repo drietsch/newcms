@@ -18,6 +18,7 @@
  * @copyright  Copyright (c) 2008 living-e AG (http://www.living-e.com)
  * @license    http://www.gnu.org/copyleft/gpl.html  GPL
  */
+
 $GLOBALS['l_we_tag_groups']['input_tags'] = 'Input we:tagit';
 $GLOBALS['l_we_tag_groups']['if_tags'] = 'If we:tagit';
 $GLOBALS['l_we_tag_groups']['navigation_tags'] = 'Navigaation';

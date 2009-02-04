@@ -24,7 +24,7 @@
 /**
  * Language file: javaMenu_messaging.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 
 $l_javaMenu["messaging"]["file"] = "Bestand";
@@ -43,6 +43,6 @@ $l_javaMenu["messaging"]["copy"] = "Kopieër";
 $l_javaMenu["messaging"]["cut"] = "Knip";
 $l_javaMenu["messaging"]["paste"] = 'Plak';
     
-$l_javaMenu["messaging"]["info"] = "Info";
-$l_javaMenu["messaging"]["help"] = "Help";
+$l_javaMenu["messaging"]["info"] = "Info"; // TRANSLATE 
+$l_javaMenu["messaging"]["help"] = "Help"; // TRANSLATE
 ?>

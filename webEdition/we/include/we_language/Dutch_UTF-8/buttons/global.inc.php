@@ -24,7 +24,7 @@
 /**
  * Language file: global.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 
 include_once(dirname(__FILE__)."/enc_".basename(__FILE__));
@@ -37,7 +37,7 @@ $l_button["login"]["value"] = "Inloggen";
 $l_button["login"]["alt"] = "Inloggen in webEdition";
 $l_button["login"]["width"] = 100;
 
-$l_button["back_to_login"]["value"] = "Terug";
+$l_button["back_to_login"]["value"] = "Back";
 $l_button["back_to_login"]["alt"] = "Terug  naar de webEdition inlog";
 $l_button["back_to_login"]["width"] = 100;
 
@@ -61,7 +61,7 @@ $l_button["new_directory"]["value"] = "New directory";
 $l_button["new_directory"]["alt"] = "Maak nieuwe directorie aan";
 $l_button["new_directory"]["width"] = 200;
 
-$l_button["unpublished_pages"]["value"] = "Unpublished pages";
+$l_button["unpublished_pages"]["value"] = "Unpublished documents";
 $l_button["unpublished_pages"]["alt"] = "Overzicht van ongepubliceerde pagina's";
 $l_button["unpublished_pages"]["width"] = 200;
 
@@ -118,11 +118,11 @@ $l_button["delete"]["alt"] = "Verwijder";
 $l_button["delete"]["width"] = 100;
 
 $l_button["go"]["value"] = "Execute now";
-$l_button["go"]["alt"]   = "";
+$l_button["go"]["alt"]   = ""; // TRANSLATE
 $l_button["go"]["width"] = 120;
 
 $l_button["openVersionWizard"]["value"] = "Versions-Wizard";
-$l_button["openVersionWizard"]["alt"]   = "Versions-Wizard";
+$l_button["openVersionWizard"]["alt"]   = "Versions-Wizard"; // TRANSLATE
 $l_button["openVersionWizard"]["width"] = 120;
 
 $l_button["next"]["value"] = "Next";
@@ -134,7 +134,7 @@ $l_button["back"]["alt"] = "Terug";
 $l_button["back"]["width"] = 100;
 
 $l_button["open"]["value"] = "Open";
-$l_button["open"]["alt"] = "Open"; 
+$l_button["open"]["alt"] = "Open";
 $l_button["open"]["width"] = 100;
 
 $l_button["default"]["value"] = "Default";
@@ -142,7 +142,7 @@ $l_button["default"]["alt"] = "Standaard";
 $l_button["default"]["width"] = 100;
 
 $l_button["reset"]["value"] = "Reset";
-$l_button["reset"]["alt"] = "Wis zoek invoer..."; 
+$l_button["reset"]["alt"] = "Wis zoek invoer...";
 $l_button["reset"]["width"] = 100;
 
 /*****************************************************************************
@@ -288,13 +288,6 @@ $l_button["res_1300"]["value"] = "1300x650";
 $l_button["res_1300"]["alt"]   = "Stel 1300x650 in";
 $l_button["res_1300"]["width"] = 100;
 
-$l_button["install_plugin"]["value"] = "Install PlugIn";
-$l_button["install_plugin"]["alt"]   = "Installeer de Mozilla ActiveX PlugIn";
-$l_button["install_plugin"]["width"] = 140;
-
-$l_button["install_editor_plugin"]["value"] = "Editor PlugIn";
-$l_button["install_editor_plugin"]["alt"]   = "Installeer de webEdition Editor PlugIn";
-$l_button["install_editor_plugin"]["width"] = 140;
 
 /*****************************************************************************
  * Rebuild

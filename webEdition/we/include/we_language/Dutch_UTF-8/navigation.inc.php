@@ -23,11 +23,11 @@
 /**
  * Language file: navigation.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 
 $l_navigation = array();
-$l_navigation['no_perms'] = 'U bent niet bevoegd om deze optie te selecteren.';
+$l_navigation['no_perms'] = 'You do not have the permission to select this option.';
 $l_navigation['delete_alert'] = 'Verwijder huidige invoer/map.\\n Weet u het zeker?';
 $l_navigation['nothing_to_delete'] = 'De invoer kan niet verwijderd worden!';
 $l_navigation['nothing_to_save'] = 'De invoer kan niet bewaard worden!';
@@ -45,8 +45,8 @@ $l_navigation['menu_generate'] = 'Genereer broncode';
 $l_navigation['menu_settings'] = 'Instellingen';
 $l_navigation['menu_highlight_rules'] = 'Regels voor Highlighting';
 
-$l_navigation['menu_info'] = 'Info'; 
-$l_navigation['menu_help'] = 'Help';
+$l_navigation['menu_info'] = 'Info'; // TRANSLATE
+$l_navigation['menu_help'] = 'Help'; // TRANSLATE
 
 $l_navigation['property'] = 'Eigenschappen';
 $l_navigation['preview'] = 'Voorvertoning';
@@ -55,6 +55,7 @@ $l_navigation['navigation'] = 'Navigatie';
 $l_navigation['group'] = 'Map';
 $l_navigation['name'] = 'Naam';
 $l_navigation['newFolder'] = 'Nieuwe map';
+$l_navigation['display'] = 'Display'; // TRANSLATE
 $l_navigation['save_group_ok'] = 'De map is bewaard.';
 $l_navigation['save_ok'] = 'De navigatie is bewaard.';
 
@@ -89,12 +90,12 @@ $l_navigation['show_count'] = 'Aantal te tonen invoeren';
 $l_navigation['title_field'] = 'Titel veld';
 $l_navigation['select_field_txt'] = 'Selecteer een veld';
 
-$l_navigation['content'] = 'Content'; 
+$l_navigation['content'] = 'Content'; // TRANSLATE
 $l_navigation['no_dyn_content'] = '- Geen dynamische content -';
 $l_navigation['dyn_content'] = 'De map bevat dynamische content';
 $l_navigation['link'] = 'Koppeling';
 $l_navigation['docLink'] = 'Intern document';
-$l_navigation['objLink'] = 'Object'; 
+$l_navigation['objLink'] = 'Object'; // TRANSLATE
 $l_navigation['catLink'] = 'Categorie';
 $l_navigation['order'] = 'Volgorde';
 
@@ -109,14 +110,14 @@ $l_navigation['populate_msg'] = 'De dynamische invoeren zijn toegevoegd.';
 
 $l_navigation['documents'] = 'Documenten';
 $l_navigation['objects'] = 'Objecten';
-$l_navigation['workspace'] = 'Workspace'; 
+$l_navigation['workspace'] = 'Workspace'; // TRANSLATE
 $l_navigation['no_workspace'] = 'Het object heeft geen workspace! Daardoor kan het object niet geselecteerd worden!';
 
 $l_navigation['no_entry'] = '--allemaal hetzelfde--';
-$l_navigation['parameter'] = 'Parameter'; 
+$l_navigation['parameter'] = 'Parameter'; // TRANSLATE
 $l_navigation['urlLink'] = 'Extern document';
-$l_navigation['doctype'] = 'Document type'; 
-$l_navigation['class'] = 'Class'; 
+$l_navigation['doctype'] = 'Document type'; // TRANSLATE
+$l_navigation['class'] = 'Class'; // TRANSLATE
 
 $l_navigation['parameter_text'] = 'In de parameter kunnen de volgende variabelen van de navigatie worden gebruikt: $LinkID, FolderID, $DocTypID, $ClassID, $Ordn en $WorkspaceID';
 
@@ -131,10 +132,10 @@ $l_navigation['rules']['rule_name'] = "Naam van de regel";
 $l_navigation['rules']['rule_navigation_link'] = "Actief navigatie item";
 $l_navigation['rules']['rule_applies_for'] = "Regel geldt voor";
 $l_navigation['rules']['rule_folder'] = "In map";
-$l_navigation['rules']['rule_doctype'] = "Document type"; 
+$l_navigation['rules']['rule_doctype'] = "Document type"; // TRANSLATE
 $l_navigation['rules']['rule_categories'] = "Categorieën";
-$l_navigation['rules']['rule_class'] = "Van class"; 
-$l_navigation['rules']['rule_workspace'] = "Workspace";
+$l_navigation['rules']['rule_class'] = "Van class";
+$l_navigation['rules']['rule_workspace'] = "Workspace"; // TRANSLATE
 $l_navigation['rules']['invalid_name'] = "De naam mag alleen bestaan uit letters, figuren, koppeltekens en underscore";
 $l_navigation['rules']['name_exists'] = "De name \"%s\" bestaat al, voer a.u.b een andere naam in.";
 $l_navigation['rules']['saved_successful'] = "De invoer: \"%s\" is bewaard.";
@@ -157,19 +158,19 @@ $l_navigation['language'] = 'Taal';
 $l_navigation['target'] = 'Doel';
 $l_navigation['link_language'] = 'Koppeling';
 $l_navigation['href_language'] = 'Gekoppeld document';
-$l_navigation['keyboard'] = 'Keyboard'; 
-$l_navigation['accesskey'] = 'Accesskey'; 
-$l_navigation['tabindex'] = 'Tabindex';
+$l_navigation['keyboard'] = 'Keyboard'; // TRANSLATE
+$l_navigation['accesskey'] = 'Accesskey'; // TRANSLATE
+$l_navigation['tabindex'] = 'Tabindex'; // TRANSLATE
 $l_navigation['relation'] = 'Relatie';
 $l_navigation['link_attribute'] = 'Koppeling attributen';
 $l_navigation['popup'] = 'Popup venster';
-$l_navigation['popup_open'] = 'Open';
+$l_navigation['popup_open'] = 'Open'; // TRANSLATE
 $l_navigation['popup_center'] = 'Centreer';
 $l_navigation['popup_x'] = 'x positie';
 $l_navigation['popup_y'] = 'y positie';
 $l_navigation['popup_width'] = 'Breedte';
 $l_navigation['popup_height'] = 'Hoogte';
-$l_navigation['popup_status'] = 'Status';
+$l_navigation['popup_status'] = 'Status'; // TRANSLATE
 $l_navigation['popup_scrollbars'] = 'Scrollbalken';
 $l_navigation['popup_menubar'] = 'Menubalk';
 $l_navigation['popup_resizable'] = 'Schaalaar';
@@ -194,9 +195,9 @@ $l_navigation['charset_desc'] = 'De geselecteerde charset wordt doorgevoerd op d
 $l_navigation['customers'] = 'Klanten';
 $l_navigation['limit_access'] = 'Defineer klant toegang';
 $l_navigation['customer_access'] = 'Alle klanten hebben toegang tot dit onderdeel';
-$l_navigation['filter'] = 'Defineer filter'; 
-$l_navigation['and'] = 'en'; 
-$l_navigation['or'] = 'of'; 
+$l_navigation['filter'] = 'Defineer filter';
+$l_navigation['and'] = 'en';
+$l_navigation['or'] = 'of';
 $l_navigation['selected_customers'] = 'Alleen de volgende klanten hebben toegang tot dit onderdeel';
 $l_navigation['useDocumentFilter'] = 'Use filter settings of document/object'; // TRANSLATE
 $l_navigation['reset_customer_filter'] = 'Reset all customer filters'; // TRANSLATE

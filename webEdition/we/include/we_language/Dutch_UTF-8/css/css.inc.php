@@ -24,7 +24,7 @@
 /**
  * Language file: css.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 
 /*	To complete the localisation kit, it is necceessary to have the possibility
@@ -32,6 +32,6 @@
  *	In this file all these language specific characteristica can be set.
  */
 
-$l_css["font_family"] = "Verdana, Arial, Helvetica, sans-serif";
+$l_css["font_family"] = "Verdana, Arial, Helvetica, sans-serif"; // TRANSLATE
 
 ?>

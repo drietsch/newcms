@@ -24,7 +24,7 @@
 /**
  * Language file: exchange.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 $l_exchange["export_wizard"]["export_data"] = "Exporteer gegevens";
 $l_exchange["export_wizard"]["export_to"] = "Exporteer naar";
@@ -35,7 +35,7 @@ $l_exchange["import_wizard"]["import_from"] = "Importeer vanaf";
 $l_exchange["import_wizard"]["ftp_transfer"] = "Importeer via FTP";
 $l_exchange["import_wizard"]["save_to_folder"] = "Locatie";
 
-$l_exchange["host"] = "Host / URL";
+$l_exchange["host"] = "Host / URL"; // TRANSLATE
 $l_exchange["username"] = "Gebruikersnaam";
 $l_exchange["password"] = "Wachtwoord";
 $l_exchange["path"] = "Pad";
@@ -49,7 +49,7 @@ $l_exchange["step_of"] = " van ";
 $l_exchange["select_data_set"] = "Selecteer data set";
 $l_exchange["text_select_data_set"] = "Selecteer a.u.b. de data sets die u wilt importeren.";
 $l_exchange["option_select"] = "Selecteer";
-$l_exchange["num_data_sets"] = "Data sets:";
+$l_exchange["num_data_sets"] = "Data sets:"; // TRANSLATE
 
 $l_exchange["assign_record_fields"] = 'Ken klantbestand velden toe';
 $l_exchange["we_fields"] = "webEdition velden";

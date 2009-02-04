@@ -24,7 +24,7 @@
 /**
  * Language file: thumbnails.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 
 /*****************************************************************************
@@ -59,7 +59,7 @@ $l_thumbnails["saved_successfully"] = "Voorkeuren bewaard";
 	 * CAPTION
 	 */
 
-	$l_thumbnails["thumbnails"] = "Thumbnails";
+	$l_thumbnails["thumbnails"] = "Thumbnails"; // TRANSLATE
 
 	/**
 	 * NAME

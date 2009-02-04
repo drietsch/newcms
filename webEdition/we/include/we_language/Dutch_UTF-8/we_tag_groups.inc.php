@@ -19,8 +19,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html  GPL
  */
 
-$GLOBALS['l_we_tag_groups']['input_tags'] = 'Input we:tags'; 
-$GLOBALS['l_we_tag_groups']['if_tags'] = 'If we:tags';
+$GLOBALS['l_we_tag_groups']['input_tags'] = 'Input we:tags'; // TRANSLATE
+$GLOBALS['l_we_tag_groups']['if_tags'] = 'If we:tags'; // TRANSLATE
 $GLOBALS['l_we_tag_groups']['navigation_tags'] = 'Navigatie';
 
 ?>

@@ -24,26 +24,26 @@
 /**
  * Language file: message.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 
 $l_button["search"]["value"] = "Zoek";
 $l_button["search"]["alt"] = "Zoek ...";
 $l_button["search"]["width"] = 100;
 
-$l_button["advanced"]["value"] = "Geavanceerd";
+$l_button["advanced"]["value"] = "Advanced";
 $l_button["advanced"]["alt"] = "Geavanceerde zoek instellingen ...";
 $l_button["advanced"]["width"] = 100;
 
-$l_button["reset_search"]["value"] = "Herstellen";
-$l_button["reset_search"]["alt"] = "Herstel zoek invoer ..."; 
+$l_button["reset_search"]["value"] = "Reset";
+$l_button["reset_search"]["alt"] = "Herstel zoek invoer ...";
 $l_button["reset_search"]["width"] = 100;
 
-$l_button["save_address"]["value"] = "Bewaar adres";
+$l_button["save_address"]["value"] = "Save address";
 $l_button["save_address"]["alt"] = "Bewaar adres ...";
 $l_button["save_address"]["width"] = 120;
 
-$l_button["select_user"]["value"] = "Selecteer gebruiker";
+$l_button["select_user"]["value"] = "Select user";
 $l_button["select_user"]["alt"] = "Selecteer gebruiker ...";
 $l_button["select_user"]["width"] = 120;
 

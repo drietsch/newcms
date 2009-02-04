@@ -24,7 +24,7 @@
 /**
  * Language file: fileselector.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 $l_fileselector["username"] = "Gebruikersnaam";
 $l_fileselector["catname"] = "Categorie";
@@ -33,7 +33,7 @@ $l_fileselector["cat_in_use_rename"] = "De categorie is in gebruik en kan niet g
 $l_fileselector["deleteQuestion"] = "Verwijder geselecteerde invoeren! Weet u het zeker?";
 $l_fileselector["overwriteImg"] = "Overwrite existing image";
 $l_fileselector["renameImg"] = "Rename new image if it exists";
-$l_fileselector["open"] = "Open";
+$l_fileselector["open"] = "Open"; // TRANSLATE
 $l_fileselector["close"] = "Sluit";
 $l_fileselector["lookin"] = "Kijk in";
 $l_fileselector["type"] = "Bestandstype";
@@ -44,8 +44,8 @@ $l_fileselector["folders"] = "Verzeichnisse";
 $l_fileselector["files"] = "Dateien";
 $l_fileselector["name"] = "Naam";
 $l_fileselector["foldername"] = "Directorie";
-$l_fileselector["folders"] = "Directories"; 
-$l_fileselector["files"] = "Bestanden"; 
+$l_fileselector["folders"] = "Directories"; // TRANSLATE
+$l_fileselector["files"] = "Bestanden";
 $l_fileselector["up_folder"] = "Één map omhoog";
 $l_fileselector["delete_entry"] = "Verwijder invoer";
 $l_fileselector["new_cat"] = "Maak nieuwe categorie aan";
@@ -75,5 +75,5 @@ $l_fileselector["overwriteImg"] = "Overschrijf";
 $l_fileselector["renameImg"] = "hernoem";
 $l_fileselector["can_not_overwrite_we_file"] = "Een webEdition bestand kan niet overschreven worden!";
 $l_fileselector["filesize"] = "Bestandsgrootte";
-$l_fileselector["image_not_uploaded"] = "Er is geen afbeelding ge-upload."; 
+$l_fileselector["image_not_uploaded"] = "Er is geen afbeelding ge-upload.";
 ?>

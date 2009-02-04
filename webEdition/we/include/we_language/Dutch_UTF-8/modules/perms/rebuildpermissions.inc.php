@@ -24,7 +24,7 @@
 /**
  * Language file: rebuildpermissions.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 
 $l_perm["rebuildpermissions"]["perm_group_title"] = "Heropbouwen";

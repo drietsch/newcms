@@ -24,7 +24,7 @@
 /**
  * Language file: javaMenu.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 
 /**
@@ -59,9 +59,9 @@ $l_javaMenu["new"] = "Nieuw";
 		$l_javaMenu["flash_movie"] = "Flash Film";
 		$l_javaMenu["quicktime_movie"] = "Quicktime Film";
 		$l_javaMenu["text_plain"] = "Platte Tekst Document";
-		$l_javaMenu["text_xml"] = "XML Document";
-		$l_javaMenu["javascript"] = "Javascript";
-		$l_javaMenu["css_stylesheet"] = "CSS Stylesheet";
+		$l_javaMenu["text_xml"] = "XML Document"; // TRANSLATE
+		$l_javaMenu["javascript"] = "Javascript"; // TRANSLATE
+		$l_javaMenu["css_stylesheet"] = "CSS Stylesheet"; // TRANSLATE
 		$l_javaMenu["other_files"] = "Andere bestanden";
 
 
@@ -96,13 +96,13 @@ $l_javaMenu["new"] = "Nieuw";
 	######## End Submenu Datei/Neu  ############
 	############################################
 
-	$l_javaMenu["open"] = "Open"; 
+	$l_javaMenu["open"] = "Open"; // TRANSLATE
 
 
 	##################################
 	###### SubMenu Datei/Open ########
 	##################################
-	$l_javaMenu["open_document"] = "Document"; 
+	$l_javaMenu["open_document"] = "Document"; // TRANSLATE
 	$l_javaMenu["open_template"] = "Sjabloon";
 
 	##################################
@@ -111,9 +111,10 @@ $l_javaMenu["new"] = "Nieuw";
 
 	// close
 $l_javaMenu["close_single_document"] = "Sluit document";
-$l_javaMenu["close_all_documents"] = "Sluit alle documenten"; 
+$l_javaMenu["close_all_documents"] = "Sluit alle documenten";
 $l_javaMenu["close_all_but_active_document"] = "Close inactive documents"; // TRANSLATE
 $l_javaMenu["delete_active_document"] = "Delete active document"; // TRANSLATE
+
 
 
 $l_javaMenu["save"] = "Bewaar";
@@ -126,7 +127,7 @@ $l_javaMenu["delete"] = "Verwijder";
 
 	$l_javaMenu["documents"] = "Documenten";
 	$l_javaMenu["templates"] = "Sjablonen";
-	$l_javaMenu["cache"] = "Cache";
+	$l_javaMenu["cache"] = "Cache"; // TRANSLATE
 
 	##################################
 	######## End Submenu  ############
@@ -147,7 +148,7 @@ $l_javaMenu["move"] = "Verplaats";
 	#####	    End Import/export	    #####
     #########################################
 
-$l_javaMenu["backup"] = "Backup";
+$l_javaMenu["backup"] = "Backup"; // TRANSLATE
 
 	##################################
 	### SubMenu Datei/Backup ####
@@ -177,15 +178,15 @@ $l_javaMenu["quit"] = "Stop";
 			### SubMenu Cockpit/New Widget             ####
 			###############################################
 
-			$l_javaMenu["shortcuts"] = "Snelkoppelingen"; 
-			$l_javaMenu["rss_reader"] = "RSS lezer"; 
-			$l_javaMenu["last_modified"] = "laatst gewijzigd"; 
-			$l_javaMenu["todo_messaging"] = "Taken/Berichten"; 
+			$l_javaMenu["shortcuts"] = "Snelkoppelingen";
+			$l_javaMenu["rss_reader"] = "RSS lezer";
+			$l_javaMenu["last_modified"] = "laatst gewijzigd";
+			$l_javaMenu["todo_messaging"] = "Taken/Berichten";
 			$l_javaMenu["users_online"] = "Gebruikers online";
-			$l_javaMenu["unpublished"] = "ongepubliceerd"; 
-			$l_javaMenu["my_documents"] = "Mijn documenten"; 
-			$l_javaMenu["notepad"] = "Kladblok"; 
-			$l_javaMenu["pagelogger"] = "pageLogger"; 
+			$l_javaMenu["unpublished"] = "ongepubliceerd";
+			$l_javaMenu["my_documents"] = "Mijn documenten";
+			$l_javaMenu["notepad"] = "Kladblok";
+			$l_javaMenu["pagelogger"] = "pageLogger"; // TRANSLATE
 
 			###############################################
 			### SubMenu Cockpit/Standard Einstellungen ####
@@ -207,20 +208,21 @@ $l_javaMenu["quit"] = "Stop";
 ##################################
 
 $l_javaMenu["edit"] = "Opties";
-$l_javaMenu["document_types"] = "Document types";
+$l_javaMenu["document_types"] = "Document types"; // TRANSLATE
 $l_javaMenu["categories"] = "Categorieën";
-$l_javaMenu["thumbnails"] = "Thumbnails";
+$l_javaMenu["thumbnails"] = "Thumbnails"; // TRANSLATE
 $l_javaMenu["metadata"] = "Metadata fields"; // TRANSLATE
 $l_javaMenu["navigation"] = "Navigatie";
 $l_javaMenu["change_username"] = "Wijzig gebruikersnaam";
 $l_javaMenu["change_password"] = "Wijzig wachtwoord";
 
 $l_javaMenu["formmail_recipients"] = "Mailformulier ontvangers";
-$l_javaMenu["proxy_server"] = "Proxy-Server";
+$l_javaMenu["proxy_server"] = "Proxy-Server"; // TRANSLATE
 $l_javaMenu["unpublished_pages"] = "Ongepubliceerde pagina's";
 $l_javaMenu["preferences"] = "Voorkeuren";
-$l_javaMenu["versioning"] = "Version-Wizard";
-$l_javaMenu["versioning_log"] = "Version-Log";
+$l_javaMenu["versioning"] = "Version-Wizard"; // TRANSLATE
+$l_javaMenu["versioning_log"] = "Version-Log"; // TRANSLATE
+$l_javaMenu["econda"] = "Econda"; // TRANSLATE
 
 ##################################
 ###### End Menu Bearbeiten #######
@@ -231,11 +233,11 @@ $l_javaMenu["versioning_log"] = "Version-Log";
 ###### Menu Module ###########
 ##############################
 
-$l_javaMenu["modules"] = "Modules";
+$l_javaMenu["modules"] = "Modules"; // TRANSLATE
 $l_javaMenu["module_installation"] = "Module Installatie";
 
 //	The content is generated dynamically
-$l_javaMenu["extras"] = "Extra's"; 
+$l_javaMenu["extras"] = "Extra's";
 $l_javaMenu["inactive_extras"] = "Inactieve extra's";
 
 
@@ -247,21 +249,21 @@ $l_javaMenu["inactive_extras"] = "Inactieve extra's";
 ######### Menu Hilfe #############
 ##################################
 
-$l_javaMenu["help"] = "Help";
-$l_javaMenu["onlinehelp"] = "Online help"; 
-$l_javaMenu["webEdition_online"] = "webEdition online"; 
+$l_javaMenu["help"] = "Help"; // TRANSLATE
+$l_javaMenu["onlinehelp"] = "Online help"; // TRANSLATE
+$l_javaMenu["webEdition_online"] = "webEdition online"; // TRANSLATE
 $l_javaMenu["sidebar"] = "Zijbalk";
 $l_javaMenu["update"] = "Bijwerken";
 $l_javaMenu["upgrade"] = "Bijwerken naar webEdition 5";
 $l_javaMenu["register"] = "Registreer";
-$l_javaMenu["info"] = "Info";
+$l_javaMenu["info"] = "Info"; // TRANSLATE
 
 ########################################################
 ######### Navigation back - forward - home #############
 ########################################################
 
-$l_javaMenu["close"]   = "Sluit"; 
-$l_javaMenu["home"]   = "Home";
+$l_javaMenu["close"]   = "Sluit";
+$l_javaMenu["home"]   = "Home"; // TRANSLATE
 $l_javaMenu["back"]   = "Terug";
 $l_javaMenu["next"]   = "Verder";
 $l_javaMenu["reload"] = "Laad opnieuw";

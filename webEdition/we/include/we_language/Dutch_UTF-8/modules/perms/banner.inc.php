@@ -24,10 +24,10 @@
 /**
  * Language file: banner.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 
-$l_perm["banner"]["perm_group_title"] = "Banner Module";
+$l_perm["banner"]["perm_group_title"] = "Banner Module"; // TRANSLATE
 
 $l_perm["banner"]["NEW_BANNER"] = "De gebruiker is bevoegd om banners en banner groepen aan te maken.";
 $l_perm["banner"]["DELETE_BANNER"] = "De gebruiker is bevoegd om banners en banner groepen te verwijderen.";

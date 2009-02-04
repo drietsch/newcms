@@ -23,7 +23,7 @@
 /**
  * Language file: newfile.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 $l_newFile["import_Image_from_hd_title"] = "Upload afbeeldingen vanaf lokale harde schijf";
 $l_newFile["import_File_from_hd_title"] = "Upload bestand vanaf lokale harde schijf";

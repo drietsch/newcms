@@ -34,6 +34,6 @@ $l_javaMenu["shop"]["shop_edit"] = "Wijzig";
 		$l_javaMenu["shop"]["add_article_to_order"] = "Voeg artikel toe";
 		$l_javaMenu["shop"]["delete_order"] = "Verwijder bestelling";
 
-$l_javaMenu["shop"]["menu_help"]   = "Help"; 
-$l_javaMenu["shop"]["menu_info"]   = "Info"; 
+$l_javaMenu["shop"]["menu_help"]   = "Help"; // TRANSLATE
+$l_javaMenu["shop"]["menu_info"]   = "Info"; // TRANSLATE
 ?>

@@ -24,7 +24,7 @@
 /**
  * Language file: schedpro.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 
 $GLOBALS["l_schedpro"] = array();
@@ -56,7 +56,7 @@ $GLOBALS["l_schedpro"]["minutes"] = "Minuten";
 $GLOBALS["l_schedpro"]["datetime"] = "Datum/Tijd";
 
 $GLOBALS["l_schedpro"]["categories"] = "Categorieën";
-$GLOBALS["l_schedpro"]["doctype"] = "Document type";
+$GLOBALS["l_schedpro"]["doctype"] = "Document type"; // TRANSLATE
 $GLOBALS["l_schedpro"]["dirctory"] = "Directorie";
 
 $GLOBALS["l_schedpro"]["active"] = "Actief";

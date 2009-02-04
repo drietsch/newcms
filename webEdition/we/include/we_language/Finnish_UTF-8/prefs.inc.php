@@ -354,9 +354,9 @@ $l_prefs["tab_versions"] = 'Versioning'; // TRANSLATE
 	/**
 	 * HOOKS
 	 */
-	$l_prefs["hooks"] = "Hooks"; //TRANSLATE
+	$l_prefs["hooks"] = "Hooks"; // TRANSLATE //TRANSLATE
 	$l_prefs["hooks_information"] = "The use of hooks allows for the execution of arbitrary any PHP code during storing, publishing, unpublishing and deleting of any content type in webEdition.<br/>
-	Further information can be found in the online documentation.<br/><br/>Allow execution of hooks?"; //TRANSLATE
+	Further information can be found in the online documentation.<br/><br/>Allow execution of hooks?"; 
 
 /*****************************************************************************
  * ERROR HANDLING
@@ -518,31 +518,34 @@ $l_prefs["tab_versions"] = 'Versioning'; // TRANSLATE
  * Versions settings
  *****************************************************************************/
 
-	$l_prefs["versioning"] = "Versioning"; //TRANSLATE
-	$l_prefs["version_all"] = "all"; //TRANSLATE
-	$l_prefs["versioning_activate_text"] = "Activate versioning for some or all content types."; //TRANSLATE
-	$l_prefs["versioning_time_text"] = "If you specify a time period, only versions are saved which are created in this time until today. Older versions will be deleted."; //TRANSLATE
-	$l_prefs["versioning_time"] = "Time period"; //TRANSLATE
-	$l_prefs["versioning_anzahl_text"] = "Number of versions which will be created for each document or object."; //TRANSLATE
-	$l_prefs["versioning_anzahl"] = "Number"; //TRANSLATE
-	$l_prefs["versioning_wizard_text"] = "Open the Version-Wizard to delete or reset versions."; //TRANSLATE
-	$l_prefs["versioning_wizard"] = "Open Versions-Wizard"; //TRANSLATE
-	$l_prefs["ContentType"] = "Content Type"; //TRANSLATE
-	$l_prefs["versioning_create_text"] = "Determine which actions provoke new versions. Either if you publish or if you save, unpublish, delete or import files, too."; //TRANSLATE
-	$l_prefs["versioning_create"] = "Create Version"; //TRANSLATE
-	$l_prefs["versions_create_publishing"] = "only when publishing"; //TRANSLATE
-	$l_prefs["versions_create_always"] = "always"; //TRANSLATE
+	$l_prefs["versioning"] = "Versioning"; // TRANSLATE
+	$l_prefs["version_all"] = "all"; // TRANSLATE
+	$l_prefs["versioning_activate_text"] = "Activate versioning for some or all content types."; // TRANSLATE
+	$l_prefs["versioning_time_text"] = "If you specify a time period, only versions are saved which are created in this time until today. Older versions will be deleted."; // TRANSLATE
+	$l_prefs["versioning_time"] = "Time period"; // TRANSLATE
+	$l_prefs["versioning_anzahl_text"] = "Number of versions which will be created for each document or object."; // TRANSLATE
+	$l_prefs["versioning_anzahl"] = "Number"; // TRANSLATE
+	$l_prefs["versioning_wizard_text"] = "Open the Version-Wizard to delete or reset versions."; // TRANSLATE
+	$l_prefs["versioning_wizard"] = "Open Versions-Wizard"; // TRANSLATE
+	$l_prefs["ContentType"] = "Content Type"; // TRANSLATE
+	$l_prefs["versioning_create_text"] = "Determine which actions provoke new versions. Either if you publish or if you save, unpublish, delete or import files, too."; // TRANSLATE
+	$l_prefs["versioning_create"] = "Create Version"; // TRANSLATE
+	$l_prefs["versions_create_publishing"] = "only when publishing"; // TRANSLATE
+	$l_prefs["versions_create_always"] = "always"; // TRANSLATE
 	
-	$l_prefs['use_jeditor'] = "Use"; //TRANSLATE
-	$l_prefs["editor_font_colors"] = 'Specify font colors'; //TRANSLATE
-	$l_prefs["editor_normal_font_color"] = 'Default'; //TRANSLATE
-	$l_prefs["editor_we_tag_font_color"] = 'webEdition tags'; //TRANSLATE
-	$l_prefs["editor_we_attribute_font_color"] = 'webEdition attributes'; //TRANSLATE
-	$l_prefs["editor_html_tag_font_color"] = 'HTML tags'; //TRANSLATE
-	$l_prefs["editor_html_attribute_font_color"] = 'HTML attributes'; //TRANSLATE
-	$l_prefs["editor_pi_tag_font_color"] = 'PHP code'; //TRANSLATE
-	$l_prefs["editor_comment_font_color"] = 'Comments'; //TRANSLATE
-	$l_prefs["jeditor"] = 'Java source editor'; //TRANSLATE
+	$l_prefs['use_jeditor'] = "Use"; // TRANSLATE
+	$l_prefs["editor_font_colors"] = 'Specify font colors'; // TRANSLATE
+	$l_prefs["editor_normal_font_color"] = 'Default'; // TRANSLATE
+	$l_prefs["editor_we_tag_font_color"] = 'webEdition tags'; // TRANSLATE
+	$l_prefs["editor_we_attribute_font_color"] = 'webEdition attributes'; // TRANSLATE
+	$l_prefs["editor_html_tag_font_color"] = 'HTML tags'; // TRANSLATE
+	$l_prefs["editor_html_attribute_font_color"] = 'HTML attributes'; // TRANSLATE
+	$l_prefs["editor_pi_tag_font_color"] = 'PHP code'; // TRANSLATE
+	$l_prefs["editor_comment_font_color"] = 'Comments'; // TRANSLATE
+	$l_prefs["jeditor"] = 'Java source editor'; // TRANSLATE
 	
-	$l_prefs["juplod_not_installed"] = 'JUpload is not installed!'; //TRANSLATE
+	
+	$l_prefs["juplod_not_installed"] = 'JUpload is not installed!'; // TRANSLATE
+	
+
 ?>

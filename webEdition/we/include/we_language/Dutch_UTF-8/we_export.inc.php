@@ -20,10 +20,11 @@
  * @license    http://www.gnu.org/copyleft/gpl.html  GPL
  */
 
+
 /**
  * Language file: we_export.inc.php
  * Provides language strings.
- * Language: Dutch
+ * Language: English
  */
 $l_export['title'] = 'Exporteer Hulp';
 $l_export['selection_type'] = 'Stel element selectie vast';
@@ -35,7 +36,7 @@ $l_export['element'] = 'Element selectie';
 $l_export['select_elements'] = 'Selecteer elementen voor export';
 $l_export['select_docType'] = 'Kies a.ub. een doctype of een sjabloon.';
 $l_export['none'] = '-- geen --';
-$l_export['doctype'] = 'Doctype';
+$l_export['doctype'] = 'Doctype'; // TRANSLATE
 $l_export['template'] = 'Sjabloon';
 $l_export['categories'] = 'Categorieën';
 $l_export['documents'] = 'Documenten';
@@ -43,9 +44,9 @@ $l_export['objects'] = 'Objecten';
 $l_export['class'] = 'Classen';
 $l_export['isDynamic'] = 'Genereer pagina dynamisch';
 $l_export['extension'] = 'Extensie';
-$l_export['wexml_export'] = 'weXML Export';
+$l_export['wexml_export'] = 'weXML Export'; // TRANSLATE
 $l_export['filename'] = 'Bestandsnaam';
-$l_export['extra_data'] = 'Extra data';
+$l_export['extra_data'] = 'Extra data'; // TRANSLATE
 $l_export['integrated_data'] = 'Exporteer bijgevoegde data';
 $l_export['integrated_data_txt'] = 'Selecteer deze optie om de bijgevoegde data in documenten of sjablonen te exporteren.';
 $l_export['max_level'] = 'naar niveau';
@@ -53,7 +54,7 @@ $l_export["export_doctypes"] = 'Exporteer doctypes';
 $l_export["export_categories"] = 'Exporteer categorieën';
 $l_export['export_location'] = 'Exporteer naar';
 $l_export['local_drive'] = 'Lokale schijf';
-$l_export['server'] = 'Server';
+$l_export['server'] = 'Server'; // TRANSLATE
 $l_export['export_progress'] = 'Bezig met exporteren';
 $l_export['prepare_progress'] = 'Bezig met voorbereiden';
 $l_export['finish_progress'] = 'Voltooid';
