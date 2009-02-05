@@ -36,8 +36,9 @@ $_middlePart = ($_widthTotal - (2 * $_space));
 $_logoPart = 140;
 $_leftPart = $_middlePart - $_logoPart;
 
-$_credits = "webEdition Team:<br>Holger Meyer, Damjan Denic, Thomas Kneip, Alexander Lindenstruth, Dirk Einecke, Axel Regnet, Stefan Oberrecht, Florian Mertin, Anna Baumann, Benny Johnson, Tatjana Hermann, Michael Weiss<br><br>Thanks:<br>";
-$_credits .= "Slavko Tomcic, Andreas Frey, Bj&ouml;rn B&ouml;ttle, Elad Messing, Heike Debaets, Herbert Hohn, Christoph L&uuml;tjen, Severin Kurpiers, Michael Scheurer, Florian Wittke, Wolfgang Kemna, Guido Polko, Vukasin Toroman, Peter Tepass&eacute;, Christoph Schlierkamp, Andreas Roth, Oliver Krahnen, Jochen Nees, Angela D&uuml;rrmann, Jessica Holzapfel, Rebecca Dreher, Tamara Lander, Niall Davis, Philip Moore, Kari Vatanen, Joni Eskelinen, Jasper van den Ham, Jorg Tiemens";
+$_credits = "webEdition Team:<br>Holger Meyer, Damjan Denic, Thomas Kneip, Alexander Lindenstruth, Dirk Einecke, Axel Regnet, Stefan Oberrecht, Florian Mertin, Anna Baumann, Benny Johnson, Michael Weiss<br><br>";
+$_credits .= "Translations:<br />Tatjana Hermann, Joni Eskelinen, Kari Vatanen, Antti Kurtelius, Jasper van den Ham, Jorg Tiemens, Philip Moore<br><br>";
+$_credits .= "Thanks to:<br>Slavko Tomcic, Andreas Frey, Bj&ouml;rn B&ouml;ttle, Elad Messing, Heike Debaets, Herbert Hohn, Christoph L&uuml;tjen, Severin Kurpiers, Michael Scheurer, Florian Wittke, Wolfgang Kemna, Guido Polko, Vukasin Toroman, Peter Tepass&eacute;, Christoph Schlierkamp, Andreas Roth, Oliver Krahnen, Jochen Nees, Angela D&uuml;rrmann, Jessica Holzapfel, Rebecca Dreher, Tamara Lander, Niall Davis";
 
 $_table = new we_htmlTable( array(	"border"      => 0,
 									"cellpadding" => 0,
@@ -82,7 +83,7 @@ $_table->setCol($_actRow++,0,array(	"width"   => $_widthTotal,
 //	7th copyright
 $_table->setCol($_actRow,0,array(	"width" => $_space), getPixel($_space,5));
 $_table->setCol($_actRow,1,array(	"width" => $_middlePart,
-							"class" => "small"), "&copy; 2000-2008 living-e AG. " . $l_global["all_rights_reserved"]);
+							"class" => "small"), "&copy; 2000-2009 Living-e AG. " . $l_global["all_rights_reserved"]);
 $_table->setCol($_actRow++,2,array(	"width" => $_space), getPixel($_space,1));
 
 //	8th row
