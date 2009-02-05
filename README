@@ -1,0 +1,40 @@
+Important informations for webEdition translators:
+------------------------------------------------------------
+
+The directory 
+   webEdition/lang/
+contains tmx files (xml) with all language files used in 
+the webEdition SDK. The language directory names are 
+2-character ISO 3166-2 language codes, for example:
+   webEdition/lang/de/
+   webEdition/lang/fi/
+
+The other language files of webEdition are located in
+   webEdition/we/include/we_language/
+and have the language names as they have been used in all 
+the previous webEdition versions, for example:
+   webEdition/we/include/we_language/English_UTF-8
+   webEdition/we/include/we_language/Dutch_UTF-8
+
+IMPORTANT:
+
+Please note that starting with webEdition 6 ALL LANGUAGE 
+FILES ARE UTF-8 ENCODED! This goes for the language files 
+in we_languages as well as for the new tmx files. 
+
+The german, english, finnish and dutch ISO-8859-1 language 
+files are created by our deployment utility that is used 
+for creating new webEdition versions.
+
+If you want to use the latest versions of these language 
+files, you can get them from the Sourceforge Subversion 
+server. There is a translation branch for each language, 
+for example:
+   branches/translation_finnish
+   branches/translation_dutch
+Just replace the respective directories in your webEdition 
+installation with the directories from SVN.
+Please bear in mind that these files may be incomplete, 
+so PHP Notices may occur if there are new text elements 
+that have not been translated yet (only for the old-style 
+language files in webEdition/we/include/we_language/).
