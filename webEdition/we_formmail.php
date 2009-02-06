@@ -451,7 +451,7 @@ if($recipient){
 	
 	
 	
-	if (!defined("FORMMAIL_CONFIRM") || FORMMAIL_CONFIRM) {
+	if ((isset($_REQUEST["confirm_mail"]) && $_REQUEST["confirm_mail"]) && (!defined("FORMMAIL_CONFIRM") || FORMMAIL_CONFIRM)) {
 		if($wasSent){
 			// validation
 			if (!is_valid_email($email)) {
