@@ -196,12 +196,28 @@
 					}
 				}
 				$src2 = preg_replace(array_keys($replacements), $replacements, " $src ");
-
+				
 				if(trim($src)!=trim($src2) && trim($src2)!='') {
+						
+					$len = strlen($src);
+					$spaceStr = "";
+					for($i=$len-1; $i>=0; $i--) {
+						if($src{$i}==" ") {
+							$spaceStr .=" ";
+						}
+						else {
+							break;
+						}
+					} 
+					
 					// add spaces before and after and replace the words
 					$src = preg_replace(array_keys($replacements), $replacements, " $src ");
 					// remove added spaces
 					$return = preg_replace("/^ (.+) $/", "$1", $src);
+					
+					$return = rtrim($return);
+					$return = $return.$spaceStr;
+
 					// remove added slashes
 					return stripslashes($return);
 				}
