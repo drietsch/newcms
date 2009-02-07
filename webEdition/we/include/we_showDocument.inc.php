@@ -31,6 +31,7 @@ if (isset($noSess) && $noSess) {
 include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/" . "we.inc.php");
 include_once ($_SERVER["DOCUMENT_ROOT"] . "/webEdition/we/include/" . "we_live_tools.inc.php");
 
+
 //  Diese we_cmds werden auf den Seiten gespeichert und nicht �bergeben!!!!!
 //  Sie kommen von showDoc.php
 $id = abs(isset($_REQUEST["we_cmd"][1]) ? $_REQUEST["we_cmd"][1] : "");
@@ -62,6 +63,15 @@ if (isset($_REQUEST['cmd']) && $_REQUEST['cmd'] != "ResetVersion" && $_REQUEST['
 				exit();
 			}
 	}
+}
+if(isset($_REQUEST['vers_we_obj']) && ($_REQUEST['vers_we_obj']))  {
+ $x =weFile::load($_SERVER['DOCUMENT_ROOT']."/webEdition/we/include/we_versions/file.txt");
+ 
+ $xy = unserialize($x);error_log2($xy);
+ 
+ $we_doc = $xy;
+ 
+ weFile::delete($_SERVER['DOCUMENT_ROOT']."/webEdition/we/include/we_versions/file.txt");
 }
 
 // deal with customerFilter

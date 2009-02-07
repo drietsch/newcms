@@ -1272,11 +1272,14 @@ class weVersions {
 						else {
 							if(isset($document['TemplatePath']) && $document['TemplatePath']!="" && substr($document['TemplatePath'], -18)!="/we_noTmpl.inc.php" && $document['ContentType']=="text/webedition") {
 								$includeTemplate = preg_replace('/.tmpl$/i','.php', $document['TemplatePath']);
+								$this->writePreviewDynFile($document['ID'], $includeTemplate, $_SERVER["DOCUMENT_ROOT"].$binaryPath, $documentObj);
+								/*
 								ob_start();
 								include($includeTemplate);
 								$contents = ob_get_contents();
 								ob_end_clean();
 								saveFile($_SERVER["DOCUMENT_ROOT"].$binaryPath,$contents);
+								*/
 							}
 							else {
 								copy($siteFile,$_SERVER["DOCUMENT_ROOT"].$binaryPath);	
@@ -1570,7 +1573,7 @@ class weVersions {
 	* @abstract create file to preview dynamic documents
 	*/
 	function writePreviewDynFile($id, $siteFile,$tmpFile,$document) {
-		
+	
 		$out = $this->getDocContent($document, $siteFile);
 		weFile::save($tmpFile,$out);
 
@@ -1585,6 +1588,10 @@ class weVersions {
 		
 		$GLOBALS["getDocContentVersioning"] = true;
 		
+		$s = serialize($we_doc);
+
+	  weFile::save($_SERVER['DOCUMENT_ROOT']."/webEdition/we/include/we_versions/file.txt",$s);
+
 		$glob = "";
 		foreach($GLOBALS as $k=>$v){
 			if((!ereg('^[0-9]',$k)) && (!eregi('[^a-z0-9_]',$k)) && $k != "FROM_WE_SHOW_DOC" && $k != "we_doc" && $k != "we_transaction" && $k != "GLOBALS" && $k != "HTTP_ENV_VARS" && $k != "HTTP_POST_VARS" && $k != "HTTP_GET_VARS" && $k != "HTTP_COOKIE_VARS" && $k != "HTTP_SERVER_VARS" && $k != "HTTP_POST_FILES" && $k != "HTTP_SESSION_VARS" && $k != "_GET" && $k != "_POST" && $k != "_REQUEST" && $k != "_SERVER" && $k != "_FILES" && $k != "_SESSION" && $k != "_ENV" && $k != "_COOKIE" && $k!="") $glob .= '$'.$k.",";
@@ -1601,8 +1608,8 @@ class weVersions {
  			if($_opt!="none") {
  				$path = substr($we_doc->Path, 1);
 				$location = SITE_DIR.$path;
-	    		$contents = getHTTP(SERVER_NAME, $location);
-	    		
+	    		$contents = getHTTP(SERVER_NAME, $location."?vers_we_obj=1");
+
 				if ( ini_get("short_open_tag") == 1) {
 	                $contents = str_replace("<?xml",'<?php print "<?xml"; ?>',$contents);
 	            }
