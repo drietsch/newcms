@@ -65,37 +65,37 @@ if (isset($_REQUEST['cmd']) && $_REQUEST['cmd'] != "ResetVersion" && $_REQUEST['
 	}
 }
 if(isset($_REQUEST['vers_we_obj']) && ($_REQUEST['vers_we_obj']))  {
- $x =weFile::load($_SERVER['DOCUMENT_ROOT']."/webEdition/we/include/we_versions/file.txt");
- 
- $xy = unserialize($x);error_log2($xy);
- 
- $we_doc = $xy;
- 
- weFile::delete($_SERVER['DOCUMENT_ROOT']."/webEdition/we/include/we_versions/file.txt");
+	$f = $_SERVER["DOCUMENT_ROOT"] . VERSION_DIR.'tmpSavedObj.txt';
+	$_REQUEST['vers_we_obj'] = false;
+ 	$tempFile =weFile::load($f);
+ 	$obj = unserialize($tempFile);
+ 	$we_doc = $obj;
 }
 
 // deal with customerFilter
 // @see we_object_showDocument.inc.php
-if ($we_doc->documentCustomerFilter && !isset($GLOBALS["getDocContentVersioning"])) {
-	
-	// call session_start to init session, otherwise NO customer can exist
-	@session_start();
-	
-	if ($_visitorHasAccess = $we_doc->documentCustomerFilter->accessForVisitor($we_doc)) {
+if(!isset($_REQUEST['vers_we_obj'])) {
+	if ($we_doc->documentCustomerFilter && !isset($GLOBALS["getDocContentVersioning"])) {
 		
-		if (!($_visitorHasAccess == WECF_ACCESS || $_visitorHasAccess == WECF_CONTROLONTEMPLATE)) {
+		// call session_start to init session, otherwise NO customer can exist
+		@session_start();
+		
+		if ($_visitorHasAccess = $we_doc->documentCustomerFilter->accessForVisitor($we_doc)) {
 			
-			// user has NO ACCESS => show errordocument
-			$_errorDocId = $we_doc->documentCustomerFilter->getErrorDoc($_visitorHasAccess);
-			if ($_errorDocPath = id_to_path($_errorDocId, FILE_TABLE)) { // use given document instead !
-				header("Location: " . getServerProtocol(true) . $_SERVER["HTTP_HOST"] . $_errorDocPath);
-				unset($_errorDocPath);
-				unset($_errorDocId);
-				exit();
-			
-			} else {
-				die("Customer has no access to this document");
-			
+			if (!($_visitorHasAccess == WECF_ACCESS || $_visitorHasAccess == WECF_CONTROLONTEMPLATE)) {
+				
+				// user has NO ACCESS => show errordocument
+				$_errorDocId = $we_doc->documentCustomerFilter->getErrorDoc($_visitorHasAccess);
+				if ($_errorDocPath = id_to_path($_errorDocId, FILE_TABLE)) { // use given document instead !
+					header("Location: " . getServerProtocol(true) . $_SERVER["HTTP_HOST"] . $_errorDocPath);
+					unset($_errorDocPath);
+					unset($_errorDocId);
+					exit();
+				
+				} else {
+					die("Customer has no access to this document");
+				
+				}
 			}
 		}
 	}
@@ -106,6 +106,7 @@ $we_doc->EditPageNr = $we_editmode ? WE_EDITPAGE_CONTENT : WE_EDITPAGE_PREVIEW;
 if ($tmplID && ($we_doc->ContentType == "text/webedition")) { // if the document should displayed with an other template
 	$we_doc->setTemplateID($tmplID);
 }
+
 $we_doc->setCache();
 
 if ($we_include = $we_doc->editor($baseHref)) {
