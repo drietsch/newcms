@@ -1588,10 +1588,6 @@ class weVersions {
 		
 		$GLOBALS["getDocContentVersioning"] = true;
 		
-		$s = serialize($we_doc);
-
-	  weFile::save($_SERVER['DOCUMENT_ROOT']."/webEdition/we/include/we_versions/file.txt",$s);
-
 		$glob = "";
 		foreach($GLOBALS as $k=>$v){
 			if((!ereg('^[0-9]',$k)) && (!eregi('[^a-z0-9_]',$k)) && $k != "FROM_WE_SHOW_DOC" && $k != "we_doc" && $k != "we_transaction" && $k != "GLOBALS" && $k != "HTTP_ENV_VARS" && $k != "HTTP_POST_VARS" && $k != "HTTP_GET_VARS" && $k != "HTTP_COOKIE_VARS" && $k != "HTTP_SERVER_VARS" && $k != "HTTP_POST_FILES" && $k != "HTTP_SESSION_VARS" && $k != "_GET" && $k != "_POST" && $k != "_REQUEST" && $k != "_SERVER" && $k != "_FILES" && $k != "_SESSION" && $k != "_ENV" && $k != "_COOKIE" && $k!="") $glob .= '$'.$k.",";
@@ -1603,9 +1599,13 @@ class weVersions {
 
 		//usually the site file always exists
 		if($includepath!='' && file_exists($includepath)) {
-			
+
  			$_opt = getHttpOption();
  			if($_opt!="none") {
+ 				$objTosave = serialize($we_doc);
+ 				$f = $_SERVER["DOCUMENT_ROOT"] . VERSION_DIR.'tmpSavedObj.txt';
+	    		weFile::save($f,$objTosave);
+ 				
  				$path = substr($we_doc->Path, 1);
 				$location = SITE_DIR.$path;
 	    		$contents = getHTTP(SERVER_NAME, $location."?vers_we_obj=1");
@@ -1613,6 +1613,8 @@ class weVersions {
 				if ( ini_get("short_open_tag") == 1) {
 	                $contents = str_replace("<?xml",'<?php print "<?xml"; ?>',$contents);
 	            }
+	            
+	            weFile::delete($f);
  			}
 			else {
 				ob_start();
@@ -1636,7 +1638,7 @@ class weVersions {
 			}
 
 		}
-		else {
+		else {				
 			ob_start();
 			$noSess = true;
 			$GLOBALS["WE_IS_DYN"] = 1;
@@ -2424,8 +2426,8 @@ class weVersions {
 		$modArray = array();
 		$db = new DB_WE();
 		$tblFields = $this->getFieldsFromTable(VERSIONS_TABLE);
-		
-		$db->query("SELECT * FROM " . VERSIONS_TABLE . " WHERE documentID='".abs($docID)."' AND documentTable='".mysql_real_escape_string($docTable)."' AND status IN ('saved','published') ORDER BY version DESC LIMIT 1");
+
+		$db->query("SELECT * FROM " . VERSIONS_TABLE . " WHERE documentID='".abs($docID)."' AND documentTable='".mysql_real_escape_string($docTable)."' AND status IN ('saved','published','unpublished','deleted') ORDER BY version DESC LIMIT 1");
 		if($db->next_record()) {
 			foreach($tblFields as $k => $v) {
 				$modArray[$v] = $db->f("".$v."");
