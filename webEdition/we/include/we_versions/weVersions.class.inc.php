@@ -2158,10 +2158,10 @@ class weVersions {
 		}
 		if($k=="OwnersReadOnly") {
 			$fieldValueText = "";
-			if($v!='') {
+			if($v!='' && !is_array($v)) {
 				$v = unserialize($v);
 			}
-			if(is_array($v)) {
+			if(is_array($v) && !empty($v)) {
 				foreach($v as $key => $val) {
 					if($fieldValueText!="") {
 						$fieldValueText .= "<br/>";
@@ -2177,24 +2177,35 @@ class weVersions {
 		
 		if($k=="weInternVariantElement") {
 			$fieldValueText = "";
-			if($v!='') {
+			if($v!='' && !is_array($v)) {
 				$v = unserialize($v);
 			}
-			if(is_array($v)) {
+			if(is_array($v) && !empty($v)) {
 				foreach($v as $key => $val) {
 					if(is_array($val)) {
 						foreach($val as $k => $vl) {
-							if($fieldValueText!="") {
-								$fieldValueText .= "<br/>";
+							if($k!="") {
+								$fieldValueText .= "<strong>".$k."</strong><br/>";
 							}
-		
-							$fieldValueText .= $k;
+							if(is_array($val)) {
+								foreach($vl as $key3 => $val3) {
+									if($key3!="") {
+										$fieldValueText .= $key3.": ";
+									}
+									if(isset($val3['dat']) && $val3['dat']!="") {
+										$fieldValueText .= $val3['dat']."<br/>";
+									}
+						
+								}
+							}
 							
 						}
 					}
 					
 				}
 			}
+			$fieldValueText .= "<br/>";
+			
 			$v = $fieldValueText;
 
 			
