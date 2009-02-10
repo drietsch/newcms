@@ -23,7 +23,6 @@ class we_ui_dialog_OkCancelDialogTest extends PHPUnit_Framework_TestCase
 	{
 		parent::setUp ();
 		$this->we_ui_dialog_OkCancelDialog = new we_ui_dialog_OkCancelDialog(/* parameters */);
-		$this->we_ui_dialog_OkCancelDialog->addHeadline('headline');
 		$this->we_ui_dialog_OkCancelDialog->setId('id1');
 		$this->we_ui_dialog_OkCancelDialog->setCancelAction('cancel');
 		$this->we_ui_dialog_OkCancelDialog->setOkAction('ok');
