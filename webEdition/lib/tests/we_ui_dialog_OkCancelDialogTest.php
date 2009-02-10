@@ -1,4 +1,5 @@
 <?php
+include_once('webEdition/lib/we/core/autoload.php');
 
 require_once 'webEdition/lib/we/ui/dialog/OkCancelDialog.php';
 
@@ -48,17 +49,6 @@ class we_ui_dialog_OkCancelDialogTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testGetCancelAction() {
 		$this->assertEquals($this->we_ui_dialog_OkCancelDialog->getCancelAction(),'cancel');
-	}
-	
-	/**
-	 * Tests we_ui_dialog_OkCancelDialog->getEncodeMessage()
-	 */
-	public function testGetEncodeMessage() {
-		// TODO Auto-generated we_ui_dialog_OkCancelDialogTest->testGetEncodeMessage()
-		$this->markTestIncomplete ( "getEncodeMessage test not implemented" );
-		
-		$this->we_ui_dialog_OkCancelDialog->getEncodeMessage(/* parameters */);
-	
 	}
 	
 	/**
