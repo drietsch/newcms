@@ -654,12 +654,12 @@ class searchtoolsearch extends we_search
 		if ($table == FILE_TABLE || $table == TEMPLATES_TABLE) {
 			
 			$query = "SELECT a.Name, b.Dat, a.DID FROM " . LINK_TABLE . " a LEFT JOIN " . CONTENT_TABLE . " b on (a.CID = b.ID) WHERE b.Dat LIKE '%" . mysql_real_escape_string(
-					trim($keyword)) . "%' AND a.DocumentTable='" . mysql_real_escape_string($this->getTblName($table)) . "'";
+					trim($keyword)) . "%' AND a.Name!='completeData' AND a.DocumentTable='" . mysql_real_escape_string($this->getTblName($table)) . "'";
 			$_db2->query($query);
 			while ($_db2->next_record()) {
 				$contents[] = $_db2->f('DID');
 			}
-			
+
 			if ($table == FILE_TABLE) {
 				$query2 = "SELECT DocumentID, DocumentObject  FROM " . TEMPORARY_DOC_TABLE . " WHERE DocumentObject LIKE '%" . mysql_real_escape_string(
 						trim($keyword)) . "%' AND DocTable = '" . mysql_real_escape_string($this->getTblName($table)) . "' AND Active = '1'";
