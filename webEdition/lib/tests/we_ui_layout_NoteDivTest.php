@@ -1,6 +1,6 @@
 <?php
 
-require_once 'webEdition/lib/we/ui/layout/NoteDiv.php';
+include_once('webEdition/lib/we/core/autoload.php');
 
 require_once 'PHPUnit/Framework/TestCase.php';
 
@@ -20,7 +20,7 @@ class we_ui_layout_NoteDivTest extends PHPUnit_Framework_TestCase {
 	protected function setUp() 
 	{
 		parent::setUp ();
-		$this->we_ui_layout_NoteDiv = new we_ui_layout_NoteDiv(/* parameters */);
+		$this->we_ui_layout_NoteDiv = new we_ui_layout_NoteDiv();
 		$this->we_ui_layout_NoteDiv->setId('id1');
 	}
 	
@@ -41,11 +41,19 @@ class we_ui_layout_NoteDivTest extends PHPUnit_Framework_TestCase {
 	}
 	
 	/**
-	 * Tests we_ui_layout_Div->getHTML()
+	 * Tests we_ui_layout_NoteDiv->setType()
 	 */
-	public function testgetHTML()
+	public function testsetType()
 	{
-		$this->assertEquals($this->we_ui_layout_NoteDiv->getHTML(), '<div id="id1"></div>');
+		$this->assertTrue($this->we_ui_layout_NoteDiv->setType('info'));
+	}
+	
+	/**
+	 * Tests we_ui_layout_NoteDiv->addText();
+	 */
+	public function testaddText()
+	{
+		$this->assertTrue($this->we_ui_layout_NoteDiv->addText('some text'));
 	}
 }
 
