@@ -40,6 +40,10 @@ Zend_Loader::loadClass('we_ui_abstract_AbstractElement');
 class we_ui_layout_NoteDiv extends we_ui_layout_Div
 {
 
+	/**
+	 * @var string 
+	 * depend on the type ('' | 'info' | 'warning' | 'alert') a icon will be setted
+	 */
 	protected $type = "";
 	
 	/**
@@ -125,6 +129,7 @@ class we_ui_layout_NoteDiv extends we_ui_layout_Div
 	 */
 	public function setType($type){
 		$this->type = $type;
+		return true;
 	}
 	
 	/**
@@ -132,7 +137,11 @@ class we_ui_layout_NoteDiv extends we_ui_layout_Div
 	 * @return void
 	 */
 	public function addText($text){
-		$this->_divHTML .= nl2br($text);
+		if ($this->_divHTML .= nl2br($text)) {
+			return true;
+		} else {
+			return false;
+		}		
 	}
 }
 
