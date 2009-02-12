@@ -55,26 +55,19 @@ ini_set('include_path', ini_get('include_path') . PATH_SEPARATOR . $GLOBALS['__W
 
 // include Zend_Loader, which is needed by the autoload function
 require 'Zend/Loader.php';
+Zend_Loader::registerAutoload();
 
 // include configuration file of webEdition
 include_once ($GLOBALS['__WE_BASE_PATH__'] . DIRECTORY_SEPARATOR . 'we' . DIRECTORY_SEPARATOR . 'include' . DIRECTORY_SEPARATOR . 'conf' . DIRECTORY_SEPARATOR . 'we_conf.inc.php');
+
 
 /**
  * class autoload function
  * 
  * @return void
  */
-function __autoload($class_name)
-{	
-	$file = str_replace('_', '/', $class_name);
-	$paths = explode(PATH_SEPARATOR, ini_get('include_path'));
 
- 	foreach($paths as $path) {
-        $exists = file_exists($path . '/' . $file . '.php');
-        if ($exists) {
-            Zend_Loader::loadClass($class_name);
-            return; 
-        } 
-    }
-
-}
+//function __autoload($class_name)
+//{
+//	Zend_Loader::loadClass($class_name);
+//}
