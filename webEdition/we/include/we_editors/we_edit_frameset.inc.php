@@ -25,7 +25,9 @@ include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_classes/permis
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_language/".$GLOBALS["WE_LANGUAGE"]."/alert.inc.php");
 include_once($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/we_ContentTypes.inc.php");
 protect();
+
 define("EDITFRAMESET",1);
+
 
 /**
  * Searches for the first Page in the editor, which the user is allowed to see.
@@ -96,6 +98,22 @@ if (!$we_doc->fileExists){
 	include($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/weInfoPages/weNoResource.inc.php");
 	exit();
 }
+$_needPerm = "";
+if (isset($_REQUEST['we_cmd'][1])) {
+	switch ($_REQUEST['we_cmd'][1]) {
+		case TEMPLATES_TABLE:
+			$_needPerm = "CAN_SEE_TEMPLATES";
+			break;
+		case FILE_TABLE:
+			$_needPerm = "CAN_SEE_DOCUMENTS";
+			break;
+	}
+}
+if ($_needPerm !="" && !we_hasPerm($_needPerm)) {
+	include($_SERVER["DOCUMENT_ROOT"]."/webEdition/we/include/weInfoPages/weNoPerms.inc.php");
+	exit();
+}
+
 $we_doc->InWebEdition = true;
 $we_doc->i_loadNavigationItems();
 
