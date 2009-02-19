@@ -21,7 +21,8 @@
 
 require_once($_SERVER['DOCUMENT_ROOT']. "/webEdition/we/include/we_modules/customer/weDocumentCustomerFilter.class.php");
 require_once($_SERVER['DOCUMENT_ROOT']. "/webEdition/we/include/we_classes/we_folder.inc.php");
-require_once($_SERVER['DOCUMENT_ROOT']. "/webEdition/we/include/we_classes/we_webeditionDocument.inc.php");
+require_once($_SERVER['DOCUMENT_ROOT']. "/webEdition/we/include/we_classes/we_webEditionDocument.inc.php");
+
 if (defined("OBJECT_TABLE")) {
 	require_once($_SERVER['DOCUMENT_ROOT']. "/webEdition/we/include/we_modules/object/we_objectFile.inc.php");
 }
