@@ -115,6 +115,19 @@
 							if(isset($object->persistent_slots) && !in_array($name,$object->persistent_slots)) {
 								$object->persistent_slots[]=$name;
 							}
+
+						}
+						
+						//correct table name in tblversions
+						if(isset($object->table) && $object->table=="tblversions") {
+							if(isset($object->documentTable)) {
+								if(strtolower(substr($object->documentTable,-14))=="tblobjectfiles") {
+									$object->documentTable = defined('OBJECT_FILES_TABLE') ? OBJECT_FILES_TABLE : 'tblobjectfiles';
+								}
+								if(strtolower(substr($object->documentTable,-7))=="tblfile") {
+									$object->documentTable = defined('FILE_TABLE') ? FILE_TABLE : 'tblfile';
+								}
+							}
 						}
 
 					} while($parser->nextSibling());
@@ -135,7 +148,7 @@
 							weBackupUtil::addLog($_prefix . $classname . ':' . $object->ID . ':' .  $object->Path);
 						}
 					}
-
+									
 					if(isset($object->Path) && $object->Path == '/webEdition/we/include/conf/we_conf_global.inc.php'){
 						weBackupImport::handlePrefs($object);
 					} else if(defined('SPELLCHECKER') && isset($object->Path) && (strpos($object->Path,'/webEdition/we/include/we_modules/spellchecker/')===0) && !$_SESSION['weBackupVars']['handle_options']['spellchecker']){
@@ -154,6 +167,8 @@
 					$parser->gotoMark('first');
 
 				}
+				
+				
 
 				if(isset($object)){
 					unset($object);
