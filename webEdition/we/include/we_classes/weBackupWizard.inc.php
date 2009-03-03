@@ -912,13 +912,14 @@ class weBackupWizard{
 			include(weToolLookup::getLanguageInclude($_tool));
 			if(isset(${'l_' . $_tool}["export_tool_" . $_tool . "_data"])) {
 				$text = ${'l_' . $_tool}["export_tool_" . $_tool . "_data"];
+				
 			}
 			else {
 				include_once($_SERVER['DOCUMENT_ROOT'] . '/webEdition/lib/we/core/autoload.php');
 				Zend_Loader::loadClass('we_core_Local');
 				$translate = we_core_Local::addTranslation('apps.xml');
 				we_core_Local::addTranslation('default.xml', $_tool);
-				$text = 'Save '.$translate->_( $_tool ).' data';
+				$text = $translate->_('Save '. $_tool .' data');
 			}
 			array_push($parts,array("headline"=>"","html"=>we_forms::checkbox(1, true, 'handle_tool_' . $_tool, $text, false, "defaultfont", "doClick($k);"),"space"=>70,"noline"=>1));
 			$k++;
