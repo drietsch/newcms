@@ -20,6 +20,7 @@
  * @license    http://www.gnu.org/licenses/lgpl-3.0.html  LGPL
  */
 
+
 /*
  * Sets some global variables which are needed 
  * for other classes and scripts and defines 
@@ -54,20 +55,12 @@ $GLOBALS['__WE_CMS_URL__'] = $GLOBALS['__WE_BASE_URL__'] . '/cms';
 ini_set('include_path', ini_get('include_path') . PATH_SEPARATOR . $GLOBALS['__WE_LIB_PATH__'] . PATH_SEPARATOR . $GLOBALS['__WE_APP_PATH__']);
 
 // include Zend_Loader, which is needed by the autoload function
-require 'Zend/Loader.php';
+require_once('Zend/Loader.php');
+
 Zend_Loader::registerAutoload();
+Zend_Loader::loadClass('Zend_Controller_Front');
 
 // include configuration file of webEdition
 include_once ($GLOBALS['__WE_BASE_PATH__'] . DIRECTORY_SEPARATOR . 'we' . DIRECTORY_SEPARATOR . 'include' . DIRECTORY_SEPARATOR . 'conf' . DIRECTORY_SEPARATOR . 'we_conf.inc.php');
 
 
-/**
- * class autoload function
- * 
- * @return void
- */
-
-//function __autoload($class_name)
-//{
-//	Zend_Loader::loadClass($class_name);
-//}
