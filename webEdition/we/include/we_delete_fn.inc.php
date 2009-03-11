@@ -374,7 +374,7 @@ function deleteEntry($id, $table, $delR = true)
 			$version->setVersionOnDelete($id, $table,$row['ContentType']);
 		}
 		
-		$hook = new weHook($object, 'delete');
+		$hook = new weHook('delete', '', array($object));
 		$hook->executeHook();
 		
 		we_temporaryDocument::delete($id, $table, $DB_WE);
