@@ -328,6 +328,11 @@ class we_ui_layout_Image
 	 * path of tree zip
 	 */
 	const kTreeIconZip = '/webEdition/images/tree/icons/zip.gif';
+	
+	/**
+	 * loading
+	 */
+	const kLoading = '/webEdition/images/logo-busy.gif';
 
 	/**
 	 * Returns HTML img tag which points to a transparent image
