@@ -2205,7 +2205,7 @@ DAMD: der Autocompleter funktioniert hier nicht. Der HTML-Cokde wird dynamisch e
 		we_history::insertIntoHistory($this);
 		
 		/* hook */
-		$hook = new weHook($this, 'save');
+		$hook = new weHook('save', '', array($this));
 		$hook->executeHook();
 
 		return true;
