@@ -74,7 +74,7 @@ class toolfactory_models_Default extends we_app_Model
 	 *
 	 * @var string
 	 */
-	public $datasource = 'custom:';
+	public $datasource = 'table:';
 	
 	/**
 	 * makeTable attribute
@@ -262,7 +262,14 @@ class toolfactory_models_Default extends we_app_Model
 		$TABLENAME = $this->maintable;
 		$TABLECONSTANT = !empty($this->maintable) ? strtoupper($this->classname) . '_TABLE' : '';
 		$DATASOURCE = !empty($this->maintable) ? 'table:' . $this->maintable : 'custom:';
-		$TABLEEXISTS = ($this->makeTable) ? true : false;
+		if($DATASOURCE=='table:' . $this->maintable) {
+			$TABLEEXISTS = true;
+			$this->makeTable = true;
+		}
+		else {
+			$TABLEEXISTS = false;
+			$this->makeTable = false;
+		}
 		
 		if($this->makePerms) {
 			$PERMISSIONCONDITION = 'EDIT_APP_' . strtoupper($this->classname);
@@ -370,7 +377,7 @@ class toolfactory_models_Default extends we_app_Model
 			}		
 		}
 				
-		$hook = new weHook($this, 'save', $this->classname);
+		$hook = new weHook('save', $this->_appName, array($this));
 		$hook->executeHook();
 				
 		return true;
