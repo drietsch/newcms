@@ -48,7 +48,7 @@ class toolfactory_views_TopFrameView extends we_app_TopFrameView {
 		$translate = we_core_Local::addTranslation('apps.xml');
 		we_core_Local::addTranslation('default.xml', 'toolfactory');
 		
-		$fs = self::kEditorFrameset;
+		$fs = self::kEditorFrameset;		
 		
 		// predefined message for JS output
 
@@ -72,6 +72,10 @@ class toolfactory_views_TopFrameView extends we_app_TopFrameView {
 		$noticeMessageCall = we_core_MessageReporting::getShowMessageCall('err', we_core_MessageReporting::kMessageNotice, true);
 		$warningMessageCall = we_core_MessageReporting::getShowMessageCall('err', we_core_MessageReporting::kMessageWarning, true);
 		
+		$loadingWheelFrame = $fs.".edbody.";
+		$loadingWheelContainer = "document.getElementById('containerDivBody')";
+		$loadingWheelImg = we_ui_layout_Image::kLoading;
+		
 		$js = <<<EOS
 
 
@@ -80,6 +84,7 @@ self.focus();
 self.appName = "{$this->appName}";
 
 parent.document.title = "webEdition {$translate->_('Applications')} - {$translate->_($this->appName)}";
+
 
 /*******************************************
 ****************** Events ******************
@@ -94,7 +99,8 @@ weEventController.register("cmdError", function(data, sender) {
 	} else {
 		err = "Unknown Error";
 	}
-	$errorMessageCall	
+	$errorMessageCall
+	__removeLoadingWheel__(data, sender);	
 });
 
 /* cmdNotice */
@@ -105,6 +111,7 @@ weEventController.register("cmdNotice", function(data, sender) {
 		err = "Unknown Error";
 	}
 	$noticeMessageCall	
+	__removeLoadingWheel__(data, sender);
 });
 
 /* cmdWarning */
@@ -115,6 +122,7 @@ weEventController.register("cmdWarning", function(data, sender) {
 		err = "Unknown Error";
 	}
 	$warningMessageCall	
+	__removeLoadingWheel__(data, sender);
 });
 
 
@@ -126,8 +134,19 @@ weEventController.register("docChanged", function(data, sender) {
 	self.hot = true;
 });
 
+/* remove Loading Wheel */
+function __removeLoadingWheel__(data, sender) {
+	var loadingWheel = {$loadingWheelFrame}document.getElementById('loadingWheelDiv');
+	if (typeof({$loadingWheelFrame}{$loadingWheelContainer}) != "undefined") {
+		{$loadingWheelFrame}{$loadingWheelContainer}.removeChild(loadingWheel);	
+	}
+}
+weEventController.register("save", __removeLoadingWheel__);
+
+
 /* save */
 weEventController.register("save", function(data, sender) {
+
 	self.hot = false;
 	var msg = "$saveMessage";
 	
@@ -140,7 +159,10 @@ weEventController.register("save", function(data, sender) {
 		text = data.model.Text;
 	}
 	msg = msg.replace(/%s/, data.model.Text);
+	
 	$saveEntryMessageCall	
+
+	
 });
 
 /* delete */
@@ -193,10 +215,10 @@ weCmdController.register('open_top', 'app_{$this->appName}_open', function(cmdOb
 
 /* save */
 weCmdController.register('save_top', 'app_{$this->appName}_save', function(cmdObj) {
-
 	if (typeof({$fs}.edbody) == "undefined") {
 		$nothingToSaveMessageCall
 	} else {
+		addLoadingWheel();
 		we_core_JsonRpc.callMethod(
 			cmdObj, 
 			"{$this->appDir}/index.php/rpc/index", 
@@ -206,6 +228,7 @@ weCmdController.register('save_top', 'app_{$this->appName}_save', function(cmdOb
 		);
 	}
 });
+
 
 /* delete */
 weCmdController.register('delete_top', 'app_{$this->appName}_delete', function(cmdObj) {
@@ -221,6 +244,7 @@ weCmdController.register('delete_top', 'app_{$this->appName}_delete', function(c
 		);
 	}
 });
+
 
 /* home */
 weCmdController.register('home_top', 'app_{$this->appName}_home', function(cmdObj) {
@@ -259,6 +283,17 @@ function _weYesNoCancelDialog(cmdObj) {
 	noCmd.ignoreHot = true;
 	var dialog = new we_ui_layout_Dialog("{$this->appDir}/index.php/editor/exitdocquestion", 380, 130, {"yesCmd":yesCmd, "noCmd":noCmd});
 	dialog.open();
+}
+
+function addLoadingWheel() {
+	var loadingImgDiv = {$loadingWheelFrame}document.createElement('div');
+	loadingImgDiv.id = "loadingWheelDiv";
+	loadingImgDiv.className = 'weLoadingWheelDiv';
+	var loadingImg = {$loadingWheelFrame}document.createElement('img');
+	loadingImg.src = "{$loadingWheelImg}";
+	loadingImg.className = 'weLoadingWheel';
+	loadingImgDiv.appendChild(loadingImg);	
+	{$loadingWheelFrame}{$loadingWheelContainer}.appendChild(loadingImgDiv);	
 }
 
 EOS;
