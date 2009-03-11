@@ -77,7 +77,7 @@ class <?php print $CLASSNAME;?>_models_Default extends we_app_Model
 	function save()
 	{
 		// allowing hook functionality
-		$hook = new weHook($this, 'save', $this->_appName);
+		$hook = new weHook('save', $this->_appName, array($this));
 		$hook->executeHook();
 	
 		return true;
