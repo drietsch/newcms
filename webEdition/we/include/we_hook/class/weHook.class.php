@@ -26,18 +26,18 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we_classes/tools/
  */
 class weHook{
 	
-	protected $_hookObj;
-	
 	protected $_action;
 	
 	protected $_appName;
 	
+	protected $_param;
+	
 		
-	function __construct($obj, $action, $appName='') {
+	function __construct($action, $appName='', $param=array()) {
 		
-		$this->_hookObj = $obj;
 		$this->_action = $action;
 		$this->_appName = $appName;
+		$this->_param = $param;
 
 	}
 	
@@ -50,30 +50,25 @@ class weHook{
 
 		if(defined('EXECUTE_HOOKS') && EXECUTE_HOOKS) {
 		
-			$hookFiles = array();
+			$hookFile = '';
 			$action = $this->_action;
-			$obj = $this->_hookObj;
+			$param = $this->_param;
 			$appName = $this->_appName;
 			
 			if($action!='') {
-				$hookFiles = $this->getHookFiles($action, $appName);
-		
-				if(!empty($hookFiles)) {
-					foreach($hookFiles as $key=>$val) {
-						if($key!='') {
-							$functionName = 'weCustomHook_'.$key.'_'.$action;
-						}
-						else {
-							$functionName = 'weCustomHook_'.$action;
-						}
+				$hookFile = $this->getHookFiles($action, $appName);
 
-						include_once($val);
-							
-						if(function_exists($functionName)) {
-							eval($functionName.'($obj, $appName);');
-						}
+				if($appName!='') {
+					$functionName = 'weCustomHook_'.$appName.'_'.$action;
+				}
+				else {
+					$functionName = 'weCustomHook_'.$action;
+				}
 
-					}
+				include_once($hookFile);
+					
+				if(function_exists($functionName)) {
+					eval($functionName.'($param);');
 				}
 			}
 		}
@@ -89,36 +84,28 @@ class weHook{
 	 */
 	function getHookFiles($action, $appName) {
 		
-		$hookFiles = array();
-		
+		$hookFile = '';
+
 		if($appName!='') {
 			$filename = 'weCustomHook_'.$appName.'_' . $action . '.inc.php';
+			// look in app folder
+			$toolHookFile = $_SERVER['DOCUMENT_ROOT'].'/webEdition/apps/'.$appName.'/hook/custom_hooks/'.$filename;
+			if(file_exists($toolHookFile) && is_readable($toolHookFile)) {
+		  	$hookFile = $toolHookFile;
+			}
 		}
 		else {
 			$filename = 'weCustomHook_'. $action . '.inc.php';
+			// look in we_hook/custom_hooks folder
+	  		$weHookFile = $_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we_hook/custom_hooks/'.$filename;
+	  		if(file_exists($weHookFile) && is_readable($weHookFile)) {
+	  			$hookFile = $weHookFile;
+	  		}
 		}
 		
-		// look in app folders
-		$_apps = weToolLookup::getAllTools(true);
-		if(!empty($_apps)) {
-			foreach($_apps as $_tool){
-				$toolname = isset($_tool['classname']) ? $_tool['classname'] : '';
-				if($toolname!='') {
-					$toolHookFile = $_SERVER['DOCUMENT_ROOT'].'/webEdition/apps/'.$toolname.'/hook/custom_hooks/'.$filename;
-					if(file_exists($toolHookFile) && is_readable($toolHookFile)) {
-						$hookFiles[$toolname] = $toolHookFile;
-					}
-				}
-			}
-		}	
-		// look in we_hook/custom_hooks folder
-		$weHookFile = $_SERVER['DOCUMENT_ROOT'].'/webEdition/we/include/we_hook/custom_hooks/'.$filename;
-		if(file_exists($weHookFile) && is_readable($weHookFile)) {
-			$hookFiles[] = $weHookFile;
-		}
-		
-		return $hookFiles;
+		return $hookFile;
 	}
+	
 	
 	function __destruct() {
 		

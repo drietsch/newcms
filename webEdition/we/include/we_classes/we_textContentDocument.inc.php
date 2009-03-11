@@ -351,7 +351,7 @@ class we_textContentDocument extends we_textDocument{
 		}
 		
 		/* hook */
-		$hook = new weHook($this, 'save');
+		$hook = new weHook('save', '', array($this));
 		$hook->executeHook();
 		
 		return $ret;
@@ -383,7 +383,7 @@ class we_textContentDocument extends we_textDocument{
 			$version->save($this, "published");
 		}
 		/* hook */
-		$hook = new weHook($this, 'publish');
+		$hook = new weHook('publish', '', array($this));
 		$hook->executeHook();
 
 		return $this->insertAtIndex();
@@ -413,7 +413,7 @@ class we_textContentDocument extends we_textDocument{
 			$version->save($this, "unpublished");
 		}
 		
-		$hook = new weHook($this, 'unpublish');
+		$hook = new weHook('unpublish', '', array($this));
 		$hook->executeHook();
 
 		$this->DB_WE->query('SELECT DID FROM ' . INDEX_TABLE . ' WHERE DID=' . abs($this->ID));

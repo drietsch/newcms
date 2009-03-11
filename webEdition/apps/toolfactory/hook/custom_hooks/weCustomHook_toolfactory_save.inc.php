@@ -24,20 +24,17 @@
 	/**
 	 * if hook execution is enabled this function will be executed 
 	 * when saving an entry or folder in the application toolfactory
-	 * The object $we_doc has all information about the respective entry or folder.
-	 * The string of $appName is equal to the application name, in this case it
-	 * has to be 'toolfactory'.
+	 * The array $param has all information about the respective entry or folder.
 	 * 
-	 * @param object $we_doc
-	 * @param $appName string
+	 * @param array $param
 	 */	
-	function weCustomHook_toolfactory_save($we_doc, $appName='') {
-		
+	function weCustomHook_toolfactory_save($param) { 
+	
 		/**
 		 * e.g.:
 		 * 
 		 * ob_start("error_log");
-		 * print_r($we_doc);
+		 * print_r($param);
 		 * ob_end_clean();
 		 */
 

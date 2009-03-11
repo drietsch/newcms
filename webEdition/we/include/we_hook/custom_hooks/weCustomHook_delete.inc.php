@@ -24,19 +24,17 @@
 	/**
 	 * if hook execution is enabled this function will be executed 
 	 * when deleting a document, template, object or class
-	 * The object $we_doc has all information about the respective document.
-	 * The string of $appName in this case is always empty.
+	 * The array $param has all information about the respective document.
 	 * 
-	 * @param object $we_doc
-	 * @param $appName string
+	 * @param array $param
 	 */	
-	function weCustomHook_delete($we_doc, $appName='') {
+	function weCustomHook_delete($param) {
 		
 		/**
 		 * e.g.:
 		 * 
 		 * ob_start("error_log");
-		 * print_r($we_doc);
+		 * print_r($param);
 		 * ob_end_clean();
 		 */
 
