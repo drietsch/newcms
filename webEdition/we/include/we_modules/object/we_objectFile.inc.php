@@ -2033,7 +2033,7 @@ class we_objectFile extends we_document
 			
 		}
 
-		$hook = new weHook($this, 'save');
+		$hook = new weHook('save', '', array($this));
 		$hook->executeHook();
 
 		return $a;
@@ -2165,7 +2165,7 @@ class we_objectFile extends we_document
 			$this->we_clearCache($this->ID);
 		}
 		
-		$hook = new weHook($this, 'publish');
+		$hook = new weHook('publish', '', array($this));
 		$hook->executeHook();
 
 		return $this->insertAtIndex();
@@ -2184,7 +2184,7 @@ class we_objectFile extends we_document
 			$version->save($this, "unpublished");
 		}
 		
-		$hook = new weHook($this, 'unpublish');
+		$hook = new weHook('unpublish', '', array($this));
 		$hook->executeHook();
 		
 		return $this->DB_WE->query("DELETE FROM " . INDEX_TABLE . " WHERE OID=".$this->ID);
