@@ -728,7 +728,7 @@ class we_document extends we_root {
 		}
 		
 		/* hook */
-		$hook = new weHook($this, 'save');
+		$hook = new weHook('save', '', array($this));
 		$hook->executeHook();
 
 		return $ret;
