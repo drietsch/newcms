@@ -221,6 +221,7 @@ class we_ui_layout_HTMLPage extends we_ui_abstract_AbstractElement
 		$this->addJSFile('/webEdition/js/attachKeyListener.js');
 		
 		$js = '';
+		// write in all frames except in top frame
 		if (!$this->_isTopFrame) {
 			$js = <<<EOS
 
