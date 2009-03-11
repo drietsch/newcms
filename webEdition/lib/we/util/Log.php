@@ -128,7 +128,7 @@ class we_util_Log
 		}
 		switch ($message) {
 			case "" :
-				error_log("undefined error");
+				error_log("empty log");
 				break;
 			case is_array($message) :
 				error_log(print_r($message, true));
