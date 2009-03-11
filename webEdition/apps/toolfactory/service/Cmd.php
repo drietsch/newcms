@@ -215,5 +215,27 @@ class toolfactory_service_Cmd extends we_app_service_AbstractCmd
 		);
 	}
 	
+	/**
+	 * Accessibility for services
+	 * @param string $method
+	 * @param string $accessibility
+	 * 
+	 * @return string
+	 */
+	public function getAccessibility($method, $accessibility) 
+	{
+		switch ($method) {
+			case 'save':
+				return we_net_rpc_JsonRpc::kDefaultAccessibility;
+			break;
+			case 'delete':
+				return we_net_rpc_JsonRpc::kDefaultAccessibility;
+			break;
+			default:
+				return we_net_rpc_JsonRpc::kDefaultAccessibility;
+		}
+		return we_net_rpc_JsonRpc::kDefaultAccessibility;
+	}
+	
 
 }
