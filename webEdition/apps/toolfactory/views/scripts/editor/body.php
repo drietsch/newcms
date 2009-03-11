@@ -96,7 +96,7 @@ if(substr($this->model->datasource, 0, 6) !='table:') {
 }
 
 $labelMaintable = new we_ui_controls_Label();
-$labelMaintable->setText($translate->_('Maintable (leave empty if not necessary)'));
+$labelMaintable->setText($translate->_('Maintable'));
 $labelMaintable->setStyle('margin-top:20px;display:block;');
 $inputMaintable = new we_ui_controls_TextField();
 $inputMaintable->setName('maintable');
@@ -112,16 +112,6 @@ $inputMaintable->setOnChange('weEventController.fire("docChanged")');
 $divMaintable->addElement($labelMaintable);
 $divMaintable->addElement($inputMaintable);
 
-$checkboxMaintable = new we_ui_controls_Checkbox();
-$checkboxMaintable->setId('makeTable');
-$checkboxMaintable->setName('makeTable');
-if(!empty($this->model->ID)) {
-	$checkboxMaintable->setHidden(true);
-}
-$checkboxMaintable->setChecked(($this->model->makeTable) ? true : false);
-$checkboxMaintable->setValue($this->model->makeTable);
-$checkboxMaintable->setLabel($translate->_('Create maintable'));
-$divMaintable->addElement($checkboxMaintable);
 
 $rowGeneral->addElement($divMaintable);
 
@@ -318,7 +308,7 @@ weEventController.register("save", __updateIdEventHandler__);
 
 weCmdController.register("save_body", "app_'.$appName.'_save", null, self, function(cmdObj) 
 {
-			
+
 	var form = document.we_form;
 		
 	if (form.Text.value === "") {
@@ -334,15 +324,15 @@ weCmdController.register("save_body", "app_'.$appName.'_save", null, self, funct
 		form.classname.select();
 		return false;
 	}
-	
-	if (form.makeTable.value==1 && form.maintable.value==="") {
+
+	if (form.datasource.value=="table:" && form.maintable.value=="") {
 		'.$noTablenameMessageCall.'
 		form.maintable.focus();
 		form.maintable.select();
 		return false;
 	}
 
-	
+
 	return true;
 });
 
@@ -380,13 +370,48 @@ function firstCharNum(str) {
    return IsNumber;
 }
 
+
 ';
 
-$htmlPage->addElement($form);
+$cssLoadingWheel = '
+.weLoadingWheelDiv {
+	display:block;
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:100%;
+	height:100%;
+	opacity:0.75;
+	filter:alpha(opacity=75);
+	background-color:#EDEDED;
+	background-position:center center;
+	background-repeat:no-repeat;
+	text-align:center;
+	margin:0px;
+	padding:0px;
+}
+.weLoadingWheel {
+	position:absolute;
+	top:50%;
+	left:50%;
+	width:20px;
+	height:19px;
+}
+';
+
+$containerDiv = new we_ui_layout_Div();
+$containerDiv->setId('containerDivBody');
+
+$containerDiv->addElement($form);
+
+$htmlPage->addElement($containerDiv);
 
 $htmlPage->addInlineJS($js);
 $htmlPage->setBodyAttributes(array('class' => 'weEditorBody', 'onLoad' => 'loaded=1;'));
 $htmlPage->addJSFile('/webEdition/js/we_showMessage.js');
+
+$htmlPage->addInlineCSS($cssLoadingWheel);
+
 
 echo $htmlPage->getHTML();
 
