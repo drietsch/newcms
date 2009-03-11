@@ -269,7 +269,7 @@ class we_folder extends we_root
 		}
 		
 		/* hook */
-		$hook = new weHook($this, 'save');
+		$hook = new weHook('save', '', array($this));
 		$hook->executeHook();
 
 		return true;
