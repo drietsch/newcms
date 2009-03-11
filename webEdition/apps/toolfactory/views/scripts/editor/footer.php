@@ -19,27 +19,31 @@
  * @license    http://www.gnu.org/copyleft/gpl.html  GPL
  */
 
+$appName = Zend_Controller_Front::getInstance()->getParam('appName');
 $translate = we_core_Local::addTranslation('apps.xml');
 
 $page = we_ui_layout_HTMLPage::getInstance();
 
+
 $saveButton = new we_ui_controls_Button(
 	array(
 		'text'		=> $translate->_('Save'), 
-		'onClick'	=> 'weCmdController.fire({cmdName: "app_toolfactory_save"})', 
+		'onClick'	=> 'weCmdController.fire({cmdName: "app_toolfactory_save"});', 
 		'type'		=> 'onClick', 
 		'width'		=> 100,
-		'disabled'	=> !we_core_Permissions::hasPerm('EDIT_APP_TOOLFACTORY'),
-		'style'		=> 'margin:9px 0 0 15px;'
+		'disabled'	=> !we_core_Permissions::hasPerm('EDIT_APP_TOOLFACTORY')
 	)
 );
 
 
 $page->setBodyAttributes(array('class'=>'weEditorFooter'));
 
+$table = new we_ui_layout_Table(array('style'=>'margin:9px 0 0 15px;'));
+$table->addElement($saveButton);
+
+
 if(empty($this->model->ID)) {
-	$page->addElement($saveButton);
-	
+	$page->addElement($table);
 }
 
 echo $page->getHTML();
