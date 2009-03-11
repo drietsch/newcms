@@ -22,6 +22,7 @@ function we_core_CmdController() {
 
 	this.cmds = new Array();
 	
+	//register all command (TopFrameView)
 	this.register = function(cmdid, cmdName, fn, scope, checkFn) {
 		var obj = new Object();
 		obj.checkFn = checkFn ? checkFn : null;
@@ -29,6 +30,7 @@ function we_core_CmdController() {
 		obj.fn = fn;
 		obj.scope = scope ? scope : window;
 		obj.id = cmdid;
+		
 		this.cmds.push(obj);
 	}
 	
@@ -47,10 +49,11 @@ function we_core_CmdController() {
 		var l = arguments.length;
 		var i;
 		var args = [];
-		
+
 		l = this.cmds.length;
 		for (i=0; i<l; i++) {
 			if (this.cmds[i].cmd.cmdName == cmdObj.cmdName && this.cmds[i].checkFn !== null) {
+				//if checking function returns false
 				if (this.cmds[i].checkFn.call(this.cmds[i].scope, cmdObj) === false) {
 					return;
 				}
@@ -58,6 +61,7 @@ function we_core_CmdController() {
 		}
 		for (i=0; i<l; i++) {
 			if (this.cmds[i].cmd.cmdName == cmdObj.cmdName && this.cmds[i].fn !== null) {
+				//call every registered function for cmdName as a method of this.cmds[i].scope object
 				this.cmds[i].fn.call(this.cmds[i].scope, cmdObj);
 			}
 		}
