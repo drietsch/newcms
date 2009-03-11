@@ -23,10 +23,9 @@ $appDir = Zend_Controller_Front::getInstance()->getParam('appDir');
 $appName = Zend_Controller_Front::getInstance()->getParam('appName');
 
 $frameset = new we_ui_layout_Frameset();
-
 $frameset->setRows(((isset($_SESSION['prefs']['debug_normal']) && $_SESSION['prefs']['debug_normal'] != 0) ? '32,*,100' : '32,*,0'));
-	//$frameset->setOnLoad('start();');
 
+// parameter for each frame
 $param = 	($this->tab ?
 				'/tab/' . $this->tab :
 				'') .
@@ -41,7 +40,6 @@ $frameset->addFrame(array(
 	'src' => $appDir . '/index.php/header/index',
 	'name' => 'header',
 	'scrolling' => 'no', 
-	
 	'noresize' => 'noresize'
 ));
 	
