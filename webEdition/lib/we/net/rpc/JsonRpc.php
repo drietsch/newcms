@@ -129,7 +129,7 @@ class we_net_rpc_JsonRpc {
 		* Now replace all dots with underscores so we can load the service script.
 		*/
 		$serviceClass = implode("_", $serviceComponents);
-		
+
 		try {
 			/* Load the class */
 			Zend_Loader::loadClass($serviceClass);
@@ -151,7 +151,7 @@ class we_net_rpc_JsonRpc {
 
 		/* Assign the default accessibility */
 		$accessibility = self::kDefaultAccessibility;
-
+		
 		/*
 		* See if there is a "GetAccessibility" method in the class.  If there is, it
 		* should take two parameters: the method name and the default accessibility,
@@ -179,7 +179,7 @@ class we_net_rpc_JsonRpc {
 				/* Get the Referer, up through the domain part */
 				if (!preg_match("@(https?://[^/]*)@", $_SERVER["HTTP_REFERER"], $regs)) {
 					/* unrecognized referer */
-					$error->SetError(we_net_rpc_JsonRpcError::kErrorPermissionDenied, "Permission Denied [2]");
+					$error->SetError(we_net_rpc_JsonRpcError::kErrorPermissionDenied, "Permission Denied ['Accessibility Domain']");
 					return $error->getError();
 					/* never gets here */
 				}
@@ -189,7 +189,7 @@ class we_net_rpc_JsonRpc {
 				/* Is the method accessible? */
 				if ($refererDomain != $requestUriDomain) {
 					/* Nope. */
-					$error->SetError(we_net_rpc_JsonRpcError::kErrorPermissionDenied, "Permission Denied [3]");
+					$error->SetError(we_net_rpc_JsonRpcError::kErrorPermissionDenied, "Permission Denied ['Accessibility Domain']");
 					return $error->getError();
 					/* never gets here */
 				}
@@ -207,7 +207,7 @@ class we_net_rpc_JsonRpc {
 				/* Get the Referer, up through the domain part */
 				if (!preg_match("@(https?://[^/]*)@", $_SERVER["HTTP_REFERER"], $regs)) {
 					/* unrecognized referer */
-					$error->SetError(we_net_rpc_JsonRpcError::kErrorPermissionDenied, "Permission Denied [4]");
+					$error->SetError(we_net_rpc_JsonRpcError::kErrorPermissionDenied, "Permission Denied ['Accessibility Session']");
 					return $error->getError();
 					/* never gets here */
 				}
@@ -220,7 +220,7 @@ class we_net_rpc_JsonRpc {
 				/* Is the method accessible? */
 				if (isset($rpcSession->referer_domain) && $refererDomain != $rpcSession->referer_domain) {
 					/* Nope. */
-					$error->SetError(we_net_rpc_JsonRpcError::kErrorPermissionDenied, "Permission Denied [5]");
+					$error->SetError(we_net_rpc_JsonRpcError::kErrorPermissionDenied, "Permission Denied ['Accessibility Session']");
 					return $error->getError();
 					/* never gets here */
 				} else if (!isset($rpcSession->referer_domain)) {
@@ -230,9 +230,8 @@ class we_net_rpc_JsonRpc {
 
 			break;
 
-			case kAccessibilityFail:
-				$error->SetError(JsonRpcError_PermissionDenied,
-				"Permission Denied [6]");
+			case self::kAccessibilityFail:
+				$error->SetError(we_net_rpc_JsonRpcError::kErrorPermissionDenied,"Permission Denied ['Accessibility Fail']");
 				return $error->getError();
 				/* never gets here */
 			break;
@@ -255,8 +254,8 @@ class we_net_rpc_JsonRpc {
 
 		/* Errors from here on out will be Application-generated */
 		$error->SetOrigin(we_net_rpc_JsonRpcError::kErrorOriginApplication);
-		/* Call the requested method passing it the provided params */
 		
+		/* Call the requested method passing it the provided params */
 		try {
 			$output = $service->$method($phpObj['params']);
 		} catch (we_service_Exception $e) {			
