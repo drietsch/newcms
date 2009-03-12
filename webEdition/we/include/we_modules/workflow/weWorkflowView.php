@@ -1091,6 +1091,7 @@ class weWorkflowView extends weWorkflowBase{
 		foreach($this->workflowDef->persistents as $key=>$val){
 			$varname=$this->uid."_".$val;
 			if(isset($_REQUEST[$varname])){
+				$_REQUEST[$varname] = mysql_real_escape_string($_REQUEST[$varname]);
 				eval('$this->workflowDef->'.$val.'="'.$_REQUEST[$varname].'";');
 			}
 		}
